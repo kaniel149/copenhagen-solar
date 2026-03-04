@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ko Phangan Solar — תוכנית עסקית שנה 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { --ocean:#0A3D5C; --gold:#E8A820; --reef:#1A7A5A; --coral:#E85D3A; --night:#0D2137; --white:#FFF; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
+.slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:40px 60px;opacity:0;transform:translateX(100px);transition:all .6s cubic-bezier(.23,1,.32,1);pointer-events:none;overflow-y:auto;padding-bottom:80px}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all}
+.slide.exit{opacity:0;transform:translateX(-100px)}
+.slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
+.slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
+.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 24px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:14px;font-weight:500;transition:all .3s}
+.nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}.nav-btn:disabled:hover{background:none;color:var(--gold)}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:14px}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
+.toc-btn{position:fixed;top:20px;left:20px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102;transition:all .3s}
+.toc-btn:hover{background:var(--gold);color:var(--night)}
+.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s cubic-bezier(.23,1,.32,1);padding:60px 30px 30px;overflow-y:auto}
+.toc-panel.open{left:0}
+.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
+.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-num{font-family:'Space Grotesk';font-weight:700;font-size:12px;color:var(--gold);min-width:24px}
+h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:16px}
+h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;line-height:1.2;margin-bottom:12px}
+h3{font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:8px}
+.subtitle{font-size:clamp(16px,2vw,22px);font-weight:300;opacity:.8;margin-bottom:24px}
+.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;transition:all .3s}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card-icon{font-size:28px;margin-bottom:10px}.card h3{font-size:16px;margin-bottom:6px}.card p{font-size:13px;opacity:.7;line-height:1.5}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:rgba(232,168,32,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:10px 14px;border-top:1px solid rgba(255,255,255,.06)}
+tr:hover td{background:rgba(255,255,255,.03)}
+.alert{padding:16px 20px;border-radius:10px;margin:12px 0;font-size:14px;line-height:1.6}
+.alert-warn{background:rgba(232,93,58,.15);border-right:3px solid var(--coral)}
+.alert-info{background:rgba(232,168,32,.1);border-right:3px solid var(--gold)}
+.alert-success{background:rgba(46,216,154,.1);border-right:3px solid #2ED89A}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.tag-ppa{background:rgba(46,216,154,.2);color:#2ED89A}.tag-epc{background:rgba(100,150,255,.2);color:#6496FF}.tag-both{background:rgba(232,168,32,.2);color:var(--gold)}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.slide{padding:24px 20px}}
+.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
+.section-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;color:var(--gold);opacity:.15;position:absolute;top:20px;left:40px}
+.big-num{font-family:'Space Grotesk';font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--gold)}
+.stat-label{font-size:14px;opacity:.6;margin-top:4px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;margin:20px 0;text-align:center}
+.bar-chart{margin:16px 0}
+.bar-row{display:flex;align-items:center;gap:12px;margin:6px 0}
+.bar-label{font-size:13px;min-width:80px;text-align:left}
+.bar-wrap{flex:1;height:28px;background:rgba(255,255,255,.05);border-radius:14px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:14px;display:flex;align-items:center;padding:0 12px;font-size:11px;font-weight:600;font-family:'Space Grotesk';transition:width 1s ease}
+.bar-val{font-family:'Space Grotesk';font-size:13px;min-width:70px;text-align:left;font-weight:600}
+.vs-box{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start;margin:16px 0}
+.vs-divider{display:flex;flex-direction:column;align-items:center;gap:4px;padding-top:30px;color:var(--gold);font-weight:700;font-size:18px}
+.model-card{background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;transition:all .3s}
+.model-card:hover{border-color:var(--gold)}
+.model-card.ppa{border-color:rgba(46,216,154,.3)}.model-card.epc{border-color:rgba(100,150,255,.3)}
+.month-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.month-cell{background:rgba(255,255,255,.03);border-radius:8px;padding:10px;text-align:center;font-size:12px;border:1px solid rgba(255,255,255,.06)}
+.month-cell .m-num{font-family:'Space Grotesk';font-weight:700;font-size:10px;color:var(--gold);opacity:.6}
+.month-cell .m-val{font-family:'Space Grotesk';font-weight:700;font-size:16px;margin-top:2px}
+.month-cell .m-label{font-size:10px;opacity:.5}
+.highlight{background:rgba(232,168,32,.1);border-color:var(--gold)!important}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<button class="toc-btn" onclick="toggleTOC()">☰</button>
+<div class="toc-panel" id="tocPanel"><h3 style="color:var(--gold);margin-bottom:20px;">תוכן עניינים</h3><div id="tocList"></div></div>
+
+<div class="slide-container" id="slides">
+
+<!-- SLIDE 0: Cover -->
+<div class="slide slide-cover active" data-title="שער">
+  <div style="margin-bottom:30px">
+    <div style="font-size:56px;margin-bottom:16px">☀️💰</div>
+    <h1>תוכנית עסקית<br><span class="gold">Ko Phangan Solar</span></h1>
+    <p class="subtitle">שנה ראשונה — שני מודלים עסקיים</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+      <span class="tag tag-epc">EPC — מכירה ישירה</span>
+      <span class="tag tag-ppa">PPA/ESCO — הכנסה חוזרת</span>
+      <span class="tag tag-both">Hybrid — הכי חזק</span>
+    </div>
+  </div>
+  <p style="opacity:.4;font-size:13px">KANIEL TORD LLC — מרץ 2026</p>
+</div>
+
+<!-- SLIDE 1: Market Opportunity -->
+<div class="slide slide-ocean" data-title="הזדמנות שוק">
+  <h2>🎯 ההזדמנות — <span class="gold">Koh Phangan</span></h2>
+  <p class="subtitle">שוק בתול עם ביקוש מוכח</p>
+
+  <div class="stat-grid">
+    <div><div class="big-num">₿4.26</div><div class="stat-label">kWh תעריף ממוצע<br>עסקי: עד ₿5+</div></div>
+    <div><div class="big-num">4.5</div><div class="stat-label">שעות שיא שמש/יום<br>כל השנה</div></div>
+    <div><div class="big-num">0</div><div class="stat-label">מתחרים רציניים<br>באי</div></div>
+    <div><div class="big-num">165+</div><div class="stat-label">לידים מזוהים<br>כבר במערכת</div></div>
+  </div>
+
+  <div class="two-col" style="margin-top:16px">
+    <div>
+      <h3>למה עכשיו?</h3>
+      <div class="card" style="margin:8px 0"><h3>רגולציה פושטה דרמטית</h3><p>אין היתר בנייה (11/2025), אין רישיון מפעל (12/2024). רק תיאום PEA.</p></div>
+      <div class="card" style="margin:8px 0"><h3>הפסקות חשמל תכופות</h3><p>האי סובל מהפסקות. סולאר + סוללות = pitch שמוכר את עצמו.</p></div>
+      <div class="card" style="margin:8px 0"><h3>מגמת eco-luxury</h3><p>רזורטים ווילות יוקרה רוצים "green". סולאר = שיווק + חיסכון.</p></div>
+    </div>
+    <div>
+      <h3>לקוחות מטרה (לפי עדיפות)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>סגמנט</th><th>כמות באי</th><th>גודל מערכת</th><th>חשבון חשמל/חודש</th></tr>
+          <tr><td><strong>רזורטים גדולים</strong></td><td>10</td><td>50-120 kWp</td><td>₿600K-1.5M</td></tr>
+          <tr><td><strong>רזורטים בינוניים</strong></td><td>15</td><td>25-50 kWp</td><td>₿250K-600K</td></tr>
+          <tr><td><strong>בתי חולים + סופרים</strong></td><td>5</td><td>80-100 kWp</td><td>₿500K+</td></tr>
+          <tr><td><strong>וילות (ניהול)</strong></td><td>20+</td><td>5-15 kWp</td><td>₿30K-150K</td></tr>
+          <tr><td><strong>Wellness + Yoga</strong></td><td>10</td><td>20-40 kWp</td><td>₿100K-400K</td></tr>
+          <tr><td><strong>בנייה חדשה</strong></td><td>5-10/שנה</td><td>10-30 kWp</td><td>—</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: Two Models -->
+<div class="slide slide-dark" data-title="שני מודלים">
+  <h2>🔄 שני מודלים עסקיים</h2>
+  <p class="subtitle">EPC (מכירה) vs PPA/ESCO (הכנסה חוזרת)</p>
+
+  <div class="vs-box">
+    <div class="model-card epc">
+      <h3 style="color:#6496FF;font-size:20px">⚡ EPC — מכירה ישירה</h3>
+      <p style="font-size:14px;opacity:.8;margin:8px 0">הלקוח קונה את המערכת. תשלום חד-פעמי.</p>
+      <div class="table-wrap" style="margin:12px 0">
+        <table>
+          <tr><td>הכנסה</td><td><strong>חד-פעמית</strong></td></tr>
+          <tr><td>מחיר ללקוח</td><td>₿35K/kWp (התקנה כוללת)</td></tr>
+          <tr><td>מרווח גולמי</td><td>~35-40%</td></tr>
+          <tr><td>רווח נקי/פרויקט</td><td>~₿200-500K</td></tr>
+          <tr><td>Cash flow</td><td>מיידי 💚</td></tr>
+          <tr><td>סיכון</td><td>נמוך</td></tr>
+          <tr><td>מכירה</td><td>ROI 3-5 שנים</td></tr>
+        </table>
+      </div>
+      <div class="alert alert-info" style="padding:10px 14px;font-size:12px">
+        <strong>הפיץ':</strong> "השקעה שמחזירה את עצמה ב-3-5 שנים ואז חשמל חינם 20+ שנה"
+      </div>
+    </div>
+
+    <div class="vs-divider">VS</div>
+
+    <div class="model-card ppa">
+      <h3 style="color:#2ED89A;font-size:20px">🔄 PPA/ESCO — הכנסה חוזרת</h3>
+      <p style="font-size:14px;opacity:.8;margin:8px 0">אתה בעל המערכת. הלקוח משלם על חשמל.</p>
+      <div class="table-wrap" style="margin:12px 0">
+        <table>
+          <tr><td>הכנסה</td><td><strong>חודשית, 10-15 שנים</strong></td></tr>
+          <tr><td>מחיר ללקוח</td><td>₿0 מראש!</td></tr>
+          <tr><td>תעריף PPA</td><td>₿3.50-4.00/kWh</td></tr>
+          <tr><td>רווח נקי/מערכת/חודש</td><td>~₿3,900</td></tr>
+          <tr><td>Cash flow</td><td>שלילי 12-18 חודשים ❌</td></tr>
+          <tr><td>סיכון</td><td>בינוני (הלוואה)</td></tr>
+          <tr><td>מכירה</td><td>"אפס השקעה, חיסכון מיום 1"</td></tr>
+        </table>
+      </div>
+      <div class="alert alert-success" style="padding:10px 14px;font-size:12px">
+        <strong>הפיץ':</strong> "תשלם פחות על חשמל — בלי לשלם שקל מראש"
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-info" style="margin-top:12px">
+    <strong>ההמלצה: Hybrid!</strong> EPC לcash flow מיידי + PPA לבניית הכנסה חוזרת. התחל עם EPC, הוסף PPA כשיש מזומן.
+  </div>
+</div>
+
+<!-- SLIDE 3: EPC Financial Model -->
+<div class="slide slide-ocean" data-title="מודל EPC — מספרים">
+  <span class="section-num">EPC</span>
+  <h2>⚡ מודל EPC — <span class="gold">המספרים</span></h2>
+  <p class="subtitle">מכירת מערכות סולאריות — שנה 1</p>
+
+  <div class="two-col">
+    <div>
+      <h3>פרויקט ממוצע</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פרמטר</th><th>ערך</th></tr>
+          <tr><td>גודל מערכת</td><td>30 kWp</td></tr>
+          <tr><td>מחיר ללקוח</td><td>₿1,050,000 (₿35K/kWp)</td></tr>
+          <tr><td>עלות ציוד (FOB)</td><td>₿420,000 (₿14K/kWp)</td></tr>
+          <tr><td>משלוח + פרי</td><td>₿52,500 (5%)</td></tr>
+          <tr><td>עבודת התקנה</td><td>₿157,500 (15%)</td></tr>
+          <tr><td><strong>עלות כוללת</strong></td><td><strong>₿630,000</strong></td></tr>
+          <tr><td><strong>רווח גולמי</strong></td><td><strong class="reef-text">₿420,000 (40%)</strong></td></tr>
+          <tr><td>הוצאות קבועות/פרויקט</td><td>₿100,000</td></tr>
+          <tr><td><strong>רווח נקי/פרויקט</strong></td><td><strong class="reef-text">₿320,000</strong></td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:16px">מה הלקוח מקבל</h3>
+      <div class="alert alert-success" style="font-size:13px">
+        • מערכת 30 kWp = ~135 kWh/יום<br>
+        • חיסכון: ~₿17K/חודש בחשמל<br>
+        • ROI: 5.1 שנים<br>
+        • חשמל "חינם" 20+ שנה<br>
+        • ניכוי מס 50% (עסקי)<br>
+        • ערך נכס עולה 5-10%
+      </div>
+    </div>
+
+    <div>
+      <h3>תוכנית שנה 1 — EPC בלבד</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>רבעון</th><th>פרויקטים</th><th>הכנסה</th><th>רווח נקי</th></tr>
+          <tr><td>Q1 (הקמה)</td><td>0</td><td>₿0</td><td style="color:var(--coral)">-₿250K</td></tr>
+          <tr><td>Q2</td><td>2</td><td>₿2.1M</td><td class="reef-text">₿390K</td></tr>
+          <tr><td>Q3</td><td>3</td><td>₿3.15M</td><td class="reef-text">₿710K</td></tr>
+          <tr><td>Q4</td><td>4</td><td>₿4.2M</td><td class="reef-text">₿1.03M</td></tr>
+          <tr style="font-weight:700"><td><strong>שנה 1</strong></td><td><strong>9</strong></td><td><strong>₿9.45M</strong></td><td class="reef-text"><strong>₿1.88M</strong></td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:16px">הוצאות קבועות חודשיות</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><td>שכר (5 עובדים)</td><td>₿120,000</td></tr>
+          <tr><td>משרד + רכב</td><td>₿25,000</td></tr>
+          <tr><td>ביטוח</td><td>₿10,000</td></tr>
+          <tr><td>שיווק</td><td>₿30,000</td></tr>
+          <tr><td>רו"ח + משפטי</td><td>₿15,000</td></tr>
+          <tr><td><strong>סה"כ/חודש</strong></td><td><strong>₿200,000</strong></td></tr>
+          <tr><td><strong>סה"כ/שנה</strong></td><td><strong>₿2,400,000</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: PPA Financial Model -->
+<div class="slide slide-reef" data-title="מודל PPA — מספרים">
+  <span class="section-num">PPA</span>
+  <h2>🔄 מודל PPA/ESCO — <span class="gold">המספרים</span></h2>
+  <p class="subtitle">בעלות על מערכות + מכירת חשמל</p>
+
+  <div class="two-col">
+    <div>
+      <h3>פרויקט PPA ממוצע</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פרמטר</th><th>ערך</th></tr>
+          <tr><td>גודל מערכת</td><td>30 kWp</td></tr>
+          <tr><td>עלות התקנה (שלך)</td><td>₿630,000</td></tr>
+          <tr><td>מימון (70% הלוואה)</td><td>₿441,000</td></tr>
+          <tr><td>הון עצמי (30%)</td><td>₿189,000</td></tr>
+          <tr><td>ריבית הלוואה</td><td>5% (7 שנים)</td></tr>
+          <tr><td>החזר חודשי</td><td>₿6,245</td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:12px">הכנסה חודשית / מערכת</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><td>תפוקה</td><td>4,106 kWh/חודש</td></tr>
+          <tr><td>תעריף PPA</td><td>₿3.80/kWh</td></tr>
+          <tr><td><strong>הכנסה</strong></td><td><strong>₿15,603</strong></td></tr>
+          <tr><td>החזר הלוואה</td><td style="color:var(--coral)">-₿6,245</td></tr>
+          <tr><td>O&M</td><td style="color:var(--coral)">-₿525</td></tr>
+          <tr><td>ביטוח</td><td style="color:var(--coral)">-₿500</td></tr>
+          <tr><td><strong>רווח נקי/חודש</strong></td><td><strong class="reef-text">₿8,333</strong></td></tr>
+          <tr><td><strong>רווח נקי/שנה</strong></td><td><strong class="reef-text">₿99,996</strong></td></tr>
+        </table>
+      </div>
+
+      <div class="alert alert-info" style="font-size:12px;margin-top:8px">
+        <strong>אחרי פירעון (שנה 8+):</strong> הכנסה ₿14,578/חודש/מערכת!
+      </div>
+    </div>
+
+    <div>
+      <h3>תוכנית שנה 1 — PPA</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>חודש</th><th>מערכות חדשות</th><th>סה"כ פעילות</th><th>הכנסה חודשית</th></tr>
+          <tr><td>1-3</td><td>0</td><td>0</td><td>₿0</td></tr>
+          <tr><td>4</td><td>1</td><td>1</td><td>₿15,603</td></tr>
+          <tr><td>5</td><td>1</td><td>2</td><td>₿31,206</td></tr>
+          <tr><td>6</td><td>0</td><td>2</td><td>₿31,206</td></tr>
+          <tr><td>7</td><td>1</td><td>3</td><td>₿46,809</td></tr>
+          <tr><td>8</td><td>1</td><td>4</td><td>₿62,412</td></tr>
+          <tr><td>9-10</td><td>1</td><td>5</td><td>₿78,015</td></tr>
+          <tr><td>11-12</td><td>1</td><td>6</td><td>₿93,618</td></tr>
+          <tr style="font-weight:700"><td colspan="2"><strong>סוף שנה 1</strong></td><td><strong>6 מערכות</strong></td><td><strong class="reef-text">₿93,618/חודש</strong></td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:12px">סה"כ PPA שנה 1</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><td>הכנסה מצטברת</td><td>₿453,000</td></tr>
+          <tr><td>החזרי הלוואות</td><td style="color:var(--coral)">-₿224,820</td></tr>
+          <tr><td>O&M + ביטוח</td><td style="color:var(--coral)">-₿36,900</td></tr>
+          <tr><td><strong>רווח נקי שנה 1</strong></td><td><strong class="reef-text">₿191,280</strong></td></tr>
+          <tr><td>השקעה עצמית (6×189K)</td><td>₿1,134,000</td></tr>
+          <tr><td><strong>MRR סוף שנה</strong></td><td><strong class="gold">₿93,618</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Hybrid Model -->
+<div class="slide slide-gold" data-title="Hybrid — המודל המנצח">
+  <span class="section-num">₿₿</span>
+  <h2>💎 Hybrid Model — <span class="gold">הכי חזק</span></h2>
+  <p class="subtitle">EPC ל-cash flow + PPA להכנסה חוזרת</p>
+
+  <div class="two-col">
+    <div>
+      <h3>תוכנית Hybrid שנה 1</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th></th><th>EPC</th><th>PPA</th><th>סה"כ</th></tr>
+          <tr><td>פרויקטים</td><td>9</td><td>6</td><td><strong>15</strong></td></tr>
+          <tr><td>הכנסה חד-פעמית</td><td>₿9.45M</td><td>—</td><td>₿9.45M</td></tr>
+          <tr><td>הכנסה חוזרת/חודש</td><td>—</td><td>₿93K</td><td>₿93K</td></tr>
+          <tr><td>MRR סוף שנה</td><td>—</td><td>₿93K</td><td><strong class="gold">₿93K</strong></td></tr>
+          <tr><td>עלויות (כולל הקמה)</td><td>₿7.57M</td><td>₿1.40M</td><td>₿8.97M</td></tr>
+          <tr style="font-weight:700;font-size:15px"><td><strong>רווח נקי שנה 1</strong></td><td>₿1.88M</td><td>₿191K</td><td class="reef-text"><strong>₿2.07M</strong></td></tr>
+        </table>
+      </div>
+
+      <div class="alert alert-success" style="margin-top:12px">
+        <strong>שנה 2 ואילך:</strong><br>
+        • EPC: 15 פרויקטים → ₿5.25M הכנסה<br>
+        • PPA: 12 מערכות פעילות → ₿187K MRR<br>
+        • שנה 3: 20 PPA → ₿312K MRR = <strong>₿3.74M/שנה recurring</strong>
+      </div>
+    </div>
+
+    <div>
+      <h3>ציר זמן — חודש אחר חודש</h3>
+      <div class="month-grid">
+        <div class="month-cell"><div class="m-num">חודש 1-2</div><div class="m-val" style="color:var(--coral)">-₿250K</div><div class="m-label">הקמה</div></div>
+        <div class="month-cell"><div class="m-num">חודש 3</div><div class="m-val" style="color:var(--coral)">-₿50K</div><div class="m-label">מכירות</div></div>
+        <div class="month-cell"><div class="m-num">חודש 4</div><div class="m-val" style="color:#2ED89A">+₿320K</div><div class="m-label">EPC #1</div></div>
+        <div class="month-cell"><div class="m-num">חודש 5</div><div class="m-val" style="color:#2ED89A">+₿336K</div><div class="m-label">EPC #2 + PPA</div></div>
+        <div class="month-cell"><div class="m-num">חודש 6</div><div class="m-val" style="color:#2ED89A">+₿351K</div><div class="m-label">EPC #3</div></div>
+        <div class="month-cell"><div class="m-num">חודש 7</div><div class="m-val" style="color:#2ED89A">+₿367K</div><div class="m-label">EPC + PPA</div></div>
+        <div class="month-cell"><div class="m-num">חודש 8</div><div class="m-val" style="color:#2ED89A">+₿382K</div><div class="m-label">EPC #5</div></div>
+        <div class="month-cell"><div class="m-num">חודש 9</div><div class="m-val" style="color:#2ED89A">+₿398K</div><div class="m-label">EPC + PPA</div></div>
+        <div class="month-cell"><div class="m-num">חודש 10</div><div class="m-val" style="color:#2ED89A">+₿414K</div><div class="m-label">EPC #7</div></div>
+        <div class="month-cell"><div class="m-num">חודש 11</div><div class="m-val" style="color:#2ED89A">+₿430K</div><div class="m-label">EPC #8</div></div>
+        <div class="month-cell highlight"><div class="m-num">חודש 12</div><div class="m-val" style="color:var(--gold)">+₿414K</div><div class="m-label">EPC #9 + 6 PPA</div></div>
+        <div class="month-cell highlight"><div class="m-num">MRR</div><div class="m-val" style="color:var(--gold)">₿93K</div><div class="m-label">recurring!</div></div>
+      </div>
+
+      <h3 style="margin-top:12px">Break-even</h3>
+      <div class="alert alert-info">
+        <strong>חודש 4</strong> — כבר ברווח מצטבר (EPC #1 מכסה את עלויות ההקמה).<br>
+        <strong>חודש 12</strong> — ₿2.07M רווח נקי מצטבר + ₿93K MRR.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Financing -->
+<div class="slide slide-dark" data-title="אפשרויות מימון">
+  <span class="section-num">₿</span>
+  <h2>🏦 אפשרויות מימון</h2>
+  <p class="subtitle">ללקוחות + לחברה</p>
+
+  <div class="two-col">
+    <div>
+      <h3>מימון ללקוחות (מכירת EPC)</h3>
+      <div class="card" style="margin:8px 0;border-color:#2ED89A">
+        <h3>Krungsri Solar Loan <span class="tag tag-ppa">הכי טוב</span></h3>
+        <p><strong>3.5% קבוע</strong> | מימון 100% | 3 מוצרי סולאר ייעודיים<br>Tel: 02-626-2626</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>Bangkok Bank — Bualuang Green Solar</h3>
+        <p>ריבית תחרותית | יש סניף בקופנגן | green desk<br>Tel: 1333</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>SME D Bank — Green Productivity</h3>
+        <p><strong>3% קבוע 3 שנים</strong> (ממשלתי) | עד ₿30M | עד 12/2026<br>Tel: 1357</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>SCB — Solar Loan</h3>
+        <p>Tel: 077-489-841 (Koh Phangan branch)</p>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:12px;font-size:13px">
+        <strong>טקטיקה:</strong> בנה שותפות עם Krungsri. הגיע עם pre-approved financing ללקוח = מכירה קלה יותר. "אנחנו מטפלים בהכל — כולל המימון."
+      </div>
+    </div>
+
+    <div>
+      <h3>מימון לחברה (PPA)</h3>
+      <div class="card" style="margin:8px 0;border-color:var(--gold)">
+        <h3>SME D Bank — הכי טוב לPPA</h3>
+        <p>3% ל-3 שנים! מימון עד ₿30M. אידיאלי למימון מערכות PPA.</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>EXIM Bank — ייבוא ציוד</h3>
+        <p>0.5% הנחה עם BOI. לייבוא ישיר של פאנלים ואינוורטרים.</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>ENCON Fund (DEDE)</h3>
+        <p>קרן ממשלתית לאנרגיה חלופית. הלוואות בריבית נמוכה ל-ESCO.</p>
+      </div>
+
+      <h3 style="margin-top:16px">הטבות מס</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>הטבה</th><th>שווי</th></tr>
+          <tr><td>ניכוי 50% ללקוח (עסקי)</td><td>pitch מכירה!</td></tr>
+          <tr><td>ניכוי ₿200K ללקוח (מגורים)</td><td>pitch מכירה!</td></tr>
+          <tr><td>BOI 8 שנים פטור (אם זמין)</td><td>₿7.78M+</td></tr>
+          <tr><td>0% מכס על פאנלים (ASEAN)</td><td>חיסכון 5-10%</td></tr>
+          <tr><td>VAT זיכוי תשומות</td><td>7% על כל ציוד</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Pricing -->
+<div class="slide slide-ocean" data-title="תמחור">
+  <h2>💲 אסטרטגיית תמחור</h2>
+
+  <div class="two-col">
+    <div>
+      <h3>תמחור EPC</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>גודל מערכת</th><th>מחיר כולל</th><th>₿/kWp</th><th>רווח גולמי</th></tr>
+          <tr><td>5 kWp (וילה קטנה)</td><td>₿195,000</td><td>39,000</td><td>45%</td></tr>
+          <tr><td>10 kWp (וילה)</td><td>₿370,000</td><td>37,000</td><td>43%</td></tr>
+          <tr><td>30 kWp (עסק בינוני)</td><td>₿1,050,000</td><td>35,000</td><td>40%</td></tr>
+          <tr><td>50 kWp (רזורט)</td><td>₿1,650,000</td><td>33,000</td><td>38%</td></tr>
+          <tr><td>100 kWp (רזורט גדול)</td><td>₿3,100,000</td><td>31,000</td><td>35%</td></tr>
+        </table>
+      </div>
+      <p style="font-size:12px;opacity:.5;margin-top:6px">מתחרה (Green Global): 3kW=₿105K (₿35K/kWp), 10kW=₿290K (₿29K/kWp) — אנחנו יקרים יותר אבל premium.</p>
+
+      <h3 style="margin-top:16px">מה נכלל במחיר</h3>
+      <ul style="font-size:13px;line-height:2;opacity:.8;padding-right:20px">
+        <li>סקר אתר + תכנון מערכת</li>
+        <li>ציוד Tier-1 (Longi + Huawei)</li>
+        <li>חומרי הרכבה marine-grade</li>
+        <li>התקנה מלאה + חיבור PEA</li>
+        <li>ניטור אונליין 24/7</li>
+        <li>אחריות 10 שנים (פאנלים 25)</li>
+        <li>Single-line diagram + תיעוד</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>תמחור PPA</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>תעריף PEA</th><th>תעריף PPA שלנו</th><th>חיסכון ללקוח</th></tr>
+          <tr><td>₿4.26/kWh (ממוצע)</td><td>₿3.80/kWh</td><td><strong class="reef-text">11%</strong></td></tr>
+          <tr><td>₿5.00/kWh (עסקי גבוה)</td><td>₿4.20/kWh</td><td><strong class="reef-text">16%</strong></td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:16px">חבילות O&M (הכנסה נוספת)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>חבילה</th><th>מחיר/חודש</th><th>כולל</th></tr>
+          <tr><td>Basic</td><td>₿1,500</td><td>ניטור + ביקור שנתי</td></tr>
+          <tr><td>Standard</td><td>₿3,000</td><td>+ ניקוי רבעוני + תיקונים</td></tr>
+          <tr><td>Premium</td><td>₿5,000</td><td>+ SLA 24h + חלקי חילוף</td></tr>
+        </table>
+      </div>
+      <p style="font-size:12px;opacity:.5;margin-top:6px">9 לקוחות EPC × Standard = ₿27K MRR נוסף!</p>
+
+      <h3 style="margin-top:16px">הוסף: סוללות</h3>
+      <div class="alert alert-info" style="font-size:13px">
+        <strong>Upsell:</strong> סוללות Huawei LUNA — ₿150-300K לכל מערכת. מרווח 50%. האי סובל מהפסקות = ביקוש אמיתי. O&M recurring נוסף.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Marketing & Sales -->
+<div class="slide slide-dark" data-title="שיווק + מכירות">
+  <h2>📣 שיווק + מכירות — שנה 1</h2>
+
+  <div class="two-col">
+    <div>
+      <h3>אסטרטגיה: Direct + Partners</h3>
+      <div class="card" style="margin:8px 0">
+        <h3>שלב 1: Lighthouse (חודשים 1-3)</h3>
+        <p>3-5 פרויקטים ראוותניים: Anantara, Santhiya, First Western Hospital. מחיר עלות = case study + reference.</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>שלב 2: Referral Machine (חודשים 3-6)</h3>
+        <p>שותפויות עם חברות נדל"ן + property managers. עמלה 5-10% על כל הפנייה.</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>שלב 3: Scale (חודשים 6-12)</h3>
+        <p>FB/IG ads, Google SEO, WhatsApp campaigns. תקציב: ₿30K/חודש.</p>
+      </div>
+
+      <h3 style="margin-top:16px">ערוצי מכירה</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>ערוץ</th><th>עלות/ליד</th><th>conversion</th></tr>
+          <tr><td>שותפויות נדל"ן</td><td>₿0 (עמלה)</td><td>30%+</td></tr>
+          <tr><td>הפניות לקוחות</td><td>₿0</td><td>40%+</td></tr>
+          <tr><td>פגישות ישירות</td><td>₿500</td><td>20%</td></tr>
+          <tr><td>Facebook/IG Ads</td><td>₿800</td><td>5%</td></tr>
+          <tr><td>Google Ads</td><td>₿1,200</td><td>8%</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3>Hook #1: הפסקות חשמל</h3>
+      <div class="alert alert-warn">
+        <strong>"כמה הפסדת בהפסקת חשמל האחרונה?"</strong><br>
+        רזורטים: מאות אלפי בהט בביטולי הזמנות + מזון שנזרק. סולאר + סוללות = ביטוח + חיסכון.
+      </div>
+
+      <h3 style="margin-top:16px">Hook #2: ROI</h3>
+      <div class="alert alert-success">
+        <strong>"ההשקעה מחזירה את עצמה ב-3-5 שנים. אחרי זה — חשמל חינם 20 שנה."</strong><br>
+        עם ניכוי מס 50%: ROI ב-2.5-4 שנים!
+      </div>
+
+      <h3 style="margin-top:16px">Hook #3: אפס השקעה (PPA)</h3>
+      <div class="alert alert-info">
+        <strong>"תשלם פחות על חשמל. אפס השקעה מראש. אנחנו מטפלים בהכל."</strong><br>
+        Perfect לרזורטים שלא רוצים CAPEX.
+      </div>
+
+      <h3 style="margin-top:16px">תקציב שיווק שנה 1</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><td>Q1: Branding + אתר</td><td>₿50K</td></tr>
+          <tr><td>Q2-Q4: Ads + Events</td><td>₿270K</td></tr>
+          <tr><td>שותפויות (עמלות)</td><td>₿50K</td></tr>
+          <tr><td><strong>סה"כ</strong></td><td><strong>₿370K</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: Risk & Mitigation -->
+<div class="slide slide-ocean" data-title="סיכונים + הקטנה">
+  <h2>⚠️ סיכונים + הקטנה</h2>
+
+  <div class="table-wrap" style="margin-top:20px">
+    <table style="font-size:14px">
+      <tr><th>סיכון</th><th>חומרה</th><th>הסתברות</th><th>הקטנה</th></tr>
+      <tr><td><strong>מכירות איטיות</strong></td><td style="color:var(--coral)">גבוה</td><td>בינונית</td><td>התחל עם lighthouse projects. PPA מוריד חסם. שותפויות נדל"ן.</td></tr>
+      <tr><td><strong>לוגיסטיקה לאי</strong></td><td style="color:var(--gold)">בינוני</td><td>גבוהה</td><td>מחסן בסוראט + הזמנות מראש. ביטוח מטען. ספק backup.</td></tr>
+      <tr><td><strong>תחרות חדשה</strong></td><td style="color:var(--gold)">בינוני</td><td>נמוכה</td><td>בנה brand + base מהר. חוזי O&M ארוכי טווח. ESCO lock-in.</td></tr>
+      <tr><td><strong>שינוי רגולציה</strong></td><td style="color:#2ED89A">נמוך</td><td>נמוכה</td><td>המגמה חיובית (פישוט). חוזי PPA 10 שנים מגנים.</td></tr>
+      <tr><td><strong>קורוזיה/מזג אוויר</strong></td><td style="color:var(--gold)">בינוני</td><td>גבוהה</td><td>חומרי marine-grade בלבד. ביטוח CAR. O&M תכוף.</td></tr>
+      <tr><td><strong>כוח אדם</strong></td><td style="color:var(--gold)">בינוני</td><td>בינונית</td><td>גייס מסוראט. הכשר מקומיים. team lead מנוסה.</td></tr>
+      <tr><td><strong>PEA דחייה/עיכוב</strong></td><td style="color:#2ED89A">נמוך</td><td>נמוכה</td><td>בנה קשר אישי. תיעוד מושלם. סבלנות + follow up.</td></tr>
+    </table>
+  </div>
+
+  <div class="alert alert-success" style="margin-top:20px">
+    <strong>Moat (חפיר):</strong><br>
+    • <strong>First mover</strong> — אין מתחרה רציני באי<br>
+    • <strong>Logistics</strong> — פרי + island ops = חסם כניסה למתחרים מהיבשה<br>
+    • <strong>PPA lock-in</strong> — חוזים 10 שנים = recurring revenue שלא ניתן לגניבה<br>
+    • <strong>O&M relationships</strong> — אחרי ההתקנה, אתה ה"רופא" של המערכת<br>
+    • <strong>Local reputation</strong> — אי קטן = word of mouth הכי חזק
+  </div>
+</div>
+
+<!-- SLIDE 10: Year 1 Summary -->
+<div class="slide slide-gold" data-title="סיכום שנה 1">
+  <h2>🏆 סיכום שנה 1 — <span class="gold">Hybrid Model</span></h2>
+
+  <div class="stat-grid" style="margin:24px 0">
+    <div><div class="big-num">15</div><div class="stat-label">פרויקטים<br>(9 EPC + 6 PPA)</div></div>
+    <div><div class="big-num">₿9.9M</div><div class="stat-label">הכנסה כוללת<br>~$283K USD</div></div>
+    <div><div class="big-num">₿2.07M</div><div class="stat-label">רווח נקי<br>~$59K USD</div></div>
+    <div><div class="big-num">₿93K</div><div class="stat-label">MRR סוף שנה<br>~$2.7K USD/month</div></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>השקעה נדרשת</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><td>הון רשום (נשאר בחברה)</td><td>₿2,000,000</td></tr>
+          <tr><td>הקמה + ציוד + רכב</td><td>₿750,000</td></tr>
+          <tr><td>הון חוזר 3 חודשים</td><td>₿600,000</td></tr>
+          <tr><td>הון עצמי ל-6 PPA (30%)</td><td>₿1,134,000</td></tr>
+          <tr style="font-weight:700"><td><strong>סה"כ נדרש</strong></td><td><strong>₿4,484,000</strong></td></tr>
+          <tr><td></td><td style="opacity:.5">~$128K USD</td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:16px">ROI על ההשקעה</h3>
+      <div class="alert alert-success">
+        <strong>רווח שנה 1:</strong> ₿2.07M<br>
+        <strong>ROI:</strong> 46% (על ₿4.48M)<br>
+        <strong>Break-even:</strong> חודש 4<br>
+        <strong>+ Asset:</strong> 6 מערכות PPA בשווי ₿3.78M
+      </div>
+    </div>
+
+    <div>
+      <h3>תחזית 3 שנים</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th></th><th>שנה 1</th><th>שנה 2</th><th>שנה 3</th></tr>
+          <tr><td>EPC פרויקטים</td><td>9</td><td>15</td><td>20</td></tr>
+          <tr><td>PPA מערכות (מצטבר)</td><td>6</td><td>14</td><td>24</td></tr>
+          <tr><td>הכנסה EPC</td><td>₿9.45M</td><td>₿15.75M</td><td>₿21M</td></tr>
+          <tr><td>MRR</td><td>₿93K</td><td>₿218K</td><td>₿374K</td></tr>
+          <tr><td>ARR (recurring)</td><td>₿453K</td><td>₿2.6M</td><td>₿4.5M</td></tr>
+          <tr style="font-weight:700;font-size:14px"><td><strong>רווח נקי</strong></td><td class="reef-text">₿2.07M</td><td class="reef-text">₿5.8M</td><td class="reef-text">₿9.2M</td></tr>
+          <tr><td>MRR (USD)</td><td>$2.7K</td><td>$6.2K</td><td><strong class="gold">$10.7K</strong></td></tr>
+        </table>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:12px">
+        <strong>שנה 3 = $10.7K MRR מ-PPA בלבד</strong><br>
+        + הכנסות EPC ₿21M + O&M ₿27K/חודש<br>
+        = <strong>צעד משמעותי לכיוון $20K MRR</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Next Steps -->
+<div class="slide slide-dark" data-title="צעדים הבאים">
+  <h2>🚀 צעדים הבאים</h2>
+
+  <div class="three-col">
+    <div>
+      <h3 style="color:#2ED89A">שבוע 1-2</h3>
+      <div class="card" style="margin:8px 0"><h3>עו"ד + רו"ח</h3><p>התקשרות עם Belaws/Konrad Legal. רישום חברה.</p></div>
+      <div class="card" style="margin:8px 0"><h3>BOI consultation</h3><p>פגישה חינמית עם BOI סוראט תאני. בדוק אם ESCO זכאי.</p></div>
+      <div class="card" style="margin:8px 0"><h3>PEA פגישת היכרות</h3><p>077-377-084. בנה קשר אישי. שאל על קיבולת רשת.</p></div>
+    </div>
+    <div>
+      <h3 style="color:var(--gold)">חודש 1-2</h3>
+      <div class="card" style="margin:8px 0"><h3>רישום חברה</h3><p>DBD + בנק + מס + ביטוח לאומי.</p></div>
+      <div class="card" style="margin:8px 0"><h3>Lighthouse outreach</h3><p>Anantara, Santhiya, First Western Hospital. הצעות מחיר.</p></div>
+      <div class="card" style="margin:8px 0"><h3>ספק ציוד</h3><p>הסכם עם BayWa או ספק מקומי. הזמנה ראשונה.</p></div>
+    </div>
+    <div>
+      <h3 style="color:#6496FF">חודש 2-3</h3>
+      <div class="card" style="margin:8px 0"><h3>שותפות נדל"ן</h3><p>פגישות עם Azura, Alma Terra, KP Real Estate.</p></div>
+      <div class="card" style="margin:8px 0"><h3>Krungsri שותפות</h3><p>הסכם referral עם הבנק. Pre-approved financing.</p></div>
+      <div class="card" style="margin:8px 0"><h3>פרויקט ראשון!</h3><p>סגירה + הזמנת ציוד + התקנה.</p></div>
+    </div>
+  </div>
+
+  <div class="alert alert-success" style="margin-top:24px;text-align:center;font-size:16px">
+    <strong>המטרה:</strong> ₿2.07M רווח נקי + ₿93K MRR בסוף שנה 1<br>
+    <strong>השקעה:</strong> ₿4.48M (~$128K)<br>
+    <strong>ROI:</strong> 46% שנה 1 | 129% שנה 2 | 205% שנה 3
+  </div>
+</div>
+
+</div>
+
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">→ הקודם</button>
+  <span class="slide-counter" id="counter">1 / 12</span>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">הבא ←</button>
+</div>
+
+<script>
+let current=0;const slides=document.querySelectorAll('.slide'),total=slides.length;
+function navigate(d){const p=current;current=Math.max(0,Math.min(total-1,current+d));if(p===current)return;slides[p].classList.remove('active');slides[p].classList.add('exit');setTimeout(()=>slides[p].classList.remove('exit'),600);slides[current].classList.add('active');updateUI()}
+function goTo(i){slides[current].classList.remove('active');current=i;slides[current].classList.add('active');updateUI();toggleTOC()}
+function updateUI(){document.getElementById('counter').textContent=`${current+1} / ${total}`;document.getElementById('prevBtn').disabled=current===0;document.getElementById('nextBtn').disabled=current===total-1;document.getElementById('progress').style.width=`${((current+1)/total)*100}%`;document.querySelectorAll('.toc-item').forEach((e,i)=>e.classList.toggle('active',i===current))}
+function toggleTOC(){document.getElementById('tocPanel').classList.toggle('open')}
+function toggleCheck(e){const li=e.target.closest('li');if(li)li.classList.toggle('done')}
+const tocList=document.getElementById('tocList');
+slides.forEach((s,i)=>{const t=s.dataset.title||`Slide ${i+1}`;const d=document.createElement('div');d.className='toc-item'+(i===0?' active':'');d.innerHTML=`<span class="toc-num">${i+1}</span>${t}`;d.onclick=()=>goTo(i);tocList.appendChild(d)});
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight')navigate(e.key==='ArrowLeft'?1:-1);if(e.key==='Escape')document.getElementById('tocPanel').classList.remove('open')});
+let ts=0;document.addEventListener('touchstart',e=>ts=e.touches[0].clientX);document.addEventListener('touchend',e=>{const d=ts-e.changedTouches[0].clientX;if(Math.abs(d)>60)navigate(d>0?1:-1)});
+updateUI();
+</script>
+</body>
+</html>

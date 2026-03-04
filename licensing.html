@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ko Phangan Solar — מדריך רישוי מלא</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ocean: #0A3D5C;
+  --gold: #E8A820;
+  --sand: #FDF6E3;
+  --reef: #1A7A5A;
+  --coral: #E85D3A;
+  --sky: #E8F4F8;
+  --night: #0D2137;
+  --white: #FFFFFF;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background: var(--night);
+  color: var(--white);
+  overflow: hidden;
+  height: 100vh;
+}
+
+.slide-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 60px;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+  overflow-y: auto;
+}
+
+.slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: all;
+}
+
+.slide.exit {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+/* Slide backgrounds */
+.slide-cover { background: linear-gradient(135deg, var(--ocean) 0%, var(--night) 100%); justify-content: center; align-items: center; text-align: center; }
+.slide-dark { background: var(--night); }
+.slide-light { background: var(--sand); color: var(--night); }
+.slide-ocean { background: linear-gradient(180deg, var(--ocean) 0%, var(--night) 100%); }
+.slide-reef { background: linear-gradient(135deg, #0D3B2E 0%, var(--night) 100%); }
+.slide-gold { background: linear-gradient(135deg, #3D2E0A 0%, var(--night) 100%); }
+
+/* Navigation */
+.nav-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  background: rgba(13, 33, 55, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(232, 168, 32, 0.2);
+  z-index: 100;
+}
+
+.nav-btn {
+  background: none;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  padding: 8px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Heebo', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.nav-btn:hover { background: var(--gold); color: var(--night); }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-btn:disabled:hover { background: none; color: var(--gold); }
+
+.slide-counter {
+  font-family: 'Space Grotesk', sans-serif;
+  color: rgba(255,255,255,0.5);
+  font-size: 14px;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+  z-index: 101;
+}
+
+/* TOC */
+.toc-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: rgba(232, 168, 32, 0.15);
+  border: 1px solid rgba(232, 168, 32, 0.3);
+  color: var(--gold);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 102;
+  transition: all 0.3s;
+}
+.toc-btn:hover { background: var(--gold); color: var(--night); }
+
+.toc-panel {
+  position: fixed;
+  top: 0;
+  left: -350px;
+  width: 350px;
+  height: 100vh;
+  background: rgba(13, 33, 55, 0.98);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(232, 168, 32, 0.2);
+  z-index: 103;
+  transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  padding: 60px 30px 30px;
+  overflow-y: auto;
+}
+.toc-panel.open { left: 0; }
+
+.toc-item {
+  padding: 10px 16px;
+  margin: 4px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.toc-item:hover { background: rgba(232, 168, 32, 0.1); color: var(--white); }
+.toc-item.active { background: rgba(232, 168, 32, 0.2); color: var(--gold); }
+.toc-num { font-family: 'Space Grotesk'; font-weight: 700; font-size: 12px; color: var(--gold); min-width: 24px; }
+
+/* Typography */
+h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+h2 { font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+h3 { font-size: clamp(18px, 2vw, 24px); font-weight: 700; margin-bottom: 8px; }
+.subtitle { font-size: clamp(16px, 2vw, 22px); font-weight: 300; opacity: 0.8; margin-bottom: 24px; }
+.gold { color: var(--gold); }
+.reef-text { color: #2ED89A; }
+.coral-text { color: var(--coral); }
+
+/* Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s;
+}
+.card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.card-icon { font-size: 28px; margin-bottom: 10px; }
+.card h3 { font-size: 16px; margin-bottom: 6px; }
+.card p { font-size: 13px; opacity: 0.7; line-height: 1.5; }
+
+/* Tables */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: rgba(232, 168, 32, 0.15); padding: 10px 14px; text-align: right; font-weight: 600; white-space: nowrap; }
+td { padding: 10px 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+tr:hover td { background: rgba(255,255,255,0.03); }
+
+/* Timeline */
+.timeline { margin: 20px 0; padding-right: 20px; }
+.timeline-item {
+  position: relative;
+  padding: 16px 24px 16px 0;
+  border-right: 2px solid rgba(232, 168, 32, 0.3);
+  margin-right: 12px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  right: -7px;
+  top: 20px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.timeline-item h4 { font-size: 15px; color: var(--gold); margin-bottom: 4px; }
+.timeline-item p { font-size: 13px; opacity: 0.7; }
+.timeline-item .time { font-family: 'Space Grotesk'; font-size: 12px; color: var(--gold); opacity: 0.6; }
+
+/* Checklist */
+.checklist { list-style: none; margin: 16px 0; }
+.checklist li {
+  padding: 8px 12px;
+  margin: 4px 0;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.checklist li:hover { background: rgba(255,255,255,0.06); }
+.checklist li .check {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.checklist li.done .check { background: var(--reef); border-color: var(--reef); }
+.checklist li.done .check::after { content: '✓'; color: white; font-size: 12px; }
+
+/* Alert box */
+.alert {
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.alert-warn { background: rgba(232, 93, 58, 0.15); border-right: 3px solid var(--coral); }
+.alert-info { background: rgba(232, 168, 32, 0.1); border-right: 3px solid var(--gold); }
+.alert-success { background: rgba(46, 216, 154, 0.1); border-right: 3px solid #2ED89A; }
+
+/* Tags */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.tag-required { background: rgba(232, 93, 58, 0.2); color: var(--coral); }
+.tag-optional { background: rgba(232, 168, 32, 0.2); color: var(--gold); }
+.tag-free { background: rgba(46, 216, 154, 0.2); color: #2ED89A; }
+
+/* Links */
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+  margin: 12px 0;
+}
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+.link-card:hover { border-color: var(--gold); text-decoration: none; }
+.link-icon { font-size: 20px; }
+
+/* Cost bar */
+.cost-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 6px 0;
+}
+.cost-bar .label { font-size: 13px; min-width: 160px; }
+.cost-bar .bar-wrap { flex: 1; height: 24px; background: rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; }
+.cost-bar .bar-fill { height: 100%; border-radius: 12px; display: flex; align-items: center; padding: 0 10px; font-size: 11px; font-weight: 600; font-family: 'Space Grotesk'; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .slide { padding: 24px 20px; } }
+
+/* Scrollbar */
+.slide::-webkit-scrollbar { width: 4px; }
+.slide::-webkit-scrollbar-thumb { background: rgba(232, 168, 32, 0.3); border-radius: 2px; }
+
+.section-num {
+  font-family: 'Space Grotesk';
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--gold);
+  opacity: 0.15;
+  position: absolute;
+  top: 20px;
+  left: 40px;
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<button class="toc-btn" onclick="toggleTOC()">☰</button>
+<div class="toc-panel" id="tocPanel">
+  <h3 style="color:var(--gold);margin-bottom:20px;">תוכן עניינים</h3>
+  <div id="tocList"></div>
+</div>
+
+<div class="slide-container" id="slides">
+
+<!-- SLIDE 0: Cover -->
+<div class="slide slide-cover active" data-title="שער">
+  <div style="margin-bottom:30px;">
+    <div style="font-size:48px;margin-bottom:10px;">☀️</div>
+    <h1>מדריך רישוי מלא<br><span class="gold">Ko Phangan Solar</span></h1>
+    <p class="subtitle">כל מה שצריך לדעת כדי לפתוח חברת סולאר בתאילנד</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
+      <span class="tag tag-required">10 פרקים</span>
+      <span class="tag tag-optional">44+ עמודים</span>
+      <span class="tag tag-free">מעודכן מרץ 2026</span>
+    </div>
+  </div>
+  <p style="opacity:0.4;font-size:13px;">KANIEL TORD LLC — Ko Phangan Solar Division</p>
+</div>
+
+<!-- SLIDE 1: Overview -->
+<div class="slide slide-ocean" data-title="סקירה כללית">
+  <h2>🗺️ סקירה: <span class="gold">הדרך לחברת סולאר בתאילנד</span></h2>
+  <p class="subtitle">תהליך של 3-6 חודשים, עלות ₿3.2-4.9M</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🏢</div>
+      <h3>רישום חברה</h3>
+      <p>Thai Co., Ltd. — מבנה 51/49 או BOI. רישום דיגיטלי מלא מ-2026. 1-3 שבועות.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>BOI / רישיון זרים</h3>
+      <p>BOI אינו זמין ל-EPC טהור (נגמר 6/2025). אלטרנטיבה: FBL או 51/49.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h3>ויזות + היתרי עבודה</h3>
+      <p>Non-B ויזה + Work Permit. דורש ₿2M הון + 4 עובדים תאים/זר.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>רישיונות סולאר</h3>
+      <p>חדשות טובות: אין צורך ברישיון מפעל (בוטל 12/2024). אין צורך בהיתר בנייה (11/2025).</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <h3>מיסוי</h3>
+      <p>TIN + VAT + Social Security. הגשות חודשיות. ביקורת שנתית חובה.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏦</div>
+      <h3>בנקאות + ביטוח</h3>
+      <p>Bangkok Bank/Kasikorn בקופנגן. ביטוח CAR + E&O מומלץ.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-success" style="margin-top:20px;">
+    <strong>הפתעה טובה:</strong> תאילנד פישטה דרמטית את הרגולציה ב-2024-2025. אין צורך ברישיון מפעל, אין צורך בהיתר בנייה לסולאר על גגות, ו-net billing של ₿2.70/kWh קבוע ל-10 שנים.
+  </div>
+</div>
+
+<!-- SLIDE 2: Company Registration -->
+<div class="slide slide-dark" data-title="רישום חברה">
+  <span class="section-num">01</span>
+  <h2>🏢 רישום חברה — <span class="gold">Thai Co., Ltd.</span></h2>
+  <p class="subtitle">בריסת ג'מקת (בริษัทจำกัด) — 1-3 שבועות</p>
+
+  <div class="two-col">
+    <div>
+      <h3>3 מסלולים אפשריים</h3>
+      <div class="card" style="margin:8px 0;">
+        <h3><span class="gold">A.</span> מבנה 51/49 <span class="tag tag-free">הכי מהיר</span></h3>
+        <p>51% בעלות תאית, 49% זרה. דורש שותפים תאים אמינים. הון מינימלי ₿1M.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3><span class="gold">B.</span> BOI <span class="tag tag-optional">100% בעלות זרה</span></h3>
+        <p>פטור ממס 8 שנים + בעלות מלאה. אבל: לא בטוח שזמין ל-EPC סולארי!</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3><span class="gold">C.</span> Foreign Business License <span class="tag tag-required">60-90 ימים</span></h3>
+        <p>בעלות זרה רוב ללא BOI. הון מינימלי ₿3M. ללא הטבות מס.</p>
+      </div>
+
+      <div class="alert alert-warn" style="margin-top:12px;">
+        <strong>⚠️ אזהרה קריטית:</strong> שימוש ב-Nominees (תאים שמחזיקים מניות בשביל זרים) הוא <strong>בלתי חוקי</strong>. עונש: מאסר + פירוק החברה. מ-2026 דורשים הוכחת מקור כספי מכל בעל מניות.
+      </div>
+    </div>
+
+    <div>
+      <h3>שלבים מרכזיים</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="time">ימים 1-3</span>
+          <h4>שריין שם חברה</h4>
+          <p>3 שמות מועדפים (תאית + אנגלית). פורטל DBD. חינם.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="time">שבוע 1</span>
+          <h4>הכנת מסמכי ייסוד</h4>
+          <p>MoA, AoA, מינוי דירקטורים, הגדרת הון. מינימום 3 בעלי מניות.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="time">שבוע 1-2</span>
+          <h4>אסיפה מכוננת</h4>
+          <p>אישור כל המסמכים, מינוי רואה חשבון. יום אחד.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="time">שבוע 2-3</span>
+          <h4>רישום ב-DBD</h4>
+          <p>הגשה דיגיטלית מלאה (מ-2026 אין walk-in!). חתימה אלקטרונית.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="time">לאחר האישור</span>
+          <h4>הזרקת הון</h4>
+          <p>25% מינימום בהקמה. ₿2M לכל עובד זר.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap" style="margin-top:12px;">
+    <table>
+      <tr><th>פריט</th><th>עלות DIY</th><th>עם עו"ד</th></tr>
+      <tr><td>אגרת רישום DBD</td><td>₿5,000-5,500</td><td>—</td></tr>
+      <tr><td>ייעוץ משפטי</td><td>—</td><td>₿30,000-80,000</td></tr>
+      <tr><td>חותמת חברה</td><td>₿500-2,000</td><td>כלול</td></tr>
+      <tr><td><strong>סה"כ</strong></td><td><strong>₿6,000-8,000</strong></td><td><strong>₿40,000-90,000</strong></td></tr>
+    </table>
+  </div>
+
+  <div class="link-grid" style="margin-top:12px;">
+    <a href="https://www.dbd.go.th/" target="_blank" class="link-card"><span class="link-icon">🌐</span> DBD — רישום חברות</a>
+    <a href="https://ereg.dbd.go.th/" target="_blank" class="link-card"><span class="link-icon">📝</span> DBD Biz Regist Portal</a>
+    <a href="tel:1570" class="link-card"><span class="link-icon">📞</span> DBD Hotline: 1570</a>
+    <a href="tel:077-272-980" class="link-card"><span class="link-icon">📍</span> DBD סוראט תאני: 077-272-980</a>
+  </div>
+</div>
+
+<!-- SLIDE 3: BOI -->
+<div class="slide slide-gold" data-title="BOI — קידום השקעות">
+  <span class="section-num">02</span>
+  <h2>🛡️ BOI — <span class="gold">קידום השקעות</span></h2>
+  <p class="subtitle">Board of Investment of Thailand — boi.go.th</p>
+
+  <div class="alert alert-warn">
+    <strong>⚠️ עדכון חשוב:</strong> שירותי EPC/התקנת סולאר טהורים <strong>אינם רשומים כפעילות מקודמת ב-BOI</strong>. קטגוריה 7.1 (ייצור חשמל סולארי) נסגרה ב-30/6/2025.
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h3>מה זה אומר בפועל?</h3>
+      <div class="card" style="margin:8px 0;">
+        <h3 class="coral-text">אם רק מתקינים (EPC)</h3>
+        <p>BOI כנראה <strong>לא זמין</strong>. שימוש במבנה 51/49 או FBL.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3 class="reef-text">אם מייצרים חשמל (PPA/ESCO)</h3>
+        <p>קטגוריה 7.1 נסגרה 6/2025. אבל: שילוב סולאר + אגירה עשוי עדיין לזכות.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3 class="gold">חלופה: Foreign Business License</h3>
+        <p>60-90 ימים, הון ₿3M+, ללא הטבות מס. אבל: שליטה מלאה.</p>
+      </div>
+
+      <h3 style="margin-top:16px;">מה BOI נותן (כשזמין)</h3>
+      <ul style="font-size:14px;opacity:0.8;line-height:2;padding-right:20px;">
+        <li>פטור ממס חברות 8 שנים</li>
+        <li>100% בעלות זרה</li>
+        <li>פטור מכס על מכונות</li>
+        <li>היתרי עבודה מזורזים (2:1 במקום 4:1)</li>
+        <li>זכויות בעלות על קרקע</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>תהליך הגשה (אם רלוונטי)</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="time">שלב 1</span>
+          <h4>ייעוץ מקדים</h4>
+          <p>פגישה חינמית עם BOI. מומלץ מאוד.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="time">שלב 2</span>
+          <h4>הכנת חבילת הגשה</h4>
+          <p>תוכנית עסקית 5 שנים, תחזיות פיננסיות, מפרטי ציוד, תוכנית העסקה.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="time">שלב 3</span>
+          <h4>הגשה</h4>
+          <p>אונליין ב-osos.boi.go.th או במשרד BOI סוראט תאני.</p>
+        </div>
+        <div class="timeline-item">
+          <span class="time">40-90 ימים</span>
+          <h4>בדיקה ואישור</h4>
+          <p>פרויקטים &lt;₿200M: מזכ"ל BOI. גדולים יותר: ועדה/דירקטוריון.</p>
+        </div>
+      </div>
+
+      <div class="link-grid" style="margin-top:16px;">
+        <a href="https://www.boi.go.th/" target="_blank" class="link-card"><span class="link-icon">🌐</span> BOI Official</a>
+        <a href="https://osos.boi.go.th/" target="_blank" class="link-card"><span class="link-icon">📝</span> BOI Portal</a>
+        <a href="tel:1385" class="link-card"><span class="link-icon">📞</span> BOI Hotline: 1385</a>
+        <a href="mailto:surat@boi.go.th" class="link-card"><span class="link-icon">📧</span> BOI סוראט תאני</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: Work Permits & Visas -->
+<div class="slide slide-ocean" data-title="ויזות והיתרי עבודה">
+  <span class="section-num">03</span>
+  <h2>📋 ויזות + היתרי עבודה</h2>
+  <p class="subtitle">Non-Immigrant B + Work Permit — 2-3 חודשים</p>
+
+  <div class="two-col">
+    <div>
+      <h3>דרישות מקדימות</h3>
+      <div class="alert alert-info">
+        <strong>לפני הגשת בקשה:</strong><br>
+        • הון רשום ₿2,000,000 לכל עובד זר<br>
+        • 4 עובדים תאים לכל עובד זר (2 עם BOI)<br>
+        • משרד פיזי (לא וירטואלי)<br>
+        • רישום מס + ביטוח לאומי פעילים
+      </div>
+
+      <h3 style="margin-top:16px;">התהליך שלב אחר שלב</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>1. WP.32 — אישור מקדים</h4>
+          <p>החברה מגישה למשרד העבודה. 7-15 ימים. ₿100.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>2. Non-B ויזה — בשגרירות תאית</h4>
+          <p>עם מכתב WP.32. 3-7 ימים. ₿2,000.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>3. כניסה לתאילנד</h4>
+          <p>חותמת 90 ימים. צריך להגיש Work Permit תוך 15 יום.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>4. Work Permit</h4>
+          <p>משרד העסקה סוראט תאני + בדיקה רפואית. 7-30 ימים. ₿3,100.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>5. הארכת ויזה לשנה</h4>
+          <p>משרד הגירה. ₿1,900. דיווח כל 90 יום.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h3>חלופות</h3>
+      <div class="card" style="margin:8px 0;">
+        <h3><span class="reef-text">SMART Visa</span> — לטכנולוגיה ירוקה</h3>
+        <p>עד 4 שנים, ללא Work Permit. משכורת מינימום ₿100K/חודש. אישור DEDE.</p>
+        <p style="margin-top:4px;"><a href="https://smart-visa.boi.go.th/" target="_blank">smart-visa.boi.go.th</a></p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3><span class="coral-text">Digital Nomad Visa</span> — לא מתאים!</h3>
+        <p>DTV לא מאשר עבודה בחברה תאית. רק לפרילנסרים עם לקוחות זרים.</p>
+      </div>
+
+      <div class="alert alert-warn" style="margin-top:16px;">
+        <strong>⚠️ עיסוקים אסורים לזרים:</strong> עבודה ידנית, נהיגה, חלק מעבודות בנייה. <strong>עיצוב מערכות, ניהול פרויקטים ומכירות — מותרים.</strong> התקנה על גגות — עובדים תאים.
+      </div>
+
+      <h3 style="margin-top:16px;">סיכום עלויות</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>DIY</th><th>עם סוכן</th></tr>
+          <tr><td>WP.32</td><td>₿100</td><td>—</td></tr>
+          <tr><td>Non-B ויזה</td><td>₿2,000</td><td>—</td></tr>
+          <tr><td>Work Permit (שנה)</td><td>₿3,100</td><td>—</td></tr>
+          <tr><td>הארכת ויזה</td><td>₿1,900</td><td>—</td></tr>
+          <tr><td>בדיקה רפואית</td><td>₿500-1,000</td><td>—</td></tr>
+          <tr><td><strong>סה"כ</strong></td><td><strong>₿~10,000</strong></td><td><strong>₿25,000-50,000</strong></td></tr>
+        </table>
+      </div>
+
+      <div class="link-grid" style="margin-top:12px;">
+        <a href="tel:077-355-422" class="link-card"><span class="link-icon">📞</span> משרד העסקה סוראט: 077-355-422</a>
+        <a href="tel:077-377-046" class="link-card"><span class="link-icon">📍</span> הגירה קופנגן: 077-377-046</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Solar Licenses -->
+<div class="slide slide-reef" data-title="רישיונות סולאר">
+  <span class="section-num">04</span>
+  <h2>⚡ רישיונות סולאר — <span class="gold">החדשות הטובות</span></h2>
+  <p class="subtitle">תאילנד פישטה דרמטית את הרגולציה ב-2024-2025</p>
+
+  <div class="alert alert-success">
+    <strong>🎉 שינויים דרמטיים:</strong> רישיון מפעל (Ror.Ngor.4) <strong>בוטל</strong> לסולאר על גגות (12/2024). היתר בנייה <strong>בוטל</strong> למערכות ≤20 kg/m² (11/2025). Net billing ₿2.70/kWh קבוע ל-10 שנים.
+  </div>
+
+  <div class="two-col" style="margin-top:16px;">
+    <div>
+      <h3>מה צריך כמתקין סולאר?</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>רישיון/רישום</th><th>נדרש?</th><th>הערות</th></tr>
+          <tr><td>רישום חברה</td><td><span class="tag tag-required">כן</span></td><td>DBD</td></tr>
+          <tr><td>רישום מס</td><td><span class="tag tag-required">כן</span></td><td>Revenue Dept</td></tr>
+          <tr><td>רישיון מתקין DEDE</td><td><span class="tag tag-free">לא</span></td><td>לא נדרש</td></tr>
+          <tr><td>ESCO רישום</td><td><span class="tag tag-optional">אופציונלי</span></td><td>לאמינות</td></tr>
+          <tr><td>אישור PEA (לפרויקט)</td><td><span class="tag tag-required">כן</span></td><td>לכל חיבור</td></tr>
+          <tr><td>רישיון ERC</td><td><span class="tag tag-free">בד"כ לא</span></td><td>רק אם מוכרים חשמל ישירות</td></tr>
+          <tr><td>רישיון מפעל</td><td><span class="tag tag-free">לא!</span></td><td>בוטל 12/2024</td></tr>
+          <tr><td>היתר בנייה</td><td><span class="tag tag-free">לא!</span></td><td>≤20 kg/m², בוטל 11/2025</td></tr>
+          <tr><td>מהנדס מוסמך (PE)</td><td><span class="tag tag-optional">מומלץ</span></td><td>לחתימה על תכניות</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div>
+      <h3>PEA — התהליך לכל פרויקט</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>בדיקת תשתית</h4>
+          <p>אימות עם PEA מקומי. Koh Phangan: 077-377-084</p>
+        </div>
+        <div class="timeline-item">
+          <h4>הגשת בקשה</h4>
+          <p>טופס + תכנית מערכת + single-line diagram + תעודות ציוד (IEC 61215/61730)</p>
+        </div>
+        <div class="timeline-item">
+          <h4>בדיקה טכנית</h4>
+          <p>PEA מאמת קיבולת רשת + בטיחות</p>
+        </div>
+        <div class="timeline-item">
+          <h4>התקנה + פיקוח</h4>
+          <p>PEA מגיע לבדוק. מתקין מונה דו-כיווני.</p>
+        </div>
+        <div class="timeline-item">
+          <h4>הסכם חיבור (10 שנים)</h4>
+          <p>₿2.70/kWh קבוע. חתימה והפעלה.</p>
+        </div>
+      </div>
+      <p style="font-size:12px;opacity:0.5;margin-top:8px;">ציר זמן: 30-90 יום מבקשה לחיבור</p>
+
+      <div class="link-grid" style="margin-top:12px;">
+        <a href="https://www.pea.co.th/" target="_blank" class="link-card"><span class="link-icon">⚡</span> PEA Official</a>
+        <a href="https://www.dede.go.th/" target="_blank" class="link-card"><span class="link-icon">🌿</span> DEDE</a>
+        <a href="https://www.erc.or.th/" target="_blank" class="link-card"><span class="link-icon">📊</span> ERC</a>
+        <a href="tel:077-377-084" class="link-card"><span class="link-icon">📞</span> PEA קופנגן</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Tax -->
+<div class="slide slide-dark" data-title="מיסוי">
+  <span class="section-num">06</span>
+  <h2>💰 מיסוי ורישום</h2>
+  <p class="subtitle">Revenue Department + Social Security</p>
+
+  <div class="two-col">
+    <div>
+      <h3>רישומים נדרשים</h3>
+      <div class="card" style="margin:8px 0;">
+        <h3>TIN — מספר מס <span class="tag tag-required">תוך 60 יום</span></h3>
+        <p>טופס Por.Por.01 + תעודת חברה + חוזה שכירות. חינם. יום עד 3 ימים.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3>VAT — מע"מ 7% <span class="tag tag-optional">מומלץ מיום 1</span></h3>
+        <p>חובה מעל ₿1.8M/שנה. מומלץ לרישום מוקדם — זיכוי מס על קניית פאנלים!</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3>Social Security <span class="tag tag-required">תוך 30 יום מגיוס</span></h3>
+        <p>5% מעביד + 5% עובד. תקרה ₿750/חודש/עובד. SSO סוראט תאני.</p>
+      </div>
+
+      <h3 style="margin-top:16px;">הטבות מס לסולאר</h3>
+      <div class="alert alert-success">
+        <strong>ללקוחות שלך:</strong> ניכוי 50% על עלות ציוד סולארי (עד ₿200K, מגורים)<br>
+        <strong>לחברה (עם BOI):</strong> פטור מלא ממס חברות 8 שנים<br>
+        <strong>שיעור מס רגיל:</strong> 20%
+      </div>
+    </div>
+
+    <div>
+      <h3>לוח הגשות — חודשי</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>הגשה</th><th>מועד</th><th>טופס</th></tr>
+          <tr><td>מע"מ</td><td>15 לחודש הבא</td><td>Por.Por.30</td></tr>
+          <tr><td>ניכוי במקור</td><td>7 לחודש הבא</td><td>PND 3/53</td></tr>
+          <tr><td>ביטוח לאומי</td><td>15 לחודש הבא</td><td>SSO form</td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:16px;">לוח הגשות — שנתי</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>הגשה</th><th>מועד</th></tr>
+          <tr><td>מס חברות חצי-שנתי</td><td>2 חודשים מאמצע שנה</td></tr>
+          <tr><td>מס חברות שנתי</td><td>150 יום מסוף שנה</td></tr>
+          <tr><td>דו"חות מבוקרים (DBD)</td><td>5 חודשים מסוף שנה</td></tr>
+          <tr><td>אסיפה שנתית</td><td>4 חודשים מסוף שנה</td></tr>
+        </table>
+      </div>
+
+      <div class="alert alert-warn" style="margin-top:12px;">
+        <strong>⚠️</strong> איחור בהגשה = קנס + ריבית 1.5%/חודש. קבע תזכורות ביומן!
+      </div>
+
+      <div class="link-grid" style="margin-top:12px;">
+        <a href="https://www.rd.go.th/" target="_blank" class="link-card"><span class="link-icon">🌐</span> Revenue Department</a>
+        <a href="https://efiling.rd.go.th/" target="_blank" class="link-card"><span class="link-icon">📝</span> e-Filing</a>
+        <a href="https://www.sso.go.th/" target="_blank" class="link-card"><span class="link-icon">🏥</span> Social Security</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Insurance & Banking -->
+<div class="slide slide-ocean" data-title="ביטוח + בנקאות">
+  <span class="section-num">07</span>
+  <h2>🏦 ביטוח + בנקאות</h2>
+
+  <div class="two-col">
+    <div>
+      <h3>ביטוח — מה צריך?</h3>
+      <div class="card" style="margin:8px 0;">
+        <h3>Contractor's All Risk (CAR) <span class="tag tag-required">חובה</span></h3>
+        <p>מכסה נזק במהלך התקנה. פרמיה: 0.3-0.5% משווי פרויקט.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3>Professional Liability (E&O) <span class="tag tag-required">מומלץ מאוד</span></h3>
+        <p>מכסה שגיאות תכנון, התקנה לקויה, ביצועים נמוכים.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3>Workers' Compensation <span class="tag tag-required">חובה</span></h3>
+        <p>חלק מ-Social Security. התקנת סולאר = סיכון גבוה.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3>Equipment/Transit <span class="tag tag-optional">מומלץ</span></h3>
+        <p>חשוב! הובלה בפרי לקופנגן = סיכון. ביטוח מטען ימי.</p>
+      </div>
+
+      <h3 style="margin-top:12px;">חברות ביטוח תאיות</h3>
+      <div class="link-grid">
+        <a href="https://www.viriyah.co.th/" target="_blank" class="link-card"><span class="link-icon">🛡️</span> Viriyah — הגדולה</a>
+        <a href="https://www.bangkokinsurance.com/" target="_blank" class="link-card"><span class="link-icon">🏗️</span> Bangkok — CAR</a>
+      </div>
+      <p style="font-size:13px;opacity:0.6;margin-top:8px;">פרמיה שנתית צפויה: ₿50,000-200,000</p>
+    </div>
+
+    <div>
+      <h3>פתיחת חשבון בנק עסקי</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>בנק</th><th>יתרונות</th><th>בקופנגן?</th></tr>
+          <tr><td><strong>Bangkok Bank</strong></td><td>הגדול, העברות בינ"ל, אנגלית</td><td>✅ כן</td></tr>
+          <tr><td><strong>Kasikorn (KBank)</strong></td><td>הכי דיגיטלי, K PLUS</td><td>✅ כן</td></tr>
+          <tr><td>Krungsri</td><td>MUFG, מוצרי סולאר</td><td>❌ אין</td></tr>
+          <tr><td>SCB</td><td>שירות תאגידי</td><td>❓</td></tr>
+        </table>
+      </div>
+
+      <h3 style="margin-top:16px;">מסמכים לפתיחת חשבון</h3>
+      <ul class="checklist" onclick="toggleCheck(event)">
+        <li><span class="check"></span>תעודת רישום חברה (Bor Jor 2/3/5)</li>
+        <li><span class="check"></span>אישור חברה עדכני (≤3 חודשים)</li>
+        <li><span class="check"></span>MoA + AoA</li>
+        <li><span class="check"></span>החלטת דירקטוריון</li>
+        <li><span class="check"></span>צילום דרכון כל דירקטור</li>
+        <li><span class="check"></span>Work Permit</li>
+        <li><span class="check"></span>חוזה שכירות + מפה</li>
+        <li><span class="check"></span>חותמת חברה</li>
+      </ul>
+      <p style="font-size:12px;opacity:0.5;margin-top:8px;">שמור ₿2M+ בחשבון תמיד (הוכחת הון ל-Work Permit)</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Hiring -->
+<div class="slide slide-dark" data-title="גיוס עובדים">
+  <span class="section-num">09</span>
+  <h2>👥 גיוס עובדים</h2>
+  <p class="subtitle">שכר, הכשרה, ומציאת כוח אדם באי</p>
+
+  <div class="two-col">
+    <div>
+      <h3>טבלת שכר — תעשיית סולאר בתאילנד</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>תפקיד</th><th>שכר חודשי (₿)</th><th>הערות</th></tr>
+          <tr><td>מתקין/טכנאי סולאר</td><td>15,000-25,000</td><td>+10-30% באי</td></tr>
+          <tr><td>חשמלאי מוסמך</td><td>18,000-30,000</td><td>ניסיון = יותר</td></tr>
+          <tr><td>מנהל פרויקט (תאי)</td><td>30,000-50,000</td><td>רקע הנדסי</td></tr>
+          <tr><td>מכירות</td><td>20,000-35,000</td><td>+ עמלות</td></tr>
+          <tr><td>מנהלת/מזכירה</td><td>12,000-18,000</td><td></td></tr>
+          <tr><td>נהג</td><td>12,000-15,000</td><td>הובלת ציוד</td></tr>
+          <tr><td>מהנדס מוסמך (PE)</td><td>40,000-80,000</td><td>אפשר חלקי</td></tr>
+        </table>
+      </div>
+      <p style="font-size:12px;opacity:0.5;">שכר מינימום סוראט תאני: ₿370/יום (~₿9,620/חודש)</p>
+
+      <h3 style="margin-top:16px;">איפה למצוא עובדים</h3>
+      <div class="link-grid">
+        <a href="https://th.jobsdb.com/" target="_blank" class="link-card"><span class="link-icon">💼</span> JobsDB Thailand</a>
+        <a href="https://www.jobthai.com/" target="_blank" class="link-card"><span class="link-icon">🇹🇭</span> JobThai</a>
+      </div>
+      <p style="font-size:13px;opacity:0.7;margin-top:8px;">+ קבוצות פייסבוק "งานเกาะพะงัน" + מכללה טכנית בסוראט + PEA referrals</p>
+    </div>
+
+    <div>
+      <h3>דרישות חוקיות</h3>
+      <div class="alert alert-info">
+        <strong>יחס עובדים:</strong><br>
+        • ללא BOI: <strong>4 תאים : 1 זר</strong><br>
+        • עם BOI: <strong>2 תאים : 1 זר</strong><br>
+        • הון: ₿2M לכל עובד זר
+      </div>
+
+      <h3 style="margin-top:16px;">הכשרות סולאר</h3>
+      <div class="card" style="margin:8px 0;">
+        <h3>DEDE — קורסים חינמיים/מסובסדים</h3>
+        <p>מחלקת אנרגיה חלופית מציעה הכשרות להתקנת סולאר.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3>הכשרת יצרנים</h3>
+        <p>Huawei, SMA, Fronius — certified installer programs. שלח עובדים להכשרה.</p>
+      </div>
+      <div class="card" style="margin:8px 0;">
+        <h3>מכללות מקצועיות</h3>
+        <p>Surat Thani Technical College + Rajamangala University — בוגרי חשמל.</p>
+      </div>
+
+      <div class="alert alert-warn" style="margin-top:12px;">
+        <strong>⚠️ מאגר עובדים באי מוגבל!</strong> שקול גיוס מסוראט תאני + דיור/הסעה. או: ראש צוות מבנגקוק + צוות מקומי.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: Costs Summary -->
+<div class="slide slide-gold" data-title="סיכום עלויות">
+  <span class="section-num">$$</span>
+  <h2>💎 סיכום עלויות הקמה</h2>
+  <p class="subtitle">₿3.2-4.9M (~$92-141K USD)</p>
+
+  <div style="max-width:800px;">
+    <div class="cost-bar">
+      <span class="label">הון רשום (WP)</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:80%;background:linear-gradient(90deg,var(--ocean),#1A7A9C);">₿2,000,000</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">הון חוזר (3 חודשים)</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:40%;background:linear-gradient(90deg,var(--gold),#C4901A);">₿500K-1M</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">רכב</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:32%;background:linear-gradient(90deg,#2E7A5A,var(--reef));">₿300-800K</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">ציוד + כלים</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:linear-gradient(90deg,var(--coral),#C84A2A);">₿200-500K</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">רישום + עו"ד</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:4%;background:#8B6EC8;">₿50-90K</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">ביטוח (שנה 1)</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:8%;background:#E85D9A;">₿50-200K</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">משרד</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:6%;background:#5AC8C8;">₿50-150K</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">שיווק</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:6%;background:#C8A85A;">₿50-150K</div></div>
+    </div>
+    <div class="cost-bar">
+      <span class="label">Work Permit + ויזה</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:2%;background:#5A8BC8;">₿25-50K</div></div>
+    </div>
+  </div>
+
+  <div class="alert alert-info" style="margin-top:20px;max-width:800px;">
+    <strong>שים לב:</strong> הון רשום (₿2M) הוא <strong>לא הוצאה</strong> — הכסף נשאר בחשבון הבנק של החברה ומשמש לפעילות שוטפת.
+  </div>
+</div>
+
+<!-- SLIDE 10: Master Checklist -->
+<div class="slide slide-ocean" data-title="צ'קליסט מאסטר">
+  <h2>✅ צ'קליסט מאסטר — <span class="gold">מאפס לחברה פעילה</span></h2>
+
+  <div class="two-col" style="margin-top:12px;">
+    <div>
+      <h3>שלב 1: הקמה (שבועות 1-4)</h3>
+      <ul class="checklist" onclick="toggleCheck(event)">
+        <li><span class="check"></span>שכור עו"ד תאי</li>
+        <li><span class="check"></span>שריין שם חברה ב-DBD</li>
+        <li><span class="check"></span>הכן MoA + AoA</li>
+        <li><span class="check"></span>מצא בעלי מניות תאים (51/49)</li>
+        <li><span class="check"></span>אסיפה מכוננת</li>
+        <li><span class="check"></span>רישום חברה ב-DBD</li>
+        <li><span class="check"></span>הזמן חותמת חברה</li>
+      </ul>
+
+      <h3 style="margin-top:16px;">שלב 2: רישומים (שבועות 3-6)</h3>
+      <ul class="checklist" onclick="toggleCheck(event)">
+        <li><span class="check"></span>פתח חשבון בנק עסקי</li>
+        <li><span class="check"></span>הזרק הון רשום</li>
+        <li><span class="check"></span>רישום מס (Revenue Dept)</li>
+        <li><span class="check"></span>רישום מע"מ</li>
+        <li><span class="check"></span>רישום Social Security</li>
+      </ul>
+
+      <h3 style="margin-top:16px;">שלב 3: כוח אדם (שבועות 4-8)</h3>
+      <ul class="checklist" onclick="toggleCheck(event)">
+        <li><span class="check"></span>הגש WP.32</li>
+        <li><span class="check"></span>קבל Non-B ויזה</li>
+        <li><span class="check"></span>כנס לתאילנד, הגש Work Permit</li>
+        <li><span class="check"></span>הארך ויזה לשנה</li>
+        <li><span class="check"></span>גייס עובדים תאים (מינ' 4)</li>
+        <li><span class="check"></span>רשום עובדים ב-SSO</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>שלב 4: ביטוח + תפעול (שבועות 6-10)</h3>
+      <ul class="checklist" onclick="toggleCheck(event)">
+        <li><span class="check"></span>ביטוח CAR</li>
+        <li><span class="check"></span>ביטוח E&O</li>
+        <li><span class="check"></span>ביטוח Workers' Comp</li>
+        <li><span class="check"></span>מערכת הנהלת חשבונות</li>
+        <li><span class="check"></span>שכור רואה חשבון</li>
+        <li><span class="check"></span>הקם משרד בקופנגן</li>
+      </ul>
+
+      <h3 style="margin-top:16px;">שלב 5: סולאר (שבועות 8-12)</h3>
+      <ul class="checklist" onclick="toggleCheck(event)">
+        <li><span class="check"></span>בנה קשר עם PEA מקומי</li>
+        <li><span class="check"></span>ספקי ציוד (BayWa, Longi, Huawei)</li>
+        <li><span class="check"></span>הכשר צוות התקנה</li>
+        <li><span class="check"></span>ESCO רישום (אופציונלי)</li>
+        <li><span class="check"></span>נהלי עבודה + תבניות תיעוד</li>
+      </ul>
+
+      <h3 style="margin-top:16px;">שלב 6: פרויקט ראשון! (שבוע 12+)</h3>
+      <ul class="checklist" onclick="toggleCheck(event)">
+        <li><span class="check"></span>זכה בלקוח ראשון</li>
+        <li><span class="check"></span>סקר אתר</li>
+        <li><span class="check"></span>תכנון מערכת + PE</li>
+        <li><span class="check"></span>בקשת PEA</li>
+        <li><span class="check"></span>רכש ציוד</li>
+        <li><span class="check"></span>התקנה!</li>
+        <li><span class="check"></span>PEA inspection + מונה</li>
+        <li><span class="check"></span>חיבור לרשת 🎉</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Key Contacts -->
+<div class="slide slide-dark" data-title="אנשי קשר">
+  <h2>📞 אנשי קשר מרכזיים</h2>
+  <p class="subtitle">כל הטלפונים והאתרים שתצטרך</p>
+
+  <div class="table-wrap" style="margin-top:16px;">
+    <table>
+      <tr><th>גורם</th><th>אתר</th><th>טלפון</th></tr>
+      <tr><td>DBD (רישום חברות)</td><td><a href="https://www.dbd.go.th/">dbd.go.th</a></td><td>1570</td></tr>
+      <tr><td>BOI (קידום השקעות)</td><td><a href="https://www.boi.go.th/">boi.go.th</a></td><td>1385</td></tr>
+      <tr><td>Revenue Department (מס)</td><td><a href="https://www.rd.go.th/">rd.go.th</a></td><td>1161</td></tr>
+      <tr><td>Ministry of Labour</td><td><a href="https://www.mol.go.th/">mol.go.th</a></td><td>1506</td></tr>
+      <tr><td>Social Security</td><td><a href="https://www.sso.go.th/">sso.go.th</a></td><td>1506</td></tr>
+      <tr><td>DEDE (אנרגיה חלופית)</td><td><a href="https://www.dede.go.th/">dede.go.th</a></td><td>02-223-0021</td></tr>
+      <tr><td>PEA (חשמל)</td><td><a href="https://www.pea.co.th/">pea.co.th</a></td><td>1129</td></tr>
+      <tr><td>ERC (רגולטור אנרגיה)</td><td><a href="https://www.erc.or.th/">erc.or.th</a></td><td>02-207-3599</td></tr>
+      <tr><td>Immigration Bureau</td><td><a href="https://www.immigration.go.th/">immigration.go.th</a></td><td>1178</td></tr>
+      <tr><td>Council of Engineers</td><td><a href="https://www.coe.or.th/">coe.or.th</a></td><td>02-184-4600</td></tr>
+    </table>
+  </div>
+
+  <h3 style="margin-top:20px;">משרדים מקומיים — <span class="gold">Koh Phangan & Surat Thani</span></h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>PEA Koh Phangan</h3>
+      <p>077-377-084<br>תונג סאלה</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛂</div>
+      <h3>Immigration Koh Phangan</h3>
+      <p>077-377-046<br>תונג סאלה</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>BOI Surat Thani</h3>
+      <p>077-404-600<br>surat@boi.go.th</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💼</div>
+      <h3>Employment Office</h3>
+      <p>077-355-422<br>סוראט תאני</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏢</div>
+      <h3>DBD Surat Thani</h3>
+      <p>077-272-980<br>ביתן מחוזי</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <h3>Revenue Surat Thani</h3>
+      <p>077-272-187<br>משרד המס</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:20px;">משרדי עו"ד מומלצים</h3>
+  <div class="link-grid">
+    <a href="https://www.tilleke.com/" target="_blank" class="link-card"><span class="link-icon">⚖️</span> Tilleke & Gibbins — Top-tier</a>
+    <a href="https://www.siam-legal.com/" target="_blank" class="link-card"><span class="link-icon">⚖️</span> Siam Legal — חברות</a>
+    <a href="https://belaws.com/" target="_blank" class="link-card"><span class="link-icon">⚖️</span> Belaws — SME</a>
+    <a href="https://www.konradlegal.com/" target="_blank" class="link-card"><span class="link-icon">⚖️</span> Konrad Legal — זרים</a>
+  </div>
+</div>
+
+</div><!-- end slides -->
+
+<!-- Navigation -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">→ הקודם</button>
+  <span class="slide-counter" id="counter">1 / 11</span>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">הבא ←</button>
+</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+
+function navigate(dir) {
+  const prev = current;
+  current = Math.max(0, Math.min(total - 1, current + dir));
+  if (prev === current) return;
+  slides[prev].classList.remove('active');
+  slides[prev].classList.add('exit');
+  setTimeout(() => slides[prev].classList.remove('exit'), 600);
+  slides[current].classList.add('active');
+  updateUI();
+}
+
+function goTo(idx) {
+  slides[current].classList.remove('active');
+  current = idx;
+  slides[current].classList.add('active');
+  updateUI();
+  toggleTOC();
+}
+
+function updateUI() {
+  document.getElementById('counter').textContent = `${current + 1} / ${total}`;
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('nextBtn').disabled = current === total - 1;
+  document.getElementById('progress').style.width = `${((current + 1) / total) * 100}%`;
+  document.querySelectorAll('.toc-item').forEach((el, i) => el.classList.toggle('active', i === current));
+}
+
+function toggleTOC() {
+  document.getElementById('tocPanel').classList.toggle('open');
+}
+
+function toggleCheck(e) {
+  const li = e.target.closest('li');
+  if (li) li.classList.toggle('done');
+}
+
+// Build TOC
+const tocList = document.getElementById('tocList');
+slides.forEach((slide, i) => {
+  const title = slide.dataset.title || `Slide ${i + 1}`;
+  const item = document.createElement('div');
+  item.className = 'toc-item' + (i === 0 ? ' active' : '');
+  item.innerHTML = `<span class="toc-num">${i + 1}</span>${title}`;
+  item.onclick = () => goTo(i);
+  tocList.appendChild(item);
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') navigate(e.key === 'ArrowLeft' ? 1 : -1);
+  if (e.key === 'Escape') document.getElementById('tocPanel').classList.remove('open');
+});
+
+// Touch navigation
+let touchStart = 0;
+document.addEventListener('touchstart', e => touchStart = e.touches[0].clientX);
+document.addEventListener('touchend', e => {
+  const diff = touchStart - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 60) navigate(diff > 0 ? 1 : -1);
+});
+
+updateUI();
+</script>
+</body>
+</html>

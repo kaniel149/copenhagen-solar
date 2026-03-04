@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ko Phangan Solar — שיווק ומכירות</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root { --ocean:#0A3D5C; --gold:#E8A820; --reef:#1A7A5A; --coral:#E85D3A; --night:#0D2137; --white:#FFF; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
+.slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:40px 60px;opacity:0;transform:translateX(100px);transition:all .6s cubic-bezier(.23,1,.32,1);pointer-events:none;overflow-y:auto;padding-bottom:80px}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all}
+.slide.exit{opacity:0;transform:translateX(-100px)}
+.slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
+.slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
+.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 24px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:14px;font-weight:500;transition:all .3s}
+.nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}.nav-btn:disabled:hover{background:none;color:var(--gold)}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:14px}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
+.toc-btn{position:fixed;top:20px;left:20px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102;transition:all .3s}
+.toc-btn:hover{background:var(--gold);color:var(--night)}
+.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s cubic-bezier(.23,1,.32,1);padding:60px 30px 30px;overflow-y:auto}
+.toc-panel.open{left:0}
+.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
+.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-num{font-family:'Space Grotesk';font-weight:700;font-size:12px;color:var(--gold);min-width:24px}
+h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:16px}
+h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;line-height:1.2;margin-bottom:12px}
+h3{font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:8px}
+.subtitle{font-size:clamp(16px,2vw,22px);font-weight:300;opacity:.8;margin-bottom:24px}
+.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;transition:all .3s}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card-icon{font-size:28px;margin-bottom:10px}.card h3{font-size:16px;margin-bottom:6px}.card p{font-size:13px;opacity:.7;line-height:1.5}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:rgba(232,168,32,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:10px 14px;border-top:1px solid rgba(255,255,255,.06)}
+tr:hover td{background:rgba(255,255,255,.03)}
+.alert{padding:16px 20px;border-radius:10px;margin:12px 0;font-size:14px;line-height:1.6}
+.alert-warn{background:rgba(232,93,58,.15);border-right:3px solid var(--coral)}
+.alert-info{background:rgba(232,168,32,.1);border-right:3px solid var(--gold)}
+.alert-success{background:rgba(46,216,154,.1);border-right:3px solid #2ED89A}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.tag-ppa{background:rgba(46,216,154,.2);color:#2ED89A}.tag-epc{background:rgba(100,150,255,.2);color:#6496FF}.tag-both{background:rgba(232,168,32,.2);color:var(--gold)}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.slide{padding:24px 20px}}
+.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
+.section-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;color:var(--gold);opacity:.15;position:absolute;top:20px;left:40px}
+.big-num{font-family:'Space Grotesk';font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--gold)}
+.stat-label{font-size:14px;opacity:.6;margin-top:4px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;margin:20px 0;text-align:center}
+.bar-chart{margin:16px 0}
+.bar-row{display:flex;align-items:center;gap:12px;margin:6px 0}
+.bar-label{font-size:13px;min-width:80px;text-align:left}
+.bar-wrap{flex:1;height:28px;background:rgba(255,255,255,.05);border-radius:14px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:14px;display:flex;align-items:center;padding:0 12px;font-size:11px;font-weight:600;font-family:'Space Grotesk';transition:width 1s ease}
+.bar-val{font-family:'Space Grotesk';font-size:13px;min-width:70px;text-align:left;font-weight:600}
+.flow-steps{display:flex;align-items:flex-start;gap:0;margin:20px 0;flex-wrap:wrap;justify-content:center}
+.flow-step{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:120px}
+.flow-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:8px}
+.flow-arrow{font-size:24px;color:var(--gold);margin-top:16px;padding:0 4px}
+.flow-label{font-size:12px;font-weight:600}.flow-sub{font-size:10px;opacity:.5;margin-top:2px}
+.model-card{background:rgba(255,255,255,.03);border:2px solid rgba(255,255,255,.1);border-radius:16px;padding:24px;transition:all .3s}
+.model-card:hover{border-color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<button class="toc-btn" onclick="toggleTOC()">☰</button>
+<div class="toc-panel" id="tocPanel"><h3 style="color:var(--gold);margin-bottom:20px;">תוכן עניינים</h3><div id="tocList"></div></div>
+
+<div class="slide-container" id="slides">
+
+<!-- SLIDE 0: Cover -->
+<div class="slide slide-cover active" data-title="שער">
+  <div style="margin-bottom:30px">
+    <div style="font-size:56px;margin-bottom:16px">📣💰</div>
+    <h1>שיווק ומכירות<br><span class="gold">Ko Phangan Solar</span></h1>
+    <p class="subtitle">ערוצים, סוכנים, תהליכים ויעדים</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+      <span class="tag tag-epc">Outbound — יזום</span>
+      <span class="tag tag-ppa">Inbound — נכנס</span>
+      <span class="tag tag-both">Referral — הפניות</span>
+    </div>
+  </div>
+  <p style="opacity:.4;font-size:13px">KANIEL TORD LLC — מרץ 2026</p>
+</div>
+
+<!-- SLIDE 1: Strategy Overview -->
+<div class="slide slide-ocean" data-title="אסטרטגיית שיווק">
+  <span class="section-num">01</span>
+  <h2>🎯 אסטרטגיית שיווק — <span class="gold">3 שלבים</span></h2>
+  <p class="subtitle">מ-Lighthouse ועד Scale — תוכנית 12 חודשים</p>
+
+  <div class="three-col">
+    <div class="model-card" style="border-color:rgba(100,150,255,.3)">
+      <h3 style="color:#6496FF">שלב 1: Lighthouse</h3>
+      <p style="font-size:13px;opacity:.7;margin-bottom:12px">חודשים 1-3</p>
+      <ul style="font-size:13px;line-height:2;opacity:.8;list-style:none;padding:0">
+        <li>▸ 3-5 התקנות ראשונות ברזורטים/וילות</li>
+        <li>▸ תמחור אגרסיבי (עלות + 15%)</li>
+        <li>▸ צילום מקצועי + case studies</li>
+        <li>▸ יחסים אישיים עם בעלי עסקים</li>
+        <li>▸ הפניות מ-property managers</li>
+      </ul>
+      <div style="margin-top:12px"><span class="tag tag-epc">תקציב: ฿30K/חודש</span></div>
+    </div>
+    <div class="model-card" style="border-color:rgba(46,216,154,.3)">
+      <h3 style="color:#2ED89A">שלב 2: Referral Machine</h3>
+      <p style="font-size:13px;opacity:.7;margin-bottom:12px">חודשים 4-8</p>
+      <ul style="font-size:13px;line-height:2;opacity:.8;list-style:none;padding:0">
+        <li>▸ תוכנית הפניות 5% עמלה</li>
+        <li>▸ שותפויות עם קבלנים ואדריכלים</li>
+        <li>▸ FB/IG ads ממוקדים</li>
+        <li>▸ Google Ads על מילות מפתח</li>
+        <li>▸ Line Official Account</li>
+      </ul>
+      <div style="margin-top:12px"><span class="tag tag-ppa">תקציב: ฿50K/חודש</span></div>
+    </div>
+    <div class="model-card" style="border-color:rgba(232,168,32,.3)">
+      <h3 style="color:var(--gold)">שלב 3: Scale</h3>
+      <p style="font-size:13px;opacity:.7;margin-bottom:12px">חודשים 9-12</p>
+      <ul style="font-size:13px;line-height:2;opacity:.8;list-style:none;padding:0">
+        <li>▸ סוכני מכירות חיצוניים (10% עמלה)</li>
+        <li>▸ YouTube channel + תוכן</li>
+        <li>▸ אירועי networking + תערוכות</li>
+        <li>▸ הרחבה ל-Koh Samui</li>
+        <li>▸ שותפויות עם בנקים</li>
+      </ul>
+      <div style="margin-top:12px"><span class="tag tag-both">תקציב: ฿80K/חודש</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: Marketing Channels -->
+<div class="slide slide-dark" data-title="ערוצי שיווק">
+  <span class="section-num">02</span>
+  <h2>📡 ערוצי שיווק — <span class="gold">מה עובד בתאילנד</span></h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>Facebook & Instagram</h3>
+      <p>קהל יעד: אקספטים, בעלי וילות, בעלי עסקים. קבוצות: "Koh Phangan Community", "Expats in Thailand". <strong>CPM: ฿50-120</strong> — הזול בעולם.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>Google Search & SEO</h3>
+      <p>מילות מפתח: "solar panel koh phangan", "solar installation thailand", "rooftop solar thailand". <strong>CPC: ฿15-45</strong>. עמוד נחיתה ב-EN+TH.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>Line Official Account</h3>
+      <p><strong>Line = WhatsApp של תאילנד.</strong> 90% מהתאילנדים משתמשים. Rich menus, auto-reply, broadcast. חובה לשוק המקומי.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📲</div>
+      <h3>WhatsApp Business</h3>
+      <p>לקהל האקספטי והבינלאומי. קטלוג מוצרים, תבניות הצעת מחיר, מעקב אוטומטי אחרי לידים.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏠</div>
+      <h3>שותפויות מקומיות</h3>
+      <p>Property managers (10+), סוכני נדל"ן (9), קבלני בנייה (4). <strong>עמלה 5-10%</strong> על כל הפניה שמומרת.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎥</div>
+      <h3>YouTube & תוכן</h3>
+      <p>סרטוני Before/After, מחשבון ROI אונליין, case studies. תוכן ב-EN + TH. <strong>SEO ארוך טווח.</strong></p>
+    </div>
+  </div>
+
+  <div class="alert alert-info" style="margin-top:16px">
+    <strong>תובנה מפתח:</strong> בתאילנד, Line > WhatsApp לשוק מקומי. Facebook > LinkedIn לעסקים. Google מינימלי — רוב ההחלטות קורות בקבוצות FB ו-Line.
+  </div>
+</div>
+
+<!-- SLIDE 3: Facebook & IG Ads -->
+<div class="slide slide-ocean" data-title="מודעות Facebook & IG">
+  <span class="section-num">03</span>
+  <h2>📣 מודעות Facebook & Instagram</h2>
+  <p class="subtitle">5 סוגי מודעות × טרגוט מדויק</p>
+
+  <div class="two-col">
+    <div>
+      <h3>סוגי מודעות</h3>
+      <div class="card" style="margin:8px 0"><h3>1. Pain Point — הפסקות חשמל</h3><p>"Tired of blackouts? Your roof can power your home 24/7." תמונת חושך באי עם בית מואר בסולאר.</p></div>
+      <div class="card" style="margin:8px 0"><h3>2. ROI Calculator</h3><p>"How much is your electricity bill? See your savings." טופס אינטראקטיבי → ליד.</p></div>
+      <div class="card" style="margin:8px 0"><h3>3. Before/After</h3><p>קרוסלה: גג לפני ← פאנלים ← אפליקציית ניטור ← חשבון חשמל ₿0.</p></div>
+      <div class="card" style="margin:8px 0"><h3>4. Social Proof</h3><p>עדות לקוח מרזורט מקומי. וידאו 30 שניות.</p></div>
+      <div class="card" style="margin:8px 0"><h3>5. PPA/Zero Down</h3><p>"₿0 upfront. Start saving from day 1." מודל ESCO.</p></div>
+    </div>
+    <div>
+      <h3>טרגוט</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>קהל</th><th>גודל</th><th>CPM</th></tr>
+          <tr><td>Expats Koh Phangan (EN)</td><td>~8K</td><td>฿80</td></tr>
+          <tr><td>Business Owners Surat Thani (TH)</td><td>~45K</td><td>฿50</td></tr>
+          <tr><td>Property Investors Thailand (EN)</td><td>~120K</td><td>฿100</td></tr>
+          <tr><td>Resort/Hotel Owners (EN+TH)</td><td>~15K</td><td>฿90</td></tr>
+          <tr><td>Eco/Sustainability Interest (EN)</td><td>~200K</td><td>฿60</td></tr>
+        </table>
+      </div>
+      <div class="alert alert-success" style="margin-top:12px">
+        <strong>תקציב חודשי:</strong> ฿15,000<br>
+        <strong>צפי לידים:</strong> 40-80/חודש<br>
+        <strong>CPL:</strong> ฿187-375
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: Sales Agent Model -->
+<div class="slide slide-reef" data-title="מודל סוכנים">
+  <span class="section-num">04</span>
+  <h2>🤝 מודל סוכני מכירות</h2>
+  <p class="subtitle">רשת הפצה מבוססת עמלות — בלי שכר קבוע</p>
+
+  <div class="two-col">
+    <div>
+      <h3>3 סוגי סוכנים</h3>
+      <div class="card" style="margin:10px 0;border-color:rgba(46,216,154,.3)">
+        <h3 style="color:#2ED89A">סוכן הפניות (Referrer)</h3>
+        <p>Property managers, אדריכלים, קבלנים, סוכני נדל"ן. מפנים ליד חם → אנחנו סוגרים.</p>
+        <div style="margin-top:8px"><strong class="gold">עמלה: 5% מערך העסקה</strong></div>
+        <p style="font-size:12px;opacity:.6;margin-top:4px">מערכת 30kWp = ฿1.05M → עמלה ฿52,500</p>
+      </div>
+      <div class="card" style="margin:10px 0;border-color:rgba(100,150,255,.3)">
+        <h3 style="color:#6496FF">סוכן מכירות (Closer)</h3>
+        <p>אנשי מכירות שמנהלים את כל התהליך: פגישה → סקר → הצעה → סגירה.</p>
+        <div style="margin-top:8px"><strong class="gold">עמלה: 8-10% מערך העסקה</strong></div>
+        <p style="font-size:12px;opacity:.6;margin-top:4px">מערכת 30kWp = ฿1.05M → עמלה ฿84K-105K</p>
+      </div>
+      <div class="card" style="margin:10px 0;border-color:rgba(232,168,32,.3)">
+        <h3 style="color:var(--gold)">שותף אסטרטגי</h3>
+        <p>קבלני בנייה שמציעים סולאר כחלק מפרויקט. חברות ניהול נכסים עם פורטפוליו.</p>
+        <div style="margin-top:8px"><strong class="gold">דגם: Revenue Share או Bundle Deal</strong></div>
+      </div>
+    </div>
+    <div>
+      <h3>איך זה עובד</h3>
+      <div style="font-size:13px;line-height:2.2">
+        <p>1. סוכן נרשם דרך WhatsApp/Line</p>
+        <p>2. מקבל קישור ייחודי + חומרי שיווק</p>
+        <p>3. מפנה ליד → נכנס ל-CRM אוטומטית</p>
+        <p>4. אנחנו מנהלים את תהליך המכירה</p>
+        <p>5. סגירה → עמלה תוך 7 ימים מתשלום ראשון</p>
+        <p>6. דשבורד סוכן: רואה סטטוס לידים + עמלות</p>
+      </div>
+      <div class="alert alert-info" style="margin-top:16px">
+        <strong>יעד:</strong> 10 סוכנים פעילים עד חודש 6<br>
+        <strong>צפי:</strong> 3-5 הפניות/חודש/סוכן<br>
+        <strong>יחס סגירה:</strong> 20-30% (הפניות חמות)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: Sales Process -->
+<div class="slide slide-dark" data-title="תהליך מכירה">
+  <span class="section-num">05</span>
+  <h2>🔄 תהליך מכירה — <span class="gold">7 שלבים</span></h2>
+
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="flow-icon" style="background:rgba(100,150,255,.2);color:#6496FF">📥</div>
+      <div class="flow-label">ליד נכנס</div>
+      <div class="flow-sub">FB/Google/הפניה</div>
+    </div>
+    <div class="flow-arrow">←</div>
+    <div class="flow-step">
+      <div class="flow-icon" style="background:rgba(232,168,32,.2);color:var(--gold)">📞</div>
+      <div class="flow-label">שיחה ראשונה</div>
+      <div class="flow-sub">תוך 2 שעות</div>
+    </div>
+    <div class="flow-arrow">←</div>
+    <div class="flow-step">
+      <div class="flow-icon" style="background:rgba(46,216,154,.2);color:#2ED89A">📐</div>
+      <div class="flow-label">סקר גג</div>
+      <div class="flow-sub">דרון + מדידות</div>
+    </div>
+    <div class="flow-arrow">←</div>
+    <div class="flow-step">
+      <div class="flow-icon" style="background:rgba(232,93,58,.2);color:var(--coral)">📋</div>
+      <div class="flow-label">הצעת מחיר</div>
+      <div class="flow-sub">תוך 48 שעות</div>
+    </div>
+    <div class="flow-arrow">←</div>
+    <div class="flow-step">
+      <div class="flow-icon" style="background:rgba(100,150,255,.2);color:#6496FF">🏦</div>
+      <div class="flow-label">מימון</div>
+      <div class="flow-sub">בנק/PPA</div>
+    </div>
+    <div class="flow-arrow">←</div>
+    <div class="flow-step">
+      <div class="flow-icon" style="background:rgba(232,168,32,.2);color:var(--gold)">✍️</div>
+      <div class="flow-label">חוזה</div>
+      <div class="flow-sub">חתימה דיגיטלית</div>
+    </div>
+    <div class="flow-arrow">←</div>
+    <div class="flow-step">
+      <div class="flow-icon" style="background:rgba(46,216,154,.2);color:#2ED89A">⚡</div>
+      <div class="flow-label">התקנה</div>
+      <div class="flow-sub">5-7 ימי עבודה</div>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-top:24px">
+    <div>
+      <h3>SLA פנימי</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>שלב</th><th>זמן תגובה</th><th>אחראי</th></tr>
+          <tr><td>ליד חדש → שיחה</td><td><strong>2 שעות</strong></td><td>מנהל מכירות</td></tr>
+          <tr><td>שיחה → סקר גג</td><td><strong>3 ימים</strong></td><td>צוות טכני</td></tr>
+          <tr><td>סקר → הצעת מחיר</td><td><strong>48 שעות</strong></td><td>מהנדס + מכירות</td></tr>
+          <tr><td>הצעה → Follow-up</td><td><strong>3 ימים</strong></td><td>מנהל מכירות</td></tr>
+          <tr><td>חתימה → התחלת עבודה</td><td><strong>7-14 יום</strong></td><td>מנהל פרויקט</td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>תנאי תשלום</h3>
+      <div class="card" style="margin:8px 0">
+        <h3>EPC — מכירה ישירה</h3>
+        <p>30% מקדמה → 40% אמצע עבודה → 30% חיבור לרשת</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>PPA — הכנסה חוזרת</h3>
+        <p>₿0 מהלקוח. תשלום חודשי לפי kWh בפועל. ฿3.80/kWh × 10-15 שנים.</p>
+      </div>
+      <div class="card" style="margin:8px 0">
+        <h3>מימון בנקאי</h3>
+        <p>Krungsri 100% מימון. 3.5% ריבית. הלקוח חוסך מיום 1.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Lead Sources -->
+<div class="slide slide-gold" data-title="מקורות לידים">
+  <span class="section-num">06</span>
+  <h2>📊 מקורות לידים — <span class="gold">165+ מזוהים</span></h2>
+
+  <div class="stat-grid">
+    <div><div class="big-num">29</div><div class="stat-label">לידים מועשרים<br>עם פרטי קשר</div></div>
+    <div><div class="big-num">114</div><div class="stat-label">לידים בסיסיים<br>ממיפוי שוק</div></div>
+    <div><div class="big-num">51</div><div class="stat-label">לידים נוספים<br>עסקים + מוסדות</div></div>
+    <div><div class="big-num">57</div><div class="stat-label">יובאו ל-CRM<br>מוכנים לעבודה</div></div>
+  </div>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">רזורטים</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:85%;background:linear-gradient(90deg,var(--ocean),var(--gold))">42 לידים</div></div>
+      <div class="bar-val">฿2.1M avg</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">וילות</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,var(--ocean),#2ED89A)">35 לידים</div></div>
+      <div class="bar-val">฿350K avg</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">עסקים</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,var(--ocean),#6496FF)">28 לידים</div></div>
+      <div class="bar-val">฿700K avg</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">מוסדות</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:25%;background:linear-gradient(90deg,var(--ocean),var(--coral))">12 לידים</div></div>
+      <div class="bar-val">฿3.5M avg</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">שותפים</div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,var(--ocean),#B06DF7)">23 לידים</div></div>
+      <div class="bar-val">הפניות</div>
+    </div>
+  </div>
+
+  <div class="alert alert-success">
+    <strong>Lighthouse Targets (סדר עדיפות):</strong> Anantara Rasananda, Santhiya Resort, Panviman Resort, Koh Phangan Hospital, Thong Sala Walking Street
+  </div>
+</div>
+
+<!-- SLIDE 7: Pitch by Segment -->
+<div class="slide slide-ocean" data-title="Pitch לפי סגמנט">
+  <span class="section-num">07</span>
+  <h2>🎤 Pitch לפי סגמנט</h2>
+  <p class="subtitle">כל לקוח שומע מה שחשוב לו</p>
+
+  <div class="three-col">
+    <div class="card" style="border-color:rgba(232,168,32,.3)">
+      <div class="card-icon">🏨</div>
+      <h3>רזורטים</h3>
+      <p style="font-size:14px;line-height:1.8"><strong>כאב:</strong> הפסקות חשמל הורסות חווית אורח. חשבון חשמל ฿500K+/חודש.</p>
+      <p style="font-size:14px;line-height:1.8"><strong>Pitch:</strong> "אפס הפסקות, אפס חשבון. Eco-resort branding שמשך תיירים premium."</p>
+      <p style="font-size:14px;line-height:1.8"><strong>מודל:</strong> PPA — ₿0 מקדמה, חוסכים 20-30% מיום 1.</p>
+      <p style="font-size:14px;line-height:1.8"><strong>ROI:</strong> 3-4 שנים (EPC) / מיידי (PPA).</p>
+    </div>
+    <div class="card" style="border-color:rgba(46,216,154,.3)">
+      <div class="card-icon">🏡</div>
+      <h3>וילות</h3>
+      <p style="font-size:14px;line-height:1.8"><strong>כאב:</strong> חשבון חשמל מפתיע. מזגנים 24/7. תחזוקה מרחוק.</p>
+      <p style="font-size:14px;line-height:1.8"><strong>Pitch:</strong> "השקעה שמחזירה את עצמה. ניטור מהטלפון מכל מקום בעולם."</p>
+      <p style="font-size:14px;line-height:1.8"><strong>מודל:</strong> EPC + מימון Krungsri 100%.</p>
+      <p style="font-size:14px;line-height:1.8"><strong>ROI:</strong> 4-5 שנים, אחזקה ฿1,500/חודש.</p>
+    </div>
+    <div class="card" style="border-color:rgba(100,150,255,.3)">
+      <div class="card-icon">🏢</div>
+      <h3>עסקים</h3>
+      <p style="font-size:14px;line-height:1.8"><strong>כאב:</strong> עלויות תפעול גבוהות. אין גנרטור backup.</p>
+      <p style="font-size:14px;line-height:1.8"><strong>Pitch:</strong> "הטבת מס 50% — ניכוי מואץ על סולאר. BOI = 8 שנים פטור."</p>
+      <p style="font-size:14px;line-height:1.8"><strong>מודל:</strong> EPC + ניכוי מס.</p>
+      <p style="font-size:14px;line-height:1.8"><strong>ROI:</strong> 2.5-3.5 שנים עם הטבות מס.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Pricing Strategy -->
+<div class="slide slide-dark" data-title="אסטרטגיית תמחור">
+  <span class="section-num">08</span>
+  <h2>💰 אסטרטגיית תמחור</h2>
+
+  <div class="two-col">
+    <div>
+      <h3>EPC — מכירה ישירה</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>רכיב</th><th>עלות/kWp</th><th>% מהמחיר</th></tr>
+          <tr><td>פאנלים (Longi Hi-MO 6)</td><td>฿8,000</td><td>23%</td></tr>
+          <tr><td>אינוורטר (Huawei)</td><td>฿3,000</td><td>9%</td></tr>
+          <tr><td>קונסטרוקציה</td><td>฿2,000</td><td>6%</td></tr>
+          <tr><td>BOS + חומרים</td><td>฿1,000</td><td>3%</td></tr>
+          <tr style="border-top:2px solid var(--gold)"><td><strong>עלות ציוד</strong></td><td><strong>฿14,000</strong></td><td><strong>40%</strong></td></tr>
+          <tr><td>עבודה + לוגיסטיקה</td><td>฿5,000</td><td>14%</td></tr>
+          <tr><td>תכנון + הנדסה</td><td>฿2,000</td><td>6%</td></tr>
+          <tr><td>Overhead + רווח</td><td>฿14,000</td><td>40%</td></tr>
+          <tr style="background:rgba(232,168,32,.1)"><td><strong>מחיר ללקוח</strong></td><td><strong>฿35,000</strong></td><td><strong>100%</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-info">
+        <strong>מרווח גולמי:</strong> 60% (฿21,000/kWp)<br>
+        <strong>Benchmark:</strong> Green Global Tech מוכרים ב-฿35K/kWp — אנחנו תחרותיים.
+      </div>
+    </div>
+    <div>
+      <h3>PPA/ESCO — הכנסה חוזרת</h3>
+      <div class="card" style="margin:10px 0">
+        <h3>תעריף ללקוח</h3>
+        <p style="font-size:28px;font-weight:700;color:var(--gold);margin:8px 0">฿3.80/kWh</p>
+        <p>מול תעריף PEA: ฿4.26/kWh<br>
+        <strong>חיסכון ללקוח: 11% מיום 1</strong></p>
+      </div>
+      <div class="card" style="margin:10px 0">
+        <h3>דוגמה: רזורט 50kWp</h3>
+        <p>ייצור שנתי: ~82,000 kWh<br>
+        הכנסה שנתית: ฿311,600<br>
+        עלות מערכת: ฿700,000<br>
+        <strong class="reef-text">ROI: 2.2 שנים</strong><br>
+        <strong>חוזה 10 שנים = ฿3.1M הכנסות</strong></p>
+      </div>
+      <div class="card" style="margin:10px 0">
+        <h3>Escalation</h3>
+        <p>2% העלאת תעריף שנתית (PEA מעלים 3-5%/שנה).<br>
+        הלקוח עדיין חוסך, אנחנו מרוויחים יותר.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: Line & WhatsApp -->
+<div class="slide slide-reef" data-title="Line & WhatsApp">
+  <span class="section-num">09</span>
+  <h2>💬 Line & WhatsApp — <span class="gold">שיווק דיגיטלי ישיר</span></h2>
+
+  <div class="two-col">
+    <div>
+      <div class="card" style="border-color:rgba(46,216,154,.3);margin-bottom:16px">
+        <h3 style="color:#2ED89A">Line Official Account (שוק תאילנדי)</h3>
+        <ul style="font-size:13px;line-height:2;list-style:none;padding:0">
+          <li>▸ <strong>Rich Menu:</strong> מחשבון חיסכון, הזמנת סקר, תיק עבודות</li>
+          <li>▸ <strong>Auto-reply:</strong> תשובות מיידיות 24/7 ב-TH</li>
+          <li>▸ <strong>Broadcast:</strong> מבצעים, case studies, טיפים</li>
+          <li>▸ <strong>Line Ads:</strong> טרגוט לפי אזור (Surat Thani province)</li>
+          <li>▸ <strong>QR Code:</strong> על כרטיסי ביקור, שלטים, רכב</li>
+          <li>▸ <strong>עלות:</strong> ฿0 (עד 500 הודעות/חודש)</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="border-color:rgba(100,150,255,.3);margin-bottom:16px">
+        <h3 style="color:#6496FF">WhatsApp Business (אקספטים)</h3>
+        <ul style="font-size:13px;line-height:2;list-style:none;padding:0">
+          <li>▸ <strong>קטלוג:</strong> חבילות סולאר עם מחירים</li>
+          <li>▸ <strong>תבניות:</strong> הצעות מחיר, Follow-up אוטומטי</li>
+          <li>▸ <strong>קבוצות:</strong> "Solar Koh Phangan" community</li>
+          <li>▸ <strong>Status:</strong> Before/After, עבודות בביצוע</li>
+          <li>▸ <strong>Click-to-WhatsApp ads:</strong> מ-FB/IG ישירות לצ'אט</li>
+          <li>▸ <strong>עלות:</strong> ฿0</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <strong>טעות נפוצה:</strong> חברות זרות משתמשות רק ב-WhatsApp. 90% מהתאילנדים משתמשים ב-Line. חובה להיות בשניהם.
+  </div>
+</div>
+
+<!-- SLIDE 10: Content Marketing -->
+<div class="slide slide-ocean" data-title="שיווק תוכן">
+  <span class="section-num">10</span>
+  <h2>📝 שיווק תוכן</h2>
+  <p class="subtitle">תוכן שמושך לידים ובונה אמון</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">📸</div>
+      <h3>Case Studies</h3>
+      <p>אחרי כל התקנה: צילום מקצועי, נתוני חיסכון, עדות לקוח. PDF + פוסט + וידאו 60 שניות.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔢</div>
+      <h3>מחשבון ROI אונליין</h3>
+      <p>הלקוח מזין חשבון חשמל → רואה חיסכון שנתי + Payback. ליד אוטומטי ל-CRM.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h3>YouTube Series</h3>
+      <p>"Solar 101 Thailand" — 10 פרקים: למה סולאר, איך עובד, כמה עולה, רגולציה, התקנה.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📰</div>
+      <h3>Blog + SEO</h3>
+      <p>מאמרים ב-EN+TH: "Complete guide to solar in Koh Phangan", "Solar tax benefits Thailand 2026".</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📧</div>
+      <h3>Email Drip</h3>
+      <p>רצף 5 מיילים אחרי הרשמה: Welcome → ROI → Case Study → PPA Offer → סקר גג חינם.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗓️</div>
+      <h3>אירועים מקומיים</h3>
+      <p>Workshop חודשי "Solar for Your Business" — ב-co-working spaces. 15-20 משתתפים → 3-5 לידים.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: KPIs -->
+<div class="slide slide-dark" data-title="KPIs ויעדים">
+  <span class="section-num">11</span>
+  <h2>📈 KPIs ויעדים — <span class="gold">שנה ראשונה</span></h2>
+
+  <div class="two-col">
+    <div>
+      <h3>יעדים חודשיים (ממוצע)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>מדד</th><th>חודש 1-3</th><th>חודש 4-8</th><th>חודש 9-12</th></tr>
+          <tr><td>לידים חדשים</td><td>15</td><td>40</td><td>80</td></tr>
+          <tr><td>סקרי גג</td><td>5</td><td>12</td><td>20</td></tr>
+          <tr><td>הצעות מחיר</td><td>4</td><td>10</td><td>16</td></tr>
+          <tr><td>עסקאות סגורות</td><td>1-2</td><td>3-4</td><td>5-6</td></tr>
+          <tr><td>הכנסה</td><td>฿500K</td><td>฿1.5M</td><td>฿3M</td></tr>
+          <tr><td>CAC</td><td>฿15K</td><td>฿8K</td><td>฿5K</td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>מדדי ביצוע מפתח</h3>
+      <div class="card" style="margin:8px 0"><h3>יחס המרה</h3>
+        <p>ליד → סקר: <strong class="gold">30%</strong><br>
+        סקר → הצעה: <strong class="gold">80%</strong><br>
+        הצעה → סגירה: <strong class="gold">25%</strong><br>
+        <strong>ליד → סגירה: 6%</strong></p>
+      </div>
+      <div class="card" style="margin:8px 0"><h3>LTV לפי סגמנט</h3>
+        <p>רזורט EPC: <strong class="gold">฿2.1M</strong><br>
+        רזורט PPA: <strong class="gold">฿3.1M</strong> (10 שנים)<br>
+        וילה: <strong class="gold">฿350K</strong><br>
+        עסק: <strong class="gold">฿700K</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success" style="margin-top:16px">
+    <strong>יעד שנה 1:</strong> 25-35 עסקאות, הכנסה ฿12-18M, רווח גולמי ฿7-10M, 5+ PPA = ฿150K MRR חוזר
+  </div>
+</div>
+
+<!-- SLIDE 12: Budget -->
+<div class="slide slide-gold" data-title="תקציב שיווק">
+  <span class="section-num">12</span>
+  <h2>💸 תקציב שיווק שנתי</h2>
+
+  <div class="two-col">
+    <div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">FB/IG Ads</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:40%;background:var(--gold)"></div></div>
+          <div class="bar-val">฿180K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Google Ads</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:20%;background:#6496FF"></div></div>
+          <div class="bar-val">฿84K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Line Marketing</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#2ED89A"></div></div>
+          <div class="bar-val">฿36K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">תוכן + וידאו</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:15%;background:var(--coral)"></div></div>
+          <div class="bar-val">฿60K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">אירועים</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:8%;background:#B06DF7"></div></div>
+          <div class="bar-val">฿24K</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">עמלות סוכנים</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:25%;background:rgba(255,255,255,.3)"></div></div>
+          <div class="bar-val">משתנה*</div>
+        </div>
+      </div>
+      <p style="font-size:11px;opacity:.5;margin-top:8px">* עמלות סוכנים = 5-10% מעסקה, לא חלק מתקציב שיווק קבוע</p>
+    </div>
+    <div>
+      <div class="card" style="margin:10px 0;border-color:var(--gold)">
+        <h3>סה"כ תקציב שנתי</h3>
+        <p style="font-size:36px;font-weight:700;color:var(--gold);margin:8px 0">฿384,000</p>
+        <p style="font-size:14px;opacity:.7">~$10,700 USD / שנה<br>
+        ฿32,000/חודש ממוצע</p>
+      </div>
+      <div class="card" style="margin:10px 0">
+        <h3>ROI על שיווק</h3>
+        <p>תקציב: ฿384K<br>
+        צפי הכנסות: ฿15M<br>
+        <strong class="reef-text">ROI: 39x</strong></p>
+      </div>
+      <div class="alert alert-info">
+        <strong>עיקרון:</strong> בתאילנד, שיווק זול מאוד. CPM ב-FB: ฿50-120 (מול $10-30 בארה"ב). הכסף הגדול הולך לאיכות התוכן, לא לפרסום.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 13: CRM & Tools -->
+<div class="slide slide-dark" data-title="כלים וטכנולוגיה">
+  <span class="section-num">13</span>
+  <h2>🛠️ כלים וטכנולוגיה</h2>
+  <p class="subtitle">מערכות שיווק ומכירות</p>
+
+  <div class="card-grid">
+    <div class="card" style="border-color:rgba(232,168,32,.3)">
+      <div class="card-icon">💻</div>
+      <h3>Ko Phangan Solar CRM</h3>
+      <p>מערכת ניהול לידים, פרויקטים, הצעות מחיר, חוזים. דשבורד בזמן אמת. נבנתה in-house.</p>
+      <p style="margin-top:8px"><a href="https://kophangan-solar-crm.vercel.app">kophangan-solar-crm.vercel.app</a></p>
+    </div>
+    <div class="card" style="border-color:rgba(46,216,154,.3)">
+      <div class="card-icon">📊</div>
+      <h3>ניטור אונליין</h3>
+      <p>Huawei FusionSolar / SolarEdge — ניטור ייצור בזמן אמת. התראות ישירות ל-CRM.</p>
+    </div>
+    <div class="card" style="border-color:rgba(100,150,255,.3)">
+      <div class="card-icon">🤖</div>
+      <h3>אוטומציה</h3>
+      <p>ליד חדש → WhatsApp/Line auto-reply → CRM → Follow-up sequence → סקר גג.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📐</div>
+      <h3>עיצוב מערכות</h3>
+      <p>PVsyst / Helioscope לסימולציה. AutoCAD ל-SLD. Roof Scanner בתוך ה-CRM.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- end slides -->
+
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">→ הקודם</button>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">הבא ←</button>
+</div>
+
+<script>
+const slides=document.querySelectorAll('.slide'),total=slides.length;let current=0;
+function show(n){slides.forEach((s,i)=>{s.classList.remove('active','exit');if(i===n)s.classList.add('active');else if(i<n)s.classList.add('exit')});
+document.getElementById('counter').textContent=`${n+1} / ${total}`;document.getElementById('progress').style.width=`${((n+1)/total)*100}%`;
+document.getElementById('prevBtn').disabled=n===0;document.getElementById('nextBtn').disabled=n===total-1;
+document.querySelectorAll('.toc-item').forEach((t,i)=>{t.classList.toggle('active',i===n)})}
+function navigate(d){current=Math.max(0,Math.min(total-1,current+d));show(current)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')navigate(1);if(e.key==='ArrowRight')navigate(-1);if(e.key==='Escape')toggleTOC()});
+let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50)navigate(d>0?1:-1)});
+function toggleTOC(){document.getElementById('tocPanel').classList.toggle('open')}
+document.addEventListener('click',e=>{const p=document.getElementById('tocPanel');if(p.classList.contains('open')&&!p.contains(e.target)&&!e.target.classList.contains('toc-btn'))p.classList.remove('open')});
+(function buildTOC(){const l=document.getElementById('tocList');slides.forEach((s,i)=>{const d=document.createElement('div');d.className='toc-item';d.innerHTML=`<span class="toc-num">${String(i+1).padStart(2,'0')}</span>${s.dataset.title}`;d.onclick=()=>{current=i;show(i);toggleTOC()};l.appendChild(d)})})();
+show(0);
+</script>
+</body>
+</html>

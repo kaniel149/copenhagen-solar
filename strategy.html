@@ -123,6 +123,29 @@
         }
         .nav-dot.active { background: var(--sun); transform: scale(1.4); }
 
+        /* FOOTNOTES */
+        .fn { 
+            display: inline-block;
+            font-size: 0.65rem;
+            color: var(--sun);
+            vertical-align: super;
+            margin-right: 2px;
+            cursor: help;
+            opacity: 0.8;
+        }
+        .fn:hover { opacity: 1; }
+        .sources {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.35);
+            line-height: 1.8;
+        }
+        .sources a { color: rgba(232,168,32,0.6); text-decoration: none; }
+        .sources a:hover { color: var(--sun); }
+        .src-num { color: var(--sun); font-weight: 600; margin-left: 0.3rem; }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .slide { padding: 3rem 1.5rem; }
@@ -179,17 +202,17 @@
             <div class="card">
                 <div class="card-icon">🏝</div>
                 <h3 class="he">אי ללא סולאר פרימיום</h3>
-                <p class="he">קופנגן — אי עם 50-100 מלונות, 200+ וילות יוקרה, 20+ coworking. אף חברת סולאר רצינית לא משרתת את השוק הזה.</p>
+                <p class="he">קופנגן — אי עם 50-100 מלונות, 200+ וילות יוקרה, 20+ coworking. אף חברת סולאר רצינית לא משרתת את השוק הזה.<span class="fn" title="Based on Booking.com, Agoda, TripAdvisor listings + Google Maps survey">[1]</span></p>
             </div>
             <div class="card">
                 <div class="card-icon">⚡</div>
                 <h3 class="he">חשמל יקר + הפסקות</h3>
-                <p class="he">האי רץ על כבל תת-ימי יחיד. הפסקות חשמל תכופות. תעריף מסחרי 6-8 באט/קוט"ש. מלונות משלמים 50,000-200,000 באט/חודש.</p>
+                <p class="he">האי רץ על כבל תת-ימי יחיד. הפסקות חשמל תכופות.<span class="fn" title="Koh Phangan expat forums + phanganlife.com">[2]</span> תעריף מסחרי 6-8 באט/קוט"ש.<span class="fn" title="PEA Tariff Schedule May 2023 + island premium estimates">[3]</span> מלונות משלמים 50,000-200,000 באט/חודש.<span class="fn" title="Estimate based on room count × avg AC consumption × PEA commercial rate">[4]</span></p>
             </div>
             <div class="card">
                 <div class="card-icon">📋</div>
                 <h3 class="he">אפס רגולציה</h3>
-                <p class="he">תאילנד ביטלה את כל ההיתרים לסולאר על גגות (2025). רק הודעה 30 יום. Net metering זמין. BOI נותן 100% בעלות זרה.</p>
+                <p class="he">תאילנד ביטלה את כל ההיתרים לסולאר על גגות (2025).<span class="fn" title="pvknowhow.com, tilleke.com, natlawreview.com — Building Modification Permit exemption Nov 2025">[5]</span> רק הודעה 30 יום. Net metering זמין.<span class="fn" title="chambers.com — Thailand Legislative Reform to Decentralise Solar Energy">[6]</span> BOI נותן 100% בעלות זרה.<span class="fn" title="boi.go.th — Board of Investment renewable energy promotion">[7]</span></p>
             </div>
         </div>
     </div>
@@ -340,16 +363,16 @@
             <div>
                 <h3 class="he accent">מימון ללקוחות</h3>
                 <div class="card" style="margin-bottom:1rem;">
-                    <p class="he"><strong>ESCO Model</strong> — אפס תשלום מראש, תשלום לפי חיסכון. חוזה 20-25 שנה. מועדף למלונות/resorts.</p>
+                    <p class="he"><strong>ESCO Model</strong> — אפס תשלום מראש, תשלום לפי חיסכון. חוזה 20-25 שנה. מועדף למלונות/resorts.<span class="fn" title="chambers.com + conventuslaw.com — ESCO framework in Thailand, ENCON Fund">[14]</span></p>
                 </div>
                 <div class="card" style="margin-bottom:1rem;">
-                    <p class="he"><strong>SME D Bank</strong> — הלוואה ירוקה ב-3% קבוע ל-3 שנים, עד ฿30M. מועדף לעסקים.</p>
+                    <p class="he"><strong>SME D Bank</strong> — הלוואה ירוקה ב-3% קבוע ל-3 שנים, עד ฿30M. מועדף לעסקים.<span class="fn" title="smebank.co.th — SME Green Productivity Loan, valid until Dec 2026">[15]</span></p>
                 </div>
                 <div class="card" style="margin-bottom:1rem;">
-                    <p class="he"><strong>הטבות מס</strong> — ניכוי 50% CIT על ציוד סולאר + ฿200K ניכוי לבתים פרטיים.</p>
+                    <p class="he"><strong>הטבות מס</strong> — ניכוי 50% CIT על ציוד סולאר + ฿200K ניכוי לבתים פרטיים.<span class="fn" title="Thai Revenue Department — CIT deduction for 5-star energy equipment; Household solar tax deduction valid through Dec 2027">[16]</span></p>
                 </div>
                 <div class="card">
-                    <p class="he"><strong>FiT</strong> — ฿6.01-6.85/kWh עבור מערכות עד 1MW. בונוס לדרום תאילנד (קופנגן!).</p>
+                    <p class="he"><strong>FiT</strong> — ฿6.01-6.85/kWh עבור מערכות עד 1MW. בונוס לדרום תאילנד (קופנגן!).<span class="fn" title="Energy Regulatory Commission Thailand — Feed-in Tariff rates for solar rooftop">[17]</span></p>
                 </div>
             </div>
             <div>
@@ -379,13 +402,13 @@
             <div>
                 <table>
                     <tr><th>רכיב</th><th>ספק</th><th>עלות</th></tr>
-                    <tr><td>פאנלים</td><td>Longi / JA Solar / Trina</td><td>10-20K THB/kW</td></tr>
-                    <tr><td>ממירים</td><td>Huawei / Sungrow / GoodWe</td><td>30-60K THB (5kW)</td></tr>
-                    <tr><td>סוללות</td><td>Huawei LUNA / BYD</td><td>120-169K THB (5kWh)</td></tr>
-                    <tr><td>מרכבים</td><td>CMM / RRacks (מקומי)</td><td>5-10K THB/kW</td></tr>
+                    <tr><td>פאנלים</td><td>Longi / JA Solar / Trina</td><td>10-20K THB/kW <span class="fn" title="BayWa r.e. Thailand shop, Solaris.co.th, ENF Solar directory">[8]</span></td></tr>
+                    <tr><td>ממירים</td><td>Huawei / Sungrow / GoodWe</td><td>30-60K THB (5kW) <span class="fn" title="Thai distributor pricing: Pi Enterprises (Sungrow), Solar-Thailand (GoodWe)">[9]</span></td></tr>
+                    <tr><td>סוללות</td><td>Huawei LUNA / BYD</td><td>120-169K THB (5kWh) <span class="fn" title="Huawei LUNA distributor pricing in Thailand">[10]</span></td></tr>
+                    <tr><td>מרכבים</td><td>CMM / RRacks (מקומי)</td><td>5-10K THB/kW <span class="fn" title="CMM Thai manufacturer + QES Energy estimates">[11]</span></td></tr>
                 </table>
                 <div class="he" style="margin-top:1.5rem;font-size:0.9rem;color:rgba(255,255,255,0.5);">
-                    <strong>מכסים:</strong> פאנלים 0%, ממירים 0-5% (0% עם FTA), סוללות 0-10%, + 7% VAT
+                    <strong>מכסים:</strong> פאנלים 0%, ממירים 0-5% (0% עם FTA), סוללות 0-10%, + 7% VAT <span class="fn" title="Thai Customs tariff + China-ASEAN FTA Form E provisions">[13]</span>
                 </div>
             </div>
             <div>
@@ -396,7 +419,7 @@
                         🚛 משאית ל-Don Sak (סוראט תאני)<br>
                         ⛴ מעבורת Raja Ferry לקופנגן (~2.5 שעות)<br>
                         🏗 מחסן באי + צוות מקומי<br><br>
-                        <strong>עלות מותקנת באי: ฿35-55K/kWp</strong><br>
+                        <strong>עלות מותקנת באי: ฿35-55K/kWp</strong><span class="fn" title="Benchmark: Green Global Tech 105K/3kW=35K/kWp + Phangan.Solar pricing tiers + island logistics premium estimate">[12]</span><br>
                         <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);">(כולל premium לוגיסטיקת אי)</span>
                     </p>
                 </div>
@@ -608,7 +631,56 @@
     </div>
 </div>
 
-<!-- SLIDE 11: VISION -->
+<!-- SLIDE 11: SOURCES -->
+<div class="slide" data-title="מקורות">
+    <div class="slide-num">11 — SOURCES & METHODOLOGY</div>
+    <div class="container">
+        <h2 class="he">מקורות ושיטת מחקר</h2>
+        <div class="grid-2">
+            <div>
+                <h3 class="he accent">מקורות רשמיים</h3>
+                <div class="sources" style="font-size:0.85rem;line-height:2.2;">
+                    <span class="src-num">[3]</span> <a href="https://www.pea.co.th/sites/default/files/documents/tariff/EN_Electricity_Tariffs_May_2023.pdf" target="_blank">PEA Electricity Tariffs May 2023</a> — תעריפי חשמל רשמיים<br>
+                    <span class="src-num">[5]</span> <a href="https://www.pvknowhow.com/news/thailand-solar-rooftop-rules-ultimate-ease-arrives-in-2025/" target="_blank">PV KnowHow — Thailand Solar Rules 2025</a><br>
+                    <span class="src-num">[5]</span> <a href="https://www.tilleke.com/insights/thailand-eases-rules-for-solar-rooftop-installations/" target="_blank">Tilleke & Gibbins — Solar Rooftop Exemptions</a><br>
+                    <span class="src-num">[5]</span> <a href="https://natlawreview.com/article/ci-solar-rooftop-installations-are-now-exempted-building-modification-permit-aor1" target="_blank">National Law Review — Building Permit Exemption</a><br>
+                    <span class="src-num">[6]</span> <a href="https://chambers.com/articles/thailand-s-legislative-reform-to-decentralise-solar-energy" target="_blank">Chambers — Thailand Solar Legislative Reform</a><br>
+                    <span class="src-num">[7]</span> <a href="https://www.boi.go.th" target="_blank">BOI Thailand — Board of Investment</a> — renewable energy promotion<br>
+                    <span class="src-num">[13]</span> <a href="https://waypoints.acclime.com/news-updates/thailand-solar-rooftop-regulations-policy-shift/" target="_blank">Acclime — Thailand Solar Regulations Policy Shift</a><br>
+                    <span class="src-num">[14]</span> <a href="https://conventuslaw.com/report/thailand-removes-factory-license-requirement-for-solar-rooftop-installations/" target="_blank">Conventus Law — Factory License Removal</a><br>
+                    <span class="src-num">[15]</span> <a href="https://www.smebank.co.th" target="_blank">SME D Bank</a> — Green Productivity Loan 3%<br>
+                    <span class="src-num">[17]</span> Energy Regulatory Commission Thailand — FiT solar rooftop rates<br>
+                </div>
+            </div>
+            <div>
+                <h3 class="he accent">מקורות שוק</h3>
+                <div class="sources" style="font-size:0.85rem;line-height:2.2;">
+                    <span class="src-num">[1]</span> Booking.com, Agoda, TripAdvisor — hotel/resort listings Koh Phangan<br>
+                    <span class="src-num">[2]</span> <a href="https://phanganlife.com" target="_blank">PhanganLife.com</a> — expat community + FB groups<br>
+                    <span class="src-num">[4]</span> הערכת צריכה: חדרים × AC load × PEA commercial rate<br>
+                    <span class="src-num">[8]</span> <a href="https://solarshop.baywa-re.co.th" target="_blank">BayWa r.e. Thailand</a> + <a href="https://solaris.co.th" target="_blank">Solaris.co.th</a> + <a href="https://enfsolar.com/directory/seller/Thailand" target="_blank">ENF Solar (33 distributors)</a><br>
+                    <span class="src-num">[9]</span> Pi Enterprises (Sungrow), Solar-Thailand (GoodWe) — distributor pricing<br>
+                    <span class="src-num">[10]</span> Huawei LUNA Thai distributor pricing<br>
+                    <span class="src-num">[11]</span> CMM Thai manufacturer + QES Energy<br>
+                    <span class="src-num">[12]</span> Green Global Tech flyer (צולם באי): 105K/3kW = 35K/kWp + <a href="http://www.phangan.solar" target="_blank">phangan.solar</a> pricing tiers<br>
+                    <span class="src-num">[16]</span> Thai Revenue Dept — CIT deduction + household deduction (valid 2027)<br>
+                </div>
+                <div style="margin-top:2rem;padding:1.2rem;background:rgba(229,57,53,0.08);border-radius:12px;border:1px solid rgba(229,57,53,0.15);">
+                    <h3 class="he" style="color:var(--red);font-size:1rem;">הערות זהירות</h3>
+                    <p class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.7;">
+                        • TAM (10-100M) = הערכה גסה, לא מחקר שוק מעמיק<br>
+                        • חשבונות חשמל מלונות = הערכה לפי חדרים, לא נתונים אמיתיים<br>
+                        • מחירי ספקים מ-2024-2025, עשויים להשתנות<br>
+                        • 70% חיסכון = תרחיש אופטימי עם סוללה. ריאלי: 40-60%<br>
+                        • מחקר מתחרים דרך אתרים בלבד, לא mystery shopping
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 12: VISION -->
 <div class="slide cover" data-title="חזון">
     <div class="container" style="text-align:center;">
         <h1 style="text-align:center;">Own the <span class="accent">sunshine.</span></h1>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ko Phangan Solar — Financing Deep Dive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --sun: #E8A820; --ocean: #0A3D5C; --ocean-deep: #062A40; --green: #43A047; --red: #E53935; --white: #FFFFFF; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #0A0A0A; color: var(--white); }
+
+        .slide { min-height: 100vh; padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .slide-num { position: absolute; top: 2rem; left: 2rem; font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 0.15em; position: relative; margin-bottom: 1rem; }
+        .container { max-width: 1100px; margin: 0 auto; width: 100%; }
+
+        h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem,6vw,4.5rem); line-height: 1.1; letter-spacing: -0.03em; direction: ltr; text-align: left; }
+        h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem,4vw,3rem); line-height: 1.2; margin-bottom: 2rem; }
+        h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .accent { color: var(--sun); }
+        .he { direction: rtl; text-align: right; font-family: 'Heebo', sans-serif; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+        .card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+        .card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); }
+        .card.gold { border-color: var(--sun); background: rgba(232,168,32,0.06); }
+        .card.green { border-color: var(--green); background: rgba(67,160,71,0.06); }
+
+        .stat-big { font-family: 'Instrument Serif', serif; font-size: 3rem; color: var(--sun); line-height: 1; }
+        .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { text-align: right; padding: 0.8rem 1rem; background: rgba(255,255,255,0.05); color: var(--sun); font-weight: 600; border-bottom: 2px solid rgba(255,255,255,0.1); }
+        td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+
+        .badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+        .badge-gold { background: rgba(232,168,32,0.15); color: var(--sun); }
+        .badge-green { background: rgba(67,160,71,0.15); color: var(--green); }
+        .badge-red { background: rgba(229,57,53,0.15); color: var(--red); }
+
+        .highlight-box { padding: 1.5rem; border-radius: 12px; margin: 1rem 0; }
+        .highlight-gold { background: rgba(232,168,32,0.08); border: 1px solid rgba(232,168,32,0.2); }
+        .highlight-green { background: rgba(67,160,71,0.08); border: 1px solid rgba(67,160,71,0.2); }
+        .highlight-red { background: rgba(229,57,53,0.08); border: 1px solid rgba(229,57,53,0.15); }
+
+        .bank-row { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .bank-rank { font-family: 'Instrument Serif', serif; font-size: 2.5rem; color: var(--sun); min-width: 50px; text-align: center; }
+        .bank-info { flex: 1; }
+        .bank-name { font-size: 1.1rem; font-weight: 700; }
+        .bank-detail { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; line-height: 1.5; }
+        .bank-rate { text-align: center; min-width: 120px; }
+        .bank-rate .stat-big { font-size: 2.2rem; }
+
+        .checklist { list-style: none; line-height: 2.2; }
+        .checklist li::before { content: '☐ '; color: var(--sun); }
+
+        @media (max-width: 768px) { .slide { padding: 3rem 1.5rem; } .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 0: COVER -->
+<div class="slide" style="background:linear-gradient(160deg,var(--ocean-deep),#0A0A0A 60%);">
+    <div class="container">
+        <span class="badge badge-gold" style="margin-bottom:1.5rem;">FINANCING DEEP DIVE</span>
+        <h1>Ko Phangan <span class="accent">Solar</span></h1>
+        <h2 class="he" style="color:rgba(255,255,255,0.6);font-family:'Heebo';font-size:1.5rem;">מימון — בנקים, תנאים, מספרים אמיתיים</h2>
+        <div style="margin-top:2rem;color:rgba(255,255,255,0.4);font-size:0.9rem;">מרץ 2026 · KANIEL TORD LLC</div>
+    </div>
+</div>
+
+<!-- SLIDE 1: OVERVIEW -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">01 — FINANCING OVERVIEW</div>
+        <h2 class="he">3 מסלולי מימון</h2>
+        <div class="grid-3">
+            <div class="card gold">
+                <div class="stat-big" style="font-size:2.5rem;">A</div>
+                <h3 class="he" style="margin-top:1rem;">מימון לחברה שלנו</h3>
+                <p class="he" style="color:rgba(255,255,255,0.6);line-height:1.6;font-size:0.9rem;">
+                    הלוואה להקמת העסק: ציוד, מלאי, הון חוזר, שיווק. דרך בנקים תאילנדיים + BOI.
+                </p>
+            </div>
+            <div class="card gold">
+                <div class="stat-big" style="font-size:2.5rem;">B</div>
+                <h3 class="he" style="margin-top:1rem;">מימון ללקוחות</h3>
+                <p class="he" style="color:rgba(255,255,255,0.6);line-height:1.6;font-size:0.9rem;">
+                    איך הלקוחות שלנו ימנו את ההתקנה: הלוואות ירוקות, ESCO, PPA, ליסינג.
+                </p>
+            </div>
+            <div class="card gold">
+                <div class="stat-big" style="font-size:2.5rem;">C</div>
+                <h3 class="he" style="margin-top:1rem;">תמריצים ממשלתיים</h3>
+                <p class="he" style="color:rgba(255,255,255,0.6);line-height:1.6;font-size:0.9rem;">
+                    BOI, פטור ממס, FiT, ניכויי מס — מה מגיע וכמה שווה.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: BANK RANKING -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">02 — BANK RANKING</div>
+        <h2 class="he">דירוג בנקים — מי הכי טוב?</h2>
+        
+        <div class="bank-row" style="background:rgba(232,168,32,0.05);border-radius:16px 16px 0 0;">
+            <div class="bank-rank">1</div>
+            <div class="bank-info">
+                <div class="bank-name he">Krungsri (Bank of Ayudhya) <span class="badge badge-green">מומלץ</span></div>
+                <div class="bank-detail he">3 מוצרי סולאר ייעודיים: SME Transition Loan, SME Solar Rooftop, SME for PPA. עד 100% מימון, עד 10 שנים. טל: 02-626-2626</div>
+            </div>
+            <div class="bank-rate">
+                <div class="stat-big">3.5%</div>
+                <div class="stat-label">קבוע 2 שנים</div>
+            </div>
+        </div>
+
+        <div class="bank-row">
+            <div class="bank-rank">2</div>
+            <div class="bank-info">
+                <div class="bank-name he">SME Development Bank</div>
+                <div class="bank-detail he">Green Productivity Loan. עד 30M באט. הכי זול אבל אין סניף בדרום — צריך לבדוק כיסוי. טל: 1357</div>
+            </div>
+            <div class="bank-rate">
+                <div class="stat-big">3.0%</div>
+                <div class="stat-label">קבוע 3 שנים</div>
+            </div>
+        </div>
+
+        <div class="bank-row">
+            <div class="bank-rank">3</div>
+            <div class="bank-info">
+                <div class="bank-name he">Bangkok Bank</div>
+                <div class="bank-detail he">Bualuang Green Solar Energy Loan — מוצר ייעודי לסולאר. עד 8 שנים, 10B באט facility. טל: 1333</div>
+            </div>
+            <div class="bank-rate">
+                <div class="stat-big">~4%</div>
+                <div class="stat-label">ריבית ירוקה</div>
+            </div>
+        </div>
+
+        <div class="bank-row">
+            <div class="bank-rank">4</div>
+            <div class="bank-info">
+                <div class="bank-name he">SCB (Siam Commercial Bank)</div>
+                <div class="bank-detail he">SME Sustainable Loans. 52B+ באט באשראי ירוק. סניף Central Plaza סוראט תאני. טל: 077-489841</div>
+            </div>
+            <div class="bank-rate">
+                <div class="stat-big">~4%</div>
+                <div class="stat-label">ריבית מיוחדת</div>
+            </div>
+        </div>
+
+        <div class="bank-row">
+            <div class="bank-rank">5</div>
+            <div class="bank-info">
+                <div class="bank-name he">KBank (Kasikornbank)</div>
+                <div class="bank-detail he">50B באט committed לgreen finance. יש סניף בתונג סאלא (קופנגן!). טל: 02-888-8888</div>
+            </div>
+            <div class="bank-rate">
+                <div class="stat-big">~4-5%</div>
+                <div class="stat-label">שוק, negotiable</div>
+            </div>
+        </div>
+
+        <div class="bank-row" style="border-radius:0 0 16px 16px;">
+            <div class="bank-rank">6</div>
+            <div class="bank-info">
+                <div class="bank-name he">EXIM Bank Thailand</div>
+                <div class="bank-detail he">Solar D-Carbon Financing — מימון יבוא ציוד. 0.5% הנחה עם BOI. טל: 02-271-3700</div>
+            </div>
+            <div class="bank-rate">
+                <div class="stat-big">-0.5%</div>
+                <div class="stat-label">הנחה עם BOI</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: KRUNGSRI DEEP DIVE -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">03 — KRUNGSRI DEEP DIVE</div>
+        <h2 class="he">Krungsri — 3 מוצרי סולאר</h2>
+        <div class="grid-3">
+            <div class="card gold">
+                <h3 class="en accent">SME Transition Loan</h3>
+                <table style="margin-top:1rem;">
+                    <tr><td class="he">ריבית</td><td><strong>3.5% קבוע 2 שנים</strong></td></tr>
+                    <tr><td class="he">אחרי 2 שנים</td><td>MRR + spread (negotiable)</td></tr>
+                    <tr><td class="he">תקופה</td><td>עד 10 שנים</td></tr>
+                    <tr><td class="he">מימון</td><td>עד 100% מעלות הפרויקט</td></tr>
+                    <tr><td class="he">מטרה</td><td>הקמת עסק + ציוד + הון חוזר</td></tr>
+                    <tr><td class="he">בטחונות</td><td>הפרויקט עצמו + ערבות אישית</td></tr>
+                </table>
+            </div>
+            <div class="card green">
+                <h3 class="en" style="color:var(--green);">SME Solar Rooftop</h3>
+                <table style="margin-top:1rem;">
+                    <tr><td class="he">ריבית</td><td><strong>~3.5-4%</strong></td></tr>
+                    <tr><td class="he">מטרה</td><td>התקנת סולאר על גג העסק שלנו</td></tr>
+                    <tr><td class="he">מימון</td><td>עלות מערכת סולארית</td></tr>
+                    <tr><td class="he">יתרון</td><td>חיסכון בחשמל = שיפור cash flow</td></tr>
+                    <tr><td class="he">הערה</td><td>לעסק שלנו, לא ללקוחות</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <h3 class="en">SME for PPA</h3>
+                <table style="margin-top:1rem;">
+                    <tr><td class="he">ריבית</td><td><strong>~3.5-4%</strong></td></tr>
+                    <tr><td class="he">מטרה</td><td>מימון מערכות PPA ללקוחות</td></tr>
+                    <tr><td class="he">מודל</td><td>אנחנו מתקינים, לקוח משלם חודשי</td></tr>
+                    <tr><td class="he">בטחונות</td><td>חוזה PPA + ציוד</td></tr>
+                    <tr><td class="he">יתרון</td><td class="he" style="color:var(--green);">בונים recurring revenue</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="highlight-gold he" style="margin-top:2rem;">
+            <strong>למה Krungsri?</strong> הבנק היחיד עם 3 מוצרים ייעודיים לסולאר. 100% מימון = לא צריך הון עצמי גדול. 3.5% = ריבית מעולה. 10 שנים = תשלומים חודשיים נמוכים.
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: CUSTOMER FINANCING -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">04 — CUSTOMER FINANCING MODELS</div>
+        <h2 class="he">איך הלקוחות שלנו משלמים</h2>
+        <div class="grid-2">
+            <div>
+                <div class="card gold" style="margin-bottom:1.5rem;">
+                    <h3 class="he accent">Model 1: קנייה ישירה</h3>
+                    <p class="he" style="color:rgba(255,255,255,0.7);line-height:1.8;font-size:0.9rem;">
+                        הלקוח משלם הכל מראש.<br>
+                        <strong>וילה 10kW:</strong> ฿250-350K<br>
+                        <strong>Resort 50kW:</strong> ฿1.5-2M<br>
+                        <strong>מרווח שלנו:</strong> 30-40%<br>
+                        <strong>יתרון:</strong> Cash flow מיידי<br>
+                        <strong>חיסרון:</strong> לא כולם יכולים לשלם מראש
+                    </p>
+                </div>
+                <div class="card green" style="margin-bottom:1.5rem;">
+                    <h3 class="he" style="color:var(--green);">Model 2: ESCO — הלקוח לא משלם כלום</h3>
+                    <p class="he" style="color:rgba(255,255,255,0.7);line-height:1.8;font-size:0.9rem;">
+                        <strong>אנחנו ממנים + מתקינים + מתחזקים.</strong><br>
+                        הלקוח משלם לפי חיסכון בפועל.<br>
+                        <strong>חוזה:</strong> 15-25 שנים<br>
+                        <strong>הלקוח חוסך:</strong> 20-30% מיום 1<br>
+                        <strong>אנחנו מקבלים:</strong> 70-80% מהחשבון המקורי<br>
+                        <strong>יתרון:</strong> Recurring revenue + אין התנגדות מחיר<br>
+                        <strong>חיסרון:</strong> צריך הון/מימון ראשוני
+                    </p>
+                </div>
+            </div>
+            <div>
+                <div class="card" style="margin-bottom:1.5rem;">
+                    <h3 class="he">Model 3: PPA — הסכם רכישת חשמל</h3>
+                    <p class="he" style="color:rgba(255,255,255,0.7);line-height:1.8;font-size:0.9rem;">
+                        <strong>אנחנו הבעלים של המערכת.</strong><br>
+                        הלקוח קונה חשמל במחיר קבוע (נמוך מ-PEA).<br>
+                        <strong>מחיר PEA:</strong> 4.26-8 THB/kWh<br>
+                        <strong>מחיר PPA שלנו:</strong> 3-4 THB/kWh<br>
+                        <strong>חוזה:</strong> 10-25 שנים<br>
+                        <strong>יתרון:</strong> predictable revenue לנו, חיסכון ללקוח<br>
+                        <strong>מימון:</strong> Krungsri SME for PPA
+                    </p>
+                </div>
+                <div class="card" style="margin-bottom:1.5rem;">
+                    <h3 class="he">Model 4: ליסינג / תשלומים</h3>
+                    <p class="he" style="color:rgba(255,255,255,0.7);line-height:1.8;font-size:0.9rem;">
+                        <strong>הלקוח משלם בתשלומים חודשיים.</strong><br>
+                        <strong>תקופה:</strong> 3-7 שנים<br>
+                        <strong>תשלום:</strong> < חשבון החשמל המקורי<br>
+                        <strong>בסוף:</strong> הלקוח הבעלים<br>
+                        <strong>מימון:</strong> דרך בנק הלקוח (green loan)<br>
+                        <strong>יתרון:</strong> קל למכור, אנחנו מקבלים מלא מראש
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: ESCO MATH -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">05 — ESCO NUMBERS</div>
+        <h2 class="he">ESCO — המספרים</h2>
+        <div class="he" style="margin-bottom:2rem;color:rgba(255,255,255,0.5);">דוגמה: Resort עם 50 חדרים, חשבון חשמל ฿120,000/חודש</div>
+        
+        <div class="grid-2">
+            <div>
+                <table>
+                    <tr><th class="he" colspan="2">פרטי המערכת</th></tr>
+                    <tr><td class="he">גודל מערכת</td><td>50 kWp</td></tr>
+                    <tr><td class="he">עלות התקנה</td><td>฿2,250,000 (45K/kWp)</td></tr>
+                    <tr><td class="he">ייצור חודשי</td><td>~6,750 kWh</td></tr>
+                    <tr><td class="he">חיסכון חודשי</td><td>฿54,000 (45% מהחשבון)</td></tr>
+                    <tr><td class="he">חיסכון שנתי</td><td>฿648,000</td></tr>
+                </table>
+                
+                <table style="margin-top:2rem;">
+                    <tr><th class="he" colspan="2">ESCO — מה אנחנו מקבלים</th></tr>
+                    <tr><td class="he">חלק שלנו (75%)</td><td><strong>฿40,500/חודש</strong></td></tr>
+                    <tr><td class="he">חלק הלקוח (25%)</td><td>฿13,500/חודש (חיסכון מיידי)</td></tr>
+                    <tr><td class="he">הכנסה שנתית</td><td><strong>฿486,000</strong></td></tr>
+                    <tr><td class="he">החזר השקעה</td><td><strong>4.6 שנים</strong></td></tr>
+                    <tr><td class="he">רווח (20 שנה)</td><td style="color:var(--green);font-weight:700;">฿7,470,000</td></tr>
+                </table>
+            </div>
+            <div>
+                <div class="card gold">
+                    <h3 class="he accent">תזרים מזומנים — 10 מערכות ESCO</h3>
+                    <table style="margin-top:1rem;">
+                        <tr><td class="he">השקעה כוללת</td><td>฿22.5M</td></tr>
+                        <tr><td class="he">הכנסה חודשית</td><td><strong>฿405,000</strong></td></tr>
+                        <tr><td class="he">הכנסה שנתית</td><td><strong>฿4.86M</strong></td></tr>
+                        <tr><td class="he">החזר הלוואה (3.5%, 10 שנים)</td><td>~฿265,000/חודש</td></tr>
+                        <tr><td class="he" style="color:var(--green);">רווח נטו חודשי</td><td style="color:var(--green);font-weight:700;">฿140,000</td></tr>
+                        <tr><td class="he">רווח נטו שנתי</td><td style="color:var(--green);font-weight:700;">฿1.68M</td></tr>
+                    </table>
+                    <div class="he" style="margin-top:1.5rem;font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                        * אחרי סוף ההלוואה (שנה 10): רווח = ฿405K/חודש = ฿4.86M/שנה
+                    </div>
+                </div>
+
+                <div class="highlight-green he" style="margin-top:1.5rem;">
+                    <strong>Bottom line:</strong> עם Krungsri 100% financing, 10 מערכות ESCO מייצרות ฿140K/חודש רווח נטו מיום 1. אחרי 10 שנים — ฿405K/חודש.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: BOI -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">06 — BOI PROMOTION</div>
+        <h2 class="he">BOI — Board of Investment</h2>
+        <div class="he" style="margin-bottom:2rem;color:rgba(255,255,255,0.5);">בלי BOI = מוגבל ל-49% בעלות. עם BOI = 100% + פטור ממס 8 שנים.</div>
+        
+        <div class="grid-2">
+            <div>
+                <table>
+                    <tr><th class="he" colspan="2">מה BOI נותן</th></tr>
+                    <tr><td class="he">בעלות זרה</td><td style="color:var(--green);font-weight:700;">100% (במקום 49%)</td></tr>
+                    <tr><td class="he">פטור ממס חברות</td><td style="color:var(--green);font-weight:700;">8 שנים מלאות</td></tr>
+                    <tr><td class="he">פטור ממכס על ציוד</td><td style="color:var(--green);">פאנלים, ממירים, סוללות</td></tr>
+                    <tr><td class="he">בעלות על קרקע</td><td style="color:var(--green);">מותר (בד"כ אסור לזרים)</td></tr>
+                    <tr><td class="he">Work permit</td><td style="color:var(--green);">מהיר + פשוט</td></tr>
+                </table>
+
+                <table style="margin-top:2rem;">
+                    <tr><th class="he" colspan="2">דרישות BOI</th></tr>
+                    <tr><td class="he">השקעה מינימלית</td><td>1M THB (~$28K)</td></tr>
+                    <tr><td class="he">קטגוריה</td><td>Renewable Energy / EPC</td></tr>
+                    <tr><td class="he">זמן אישור</td><td>40-90 ימי עבודה</td></tr>
+                    <tr><td class="he">מסמכים</td><td>Business plan, financials, employment plan</td></tr>
+                </table>
+            </div>
+            <div>
+                <div class="card gold">
+                    <h3 class="he accent">משרד BOI סוראט תאני</h3>
+                    <p class="he" style="line-height:2;font-size:0.95rem;color:rgba(255,255,255,0.7);">
+                        <strong>כתובת:</strong> 49/21-22 Sriwichai Road, Surat Thani 84000<br>
+                        <strong>טלפון:</strong> 077-284637 / 077-284435<br>
+                        <strong>מייל:</strong> surat@boi.go.th<br>
+                        <strong>שעות:</strong> א'-ה' 8:30-16:30
+                    </p>
+                </div>
+
+                <div class="highlight-red he" style="margin-top:1.5rem;">
+                    <strong>אזהרה:</strong> קידום BOI לייצור חשמל סולארי טהור פג תוקף 30 ביוני 2025. צריך למסגר את הבקשה כ-EPC/Installation/Integration — לא כ-power generation.
+                </div>
+
+                <div class="card green" style="margin-top:1.5rem;">
+                    <h3 class="he" style="color:var(--green);">מבנה חברה מומלץ</h3>
+                    <p class="he" style="line-height:1.8;font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                        🇺🇸 KANIEL TORD LLC (Florida) — בעלים<br>
+                        ↓ 100% ownership (with BOI)<br>
+                        🇹🇭 Ko Phangan Solar Co., Ltd. — חברה תאילנדית<br>
+                        ↓<br>
+                        📋 BOI Certificate + Thai Bank Account<br>
+                        💰 Krungsri SME Financing
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: TAX BENEFITS -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">07 — TAX & INCENTIVES</div>
+        <h2 class="he">הטבות מס ותמריצים</h2>
+        <div class="grid-2">
+            <div>
+                <h3 class="he accent">תמריצים שלנו (החברה)</h3>
+                <table>
+                    <tr><td class="he">פטור מס חברות</td><td style="color:var(--green);font-weight:700;">8 שנים (BOI)</td></tr>
+                    <tr><td class="he">פטור מכס על ציוד</td><td style="color:var(--green);">0% (BOI)</td></tr>
+                    <tr><td class="he">ניכוי 50% CIT</td><td>על ציוד סולארי 5 כוכבים</td></tr>
+                    <tr><td class="he">FiT בונוס דרום</td><td>฿6.01-6.85/kWh למערכות עד 1MW</td></tr>
+                    <tr><td class="he">EXIM הנחה</td><td>0.5% הנחת ריבית עם BOI</td></tr>
+                </table>
+                <div class="highlight-gold he" style="margin-top:1.5rem;">
+                    <strong>שווי BOI על 10 שנים:</strong><br>
+                    הכנסה שנתית ฿4.86M × מס 20% × 8 שנים = <strong>חיסכון של ฿7.78M</strong>
+                </div>
+            </div>
+            <div>
+                <h3 class="he accent">תמריצים ללקוחות שלנו</h3>
+                <table>
+                    <tr><td class="he">ניכוי מס בית</td><td>עד ฿200,000 ניכוי (לבתים פרטיים)</td></tr>
+                    <tr><td class="he">ניכוי 50% CIT</td><td>לעסקים על ציוד סולארי</td></tr>
+                    <tr><td class="he">Net Metering</td><td>קרדיט ~4-5 THB/kWh לעודפים</td></tr>
+                    <tr><td class="he">FiT</td><td>฿6.01-6.85/kWh (אם מוכרים לגריד)</td></tr>
+                    <tr><td class="he">אין היתרים</td><td>חיסכון זמן + כסף ברגולציה</td></tr>
+                </table>
+                <div class="highlight-green he" style="margin-top:1.5rem;">
+                    <strong>כלי מכירה:</strong> "המערכת הסולארית שלך היא גם חיסכון מס. עד 50% ניכוי על העלות + חיסכון 70% בחשמל."
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 8: ACTION PLAN -->
+<div class="slide">
+    <div class="container">
+        <div class="slide-num">08 — ACTION PLAN</div>
+        <h2 class="he">תוכנית פעולה — השבוע</h2>
+        <div class="grid-2">
+            <div>
+                <div class="card" style="border-top:3px solid var(--sun);">
+                    <h3 class="he accent">יום 1-2: שיחות טלפון</h3>
+                    <ul class="checklist he" style="font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                        <li><strong>Krungsri</strong> — 02-626-2626 → SME Solar Rooftop</li>
+                        <li><strong>Bangkok Bank</strong> — 1333 → Bualuang Green Solar Loan</li>
+                        <li><strong>SME D Bank</strong> — 1357 → Green Productivity 3%</li>
+                        <li><strong>SCB</strong> — 077-489841 → Surat Thani branch</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="card" style="border-top:3px solid var(--green);">
+                    <h3 class="he" style="color:var(--green);">יום 3-5: פגישות ומיילים</h3>
+                    <ul class="checklist he" style="font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                        <li><strong>BOI</strong> — מייל surat@boi.go.th לקביעת פגישה</li>
+                        <li><strong>KBank</strong> — ביקור סניף תונג סאלא</li>
+                        <li><strong>PEA</strong> — ביקור משרד Baan Tai (חייג 1129)</li>
+                        <li><strong>EXIM</strong> — 02-271-3700 → Solar D-Carbon</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="highlight-gold he" style="margin-top:2rem;text-align:center;">
+            <strong style="font-size:1.2rem;">Priority #1: Krungsri + BOI</strong><br>
+            <span style="color:rgba(255,255,255,0.6);">Krungsri = מימון הכי טוב. BOI = בעלות מלאה + פטור ממס. שניהם ביחד = foundation של העסק.</span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 9: SUMMARY -->
+<div class="slide" style="background:linear-gradient(160deg,var(--ocean-deep),#0A0A0A 60%);">
+    <div class="container" style="text-align:center;">
+        <h2 class="he" style="margin-bottom:2rem;">סיכום מימון</h2>
+        <div class="grid-3" style="max-width:800px;margin:0 auto;">
+            <div>
+                <div class="stat-big">3.0-3.5%</div>
+                <div class="stat-label he">ריבית הלוואה</div>
+            </div>
+            <div>
+                <div class="stat-big">100%</div>
+                <div class="stat-label he">מימון (Krungsri)</div>
+            </div>
+            <div>
+                <div class="stat-big">8</div>
+                <div class="stat-label he">שנים פטור ממס (BOI)</div>
+            </div>
+        </div>
+        <div class="grid-3" style="max-width:800px;margin:2rem auto 0;">
+            <div>
+                <div class="stat-big">฿140K</div>
+                <div class="stat-label he">רווח חודשי נטו (10 ESCO)</div>
+            </div>
+            <div>
+                <div class="stat-big">฿7.78M</div>
+                <div class="stat-label he">חיסכון מס (BOI 8yr)</div>
+            </div>
+            <div>
+                <div class="stat-big">4.6yr</div>
+                <div class="stat-label he">החזר השקעה</div>
+            </div>
+        </div>
+        <div style="margin-top:3rem;color:rgba(255,255,255,0.4);font-size:0.85rem;">
+            מקורות: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2023, EXIM Bank Thailand<br>
+            * מספרים מבוססים על הערכות ותנאי שוק מרץ 2026. ריביות ותנאים בכפוף לאישור בנקאי.
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

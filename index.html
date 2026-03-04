@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copenhagen Solar — Koh Phangan's First Solar Company</title>
+    <meta name="description" content="Go solar on Koh Phangan. Zero permits needed. Cut electricity bills by 70%. First solar company on the island.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sun: #E8A820;
+            --sun-light: #F5D76E;
+            --ocean: #0A3D5C;
+            --ocean-deep: #062A40;
+            --palm: #1B5E20;
+            --sand: #FFF8E7;
+            --sand-dark: #F5E6C8;
+            --white: #FFFFFF;
+            --text: #1A1A1A;
+            --text-light: #5A5A5A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--sand);
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(170deg, var(--ocean-deep) 0%, var(--ocean) 40%, #0E5C7A 70%, var(--sun) 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(232,168,32,0.15) 0%, transparent 60%);
+            border-radius: 50%;
+            animation: sunPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes sunPulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+
+        .hero-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.6rem;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span { color: var(--sun); }
+
+        .nav-cta {
+            background: var(--sun);
+            color: var(--ocean-deep);
+            padding: 0.7rem 1.8rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,168,32,0.4); }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 5;
+            animation: fadeUp 1s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            color: var(--sun-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--sun);
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--sun);
+            color: var(--ocean-deep);
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(232,168,32,0.4); }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--white);
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-num {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.8rem;
+            color: var(--ocean);
+            letter-spacing: -0.03em;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--ocean-deep);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        /* ===== WHY SOLAR ===== */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .why-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .why-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(10,61,92,0.08);
+        }
+
+        .why-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .why-icon.savings { background: linear-gradient(135deg, #FFF3D0, #FFE082); }
+        .why-icon.eco { background: linear-gradient(135deg, #E8F5E9, #A5D6A7); }
+        .why-icon.value { background: linear-gradient(135deg, #E3F2FD, #90CAF9); }
+
+        .why-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--ocean-deep);
+        }
+
+        .why-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* ===== PACKAGES ===== */
+        .packages-section { background: var(--ocean-deep); }
+
+        .packages-section .section-title { color: var(--white); }
+        .packages-section .section-sub { color: rgba(255,255,255,0.6); }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .package-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s;
+        }
+
+        .package-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+        }
+
+        .package-card.featured {
+            background: rgba(232,168,32,0.1);
+            border-color: var(--sun);
+        }
+
+        .package-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sun);
+            margin-bottom: 1rem;
+        }
+
+        .package-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .package-desc {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .package-features li {
+            color: rgba(255,255,255,0.8);
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .package-features li::before {
+            content: '→';
+            color: var(--sun);
+            font-weight: 700;
+        }
+
+        .package-price {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .package-price span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            padding: 2rem;
+            counter-increment: step;
+        }
+
+        .step::before {
+            content: counter(step);
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            color: var(--sand-dark);
+            line-height: 1;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.1rem;
+            color: var(--ocean-deep);
+            margin-bottom: 0.6rem;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        /* ===== CALCULATOR ===== */
+        .calc-section {
+            background: var(--white);
+        }
+
+        .calc-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--ocean-deep), var(--ocean));
+            border-radius: 24px;
+            padding: 3rem;
+            color: var(--white);
+        }
+
+        .calc-box label {
+            display: block;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .calc-box label:first-child { margin-top: 0; }
+
+        .calc-box select, .calc-box input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .calc-box select option { color: #333; background: #fff; }
+
+        .calc-result {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(232,168,32,0.15);
+            border-radius: 16px;
+            text-align: center;
+            display: none;
+        }
+
+        .calc-result.show { display: block; animation: fadeUp 0.5s ease-out; }
+
+        .calc-result .big {
+            font-family: 'Instrument Serif', serif;
+            font-size: 2.5rem;
+            color: var(--sun);
+        }
+
+        .calc-result p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .calc-btn {
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--sun);
+            color: var(--ocean-deep);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,168,32,0.4); }
+
+        /* ===== CONTACT / FORM ===== */
+        .contact-section {
+            background: var(--sand);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.8rem;
+            color: var(--ocean-deep);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+        }
+
+        .contact-form input, .contact-form select, .contact-form textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-family: 'DM Sans', sans-serif;
+            margin-bottom: 1rem;
+            transition: border 0.3s;
+        }
+
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--ocean);
+        }
+
+        .contact-form textarea { resize: vertical; min-height: 100px; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--ocean-deep);
+            color: rgba(255,255,255,0.5);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+
+        footer .logo {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero { padding: 6rem 1.5rem 3rem; }
+            .stats-bar { gap: 2rem; padding: 2rem 1rem; }
+            .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-nav { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <nav class="hero-nav">
+        <div class="logo">Copenhagen <span>Solar</span></div>
+        <a href="#contact" class="nav-cta">Get Free Quote</a>
+    </nav>
+
+    <div class="hero-content">
+        <div class="hero-badge">☀ Koh Phangan's First Solar Company</div>
+        <h1>Own your <em>sunshine.</em><br>Cut your bills.</h1>
+        <p class="hero-sub">
+            Go solar on Koh Phangan — no permits needed. Save up to 70% on electricity. 
+            We handle everything: design, import, install, maintain.
+        </p>
+        <div class="hero-cta-row">
+            <a href="#calculator" class="btn-primary">Calculate Savings</a>
+            <a href="#how" class="btn-secondary">How It Works</a>
+        </div>
+    </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+    <div class="stat">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Average bill reduction</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">3-5yr</div>
+        <div class="stat-label">System payback period</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Permits required</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num">25yr</div>
+        <div class="stat-label">Panel warranty</div>
+    </div>
+</div>
+
+<!-- WHY SOLAR -->
+<section>
+    <div class="container">
+        <h2 class="section-title">Why go solar on Koh Phangan?</h2>
+        <p class="section-sub">The island runs on diesel generators and mainland grid. Electricity is expensive. The sun is free.</p>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon savings">฿</div>
+                <h3>Slash Your Bills</h3>
+                <p>Hotels and resorts spend 50,000-200,000 THB/month on electricity. Solar cuts that by 50-70%. That's millions saved over the system lifetime.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon eco">🌿</div>
+                <h3>Eco-Luxury Branding</h3>
+                <p>Travelers choose sustainable stays. "100% Solar Powered" on your Booking.com listing means more bookings, higher rates, better reviews.</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon value">↗</div>
+                <h3>Property Value</h3>
+                <p>Solar adds 5-10% to property value. In Koh Phangan's booming market (8.9% annual growth), that's serious money.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+    <div class="container">
+        <h2 class="section-title">Simple as 1-2-3-4</h2>
+        <p class="section-sub">From first call to first watt — we handle everything.</p>
+        <div class="steps">
+            <div class="step">
+                <h3>Free Site Survey</h3>
+                <p>We visit your property, analyze your roof, check your bills, and design the perfect system.</p>
+            </div>
+            <div class="step">
+                <h3>Custom Proposal</h3>
+                <p>Detailed design with 3D visualization, exact savings calculation, and financing options.</p>
+            </div>
+            <div class="step">
+                <h3>Professional Install</h3>
+                <p>Our certified team installs in 2-5 days. No mess, no hassle. We handle all PEA paperwork.</p>
+            </div>
+            <div class="step">
+                <h3>Monitor & Save</h3>
+                <p>Real-time monitoring app shows your production and savings. We maintain, you relax.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages-section">
+    <div class="container">
+        <h2 class="section-title">Solar Packages</h2>
+        <p class="section-sub">From villas to resorts — we have the right system for you.</p>
+        <div class="packages-grid">
+            <div class="package-card">
+                <div class="package-tag">Villa</div>
+                <h3>Island Home</h3>
+                <p class="package-desc">Perfect for villas, small guesthouses, and homes with moderate consumption.</p>
+                <ul class="package-features">
+                    <li>5-10 kW system</li>
+                    <li>Tier-1 panels (Longi/JA Solar)</li>
+                    <li>Hybrid inverter</li>
+                    <li>Optional battery storage</li>
+                    <li>Net metering setup</li>
+                    <li>5-year installation warranty</li>
+                </ul>
+                <div class="package-price">From ฿250,000 <span>/ system</span></div>
+            </div>
+            <div class="package-card featured">
+                <div class="package-tag">Most Popular</div>
+                <h3>Resort Power</h3>
+                <p class="package-desc">For hotels, resorts, and businesses with high electricity bills.</p>
+                <ul class="package-features">
+                    <li>20-50 kW system</li>
+                    <li>Premium panels + microinverters</li>
+                    <li>Battery backup option</li>
+                    <li>Smart monitoring dashboard</li>
+                    <li>PPA financing available</li>
+                    <li>Full maintenance contract</li>
+                </ul>
+                <div class="package-price">Custom Quote</div>
+            </div>
+            <div class="package-card">
+                <div class="package-tag">Enterprise</div>
+                <h3>Island Scale</h3>
+                <p class="package-desc">Large commercial installations, multi-property portfolios, and developers.</p>
+                <ul class="package-features">
+                    <li>50-500 kW system</li>
+                    <li>Engineering + procurement</li>
+                    <li>Battery + energy management</li>
+                    <li>Revenue-grade monitoring</li>
+                    <li>BOI investment incentives</li>
+                    <li>Dedicated project manager</li>
+                </ul>
+                <div class="package-price">Custom Quote</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calculator" class="calc-section">
+    <div class="container">
+        <h2 class="section-title" style="text-align:center;">How much can you save?</h2>
+        <p class="section-sub" style="text-align:center;margin:0 auto 3rem;">Quick estimate based on your monthly electricity bill.</p>
+        <div class="calc-box">
+            <label>Property Type</label>
+            <select id="propType">
+                <option value="villa">Villa / Home</option>
+                <option value="guesthouse">Guesthouse (5-15 rooms)</option>
+                <option value="hotel">Hotel / Resort (15+ rooms)</option>
+                <option value="restaurant">Restaurant / Bar</option>
+                <option value="commercial">Commercial / Coworking</option>
+            </select>
+
+            <label>Monthly Electricity Bill (THB)</label>
+            <input type="number" id="monthlyBill" placeholder="e.g. 30000" value="">
+
+            <label>Roof Area Available (approx. sqm)</label>
+            <input type="number" id="roofArea" placeholder="e.g. 100" value="">
+
+            <button class="calc-btn" onclick="calculate()">Calculate My Savings</button>
+
+            <div class="calc-result" id="calcResult">
+                <div class="big" id="savingsNum"></div>
+                <p id="savingsDesc"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Ready to go solar?</h3>
+                <p>Get a free, no-obligation site survey and savings estimate. We'll visit your property, analyze your roof, and show you exactly how much you'll save.</p>
+                <div class="contact-detail">📍 Koh Phangan, Surat Thani, Thailand</div>
+                <div class="contact-detail">📧 info@copenhagensolar.com</div>
+                <div class="contact-detail">📱 WhatsApp: +66 XX-XXX-XXXX</div>
+                <div class="contact-detail">🕐 Mon-Sat 8:00-18:00</div>
+            </div>
+            <form class="contact-form" id="contactForm" onsubmit="submitForm(event)">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="tel" name="phone" placeholder="Phone / WhatsApp">
+                <select name="type">
+                    <option value="">Property Type...</option>
+                    <option value="villa">Villa / Home</option>
+                    <option value="guesthouse">Guesthouse</option>
+                    <option value="hotel">Hotel / Resort</option>
+                    <option value="restaurant">Restaurant / Bar</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="developer">Property Developer</option>
+                </select>
+                <textarea name="message" placeholder="Tell us about your property and electricity situation..."></textarea>
+                <button type="submit" class="btn-primary" style="width:100%;text-align:center;">Request Free Survey</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="logo">Copenhagen <span>Solar</span></div>
+    <p style="margin-top:0.5rem;">Koh Phangan's first solar company. Powered by the sun, built for the island.</p>
+    <p style="margin-top:1rem;">© 2026 Copenhagen Solar — KANIEL TORD LLC</p>
+</footer>
+
+<script>
+function calculate() {
+    const bill = parseFloat(document.getElementById('monthlyBill').value);
+    const roof = parseFloat(document.getElementById('roofArea').value);
+    if (!bill || bill <= 0) { alert('Please enter your monthly bill'); return; }
+
+    // Estimate: ~6 panels per 10sqm, each panel ~450W, ~4.5 sun hours
+    const effectiveRoof = roof || (bill / 4.3 * 0.7 / 4.5 / 0.45 * 10); // rough estimate if no roof
+    const kWp = Math.min((effectiveRoof / 10) * 6 * 0.45, bill / 4.3 * 0.9);
+    const monthlyGen = kWp * 4.5 * 30; // kWh/month
+    const monthlySaving = Math.min(monthlyGen * 4.3, bill * 0.75);
+    const annualSaving = monthlySaving * 12;
+    const systemCost = kWp * 35000; // ~35K THB per kWp installed
+    const payback = systemCost / annualSaving;
+
+    document.getElementById('savingsNum').textContent = '฿' + Math.round(annualSaving).toLocaleString() + '/year';
+    document.getElementById('savingsDesc').textContent = 
+        `Estimated system: ${kWp.toFixed(1)} kWp · Monthly savings: ฿${Math.round(monthlySaving).toLocaleString()} · Payback: ${payback.toFixed(1)} years · 25-year savings: ฿${Math.round(annualSaving * 25).toLocaleString()}`;
+    
+    const el = document.getElementById('calcResult');
+    el.classList.add('show');
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function submitForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    // TODO: Connect to backend/Supabase
+    alert('Thank you! We\'ll contact you within 24 hours to schedule your free site survey.');
+    form.reset();
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+
+</body>
+</html>

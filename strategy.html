@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copenhagen Solar — Strategy Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sun: #E8A820;
+            --sun-light: #F5D76E;
+            --ocean: #0A3D5C;
+            --ocean-deep: #062A40;
+            --palm: #1B5E20;
+            --sand: #FFF8E7;
+            --white: #FFFFFF;
+            --text: #1A1A1A;
+            --text-light: #5A5A5A;
+            --red: #E53935;
+            --green: #43A047;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #0A0A0A; color: var(--white); overflow-x: hidden; }
+
+        /* SLIDE SYSTEM */
+        .slide {
+            min-height: 100vh;
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .slide-num {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 0.15em;
+            font-weight: 500;
+        }
+        .container { max-width: 1100px; margin: 0 auto; width: 100%; }
+
+        /* TYPOGRAPHY */
+        h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem,6vw,5rem); line-height: 1.1; letter-spacing: -0.03em; direction: ltr; text-align: left; }
+        h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem,4vw,3rem); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 2rem; }
+        h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .accent { color: var(--sun); }
+        .subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 700px; margin-top: 1.5rem; }
+        .he { direction: rtl; text-align: right; font-family: 'Heebo', sans-serif; }
+        .en { direction: ltr; text-align: left; }
+
+        /* COVER */
+        .cover { background: linear-gradient(160deg, var(--ocean-deep), #0A0A0A 60%); }
+        .cover h1 { margin-bottom: 1rem; }
+        .cover-meta { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-top: 2rem; }
+
+        /* GRID */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+        /* CARDS */
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); }
+        .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .card p { color: rgba(255,255,255,0.6); line-height: 1.6; font-size: 0.95rem; }
+
+        /* STAT */
+        .stat-big { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--sun); line-height: 1; }
+        .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+
+        /* TABLE */
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th { text-align: right; padding: 0.8rem 1rem; background: rgba(255,255,255,0.05); color: var(--sun); font-weight: 600; border-bottom: 2px solid rgba(255,255,255,0.1); }
+        td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+
+        /* TIMELINE */
+        .timeline { position: relative; padding-right: 3rem; }
+        .timeline::before { content: ''; position: absolute; right: 0.6rem; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.1); }
+        .tl-item { position: relative; margin-bottom: 2.5rem; }
+        .tl-item::before { content: ''; position: absolute; right: -2.65rem; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); border: 3px solid #0A0A0A; }
+        .tl-date { font-size: 0.8rem; color: var(--sun); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+        .tl-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .tl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+        /* BADGE */
+        .badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+        .badge-green { background: rgba(67,160,71,0.15); color: var(--green); }
+        .badge-red { background: rgba(229,57,53,0.15); color: var(--red); }
+        .badge-gold { background: rgba(232,168,32,0.15); color: var(--sun); }
+
+        /* COMPETITOR */
+        .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: start; }
+        .vs-divider { display: flex; align-items: center; font-family: 'Instrument Serif', serif; font-size: 2rem; color: var(--sun); padding-top: 3rem; }
+
+        /* NAV */
+        .nav-dots {
+            position: fixed;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            z-index: 100;
+        }
+        .nav-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .nav-dot.active { background: var(--sun); transform: scale(1.4); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .slide { padding: 3rem 1.5rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .vs-grid { grid-template-columns: 1fr; }
+            .vs-divider { padding-top: 0; justify-content: center; }
+            .nav-dots { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav-dots" id="navDots"></div>
+
+<!-- SLIDE 0: COVER -->
+<div class="slide cover" data-title="Cover">
+    <div class="container">
+        <span class="badge badge-gold" style="margin-bottom:1.5rem;">CONFIDENTIAL — KANIEL TORD LLC</span>
+        <h1>Copenhagen <span class="accent">Solar</span></h1>
+        <div class="subtitle he">
+            חברת הסולאר הראשונה והפרימיום של קופנגן, תאילנד.
+            <br>תוכנית עסקית ואסטרטגיה — מרץ 2026.
+        </div>
+        <div class="cover-meta">
+            Koh Phangan, Surat Thani, Thailand · KANIEL TORD LLC (Florida, USA)
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 1: THE OPPORTUNITY -->
+<div class="slide" data-title="ההזדמנות">
+    <div class="slide-num">01 — THE OPPORTUNITY</div>
+    <div class="container">
+        <h2 class="he">ההזדמנות</h2>
+        <div class="grid-4" style="margin-bottom:3rem;">
+            <div style="text-align:center;">
+                <div class="stat-big">114</div>
+                <div class="stat-label">לידים מזוהים</div>
+            </div>
+            <div style="text-align:center;">
+                <div class="stat-big">0</div>
+                <div class="stat-label">חברות סולאר פרימיום</div>
+            </div>
+            <div style="text-align:center;">
+                <div class="stat-big">70%</div>
+                <div class="stat-label">חיסכון בחשמל</div>
+            </div>
+            <div style="text-align:center;">
+                <div class="stat-big">3-5</div>
+                <div class="stat-label">שנות החזר השקעה</div>
+            </div>
+        </div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">🏝</div>
+                <h3 class="he">אי ללא סולאר פרימיום</h3>
+                <p class="he">קופנגן — אי עם 50-100 מלונות, 200+ וילות יוקרה, 20+ coworking. אף חברת סולאר רצינית לא משרתת את השוק הזה.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3 class="he">חשמל יקר + הפסקות</h3>
+                <p class="he">האי רץ על כבל תת-ימי יחיד. הפסקות חשמל תכופות. תעריף מסחרי 6-8 באט/קוט"ש. מלונות משלמים 50,000-200,000 באט/חודש.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <h3 class="he">אפס רגולציה</h3>
+                <p class="he">תאילנד ביטלה את כל ההיתרים לסולאר על גגות (2025). רק הודעה 30 יום. Net metering זמין. BOI נותן 100% בעלות זרה.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 2: MARKET SIZE -->
+<div class="slide" data-title="גודל שוק">
+    <div class="slide-num">02 — MARKET SIZE</div>
+    <div class="container">
+        <h2 class="he">גודל השוק</h2>
+        <div class="grid-2">
+            <div>
+                <table>
+                    <tr><th>סגמנט</th><th>כמות</th><th>גודל ממוצע</th></tr>
+                    <tr><td>מלונות ו-Resorts</td><td><strong>55</strong></td><td>20-50 kW</td></tr>
+                    <tr><td>חברות וילות</td><td><strong>9</strong></td><td>5-15 kW × מספר וילות</td></tr>
+                    <tr><td>יזמי נדל"ן</td><td><strong>5</strong></td><td>50-200 kW</td></tr>
+                    <tr><td>Coworking</td><td><strong>7</strong></td><td>10-20 kW</td></tr>
+                    <tr><td>מסעדות וביץ' בארים</td><td><strong>18</strong></td><td>5-15 kW</td></tr>
+                    <tr><td>Wellness / יוגה</td><td><strong>8</strong></td><td>10-30 kW</td></tr>
+                    <tr><td>נוסף (בי"ח, חנויות)</td><td><strong>12</strong></td><td>10-50 kW</td></tr>
+                    <tr><td colspan="3" style="color:var(--sun);font-weight:700;">סה"כ: 114 לידים מזוהים</td></tr>
+                </table>
+            </div>
+            <div>
+                <div class="card" style="background:rgba(232,168,32,0.08);border-color:rgba(232,168,32,0.2);">
+                    <h3 class="he accent">TAM שנתי</h3>
+                    <div style="margin:1.5rem 0;">
+                        <div class="he" style="margin-bottom:1rem;">
+                            <span class="badge badge-green">שמרני</span>
+                            <div class="stat-big" style="font-size:2.5rem;">฿10M</div>
+                            <div class="stat-label">50 התקנות × 200K ממוצע</div>
+                        </div>
+                        <div class="he">
+                            <span class="badge badge-gold">אגרסיבי</span>
+                            <div class="stat-big" style="font-size:2.5rem;">฿100M</div>
+                            <div class="stat-label">200 התקנות × 500K ממוצע</div>
+                        </div>
+                    </div>
+                    <p class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">+ הכנסה חוזרת מ-O&M: ฿2-5K/חודש למערכת</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 3: COMPETITION -->
+<div class="slide" data-title="תחרות">
+    <div class="slide-num">03 — COMPETITIVE LANDSCAPE</div>
+    <div class="container">
+        <h2 class="he">מפת תחרות</h2>
+        <table>
+            <tr><th>מתחרה</th><th>מיקוד</th><th>תמחור</th><th>חוזקות</th><th>חולשות</th></tr>
+            <tr>
+                <td><strong>Green Global Tech</strong></td>
+                <td>Residential קטן</td>
+                <td>105K-550K THB</td>
+                <td>נוכחות מקומית, Longi+Huawei</td>
+                <td class="he" style="color:var(--red);">עיצוב גרוע, שגיאות כתיב, אין אתר, אין branding</td>
+            </tr>
+            <tr>
+                <td><strong>Phangan.Solar</strong></td>
+                <td>All segments</td>
+                <td>40K-2M THB</td>
+                <td>יבוא ישיר, תמחור שקוף</td>
+                <td>עסק קטן, רק קופנגן</td>
+            </tr>
+            <tr>
+                <td><strong>Canvas Solar</strong></td>
+                <td>Hybrid/Off-grid</td>
+                <td>Custom</td>
+                <td>מומחיות off-grid, כמה איים</td>
+                <td>אין תמחור גלוי, צוות קטן</td>
+            </tr>
+            <tr>
+                <td><strong>Phangan Electrical</strong></td>
+                <td>חשמל + סולאר</td>
+                <td>Custom</td>
+                <td>Alpha ESS dealer, בסיס לקוחות</td>
+                <td>סולאר לא ליבה, נוכחות אונליין חלשה</td>
+            </tr>
+            <tr>
+                <td><strong style="color:var(--sun);">Copenhagen Solar</strong></td>
+                <td><strong>Premium / Commercial</strong></td>
+                <td>250K+ THB</td>
+                <td style="color:var(--green);">Brand, CRM, ESCO/PPA, monitoring, marketing</td>
+                <td>חדשים, אין track record מקומי</td>
+            </tr>
+        </table>
+        <div class="he" style="margin-top:2rem;padding:1.5rem;background:rgba(67,160,71,0.08);border-radius:12px;border:1px solid rgba(67,160,71,0.2);">
+            <strong>הזדמנות:</strong> אף מתחרה לא מציע ESCO/PPA, מערכת monitoring, branding ללקוחות, או שיווק דיגיטלי רציני. השוק פתוח לשחקן פרימיום.
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 4: BUSINESS MODEL -->
+<div class="slide" data-title="מודל עסקי">
+    <div class="slide-num">04 — BUSINESS MODEL</div>
+    <div class="container">
+        <h2 class="he">מודל עסקי</h2>
+        <div class="grid-3">
+            <div class="card">
+                <span class="badge badge-gold">מקור 1</span>
+                <h3 class="he" style="margin-top:1rem;">EPC — התקנה</h3>
+                <p class="he">מכירה + התקנה + הפעלה. תמחור: ฿35-55K/kWp. מרווח: 30-40%.</p>
+                <div style="margin-top:1rem;">
+                    <div class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                        וילה 10kW = ฿250-350K<br>
+                        Resort 50kW = ฿1.5-2M<br>
+                        Commercial 100kW = ฿3-4M
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="border-color:var(--sun);">
+                <span class="badge badge-green">מקור 2 — ליבה</span>
+                <h3 class="he" style="margin-top:1rem;">ESCO / PPA</h3>
+                <p class="he">אנחנו מממנים + מתקינים + מתחזקים. הלקוח משלם לפי צריכה — בלי upfront. חוזה 15-25 שנה.</p>
+                <div style="margin-top:1rem;">
+                    <div class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                        הלקוח חוסך 20-30% מיום 1<br>
+                        אנחנו מקבלים 70-80% מהחשבון<br>
+                        Recurring revenue לטווח ארוך
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <span class="badge badge-gold">מקור 3</span>
+                <h3 class="he" style="margin-top:1rem;">O&M — תחזוקה</h3>
+                <p class="he">ניטור 24/7, ניקוי, תיקונים. ฿2-5K/חודש למערכת. Recurring מכל התקנה.</p>
+                <div style="margin-top:1rem;">
+                    <div class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                        50 מערכות × ฿3K = ฿150K/חודש<br>
+                        100 מערכות × ฿3K = ฿300K/חודש<br>
+                        = ฿1.8-3.6M/שנה
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 5: FINANCING -->
+<div class="slide" data-title="מימון">
+    <div class="slide-num">05 — FINANCING & LEGAL</div>
+    <div class="container">
+        <h2 class="he">מימון ומבנה משפטי</h2>
+        <div class="grid-2">
+            <div>
+                <h3 class="he accent">מימון ללקוחות</h3>
+                <div class="card" style="margin-bottom:1rem;">
+                    <p class="he"><strong>ESCO Model</strong> — אפס תשלום מראש, תשלום לפי חיסכון. חוזה 20-25 שנה. מועדף למלונות/resorts.</p>
+                </div>
+                <div class="card" style="margin-bottom:1rem;">
+                    <p class="he"><strong>SME D Bank</strong> — הלוואה ירוקה ב-3% קבוע ל-3 שנים, עד ฿30M. מועדף לעסקים.</p>
+                </div>
+                <div class="card" style="margin-bottom:1rem;">
+                    <p class="he"><strong>הטבות מס</strong> — ניכוי 50% CIT על ציוד סולאר + ฿200K ניכוי לבתים פרטיים.</p>
+                </div>
+                <div class="card">
+                    <p class="he"><strong>FiT</strong> — ฿6.01-6.85/kWh עבור מערכות עד 1MW. בונוס לדרום תאילנד (קופנגן!).</p>
+                </div>
+            </div>
+            <div>
+                <h3 class="he accent">מבנה חברה</h3>
+                <div class="card" style="background:rgba(232,168,32,0.06);">
+                    <p class="he" style="line-height:1.8;">
+                        <strong>מבנה מומלץ:</strong><br>
+                        🏢 Thai Co., Ltd. עם BOI promotion<br>
+                        🇺🇸 KANIEL TORD LLC כבעלים (100%)<br>
+                        📋 BOI = פטור ממס 8 שנים + בעלות זרה מלאה<br>
+                        🏦 מימון דרך SME D Bank<br>
+                        💰 ESCO model ללקוחות<br><br>
+                        <span style="color:var(--sun);">ללא BOI = מוגבל ל-49% בעלות זרה</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 6: SUPPLY CHAIN -->
+<div class="slide" data-title="שרשרת אספקה">
+    <div class="slide-num">06 — SUPPLY CHAIN</div>
+    <div class="container">
+        <h2 class="he">שרשרת אספקה</h2>
+        <div class="grid-2">
+            <div>
+                <table>
+                    <tr><th>רכיב</th><th>ספק</th><th>עלות</th></tr>
+                    <tr><td>פאנלים</td><td>Longi / JA Solar / Trina</td><td>10-20K THB/kW</td></tr>
+                    <tr><td>ממירים</td><td>Huawei / Sungrow / GoodWe</td><td>30-60K THB (5kW)</td></tr>
+                    <tr><td>סוללות</td><td>Huawei LUNA / BYD</td><td>120-169K THB (5kWh)</td></tr>
+                    <tr><td>מרכבים</td><td>CMM / RRacks (מקומי)</td><td>5-10K THB/kW</td></tr>
+                </table>
+                <div class="he" style="margin-top:1.5rem;font-size:0.9rem;color:rgba(255,255,255,0.5);">
+                    <strong>מכסים:</strong> פאנלים 0%, ממירים 0-5% (0% עם FTA), סוללות 0-10%, + 7% VAT
+                </div>
+            </div>
+            <div>
+                <div class="card">
+                    <h3 class="he">לוגיסטיקה לאי</h3>
+                    <p class="he" style="line-height:1.8;">
+                        📦 הזמנה מ-BayWa / Solaris (בנגקוק/קראבי)<br>
+                        🚛 משאית ל-Don Sak (סוראט תאני)<br>
+                        ⛴ מעבורת Raja Ferry לקופנגן (~2.5 שעות)<br>
+                        🏗 מחסן באי + צוות מקומי<br><br>
+                        <strong>עלות מותקנת באי: ฿35-55K/kWp</strong><br>
+                        <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);">(כולל premium לוגיסטיקת אי)</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: MARKETING STRATEGY -->
+<div class="slide" data-title="שיווק">
+    <div class="slide-num">07 — MARKETING STRATEGY</div>
+    <div class="container">
+        <h2 class="he">אסטרטגיית שיווק</h2>
+        <div class="he subtitle" style="margin-bottom:2rem;">Hook #1: אי חוסמי הפסקות חשמל. הפסקות תכופות = כאב אמיתי. הפתרון: סולאר + סוללה.</div>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h3 class="he">Facebook Groups</h3>
+                <p class="he">10+ קבוצות פעילות באי. לא מכירה ישירה — תוכן על הפסקות חשמל, מדריכי חיסכון, סיפורי לקוחות. 1-2 פוסטים/שבוע.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📸</div>
+                <h3 class="he">Instagram + Reels</h3>
+                <p class="he">Before/after, time-lapse התקנות, ROI calculators, אווירת האי. סולאר = יוקרה, לא חיסכון.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3 class="he">Google SEO</h3>
+                <p class="he">תחרות אפסית על "solar Koh Phangan". בלוג + landing page = page 1 תוך חודש. Google Ads על מילות מפתח מקומיות.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🤝</div>
+                <h3 class="he">שותפויות</h3>
+                <p class="he">Property managers, סוכני נדל"ן, קבלני בנייה, עסקי eco. עמלת הפניה ฿10,000 להמרה.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3 class="he">Lighthouse Project</h3>
+                <p class="he">התקנה ראשונה ב-resort ידוע = social proof לכל האי. תמחור מיוחד כנגד case study + PR.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💬</div>
+                <h3 class="he">LINE / WhatsApp</h3>
+                <p class="he">LINE הוא המסנג'ר #1 בתאילנד. WhatsApp לexpats. שני הערוצים פתוחים. Templates מוכנים.</p>
+            </div>
+        </div>
+        <div style="margin-top:2rem;padding:1.5rem;background:rgba(232,168,32,0.08);border-radius:12px;text-align:center;">
+            <span class="he" style="font-size:1.1rem;">תקציב שיווק 90 יום: <strong class="accent">฿157,000-311,000 (~$4,500-8,900)</strong></span>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 8: GO-TO-MARKET TIMELINE -->
+<div class="slide" data-title="לוח זמנים">
+    <div class="slide-num">08 — GO-TO-MARKET</div>
+    <div class="container">
+        <h2 class="he">לוח זמנים — 90 יום</h2>
+        <div class="grid-3">
+            <div class="card" style="border-top:3px solid var(--sun);">
+                <h3 class="en accent">Days 1-30: Foundation</h3>
+                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                    <li>→ רישום Thai Co., Ltd. + BOI application</li>
+                    <li>→ Landing page + SEO live</li>
+                    <li>→ חשבונות Social (FB, IG, LINE)</li>
+                    <li>→ הסכמי ספקים (BayWa / Solaris)</li>
+                    <li>→ Lighthouse project — חוזה ראשון</li>
+                    <li>→ CRM instance (Solar OS)</li>
+                    <li>→ WhatsApp Business + LINE OA</li>
+                    <li>→ 10 site surveys ראשונים</li>
+                </ul>
+            </div>
+            <div class="card" style="border-top:3px solid var(--green);">
+                <h3 class="en" style="color:var(--green);">Days 31-60: Traction</h3>
+                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                    <li>→ Lighthouse install + case study</li>
+                    <li>→ FB/IG ad campaigns live</li>
+                    <li>→ Facebook group outreach (value-first)</li>
+                    <li>→ Thursday networking events</li>
+                    <li>→ Cold outreach ל-Top 20 prospects</li>
+                    <li>→ Blog content (SEO)</li>
+                    <li>→ Referral program launch</li>
+                    <li>→ 3-5 proposals sent</li>
+                </ul>
+            </div>
+            <div class="card" style="border-top:3px solid #2196F3;">
+                <h3 class="en" style="color:#2196F3;">Days 61-90: Scale</h3>
+                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                    <li>→ 2-3 installations completed</li>
+                    <li>→ ESCO contracts signed</li>
+                    <li>→ Google Ads live</li>
+                    <li>→ Partnership agreements signed</li>
+                    <li>→ Koh Samui expansion planning</li>
+                    <li>→ Monitoring dashboard live</li>
+                    <li>→ Pipeline: ฿5-10M</li>
+                    <li>→ Brand recognized on island</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 9: PRICING -->
+<div class="slide" data-title="תמחור">
+    <div class="slide-num">09 — PRICING PACKAGES</div>
+    <div class="container">
+        <h2 class="he">חבילות תמחור</h2>
+        <div class="grid-3">
+            <div class="card">
+                <span class="badge badge-gold">VILLA</span>
+                <h3 class="en" style="margin-top:1rem;">Island Home</h3>
+                <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--sun);margin:1rem 0;">฿250,000+</div>
+                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,255,255,0.6);">
+                    <li>5-10 kW</li>
+                    <li>Longi/JA Solar Tier-1</li>
+                    <li>Huawei Hybrid Inverter</li>
+                    <li>סוללה אופציונלית</li>
+                    <li>Net Metering</li>
+                    <li>אחריות 5 שנים</li>
+                </ul>
+            </div>
+            <div class="card" style="border-color:var(--sun);background:rgba(232,168,32,0.05);">
+                <span class="badge badge-green">MOST POPULAR</span>
+                <h3 class="en" style="margin-top:1rem;">Resort Power</h3>
+                <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--sun);margin:1rem 0;">Custom Quote</div>
+                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,255,255,0.6);">
+                    <li>20-50 kW</li>
+                    <li>Premium panels + microinverters</li>
+                    <li>Battery backup</li>
+                    <li>Smart Monitoring Dashboard</li>
+                    <li>ESCO / PPA זמין</li>
+                    <li>חוזה תחזוקה מלא</li>
+                </ul>
+            </div>
+            <div class="card">
+                <span class="badge badge-gold">ENTERPRISE</span>
+                <h3 class="en" style="margin-top:1rem;">Island Scale</h3>
+                <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--sun);margin:1rem 0;">Custom Quote</div>
+                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,255,255,0.6);">
+                    <li>50-500 kW</li>
+                    <li>Engineering + Procurement</li>
+                    <li>סוללה + EMS</li>
+                    <li>Revenue-grade Monitoring</li>
+                    <li>BOI Investment Incentives</li>
+                    <li>Project Manager ייעודי</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 10: WHAT'S READY -->
+<div class="slide" data-title="מה מוכן">
+    <div class="slide-num">10 — DELIVERABLES</div>
+    <div class="container">
+        <h2 class="he">מה מוכן עכשיו</h2>
+        <div class="grid-2">
+            <div>
+                <h3 class="he accent" style="margin-bottom:1.5rem;">מסמכים (7 קבצים, ~80KB)</h3>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>RESEARCH.md</strong> — מחקר שוק, תעריפים, רגולציה
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>SUPPLIERS.md</strong> — ספקים, מפיצים, לוגיסטיקה, מכסים
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>FINANCING.md</strong> — הלוואות, ESCO, BOI, מבנה חברה
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>MARKETING_PLAN.md</strong> — תוכנית 30/60/90, ערוצים, תקציב
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>PROSPECT_MAP.md</strong> — 114 לידים ממופים
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>COMPETITORS.md</strong> — 4 מתחרים + ניתוח פערים
+                </div>
+                <div class="card" style="padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>AD_COPY.md</strong> — 5 FB, 5 IG, 3 Google, emails, WhatsApp
+                </div>
+            </div>
+            <div>
+                <h3 class="he accent" style="margin-bottom:1.5rem;">נכסים דיגיטליים</h3>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>Landing Page</strong> — Hero, Calculator, Packages, Contact
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>4 Ad Creatives</strong> — IG, FB, Story, Hero image
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-green">✓</span> <strong>Strategy Deck</strong> — המצגת הזו
+                </div>
+                <div class="card" style="margin-bottom:0.8rem;padding:1rem 1.5rem;">
+                    <span class="badge badge-gold">בתהליך</span> <strong>Solar OS CRM</strong> — brand instance
+                </div>
+                <div class="card" style="padding:1rem 1.5rem;">
+                    <span class="badge badge-gold">בתהליך</span> <strong>Vercel Deploy</strong> — domain + hosting
+                </div>
+                <h3 class="he accent" style="margin:2rem 0 1rem;">צעדים הבאים</h3>
+                <div class="he" style="line-height:2;font-size:0.95rem;color:rgba(255,255,255,0.7);">
+                    1. בחירת domain (copenhagensolar.com?)<br>
+                    2. Deploy ל-Vercel<br>
+                    3. הקמת חשבונות Social<br>
+                    4. BOI application<br>
+                    5. הסכם עם ספק ראשון<br>
+                    6. Lighthouse project — מי הלקוח הראשון?
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 11: VISION -->
+<div class="slide cover" data-title="חזון">
+    <div class="container" style="text-align:center;">
+        <h1 style="text-align:center;">Own the <span class="accent">sunshine.</span></h1>
+        <div class="subtitle he" style="margin:1.5rem auto 0;text-align:center;">
+            מהאי הראשון — לכל דרום תאילנד.
+            <br>Copenhagen Solar — הסולאר של קופנגן.
+        </div>
+        <div style="margin-top:3rem;">
+            <div class="grid-3" style="max-width:600px;margin:0 auto;">
+                <div>
+                    <div class="stat-big">Y1</div>
+                    <div class="stat-label">Koh Phangan</div>
+                </div>
+                <div>
+                    <div class="stat-big">Y2</div>
+                    <div class="stat-label">+ Koh Samui</div>
+                </div>
+                <div>
+                    <div class="stat-big">Y3</div>
+                    <div class="stat-label">Gulf Islands</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Build nav dots
+const slides = document.querySelectorAll('.slide');
+const nav = document.getElementById('navDots');
+slides.forEach((s, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.title = s.dataset.title || '';
+    dot.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+    nav.appendChild(dot);
+});
+
+// Update active dot on scroll
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const idx = [...slides].indexOf(e.target);
+            document.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+    });
+}, { threshold: 0.5 });
+slides.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

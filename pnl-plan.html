@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ko Phangan Solar — P&L + תוכנית הקמה מלאה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
+.slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:36px 50px;opacity:0;transform:translateX(100px);transition:all .6s cubic-bezier(.23,1,.32,1);pointer-events:none;overflow-y:auto;padding-bottom:70px}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all}.slide.exit{opacity:0;transform:translateX(-100px)}
+.slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
+.slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
+.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:10px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:7px 22px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:13px;font-weight:500;transition:all .3s}
+.nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:13px}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
+.toc-btn{position:fixed;top:16px;left:16px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:102}
+.toc-btn:hover{background:var(--gold);color:var(--night)}
+.toc-panel{position:fixed;top:0;left:-340px;width:340px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s;padding:50px 24px 24px;overflow-y:auto}
+.toc-panel.open{left:0}
+.toc-item{padding:8px 14px;margin:3px 0;border-radius:8px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:8px}
+.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-num{font-family:'Space Grotesk';font-weight:700;font-size:11px;color:var(--gold);min-width:22px}
+h1{font-size:clamp(28px,4.5vw,48px);font-weight:900;line-height:1.1;margin-bottom:12px}
+h2{font-size:clamp(20px,3vw,32px);font-weight:700;line-height:1.2;margin-bottom:10px}
+h3{font-size:clamp(14px,1.8vw,20px);font-weight:700;margin-bottom:6px}
+.subtitle{font-size:clamp(14px,1.8vw,20px);font-weight:300;opacity:.8;margin-bottom:20px}
+.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}.blue-text{color:#6496FF}
+.section-num{font-family:'Space Grotesk';font-size:56px;font-weight:700;color:var(--gold);opacity:.12;position:absolute;top:16px;left:36px}
+.big-num{font-family:'Space Grotesk';font-size:clamp(24px,4vw,48px);font-weight:700;color:var(--gold)}
+.stat-label{font-size:12px;opacity:.6;margin-top:3px}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px;margin:16px 0;text-align:center}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;transition:all .3s}
+.card:hover{border-color:var(--gold)}
+.table-wrap{overflow-x:auto;margin:12px 0;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:rgba(232,168,32,.15);padding:6px 8px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:6px 8px;border-top:1px solid rgba(255,255,255,.06)}
+tr:hover td{background:rgba(255,255,255,.03)}
+.alert{padding:14px 18px;border-radius:10px;margin:10px 0;font-size:13px;line-height:1.6}
+.alert-warn{background:rgba(232,93,58,.15);border-right:3px solid var(--coral)}
+.alert-info{background:rgba(232,168,32,.1);border-right:3px solid var(--gold)}
+.alert-success{background:rgba(46,216,154,.1);border-right:3px solid #2ED89A}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:12px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:12px}
+.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+@media(max-width:768px){.two-col,.three-col,.four-col{grid-template-columns:1fr}.slide{padding:20px 16px}}
+.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
+.bar-chart{margin:10px 0}.bar-row{display:flex;align-items:center;gap:8px;margin:4px 0}
+.bar-label{font-size:11px;min-width:90px;text-align:left}.bar-wrap{flex:1;height:22px;background:rgba(255,255,255,.05);border-radius:11px;overflow:hidden}
+.bar-fill{height:100%;border-radius:11px;display:flex;align-items:center;padding:0 8px;font-size:9px;font-weight:600;font-family:'Space Grotesk'}
+.dash-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px}
+.dash-card h4{font-size:11px;opacity:.5;font-weight:400;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px}
+.dash-val{font-family:'Space Grotesk';font-size:26px;font-weight:700}
+.mini-chart{display:flex;align-items:flex-end;gap:2px;height:36px;margin-top:6px}
+.mini-bar{flex:1;background:var(--gold);border-radius:2px 2px 0 0;min-width:6px}
+.org-box{border:2px solid;border-radius:10px;padding:10px 14px;text-align:center;min-width:100px}
+.org-line{border-left:2px solid rgba(255,255,255,.2);height:20px;margin:0 auto;width:0}
+.org-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<button class="toc-btn" onclick="toggleTOC()">☰</button>
+<div class="toc-panel" id="tocPanel"><h3 style="color:var(--gold);margin-bottom:16px;">תוכן עניינים</h3><div id="tocList"></div></div>
+<div class="slide-container" id="slides">
+
+<!-- SLIDE 0: COVER -->
+<div class="slide slide-cover active" data-title="שער">
+  <div style="font-size:48px;margin-bottom:16px">☀️📊</div>
+  <h1>P&L + תוכנית הקמה<br><span class="gold">Ko Phangan Solar</span></h1>
+  <p class="subtitle">50,000 מ"ר גגות/שנה | 60% PPA + 40% EPC</p>
+  <p style="opacity:.5;font-size:13px;margin-top:20px">KANIEL TORD LLC — מרץ 2026</p>
+</div>
+
+<!-- SLIDE 1: Executive Summary -->
+<div class="slide slide-dark" data-title="תקציר מנהלים">
+  <span class="section-num">01</span>
+  <h2>תקציר מנהלים</h2>
+  <div class="four-col">
+    <div class="dash-card"><h4>שטח גגות שנתי</h4><div class="dash-val gold">50,000 m²</div><div style="font-size:11px;opacity:.6;margin-top:4px">~6.25 MWp מותקן</div></div>
+    <div class="dash-card"><h4>PPA (60%)</h4><div class="dash-val reef-text">3,750 kWp</div><div style="font-size:11px;opacity:.6;margin-top:4px">30,000 m² | הכנסה חוזרת</div></div>
+    <div class="dash-card"><h4>EPC (40%)</h4><div class="dash-val blue-text">2,500 kWp</div><div style="font-size:11px;opacity:.6;margin-top:4px">20,000 m² | הכנסה חד-פעמית</div></div>
+    <div class="dash-card"><h4>צוות</h4><div class="dash-val coral-text">32</div><div style="font-size:11px;opacity:.6;margin-top:4px">עובדים (שנה 1)</div></div>
+  </div>
+  <div class="table-wrap" style="margin-top:16px">
+    <table>
+      <tr><th></th><th>נתון</th><th>הסבר</th></tr>
+      <tr><td><strong>שטח גגות</strong></td><td class="gold"><strong>50,000 m²</strong></td><td>~8 m²/kWp ממוצע (כולל ריווח, flat tilt)</td></tr>
+      <tr><td><strong>הספק</strong></td><td><strong>6,250 kWp = 6.25 MWp</strong></td><td>Longi Hi-MO X6 580W, ~10,776 פאנלים</td></tr>
+      <tr><td><strong>PPA</strong></td><td><strong>3,750 kWp (60%)</strong></td><td>~75 מערכות × 50kWp avg</td></tr>
+      <tr><td><strong>EPC</strong></td><td><strong>2,500 kWp (40%)</strong></td><td>~50 מערכות × 50kWp avg</td></tr>
+      <tr><td><strong>תעריף PEA</strong></td><td><strong>฿5-7/kWh</strong></td><td>ממוצע ฿6, עולה ~3%/שנה</td></tr>
+      <tr><td><strong>תעריף PPA</strong></td><td><strong>฿4.50/kWh</strong></td><td>25% הנחה מ-PEA, escalation 2%/שנה</td></tr>
+      <tr><td><strong>מחיר EPC</strong></td><td><strong>฿35,000/kWp</strong></td><td>ללקוח (כולל רווח)</td></tr>
+      <tr><td><strong>עלות ציוד+עבודה</strong></td><td><strong>฿14,000/kWp</strong></td><td>עלות שלנו (ציוד + התקנה)</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 2: Revenue Model -->
+<div class="slide slide-ocean" data-title="מודל הכנסות">
+  <span class="section-num">02</span>
+  <h2>💰 מודל הכנסות — <span class="gold">שנה 1</span></h2>
+  <div class="two-col">
+    <div>
+      <h3 class="blue-text">EPC — 40% (2,500 kWp)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>חישוב</th><th>סכום</th></tr>
+          <tr><td>הכנסות EPC</td><td>2,500 kWp × ฿35,000</td><td class="gold"><strong>฿87.5M</strong></td></tr>
+          <tr><td>עלות ציוד</td><td>2,500 kWp × ฿10,000</td><td class="coral-text">-฿25M</td></tr>
+          <tr><td>עלות התקנה</td><td>2,500 kWp × ฿4,000</td><td class="coral-text">-฿10M</td></tr>
+          <tr style="background:rgba(46,216,154,.1)"><td><strong>רווח גולמי EPC</strong></td><td></td><td><strong class="reef-text">฿52.5M (60%)</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-info">50 מערכות × ממוצע 50kWp<br>~4 מערכות בחודש<br>מחזור מכירה: 2-4 שבועות</div>
+    </div>
+    <div>
+      <h3 class="reef-text">PPA — 60% (3,750 kWp)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>חישוב</th><th>סכום</th></tr>
+          <tr><td>השקעה (ציוד+התקנה)</td><td>3,750 kWp × ฿14,000</td><td class="coral-text"><strong>-฿52.5M</strong></td></tr>
+          <tr><td>ייצור שנתי</td><td>3,750 × 4.5h × 365</td><td>6,159,375 kWh</td></tr>
+          <tr><td>הכנסה שנתית PPA</td><td>6.16M kWh × ฿4.50</td><td class="gold"><strong>฿27.7M/שנה</strong></td></tr>
+          <tr><td>O&M שנתי</td><td>3,750 kWp × ฿720</td><td class="coral-text">-฿2.7M</td></tr>
+          <tr style="background:rgba(46,216,154,.1)"><td><strong>נטו שנתי PPA</strong></td><td></td><td><strong class="reef-text">฿25M/שנה</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-success"><strong>Payback PPA:</strong> 52.5M / 25M = <strong>2.1 שנים</strong><br><strong>IRR:</strong> ~38%<br>10 שנים: ฿197M רווח נקי</div>
+    </div>
+  </div>
+  <div class="stat-grid" style="margin-top:16px">
+    <div><div class="big-num">฿87.5M</div><div class="stat-label">הכנסות EPC</div></div>
+    <div><div class="big-num">฿27.7M</div><div class="stat-label">הכנסות PPA שנתיות</div></div>
+    <div><div class="big-num">฿115.2M</div><div class="stat-label">סה"כ הכנסות שנה 1</div></div>
+    <div><div class="big-num">฿77.5M</div><div class="stat-label">רווח גולמי שנה 1</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 3: Org Chart + Staff -->
+<div class="slide slide-dark" data-title="מבנה ארגוני">
+  <span class="section-num">03</span>
+  <h2>👥 מבנה ארגוני — <span class="gold">32 עובדים</span></h2>
+  
+  <!-- CEO -->
+  <div style="text-align:center;margin:12px 0 8px">
+    <div class="org-box" style="border-color:var(--gold);display:inline-block">
+      <div style="font-weight:700;color:var(--gold)">CEO / מנכ"ל</div>
+      <div style="font-size:11px;opacity:.6">Kaniel Tordjman</div>
+      <div style="font-size:10px;opacity:.4">฿150K/חודש</div>
+    </div>
+  </div>
+  <div class="org-line"></div>
+  
+  <!-- Department Heads -->
+  <div class="org-row" style="margin-bottom:8px">
+    <div class="org-box" style="border-color:#6496FF">
+      <div style="font-weight:700;color:#6496FF">מנהל מכירות</div>
+      <div style="font-size:10px;opacity:.6">1 | ฿80K + עמלות</div>
+    </div>
+    <div class="org-box" style="border-color:#2ED89A">
+      <div style="font-weight:700;color:#2ED89A">מנהל פרויקטים</div>
+      <div style="font-size:10px;opacity:.6">1 | ฿70K</div>
+    </div>
+    <div class="org-box" style="border-color:var(--coral)">
+      <div style="font-weight:700;color:var(--coral)">מהנדס ראשי</div>
+      <div style="font-size:10px;opacity:.6">1 | ฿65K</div>
+    </div>
+    <div class="org-box" style="border-color:var(--gold)">
+      <div style="font-weight:700;color:var(--gold)">מנהל/ת אדמין</div>
+      <div style="font-size:10px;opacity:.6">1 | ฿45K</div>
+    </div>
+  </div>
+  <div class="org-line"></div>
+  
+  <!-- Teams -->
+  <div class="two-col">
+    <div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>תפקיד</th><th>כמות</th><th>שכר/חודש</th><th>סה"כ/חודש</th></tr>
+          <tr style="background:rgba(232,168,32,.1)"><td colspan="4"><strong>הנהלה</strong></td></tr>
+          <tr><td>CEO / מנכ"ל</td><td>1</td><td>฿150,000</td><td>฿150,000</td></tr>
+          <tr><td>מנהל מכירות</td><td>1</td><td>฿80,000</td><td>฿80,000</td></tr>
+          <tr><td>מנהל פרויקטים</td><td>1</td><td>฿70,000</td><td>฿70,000</td></tr>
+          <tr><td>מהנדס ראשי</td><td>1</td><td>฿65,000</td><td>฿65,000</td></tr>
+          <tr style="background:rgba(100,150,255,.1)"><td colspan="4"><strong>מכירות</strong></td></tr>
+          <tr><td>נציגי מכירות</td><td>3</td><td>฿35,000 + עמלות</td><td>฿105,000</td></tr>
+          <tr><td>מנהל שיווק דיגיטלי</td><td>1</td><td>฿40,000</td><td>฿40,000</td></tr>
+          <tr style="background:rgba(46,216,154,.1)"><td colspan="4"><strong>הנדסה</strong></td></tr>
+          <tr><td>מהנדסי PV</td><td>2</td><td>฿50,000</td><td>฿100,000</td></tr>
+          <tr><td>שרטט / PVsyst</td><td>1</td><td>฿35,000</td><td>฿35,000</td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>תפקיד</th><th>כמות</th><th>שכר/חודש</th><th>סה"כ/חודש</th></tr>
+          <tr style="background:rgba(232,93,58,.1)"><td colspan="4"><strong>התקנות</strong></td></tr>
+          <tr><td>ראשי צוותים</td><td>3</td><td>฿40,000</td><td>฿120,000</td></tr>
+          <tr><td>מתקנים (Installers)</td><td>12</td><td>฿22,000</td><td>฿264,000</td></tr>
+          <tr><td>חשמלאי מוסמך</td><td>2</td><td>฿35,000</td><td>฿70,000</td></tr>
+          <tr style="background:rgba(232,168,32,.1)"><td colspan="4"><strong>תפעול ותחזוקה</strong></td></tr>
+          <tr><td>טכנאי O&M</td><td>2</td><td>฿28,000</td><td>฿56,000</td></tr>
+          <tr style="background:rgba(255,255,255,.05)"><td colspan="4"><strong>אדמיניסטרציה</strong></td></tr>
+          <tr><td>מנהל/ת משרד</td><td>1</td><td>฿45,000</td><td>฿45,000</td></tr>
+          <tr><td>חשב/ת</td><td>1</td><td>฿30,000</td><td>฿30,000</td></tr>
+          <tr><td>מזכירה / CS</td><td>1</td><td>฿20,000</td><td>฿20,000</td></tr>
+          <tr style="border-top:2px solid var(--gold);background:rgba(232,168,32,.15)"><td><strong>סה"כ</strong></td><td><strong>32</strong></td><td></td><td><strong class="gold">฿1,250,000</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-info"><strong>עמלות מכירה (בנוסף):</strong> 2% מכל עסקת EPC = avg ฿35K/עסקה. 3 נציגים × ~17 עסקאות/שנה = <strong>~฿1.75M/שנה בונוסים</strong></div>
+</div>
+
+<!-- SLIDE 4: Detailed OpEx -->
+<div class="slide slide-ocean" data-title="הוצאות תפעול">
+  <span class="section-num">04</span>
+  <h2>💼 הוצאות תפעול חודשיות — <span class="gold">פירוט מלא</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>שכר עובדים</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>קטגוריה</th><th>חודשי</th><th>שנתי</th></tr>
+          <tr><td>הנהלה (4)</td><td>฿365K</td><td>฿4.38M</td></tr>
+          <tr><td>מכירות + שיווק (4)</td><td>฿145K</td><td>฿1.74M</td></tr>
+          <tr><td>הנדסה (3)</td><td>฿135K</td><td>฿1.62M</td></tr>
+          <tr><td>התקנות (17)</td><td>฿454K</td><td>฿5.45M</td></tr>
+          <tr><td>O&M (2)</td><td>฿56K</td><td>฿672K</td></tr>
+          <tr><td>אדמין (3)</td><td>฿95K</td><td>฿1.14M</td></tr>
+          <tr><td>ביטוח לאומי + סוציאלי (5%)</td><td>฿62.5K</td><td>฿750K</td></tr>
+          <tr><td>עמלות מכירות</td><td>฿146K</td><td>฿1.75M</td></tr>
+          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ שכר</strong></td><td><strong class="gold">฿1.46M</strong></td><td><strong class="gold">฿17.5M</strong></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>הוצאות תפעול</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>חודשי</th><th>שנתי</th></tr>
+          <tr><td>שכירות משרד + מחסן</td><td>฿50K</td><td>฿600K</td></tr>
+          <tr><td>רכבים (3 טנדרים) — ליסינג</td><td>฿45K</td><td>฿540K</td></tr>
+          <tr><td>דלק + תחזוקת רכב</td><td>฿30K</td><td>฿360K</td></tr>
+          <tr><td>שיווק + פרסום</td><td>฿80K</td><td>฿960K</td></tr>
+          <tr><td>ביטוחים (חברה + פרויקטים)</td><td>฿35K</td><td>฿420K</td></tr>
+          <tr><td>תוכנות (PVsyst, CRM, Office)</td><td>฿8K</td><td>฿96K</td></tr>
+          <tr><td>טלפון + אינטרנט</td><td>฿5K</td><td>฿60K</td></tr>
+          <tr><td>משפטי + רואה חשבון</td><td>฿25K</td><td>฿300K</td></tr>
+          <tr><td>כלי עבודה + חומרי מתכלים</td><td>฿20K</td><td>฿240K</td></tr>
+          <tr><td>הדרכות + רישיונות</td><td>฿10K</td><td>฿120K</td></tr>
+          <tr><td>שונות + מילואים</td><td>฿15K</td><td>฿180K</td></tr>
+          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ תפעול</strong></td><td><strong class="gold">฿323K</strong></td><td><strong class="gold">฿3.88M</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="stat-grid" style="margin-top:12px">
+    <div><div class="big-num">฿1.78M</div><div class="stat-label">OpEx חודשי כולל</div></div>
+    <div><div class="big-num">฿21.4M</div><div class="stat-label">OpEx שנתי כולל</div></div>
+    <div><div class="big-num">฿1.46M</div><div class="stat-label">שכר (82%)</div></div>
+    <div><div class="big-num">฿323K</div><div class="stat-label">תפעול (18%)</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 5: CapEx - Startup Costs -->
+<div class="slide slide-dark" data-title="השקעות הקמה">
+  <span class="section-num">05</span>
+  <h2>🏗️ CapEx — <span class="gold">השקעות הקמה (חד-פעמי)</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>תשתית חברה</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>עלות</th><th>הערה</th></tr>
+          <tr><td>רישום Thai Co., Ltd.</td><td>฿80K</td><td>BOI promotion + עו"ד</td></tr>
+          <tr><td>Work Permit + Visa (2)</td><td>฿60K</td><td>Kaniel + שותף</td></tr>
+          <tr><td>שיפוץ משרד</td><td>฿150K</td><td>Thong Sala, 80m²</td></tr>
+          <tr><td>ריהוט + IT</td><td>฿120K</td><td>מחשבים, מסכים, שרת</td></tr>
+          <tr><td>מחסן — deposit + שיפוץ</td><td>฿100K</td><td>200m², מדפים, שער</td></tr>
+          <tr style="background:rgba(232,168,32,.05)"><td><strong>סה"כ תשתית</strong></td><td><strong>฿510K</strong></td><td></td></tr>
+        </table>
+      </div>
+      <h3 style="margin-top:12px">כלי עבודה + ציוד</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>עלות</th><th>הערה</th></tr>
+          <tr><td>רכבים × 3 (משומשים)</td><td>฿900K</td><td>Toyota Hilux, מגש כלים</td></tr>
+          <tr><td>כלי עבודה (3 סטים)</td><td>฿390K</td><td>מברגות, מקדחות, crimpers</td></tr>
+          <tr><td>ציוד בטיחות (3 סטים)</td><td>฿120K</td><td>רתמות, קסדות, כפפות</td></tr>
+          <tr><td>DJI Mini 4 Pro × 2</td><td>฿70K</td><td>סקרי גג + ביקורת</td></tr>
+          <tr><td>FLIR Thermal Camera</td><td>฿50K</td><td>בדיקות QA</td></tr>
+          <tr><td>Multimeters + Testers</td><td>฿30K</td><td>Fluke, IV curve</td></tr>
+          <tr><td>PVsyst License × 2</td><td>฿32K</td><td>CHF 450/שנה × 2</td></tr>
+          <tr><td>מלגזה קטנה (משומשת)</td><td>฿180K</td><td>למחסן</td></tr>
+          <tr style="background:rgba(232,168,32,.05)"><td><strong>סה"כ ציוד</strong></td><td><strong>฿1.77M</strong></td><td></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>מלאי ראשוני (1 חודש עבודה)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>כמות</th><th>עלות</th></tr>
+          <tr><td>פאנלים Longi 580W</td><td>900 יח׳</td><td>฿4.5M</td></tr>
+          <tr><td>אינוורטרים Huawei</td><td>~15 יח׳</td><td>฿1.5M</td></tr>
+          <tr><td>קונסטרוקציה (rails, clamps)</td><td>520 kWp</td><td>฿1.04M</td></tr>
+          <tr><td>כבלים DC + AC</td><td>~15,000m</td><td>฿450K</td></tr>
+          <tr><td>BOS (breakers, SPD, conduit)</td><td>—</td><td>฿520K</td></tr>
+          <tr style="background:rgba(232,168,32,.05)"><td><strong>סה"כ מלאי</strong></td><td></td><td><strong>฿8.01M</strong></td></tr>
+        </table>
+      </div>
+      <h3 style="margin-top:12px">הון חוזר (3 חודשי תפעול)</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><td>OpEx × 3 חודשים</td><td><strong>฿5.34M</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-warn" style="margin-top:12px">
+        <strong>סה"כ CapEx + הון חוזר:</strong><br>
+        תשתית: ฿510K<br>
+        ציוד: ฿1.77M<br>
+        מלאי: ฿8.01M<br>
+        הון חוזר: ฿5.34M<br>
+        <strong class="gold" style="font-size:18px">סה"כ: ฿15.63M (~$434K)</strong>
+      </div>
+      <div class="alert alert-info">
+        <strong>PPA השקעה נוספת (שנה 1):</strong><br>
+        3,750 kWp × ฿14,000 = <strong class="gold">฿52.5M</strong><br>
+        <em>ממומן מהכנסות EPC + הלוואה בנקאית</em>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Equipment Costs Breakdown -->
+<div class="slide slide-ocean" data-title="עלויות ציוד">
+  <span class="section-num">06</span>
+  <h2>📦 עלויות ציוד — <span class="gold">פירוט ל-kWp</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>עלות לנו (Cost) — ฿14,000/kWp</h3>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">פאנלים</div><div class="bar-wrap"><div class="bar-fill" style="width:35.7%;background:var(--gold)">฿5,000</div></div><div style="font-size:10px;min-width:30px">35.7%</div></div>
+        <div class="bar-row"><div class="bar-label">אינוורטרים</div><div class="bar-wrap"><div class="bar-fill" style="width:28.6%;background:#6496FF">฿4,000</div></div><div style="font-size:10px;min-width:30px">28.6%</div></div>
+        <div class="bar-row"><div class="bar-label">קונסטרוקציה</div><div class="bar-wrap"><div class="bar-fill" style="width:14.3%;background:#2ED89A">฿2,000</div></div><div style="font-size:10px;min-width:30px">14.3%</div></div>
+        <div class="bar-row"><div class="bar-label">כבלים + BOS</div><div class="bar-wrap"><div class="bar-fill" style="width:10.7%;background:var(--coral)">฿1,500</div></div><div style="font-size:10px;min-width:30px">10.7%</div></div>
+        <div class="bar-row"><div class="bar-label">עבודה (התקנה)</div><div class="bar-wrap"><div class="bar-fill" style="width:10.7%;background:rgba(255,255,255,.3)">฿1,500</div></div><div style="font-size:10px;min-width:30px">10.7%</div></div>
+      </div>
+      <div class="alert alert-info" style="margin-top:8px">
+        <strong>עלות שנתית ציוד:</strong><br>
+        6,250 kWp × ฿10,000 (ציוד בלבד) = <strong>฿62.5M</strong><br>
+        6,250 kWp × ฿4,000 (עבודה) = <strong>฿25M</strong>
+      </div>
+    </div>
+    <div>
+      <h3>מחיר ללקוח EPC — ฿35,000/kWp</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>רכיב</th><th>עלות</th><th>מחיר</th><th>מרווח</th></tr>
+          <tr><td>ציוד</td><td>฿10,000</td><td>฿18,000</td><td class="reef-text">80%</td></tr>
+          <tr><td>עבודה</td><td>฿4,000</td><td>฿7,000</td><td class="reef-text">75%</td></tr>
+          <tr><td>תכנון + ניהול</td><td>฿0</td><td>฿5,000</td><td class="reef-text">100%</td></tr>
+          <tr><td>רישוי + חיבור PEA</td><td>฿0</td><td>฿3,000</td><td class="reef-text">100%</td></tr>
+          <tr><td>אחריות + O&M שנה 1</td><td>฿0</td><td>฿2,000</td><td class="reef-text">100%</td></tr>
+          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ</strong></td><td><strong>฿14,000</strong></td><td><strong>฿35,000</strong></td><td><strong class="gold">60%</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-success">
+        <strong>Gross Margin EPC: 60%</strong><br>
+        מתוכם ~40% הוצאות תפעול (שכר, שיווק, overhead)<br>
+        <strong>Net Margin EPC: ~20%</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: Monthly P&L -->
+<div class="slide slide-dark" data-title="P&L חודשי">
+  <span class="section-num">07</span>
+  <h2>📈 P&L — <span class="gold">שנה 1 חודשי</span></h2>
+  <div class="table-wrap">
+    <table style="font-size:10px">
+      <tr><th></th><th>Q1 avg</th><th>Q2 avg</th><th>Q3 avg</th><th>Q4 avg</th><th>סה"כ שנה 1</th></tr>
+      <tr><td><strong>מערכות EPC</strong></td><td>2/חודש</td><td>4/חודש</td><td>5/חודש</td><td>5/חודש</td><td><strong>50</strong></td></tr>
+      <tr><td><strong>מערכות PPA</strong></td><td>3/חודש</td><td>6/חודש</td><td>7/חודש</td><td>8/חודש</td><td><strong>75</strong></td></tr>
+      <tr><td>kWp EPC</td><td>100</td><td>200</td><td>250</td><td>250</td><td>2,500</td></tr>
+      <tr><td>kWp PPA</td><td>150</td><td>300</td><td>350</td><td>400</td><td>3,750</td></tr>
+      <tr style="color:var(--gold);border-top:2px solid var(--gold)"><td><strong>הכנסות EPC</strong></td><td>3.5M</td><td>7M</td><td>8.75M</td><td>8.75M</td><td><strong>87.5M</strong></td></tr>
+      <tr style="color:#2ED89A"><td><strong>הכנסות PPA (מצטבר)</strong></td><td>0.35M</td><td>1.4M</td><td>3.2M</td><td>5.5M</td><td><strong>10.45M</strong></td></tr>
+      <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ הכנסות</strong></td><td><strong>3.85M</strong></td><td><strong>8.4M</strong></td><td><strong>11.95M</strong></td><td><strong>14.25M</strong></td><td><strong class="gold">97.95M</strong></td></tr>
+      <tr><td colspan="6" style="padding:2px"></td></tr>
+      <tr><td>עלות ציוד EPC</td><td>1M</td><td>2M</td><td>2.5M</td><td>2.5M</td><td>25M</td></tr>
+      <tr><td>עלות עבודה EPC</td><td>0.4M</td><td>0.8M</td><td>1M</td><td>1M</td><td>10M</td></tr>
+      <tr><td>השקעה PPA (ציוד+עבודה)</td><td>2.1M</td><td>4.2M</td><td>4.9M</td><td>5.6M</td><td>52.5M</td></tr>
+      <tr><td>O&M מערכות PPA</td><td>0.03M</td><td>0.12M</td><td>0.27M</td><td>0.45M</td><td>2.7M</td></tr>
+      <tr><td>שכר עובדים</td><td>1.46M</td><td>1.46M</td><td>1.46M</td><td>1.46M</td><td>17.5M</td></tr>
+      <tr><td>הוצאות תפעול</td><td>0.32M</td><td>0.32M</td><td>0.32M</td><td>0.32M</td><td>3.88M</td></tr>
+      <tr style="border-top:2px solid var(--coral)"><td><strong>סה"כ הוצאות</strong></td><td><strong>5.31M</strong></td><td><strong>8.9M</strong></td><td><strong>10.45M</strong></td><td><strong>11.33M</strong></td><td><strong class="coral-text">111.58M</strong></td></tr>
+      <tr><td colspan="6" style="padding:2px"></td></tr>
+      <tr style="background:rgba(46,216,154,.1);font-size:12px"><td><strong>רווח/הפסד</strong></td><td class="coral-text"><strong>-1.46M</strong></td><td class="coral-text"><strong>-0.5M</strong></td><td class="reef-text"><strong>+1.5M</strong></td><td class="reef-text"><strong>+2.92M</strong></td><td><strong class="coral-text">-13.63M*</strong></td></tr>
+    </table>
+  </div>
+  <div class="alert alert-info">
+    <strong>* הפסד שנה 1 = ฿13.63M</strong> — כמעט כולו השקעה ב-PPA (฿52.5M). בלי PPA: רווח ฿38.87M. ה-PPA הוא <strong>נכס</strong> שמחזיר ฿25M/שנה מהשנה שאחרי.<br>
+    <strong>Cash-adjusted profit (EPC only):</strong> 87.5M - 35M (ציוד+עבודה) - 21.4M (OpEx) = <strong class="reef-text">฿31.1M רווח</strong>
+  </div>
+</div>
+
+<!-- SLIDE 8: PPA Portfolio 5-Year -->
+<div class="slide slide-reef" data-title="PPA פורטפוליו">
+  <span class="section-num">08</span>
+  <h2>📈 PPA פורטפוליו — <span class="gold">5 שנים</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th></th><th>שנה 1</th><th>שנה 2</th><th>שנה 3</th><th>שנה 4</th><th>שנה 5</th></tr>
+      <tr><td><strong>PPA חדשות (kWp)</strong></td><td>3,750</td><td>5,000</td><td>6,500</td><td>8,000</td><td>10,000</td></tr>
+      <tr><td>PPA מצטבר (kWp)</td><td>3,750</td><td>8,750</td><td>15,250</td><td>23,250</td><td>33,250</td></tr>
+      <tr><td>ייצור שנתי (MWh)</td><td>6,159</td><td>14,372</td><td>25,048</td><td>38,194</td><td>54,641</td></tr>
+      <tr style="color:var(--gold)"><td><strong>הכנסה PPA שנתית</strong></td><td>฿27.7M</td><td>฿66M</td><td>฿117.7M</td><td>฿183.5M</td><td>฿268M</td></tr>
+      <tr><td>O&M שנתי</td><td>฿2.7M</td><td>฿6.3M</td><td>฿11M</td><td>฿16.7M</td><td>฿24M</td></tr>
+      <tr style="color:#2ED89A"><td><strong>נטו PPA שנתי</strong></td><td><strong>฿25M</strong></td><td><strong>฿59.7M</strong></td><td><strong>฿106.7M</strong></td><td><strong>฿166.8M</strong></td><td><strong>฿244M</strong></td></tr>
+      <tr><td>השקעה מצטברת</td><td>฿52.5M</td><td>฿122.5M</td><td>฿213.5M</td><td>฿325.5M</td><td>฿465.5M</td></tr>
+      <tr style="color:var(--gold)"><td><strong>MRR מ-PPA</strong></td><td><strong>฿2.3M</strong></td><td><strong>฿5.5M</strong></td><td><strong>฿9.8M</strong></td><td><strong>฿15.3M</strong></td><td><strong>฿22.3M</strong></td></tr>
+      <tr><td><strong>Asset Value (10yr DCF)</strong></td><td>฿187M</td><td>฿437M</td><td>฿762M</td><td>฿1.16B</td><td>฿1.66B</td></tr>
+    </table>
+  </div>
+  <div class="stat-grid" style="margin-top:12px">
+    <div><div class="big-num">33 MWp</div><div class="stat-label">פורטפוליו PPA שנה 5</div></div>
+    <div><div class="big-num">฿22.3M</div><div class="stat-label">MRR חודשי שנה 5</div></div>
+    <div><div class="big-num">฿268M</div><div class="stat-label">ARR שנה 5</div></div>
+    <div><div class="big-num">฿1.66B</div><div class="stat-label">שווי נכסים</div></div>
+  </div>
+  <div class="alert alert-success"><strong>שנה 5:</strong> MRR ฿22.3M = <strong>~$620K/חודש הכנסה חוזרת.</strong> שווי חברה (10x ARR): <strong>~฿2.68B = $74M</strong></div>
+</div>
+
+<!-- SLIDE 9: Full P&L 3 Years -->
+<div class="slide slide-dark" data-title="P&L 3 שנים">
+  <span class="section-num">09</span>
+  <h2>📊 P&L מלא — <span class="gold">3 שנים</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th></th><th>שנה 1</th><th>שנה 2</th><th>שנה 3</th></tr>
+      <tr><td colspan="4" style="background:rgba(232,168,32,.1);font-weight:700">הכנסות</td></tr>
+      <tr><td>EPC (installations)</td><td>฿87.5M</td><td>฿122.5M</td><td>฿157.5M</td></tr>
+      <tr><td>PPA (recurring)</td><td>฿10.45M</td><td>฿66M</td><td>฿117.7M</td></tr>
+      <tr><td>O&M contracts</td><td>฿2.5M</td><td>฿8.75M</td><td>฿18M</td></tr>
+      <tr style="border-top:2px solid var(--gold);color:var(--gold)"><td><strong>סה"כ הכנסות</strong></td><td><strong>฿100.45M</strong></td><td><strong>฿197.25M</strong></td><td><strong>฿293.2M</strong></td></tr>
+      <tr><td colspan="4" style="padding:4px"></td></tr>
+      <tr><td colspan="4" style="background:rgba(232,93,58,.1);font-weight:700">הוצאות ישירות</td></tr>
+      <tr><td>ציוד EPC</td><td>฿25M</td><td>฿35M</td><td>฿45M</td></tr>
+      <tr><td>עבודה EPC</td><td>฿10M</td><td>฿14M</td><td>฿18M</td></tr>
+      <tr><td>השקעה PPA (ציוד+עבודה)</td><td>฿52.5M</td><td>฿70M</td><td>฿91M</td></tr>
+      <tr><td>O&M (PPA fleet)</td><td>฿2.7M</td><td>฿6.3M</td><td>฿11M</td></tr>
+      <tr style="border-top:1px solid var(--coral)"><td><strong>סה"כ ישירות</strong></td><td><strong class="coral-text">฿90.2M</strong></td><td><strong class="coral-text">฿125.3M</strong></td><td><strong class="coral-text">฿165M</strong></td></tr>
+      <tr><td><strong>רווח גולמי</strong></td><td class="reef-text"><strong>฿10.25M</strong></td><td class="reef-text"><strong>฿71.95M</strong></td><td class="reef-text"><strong>฿128.2M</strong></td></tr>
+      <tr><td><em>Gross Margin</em></td><td><em>10.2%</em></td><td><em>36.5%</em></td><td><em>43.7%</em></td></tr>
+      <tr><td colspan="4" style="padding:4px"></td></tr>
+      <tr><td colspan="4" style="background:rgba(255,255,255,.05);font-weight:700">הוצאות תפעול (OpEx)</td></tr>
+      <tr><td>שכר + עמלות</td><td>฿17.5M</td><td>฿24M</td><td>฿32M</td></tr>
+      <tr><td>תפעול + שיווק</td><td>฿3.88M</td><td>฿5M</td><td>฿6.5M</td></tr>
+      <tr style="border-top:1px solid rgba(255,255,255,.2)"><td><strong>סה"כ OpEx</strong></td><td><strong>฿21.38M</strong></td><td><strong>฿29M</strong></td><td><strong>฿38.5M</strong></td></tr>
+      <tr><td colspan="4" style="padding:4px"></td></tr>
+      <tr style="background:rgba(46,216,154,.15);font-size:13px"><td><strong>EBITDA</strong></td><td><strong class="coral-text">-฿11.13M</strong></td><td><strong class="reef-text">฿42.95M</strong></td><td><strong class="reef-text">฿89.7M</strong></td></tr>
+      <tr><td><em>EBITDA Margin</em></td><td class="coral-text"><em>-11%</em></td><td class="reef-text"><em>22%</em></td><td class="reef-text"><em>31%</em></td></tr>
+      <tr><td>מס (20% — BOI exempt yr1-3)</td><td>฿0</td><td>฿0</td><td>฿0</td></tr>
+      <tr style="background:rgba(232,168,32,.15);font-size:14px"><td><strong>רווח נקי</strong></td><td><strong class="coral-text">-฿11.13M</strong></td><td><strong class="reef-text">฿42.95M</strong></td><td><strong class="reef-text">฿89.7M</strong></td></tr>
+    </table>
+  </div>
+  <div class="alert alert-info"><strong>הפסד שנה 1:</strong> השקעת PPA ฿52.5M — זה לא הפסד אלא <strong>בניית נכס</strong>. EPC לבד מרוויח ฿31M. ה-PPA מחזיר ฿25M/שנה מהשנה שאחרי.</div>
+</div>
+
+<!-- SLIDE 10: Cash Flow -->
+<div class="slide slide-gold" data-title="תזרים מזומנים">
+  <span class="section-num">10</span>
+  <h2>💧 תזרים מזומנים — <span class="gold">3 שנים</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th></th><th>שנה 1</th><th>שנה 2</th><th>שנה 3</th></tr>
+      <tr><td colspan="4" style="background:rgba(46,216,154,.1);font-weight:700">כניסות</td></tr>
+      <tr><td>הון עצמי / משקיע</td><td>฿15.63M</td><td>—</td><td>—</td></tr>
+      <tr><td>הלוואה בנקאית (PPA)</td><td>฿40M</td><td>฿50M</td><td>฿60M</td></tr>
+      <tr><td>הכנסות EPC</td><td>฿87.5M</td><td>฿122.5M</td><td>฿157.5M</td></tr>
+      <tr><td>הכנסות PPA</td><td>฿10.45M</td><td>฿66M</td><td>฿117.7M</td></tr>
+      <tr><td>הכנסות O&M</td><td>฿2.5M</td><td>฿8.75M</td><td>฿18M</td></tr>
+      <tr style="color:var(--gold)"><td><strong>סה"כ כניסות</strong></td><td><strong>฿156.08M</strong></td><td><strong>฿247.25M</strong></td><td><strong>฿353.2M</strong></td></tr>
+      <tr><td colspan="4" style="padding:4px"></td></tr>
+      <tr><td colspan="4" style="background:rgba(232,93,58,.1);font-weight:700">יציאות</td></tr>
+      <tr><td>CapEx + הון חוזר</td><td>฿15.63M</td><td>฿3M</td><td>฿4M</td></tr>
+      <tr><td>ציוד + עבודה EPC</td><td>฿35M</td><td>฿49M</td><td>฿63M</td></tr>
+      <tr><td>השקעת PPA</td><td>฿52.5M</td><td>฿70M</td><td>฿91M</td></tr>
+      <tr><td>OpEx (שכר + תפעול)</td><td>฿21.38M</td><td>฿29M</td><td>฿38.5M</td></tr>
+      <tr><td>O&M (PPA fleet)</td><td>฿2.7M</td><td>฿6.3M</td><td>฿11M</td></tr>
+      <tr><td>החזר הלוואה + ריבית</td><td>฿5M</td><td>฿15M</td><td>฿25M</td></tr>
+      <tr style="color:var(--coral)"><td><strong>סה"כ יציאות</strong></td><td><strong>฿132.21M</strong></td><td><strong>฿172.3M</strong></td><td><strong>฿232.5M</strong></td></tr>
+      <tr><td colspan="4" style="padding:4px"></td></tr>
+      <tr style="background:rgba(232,168,32,.15);font-size:13px"><td><strong>Cash Flow נטו</strong></td><td><strong class="reef-text">+฿23.87M</strong></td><td><strong class="reef-text">+฿74.95M</strong></td><td><strong class="reef-text">+฿120.7M</strong></td></tr>
+      <tr><td><strong>מזומן מצטבר</strong></td><td>฿23.87M</td><td>฿98.82M</td><td>฿219.52M</td></tr>
+    </table>
+  </div>
+  <div class="stat-grid" style="margin-top:12px">
+    <div><div class="big-num">฿219M</div><div class="stat-label">מזומן מצטבר שנה 3</div></div>
+    <div><div class="big-num">~$6.1M</div><div class="stat-label">בדולרים</div></div>
+    <div><div class="big-num">฿150M</div><div class="stat-label">הלוואות (שנה 3)</div></div>
+    <div><div class="big-num">1.46x</div><div class="stat-label">Cash/Debt Ratio</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Installation Schedule -->
+<div class="slide slide-dark" data-title="לו"ז הקמה">
+  <span class="section-num">11</span>
+  <h2>📅 לו"ז הקמת החברה — <span class="gold">6 חודשים</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>חודש</th><th>אבן דרך</th><th>פעולות</th><th>עלות</th></tr>
+      <tr style="background:rgba(232,168,32,.08)"><td><strong>1</strong></td><td>רישום + משפטי</td><td>פתיחת Thai Co., Ltd., BOI application, Work Permit, חשבון בנק, רואה חשבון</td><td>฿140K</td></tr>
+      <tr><td><strong>2</strong></td><td>תשתית פיזית</td><td>חתימת שכירות משרד+מחסן, שיפוץ, רכישת רכבים, הזמנת ציוד+כלים</td><td>฿1.35M</td></tr>
+      <tr style="background:rgba(232,168,32,.08)"><td><strong>3</strong></td><td>גיוס + הדרכה</td><td>גיוס 20 עובדים ראשונים (הנהלה + מתקנים + מכירות), הדרכת בטיחות, PVsyst training</td><td>฿200K</td></tr>
+      <tr><td><strong>4</strong></td><td>מלאי + שיווק</td><td>הזמנת מלאי ראשוני (container), השקת אתר+CRM, פתיחת קמפיינים, networking events</td><td>฿8.5M</td></tr>
+      <tr style="background:rgba(232,168,32,.08)"><td><strong>5</strong></td><td>פיילוט</td><td>3 פרויקטים ראשונים (1 EPC + 2 PPA), lighthouse accounts, צילום case studies</td><td>฿2M</td></tr>
+      <tr><td><strong>6</strong></td><td>Scale-up</td><td>גיוס יתר הצוות (32 סה"כ), הגדלה ל-10 פרויקטים/חודש, PEA relationships, bank partnerships</td><td>฿3.4M</td></tr>
+      <tr style="background:rgba(232,168,32,.15)"><td colspan="2"><strong>סה"כ תקופת הקמה</strong></td><td></td><td><strong class="gold">฿15.6M</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 12: KPIs -->
+<div class="slide slide-ocean" data-title="KPIs">
+  <span class="section-num">12</span>
+  <h2>🎯 KPIs — <span class="gold">מעקב ביצועים</span></h2>
+  <div class="three-col">
+    <div class="card" style="border-color:var(--gold)">
+      <h3 class="gold">מכירות</h3>
+      <div style="font-size:12px;line-height:2">
+        <div>לידים חדשים/חודש: <strong>80+</strong></div>
+        <div>סקרי גג/חודש: <strong>30+</strong></div>
+        <div>הצעות מחיר/חודש: <strong>20+</strong></div>
+        <div>Close rate: <strong>50%+</strong></div>
+        <div>מערכות/חודש: <strong>10+</strong></div>
+        <div>CAC: <strong>&lt;฿30K</strong></div>
+        <div>Avg deal size: <strong>฿1.75M</strong></div>
+      </div>
+    </div>
+    <div class="card" style="border-color:#2ED89A">
+      <h3 class="reef-text">התקנות</h3>
+      <div style="font-size:12px;line-height:2">
+        <div>kWp מותקן/חודש: <strong>520+</strong></div>
+        <div>זמן התקנה/מערכת: <strong>5-7 ימים</strong></div>
+        <div>Safety incidents: <strong>0</strong></div>
+        <div>פרויקטים מקבילים: <strong>3-4</strong></div>
+        <div>Quality pass rate: <strong>98%+</strong></div>
+        <div>PEA approval: <strong>&lt;30 ימים</strong></div>
+        <div>Utilization: <strong>85%+</strong></div>
+      </div>
+    </div>
+    <div class="card" style="border-color:#6496FF">
+      <h3 class="blue-text">פיננסי</h3>
+      <div style="font-size:12px;line-height:2">
+        <div>Gross Margin EPC: <strong>60%</strong></div>
+        <div>Net Margin: <strong>20%+</strong></div>
+        <div>MRR growth: <strong>15%/חודש</strong></div>
+        <div>Cash collection: <strong>&lt;45 ימים</strong></div>
+        <div>DSCR (PPA loans): <strong>&gt;1.3x</strong></div>
+        <div>Working capital: <strong>3 חודשים+</strong></div>
+        <div>Customer LTV: <strong>฿5M+</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 13: Risks -->
+<div class="slide slide-dark" data-title="סיכונים">
+  <span class="section-num">13</span>
+  <h2>⚠️ סיכונים + <span class="gold">מיטיגציה</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>סיכון</th><th>חומרה</th><th>מיטיגציה</th></tr>
+      <tr><td>עיכוב BOI / רישום</td><td style="color:var(--gold)">בינוני</td><td>התחלת תהליך מיידית, עו"ד מנוסה, backup plan בלי BOI</td></tr>
+      <tr><td>מחסור עובדים מקצועיים באי</td><td style="color:var(--coral)">גבוה</td><td>גיוס מ-Surat Thani + הדרכה פנימית, שכר תחרותי + דיור</td></tr>
+      <tr><td>עונת גשמים (נובמבר-ינואר)</td><td style="color:var(--gold)">בינוני</td><td>70% capacity בעונת גשמים, פוקוס על תכנון + מכירות</td></tr>
+      <tr><td>שינוי רגולציה PEA</td><td style="color:var(--gold)">בינוני</td><td>קשרים עם PEA מקומי, מעקב רגולטורי שוטף</td></tr>
+      <tr><td>תחרות חדשה</td><td style="color:#2ED89A">נמוך</td><td>First-mover advantage, PPA lock-in, יחסי לקוחות</td></tr>
+      <tr><td>ברירת מחדל PPA</td><td style="color:var(--coral)">גבוה</td><td>ביטחונות (bank guarantee), ביטוח, פיזור לקוחות</td></tr>
+      <tr><td>סופות טרופיות</td><td style="color:var(--gold)">בינוני</td><td>ביטוח מלא, עיגון zone 2, wind engineering</td></tr>
+      <tr><td>מימון PPA</td><td style="color:var(--gold)">בינוני</td><td>Bootstrap עם EPC profits, בנק אחרי 6 חודשי track record</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 14: Summary -->
+<div class="slide slide-cover" data-title="סיכום">
+  <span class="section-num">14</span>
+  <h2>סיכום — <span class="gold">המספרים</span></h2>
+  <div class="stat-grid" style="max-width:900px">
+    <div><div class="big-num">50,000 m²</div><div class="stat-label">שטח גגות שנתי</div></div>
+    <div><div class="big-num">6.25 MWp</div><div class="stat-label">הספק שנתי</div></div>
+    <div><div class="big-num">125</div><div class="stat-label">מערכות/שנה</div></div>
+    <div><div class="big-num">32</div><div class="stat-label">עובדים</div></div>
+  </div>
+  <div class="stat-grid" style="max-width:900px;margin-top:20px">
+    <div><div class="big-num" style="color:#2ED89A">฿100M+</div><div class="stat-label">הכנסות שנה 1</div></div>
+    <div><div class="big-num" style="color:#2ED89A">฿25M</div><div class="stat-label">PPA הכנסה חוזרת/שנה</div></div>
+    <div><div class="big-num" style="color:#6496FF">฿15.6M</div><div class="stat-label">השקעת הקמה</div></div>
+    <div><div class="big-num" style="color:var(--coral)">2.1 שנים</div><div class="stat-label">PPA Payback</div></div>
+  </div>
+  <div class="alert alert-success" style="max-width:700px;margin:24px auto;text-align:center;font-size:15px">
+    <strong>שנה 3:</strong> הכנסות ฿293M | EBITDA ฿89.7M | PPA Asset Value ฿762M<br>
+    <strong>שנה 5:</strong> MRR ฿22.3M = $620K/חודש | Asset Value ฿1.66B
+  </div>
+</div>
+
+</div><!-- end slides -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">→ הקודם</button>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">הבא ←</button>
+</div>
+<script>
+const slides=document.querySelectorAll('.slide'),total=slides.length;let current=0;
+function show(n){slides.forEach((s,i)=>{s.classList.remove('active','exit');if(i===n)s.classList.add('active');else if(i<n)s.classList.add('exit')});document.getElementById('counter').textContent=`${n+1} / ${total}`;document.getElementById('progress').style.width=`${((n+1)/total)*100}%`;document.getElementById('prevBtn').disabled=n===0;document.getElementById('nextBtn').disabled=n===total-1;document.querySelectorAll('.toc-item').forEach((t,i)=>{t.classList.toggle('active',i===n)})}
+function navigate(d){current=Math.max(0,Math.min(total-1,current+d));show(current)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')navigate(1);if(e.key==='ArrowRight')navigate(-1);if(e.key==='Escape')toggleTOC()});
+let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50)navigate(d>0?1:-1)});
+function toggleTOC(){document.getElementById('tocPanel').classList.toggle('open')}
+document.addEventListener('click',e=>{const p=document.getElementById('tocPanel');if(p.classList.contains('open')&&!p.contains(e.target)&&!e.target.classList.contains('toc-btn'))p.classList.remove('open')});
+(function(){const l=document.getElementById('tocList');slides.forEach((s,i)=>{const d=document.createElement('div');d.className='toc-item';d.innerHTML=`<span class="toc-num">${String(i+1).padStart(2,'0')}</span>${s.dataset.title}`;d.onclick=()=>{current=i;show(i);toggleTOC()};l.appendChild(d)})})();
+show(0);
+</script>
+</body>
+</html>

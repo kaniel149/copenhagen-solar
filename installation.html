@@ -186,6 +186,84 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
   <span class="section-num">04</span>
   <h2>🏗️ שלב 3: קונסטרוקציה — <span class="gold">שלד הרכבה</span></h2>
   <p class="subtitle">ימים 1-2 של עבודה בשטח</p>
+
+  <!-- SVG: 3 Roof Types Side by Side -->
+  <div style="display:flex;gap:16px;justify-content:center;margin:16px 0;flex-wrap:wrap">
+    <!-- Tile Roof -->
+    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(232,168,32,.2)">
+      <text x="130" y="16" text-anchor="middle" fill="#E8A820" font-size="11" font-weight="700" font-family="Heebo">גג רעפים — Tile Hook</text>
+      <!-- Roof slope -->
+      <polygon points="20,140 130,50 240,140" fill="none" stroke="#555" stroke-width="2"/>
+      <!-- Tiles -->
+      <path d="M40,130 Q55,122 70,130 Q85,122 100,130 Q115,122 130,130 Q145,122 160,130 Q175,122 190,130 Q205,122 220,130" fill="none" stroke="#8B6914" stroke-width="2.5"/>
+      <path d="M50,120 Q65,112 80,120 Q95,112 110,120 Q125,112 140,120 Q155,112 170,120 Q185,112 200,120" fill="none" stroke="#8B6914" stroke-width="2.5"/>
+      <path d="M60,110 Q75,102 90,110 Q105,102 120,110 Q135,102 150,110 Q165,102 180,110" fill="none" stroke="#8B6914" stroke-width="2.5"/>
+      <!-- Hook under tile -->
+      <rect x="95" y="105" width="4" height="20" fill="#E8A820" rx="1"/>
+      <rect x="155" y="95" width="4" height="20" fill="#E8A820" rx="1"/>
+      <!-- Rail -->
+      <rect x="80" y="90" width="95" height="5" fill="#AAA" rx="2"/>
+      <!-- Panel -->
+      <rect x="82" y="70" width="40" height="18" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
+      <rect x="128" y="63" width="40" height="18" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
+      <!-- Clamps -->
+      <rect x="80" y="87" width="6" height="6" fill="#E8A820" rx="1"/>
+      <rect x="120" y="87" width="6" height="6" fill="#E8A820" rx="1"/>
+      <rect x="166" y="87" width="6" height="6" fill="#E8A820" rx="1"/>
+      <!-- Labels -->
+      <text x="97" y="165" text-anchor="middle" fill="#E8A820" font-size="8" font-family="Space Grotesk">Hook</text>
+      <line x1="97" y1="157" x2="97" y2="125" stroke="#E8A820" stroke-width="0.5" stroke-dasharray="2"/>
+      <text x="128" y="165" text-anchor="middle" fill="#AAA" font-size="8" font-family="Space Grotesk">Rail</text>
+      <text x="165" y="165" text-anchor="middle" fill="#6496FF" font-size="8" font-family="Space Grotesk">Clamp</text>
+    </svg>
+    <!-- Metal Roof -->
+    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(46,216,154,.2)">
+      <text x="130" y="16" text-anchor="middle" fill="#2ED89A" font-size="11" font-weight="700" font-family="Heebo">גג מתכת — Standing Seam</text>
+      <!-- Metal roof -->
+      <rect x="20" y="100" width="220" height="40" fill="#3a3a3a" rx="2"/>
+      <!-- Seams -->
+      <rect x="60" y="95" width="4" height="50" fill="#555" rx="1"/><rect x="120" y="95" width="4" height="50" fill="#555" rx="1"/><rect x="180" y="95" width="4" height="50" fill="#555" rx="1"/>
+      <!-- Seam clamps -->
+      <rect x="56" y="88" width="12" height="8" fill="#2ED89A" rx="2"/><rect x="116" y="88" width="12" height="8" fill="#2ED89A" rx="2"/><rect x="176" y="88" width="12" height="8" fill="#2ED89A" rx="2"/>
+      <!-- Rails -->
+      <rect x="45" y="82" width="170" height="5" fill="#AAA" rx="2"/>
+      <!-- Panels -->
+      <rect x="48" y="55" width="50" height="25" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
+      <rect x="104" y="55" width="50" height="25" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
+      <rect x="160" y="55" width="50" height="25" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
+      <!-- Panel grid lines -->
+      <line x1="73" y1="55" x2="73" y2="80" stroke="#2a6ab0" stroke-width="0.3"/>
+      <line x1="129" y1="55" x2="129" y2="80" stroke="#2a6ab0" stroke-width="0.3"/>
+      <line x1="185" y1="55" x2="185" y2="80" stroke="#2a6ab0" stroke-width="0.3"/>
+      <!-- Labels -->
+      <text x="62" y="165" text-anchor="middle" fill="#2ED89A" font-size="8" font-family="Space Grotesk">Seam Clamp</text>
+      <text x="185" y="165" text-anchor="middle" fill="#AAA" font-size="8" font-family="Space Grotesk">No Drilling!</text>
+    </svg>
+    <!-- Flat Roof Tilt -->
+    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(100,150,255,.2)">
+      <text x="130" y="16" text-anchor="middle" fill="#6496FF" font-size="11" font-weight="700" font-family="Heebo">גג שטוח — Tilt Frame</text>
+      <!-- Flat roof -->
+      <rect x="20" y="130" width="220" height="15" fill="#3a3a3a" rx="2"/>
+      <!-- Tilt frames (triangles) -->
+      <polygon points="50,130 50,95 90,130" fill="none" stroke="#AAA" stroke-width="2"/>
+      <polygon points="130,130 130,95 170,130" fill="none" stroke="#AAA" stroke-width="2"/>
+      <!-- Cross brace -->
+      <line x1="70" y1="112" x2="50" y2="112" stroke="#AAA" stroke-width="1.5"/>
+      <line x1="150" y1="112" x2="130" y2="112" stroke="#AAA" stroke-width="1.5"/>
+      <!-- Rails on angle -->
+      <line x1="45" y1="93" x2="200" y2="93" stroke="#AAA" stroke-width="3"/>
+      <!-- Panels tilted -->
+      <rect x="48" y="62" width="55" height="28" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1" transform="rotate(-10 75 76)"/>
+      <rect x="118" y="62" width="55" height="28" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1" transform="rotate(-10 145 76)"/>
+      <!-- Angle annotation -->
+      <path d="M80,130 L80,120" stroke="#E8A820" stroke-width="0.5"/>
+      <text x="92" y="118" fill="#E8A820" font-size="9" font-family="Space Grotesk">10-15°</text>
+      <!-- Labels -->
+      <text x="70" y="165" text-anchor="middle" fill="#6496FF" font-size="8" font-family="Space Grotesk">Tilt Frame</text>
+      <text x="180" y="165" text-anchor="middle" fill="#AAA" font-size="8" font-family="Space Grotesk">Ballast / Anchor</text>
+    </svg>
+  </div>
+
   <div class="two-col">
     <div>
       <h3>לפי סוג גג</h3>
@@ -230,6 +308,73 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
   <span class="section-num">05</span>
   <h2>⚡ שלב 4: חשמל DC</h2>
   <p class="subtitle">שרשור פאנלים, כבלים, מפסקים</p>
+
+  <!-- SVG: MC4 Connector + String Wiring -->
+  <div style="display:flex;gap:16px;justify-content:center;margin:12px 0;flex-wrap:wrap">
+    <!-- MC4 Connector Diagram -->
+    <svg viewBox="0 0 300 140" style="width:290px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(232,168,32,.2);padding:4px">
+      <text x="150" y="16" text-anchor="middle" fill="#E8A820" font-size="11" font-weight="700" font-family="Heebo">חיבור MC4 — Male ↔ Female</text>
+      <!-- Male connector -->
+      <rect x="20" y="50" width="80" height="30" fill="#222" stroke="#555" stroke-width="1.5" rx="4"/>
+      <rect x="100" y="57" width="20" height="16" fill="#333" stroke="#555" stroke-width="1" rx="2"/>
+      <circle cx="115" cy="65" r="4" fill="#E8A820"/>
+      <text x="60" y="42" text-anchor="middle" fill="#E8A820" font-size="9" font-family="Space Grotesk">Male (+)</text>
+      <!-- Cable from male -->
+      <path d="M20,65 L5,65 Q0,65 0,70 L0,100" stroke="#E85D3A" stroke-width="3" fill="none"/>
+      <text x="8" y="115" fill="#E85D3A" font-size="8" font-family="Space Grotesk">DC+</text>
+      <!-- Female connector -->
+      <rect x="200" y="50" width="80" height="30" fill="#222" stroke="#555" stroke-width="1.5" rx="4"/>
+      <rect x="180" y="57" width="20" height="16" fill="#333" stroke="#555" stroke-width="1" rx="2"/>
+      <circle cx="190" cy="65" r="6" fill="none" stroke="#6496FF" stroke-width="2"/>
+      <text x="240" y="42" text-anchor="middle" fill="#6496FF" font-size="9" font-family="Space Grotesk">Female (-)</text>
+      <!-- Cable from female -->
+      <path d="M280,65 L295,65 Q300,65 300,70 L300,100" stroke="#6496FF" stroke-width="3" fill="none"/>
+      <text x="288" y="115" fill="#6496FF" font-size="8" font-family="Space Grotesk">DC-</text>
+      <!-- Click arrow -->
+      <text x="150" y="70" text-anchor="middle" fill="#2ED89A" font-size="16" font-family="Space Grotesk">⟷</text>
+      <text x="150" y="95" text-anchor="middle" fill="#2ED89A" font-size="9" font-family="Space Grotesk">Click!</text>
+      <!-- Specs -->
+      <text x="150" y="130" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="8" font-family="Space Grotesk">IP67 | 1000V DC | 30A | Stäubli/Amphenol</text>
+    </svg>
+    <!-- String Wiring Diagram -->
+    <svg viewBox="0 0 380 140" style="width:370px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(46,216,154,.2);padding:4px">
+      <text x="190" y="16" text-anchor="middle" fill="#2ED89A" font-size="11" font-weight="700" font-family="Heebo">שרשור סטרינג — 12 פאנלים</text>
+      <!-- Panels in series -->
+      <g transform="translate(10,30)">
+        <rect x="0" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="14" y="25" text-anchor="middle" fill="#fff" font-size="7">P1</text>
+        <rect x="32" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="46" y="25" text-anchor="middle" fill="#fff" font-size="7">P2</text>
+        <rect x="64" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="78" y="25" text-anchor="middle" fill="#fff" font-size="7">P3</text>
+        <rect x="96" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="110" y="25" text-anchor="middle" fill="#fff" font-size="7">P4</text>
+        <text x="135" y="25" fill="#E8A820" font-size="14">...</text>
+        <rect x="150" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="164" y="25" text-anchor="middle" fill="#fff" font-size="7">P11</text>
+        <rect x="182" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="196" y="25" text-anchor="middle" fill="#fff" font-size="7">P12</text>
+        <!-- MC4 connections between panels -->
+        <line x1="28" y1="22" x2="32" y2="22" stroke="#E8A820" stroke-width="2"/>
+        <line x1="60" y1="22" x2="64" y2="22" stroke="#E8A820" stroke-width="2"/>
+        <line x1="92" y1="22" x2="96" y2="22" stroke="#E8A820" stroke-width="2"/>
+        <line x1="178" y1="22" x2="182" y2="22" stroke="#E8A820" stroke-width="2"/>
+      </g>
+      <!-- DC cables to isolator -->
+      <line x1="10" y1="75" x2="10" y2="100" stroke="#E85D3A" stroke-width="2.5"/>
+      <line x1="220" y1="75" x2="220" y2="100" stroke="#6496FF" stroke-width="2.5"/>
+      <text x="10" y="112" text-anchor="middle" fill="#E85D3A" font-size="7" font-family="Space Grotesk">DC+</text>
+      <text x="220" y="112" text-anchor="middle" fill="#6496FF" font-size="7" font-family="Space Grotesk">DC-</text>
+      <!-- DC Isolator -->
+      <rect x="250" y="55" width="50" height="30" fill="#333" stroke="#E8A820" stroke-width="1.5" rx="4"/>
+      <text x="275" y="74" text-anchor="middle" fill="#E8A820" font-size="8" font-weight="700">DC ISO</text>
+      <!-- Cable from panels to isolator -->
+      <path d="M10,100 L10,110 L245,110 L245,70 L250,70" stroke="#E85D3A" stroke-width="1.5" fill="none"/>
+      <path d="M220,100 L220,120 L240,120 L240,70 L250,70" stroke="#6496FF" stroke-width="1.5" fill="none" stroke-dasharray="3"/>
+      <!-- To inverter -->
+      <line x1="300" y1="70" x2="340" y2="70" stroke="#E8A820" stroke-width="2"/>
+      <rect x="340" y="45" width="30" height="50" fill="#1A7A5A" stroke="#2ED89A" stroke-width="1.5" rx="4"/>
+      <text x="355" y="68" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">INV</text>
+      <text x="355" y="78" text-anchor="middle" fill="#fff" font-size="6">MPPT</text>
+      <!-- Voltage annotation -->
+      <text x="115" y="130" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="8" font-family="Space Grotesk">12 × 51.7V = 620V Voc | 12 × 43.4V = 521V Vmp</text>
+    </svg>
+  </div>
+
   <div class="two-col">
     <div>
       <h3>רצף עבודה</h3>
@@ -271,6 +416,74 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
   <span class="section-num">06</span>
   <h2>🔌 שלב 5: חשמל AC — <span class="gold">חיבור לרשת</span></h2>
   <p class="subtitle">מהאינוורטר ועד הלוח הראשי</p>
+
+  <!-- SVG: Single Line Diagram -->
+  <svg viewBox="0 0 800 120" style="width:100%;max-width:780px;margin:8px auto;display:block;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(232,168,32,.2);padding:8px">
+    <text x="400" y="14" text-anchor="middle" fill="#E8A820" font-size="10" font-weight="700" font-family="Heebo">SLD — Single Line Diagram (תרשים חד-קווי)</text>
+    <!-- Panels -->
+    <rect x="10" y="35" width="60" height="50" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1.5" rx="4"/>
+    <text x="40" y="55" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">PV Array</text>
+    <text x="40" y="68" text-anchor="middle" fill="#aaa" font-size="7">30kWp</text>
+    <!-- DC Cable -->
+    <line x1="70" y1="60" x2="110" y2="60" stroke="#E85D3A" stroke-width="2"/>
+    <text x="90" y="50" text-anchor="middle" fill="#E85D3A" font-size="7">DC</text>
+    <!-- DC SPD -->
+    <rect x="110" y="45" width="40" height="30" fill="#333" stroke="#E8A820" stroke-width="1" rx="3"/>
+    <text x="130" y="60" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="600">SPD</text>
+    <text x="130" y="70" text-anchor="middle" fill="#aaa" font-size="6">DC T.II</text>
+    <!-- DC Isolator -->
+    <line x1="150" y1="60" x2="175" y2="60" stroke="#E85D3A" stroke-width="2"/>
+    <rect x="175" y="45" width="40" height="30" fill="#333" stroke="#E8A820" stroke-width="1" rx="3"/>
+    <text x="195" y="60" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="600">DC</text>
+    <text x="195" y="70" text-anchor="middle" fill="#aaa" font-size="6">ISO</text>
+    <!-- Inverter -->
+    <line x1="215" y1="60" x2="250" y2="60" stroke="#E85D3A" stroke-width="2"/>
+    <rect x="250" y="30" width="65" height="60" fill="#1A7A5A" stroke="#2ED89A" stroke-width="2" rx="6"/>
+    <text x="282" y="55" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">Huawei</text>
+    <text x="282" y="68" text-anchor="middle" fill="#ddd" font-size="7">SUN2000</text>
+    <text x="282" y="80" text-anchor="middle" fill="#2ED89A" font-size="7">DC→AC</text>
+    <!-- AC Cable -->
+    <line x1="315" y1="60" x2="355" y2="60" stroke="#6496FF" stroke-width="2"/>
+    <text x="335" y="50" text-anchor="middle" fill="#6496FF" font-size="7">AC</text>
+    <!-- AC Isolator -->
+    <rect x="355" y="45" width="40" height="30" fill="#333" stroke="#6496FF" stroke-width="1" rx="3"/>
+    <text x="375" y="60" text-anchor="middle" fill="#6496FF" font-size="7" font-weight="600">AC</text>
+    <text x="375" y="70" text-anchor="middle" fill="#aaa" font-size="6">ISO</text>
+    <!-- AC SPD -->
+    <line x1="395" y1="60" x2="420" y2="60" stroke="#6496FF" stroke-width="2"/>
+    <rect x="420" y="45" width="40" height="30" fill="#333" stroke="#E8A820" stroke-width="1" rx="3"/>
+    <text x="440" y="60" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="600">SPD</text>
+    <text x="440" y="70" text-anchor="middle" fill="#aaa" font-size="6">AC T.I+II</text>
+    <!-- Solar Breaker -->
+    <line x1="460" y1="60" x2="490" y2="60" stroke="#6496FF" stroke-width="2"/>
+    <rect x="490" y="45" width="40" height="30" fill="#333" stroke="#fff" stroke-width="1" rx="3"/>
+    <text x="510" y="58" text-anchor="middle" fill="#fff" font-size="7" font-weight="600">MCB</text>
+    <text x="510" y="70" text-anchor="middle" fill="#aaa" font-size="6">Solar</text>
+    <!-- Main Panel -->
+    <line x1="530" y1="60" x2="565" y2="60" stroke="#fff" stroke-width="2"/>
+    <rect x="565" y="28" width="55" height="65" fill="#444" stroke="#E8A820" stroke-width="2" rx="4"/>
+    <text x="592" y="50" text-anchor="middle" fill="#E8A820" font-size="8" font-weight="700">MDB</text>
+    <text x="592" y="62" text-anchor="middle" fill="#aaa" font-size="6">Main</text>
+    <text x="592" y="72" text-anchor="middle" fill="#aaa" font-size="6">Panel</text>
+    <text x="592" y="84" text-anchor="middle" fill="#aaa" font-size="6">3-Phase</text>
+    <!-- Meter -->
+    <line x1="620" y1="60" x2="655" y2="60" stroke="#fff" stroke-width="2"/>
+    <circle cx="672" cy="60" r="17" fill="none" stroke="#E8A820" stroke-width="2"/>
+    <text x="672" y="58" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="700">kWh</text>
+    <text x="672" y="68" text-anchor="middle" fill="#aaa" font-size="6">Bi-Dir</text>
+    <!-- Grid -->
+    <line x1="689" y1="60" x2="720" y2="60" stroke="#fff" stroke-width="2"/>
+    <rect x="720" y="40" width="55" height="40" fill="#0A3D5C" stroke="#E8A820" stroke-width="2" rx="4"/>
+    <text x="747" y="58" text-anchor="middle" fill="#E8A820" font-size="9" font-weight="700">PEA</text>
+    <text x="747" y="70" text-anchor="middle" fill="#aaa" font-size="7">Grid</text>
+    <!-- Earth -->
+    <line x1="282" y1="90" x2="282" y2="108" stroke="#2ED89A" stroke-width="1.5"/>
+    <line x1="272" y1="108" x2="292" y2="108" stroke="#2ED89A" stroke-width="2"/>
+    <line x1="275" y1="112" x2="289" y2="112" stroke="#2ED89A" stroke-width="1.5"/>
+    <line x1="278" y1="116" x2="286" y2="116" stroke="#2ED89A" stroke-width="1"/>
+    <text x="282" y="98" text-anchor="middle" fill="#2ED89A" font-size="6">PE</text>
+  </svg>
+
   <div class="two-col">
     <div>
       <h3>רצף עבודה</h3>

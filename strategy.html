@@ -154,14 +154,19 @@
             .vs-divider { padding-top: 0; justify-content: center; }
             .nav-dots { display: none; }
         }
-    </style>
+    
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+</style>
 </head>
 <body>
 
 <div class="nav-dots" id="navDots"></div>
 
 <!-- SLIDE 0: COVER -->
-<div class="slide cover" data-title="Cover">
+<div class="slide cover" data-title="Cover" style="background:linear-gradient(rgba(10,10,10,.5),rgba(10,61,92,.65)),url(visuals/strategy-01-aerial.png) center/cover">
     <div class="container">
         <span class="badge badge-gold" style="margin-bottom:1.5rem;">CONFIDENTIAL — KANIEL TORD LLC</span>
         <h1>Ko Phangan <span class="accent">Solar</span></h1>
@@ -178,6 +183,7 @@
 <!-- SLIDE 1: THE OPPORTUNITY -->
 <div class="slide" data-title="ההזדמנות">
     <div class="slide-num">01 — THE OPPORTUNITY</div>
+<img src="visuals/strategy-03-resort.png" class="slide-img" alt="Thai resort with solar">
     <div class="container">
         <h2 class="he">ההזדמנות</h2>
         <div class="grid-4" style="margin-bottom:3rem;">
@@ -221,6 +227,7 @@
 <!-- SLIDE 2: MARKET SIZE -->
 <div class="slide" data-title="גודל שוק">
     <div class="slide-num">02 — MARKET SIZE</div>
+<img src="visuals/strategy-02-map.png" class="slide-img" alt="Koh Phangan map">
     <div class="container">
         <h2 class="he">גודל השוק</h2>
         <div class="grid-2">
@@ -262,6 +269,7 @@
 <!-- SLIDE 3: COMPETITION -->
 <div class="slide" data-title="תחרות">
     <div class="slide-num">03 — COMPETITIVE LANDSCAPE</div>
+<img src="visuals/strategy-04-rates.png" class="slide-img-sm" alt="Rising electricity rates">
     <div class="container">
         <h2 class="he">מפת תחרות</h2>
         <table>

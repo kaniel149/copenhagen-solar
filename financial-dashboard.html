@@ -76,6 +76,11 @@ a{color:var(--gold);text-decoration:none}
 .calc-input input:focus{border-color:var(--gold);outline:none}
 .calc-btn{background:var(--gold);color:var(--night);border:none;padding:10px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-family:'Heebo';font-size:14px;margin-top:8px}
 .calc-btn:hover{opacity:.9}
+
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
 </style>
 </head>
 <body>
@@ -85,7 +90,7 @@ a{color:var(--gold);text-decoration:none}
 <div class="slide-container" id="slides">
 
 <!-- SLIDE 0: Cover -->
-<div class="slide slide-cover active" data-title="שער">
+<div class="slide slide-cover active" data-title="שער" style="background:linear-gradient(rgba(13,33,55,.5),rgba(10,61,92,.6)),url(visuals/findash-01-cover.png) center/cover">
   <div style="margin-bottom:30px">
     <div style="font-size:56px;margin-bottom:16px">📊💰</div>
     <h1>דשבורד פיננסי<br><span class="gold">Ko Phangan Solar</span></h1>
@@ -507,6 +512,7 @@ a{color:var(--gold);text-decoration:none}
 
 <!-- SLIDE 11: 3 Year Projection -->
 <div class="slide slide-dark" data-title="תחזית 3 שנים">
+<img src="visuals/findash-10-success.png" class="slide-img-sm" alt="Team celebration">
   <span class="section-num">11</span>
   <h2>📈 תחזית 3 שנים</h2>
   <div class="table-wrap">

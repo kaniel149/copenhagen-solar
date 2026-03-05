@@ -58,7 +58,12 @@
         .checklist li::before { content: '☐ '; color: var(--sun); }
 
         @media (max-width: 768px) { .slide { padding: 3rem 1.5rem; } .grid-2, .grid-3 { grid-template-columns: 1fr; } }
-    </style>
+    
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+</style>
 </head>
 <body>
 
@@ -107,6 +112,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">02 — BANK RANKING</div>
+<img src="visuals/finance-02-bank.png" class="slide-img-sm" alt="Krungsri bank">
         <h2 class="he">דירוג בנקים — מי הכי טוב?</h2>
         
         <div class="bank-row" style="background:rgba(232,168,32,0.05);border-radius:16px 16px 0 0;">
@@ -231,6 +237,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">04 — CUSTOMER FINANCING MODELS</div>
+<img src="visuals/finance-04-roi.png" class="slide-img" alt="ROI timeline">
         <h2 class="he">איך הלקוחות שלנו משלמים</h2>
         <div class="grid-2">
             <div>
@@ -399,6 +406,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">07 — TAX & INCENTIVES</div>
+<img src="visuals/finance-07-signing.png" class="slide-img-sm" alt="PPA signing">
         <h2 class="he">הטבות מס ותמריצים</h2>
         <div class="grid-2">
             <div>

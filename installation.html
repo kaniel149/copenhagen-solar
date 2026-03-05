@@ -60,6 +60,11 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .flow-icon{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:8px}
 .flow-arrow{font-size:24px;color:var(--gold);margin-top:16px;padding:0 4px}
 .flow-label{font-size:12px;font-weight:600}.flow-sub{font-size:10px;opacity:.5;margin-top:2px}
+
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
 </style>
 </head>
 <body>
@@ -113,6 +118,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 
 <!-- SLIDE 2: Roof Survey -->
 <div class="slide slide-dark" data-title="סקר גג">
+<img src="visuals/install-01-tools.png" class="slide-img" alt="Survey tools">
   <span class="section-num">02</span>
   <h2>📸 שלב 1: סקר גג — <span class="gold">לפני הכל</span></h2>
   <p class="subtitle">צילום, מדידות, הערכה מבנית</p>
@@ -305,6 +311,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 
 <!-- SLIDE 5: DC Electrical -->
 <div class="slide slide-dark" data-title="חשמל DC">
+<img src="visuals/install-04-mc4.png" class="slide-img-sm" alt="MC4 connector">
   <span class="section-num">05</span>
   <h2>⚡ שלב 4: חשמל DC</h2>
   <p class="subtitle">שרשור פאנלים, כבלים, מפסקים</p>
@@ -413,6 +420,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 
 <!-- SLIDE 6: AC Electrical -->
 <div class="slide slide-ocean" data-title="חשמל AC">
+<div class="img-row"><img src="visuals/install-05-cables.png" alt="Cable routing"><img src="visuals/install-06-panel.png" alt="Distribution board"></div>
   <span class="section-num">06</span>
   <h2>🔌 שלב 5: חשמל AC — <span class="gold">חיבור לרשת</span></h2>
   <p class="subtitle">מהאינוורטר ועד הלוח הראשי</p>
@@ -522,6 +530,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 
 <!-- SLIDE 7: PEA Connection -->
 <div class="slide slide-reef" data-title="חיבור PEA">
+<img src="visuals/install-08-meter.png" class="slide-img-sm" alt="PEA meter">
   <span class="section-num">07</span>
   <h2>✅ שלב 6: חיבור PEA + <span class="gold">Net Metering</span></h2>
   <p class="subtitle">הרגולטור — Provincial Electricity Authority</p>
@@ -596,6 +605,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 
 <!-- SLIDE 9: Safety -->
 <div class="slide slide-gold" data-title="בטיחות">
+<img src="visuals/install-09-safety.png" class="slide-img" alt="Safety harness">
   <span class="section-num">09</span>
   <h2>⛑️ בטיחות — <span class="gold">סביבה טרופית</span></h2>
   <div class="two-col">

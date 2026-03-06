@@ -10,8 +10,8 @@
 <style>
 :root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF;--panel-w:380px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh;display:flex}
-.sidebar{width:var(--panel-w);height:100vh;background:rgba(13,33,55,.98);border-left:1px solid rgba(232,168,32,.2);display:flex;flex-direction:column;z-index:10;overflow:hidden}
+body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh;display:flex;direction:ltr}
+.sidebar{width:var(--panel-w);height:100vh;background:rgba(13,33,55,.98);border-right:1px solid rgba(232,168,32,.2);display:flex;flex-direction:column;z-index:10;overflow:hidden;order:2;direction:rtl}
 .sidebar-header{padding:16px;background:linear-gradient(135deg,var(--ocean),var(--night));border-bottom:1px solid rgba(232,168,32,.2)}
 .sidebar-header h1{font-size:18px;font-weight:700;color:var(--gold)}
 .sidebar-header p{font-size:11px;opacity:.6;margin-top:2px}
@@ -39,7 +39,7 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
 .bcard-stats{display:flex;gap:12px;margin-top:6px;font-size:10px;opacity:.7}
 .bcard-stats span{display:flex;align-items:center;gap:3px}
 .bcard-cat{font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(255,255,255,.06);display:inline-block;margin-top:4px}
-.map-container{flex:1;position:relative}
+.map-container{flex:1;position:relative;order:1}
 #map{width:100%;height:100%}
 .map-controls{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:5}
 .map-btn{width:36px;height:36px;border-radius:8px;background:rgba(13,33,55,.9);border:1px solid rgba(232,168,32,.3);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .2s}
@@ -67,7 +67,7 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
 .heatmap-toggle{position:absolute;top:12px;left:12px;z-index:5;display:flex;gap:4px}
 .ht-btn{padding:5px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:rgba(13,33,55,.9);color:rgba(255,255,255,.7);font-size:10px;cursor:pointer;font-family:'Heebo'}
 .ht-btn.active{background:var(--gold);color:var(--night);border-color:var(--gold)}
-@media(max-width:768px){.sidebar{width:100%;height:50vh;border-left:none;border-bottom:1px solid rgba(232,168,32,.2)}.map-container{height:50vh}body{flex-direction:column}}
+@media(max-width:768px){.sidebar{width:100%;height:50vh;border-right:none;border-bottom:1px solid rgba(232,168,32,.2);order:1}.map-container{height:50vh;order:2}body{flex-direction:column}}
 </style>
 </head>
 <body>
@@ -80,7 +80,7 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
     <div class="stat-box"><div class="stat-val" id="s-total">2,467</div><div class="stat-lbl">מבנים</div></div>
     <div class="stat-box"><div class="stat-val" id="s-kwp">60.2</div><div class="stat-lbl">MWp</div></div>
     <div class="stat-box"><div class="stat-val" id="s-named">895</div><div class="stat-lbl">מזוהים</div></div>
-    <div class="stat-box"><div class="stat-val" id="s-topa">929</div><div class="stat-lbl">Priority A</div></div>
+    <div class="stat-box"><div class="stat-val" id="s-topa">929</div><div class="stat-lbl">A דרג</div></div>
   </div>
   <div class="filters">
     <button class="filter-btn active" data-filter="all">הכל</button>
@@ -144,7 +144,7 @@ let map,markers=[],selectedId=null,activeFilter='all',activeCat=null,activeSize=
 // Init map
 map=new maplibregl.Map({
   container:'map',
-  style:{version:8,sources:{'satellite':{type:'raster',tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:19}},layers:[{id:'satellite',type:'raster',source:'satellite'}]},
+  style:{version:8,sources:{'satellite':{type:'raster',tiles:['https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'],tileSize:256,maxzoom:20,attribution:'Google'},'streets':{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'OSM'}},layers:[{id:'satellite',type:'raster',source:'satellite'},{id:'streets',type:'raster',source:'streets',layout:{visibility:'none'}}]},
   center:KP_CENTER,
   zoom:12.5,
   maxBounds:[[99.7,9.55],[100.2,9.95]]
@@ -312,12 +312,14 @@ function closeDetail(){document.getElementById('detailPanel').classList.remove('
 function resetView(){map.flyTo({center:KP_CENTER,zoom:12.5,duration:800});closeDetail()}
 
 function setMapStyle(style){
-  document.querySelectorAll('.ht-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ht-btn:not(:last-child)').forEach(b=>b.classList.remove('active'));
   event.target.classList.add('active');
   if(style==='satellite'){
     map.setLayoutProperty('satellite','visibility','visible');
+    map.setLayoutProperty('streets','visibility','none');
   }else{
-    // Already satellite-only, just toggle
+    map.setLayoutProperty('satellite','visibility','none');
+    map.setLayoutProperty('streets','visibility','visible');
   }
 }
 

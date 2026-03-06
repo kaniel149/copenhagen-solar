@@ -474,73 +474,11 @@ function renderAnalytics(){
 
 function genPDF(id){
   const b=B.find(x=>x.i===id);if(!b)return;
-  const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html dir="rtl"><head><meta charset="UTF-8">
-    <title>הצעת מחיר — ${b.n||'Ko Phangan Solar'}</title>
-    <style>*{margin:0;padding:0;box-sizing:border-box;font-family:Heebo,sans-serif}
-    body{padding:40px;max-width:800px;margin:0 auto;color:#333}
-    h1{color:#0A3D5C;font-size:28px;margin-bottom:4px}
-    .sub{color:#888;font-size:14px;margin-bottom:30px}
-    h2{color:#E8A820;font-size:18px;margin:20px 0 10px;border-bottom:2px solid #E8A820;padding-bottom:4px}
-    table{width:100%;border-collapse:collapse;margin:10px 0}
-    td,th{padding:8px 12px;text-align:right;border-bottom:1px solid #eee}
-    th{background:#f8f8f8;font-weight:600}
-    .highlight{color:#E8A820;font-weight:700;font-size:24px}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-    .box{background:#f8f9fa;border-radius:8px;padding:16px;text-align:center}
-    .box-val{font-size:28px;font-weight:700;color:#0A3D5C}
-    .box-lbl{font-size:12px;color:#888;margin-top:4px}
-    .footer{margin-top:40px;padding-top:20px;border-top:2px solid #eee;text-align:center;color:#888;font-size:11px}
-    @media print{body{padding:20px}}
-    </style></head><body>
-    <h1>☀️ Ko Phangan Solar</h1>
-    <div class="sub">הצעת מחיר — ${b.n||'Solar System Proposal'}</div>
-    
-    <div class="grid" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px">
-      <div class="box"><div class="box-val">${b.a.toLocaleString()}</div><div class="box-lbl">שטח גג (m²)</div></div>
-      <div class="box"><div class="box-val">${b.kw.toFixed(1)}</div><div class="box-lbl">הספק (kWp)</div></div>
-      <div class="box"><div class="box-val">${b.p}</div><div class="box-lbl">פאנלים</div></div>
-      <div class="box"><div class="box-val">${(b.kwh/1000).toFixed(0)}K</div><div class="box-lbl">kWh/שנה</div></div>
-    </div>
-    
-    <h2>אופציה 1: רכישת מערכת (EPC)</h2>
-    <table>
-      <tr><th>פריט</th><th>סכום</th></tr>
-      <tr><td>מערכת סולארית ${b.kw.toFixed(0)}kWp כולל התקנה</td><td>฿${b.epc.toLocaleString()}</td></tr>
-      <tr><td>חיסכון חודשי בחשמל</td><td style="color:green">฿${b.sav.toLocaleString()}</td></tr>
-      <tr><td>חיסכון שנתי</td><td style="color:green">฿${(b.sav*12).toLocaleString()}</td></tr>
-      <tr><td>החזר השקעה</td><td>${(b.epc/(b.sav*12)).toFixed(1)} שנים</td></tr>
-      <tr><td>חיסכון ב-25 שנה</td><td style="color:green;font-weight:700">฿${(b.sav*12*25).toLocaleString()}</td></tr>
-    </table>
-    
-    <h2>אופציה 2: PPA — אפס השקעה</h2>
-    <table>
-      <tr><th>פריט</th><th>ערך</th></tr>
-      <tr><td>השקעה מהלקוח</td><td style="color:green;font-weight:700">฿0</td></tr>
-      <tr><td>תעריף חשמל PPA</td><td>฿4.50/kWh (הנחה של ~25% מ-PEA)</td></tr>
-      <tr><td>חיסכון חודשי</td><td style="color:green">฿${Math.round(b.kwh/12*(6-4.5)).toLocaleString()}</td></tr>
-      <tr><td>תקופת הסכם</td><td>15-25 שנים</td></tr>
-      <tr><td>בעלות על המערכת אחרי ההסכם</td><td>הלקוח</td></tr>
-    </table>
-    
-    <h2>פרטי המערכת</h2>
-    <table>
-      <tr><td>פאנלים</td><td>${b.p} × Longi Hi-MO X6 580W</td></tr>
-      <tr><td>ממירים</td><td>Huawei SUN2000</td></tr>
-      <tr><td>הספק כולל</td><td>${b.kw.toFixed(1)} kWp</td></tr>
-      <tr><td>ייצור שנתי צפוי</td><td>${b.kwh.toLocaleString()} kWh</td></tr>
-      <tr><td>אחריות פאנלים</td><td>25 שנה (ייצור) + 12 שנה (מוצר)</td></tr>
-      <tr><td>אחריות ממירים</td><td>10 שנים</td></tr>
-      <tr><td>אחריות התקנה</td><td>5 שנים</td></tr>
-    </table>
-    
-    <div class="footer">
-      Ko Phangan Solar | KANIEL TORD LLC<br>
-      📞 Contact us | 🌐 kophangan-solar.com<br>
-      ${new Date().toLocaleDateString('he-IL')} | הצעה תקפה ל-30 יום
-    </div>
-    <script>setTimeout(()=>window.print(),500)<\/script>
-  </body></html>`);
+  const p=new URLSearchParams({
+    n:b.n||'',a:b.a,u:b.u,kw:b.kw,p:b.p,kwh:b.kwh,
+    epc:b.epc,sav:b.sav,ph:b.ph||''
+  });
+  window.open('proposal.html?'+p.toString(),'_blank');
 }
 
 function exportCSV(){

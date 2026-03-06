@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TM Energy — Solar Proposal</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
 <style>
 :root{--navy:#0D2137;--gold:#E8A820;--green:#1A7A5A;--coral:#E85D3A;--white:#FFFFFF;--gray:#94A3B8;--light:#F1F5F9}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -95,8 +97,20 @@ body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);li
 /* Footer */
 .footer{text-align:center;padding:30px;color:var(--gray);font-size:11px;border-top:1px solid #E2E8F0}
 
+/* Roof Visualization */
+.roof-viz{border-radius:16px;overflow:hidden;border:2px solid #E2E8F0;margin:20px 0}
+.roof-map{width:100%;height:450px;position:relative}
+.roof-map-overlay{position:absolute;bottom:12px;left:12px;right:12px;display:flex;gap:8px;z-index:5;flex-wrap:wrap}
+.roof-chip{padding:5px 12px;border-radius:8px;font-size:11px;font-weight:600;backdrop-filter:blur(10px)}
+.roof-chip.gold{background:rgba(232,168,32,.9);color:var(--navy)}
+.roof-chip.green{background:rgba(26,122,90,.9);color:white}
+.roof-chip.blue{background:rgba(13,33,55,.9);color:white}
+.roof-legend{display:flex;gap:16px;padding:12px 16px;background:var(--light);font-size:11px;justify-content:center}
+.roof-legend-item{display:flex;align-items:center;gap:5px}
+.roof-legend-dot{width:14px;height:14px;border-radius:3px;border:1px solid rgba(0,0,0,.1)}
+
 /* Print */
-@media print{.lang-bar{display:none}.hero{height:300px;margin-top:0}.content{padding:0 12px}body{font-size:11px}}
+@media print{.lang-bar{display:none}.hero{height:300px;margin-top:0}.content{padding:0 12px}body{font-size:11px}.roof-map{height:350px}}
 @media(max-width:768px){.compare{grid-template-columns:1fr}.equip-grid{grid-template-columns:1fr}.hero h1{font-size:28px}.kpi-grid{grid-template-columns:repeat(3,1fr)}}
 
 /* Animations */
@@ -132,6 +146,19 @@ body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);li
       <div class="kpi"><div class="kpi-val green" id="kPanels">-</div><div class="kpi-lbl" data-i18n="panels">Solar Panels</div></div>
       <div class="kpi"><div class="kpi-val" id="kKwh">-</div><div class="kpi-lbl" data-i18n="annualGen">Annual Generation (kWh)</div></div>
       <div class="kpi"><div class="kpi-val green" id="kCO2">-</div><div class="kpi-lbl" data-i18n="co2Saved">CO₂ Saved/Year (tons)</div></div>
+    </div>
+  </div>
+
+  <!-- Section: Roof Visualization -->
+  <div class="section fade-in" id="roofVizSection" style="display:none">
+    <div class="section-title"><div class="icon">🛰️</div><span data-i18n="roofViz">Your Roof — Panel Layout</span></div>
+    <div class="roof-viz">
+      <div class="roof-map" id="roofMap"></div>
+      <div class="roof-legend">
+        <div class="roof-legend-item"><div class="roof-legend-dot" style="background:rgba(232,168,32,.4);border-color:#E8A820"></div><span data-i18n="roofOutline">Building Footprint</span></div>
+        <div class="roof-legend-item"><div class="roof-legend-dot" style="background:rgba(30,80,180,.7);border-color:#1E50B4"></div><span data-i18n="panelArea">Solar Panels</span></div>
+        <div class="roof-legend-item"><div class="roof-legend-dot" style="background:rgba(46,216,154,.5);border-color:#2ED89A"></div><span data-i18n="usableZone">Usable Zone (70%)</span></div>
+      </div>
     </div>
   </div>
 
@@ -252,9 +279,9 @@ body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);li
 <script>
 // i18n translations
 const T={
-  en:{sysOverview:'System Overview',roofArea:'Roof Area (m²)',usableArea:'Usable Area (m²)',systemSize:'System Size (kWp)',panels:'Solar Panels',annualGen:'Annual Generation (kWh)',co2Saved:'CO₂ Saved/Year (tons)',options:'Your Options',epcTitle:'Option 1: Purchase (EPC)',epcDesc:'Own your solar system outright',ppaTitle:'Option 2: PPA — Zero Investment',ppaDesc:'We install & maintain, you buy cheaper electricity',monthlySave:'Monthly Savings',annualSave:'Annual Savings',payback:'Payback Period',save25:'25-Year Savings',ownership:'Ownership',immediate:'Immediate',upfront:'Upfront Cost',zero:'฿0',ppaRate:'Electricity Rate',discount:'vs PEA Rate (~฿6/kWh)',monthlySavePPA:'Monthly Savings',contract:'Contract Period',afterContract:'After Contract',youOwn:'System is yours',savingsProj:'Savings Projection',cumSave:'Cumulative Savings (EPC)',over25:'Over 25 years',equipment:'Premium Equipment',panelEff:'Efficiency: 22.8%',inverterType:'String Inverter',inverterEff:'Efficiency: 98.6%',mounting:'Mounting System',mountType:'Anodized Aluminum',mountLife:'Lifetime: 25+ years',warranty:'Warranty & Support',panelWarranty:'Panel Performance',productWarranty:'Panel Product',inverterWarranty:'Inverter',installWarranty:'Installation',included:"What's Included",detail:'Details',freeDesign:'Free Site Survey & Design',freeDesignD:'Professional engineers assess your roof',permits:'Permits & Paperwork',permitsD:'PEA application, building permits handled',install:'Full Installation',installD:'Certified team, 3-5 day installation',monitoring:'24/7 Monitoring',monitoringD:'Real-time system monitoring dashboard',maintenance:'Annual Maintenance',maintenanceD:'Panel cleaning, inverter check, report',ctaTitle:'Ready to Save on Electricity?',ctaDesc:'Get started with a free consultation — no obligation',ctaWA:'💬 WhatsApp Us',ctaCall:'📞 Call Now',ctaEmail:'✉️ Email',validity:'This proposal is valid for 30 days',heroTitle:'Solar Energy Proposal',heroSub:'Custom designed for your property'},
-  th:{sysOverview:'ภาพรวมระบบ',roofArea:'พื้นที่หลังคา (ตร.ม.)',usableArea:'พื้นที่ใช้งาน (ตร.ม.)',systemSize:'ขนาดระบบ (kWp)',panels:'แผงโซลาร์',annualGen:'ผลิตไฟฟ้าต่อปี (kWh)',co2Saved:'ลด CO₂ ต่อปี (ตัน)',options:'ตัวเลือกสำหรับคุณ',epcTitle:'ตัวเลือก 1: ซื้อระบบ (EPC)',epcDesc:'เป็นเจ้าของระบบโซลาร์ทันที',ppaTitle:'ตัวเลือก 2: PPA — ไม่ต้องลงทุน',ppaDesc:'เราติดตั้งและดูแล คุณซื้อไฟฟ้าในราคาถูกลง',monthlySave:'ประหยัดต่อเดือน',annualSave:'ประหยัดต่อปี',payback:'ระยะเวลาคืนทุน',save25:'ประหยัดใน 25 ปี',ownership:'ความเป็นเจ้าของ',immediate:'ทันที',upfront:'ค่าใช้จ่ายเริ่มต้น',zero:'฿0',ppaRate:'อัตราค่าไฟฟ้า',discount:'เทียบกับ กฟภ. (~฿6/kWh)',monthlySavePPA:'ประหยัดต่อเดือน',contract:'ระยะสัญญา',afterContract:'หลังสัญญา',youOwn:'ระบบเป็นของคุณ',savingsProj:'ประมาณการประหยัด',cumSave:'ยอดประหยัดสะสม (EPC)',over25:'ตลอด 25 ปี',equipment:'อุปกรณ์คุณภาพสูง',panelEff:'ประสิทธิภาพ: 22.8%',inverterType:'อินเวอร์เตอร์สตริง',inverterEff:'ประสิทธิภาพ: 98.6%',mounting:'ระบบโครงสร้าง',mountType:'อลูมิเนียมอะโนไดซ์',mountLife:'อายุใช้งาน: 25+ ปี',warranty:'การรับประกันและบริการ',panelWarranty:'ประสิทธิภาพแผง',productWarranty:'ตัวผลิตภัณฑ์',inverterWarranty:'อินเวอร์เตอร์',installWarranty:'การติดตั้ง',included:'สิ่งที่รวมอยู่',detail:'รายละเอียด',freeDesign:'สำรวจและออกแบบฟรี',freeDesignD:'วิศวกรมืออาชีพประเมินหลังคาของคุณ',permits:'ใบอนุญาตและเอกสาร',permitsD:'ยื่นขอ กฟภ. และใบอนุญาตก่อสร้าง',install:'ติดตั้งครบวงจร',installD:'ทีมที่ได้รับการรับรอง 3-5 วัน',monitoring:'ตรวจสอบ 24/7',monitoringD:'แดชบอร์ดตรวจสอบระบบแบบเรียลไทม์',maintenance:'บำรุงรักษาประจำปี',maintenanceD:'ทำความสะอาดแผง ตรวจอินเวอร์เตอร์ รายงาน',ctaTitle:'พร้อมประหยัดค่าไฟฟ้าแล้วหรือยัง?',ctaDesc:'เริ่มต้นด้วยการให้คำปรึกษาฟรี — ไม่มีข้อผูกมัด',ctaWA:'💬 แชทไลน์/WhatsApp',ctaCall:'📞 โทรเลย',ctaEmail:'✉️ อีเมล',validity:'ใบเสนอราคานี้มีผล 30 วัน',heroTitle:'ข้อเสนอพลังงานแสงอาทิตย์',heroSub:'ออกแบบเฉพาะสำหรับอสังหาริมทรัพย์ของคุณ'},
-  he:{sysOverview:'סקירת מערכת',roofArea:'שטח גג (מ"ר)',usableArea:'שטח שמיש (מ"ר)',systemSize:'הספק מערכת (kWp)',panels:'פאנלים סולאריים',annualGen:'ייצור שנתי (kWh)',co2Saved:'חיסכון CO₂ שנתי (טון)',options:'האפשרויות שלך',epcTitle:'אפשרות 1: רכישה (EPC)',epcDesc:'מערכת סולארית בבעלותך המלאה',ppaTitle:'אפשרות 2: PPA — אפס השקעה',ppaDesc:'אנחנו מתקינים ומתחזקים, אתה קונה חשמל בזול',monthlySave:'חיסכון חודשי',annualSave:'חיסכון שנתי',payback:'תקופת החזר',save25:'חיסכון ב-25 שנה',ownership:'בעלות',immediate:'מיידית',upfront:'עלות התחלתית',zero:'฿0',ppaRate:'תעריף חשמל',discount:'מול PEA (~฿6/kWh)',monthlySavePPA:'חיסכון חודשי',contract:'תקופת חוזה',afterContract:'אחרי החוזה',youOwn:'המערכת שלך',savingsProj:'תחזית חיסכון',cumSave:'חיסכון מצטבר (EPC)',over25:'לאורך 25 שנה',equipment:'ציוד פרימיום',panelEff:'נצילות: 22.8%',inverterType:'ממיר סטרינג',inverterEff:'נצילות: 98.6%',mounting:'מערכת תילוי',mountType:'אלומיניום אנודייז',mountLife:'אורך חיים: 25+ שנה',warranty:'אחריות ותמיכה',panelWarranty:'ביצועי פאנל',productWarranty:'מוצר פאנל',inverterWarranty:'ממיר',installWarranty:'התקנה',included:'כלול בהצעה',detail:'פרטים',freeDesign:'סקר שטח ועיצוב חינם',freeDesignD:'מהנדסים מקצועיים מעריכים את הגג',permits:'רישיונות ואישורים',permitsD:'הגשה ל-PEA, היתרי בנייה',install:'התקנה מלאה',installD:'צוות מוסמך, 3-5 ימי התקנה',monitoring:'ניטור 24/7',monitoringD:'דשבורד ניטור בזמן אמת',maintenance:'תחזוקה שנתית',maintenanceD:'ניקוי פאנלים, בדיקת ממיר, דוח',ctaTitle:'מוכנים לחסוך בחשמל?',ctaDesc:'התחילו עם ייעוץ חינם — ללא התחייבות',ctaWA:'💬 WhatsApp',ctaCall:'📞 התקשרו',ctaEmail:'✉️ מייל',validity:'הצעה זו תקפה ל-30 יום',heroTitle:'הצעת מחיר — אנרגיה סולארית',heroSub:'מותאמת אישית לנכס שלך'}
+  en:{roofViz:'Your Roof — Panel Layout',roofOutline:'Building Footprint',panelArea:'Solar Panels',usableZone:'Usable Zone (70%)',sysOverview:'System Overview',roofArea:'Roof Area (m²)',usableArea:'Usable Area (m²)',systemSize:'System Size (kWp)',panels:'Solar Panels',annualGen:'Annual Generation (kWh)',co2Saved:'CO₂ Saved/Year (tons)',options:'Your Options',epcTitle:'Option 1: Purchase (EPC)',epcDesc:'Own your solar system outright',ppaTitle:'Option 2: PPA — Zero Investment',ppaDesc:'We install & maintain, you buy cheaper electricity',monthlySave:'Monthly Savings',annualSave:'Annual Savings',payback:'Payback Period',save25:'25-Year Savings',ownership:'Ownership',immediate:'Immediate',upfront:'Upfront Cost',zero:'฿0',ppaRate:'Electricity Rate',discount:'vs PEA Rate (~฿6/kWh)',monthlySavePPA:'Monthly Savings',contract:'Contract Period',afterContract:'After Contract',youOwn:'System is yours',savingsProj:'Savings Projection',cumSave:'Cumulative Savings (EPC)',over25:'Over 25 years',equipment:'Premium Equipment',panelEff:'Efficiency: 22.8%',inverterType:'String Inverter',inverterEff:'Efficiency: 98.6%',mounting:'Mounting System',mountType:'Anodized Aluminum',mountLife:'Lifetime: 25+ years',warranty:'Warranty & Support',panelWarranty:'Panel Performance',productWarranty:'Panel Product',inverterWarranty:'Inverter',installWarranty:'Installation',included:"What's Included",detail:'Details',freeDesign:'Free Site Survey & Design',freeDesignD:'Professional engineers assess your roof',permits:'Permits & Paperwork',permitsD:'PEA application, building permits handled',install:'Full Installation',installD:'Certified team, 3-5 day installation',monitoring:'24/7 Monitoring',monitoringD:'Real-time system monitoring dashboard',maintenance:'Annual Maintenance',maintenanceD:'Panel cleaning, inverter check, report',ctaTitle:'Ready to Save on Electricity?',ctaDesc:'Get started with a free consultation — no obligation',ctaWA:'💬 WhatsApp Us',ctaCall:'📞 Call Now',ctaEmail:'✉️ Email',validity:'This proposal is valid for 30 days',heroTitle:'Solar Energy Proposal',heroSub:'Custom designed for your property'},
+  th:{roofViz:'หลังคาของคุณ — แผนผังแผงโซลาร์',roofOutline:'รอยเท้าอาคาร',panelArea:'แผงโซลาร์',usableZone:'พื้นที่ใช้งาน (70%)',sysOverview:'ภาพรวมระบบ',roofArea:'พื้นที่หลังคา (ตร.ม.)',usableArea:'พื้นที่ใช้งาน (ตร.ม.)',systemSize:'ขนาดระบบ (kWp)',panels:'แผงโซลาร์',annualGen:'ผลิตไฟฟ้าต่อปี (kWh)',co2Saved:'ลด CO₂ ต่อปี (ตัน)',options:'ตัวเลือกสำหรับคุณ',epcTitle:'ตัวเลือก 1: ซื้อระบบ (EPC)',epcDesc:'เป็นเจ้าของระบบโซลาร์ทันที',ppaTitle:'ตัวเลือก 2: PPA — ไม่ต้องลงทุน',ppaDesc:'เราติดตั้งและดูแล คุณซื้อไฟฟ้าในราคาถูกลง',monthlySave:'ประหยัดต่อเดือน',annualSave:'ประหยัดต่อปี',payback:'ระยะเวลาคืนทุน',save25:'ประหยัดใน 25 ปี',ownership:'ความเป็นเจ้าของ',immediate:'ทันที',upfront:'ค่าใช้จ่ายเริ่มต้น',zero:'฿0',ppaRate:'อัตราค่าไฟฟ้า',discount:'เทียบกับ กฟภ. (~฿6/kWh)',monthlySavePPA:'ประหยัดต่อเดือน',contract:'ระยะสัญญา',afterContract:'หลังสัญญา',youOwn:'ระบบเป็นของคุณ',savingsProj:'ประมาณการประหยัด',cumSave:'ยอดประหยัดสะสม (EPC)',over25:'ตลอด 25 ปี',equipment:'อุปกรณ์คุณภาพสูง',panelEff:'ประสิทธิภาพ: 22.8%',inverterType:'อินเวอร์เตอร์สตริง',inverterEff:'ประสิทธิภาพ: 98.6%',mounting:'ระบบโครงสร้าง',mountType:'อลูมิเนียมอะโนไดซ์',mountLife:'อายุใช้งาน: 25+ ปี',warranty:'การรับประกันและบริการ',panelWarranty:'ประสิทธิภาพแผง',productWarranty:'ตัวผลิตภัณฑ์',inverterWarranty:'อินเวอร์เตอร์',installWarranty:'การติดตั้ง',included:'สิ่งที่รวมอยู่',detail:'รายละเอียด',freeDesign:'สำรวจและออกแบบฟรี',freeDesignD:'วิศวกรมืออาชีพประเมินหลังคาของคุณ',permits:'ใบอนุญาตและเอกสาร',permitsD:'ยื่นขอ กฟภ. และใบอนุญาตก่อสร้าง',install:'ติดตั้งครบวงจร',installD:'ทีมที่ได้รับการรับรอง 3-5 วัน',monitoring:'ตรวจสอบ 24/7',monitoringD:'แดชบอร์ดตรวจสอบระบบแบบเรียลไทม์',maintenance:'บำรุงรักษาประจำปี',maintenanceD:'ทำความสะอาดแผง ตรวจอินเวอร์เตอร์ รายงาน',ctaTitle:'พร้อมประหยัดค่าไฟฟ้าแล้วหรือยัง?',ctaDesc:'เริ่มต้นด้วยการให้คำปรึกษาฟรี — ไม่มีข้อผูกมัด',ctaWA:'💬 แชทไลน์/WhatsApp',ctaCall:'📞 โทรเลย',ctaEmail:'✉️ อีเมล',validity:'ใบเสนอราคานี้มีผล 30 วัน',heroTitle:'ข้อเสนอพลังงานแสงอาทิตย์',heroSub:'ออกแบบเฉพาะสำหรับอสังหาริมทรัพย์ของคุณ'},
+  he:{roofViz:'הגג שלך — פריסת פאנלים',roofOutline:'מתאר מבנה',panelArea:'פאנלים סולאריים',usableZone:'אזור שמיש (70%)',sysOverview:'סקירת מערכת',roofArea:'שטח גג (מ"ר)',usableArea:'שטח שמיש (מ"ר)',systemSize:'הספק מערכת (kWp)',panels:'פאנלים סולאריים',annualGen:'ייצור שנתי (kWh)',co2Saved:'חיסכון CO₂ שנתי (טון)',options:'האפשרויות שלך',epcTitle:'אפשרות 1: רכישה (EPC)',epcDesc:'מערכת סולארית בבעלותך המלאה',ppaTitle:'אפשרות 2: PPA — אפס השקעה',ppaDesc:'אנחנו מתקינים ומתחזקים, אתה קונה חשמל בזול',monthlySave:'חיסכון חודשי',annualSave:'חיסכון שנתי',payback:'תקופת החזר',save25:'חיסכון ב-25 שנה',ownership:'בעלות',immediate:'מיידית',upfront:'עלות התחלתית',zero:'฿0',ppaRate:'תעריף חשמל',discount:'מול PEA (~฿6/kWh)',monthlySavePPA:'חיסכון חודשי',contract:'תקופת חוזה',afterContract:'אחרי החוזה',youOwn:'המערכת שלך',savingsProj:'תחזית חיסכון',cumSave:'חיסכון מצטבר (EPC)',over25:'לאורך 25 שנה',equipment:'ציוד פרימיום',panelEff:'נצילות: 22.8%',inverterType:'ממיר סטרינג',inverterEff:'נצילות: 98.6%',mounting:'מערכת תילוי',mountType:'אלומיניום אנודייז',mountLife:'אורך חיים: 25+ שנה',warranty:'אחריות ותמיכה',panelWarranty:'ביצועי פאנל',productWarranty:'מוצר פאנל',inverterWarranty:'ממיר',installWarranty:'התקנה',included:'כלול בהצעה',detail:'פרטים',freeDesign:'סקר שטח ועיצוב חינם',freeDesignD:'מהנדסים מקצועיים מעריכים את הגג',permits:'רישיונות ואישורים',permitsD:'הגשה ל-PEA, היתרי בנייה',install:'התקנה מלאה',installD:'צוות מוסמך, 3-5 ימי התקנה',monitoring:'ניטור 24/7',monitoringD:'דשבורד ניטור בזמן אמת',maintenance:'תחזוקה שנתית',maintenanceD:'ניקוי פאנלים, בדיקת ממיר, דוח',ctaTitle:'מוכנים לחסוך בחשמל?',ctaDesc:'התחילו עם ייעוץ חינם — ללא התחייבות',ctaWA:'💬 WhatsApp',ctaCall:'📞 התקשרו',ctaEmail:'✉️ מייל',validity:'הצעה זו תקפה ל-30 יום',heroTitle:'הצעת מחיר — אנרגיה סולארית',heroSub:'מותאמת אישית לנכס שלך'}
 };
 
 let curLang='en';
@@ -322,6 +349,123 @@ function fillData(){
 }
 
 fillData();
+
+// Roof Visualization
+function initRoofMap(){
+  const polyStr=params.get('poly');
+  const lat=parseFloat(params.get('la'));
+  const lng=parseFloat(params.get('lo'));
+  if(!polyStr||!lat||!lng)return;
+  
+  let poly;
+  try{poly=JSON.parse(polyStr)}catch(e){return}
+  if(!poly||poly.length<3)return;
+  
+  document.getElementById('roofVizSection').style.display='block';
+  
+  const rmap=new maplibregl.Map({
+    container:'roofMap',
+    style:{version:8,glyphs:'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+      sources:{'sat':{type:'raster',tiles:['https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:20}},
+      layers:[{id:'sat',type:'raster',source:'sat'}]},
+    center:[lng,lat],zoom:18.5,pitch:45,bearing:-20,
+    fadeDuration:0
+  });
+  
+  rmap.on('load',()=>{
+    const ring=poly.map(c=>[c[0],c[1]]);
+    ring.push(ring[0]); // close
+    
+    // Building outline
+    rmap.addSource('building',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[ring]}}});
+    rmap.addLayer({id:'bld-fill',type:'fill',source:'building',paint:{'fill-color':'#E8A820','fill-opacity':0.15}});
+    rmap.addLayer({id:'bld-line',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':2.5,'line-dasharray':[2,1]}});
+    
+    // Calculate usable area (shrink polygon by ~15% towards center)
+    const cx=poly.reduce((s,p)=>s+p[0],0)/poly.length;
+    const cy=poly.reduce((s,p)=>s+p[1],0)/poly.length;
+    const shrink=0.84; // ~70% area ≈ 84% linear
+    const innerRing=poly.map(p=>[(p[0]-cx)*shrink+cx,(p[1]-cy)*shrink+cy]);
+    innerRing.push(innerRing[0]);
+    
+    rmap.addSource('usable',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[innerRing]}}});
+    rmap.addLayer({id:'usable-fill',type:'fill',source:'usable',paint:{'fill-color':'#2ED89A','fill-opacity':0.12}});
+    rmap.addLayer({id:'usable-line',type:'line',source:'usable',paint:{'line-color':'#2ED89A','line-width':1.5}});
+    
+    // Generate panel rectangles inside usable area
+    const panels=generatePanels(innerRing.slice(0,-1),lat);
+    if(panels.length>0){
+      rmap.addSource('panels',{type:'geojson',data:{type:'FeatureCollection',features:panels}});
+      rmap.addLayer({id:'panel-fill',type:'fill',source:'panels',paint:{'fill-color':'#1E50B4','fill-opacity':0.65}});
+      rmap.addLayer({id:'panel-line',type:'line',source:'panels',paint:{'line-color':'#3B7FFF','line-width':0.5,'line-opacity':0.8}});
+    }
+    
+    // Info chips
+    const overlay=document.querySelector('.roof-map-overlay');
+    if(overlay){
+      const numP=parseInt(params.get('p'))||panels.length;
+      const kw=parseFloat(params.get('kw'))||0;
+      overlay.innerHTML=`
+        <div class="roof-chip gold">☀️ ${numP} panels</div>
+        <div class="roof-chip green">⚡ ${kw.toFixed(1)} kWp</div>
+        <div class="roof-chip blue">📐 ${parseFloat(params.get('a')||0).toLocaleString()} m²</div>`;
+    }
+    
+    // Fit bounds
+    const allCoords=ring.map(c=>c);
+    const lngs=allCoords.map(c=>c[0]);
+    const lats=allCoords.map(c=>c[1]);
+    rmap.fitBounds([[Math.min(...lngs)-0.0003,Math.min(...lats)-0.0003],[Math.max(...lngs)+0.0003,Math.max(...lats)+0.0003]],{padding:60,pitch:45,bearing:-20});
+  });
+}
+
+function generatePanels(polygon,centerLat){
+  // Panel dimensions: 2.28m x 1.13m (Longi 580W)
+  // Convert to degrees
+  const mPerDegLat=111320;
+  const mPerDegLng=111320*Math.cos(centerLat*Math.PI/180);
+  const panelW=2.28/mPerDegLng; // width in degrees (lng)
+  const panelH=1.13/mPerDegLat; // height in degrees (lat)
+  const gap=0.15/mPerDegLng; // 15cm gap
+  
+  // Get bounding box of polygon
+  const lngs=polygon.map(p=>p[0]);
+  const lats=polygon.map(p=>p[1]);
+  const minLng=Math.min(...lngs);
+  const maxLng=Math.max(...lngs);
+  const minLat=Math.min(...lats);
+  const maxLat=Math.max(...lats);
+  
+  const features=[];
+  const maxPanels=parseInt(params.get('p'))||500;
+  
+  // Fill with panel rectangles in grid
+  for(let lng=minLng+gap;lng<maxLng-panelW;lng+=panelW+gap){
+    for(let lat=minLat+gap;lat<maxLat-panelH;lat+=panelH+gap){
+      // Check if all 4 corners are inside polygon
+      const corners=[[lng,lat],[lng+panelW,lat],[lng+panelW,lat+panelH],[lng,lat+panelH]];
+      const center=[(lng+lng+panelW)/2,(lat+lat+panelH)/2];
+      if(pointInPoly(center,polygon)){
+        features.push({type:'Feature',geometry:{type:'Polygon',coordinates:[[...corners,corners[0]]]}});
+        if(features.length>=maxPanels)return features;
+      }
+    }
+  }
+  return features;
+}
+
+function pointInPoly(point,poly){
+  let inside=false;
+  const x=point[0],y=point[1];
+  for(let i=0,j=poly.length-1;i<poly.length;j=i++){
+    const xi=poly[i][0],yi=poly[i][1];
+    const xj=poly[j][0],yj=poly[j][1];
+    if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)inside=!inside;
+  }
+  return inside;
+}
+
+initRoofMap();
 
 // Scroll animations
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});

@@ -476,7 +476,9 @@ function genPDF(id){
   const b=B.find(x=>x.i===id);if(!b)return;
   const p=new URLSearchParams({
     n:b.n||'',a:b.a,u:b.u,kw:b.kw,p:b.p,kwh:b.kwh,
-    epc:b.epc,sav:b.sav,ph:b.ph||''
+    epc:b.epc,sav:b.sav,ph:b.ph||'',
+    la:b.la,lo:b.lo,
+    poly:JSON.stringify(b.poly)
   });
   window.open('proposal.html?'+p.toString(),'_blank');
 }

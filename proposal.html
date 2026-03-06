@@ -258,12 +258,45 @@ body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);li
     </div>
   </div>
 
+  <!-- Signature -->
+  <div class="section fade-in">
+    <div class="section-title"><div class="icon">✍️</div><span data-i18n="signTitle">Accept This Proposal</span></div>
+    <div style="background:var(--light);border-radius:14px;padding:24px;margin:16px 0">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+        <div>
+          <p style="font-size:12px;color:var(--gray);margin-bottom:8px" data-i18n="clientSign">Client Signature</p>
+          <canvas id="sigCanvas" width="380" height="120" style="border:2px solid #E2E8F0;border-radius:8px;background:white;cursor:crosshair;width:100%;touch-action:none"></canvas>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button onclick="clearSig()" style="padding:6px 14px;border-radius:6px;border:1px solid #E2E8F0;background:white;font-size:11px;cursor:pointer;font-family:Inter" data-i18n="clearSig">Clear</button>
+            <input type="text" id="sigName" placeholder="Full Name / ชื่อ-นามสกุล / שם מלא" style="flex:1;padding:6px 12px;border-radius:6px;border:1px solid #E2E8F0;font-size:12px;font-family:Inter">
+          </div>
+          <input type="text" id="sigTitle" placeholder="Position / ตำแหน่ง / תפקיד" style="width:100%;padding:6px 12px;border-radius:6px;border:1px solid #E2E8F0;font-size:12px;font-family:Inter;margin-top:6px">
+          <input type="date" id="sigDate" style="width:100%;padding:6px 12px;border-radius:6px;border:1px solid #E2E8F0;font-size:12px;font-family:Inter;margin-top:6px">
+        </div>
+        <div>
+          <p style="font-size:12px;color:var(--gray);margin-bottom:8px">TM Energy</p>
+          <div style="border:2px solid #E2E8F0;border-radius:8px;background:white;padding:16px;height:120px;display:flex;align-items:center;justify-content:center">
+            <img src="visuals/tm-energy-logo.png" alt="TM Energy" style="max-height:80px;filter:brightness(0.9)">
+          </div>
+          <p style="font-size:11px;margin-top:8px;color:var(--gray)">KANIEL TORD LLC</p>
+          <p style="font-size:11px;color:var(--gray)">Koh Phangan, Thailand</p>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid #E2E8F0;display:flex;gap:8px;flex-wrap:wrap">
+        <button onclick="acceptProposal()" style="padding:10px 24px;border-radius:8px;background:var(--gold);color:var(--navy);border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter" data-i18n="acceptBtn">✅ Accept Proposal</button>
+        <button onclick="window.print()" style="padding:10px 24px;border-radius:8px;background:var(--navy);color:white;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter" data-i18n="printBtn">🖨️ Print / Save PDF</button>
+      </div>
+      <div id="acceptMsg" style="display:none;margin-top:12px;padding:12px;background:rgba(26,122,90,.1);border-radius:8px;color:var(--green);font-size:13px;font-weight:600"></div>
+    </div>
+  </div>
+
   <!-- CTA -->
   <div class="cta-section fade-in">
     <h2 data-i18n="ctaTitle">Ready to Save on Electricity?</h2>
     <p data-i18n="ctaDesc">Get started with a free consultation — no obligation</p>
     <div class="cta-btns">
       <a class="cta-btn primary" id="ctaWA" href="#" target="_blank" data-i18n="ctaWA">💬 WhatsApp Us</a>
+      <a class="cta-btn primary" href="https://line.me/ti/p/~tmenergy" target="_blank" style="background:#06C755;color:white">💚 LINE</a>
       <a class="cta-btn secondary" href="tel:+66000000000" data-i18n="ctaCall">📞 Call Now</a>
       <a class="cta-btn secondary" href="mailto:info@tm.energy" data-i18n="ctaEmail">✉️ Email</a>
     </div>
@@ -279,9 +312,9 @@ body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);li
 <script>
 // i18n translations
 const T={
-  en:{roofViz:'Your Roof — Panel Layout',roofOutline:'Building Footprint',panelArea:'Solar Panels',usableZone:'Usable Zone (70%)',sysOverview:'System Overview',roofArea:'Roof Area (m²)',usableArea:'Usable Area (m²)',systemSize:'System Size (kWp)',panels:'Solar Panels',annualGen:'Annual Generation (kWh)',co2Saved:'CO₂ Saved/Year (tons)',options:'Your Options',epcTitle:'Option 1: Purchase (EPC)',epcDesc:'Own your solar system outright',ppaTitle:'Option 2: PPA — Zero Investment',ppaDesc:'We install & maintain, you buy cheaper electricity',monthlySave:'Monthly Savings',annualSave:'Annual Savings',payback:'Payback Period',save25:'25-Year Savings',ownership:'Ownership',immediate:'Immediate',upfront:'Upfront Cost',zero:'฿0',ppaRate:'Electricity Rate',discount:'vs PEA Rate (~฿6/kWh)',monthlySavePPA:'Monthly Savings',contract:'Contract Period',afterContract:'After Contract',youOwn:'System is yours',savingsProj:'Savings Projection',cumSave:'Cumulative Savings (EPC)',over25:'Over 25 years',equipment:'Premium Equipment',panelEff:'Efficiency: 22.8%',inverterType:'String Inverter',inverterEff:'Efficiency: 98.6%',mounting:'Mounting System',mountType:'Anodized Aluminum',mountLife:'Lifetime: 25+ years',warranty:'Warranty & Support',panelWarranty:'Panel Performance',productWarranty:'Panel Product',inverterWarranty:'Inverter',installWarranty:'Installation',included:"What's Included",detail:'Details',freeDesign:'Free Site Survey & Design',freeDesignD:'Professional engineers assess your roof',permits:'Permits & Paperwork',permitsD:'PEA application, building permits handled',install:'Full Installation',installD:'Certified team, 3-5 day installation',monitoring:'24/7 Monitoring',monitoringD:'Real-time system monitoring dashboard',maintenance:'Annual Maintenance',maintenanceD:'Panel cleaning, inverter check, report',ctaTitle:'Ready to Save on Electricity?',ctaDesc:'Get started with a free consultation — no obligation',ctaWA:'💬 WhatsApp Us',ctaCall:'📞 Call Now',ctaEmail:'✉️ Email',validity:'This proposal is valid for 30 days',heroTitle:'Solar Energy Proposal',heroSub:'Custom designed for your property'},
-  th:{roofViz:'หลังคาของคุณ — แผนผังแผงโซลาร์',roofOutline:'รอยเท้าอาคาร',panelArea:'แผงโซลาร์',usableZone:'พื้นที่ใช้งาน (70%)',sysOverview:'ภาพรวมระบบ',roofArea:'พื้นที่หลังคา (ตร.ม.)',usableArea:'พื้นที่ใช้งาน (ตร.ม.)',systemSize:'ขนาดระบบ (kWp)',panels:'แผงโซลาร์',annualGen:'ผลิตไฟฟ้าต่อปี (kWh)',co2Saved:'ลด CO₂ ต่อปี (ตัน)',options:'ตัวเลือกสำหรับคุณ',epcTitle:'ตัวเลือก 1: ซื้อระบบ (EPC)',epcDesc:'เป็นเจ้าของระบบโซลาร์ทันที',ppaTitle:'ตัวเลือก 2: PPA — ไม่ต้องลงทุน',ppaDesc:'เราติดตั้งและดูแล คุณซื้อไฟฟ้าในราคาถูกลง',monthlySave:'ประหยัดต่อเดือน',annualSave:'ประหยัดต่อปี',payback:'ระยะเวลาคืนทุน',save25:'ประหยัดใน 25 ปี',ownership:'ความเป็นเจ้าของ',immediate:'ทันที',upfront:'ค่าใช้จ่ายเริ่มต้น',zero:'฿0',ppaRate:'อัตราค่าไฟฟ้า',discount:'เทียบกับ กฟภ. (~฿6/kWh)',monthlySavePPA:'ประหยัดต่อเดือน',contract:'ระยะสัญญา',afterContract:'หลังสัญญา',youOwn:'ระบบเป็นของคุณ',savingsProj:'ประมาณการประหยัด',cumSave:'ยอดประหยัดสะสม (EPC)',over25:'ตลอด 25 ปี',equipment:'อุปกรณ์คุณภาพสูง',panelEff:'ประสิทธิภาพ: 22.8%',inverterType:'อินเวอร์เตอร์สตริง',inverterEff:'ประสิทธิภาพ: 98.6%',mounting:'ระบบโครงสร้าง',mountType:'อลูมิเนียมอะโนไดซ์',mountLife:'อายุใช้งาน: 25+ ปี',warranty:'การรับประกันและบริการ',panelWarranty:'ประสิทธิภาพแผง',productWarranty:'ตัวผลิตภัณฑ์',inverterWarranty:'อินเวอร์เตอร์',installWarranty:'การติดตั้ง',included:'สิ่งที่รวมอยู่',detail:'รายละเอียด',freeDesign:'สำรวจและออกแบบฟรี',freeDesignD:'วิศวกรมืออาชีพประเมินหลังคาของคุณ',permits:'ใบอนุญาตและเอกสาร',permitsD:'ยื่นขอ กฟภ. และใบอนุญาตก่อสร้าง',install:'ติดตั้งครบวงจร',installD:'ทีมที่ได้รับการรับรอง 3-5 วัน',monitoring:'ตรวจสอบ 24/7',monitoringD:'แดชบอร์ดตรวจสอบระบบแบบเรียลไทม์',maintenance:'บำรุงรักษาประจำปี',maintenanceD:'ทำความสะอาดแผง ตรวจอินเวอร์เตอร์ รายงาน',ctaTitle:'พร้อมประหยัดค่าไฟฟ้าแล้วหรือยัง?',ctaDesc:'เริ่มต้นด้วยการให้คำปรึกษาฟรี — ไม่มีข้อผูกมัด',ctaWA:'💬 แชทไลน์/WhatsApp',ctaCall:'📞 โทรเลย',ctaEmail:'✉️ อีเมล',validity:'ใบเสนอราคานี้มีผล 30 วัน',heroTitle:'ข้อเสนอพลังงานแสงอาทิตย์',heroSub:'ออกแบบเฉพาะสำหรับอสังหาริมทรัพย์ของคุณ'},
-  he:{roofViz:'הגג שלך — פריסת פאנלים',roofOutline:'מתאר מבנה',panelArea:'פאנלים סולאריים',usableZone:'אזור שמיש (70%)',sysOverview:'סקירת מערכת',roofArea:'שטח גג (מ"ר)',usableArea:'שטח שמיש (מ"ר)',systemSize:'הספק מערכת (kWp)',panels:'פאנלים סולאריים',annualGen:'ייצור שנתי (kWh)',co2Saved:'חיסכון CO₂ שנתי (טון)',options:'האפשרויות שלך',epcTitle:'אפשרות 1: רכישה (EPC)',epcDesc:'מערכת סולארית בבעלותך המלאה',ppaTitle:'אפשרות 2: PPA — אפס השקעה',ppaDesc:'אנחנו מתקינים ומתחזקים, אתה קונה חשמל בזול',monthlySave:'חיסכון חודשי',annualSave:'חיסכון שנתי',payback:'תקופת החזר',save25:'חיסכון ב-25 שנה',ownership:'בעלות',immediate:'מיידית',upfront:'עלות התחלתית',zero:'฿0',ppaRate:'תעריף חשמל',discount:'מול PEA (~฿6/kWh)',monthlySavePPA:'חיסכון חודשי',contract:'תקופת חוזה',afterContract:'אחרי החוזה',youOwn:'המערכת שלך',savingsProj:'תחזית חיסכון',cumSave:'חיסכון מצטבר (EPC)',over25:'לאורך 25 שנה',equipment:'ציוד פרימיום',panelEff:'נצילות: 22.8%',inverterType:'ממיר סטרינג',inverterEff:'נצילות: 98.6%',mounting:'מערכת תילוי',mountType:'אלומיניום אנודייז',mountLife:'אורך חיים: 25+ שנה',warranty:'אחריות ותמיכה',panelWarranty:'ביצועי פאנל',productWarranty:'מוצר פאנל',inverterWarranty:'ממיר',installWarranty:'התקנה',included:'כלול בהצעה',detail:'פרטים',freeDesign:'סקר שטח ועיצוב חינם',freeDesignD:'מהנדסים מקצועיים מעריכים את הגג',permits:'רישיונות ואישורים',permitsD:'הגשה ל-PEA, היתרי בנייה',install:'התקנה מלאה',installD:'צוות מוסמך, 3-5 ימי התקנה',monitoring:'ניטור 24/7',monitoringD:'דשבורד ניטור בזמן אמת',maintenance:'תחזוקה שנתית',maintenanceD:'ניקוי פאנלים, בדיקת ממיר, דוח',ctaTitle:'מוכנים לחסוך בחשמל?',ctaDesc:'התחילו עם ייעוץ חינם — ללא התחייבות',ctaWA:'💬 WhatsApp',ctaCall:'📞 התקשרו',ctaEmail:'✉️ מייל',validity:'הצעה זו תקפה ל-30 יום',heroTitle:'הצעת מחיר — אנרגיה סולארית',heroSub:'מותאמת אישית לנכס שלך'}
+  en:{signTitle:'Accept This Proposal',clientSign:'Client Signature',clearSig:'Clear',acceptBtn:'✅ Accept Proposal',printBtn:'🖨️ Print / Save PDF',roofViz:'Your Roof — Panel Layout',roofOutline:'Building Footprint',panelArea:'Solar Panels',usableZone:'Usable Zone (70%)',sysOverview:'System Overview',roofArea:'Roof Area (m²)',usableArea:'Usable Area (m²)',systemSize:'System Size (kWp)',panels:'Solar Panels',annualGen:'Annual Generation (kWh)',co2Saved:'CO₂ Saved/Year (tons)',options:'Your Options',epcTitle:'Option 1: Purchase (EPC)',epcDesc:'Own your solar system outright',ppaTitle:'Option 2: PPA — Zero Investment',ppaDesc:'We install & maintain, you buy cheaper electricity',monthlySave:'Monthly Savings',annualSave:'Annual Savings',payback:'Payback Period',save25:'25-Year Savings',ownership:'Ownership',immediate:'Immediate',upfront:'Upfront Cost',zero:'฿0',ppaRate:'Electricity Rate',discount:'vs PEA Rate (~฿6/kWh)',monthlySavePPA:'Monthly Savings',contract:'Contract Period',afterContract:'After Contract',youOwn:'System is yours',savingsProj:'Savings Projection',cumSave:'Cumulative Savings (EPC)',over25:'Over 25 years',equipment:'Premium Equipment',panelEff:'Efficiency: 22.8%',inverterType:'String Inverter',inverterEff:'Efficiency: 98.6%',mounting:'Mounting System',mountType:'Anodized Aluminum',mountLife:'Lifetime: 25+ years',warranty:'Warranty & Support',panelWarranty:'Panel Performance',productWarranty:'Panel Product',inverterWarranty:'Inverter',installWarranty:'Installation',included:"What's Included",detail:'Details',freeDesign:'Free Site Survey & Design',freeDesignD:'Professional engineers assess your roof',permits:'Permits & Paperwork',permitsD:'PEA application, building permits handled',install:'Full Installation',installD:'Certified team, 3-5 day installation',monitoring:'24/7 Monitoring',monitoringD:'Real-time system monitoring dashboard',maintenance:'Annual Maintenance',maintenanceD:'Panel cleaning, inverter check, report',ctaTitle:'Ready to Save on Electricity?',ctaDesc:'Get started with a free consultation — no obligation',ctaWA:'💬 WhatsApp Us',ctaCall:'📞 Call Now',ctaEmail:'✉️ Email',validity:'This proposal is valid for 30 days',heroTitle:'Solar Energy Proposal',heroSub:'Custom designed for your property'},
+  th:{signTitle:'ยอมรับข้อเสนอนี้',clientSign:'ลายเซ็นลูกค้า',clearSig:'ล้าง',acceptBtn:'✅ ยอมรับข้อเสนอ',printBtn:'🖨️ พิมพ์ / บันทึก PDF',roofViz:'หลังคาของคุณ — แผนผังแผงโซลาร์',roofOutline:'รอยเท้าอาคาร',panelArea:'แผงโซลาร์',usableZone:'พื้นที่ใช้งาน (70%)',sysOverview:'ภาพรวมระบบ',roofArea:'พื้นที่หลังคา (ตร.ม.)',usableArea:'พื้นที่ใช้งาน (ตร.ม.)',systemSize:'ขนาดระบบ (kWp)',panels:'แผงโซลาร์',annualGen:'ผลิตไฟฟ้าต่อปี (kWh)',co2Saved:'ลด CO₂ ต่อปี (ตัน)',options:'ตัวเลือกสำหรับคุณ',epcTitle:'ตัวเลือก 1: ซื้อระบบ (EPC)',epcDesc:'เป็นเจ้าของระบบโซลาร์ทันที',ppaTitle:'ตัวเลือก 2: PPA — ไม่ต้องลงทุน',ppaDesc:'เราติดตั้งและดูแล คุณซื้อไฟฟ้าในราคาถูกลง',monthlySave:'ประหยัดต่อเดือน',annualSave:'ประหยัดต่อปี',payback:'ระยะเวลาคืนทุน',save25:'ประหยัดใน 25 ปี',ownership:'ความเป็นเจ้าของ',immediate:'ทันที',upfront:'ค่าใช้จ่ายเริ่มต้น',zero:'฿0',ppaRate:'อัตราค่าไฟฟ้า',discount:'เทียบกับ กฟภ. (~฿6/kWh)',monthlySavePPA:'ประหยัดต่อเดือน',contract:'ระยะสัญญา',afterContract:'หลังสัญญา',youOwn:'ระบบเป็นของคุณ',savingsProj:'ประมาณการประหยัด',cumSave:'ยอดประหยัดสะสม (EPC)',over25:'ตลอด 25 ปี',equipment:'อุปกรณ์คุณภาพสูง',panelEff:'ประสิทธิภาพ: 22.8%',inverterType:'อินเวอร์เตอร์สตริง',inverterEff:'ประสิทธิภาพ: 98.6%',mounting:'ระบบโครงสร้าง',mountType:'อลูมิเนียมอะโนไดซ์',mountLife:'อายุใช้งาน: 25+ ปี',warranty:'การรับประกันและบริการ',panelWarranty:'ประสิทธิภาพแผง',productWarranty:'ตัวผลิตภัณฑ์',inverterWarranty:'อินเวอร์เตอร์',installWarranty:'การติดตั้ง',included:'สิ่งที่รวมอยู่',detail:'รายละเอียด',freeDesign:'สำรวจและออกแบบฟรี',freeDesignD:'วิศวกรมืออาชีพประเมินหลังคาของคุณ',permits:'ใบอนุญาตและเอกสาร',permitsD:'ยื่นขอ กฟภ. และใบอนุญาตก่อสร้าง',install:'ติดตั้งครบวงจร',installD:'ทีมที่ได้รับการรับรอง 3-5 วัน',monitoring:'ตรวจสอบ 24/7',monitoringD:'แดชบอร์ดตรวจสอบระบบแบบเรียลไทม์',maintenance:'บำรุงรักษาประจำปี',maintenanceD:'ทำความสะอาดแผง ตรวจอินเวอร์เตอร์ รายงาน',ctaTitle:'พร้อมประหยัดค่าไฟฟ้าแล้วหรือยัง?',ctaDesc:'เริ่มต้นด้วยการให้คำปรึกษาฟรี — ไม่มีข้อผูกมัด',ctaWA:'💬 แชทไลน์/WhatsApp',ctaCall:'📞 โทรเลย',ctaEmail:'✉️ อีเมล',validity:'ใบเสนอราคานี้มีผล 30 วัน',heroTitle:'ข้อเสนอพลังงานแสงอาทิตย์',heroSub:'ออกแบบเฉพาะสำหรับอสังหาริมทรัพย์ของคุณ'},
+  he:{signTitle:'אישור הצעת מחיר',clientSign:'חתימת לקוח',clearSig:'נקה',acceptBtn:'✅ אישור הצעה',printBtn:'🖨️ הדפסה / שמירת PDF',roofViz:'הגג שלך — פריסת פאנלים',roofOutline:'מתאר מבנה',panelArea:'פאנלים סולאריים',usableZone:'אזור שמיש (70%)',sysOverview:'סקירת מערכת',roofArea:'שטח גג (מ"ר)',usableArea:'שטח שמיש (מ"ר)',systemSize:'הספק מערכת (kWp)',panels:'פאנלים סולאריים',annualGen:'ייצור שנתי (kWh)',co2Saved:'חיסכון CO₂ שנתי (טון)',options:'האפשרויות שלך',epcTitle:'אפשרות 1: רכישה (EPC)',epcDesc:'מערכת סולארית בבעלותך המלאה',ppaTitle:'אפשרות 2: PPA — אפס השקעה',ppaDesc:'אנחנו מתקינים ומתחזקים, אתה קונה חשמל בזול',monthlySave:'חיסכון חודשי',annualSave:'חיסכון שנתי',payback:'תקופת החזר',save25:'חיסכון ב-25 שנה',ownership:'בעלות',immediate:'מיידית',upfront:'עלות התחלתית',zero:'฿0',ppaRate:'תעריף חשמל',discount:'מול PEA (~฿6/kWh)',monthlySavePPA:'חיסכון חודשי',contract:'תקופת חוזה',afterContract:'אחרי החוזה',youOwn:'המערכת שלך',savingsProj:'תחזית חיסכון',cumSave:'חיסכון מצטבר (EPC)',over25:'לאורך 25 שנה',equipment:'ציוד פרימיום',panelEff:'נצילות: 22.8%',inverterType:'ממיר סטרינג',inverterEff:'נצילות: 98.6%',mounting:'מערכת תילוי',mountType:'אלומיניום אנודייז',mountLife:'אורך חיים: 25+ שנה',warranty:'אחריות ותמיכה',panelWarranty:'ביצועי פאנל',productWarranty:'מוצר פאנל',inverterWarranty:'ממיר',installWarranty:'התקנה',included:'כלול בהצעה',detail:'פרטים',freeDesign:'סקר שטח ועיצוב חינם',freeDesignD:'מהנדסים מקצועיים מעריכים את הגג',permits:'רישיונות ואישורים',permitsD:'הגשה ל-PEA, היתרי בנייה',install:'התקנה מלאה',installD:'צוות מוסמך, 3-5 ימי התקנה',monitoring:'ניטור 24/7',monitoringD:'דשבורד ניטור בזמן אמת',maintenance:'תחזוקה שנתית',maintenanceD:'ניקוי פאנלים, בדיקת ממיר, דוח',ctaTitle:'מוכנים לחסוך בחשמל?',ctaDesc:'התחילו עם ייעוץ חינם — ללא התחייבות',ctaWA:'💬 WhatsApp',ctaCall:'📞 התקשרו',ctaEmail:'✉️ מייל',validity:'הצעה זו תקפה ל-30 יום',heroTitle:'הצעת מחיר — אנרגיה סולארית',heroSub:'מותאמת אישית לנכס שלך'}
 };
 
 let curLang='en';
@@ -349,6 +382,42 @@ function fillData(){
 }
 
 fillData();
+
+// Signature pad
+const canvas=document.getElementById('sigCanvas');
+if(canvas){
+  const ctx=canvas.getContext('2d');
+  let drawing=false;
+  canvas.width=canvas.offsetWidth*2;canvas.height=canvas.offsetHeight*2;
+  ctx.scale(2,2);ctx.lineWidth=2;ctx.lineCap='round';ctx.strokeStyle='#0D2137';
+  
+  function getPos(e){
+    const r=canvas.getBoundingClientRect();
+    const t=e.touches?e.touches[0]:e;
+    return{x:t.clientX-r.left,y:t.clientY-r.top};
+  }
+  canvas.addEventListener('mousedown',e=>{drawing=true;const p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)});
+  canvas.addEventListener('mousemove',e=>{if(!drawing)return;const p=getPos(e);ctx.lineTo(p.x,p.y);ctx.stroke()});
+  canvas.addEventListener('mouseup',()=>drawing=false);
+  canvas.addEventListener('mouseleave',()=>drawing=false);
+  canvas.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;const p=getPos(e);ctx.beginPath();ctx.moveTo(p.x,p.y)},{passive:false});
+  canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!drawing)return;const p=getPos(e);ctx.lineTo(p.x,p.y);ctx.stroke()},{passive:false});
+  canvas.addEventListener('touchend',()=>drawing=false);
+}
+function clearSig(){
+  const c=document.getElementById('sigCanvas');
+  const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);
+}
+function acceptProposal(){
+  const name=document.getElementById('sigName').value;
+  const title=document.getElementById('sigTitle').value;
+  const date=document.getElementById('sigDate').value;
+  const msg=document.getElementById('acceptMsg');
+  if(!name){msg.style.display='block';msg.style.background='rgba(232,93,58,.1)';msg.style.color='var(--coral)';msg.textContent='Please enter your name / กรุณากรอกชื่อ / נא להזין שם';return}
+  msg.style.display='block';msg.style.background='rgba(26,122,90,.1)';msg.style.color='var(--green)';
+  msg.textContent=`✅ Proposal accepted by ${name}${title?' ('+title+')':''} on ${date||new Date().toLocaleDateString()}. A copy will be sent to your email.`;
+}
+document.getElementById('sigDate').valueAsDate=new Date();
 
 // Roof Visualization
 function initRoofMap(){

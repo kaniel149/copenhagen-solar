@@ -109,9 +109,9 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
 <div class="map-container">
   <div id="map"></div>
   <div class="heatmap-toggle">
-    <button class="ht-btn active" onclick="setMapStyle('satellite')">🛰️ לוויין</button>
-    <button class="ht-btn" onclick="setMapStyle('streets')">🗺️ רחובות</button>
-    <button class="ht-btn" onclick="toggleHeatmap()">🔥 Heatmap</button>
+    <button class="ht-btn active" onclick="setMapStyle('satellite',event)">🛰️ לוויין</button>
+    <button class="ht-btn" onclick="setMapStyle('streets',event)">🗺️ רחובות</button>
+    <button class="ht-btn" onclick="toggleHeatmap(event)">🔥 Heatmap</button>
   </div>
   <div class="map-controls">
     <button class="map-btn" onclick="map.zoomIn()" title="Zoom In">+</button>
@@ -144,10 +144,11 @@ let map,markers=[],selectedId=null,activeFilter='all',activeCat=null,activeSize=
 // Init map
 map=new maplibregl.Map({
   container:'map',
-  style:{version:8,sources:{'satellite':{type:'raster',tiles:['https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'],tileSize:256,maxzoom:20,attribution:'Google'},'streets':{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'OSM'}},layers:[{id:'satellite',type:'raster',source:'satellite'},{id:'streets',type:'raster',source:'streets',layout:{visibility:'none'}}]},
+  style:{version:8,glyphs:'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',sources:{'esri-sat':{type:'raster',tiles:['https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:19,attribution:'Esri'},'osm':{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19,attribution:'OSM'}},layers:[{id:'satellite',type:'raster',source:'esri-sat'},{id:'streets',type:'raster',source:'osm',layout:{visibility:'none'}}]},
   center:KP_CENTER,
-  zoom:12.5,
-  maxBounds:[[99.7,9.55],[100.2,9.95]]
+  zoom:13,
+  maxBounds:[[99.7,9.55],[100.2,9.95]],
+  fadeDuration:0
 });
 
 map.addControl(new maplibregl.NavigationControl(),'bottom-right');
@@ -288,7 +289,7 @@ function selectBuilding(id){
           <tr><td>השקעה שלנו</td><td>฿${(b.ppai/1000).toFixed(0)}K</td></tr>
           <tr><td>הכנסה שנתית</td><td style="color:#2ED89A">฿${(b.ppar/1000).toFixed(0)}K</td></tr>
           <tr><td>MRR</td><td style="color:var(--gold)">฿${(b.ppar/12000).toFixed(1)}K</td></tr>
-          <tr><td>החזר</td><td>${b.ppap} שנים</td></tr>
+          <tr><td>החזר</td><td>${b.ppap} שנים *</td></tr>
           <tr><td>רווח 25 שנה</td><td style="color:#2ED89A">฿${((b.ppar*25-b.ppai)/1000000).toFixed(1)}M</td></tr>
         </table>
       </div>
@@ -298,6 +299,7 @@ function selectBuilding(id){
       <a href="https://www.google.com/maps/@${b.la},${b.lo},60m/data=!3m1!1e3" target="_blank" style="flex:1;padding:6px;text-align:center;border-radius:6px;background:rgba(46,216,154,.15);color:#2ED89A;text-decoration:none;font-size:11px">🛰️ Satellite View</a>
       ${b.ph?`<a href="tel:${b.ph}" style="flex:1;padding:6px;text-align:center;border-radius:6px;background:rgba(100,150,255,.15);color:#6496FF;text-decoration:none;font-size:11px">📞 התקשר</a>`:''}
     </div>
+    <div style="font-size:9px;opacity:.4;margin-top:8px">* החזר PPA מבוסס על הנחות אחידות (4.5 שעות שמש, ฿4.5/kWh). בפועל משתנה לפי הצללה, כיוון גג ומצב מבנה. כל החישובים לפני סקר שטח.</div>
   `;
   panel.classList.add('show');
   
@@ -311,23 +313,24 @@ function closeDetail(){document.getElementById('detailPanel').classList.remove('
 
 function resetView(){map.flyTo({center:KP_CENTER,zoom:12.5,duration:800});closeDetail()}
 
-function setMapStyle(style){
+function setMapStyle(style,e){
   document.querySelectorAll('.ht-btn:not(:last-child)').forEach(b=>b.classList.remove('active'));
-  event.target.classList.add('active');
+  if(e?.target) e.target.classList.add('active');
   if(style==='satellite'){
-    map.setLayoutProperty('satellite','visibility','visible');
-    map.setLayoutProperty('streets','visibility','none');
+    if(map.getLayer('satellite')) map.setLayoutProperty('satellite','visibility','visible');
+    if(map.getLayer('streets')) map.setLayoutProperty('streets','visibility','none');
   }else{
-    map.setLayoutProperty('satellite','visibility','none');
-    map.setLayoutProperty('streets','visibility','visible');
+    if(map.getLayer('satellite')) map.setLayoutProperty('satellite','visibility','none');
+    if(map.getLayer('streets')) map.setLayoutProperty('streets','visibility','visible');
   }
 }
 
-function toggleHeatmap(){
+function toggleHeatmap(e){
   heatmapOn=!heatmapOn;
   map.setLayoutProperty('buildings-heat','visibility',heatmapOn?'visible':'none');
   map.setLayoutProperty('buildings-circle','visibility',heatmapOn?'none':'visible');
-  event.target.classList.toggle('active',heatmapOn);
+  const btn=e?.target||document.querySelector('.ht-btn:last-child');
+  if(btn) btn.classList.toggle('active',heatmapOn);
 }
 
 // Filter handlers

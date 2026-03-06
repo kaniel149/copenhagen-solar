@@ -153,7 +153,7 @@ body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);li
   <div class="section fade-in" id="roofVizSection" style="display:none">
     <div class="section-title"><div class="icon">🛰️</div><span data-i18n="roofViz">Your Roof — Panel Layout</span></div>
     <div class="roof-viz">
-      <div class="roof-map" id="roofMap"></div>
+      <div class="roof-map" id="roofMap"><div class="roof-map-overlay" id="roofOverlay"></div></div>
       <div class="roof-legend">
         <div class="roof-legend-item"><div class="roof-legend-dot" style="background:rgba(232,168,32,.4);border-color:#E8A820"></div><span data-i18n="roofOutline">Building Footprint</span></div>
         <div class="roof-legend-item"><div class="roof-legend-dot" style="background:rgba(30,80,180,.7);border-color:#1E50B4"></div><span data-i18n="panelArea">Solar Panels</span></div>
@@ -401,15 +401,14 @@ function initRoofMap(){
     }
     
     // Info chips
-    const overlay=document.querySelector('.roof-map-overlay');
-    if(overlay){
-      const numP=parseInt(params.get('p'))||panels.length;
-      const kw=parseFloat(params.get('kw'))||0;
-      overlay.innerHTML=`
-        <div class="roof-chip gold">☀️ ${numP} panels</div>
-        <div class="roof-chip green">⚡ ${kw.toFixed(1)} kWp</div>
-        <div class="roof-chip blue">📐 ${parseFloat(params.get('a')||0).toLocaleString()} m²</div>`;
-    }
+    const overlay=document.getElementById('roofOverlay');
+    const numP=parseInt(params.get('p'))||panels.length;
+    const kw=parseFloat(params.get('kw'))||0;
+    overlay.innerHTML=`
+      <div class="roof-chip gold">☀️ ${numP} panels</div>
+      <div class="roof-chip green">⚡ ${kw.toFixed(1)} kWp</div>
+      <div class="roof-chip blue">📐 ${parseFloat(params.get('a')||0).toLocaleString()} m²</div>
+      <div class="roof-chip blue">🔋 ${panels.length} panels rendered</div>`;
     
     // Fit bounds
     const allCoords=ring.map(c=>c);

@@ -99,7 +99,7 @@ body{font-family:'Inter',sans-serif;color:var(--navy);background:var(--white);li
 
 /* Roof Visualization */
 .roof-viz{border-radius:16px;overflow:hidden;border:2px solid #E2E8F0;margin:20px 0}
-.roof-map{width:100%;height:450px;position:relative}
+.roof-map{width:100%;height:500px;position:relative;background:#0D2137}
 .roof-map-overlay{position:absolute;bottom:12px;left:12px;right:12px;display:flex;gap:8px;z-index:5;flex-wrap:wrap}
 .roof-chip{padding:5px 12px;border-radius:8px;font-size:11px;font-weight:600;backdrop-filter:blur(10px)}
 .roof-chip.gold{background:rgba(232,168,32,.9);color:var(--navy)}
@@ -366,38 +366,51 @@ function initRoofMap(){
   const rmap=new maplibregl.Map({
     container:'roofMap',
     style:{version:8,glyphs:'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
-      sources:{'sat':{type:'raster',tiles:['https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:20}},
-      layers:[{id:'sat',type:'raster',source:'sat'}]},
-    center:[lng,lat],zoom:18.5,pitch:45,bearing:-20,
-    fadeDuration:0
+      sources:{'sat':{type:'raster',tiles:['https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'],tileSize:256,maxzoom:22,attribution:'Google'}},
+      layers:[{id:'sat',type:'raster',source:'sat',paint:{'raster-saturation':0.1,'raster-contrast':0.1}}]},
+    center:[lng,lat],zoom:19,pitch:50,bearing:-15,
+    maxZoom:22,fadeDuration:0
   });
   
   rmap.on('load',()=>{
     const ring=poly.map(c=>[c[0],c[1]]);
     ring.push(ring[0]); // close
     
-    // Building outline
+    // Building outline — outer glow
     rmap.addSource('building',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[ring]}}});
-    rmap.addLayer({id:'bld-fill',type:'fill',source:'building',paint:{'fill-color':'#E8A820','fill-opacity':0.15}});
-    rmap.addLayer({id:'bld-line',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':2.5,'line-dasharray':[2,1]}});
+    // Glow layers (multiple fills for glow effect)
+    rmap.addLayer({id:'bld-glow3',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':12,'line-opacity':0.08,'line-blur':8}});
+    rmap.addLayer({id:'bld-glow2',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':6,'line-opacity':0.15,'line-blur':4}});
+    rmap.addLayer({id:'bld-fill',type:'fill',source:'building',paint:{'fill-color':'#E8A820','fill-opacity':0.08}});
+    rmap.addLayer({id:'bld-line',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':2.5}});
+    // Corner markers
+    const markers=ring.slice(0,-1).map(c=>({type:'Feature',geometry:{type:'Point',coordinates:c}}));
+    rmap.addSource('corners',{type:'geojson',data:{type:'FeatureCollection',features:markers}});
+    rmap.addLayer({id:'corner-dots',type:'circle',source:'corners',paint:{'circle-radius':4,'circle-color':'#E8A820','circle-stroke-width':2,'circle-stroke-color':'#FFF'}});
     
     // Calculate usable area (shrink polygon by ~15% towards center)
     const cx=poly.reduce((s,p)=>s+p[0],0)/poly.length;
     const cy=poly.reduce((s,p)=>s+p[1],0)/poly.length;
-    const shrink=0.84; // ~70% area ≈ 84% linear
+    const shrink=0.84;
     const innerRing=poly.map(p=>[(p[0]-cx)*shrink+cx,(p[1]-cy)*shrink+cy]);
     innerRing.push(innerRing[0]);
     
     rmap.addSource('usable',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[innerRing]}}});
-    rmap.addLayer({id:'usable-fill',type:'fill',source:'usable',paint:{'fill-color':'#2ED89A','fill-opacity':0.12}});
-    rmap.addLayer({id:'usable-line',type:'line',source:'usable',paint:{'line-color':'#2ED89A','line-width':1.5}});
+    rmap.addLayer({id:'usable-fill',type:'fill',source:'usable',paint:{'fill-color':'#2ED89A','fill-opacity':0.06}});
+    rmap.addLayer({id:'usable-line',type:'line',source:'usable',paint:{'line-color':'#2ED89A','line-width':1.5,'line-dasharray':[3,2]}});
     
     // Generate panel rectangles inside usable area
     const panels=generatePanels(innerRing.slice(0,-1),lat);
     if(panels.length>0){
       rmap.addSource('panels',{type:'geojson',data:{type:'FeatureCollection',features:panels}});
-      rmap.addLayer({id:'panel-fill',type:'fill',source:'panels',paint:{'fill-color':'#1E50B4','fill-opacity':0.65}});
-      rmap.addLayer({id:'panel-line',type:'line',source:'panels',paint:{'line-color':'#3B7FFF','line-width':0.5,'line-opacity':0.8}});
+      // Panel shadow
+      rmap.addLayer({id:'panel-shadow',type:'fill',source:'panels',paint:{'fill-color':'#000','fill-opacity':0.2,'fill-translate':[1,1]}});
+      // Panel body — dark blue with slight transparency to see roof
+      rmap.addLayer({id:'panel-fill',type:'fill',source:'panels',paint:{'fill-color':['interpolate',['linear'],['id'],0,'#1a3a6e',100,'#1E50B4',500,'#2460CC'],'fill-opacity':0.75}});
+      // Panel cell lines (grid pattern)
+      rmap.addLayer({id:'panel-line',type:'line',source:'panels',paint:{'line-color':'#4488DD','line-width':0.4,'line-opacity':0.6}});
+      // Panel highlight (top edge = light reflection)
+      rmap.addLayer({id:'panel-highlight',type:'line',source:'panels',paint:{'line-color':'#88BBFF','line-width':0.8,'line-opacity':0.3}});
     }
     
     // Info chips
@@ -410,11 +423,12 @@ function initRoofMap(){
       <div class="roof-chip blue">📐 ${parseFloat(params.get('a')||0).toLocaleString()} m²</div>
       <div class="roof-chip blue">🔋 ${panels.length} panels rendered</div>`;
     
-    // Fit bounds
-    const allCoords=ring.map(c=>c);
-    const lngs=allCoords.map(c=>c[0]);
-    const lats=allCoords.map(c=>c[1]);
-    rmap.fitBounds([[Math.min(...lngs)-0.0003,Math.min(...lats)-0.0003],[Math.max(...lngs)+0.0003,Math.max(...lats)+0.0003]],{padding:60,pitch:45,bearing:-20});
+    // Fit bounds with smooth animation
+    const lngs=ring.map(c=>c[0]);
+    const lats=ring.map(c=>c[1]);
+    setTimeout(()=>{
+      rmap.fitBounds([[Math.min(...lngs)-0.0002,Math.min(...lats)-0.0002],[Math.max(...lngs)+0.0002,Math.max(...lats)+0.0002]],{padding:80,pitch:50,bearing:-15,duration:1500,maxZoom:20});
+    },500);
   });
 }
 

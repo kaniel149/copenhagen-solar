@@ -178,8 +178,8 @@ let map,selId=null,fPri='all',fCat=null,fSz=null,fSp=null,fPip=false,heatOn=fals
 
 map=new maplibregl.Map({
   container:'map',
-  style:{version:8,glyphs:'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',sources:{'sat':{type:'raster',tiles:['https://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:19},'str':{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19}},layers:[{id:'satellite',type:'raster',source:'sat'},{id:'streets',type:'raster',source:'str',layout:{visibility:'none'}}]},
-  center:CC,zoom:13,maxBounds:[[99.7,9.55],[100.2,9.95]],fadeDuration:0
+  style:{version:8,glyphs:'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',sources:{'sat':{type:'raster',tiles:['https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'],tileSize:256,maxzoom:22,attribution:'Google'},'str':{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,maxzoom:19}},layers:[{id:'satellite',type:'raster',source:'sat'},{id:'streets',type:'raster',source:'str',layout:{visibility:'none'}}]},
+  center:CC,zoom:13,maxZoom:22,maxBounds:[[99.7,9.55],[100.2,9.95]],fadeDuration:0
 });
 
 map.on('load',()=>{

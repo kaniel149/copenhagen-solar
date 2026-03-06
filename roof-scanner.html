@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ko Phangan Solar — Roof Scanner</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.css">
+<script src="https://unpkg.com/maplibre-gl@4.1.1/dist/maplibre-gl.js"></script>
+<style>
+:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF;--panel-w:380px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh;display:flex}
+.sidebar{width:var(--panel-w);height:100vh;background:rgba(13,33,55,.98);border-left:1px solid rgba(232,168,32,.2);display:flex;flex-direction:column;z-index:10;overflow:hidden}
+.sidebar-header{padding:16px;background:linear-gradient(135deg,var(--ocean),var(--night));border-bottom:1px solid rgba(232,168,32,.2)}
+.sidebar-header h1{font-size:18px;font-weight:700;color:var(--gold)}
+.sidebar-header p{font-size:11px;opacity:.6;margin-top:2px}
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.stat-box{text-align:center;padding:6px 4px;background:rgba(255,255,255,.03);border-radius:8px}
+.stat-val{font-family:'Space Grotesk';font-size:16px;font-weight:700;color:var(--gold)}
+.stat-lbl{font-size:9px;opacity:.5;margin-top:1px}
+.filters{padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;gap:6px;flex-wrap:wrap}
+.filter-btn{padding:4px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.7);font-size:10px;cursor:pointer;font-family:'Heebo';transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--gold);color:var(--night);border-color:var(--gold)}
+.filter-btn.pri-a{border-color:#E8A820}.filter-btn.pri-b{border-color:#2ED89A}.filter-btn.pri-c{border-color:#6496FF}.filter-btn.pri-d{border-color:#666}
+.search-box{padding:8px 16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.search-box input{width:100%;padding:7px 12px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:white;font-family:'Heebo';font-size:12px;outline:none}
+.search-box input:focus{border-color:var(--gold)}
+.building-list{flex:1;overflow-y:auto;padding:8px}
+.building-list::-webkit-scrollbar{width:4px}.building-list::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
+.bcard{padding:10px 12px;margin-bottom:6px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:10px;cursor:pointer;transition:all .2s}
+.bcard:hover{border-color:var(--gold);background:rgba(232,168,32,.05)}
+.bcard.selected{border-color:var(--gold);background:rgba(232,168,32,.1)}
+.bcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.bcard-name{font-size:12px;font-weight:600;flex:1;line-height:1.3}
+.bcard-badge{font-family:'Space Grotesk';font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.pri-A{background:rgba(232,168,32,.2);color:#E8A820}.pri-B{background:rgba(46,216,154,.2);color:#2ED89A}
+.pri-C{background:rgba(100,150,255,.2);color:#6496FF}.pri-D{background:rgba(150,150,150,.2);color:#999}
+.bcard-stats{display:flex;gap:12px;margin-top:6px;font-size:10px;opacity:.7}
+.bcard-stats span{display:flex;align-items:center;gap:3px}
+.bcard-cat{font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(255,255,255,.06);display:inline-block;margin-top:4px}
+.map-container{flex:1;position:relative}
+#map{width:100%;height:100%}
+.map-controls{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:6px;z-index:5}
+.map-btn{width:36px;height:36px;border-radius:8px;background:rgba(13,33,55,.9);border:1px solid rgba(232,168,32,.3);color:var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .2s}
+.map-btn:hover{background:var(--gold);color:var(--night)}
+.detail-panel{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(13,33,55,.96);backdrop-filter:blur(20px);border:1px solid rgba(232,168,32,.3);border-radius:14px;padding:16px;z-index:5;display:none;max-height:45vh;overflow-y:auto}
+.detail-panel.show{display:block}
+.detail-panel h2{font-size:16px;color:var(--gold);margin-bottom:8px}
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin:10px 0}
+.dg-item{background:rgba(255,255,255,.05);border-radius:8px;padding:8px;text-align:center}
+.dg-val{font-family:'Space Grotesk';font-size:18px;font-weight:700}
+.dg-lbl{font-size:9px;opacity:.5;margin-top:2px}
+.detail-row{display:flex;gap:16px;margin-top:10px}
+.detail-col{flex:1}
+.detail-col h4{font-size:11px;color:var(--gold);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+.detail-table{width:100%;font-size:11px}
+.detail-table td{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.detail-table td:last-child{text-align:left;font-family:'Space Grotesk';font-weight:600}
+.close-detail{position:absolute;top:12px;left:12px;background:none;border:none;color:rgba(255,255,255,.5);font-size:20px;cursor:pointer}
+.legend{position:absolute;bottom:16px;right:16px;background:rgba(13,33,55,.9);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 14px;z-index:5;font-size:10px}
+.legend-item{display:flex;align-items:center;gap:6px;margin:3px 0}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.export-bar{padding:8px 16px;border-top:1px solid rgba(255,255,255,.06);display:flex;gap:6px}
+.export-btn{flex:1;padding:6px;border-radius:8px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-family:'Heebo';font-size:10px;cursor:pointer;transition:all .2s}
+.export-btn:hover{background:var(--gold);color:var(--night)}
+.heatmap-toggle{position:absolute;top:12px;left:12px;z-index:5;display:flex;gap:4px}
+.ht-btn{padding:5px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.2);background:rgba(13,33,55,.9);color:rgba(255,255,255,.7);font-size:10px;cursor:pointer;font-family:'Heebo'}
+.ht-btn.active{background:var(--gold);color:var(--night);border-color:var(--gold)}
+@media(max-width:768px){.sidebar{width:100%;height:50vh;border-left:none;border-bottom:1px solid rgba(232,168,32,.2)}.map-container{height:50vh}body{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="sidebar">
+  <div class="sidebar-header">
+    <h1>☀️ Ko Phangan Solar — Roof Scanner</h1>
+    <p>2,467 מבנים | 60.2 MWp פוטנציאל | כל גגות האי</p>
+  </div>
+  <div class="stats-bar">
+    <div class="stat-box"><div class="stat-val" id="s-total">2,467</div><div class="stat-lbl">מבנים</div></div>
+    <div class="stat-box"><div class="stat-val" id="s-kwp">60.2</div><div class="stat-lbl">MWp</div></div>
+    <div class="stat-box"><div class="stat-val" id="s-named">895</div><div class="stat-lbl">מזוהים</div></div>
+    <div class="stat-box"><div class="stat-val" id="s-topa">929</div><div class="stat-lbl">Priority A</div></div>
+  </div>
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">הכל</button>
+    <button class="filter-btn pri-a" data-filter="A">🥇 A</button>
+    <button class="filter-btn pri-b" data-filter="B">🥈 B</button>
+    <button class="filter-btn pri-c" data-filter="C">🥉 C</button>
+    <button class="filter-btn pri-d" data-filter="D">D</button>
+    <button class="filter-btn" data-cat="hospitality">🏨 מלונות</button>
+    <button class="filter-btn" data-cat="food_beverage">🍽️ מסעדות</button>
+    <button class="filter-btn" data-cat="retail">🛒 חנויות</button>
+    <button class="filter-btn" data-cat="residential">🏠 מגורים</button>
+    <button class="filter-btn" data-cat="bungalow">🛖 בנגלו</button>
+    <button class="filter-btn" data-size="big">📐 100m²+</button>
+    <button class="filter-btn" data-size="huge">📐 500m²+</button>
+  </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="🔍 חיפוש לפי שם, קטגוריה, טלפון...">
+  </div>
+  <div class="building-list" id="buildingList"></div>
+  <div class="export-bar">
+    <button class="export-btn" onclick="exportCSV()">📥 Export CSV</button>
+    <button class="export-btn" onclick="exportTop()">📋 Top 50 Leads</button>
+  </div>
+</div>
+
+<div class="map-container">
+  <div id="map"></div>
+  <div class="heatmap-toggle">
+    <button class="ht-btn active" onclick="setMapStyle('satellite')">🛰️ לוויין</button>
+    <button class="ht-btn" onclick="setMapStyle('streets')">🗺️ רחובות</button>
+    <button class="ht-btn" onclick="toggleHeatmap()">🔥 Heatmap</button>
+  </div>
+  <div class="map-controls">
+    <button class="map-btn" onclick="map.zoomIn()" title="Zoom In">+</button>
+    <button class="map-btn" onclick="map.zoomOut()" title="Zoom Out">−</button>
+    <button class="map-btn" onclick="resetView()" title="Reset">⌂</button>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#E8A820"></div> A — עדיפות גבוהה</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#2ED89A"></div> B — עדיפות בינונית</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#6496FF"></div> C — עדיפות נמוכה</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#666"></div> D — מגורים קטנים</div>
+  </div>
+  <div class="detail-panel" id="detailPanel">
+    <button class="close-detail" onclick="closeDetail()">✕</button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<script>
+// Building data will be loaded inline
+</script>
+<script src="roof-scanner/buildings_data.js"></script>
+<script>
+const PRIORITY_COLORS={A:'#E8A820',B:'#2ED89A',C:'#6496FF',D:'#666'};
+const CAT_LABELS={hospitality:'🏨 מלון/ריזורט',food_beverage:'🍽️ מסעדה/בר',retail:'🛒 חנות',residential:'🏠 מגורים',bungalow:'🛖 בנגלו',commercial:'🏢 מסחרי',healthcare:'🏥 רפואי',education:'🏫 חינוך',temple:'⛩️ מקדש'};
+const KP_CENTER=[100.00,9.73];
+
+let map,markers=[],selectedId=null,activeFilter='all',activeCat=null,activeSize=null,heatmapOn=false;
+
+// Init map
+map=new maplibregl.Map({
+  container:'map',
+  style:{version:8,sources:{'satellite':{type:'raster',tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],tileSize:256,maxzoom:19}},layers:[{id:'satellite',type:'raster',source:'satellite'}]},
+  center:KP_CENTER,
+  zoom:12.5,
+  maxBounds:[[99.7,9.55],[100.2,9.95]]
+});
+
+map.addControl(new maplibregl.NavigationControl(),'bottom-right');
+
+map.on('load',()=>{
+  // Add buildings as GeoJSON source
+  const features=B.map(b=>({
+    type:'Feature',
+    geometry:{type:'Point',coordinates:[b.lo,b.la]},
+    properties:{...b}
+  }));
+  map.addSource('buildings',{type:'geojson',data:{type:'FeatureCollection',features}});
+  
+  // Circle layer
+  map.addLayer({
+    id:'buildings-circle',type:'circle',source:'buildings',
+    paint:{
+      'circle-radius':['interpolate',['linear'],['zoom'],10,2,14,5,17,10],
+      'circle-color':['match',['get','pr'],'A','#E8A820','B','#2ED89A','C','#6496FF','#666'],
+      'circle-opacity':0.85,
+      'circle-stroke-width':1,
+      'circle-stroke-color':'rgba(255,255,255,0.3)'
+    }
+  });
+  
+  // Heatmap layer (hidden)
+  map.addLayer({
+    id:'buildings-heat',type:'heatmap',source:'buildings',
+    layout:{visibility:'none'},
+    paint:{
+      'heatmap-weight':['interpolate',['linear'],['get','s'],0,0,100,1],
+      'heatmap-intensity':['interpolate',['linear'],['zoom'],10,1,15,3],
+      'heatmap-radius':['interpolate',['linear'],['zoom'],10,15,15,30],
+      'heatmap-color':['interpolate',['linear'],['heatmap-density'],0,'rgba(0,0,0,0)',0.2,'#1A7A5A',0.4,'#2ED89A',0.6,'#E8A820',0.8,'#E85D3A',1,'#FF2222'],
+      'heatmap-opacity':0.7
+    }
+  });
+  
+  // Click handler
+  map.on('click','buildings-circle',e=>{
+    if(e.features.length){
+      const p=e.features[0].properties;
+      selectBuilding(p.i);
+    }
+  });
+  map.on('mouseenter','buildings-circle',()=>map.getCanvas().style.cursor='pointer');
+  map.on('mouseleave','buildings-circle',()=>map.getCanvas().style.cursor='');
+  
+  renderList();
+});
+
+function getFiltered(){
+  let f=B;
+  if(activeFilter!=='all') f=f.filter(b=>b.pr===activeFilter);
+  if(activeCat) f=f.filter(b=>b.c===activeCat);
+  if(activeSize==='big') f=f.filter(b=>b.a>=100);
+  if(activeSize==='huge') f=f.filter(b=>b.a>=500);
+  const q=document.getElementById('search').value.toLowerCase().trim();
+  if(q) f=f.filter(b=>(b.n||'').toLowerCase().includes(q)||(b.c||'').includes(q)||(b.ph||'').includes(q));
+  return f;
+}
+
+function updateMapFilter(){
+  const filtered=getFiltered();
+  const ids=new Set(filtered.map(b=>b.i));
+  if(map.getLayer('buildings-circle')){
+    map.setFilter('buildings-circle',['in',['get','i'],['literal',[...ids]]]);
+    map.setFilter('buildings-heat',['in',['get','i'],['literal',[...ids]]]);
+  }
+  // Update stats
+  document.getElementById('s-total').textContent=filtered.length.toLocaleString();
+  document.getElementById('s-kwp').textContent=(filtered.reduce((s,b)=>s+b.kw,0)/1000).toFixed(1);
+  document.getElementById('s-named').textContent=filtered.filter(b=>b.n).length.toLocaleString();
+  document.getElementById('s-topa').textContent=filtered.filter(b=>b.pr==='A').length.toLocaleString();
+}
+
+function renderList(){
+  const filtered=getFiltered();
+  const list=document.getElementById('buildingList');
+  const show=filtered.slice(0,200); // Show first 200
+  list.innerHTML=show.map(b=>`
+    <div class="bcard ${selectedId===b.i?'selected':''}" onclick="selectBuilding(${b.i})" data-id="${b.i}">
+      <div class="bcard-top">
+        <div class="bcard-name">${b.n||CAT_LABELS[b.c]||b.c}</div>
+        <span class="bcard-badge pri-${b.pr}">${b.pr} · ${b.s}</span>
+      </div>
+      <div class="bcard-stats">
+        <span>📐 ${b.a.toLocaleString()}m²</span>
+        <span>⚡ ${b.kw.toFixed(1)}kWp</span>
+        <span>🔢 ${b.p} panels</span>
+      </div>
+      ${b.ph?`<div class="bcard-stats"><span>📞 ${b.ph}</span></div>`:''}
+      <span class="bcard-cat">${CAT_LABELS[b.c]||b.c}</span>
+    </div>
+  `).join('')+(filtered.length>200?`<div style="text-align:center;padding:12px;opacity:.5;font-size:11px">+ ${filtered.length-200} עוד מבנים...</div>`:'');
+  updateMapFilter();
+}
+
+function selectBuilding(id){
+  selectedId=id;
+  const b=B.find(x=>x.i===id);
+  if(!b) return;
+  
+  map.flyTo({center:[b.lo,b.la],zoom:17,duration:800});
+  
+  const panel=document.getElementById('detailPanel');
+  const content=document.getElementById('detailContent');
+  
+  content.innerHTML=`
+    <h2>${b.n||CAT_LABELS[b.c]||'מבנה'} <span class="bcard-badge pri-${b.pr}" style="font-size:11px">${b.pr} · Score ${b.s}/100</span></h2>
+    <div style="font-size:11px;opacity:.6;margin-bottom:8px">
+      ${CAT_LABELS[b.c]||b.c} · ${b.bt}
+      ${b.ph?` · 📞 <a href="tel:${b.ph}" style="color:var(--gold)">${b.ph}</a>`:''}
+      ${b.w?` · 🌐 <a href="${b.w}" target="_blank" style="color:var(--gold)">Website</a>`:''}
+      ${b.em?` · ✉️ ${b.em}`:''}
+    </div>
+    <div class="detail-grid">
+      <div class="dg-item"><div class="dg-val" style="color:var(--gold)">${b.a.toLocaleString()}</div><div class="dg-lbl">שטח גג (m²)</div></div>
+      <div class="dg-item"><div class="dg-val" style="color:var(--gold)">${b.u.toLocaleString()}</div><div class="dg-lbl">שטח שמיש (m²)</div></div>
+      <div class="dg-item"><div class="dg-val" style="color:#2ED89A">${b.kw.toFixed(1)}</div><div class="dg-lbl">kWp</div></div>
+      <div class="dg-item"><div class="dg-val" style="color:#2ED89A">${b.p}</div><div class="dg-lbl">פאנלים 580W</div></div>
+      <div class="dg-item"><div class="dg-val" style="color:#6496FF">${(b.kwh/1000).toFixed(1)}K</div><div class="dg-lbl">kWh/שנה</div></div>
+      <div class="dg-item"><div class="dg-val" style="color:var(--coral)">${b.ppap}</div><div class="dg-lbl">שנות החזר PPA</div></div>
+    </div>
+    <div class="detail-row">
+      <div class="detail-col">
+        <h4>EPC — מכירה ללקוח</h4>
+        <table class="detail-table">
+          <tr><td>מחיר ללקוח</td><td>฿${(b.epc/1000).toFixed(0)}K</td></tr>
+          <tr><td>עלות שלנו</td><td>฿${(b.kw*11.8).toFixed(0)}K</td></tr>
+          <tr><td>רווח גולמי</td><td style="color:#2ED89A">฿${(b.ep/1000).toFixed(0)}K</td></tr>
+          <tr><td>חיסכון ללקוח/חודש</td><td style="color:var(--gold)">฿${b.sav.toLocaleString()}</td></tr>
+        </table>
+      </div>
+      <div class="detail-col">
+        <h4>PPA — מכירת חשמל</h4>
+        <table class="detail-table">
+          <tr><td>השקעה שלנו</td><td>฿${(b.ppai/1000).toFixed(0)}K</td></tr>
+          <tr><td>הכנסה שנתית</td><td style="color:#2ED89A">฿${(b.ppar/1000).toFixed(0)}K</td></tr>
+          <tr><td>MRR</td><td style="color:var(--gold)">฿${(b.ppar/12000).toFixed(1)}K</td></tr>
+          <tr><td>החזר</td><td>${b.ppap} שנים</td></tr>
+          <tr><td>רווח 25 שנה</td><td style="color:#2ED89A">฿${((b.ppar*25-b.ppai)/1000000).toFixed(1)}M</td></tr>
+        </table>
+      </div>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:6px">
+      <a href="https://www.google.com/maps/@${b.la},${b.lo},19z" target="_blank" style="flex:1;padding:6px;text-align:center;border-radius:6px;background:rgba(232,168,32,.15);color:var(--gold);text-decoration:none;font-size:11px">📍 Google Maps</a>
+      <a href="https://www.google.com/maps/@${b.la},${b.lo},60m/data=!3m1!1e3" target="_blank" style="flex:1;padding:6px;text-align:center;border-radius:6px;background:rgba(46,216,154,.15);color:#2ED89A;text-decoration:none;font-size:11px">🛰️ Satellite View</a>
+      ${b.ph?`<a href="tel:${b.ph}" style="flex:1;padding:6px;text-align:center;border-radius:6px;background:rgba(100,150,255,.15);color:#6496FF;text-decoration:none;font-size:11px">📞 התקשר</a>`:''}
+    </div>
+  `;
+  panel.classList.add('show');
+  
+  // Highlight in list
+  document.querySelectorAll('.bcard').forEach(c=>c.classList.remove('selected'));
+  const card=document.querySelector(`.bcard[data-id="${id}"]`);
+  if(card){card.classList.add('selected');card.scrollIntoView({behavior:'smooth',block:'nearest'})}
+}
+
+function closeDetail(){document.getElementById('detailPanel').classList.remove('show');selectedId=null}
+
+function resetView(){map.flyTo({center:KP_CENTER,zoom:12.5,duration:800});closeDetail()}
+
+function setMapStyle(style){
+  document.querySelectorAll('.ht-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  if(style==='satellite'){
+    map.setLayoutProperty('satellite','visibility','visible');
+  }else{
+    // Already satellite-only, just toggle
+  }
+}
+
+function toggleHeatmap(){
+  heatmapOn=!heatmapOn;
+  map.setLayoutProperty('buildings-heat','visibility',heatmapOn?'visible':'none');
+  map.setLayoutProperty('buildings-circle','visibility',heatmapOn?'none':'visible');
+  event.target.classList.toggle('active',heatmapOn);
+}
+
+// Filter handlers
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const f=btn.dataset.filter;
+    const c=btn.dataset.cat;
+    const s=btn.dataset.size;
+    
+    if(f){
+      activeFilter=f;activeCat=null;activeSize=null;
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.filter-btn[data-cat],.filter-btn[data-size]').forEach(b=>b.classList.remove('active'));
+    }else if(c){
+      activeCat=activeCat===c?null:c;activeFilter='all';activeSize=null;
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(b=>b.classList.remove('active'));
+      document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+      document.querySelectorAll('.filter-btn[data-cat]').forEach(b=>b.classList.remove('active'));
+      if(activeCat) btn.classList.add('active');
+      document.querySelectorAll('.filter-btn[data-size]').forEach(b=>b.classList.remove('active'));
+    }else if(s){
+      activeSize=activeSize===s?null:s;activeFilter='all';activeCat=null;
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(b=>b.classList.remove('active'));
+      document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+      document.querySelectorAll('.filter-btn[data-cat],.filter-btn[data-size]').forEach(b=>b.classList.remove('active'));
+      if(activeSize) btn.classList.add('active');
+    }
+    renderList();
+  });
+});
+
+document.getElementById('search').addEventListener('input',()=>renderList());
+
+function exportCSV(){
+  const filtered=getFiltered();
+  const headers=['Name','Category','Priority','Score','Area_m2','Usable_m2','kWp','Panels','Annual_kWh','Monthly_Savings_THB','EPC_Price_THB','EPC_Profit_THB','PPA_Investment_THB','PPA_Annual_THB','PPA_Payback_Yr','Phone','Website','Email','Lat','Lng'];
+  const rows=filtered.map(b=>[b.n,b.c,b.pr,b.s,b.a,b.u,b.kw,b.p,b.kwh,b.sav,b.epc,b.ep,b.ppai,b.ppar,b.ppap,b.ph,b.w,b.em,b.la,b.lo].join(','));
+  const csv=headers.join(',')+'\n'+rows.join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=`kophangan_roofs_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();URL.revokeObjectURL(url);
+}
+
+function exportTop(){
+  const top=B.filter(b=>b.pr==='A'&&b.n).slice(0,50);
+  let txt='# Ko Phangan Solar — Top 50 Leads\n\n';
+  top.forEach((b,i)=>{
+    txt+=`${i+1}. **${b.n}** (${CAT_LABELS[b.c]||b.c})\n`;
+    txt+=`   📐 ${b.a}m² | ⚡ ${b.kw.toFixed(1)}kWp | 🔢 ${b.p} panels\n`;
+    txt+=`   💰 EPC: ฿${(b.epc/1000).toFixed(0)}K | PPA: ฿${(b.ppar/1000).toFixed(0)}K/yr\n`;
+    if(b.ph) txt+=`   📞 ${b.ph}\n`;
+    if(b.w) txt+=`   🌐 ${b.w}\n`;
+    txt+=`   📍 ${b.la}, ${b.lo}\n\n`;
+  });
+  const blob=new Blob([txt],{type:'text/markdown'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='kophangan_top50_leads.md';
+  a.click();URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>

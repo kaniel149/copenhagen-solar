@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TM Energy — Brand Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0D2137;--gold:#E8A820;--green:#1A7A5A;--white:#FEFEFE;--dark:#0A1929;--gray:#94A3B8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--dark);color:#E2E8F0;font-family:'DM Sans',sans-serif;line-height:1.6}
+
+/* Hero */
+.hero{min-height:40vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:60px 24px;background:linear-gradient(135deg,var(--navy),#1a3a5e);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(232,168,32,.08),transparent 60%)}
+.hero img{height:80px;filter:drop-shadow(0 4px 20px rgba(232,168,32,.3))}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,5vw,48px);font-weight:700;color:white;text-align:center}
+.hero p{color:var(--gray);font-size:16px;text-align:center;max-width:600px}
+
+/* Container */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+section{padding:60px 0}
+.section-label{display:inline-block;padding:4px 14px;background:rgba(232,168,32,.12);border-radius:6px;color:var(--gold);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+.section-title{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,3vw,36px);font-weight:700;color:white;margin-bottom:8px}
+.section-desc{color:var(--gray);font-size:14px;margin-bottom:32px}
+
+/* Colors */
+.color-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px}
+.color-swatch{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.06)}
+.color-swatch-top{height:100px}
+.color-swatch-info{padding:12px;background:rgba(255,255,255,.03)}
+.color-swatch-info h4{font-size:13px;font-weight:600}
+.color-swatch-info p{font-size:11px;color:var(--gray)}
+
+/* Typography */
+.type-sample{padding:24px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:14px;margin:12px 0}
+.type-sample h3{margin-bottom:8px}
+
+/* Assets */
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.asset-card{border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);transition:all .3s}
+.asset-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.asset-card img{width:100%;height:240px;object-fit:cover}
+.asset-card-body{padding:16px}
+.asset-card-body h4{font-size:15px;font-weight:600;color:white;margin-bottom:4px}
+.asset-card-body p{font-size:12px;color:var(--gray)}
+.asset-card-body .specs{margin-top:8px;font-size:11px;color:var(--gold)}
+
+/* Logo section */
+.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.logo-box{padding:32px;border-radius:14px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.06)}
+.logo-box img{max-height:80px;max-width:160px}
+.logo-box.dark{background:var(--navy)}
+.logo-box.light{background:white}
+.logo-box.gold{background:linear-gradient(135deg,#E8A820,#D4972A)}
+
+/* Download button */
+.dl-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:rgba(232,168,32,.12);border:1px solid rgba(232,168,32,.3);border-radius:8px;color:var(--gold);font-size:12px;font-weight:600;text-decoration:none;transition:all .2s;margin-top:8px}
+.dl-btn:hover{background:rgba(232,168,32,.2)}
+
+/* Rules */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rule{padding:16px;border-radius:10px;font-size:13px}
+.rule.do{background:rgba(26,122,90,.08);border:1px solid rgba(26,122,90,.2)}
+.rule.dont{background:rgba(232,93,58,.08);border:1px solid rgba(232,93,58,.2)}
+.rule h4{margin-bottom:6px}
+
+@media(max-width:768px){.logo-grid{grid-template-columns:1fr}.rules-grid{grid-template-columns:1fr}.asset-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<img src="visuals/tm-energy-logo.png" alt="TM Energy">
+<h1>TM Energy — Brand Kit</h1>
+<p>מדריך מיתוג, לוגואים, צבעים, פונטים, ואסטים לשימוש בכל ערוצי התקשורת</p>
+</div>
+
+<!-- LOGO -->
+<section>
+<div class="container">
+<div class="section-label">LOGO</div>
+<h2 class="section-title">לוגו TM Energy</h2>
+<p class="section-desc">עיגול שחור עם TM בלבן ושמש זהובה — מתאים ל-TM Developers family. שימוש על רקע כהה, בהיר, או צבעוני.</p>
+
+<div class="logo-grid">
+<div class="logo-box dark"><img src="visuals/tm-energy-logo.png" alt="Logo on dark"></div>
+<div class="logo-box light"><img src="visuals/tm-energy-logo.png" alt="Logo on light"></div>
+<div class="logo-box gold"><img src="visuals/tm-energy-logo.png" alt="Logo on gold" style="filter:brightness(0.9)"></div>
+</div>
+
+<div class="rules-grid" style="margin-top:20px">
+<div class="rule do"><h4 style="color:var(--green)">✓ כן</h4>שמור על יחס 1:1. רקע נקי. מרחק מינימלי מקצוות = גובה הלוגו.</div>
+<div class="rule dont"><h4 style="color:#E85D3A">✕ לא</h4>לא למתוח. לא לשנות צבעים. לא להוסיף אפקטים. לא לסובב.</div>
+</div>
+</div>
+</section>
+
+<!-- COLORS -->
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+<div class="container">
+<div class="section-label">COLORS</div>
+<h2 class="section-title">פלטת צבעים</h2>
+<p class="section-desc">Navy + Gold — פרימיום, אמין, אנרגיה. Green = הצלחה/חיסכון. Coral = אזהרה/דחיפות.</p>
+
+<div class="color-grid">
+<div class="color-swatch"><div class="color-swatch-top" style="background:#0D2137"></div><div class="color-swatch-info"><h4>Navy (ראשי)</h4><p>#0D2137 · rgb(13,33,55)</p></div></div>
+<div class="color-swatch"><div class="color-swatch-top" style="background:#E8A820"></div><div class="color-swatch-info"><h4>Gold (משני)</h4><p>#E8A820 · rgb(232,168,32)</p></div></div>
+<div class="color-swatch"><div class="color-swatch-top" style="background:#1A7A5A"></div><div class="color-swatch-info"><h4>Green (הצלחה)</h4><p>#1A7A5A · rgb(26,122,90)</p></div></div>
+<div class="color-swatch"><div class="color-swatch-top" style="background:#E85D3A"></div><div class="color-swatch-info"><h4>Coral (אזהרה)</h4><p>#E85D3A · rgb(232,93,58)</p></div></div>
+<div class="color-swatch"><div class="color-swatch-top" style="background:#FEFEFE"></div><div class="color-swatch-info"><h4>White</h4><p>#FEFEFE · טקסט על כהה</p></div></div>
+<div class="color-swatch"><div class="color-swatch-top" style="background:#0A1929"></div><div class="color-swatch-info"><h4>Dark (רקע)</h4><p>#0A1929 · רקעים עמוקים</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+<div class="container">
+<div class="section-label">TYPOGRAPHY</div>
+<h2 class="section-title">טיפוגרפיה</h2>
+<p class="section-desc">Space Grotesk לכותרות (בולד, טכנולוגי). DM Sans לגוף (קריא, מודרני). Noto Sans Thai לתאית.</p>
+
+<div class="type-sample">
+<h3 style="font-family:'Space Grotesk';font-size:32px;font-weight:700;color:var(--gold)">TM Energy — Solar Power Solutions</h3>
+<p style="font-size:11px;color:var(--gray);margin-top:4px">Space Grotesk Bold 32px — כותרות ראשיות</p>
+</div>
+<div class="type-sample">
+<h3 style="font-family:'DM Sans';font-size:18px;font-weight:500">Premium solar panel installation on Koh Phangan. Save up to 70% on electricity.</h3>
+<p style="font-size:11px;color:var(--gray);margin-top:4px">DM Sans Medium 18px — גוף טקסט</p>
+</div>
+<div class="type-sample">
+<h3 style="font-size:18px;font-weight:500">฿32,500/kWp · ฿4.50/kWh PPA · 25-Year Warranty</h3>
+<p style="font-size:11px;color:var(--gray);margin-top:4px">DM Sans Medium — מספרים ומחירים</p>
+</div>
+</div>
+</section>
+
+<!-- BRAND ASSETS -->
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+<div class="container">
+<div class="section-label">BRAND ASSETS</div>
+<h2 class="section-title">אסטים למיתוג</h2>
+<p class="section-desc">חולצות, רכבים, קסדות, כרטיסי ביקור, מדבקות ציוד, שלט אתר בנייה</p>
+
+<div class="asset-grid">
+
+<div class="asset-card">
+<img src="brand-kit/vehicle-wrap.png" alt="Vehicle Wrap">
+<div class="asset-card-body">
+<h4>🚗 עיטוף רכב — Toyota Hilux</h4>
+<p>לוגו TM Energy על דלתות, קרני שמש על הצד, פרטי קשר. Navy + Gold על רכב לבן.</p>
+<div class="specs">תבנית להדפסה: 3M vinyl wrap · 300 DPI</div>
+</div>
+</div>
+
+<div class="asset-card">
+<img src="brand-kit/tshirt-design.png" alt="T-shirt Design">
+<div class="asset-card-body">
+<h4>👕 חולצת עובדים — פולו כחול כהה</h4>
+<p>לוגו קטן בחזה שמאל, TM ENERGY + SOLAR POWER SOLUTIONS בגב. Navy polo.</p>
+<div class="specs">הזמנה: Polo cotton 220gsm · רקמה/הדפסה</div>
+</div>
+</div>
+
+<div class="asset-card">
+<img src="brand-kit/safety-gear.png" alt="Safety Gear">
+<div class="asset-card-body">
+<h4>⛑️ קסדה + אפוד בטיחות</h4>
+<p>קסדה לבנה עם לוגו TM Energy. אפוד Navy עם פסי זהב + SOLAR INSTALLATION TEAM.</p>
+<div class="specs">קסדה: מדבקה ויניל · אפוד: הדפסה על בד</div>
+</div>
+</div>
+
+<div class="asset-card">
+<img src="brand-kit/business-card.png" alt="Business Card">
+<div class="asset-card-body">
+<h4>💼 כרטיס ביקור</h4>
+<p>חזית: Navy + לוגו + שם + תפקיד. גב: לבן + לוגו גדול + OWN YOUR ENERGY.</p>
+<div class="specs">90×55mm · 350gsm matte · embossed gold foil</div>
+</div>
+</div>
+
+<div class="asset-card">
+<img src="brand-kit/equipment-stickers.png" alt="Equipment Stickers">
+<div class="asset-card-body">
+<h4>🏷️ מדבקות ציוד</h4>
+<p>INSTALLED BY TM ENERGY, לוגו עגול, SOLAR SYSTEM WARNING, QR code service.</p>
+<div class="specs">Weatherproof vinyl · UV resistant · 3-5 year outdoor</div>
+</div>
+</div>
+
+<div class="asset-card">
+<img src="brand-kit/site-banner.png" alt="Site Banner">
+<div class="asset-card-body">
+<h4>🚧 שלט אתר בנייה</h4>
+<p>SOLAR INSTALLATION IN PROGRESS + לוגו TM Energy + TM Developers. 3 מטר.</p>
+<div class="specs">3000×1000mm · PVC banner · 440gsm · eyelets</div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- TAGLINES -->
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+<div class="container">
+<div class="section-label">MESSAGING</div>
+<h2 class="section-title">סלוגנים ומסרים</h2>
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px">
+<div class="type-sample"><h3 style="color:var(--gold);font-family:'Space Grotesk';font-size:20px">Own Your Energy</h3><p style="font-size:12px;color:var(--gray)">סלוגן ראשי — אנגלית</p></div>
+<div class="type-sample"><h3 style="color:var(--gold);font-family:'Space Grotesk';font-size:20px">เป็นเจ้าของพลังงาน</h3><p style="font-size:12px;color:var(--gray)">סלוגן ראשי — תאית</p></div>
+<div class="type-sample"><h3 style="color:var(--gold);font-family:'Space Grotesk';font-size:20px">Powering Koh Phangan's Future</h3><p style="font-size:12px;color:var(--gray)">Tagline — אנגלית</p></div>
+<div class="type-sample"><h3 style="color:var(--gold);font-family:'Space Grotesk';font-size:20px">Solar Power Solutions</h3><p style="font-size:12px;color:var(--gray)">תת-כותרת קבועה</p></div>
+</div>
+</div>
+</section>
+
+<!-- DOWNLOAD -->
+<section style="border-top:1px solid rgba(255,255,255,.06);text-align:center;padding:40px">
+<div class="container">
+<div class="section-label">DOWNLOAD</div>
+<h2 class="section-title">הורדת קבצים</h2>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+<a href="visuals/tm-energy-logo.png" download class="dl-btn">📥 לוגו PNG</a>
+<a href="brand-kit/vehicle-wrap.png" download class="dl-btn">📥 עיטוף רכב</a>
+<a href="brand-kit/tshirt-design.png" download class="dl-btn">📥 חולצה</a>
+<a href="brand-kit/safety-gear.png" download class="dl-btn">📥 ציוד בטיחות</a>
+<a href="brand-kit/business-card.png" download class="dl-btn">📥 כרטיס ביקור</a>
+<a href="brand-kit/equipment-stickers.png" download class="dl-btn">📥 מדבקות</a>
+<a href="brand-kit/site-banner.png" download class="dl-btn">📥 שלט אתר</a>
+</div>
+</div>
+</section>
+
+</body>
+</html>

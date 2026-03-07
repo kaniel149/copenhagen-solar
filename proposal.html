@@ -341,7 +341,7 @@ function fillData(){
   const kw=parseFloat(params.get('kw'))||(u/5.5);
   const p=parseInt(params.get('p'))||Math.floor(u/2.58);
   const kwh=parseInt(params.get('kwh'))||(kw*4.5*365);
-  const epc=parseInt(params.get('epc'))||(kw*32500);
+  const epc=parseInt(params.get('epc'))||(kw*30000);
   const sav=parseInt(params.get('sav'))||Math.round(kwh/12*6);
   const name=params.get('n')||'Your Property';
   const phone=params.get('ph')||'';

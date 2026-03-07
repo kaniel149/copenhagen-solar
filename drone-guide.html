@@ -324,11 +324,11 @@ async function processImages(){
         <tr><td>שטח שמיש (70%)</td><td><strong>${(areaM2*0.7).toFixed(0)} מ"ר</strong></td></tr>
         <tr><td>הספק מוערך</td><td><strong>${kwp.toFixed(1)} kWp</strong></td></tr>
         <tr><td>פאנלים</td><td><strong>${panels}</strong></td></tr>
-        <tr><td>עלות EPC</td><td><strong>฿${(kwp*32500).toLocaleString()}</strong></td></tr>
+        <tr><td>עלות EPC</td><td><strong>฿${(kwp*30000).toLocaleString()}</strong></td></tr>
         <tr><td>חיסכון חודשי (PPA)</td><td><strong>฿${Math.round(kwp*4.5*30*1.5).toLocaleString()}</strong></td></tr>
       </table>
       <div style="margin-top:12px">
-        <a href="proposal.html?n=Drone+Scan&a=${Math.round(areaM2)}&kw=${kwp.toFixed(1)}&p=${panels}&kwh=${Math.round(kwp*4.5*365)}&epc=${Math.round(kwp*32500)}&sav=${Math.round(kwp*4.5*30*1.5)}&la=${centerLat}&lo=${centerLng}" 
+        <a href="proposal.html?n=Drone+Scan&a=${Math.round(areaM2)}&kw=${kwp.toFixed(1)}&p=${panels}&kwh=${Math.round(kwp*4.5*365)}&epc=${Math.round(kwp*30000)}&sav=${Math.round(kwp*4.5*30*1.5)}&la=${centerLat}&lo=${centerLng}" 
            target="_blank" style="color:var(--gold);font-weight:700;text-decoration:underline">
            → פתח הצעת מחיר TM Energy
         </a>

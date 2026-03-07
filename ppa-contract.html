@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ko Phangan Solar — הסכם רכישת חשמל (PPA)</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);line-height:1.8;padding:0}
+
+.contract{max-width:900px;margin:0 auto;padding:60px 60px 100px;background:var(--night)}
+
+@media print{
+  body{background:#fff;color:#111}
+  .contract{padding:40px;max-width:100%}
+  h1,h2,h3{color:#0A3D5C !important}
+  .header-bar,.gold,.section-title{color:#0A3D5C !important}
+  .clause{border-color:#ddd !important}
+  .signature-box{border-color:#333 !important;background:#f9f9f9 !important}
+  .no-print{display:none}
+  .contract-badge{border-color:#0A3D5C !important;color:#0A3D5C !important}
+  .highlight-box{background:#f0f7ee !important;border-color:#2ED89A !important;color:#111 !important}
+}
+
+.header-bar{text-align:center;border-bottom:3px solid var(--gold);padding-bottom:30px;margin-bottom:40px}
+.header-bar h1{font-size:28px;font-weight:900;color:var(--gold);margin-bottom:8px}
+.header-bar .contract-type{font-size:18px;font-weight:300;opacity:.8;margin-bottom:16px}
+.contract-badge{display:inline-block;border:2px solid var(--gold);color:var(--gold);padding:6px 20px;border-radius:6px;font-size:13px;font-weight:600;letter-spacing:1px}
+
+.section-title{font-size:20px;font-weight:700;color:var(--gold);margin:36px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(232,168,32,.3)}
+.section-title span{font-family:'Space Grotesk';font-weight:400;font-size:14px;opacity:.6;margin-right:8px}
+
+.clause{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:15px}
+.clause-num{font-family:'Space Grotesk';font-weight:700;color:var(--gold);margin-left:8px}
+.clause strong{font-weight:600}
+.sub-clause{padding:4px 24px;font-size:14px;opacity:.85;line-height:1.7}
+
+.fill-field{border-bottom:2px dotted var(--gold);padding:0 8px;min-width:120px;display:inline-block;color:var(--gold);font-weight:500}
+
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+th{background:rgba(232,168,32,.12);padding:10px 14px;text-align:right;font-weight:600;border:1px solid rgba(255,255,255,.1)}
+td{padding:10px 14px;border:1px solid rgba(255,255,255,.06)}
+
+.highlight-box{background:rgba(46,216,154,.08);border:1px solid rgba(46,216,154,.3);border-radius:10px;padding:16px 20px;margin:16px 0;font-size:14px;line-height:1.7}
+.highlight-box strong{color:#2ED89A}
+
+.escalation-table td:nth-child(2){color:var(--gold);font-weight:600}
+
+.signature-box{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:50px;padding-top:30px;border-top:2px solid rgba(232,168,32,.3)}
+.sig-party{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px;text-align:center}
+.sig-party h3{font-size:16px;margin-bottom:20px;color:var(--gold)}
+.sig-line{border-bottom:1px solid rgba(255,255,255,.3);height:60px;margin:12px 0}
+.sig-label{font-size:12px;opacity:.5;margin-top:4px}
+
+.appendix{margin-top:40px;padding:20px;background:rgba(232,168,32,.05);border:1px solid rgba(232,168,32,.2);border-radius:12px}
+.appendix h3{color:var(--gold);margin-bottom:12px}
+
+.print-btn{position:fixed;bottom:20px;left:20px;background:var(--gold);color:var(--night);border:none;padding:12px 28px;border-radius:8px;font-family:'Heebo';font-size:15px;font-weight:600;cursor:pointer;z-index:100;box-shadow:0 4px 20px rgba(232,168,32,.3)}
+.print-btn:hover{transform:scale(1.05)}
+
+.back-btn{position:fixed;bottom:20px;right:20px;background:rgba(255,255,255,.1);color:var(--white);border:1px solid rgba(255,255,255,.2);padding:10px 24px;border-radius:8px;font-family:'Heebo';font-size:14px;cursor:pointer;z-index:100;text-decoration:none}
+.back-btn:hover{background:rgba(255,255,255,.15)}
+</style>
+</head>
+<body>
+
+<a href="assets.html" class="back-btn no-print">חזרה לנכסים</a>
+<button class="print-btn no-print" onclick="window.print()">הדפס / PDF</button>
+
+<div class="contract">
+
+<div class="header-bar">
+  <h1>Ko Phangan Solar Co., Ltd.</h1>
+  <div class="contract-type">הסכם רכישת חשמל (PPA)</div>
+  <div class="contract-badge">POWER PURCHASE AGREEMENT</div>
+</div>
+
+<!-- ===== PREAMBLE ===== -->
+<div class="section-title"><span>A</span>הגדרות וצדדים</div>
+
+<div class="clause">
+  <span class="clause-num">1.</span>
+  <strong>חוזה זה</strong> ("ההסכם") נחתם ביום <span class="fill-field">___/___/______</span> בין:
+</div>
+
+<div class="clause">
+  <span class="clause-num">1.1</span>
+  <strong>"ספק החשמל"</strong> (Owner) — Ko Phangan Solar Co., Ltd. (חברת PPA),
+  רישום מספר <span class="fill-field">_____________</span>,
+  כתובת: <span class="fill-field">_________________________________</span>, Ko Phangan, Surat Thani, Thailand.
+</div>
+
+<div class="clause">
+  <span class="clause-num">1.2</span>
+  <strong>"הצרכן"</strong> (Off-Taker) — <span class="fill-field">____________________________</span>,
+  ת.ז./רישום חברה מספר <span class="fill-field">_____________</span>,
+  כתובת הנכס: <span class="fill-field">_________________________________</span>.
+</div>
+
+<div class="clause">
+  <span class="clause-num">1.3</span>
+  <strong>"המערכת"</strong> — מערכת סולארית פוטו-וולטאית בהספק <span class="fill-field">_____</span> kWp,
+  המותקנת בנכס הצרכן בכתובת שצוינה לעיל.
+</div>
+
+<div class="clause">
+  <span class="clause-num">1.4</span>
+  <strong>הגדרות נוספות:</strong>
+  <div class="sub-clause">"PEA" — Provincial Electricity Authority (רשות החשמל התאילנדית)</div>
+  <div class="sub-clause">"CPI" — Consumer Price Index — מדד המחירים לצרכן בתאילנד (Bank of Thailand)</div>
+  <div class="sub-clause">"PEA Tariff Increase" — שיעור העלייה השנתי בתעריפי PEA (ממוצע Ft charge)</div>
+  <div class="sub-clause">"kWh" — קילוואט-שעה (יחידת חשמל)</div>
+  <div class="sub-clause">"COD" — Commercial Operation Date — תאריך ההפעלה המסחרית</div>
+  <div class="sub-clause">"O&M" — Operation & Maintenance — תפעול ותחזוקה</div>
+</div>
+
+<!-- ===== KEY TERMS ===== -->
+<div class="section-title"><span>B</span>תנאים מסחריים עיקריים</div>
+
+<div class="clause">
+  <span class="clause-num">2.</span>
+  <strong>תקופת ההסכם:</strong>
+  <div class="sub-clause">2.1 תקופת ההסכם: <strong>15 (חמש-עשרה) שנים</strong> מתאריך ה-COD.</div>
+  <div class="sub-clause">2.2 אופציה להארכה: הצדדים רשאים להאריך את ההסכם לתקופות נוספות של 5 שנים, בהסכמה הדדית בכתב, לפחות 6 חודשים לפני תום התקופה.</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">3.</span>
+  <strong>תעריף חשמל:</strong>
+
+  <div class="highlight-box">
+    <strong>תעריף התחלתי: ฿4.50/kWh</strong> (ארבע באט וחמישים סאתאנג לקילוואט-שעה)<br>
+    <strong>חיסכון ללקוח: ~25-35%</strong> מתעריף PEA (฿6-8/kWh)
+  </div>
+
+  <div class="sub-clause">3.1 התעריף ההתחלתי נקבע ליום ה-COD ויעודכן אחת לשנה בהתאם למנגנון ההצמדה (סעיף 4).</div>
+  <div class="sub-clause">3.2 הצרכן משלם אך ורק על חשמל שנצרך בפועל מהמערכת הסולארית, בהתאם לקריאת מונה.</div>
+  <div class="sub-clause">3.3 חשמל מ-PEA: הצרכן ימשיך לשלם ל-PEA עבור צריכה שמעבר לייצור הסולארי (שעות ערב, ימים מעוננים).</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">4.</span>
+  <strong>מנגנון הצמדה (Escalation):</strong>
+
+  <div class="highlight-box">
+    <strong>עדכון שנתי:</strong> התעריף יעודכן ב-1 בינואר של כל שנה, לפי הגבוה מבין:<br>
+    (א) שיעור עליית מדד המחירים לצרכן (CPI) של תאילנד בשנה הקודמת<br>
+    (ב) שיעור עליית תעריפי PEA (כולל Ft surcharge) בשנה הקודמת<br><br>
+    <strong>רצפה:</strong> מינימום 0% (התעריף לא יירד לעולם)<br>
+    <strong>תקרה:</strong> מקסימום 5% לשנה
+  </div>
+
+  <div class="sub-clause">4.1 מקור נתוני CPI: Bank of Thailand — פרסום רשמי.</div>
+  <div class="sub-clause">4.2 מקור נתוני PEA: תעריף Ft charge כפי שפורסם ע"י ERC (Energy Regulatory Commission).</div>
+  <div class="sub-clause">4.3 ספק החשמל ישלח הודעת עדכון תעריף לצרכן עד 15 בדצמבר, עם הפניה למקורות הנתונים.</div>
+  <div class="sub-clause">4.4 <strong>דוגמה:</strong></div>
+
+  <table class="escalation-table">
+    <tr><th>שנה</th><th>תעריף PPA</th><th>תעריף PEA (משוער)</th><th>חיסכון</th></tr>
+    <tr><td>1</td><td>฿4.50</td><td>฿6.50</td><td>31%</td></tr>
+    <tr><td>3</td><td>~฿4.78</td><td>~฿7.10</td><td>33%</td></tr>
+    <tr><td>5</td><td>~฿5.07</td><td>~฿7.54</td><td>33%</td></tr>
+    <tr><td>10</td><td>~฿5.87</td><td>~฿8.74</td><td>33%</td></tr>
+    <tr><td>15</td><td>~฿6.81</td><td>~฿10.13</td><td>33%</td></tr>
+  </table>
+  <div class="sub-clause" style="opacity:.6;font-size:12px">* בהנחת הצמדה ממוצעת 3%/שנה. ערכים בפועל ייקבעו לפי מנגנון סעיף 4.</div>
+</div>
+
+<!-- ===== OWNERSHIP ===== -->
+<div class="section-title"><span>C</span>בעלות על המערכת</div>
+
+<div class="clause">
+  <span class="clause-num">5.</span>
+  <strong>בעלות:</strong>
+  <div class="sub-clause">5.1 המערכת הסולארית על כל רכיביה (פאנלים, אינוורטר, קונסטרוקציה, כבלים, מונה) הינה ותישאר <strong>רכוש בלעדי של ספק החשמל</strong> לכל אורך תקופת ההסכם.</div>
+  <div class="sub-clause">5.2 הצרכן לא ירכוש, ישעבד, ימכור, או יעביר כל זכות במערכת.</div>
+  <div class="sub-clause">5.3 ספק החשמל רשאי לרשום הערת אזהרה על הנכס בגין המערכת (אם נדרש).</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">6.</span>
+  <strong>העברת בעלות בתום התקופה:</strong>
+
+  <div class="highlight-box">
+    <strong>בתום 15 שנים — המערכת עוברת לבעלות הצרכן בתמורה סמלית של ฿1 (באט אחד).</strong>
+  </div>
+
+  <div class="sub-clause">6.1 ההעברה מותנית בכך שהצרכן עמד בכל התחייבויותיו לפי הסכם זה.</div>
+  <div class="sub-clause">6.2 ספק החשמל ימסור לצרכן את כל התיעוד, אחריות יצרנים (ככל שעדיין בתוקף), וגישה למערכת הניטור.</div>
+  <div class="sub-clause">6.3 אם הצרכן אינו מעוניין לקבל את המערכת — ספק החשמל יפרק ויסיר על חשבונו תוך 60 יום.</div>
+</div>
+
+<!-- ===== O&M ===== -->
+<div class="section-title"><span>D</span>תפעול ותחזוקה (O&M)</div>
+
+<div class="clause">
+  <span class="clause-num">7.</span>
+  <strong>אחריות ספק החשמל:</strong>
+  <div class="sub-clause">7.1 ספק החשמל אחראי באופן בלעדי לתחזוקת המערכת לכל אורך התקופה.</div>
+  <div class="sub-clause">7.2 O&M כלול בתעריף — הצרכן אינו משלם עבור תחזוקה.</div>
+  <div class="sub-clause">7.3 היקף O&M:
+    <div class="sub-clause">א. ניטור מרחוק 24/7 באמצעות מערכת monitoring</div>
+    <div class="sub-clause">ב. בדיקה תקופתית רבעונית (visual + electrical)</div>
+    <div class="sub-clause">ג. ניקוי פאנלים (לפחות 2 פעמים בשנה)</div>
+    <div class="sub-clause">ד. תיקון או החלפת רכיבים פגומים</div>
+    <div class="sub-clause">ה. עדכון firmware אינוורטר</div>
+  </div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">8.</span>
+  <strong>זמני תגובה:</strong>
+  <table>
+    <tr><th>חומרת תקלה</th><th>זמן תגובה</th><th>זמן תיקון</th></tr>
+    <tr><td>קריטית (מערכת כבויה לחלוטין)</td><td>4 שעות</td><td>24 שעות</td></tr>
+    <tr><td>משמעותית (ירידת ביצועים &gt;20%)</td><td>24 שעות</td><td>72 שעות</td></tr>
+    <tr><td>קלה (אזהרה, אסתטי)</td><td>72 שעות</td><td>7 ימים</td></tr>
+  </table>
+</div>
+
+<!-- ===== PERFORMANCE ===== -->
+<div class="section-title"><span>E</span>ביצועים מובטחים</div>
+
+<div class="clause">
+  <span class="clause-num">9.</span>
+  <strong>Availability (זמינות):</strong>
+  <div class="sub-clause">9.1 ספק החשמל מתחייב לזמינות מערכת של <strong>לפחות 95%</strong> בכל שנה קלנדרית (מחושב לפי שעות אור שמש).</div>
+  <div class="sub-clause">9.2 "זמינות" = שעות שהמערכת פעילה ומייצרת / סה"כ שעות אור שמש.</div>
+  <div class="sub-clause">9.3 לא נכלל בחישוב: כוח עליון, תחזוקה מתוכננת (עד 24 שעות/רבעון), הפסקות PEA.</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">10.</span>
+  <strong>פיצוי על אי-עמידה:</strong>
+  <div class="sub-clause">10.1 אם הזמינות השנתית נמוכה מ-95% — ספק החשמל יפצה את הצרכן בגובה ההכנסה האבודה (kWh אבודים × תעריף PPA).</div>
+  <div class="sub-clause">10.2 אם הזמינות נמוכה מ-80% בשנתיים רצופות — הצרכן רשאי לבטל את ההסכם (סעיף 16).</div>
+</div>
+
+<!-- ===== METERING ===== -->
+<div class="section-title"><span>F</span>מדידה וחיוב</div>
+
+<div class="clause">
+  <span class="clause-num">11.</span>
+  <strong>מונה:</strong>
+  <div class="sub-clause">11.1 ספק החשמל יתקין מונה ייעודי (revenue-grade, Class 0.5S) למדידת החשמל הנצרך מהמערכת.</div>
+  <div class="sub-clause">11.2 המונה הינו רכוש ספק החשמל ויכויל אחת לשנתיים ע"י מעבדה מוסמכת.</div>
+  <div class="sub-clause">11.3 בנוסף — מערכת monitoring דיגיטלית עם גישה לצרכן (app/web).</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">12.</span>
+  <strong>חשבונית וגבייה:</strong>
+  <div class="sub-clause">12.1 ספק החשמל יוציא חשבונית חודשית עד ה-5 בחודש העוקב, על בסיס קריאת מונה.</div>
+  <div class="sub-clause">12.2 תשלום: תוך 15 ימים מתאריך החשבונית, בהעברה בנקאית.</div>
+  <div class="sub-clause">12.3 איחור בתשלום מעל 30 יום — ריבית של 1.5% לחודש על הסכום שבפיגור.</div>
+  <div class="sub-clause">12.4 איחור מעל 60 יום — ספק החשמל רשאי לנתק את המערכת מרשת הצרכן (עם הודעה של 7 ימים).</div>
+</div>
+
+<!-- ===== SITE ACCESS ===== -->
+<div class="section-title"><span>G</span>גישה לאתר</div>
+
+<div class="clause">
+  <span class="clause-num">13.</span>
+  <strong>זכות גישה:</strong>
+  <div class="sub-clause">13.1 הצרכן מעניק לספק החשמל זכות גישה <strong>לגג ולמרחב המערכת 24/7</strong> לצורכי תחזוקה, תיקון, והחלפת רכיבים.</div>
+  <div class="sub-clause">13.2 לתחזוקה שוטפת — הודעה מראש של 24 שעות.</div>
+  <div class="sub-clause">13.3 לתקלה קריטית — גישה מיידית ללא הודעה מראש.</div>
+  <div class="sub-clause">13.4 הצרכן לא יחסום גישה, לא יצור הצללה חדשה (עצים, מבנים), ולא ישנה את מבנה הגג ללא תיאום.</div>
+</div>
+
+<!-- ===== INSURANCE ===== -->
+<div class="section-title"><span>H</span>ביטוח</div>
+
+<div class="clause">
+  <span class="clause-num">14.</span>
+  <strong>ביטוח — אחריות ספק החשמל:</strong>
+  <div class="sub-clause">14.1 <strong>ביטוח ציוד:</strong> All Risk — מכסה נזק, גניבה, אסונות טבע למערכת הסולארית.</div>
+  <div class="sub-clause">14.2 <strong>אחריות צד ג':</strong> כיסוי של לפחות ฿2,000,000 לאירוע — נזק לנכס הצרכן עקב המערכת.</div>
+  <div class="sub-clause">14.3 ספק החשמל ימציא אישורי ביטוח תקפים לצרכן על-פי דרישה.</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">15.</span>
+  <strong>ביטוח — אחריות הצרכן:</strong>
+  <div class="sub-clause">15.1 ביטוח מבנה (גג/שטח) — הצרכן אחראי לבטח את המבנה עליו מותקנת המערכת.</div>
+  <div class="sub-clause">15.2 הצרכן ידווח מיד על כל אירוע ביטוחי שעלול להשפיע על המערכת.</div>
+</div>
+
+<!-- ===== TERMINATION ===== -->
+<div class="section-title"><span>I</span>סיום מוקדם</div>
+
+<div class="clause">
+  <span class="clause-num">16.</span>
+  <strong>סיום מצד הצרכן:</strong>
+  <div class="sub-clause">16.1 הצרכן רשאי לסיים את ההסכם בכל עת, בכפוף לתשלום <strong>קנס סיום מוקדם:</strong></div>
+
+  <div class="highlight-box">
+    <strong>קנס סיום מוקדם = 70% × (תעריף נוכחי × ייצור שנתי ממוצע × שנים שנותרו)</strong><br><br>
+    דוגמה: סיום בשנה 5 למערכת 50kWp:<br>
+    70% × (฿5.07 × 82,000 × 10 שנים) = 70% × ฿4,157,400 = <strong>฿2,910,180</strong>
+  </div>
+
+  <div class="sub-clause">16.2 לחלופין — הצרכן רשאי <strong>לרכוש את המערכת</strong> בערך השוק ההוגן (Fair Market Value) כפי שייקבע ע"י שמאי מוסכם, ובכך ההסכם מסתיים ללא קנס.</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">17.</span>
+  <strong>סיום מצד ספק החשמל:</strong>
+  <div class="sub-clause">17.1 אי-תשלום מעבר ל-90 יום — ספק החשמל רשאי לסיים את ההסכם בהודעה של 30 יום.</div>
+  <div class="sub-clause">17.2 הפרה מהותית שלא תוקנה תוך 30 יום מהודעה בכתב.</div>
+  <div class="sub-clause">17.3 בסיום — ספק החשמל יפרק ויסיר את המערכת תוך 60 יום, על חשבונו, ויתקן כל נזק לגג.</div>
+</div>
+
+<div class="clause">
+  <span class="clause-num">18.</span>
+  <strong>מכירת הנכס:</strong>
+  <div class="sub-clause">18.1 הצרכן רשאי למכור את הנכס בכפוף ל-<strong>העברת ההסכם לרוכש החדש</strong> (assignment).</div>
+  <div class="sub-clause">18.2 ספק החשמל יאשר העברה בתנאי שהרוכש מקבל על עצמו את כל ההתחייבויות.</div>
+  <div class="sub-clause">18.3 אם הרוכש מסרב — חלים תנאי סיום מוקדם (סעיף 16).</div>
+</div>
+
+<!-- ===== FORCE MAJEURE ===== -->
+<div class="section-title"><span>J</span>כוח עליון</div>
+
+<div class="clause">
+  <span class="clause-num">19.</span>
+  <strong>כוח עליון:</strong>
+  <div class="sub-clause">19.1 אף צד לא יישא באחריות לאי-ביצוע עקב אירועים שאינם בשליטתו (אסונות טבע, מגפות, מלחמות, הפסקות PEA ממושכות).</div>
+  <div class="sub-clause">19.2 הצד המושפע יודיע תוך 7 ימים ויפעל למזער השפעה.</div>
+  <div class="sub-clause">19.3 כוח עליון מעבר ל-180 יום — כל צד רשאי לסיים בהודעה של 30 יום, ללא קנס.</div>
+</div>
+
+<!-- ===== CONFIDENTIALITY ===== -->
+<div class="section-title"><span>K</span>סודיות</div>
+
+<div class="clause">
+  <span class="clause-num">20.</span>
+  <strong>סודיות:</strong>
+  <div class="sub-clause">20.1 תנאי ההסכם, התעריף, וכל מידע מסחרי הם חסויים.</div>
+  <div class="sub-clause">20.2 שני הצדדים מתחייבים שלא לחשוף מידע חסוי לצד שלישי ללא הסכמה בכתב, למעט: יועצים משפטיים, רואי חשבון, ובנקים מממנים.</div>
+  <div class="sub-clause">20.3 התחייבות הסודיות ממשיכה 3 שנים לאחר סיום ההסכם.</div>
+</div>
+
+<!-- ===== DISPUTE ===== -->
+<div class="section-title"><span>L</span>יישוב סכסוכים</div>
+
+<div class="clause">
+  <span class="clause-num">21.</span>
+  <strong>יישוב סכסוכים:</strong>
+  <div class="sub-clause">21.1 <strong>שלב 1 — משא ומתן:</strong> תוך 14 יום.</div>
+  <div class="sub-clause">21.2 <strong>שלב 2 — גישור:</strong> מגשר מוסכם, תוך 30 יום.</div>
+  <div class="sub-clause">21.3 <strong>שלב 3 — בוררות:</strong> בהתאם לחוק הבוררות התאילנדי. מקום: Surat Thani. שפה: אנגלית.</div>
+</div>
+
+<!-- ===== GENERAL ===== -->
+<div class="section-title"><span>M</span>הוראות כלליות</div>
+
+<div class="clause">
+  <span class="clause-num">22.</span>
+  <strong>דין חל:</strong> חוזה זה כפוף לחוקי ממלכת תאילנד.
+</div>
+
+<div class="clause">
+  <span class="clause-num">23.</span>
+  <strong>שפה:</strong> חוזה זה ייחתם בגרסה <strong>דו-לשונית (אנגלית + תאילנדית)</strong>. במקרה של סתירה — הגרסה התאילנדית גוברת.
+</div>
+
+<div class="clause">
+  <span class="clause-num">24.</span>
+  <strong>שלמות ההסכם:</strong> חוזה זה מהווה את ההסכם המלא בין הצדדים. כל שינוי ייעשה בנספח חתום.
+</div>
+
+<div class="clause">
+  <span class="clause-num">25.</span>
+  <strong>העברת זכויות ספק החשמל:</strong> ספק החשמל רשאי להעביר את זכויותיו (כולל שעבוד ההכנסות לטובת בנק מממן) בהודעה לצרכן. הצרכן אינו רשאי להתנגד להעברה כאמור, כל עוד זה אינו משנה את תנאי ההסכם.
+</div>
+
+<div class="clause">
+  <span class="clause-num">26.</span>
+  <strong>הודעות:</strong> כל הודעה תישלח בכתב לכתובות שצוינו, או בדוא"ל מאושר ע"י שני הצדדים.
+</div>
+
+<!-- ===== SIGNATURES ===== -->
+<div class="signature-box">
+  <div class="sig-party">
+    <h3>ספק החשמל — Ko Phangan Solar Co., Ltd.</h3>
+    <div class="sig-line"></div>
+    <div class="sig-label">שם מורשה חתימה</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">חתימה</div>
+    <div class="sig-line" style="height:30px"></div>
+    <div class="sig-label">תאריך</div>
+  </div>
+  <div class="sig-party">
+    <h3>הצרכן</h3>
+    <div class="sig-line"></div>
+    <div class="sig-label">שם מורשה חתימה</div>
+    <div class="sig-line"></div>
+    <div class="sig-label">חתימה</div>
+    <div class="sig-line" style="height:30px"></div>
+    <div class="sig-label">תאריך</div>
+  </div>
+</div>
+
+<!-- ===== APPENDICES ===== -->
+<div class="appendix">
+  <h3>נספחים</h3>
+  <table>
+    <tr><th>נספח</th><th>תוכן</th></tr>
+    <tr><td>A</td><td>מפרט טכני של המערכת — פאנלים, אינוורטר, מונה, monitoring</td></tr>
+    <tr><td>B</td><td>תוכנית הצבה (Layout) — מיקום המערכת על הנכס</td></tr>
+    <tr><td>C</td><td>ייצור שנתי צפוי (kWh) — סימולציה + הנחות</td></tr>
+    <tr><td>D</td><td>טבלת הצמדה — תעריפים צפויים ל-15 שנה</td></tr>
+    <tr><td>E</td><td>חשבונית לדוגמה — פורמט חיוב חודשי</td></tr>
+    <tr><td>F</td><td>אישורי ביטוח — ציוד + צד ג'</td></tr>
+    <tr><td>G</td><td>פרוטוקול O&M — לוח תחזוקה שנתי</td></tr>
+  </table>
+</div>
+
+</div>
+</body>
+</html>

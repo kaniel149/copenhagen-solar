@@ -64,36 +64,41 @@ tr:hover td{background:rgba(255,255,255,.03)}
 .org-line{border-left:2px solid rgba(255,255,255,.2);height:20px;margin:0 auto;width:0}
 .org-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
-/* TM Energy Logo Header */
+
+
+
+/* TM Energy Branding */
 .tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
 .tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
 .lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
 .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
 .lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-.tri-text .lang-he,.tri-text .lang-en,.tri-text .lang-th{display:none}
-body[data-lang="he"] .tri-text .lang-he{display:block}
-body[data-lang="en"] .tri-text .lang-en{display:block}
-body[data-lang="th"] .tri-text .lang-th{display:block}
-body[data-lang="he"] .slide{direction:rtl;text-align:right}
-body[data-lang="en"] .slide{direction:ltr;text-align:left}
-body[data-lang="th"] .slide{direction:ltr;text-align:left}
-body[data-lang="en"] th{text-align:left}
-body[data-lang="th"] th{text-align:left}
+.th-sub{display:none;font-size:0.6em;color:rgba(232,168,32,.5);font-weight:400;margin-top:4px;font-family:'Noto Sans Thai',sans-serif}
+.en-sub{display:none;font-size:0.6em;color:rgba(255,255,255,.4);font-weight:400;margin-top:4px}
+body.lang-en .en-sub{display:block}
+body.lang-th .th-sub{display:block}
+body.lang-en .slide{direction:ltr;text-align:left}
+body.lang-th .slide{direction:ltr;text-align:left}
+body.lang-en th{text-align:left}
+body.lang-th th{text-align:left}
 
 </style>
 </head>
-<body data-lang="he">
-
+<body>
 <div class="tm-logo-header">
   <span class="brand-text">TM ENERGY</span>
   <img src="visuals/tm-energy-logo.png" alt="TM Energy">
 </div>
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('he')">עב</button>
-  <button class="lang-btn" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+  <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
+  <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
+  <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>
 </div>
+
+
+
+
 
 <div class="progress-bar" id="progress"></div>
 <button class="toc-btn" onclick="toggleTOC()">☰</button>
@@ -111,7 +116,7 @@ body[data-lang="th"] th{text-align:left}
 <!-- SLIDE 1: Executive Summary -->
 <div class="slide slide-dark" data-title="תקציר מנהלים">
   <span class="section-num">01</span>
-  <h2><span class="tri-text"><span class="lang-he">תקציר מנהלים</h2>
+  <h2>תקציר מנהלים</h2>
   <div class="four-col">
     <div class="dash-card"><h4>שטח גגות שנתי</h4><div class="dash-val gold">50,000 m²</div><div style="font-size:11px;opacity:.6;margin-top:4px">~9.09 MWp מותקן</div></div>
     <div class="dash-card"><h4>PPA (60%)</h4><div class="dash-val reef-text">5,455 kWp</div><div style="font-size:11px;opacity:.6;margin-top:4px">30,000 m² | הכנסה חוזרת</div></div>
@@ -138,6 +143,8 @@ body[data-lang="th"] th{text-align:left}
 <div class="slide slide-ocean" data-title="שלושה מסלולי הכנסה">
   <span class="section-num">03</span>
   <h2>💰 שלושה מסלולי הכנסה</h2>
+<div class="en-sub">Three Revenue Streams</div><div class="th-sub">สามช่องทางรายได้</div>
+<div class="en-sub">PEA</div><div class="th-sub">PEA</div>
   
   <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:24px 0">
     <div class="org-box" style="border-color:#6496FF;min-width:220px;padding:14px 20px">
@@ -293,6 +300,7 @@ body[data-lang="th"] th{text-align:left}
 <div class="slide slide-ocean" data-title="הוצאות תפעול">
   <span class="section-num">05</span>
   <h2>💼 הוצאות תפעול חודשיות — <span class="gold">פירוט מלא</span></h2>
+<div class="en-sub">Standards</div><div class="th-sub">มาตรฐาน</div>
   <div class="two-col">
     <div>
       <h3>שכר עובדים</h3>
@@ -405,6 +413,8 @@ body[data-lang="th"] th{text-align:left}
 <div class="slide slide-ocean" data-title="עלויות ציוד">
   <span class="section-num">07</span>
   <h2>📦 עלויות ציוד — <span class="gold">פירוט ל-kWp</span></h2>
+<div class="en-sub">Safety</div><div class="th-sub">ความปลอดภัย</div>
+<div class="en-sub">Construction</div><div class="th-sub">การก่อสร้าง</div>
   <div class="two-col">
     <div>
       <h3>עלות לנו (Cost) — ฿12,000/kWp</h3>
@@ -446,7 +456,7 @@ body[data-lang="th"] th{text-align:left}
 <!-- SLIDE 8: Monthly P&L -->
 <div class="slide slide-dark" data-title="P&L חודשי">
   <span class="section-num">08</span>
-  <h2><span class="tri-text"><span class="lang-he">📈 P&L — <span class="gold">שנה 1 חודשי</span></h2>
+  <h2>📈 P&L — <span class="gold">שנה 1 חודשי</span></h2>
   <div class="table-wrap">
     <table style="font-size:10px">
       <tr><th></th><th>Q1 avg</th><th>Q2 avg</th><th>Q3 avg</th><th>Q4 avg</th><th>סה"כ שנה 1</th></tr>
@@ -548,6 +558,7 @@ body[data-lang="th"] th{text-align:left}
 <div class="slide slide-gold" data-title="תזרים מזומנים">
   <span class="section-num">11</span>
   <h2>💧 תזרים מזומנים — <span class="gold">3 שנים (מאוחד)</span></span><span class="lang-en">Cash Flow</span><span class="lang-th">กระแสเงินสด</span></span></h2>
+<div class="en-sub">Cash Flow</div><div class="th-sub">กระแสเงินสด</div>
   <div class="table-wrap">
     <table>
       <tr><th></th><th>שנה 1</th><th>שנה 2</th><th>שנה 3</th></tr>
@@ -646,7 +657,7 @@ body[data-lang="th"] th{text-align:left}
 <!-- SLIDE 13: Monthly Cash Flow Year 1 -->
 <div class="slide slide-dark" data-title="Cash Flow חודשי">
   <span class="section-num">13</span>
-  <h2><span class="tri-text"><span class="lang-he">📊 Cash Flow חודשי — <span class="gold">12 חודשים ראשונים</span></h2>
+  <h2>📊 Cash Flow חודשי — <span class="gold">12 חודשים ראשונים</span></h2>
   <div class="table-wrap">
     <table style="font-size:9.5px">
       <tr><th></th><th>ח׳1</th><th>ח׳2</th><th>ח׳3</th><th>ח׳4</th><th>ח׳5</th><th>ח׳6</th><th>ח׳7</th><th>ח׳8</th><th>ח׳9</th><th>ח׳10</th><th>ח׳11</th><th>ח׳12</th><th>סה"כ</th></tr>
@@ -747,7 +758,7 @@ body[data-lang="th"] th{text-align:left}
 <!-- SLIDE 16: Risks -->
 <div class="slide slide-dark" data-title="סיכונים">
   <span class="section-num">16</span>
-  <h2><span class="tri-text"><span class="lang-he">⚠️ סיכונים + <span class="gold">מיטיגציה</span></h2>
+  <h2>⚠️ סיכונים + <span class="gold">מיטיגציה</span></h2>
   <div class="table-wrap">
     <table>
       <tr><th>סיכון</th><th>חומרה</th><th>מיטיגציה</th></tr>
@@ -803,18 +814,16 @@ document.addEventListener('click',e=>{const p=document.getElementById('tocPanel'
 show(0);
 </script>
 
-<script>
-function setLang(lang){
-  document.body.setAttribute('data-lang',lang);
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    b.classList.toggle('active',b.textContent.trim()==={he:'עב',en:'EN',th:'ไทย'}[lang]);
-  });
-  localStorage.setItem('tm-lang',lang);
-}
-// Restore
-const saved=localStorage.getItem('tm-lang');
-if(saved)setLang(saved);
-</script>
 
+
+
+<script>
+function setLang(l){
+  document.body.className=document.body.className.replace(/lang-\w+/g,'').trim()+' lang-'+l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  localStorage.setItem('tm-lang',l);
+}
+(function(){var s=localStorage.getItem('tm-lang');if(s)setLang(s)})();
+</script>
 </body>
 </html>

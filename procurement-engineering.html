@@ -65,36 +65,41 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
 .img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
 
-/* TM Energy Logo Header */
+
+
+
+/* TM Energy Branding */
 .tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
 .tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
 .lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
 .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
 .lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-.tri-text .lang-he,.tri-text .lang-en,.tri-text .lang-th{display:none}
-body[data-lang="he"] .tri-text .lang-he{display:block}
-body[data-lang="en"] .tri-text .lang-en{display:block}
-body[data-lang="th"] .tri-text .lang-th{display:block}
-body[data-lang="he"] .slide{direction:rtl;text-align:right}
-body[data-lang="en"] .slide{direction:ltr;text-align:left}
-body[data-lang="th"] .slide{direction:ltr;text-align:left}
-body[data-lang="en"] th{text-align:left}
-body[data-lang="th"] th{text-align:left}
+.th-sub{display:none;font-size:0.6em;color:rgba(232,168,32,.5);font-weight:400;margin-top:4px;font-family:'Noto Sans Thai',sans-serif}
+.en-sub{display:none;font-size:0.6em;color:rgba(255,255,255,.4);font-weight:400;margin-top:4px}
+body.lang-en .en-sub{display:block}
+body.lang-th .th-sub{display:block}
+body.lang-en .slide{direction:ltr;text-align:left}
+body.lang-th .slide{direction:ltr;text-align:left}
+body.lang-en th{text-align:left}
+body.lang-th th{text-align:left}
 
 </style>
 </head>
-<body data-lang="he">
-
+<body>
 <div class="tm-logo-header">
   <span class="brand-text">TM ENERGY</span>
   <img src="visuals/tm-energy-logo.png" alt="TM Energy">
 </div>
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('he')">עב</button>
-  <button class="lang-btn" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+  <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
+  <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
+  <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>
 </div>
+
+
+
+
 
 <div class="progress-bar" id="progress"></div>
 <button class="toc-btn" onclick="toggleTOC()">☰</button>
@@ -114,7 +119,7 @@ body[data-lang="th"] th{text-align:left}
 <!-- SLIDE 1: Supply Chain -->
 <div class="slide slide-ocean" data-title="שרשרת אספקה">
   <span class="section-num">01</span>
-  <h2><span class="tri-text"><span class="lang-he">🚢 שרשרת אספקה — <span class="gold">מהמפעל לגג</span></span><span class="lang-en">Supply Chain</span><span class="lang-th">ห่วงโซ่อุปทาน</span></span></h2>
+  <h2><span class="lang-en">Supply Chain</span><span class="lang-th">ห่วงโซ่อุปทาน</span></span></h2>
   <p class="subtitle">סין → בנגקוק → סורת תאני → מעבורת → קו פנגן</p>
   <div class="card-grid" style="grid-template-columns:repeat(5,1fr)">
     <div class="card" style="text-align:center"><div class="card-icon">🏭</div><h3>יצרן</h3><p>Longi (סין)<br>Huawei (סין)</p></div>
@@ -157,6 +162,7 @@ body[data-lang="th"] th{text-align:left}
 <img src="visuals/procure-02-panel.png" class="slide-img" alt="Longi panel">
   <span class="section-num">02</span>
   <h2>☀️ בחירת פאנלים — <span class="gold">Longi Hi-MO</span></h2>
+<div class="en-sub">Logistics</div><div class="th-sub">โลจิสติกส์</div>
   <div class="two-col">
     <div>
       <h3>למה Longi?</h3>
@@ -247,6 +253,7 @@ body[data-lang="th"] th{text-align:left}
 <div class="slide slide-reef" data-title="קונסטרוקציה">
   <span class="section-num">04</span>
   <h2>🏗️ מערכות הרכבה — <span class="gold">Marine Grade</span></h2>
+<div class="en-sub">Construction</div><div class="th-sub">การก่อสร้าง</div>
   <div class="two-col">
     <div>
       <h3>חומרים חובה (island environment)</h3>
@@ -542,18 +549,16 @@ document.addEventListener('click',e=>{const p=document.getElementById('tocPanel'
 show(0);
 </script>
 
-<script>
-function setLang(lang){
-  document.body.setAttribute('data-lang',lang);
-  document.querySelectorAll('.lang-btn').forEach(b=>{
-    b.classList.toggle('active',b.textContent.trim()==={he:'עב',en:'EN',th:'ไทย'}[lang]);
-  });
-  localStorage.setItem('tm-lang',lang);
-}
-// Restore
-const saved=localStorage.getItem('tm-lang');
-if(saved)setLang(saved);
-</script>
 
+
+
+<script>
+function setLang(l){
+  document.body.className=document.body.className.replace(/lang-\w+/g,'').trim()+' lang-'+l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  localStorage.setItem('tm-lang',l);
+}
+(function(){var s=localStorage.getItem('tm-lang');if(s)setLang(s)})();
+</script>
 </body>
 </html>

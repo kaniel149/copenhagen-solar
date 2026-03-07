@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ko Phangan Solar — דשבורד פיננסי</title>
+<title>TM Energy — Ko Phangan Solar — דשבורד פיננסי</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
@@ -82,18 +82,39 @@ a{color:var(--gold);text-decoration:none}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
 .img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
 
-/* TM Energy Logo Header */
+
+
+/* TM Energy Branding */
 .tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
 .tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
+.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
+.th-sub{display:none;font-size:0.6em;color:rgba(232,168,32,.5);font-weight:400;margin-top:4px;font-family:'Noto Sans Thai',sans-serif}
+.en-sub{display:none;font-size:0.6em;color:rgba(255,255,255,.4);font-weight:400;margin-top:4px}
+body.lang-en .en-sub{display:block}
+body.lang-th .th-sub{display:block}
+body.lang-en .slide{direction:ltr;text-align:left}
+body.lang-th .slide{direction:ltr;text-align:left}
+body.lang-en th{text-align:left}
+body.lang-th th{text-align:left}
+
 </style>
 </head>
 <body>
-
 <div class="tm-logo-header">
   <span class="brand-text">TM ENERGY</span>
   <img src="visuals/tm-energy-logo.png" alt="TM Energy">
 </div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
+  <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
+  <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>
+</div>
+
+
+
 
 <div class="progress-bar" id="progress"></div>
 <button class="toc-btn" onclick="toggleTOC()">☰</button>
@@ -165,6 +186,7 @@ a{color:var(--gold);text-decoration:none}
 <div class="slide slide-ocean" data-title="P&L חודשי">
   <span class="section-num">02</span>
   <h2>📈 P&L חודשי — <span class="gold">תכנון שנה 1</span></h2>
+<div class="en-sub">ESCO</div><div class="th-sub">ESCO</div>
   <div class="table-wrap">
     <table>
       <tr><th>חודש</th><th>Q1</th><th>Q1</th><th>Q1</th><th>Q2</th><th>Q2</th><th>Q2</th><th>Q3</th><th>Q3</th><th>Q3</th><th>Q4</th><th>Q4</th><th>Q4</th><th>סה"כ</th></tr>
@@ -228,6 +250,8 @@ a{color:var(--gold);text-decoration:none}
 <div class="slide slide-ocean" data-title="מודל PPA">
   <span class="section-num">04</span>
   <h2>⚡ מודל פיננסי PPA — <span class="gold">ESCO</span></h2>
+<div class="en-sub">Roof Survey</div><div class="th-sub">การสำรวจหลังคา</div>
+<div class="en-sub">KPIs</div><div class="th-sub">ตัวชี้วัด</div>
   <p class="subtitle">בניית תוכנית למערכת PPA — 10 שנים</p>
   <div class="two-col">
     <div>
@@ -277,6 +301,7 @@ a{color:var(--gold);text-decoration:none}
 <div class="slide slide-dark" data-title="תרחישי PPA">
   <span class="section-num">05</span>
   <h2>📐 תרחישי PPA — <span class="gold">3 גדלים</span></h2>
+<div class="en-sub">Cash Flow</div><div class="th-sub">กระแสเงินสด</div>
   <div class="three-col">
     <div class="card" style="border-color:rgba(100,150,255,.3)">
       <h3 style="color:#6496FF">וילה 10kWp</h3>
@@ -603,6 +628,15 @@ function calcPPA(){
   document.getElementById('calcTable').innerHTML=html;
 }
 calcPPA();
+</script>
+
+<script>
+function setLang(l){
+  document.body.className=document.body.className.replace(/lang-\w+/g,'').trim()+' lang-'+l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
+  localStorage.setItem('tm-lang',l);
+}
+(function(){var s=localStorage.getItem('tm-lang');if(s)setLang(s)})();
 </script>
 </body>
 </html>

@@ -118,6 +118,40 @@
     'a[href]'
   ].join(',');
 
+  // --- Translate individual text nodes within an element ---
+  function translateTextNodes(el) {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+    let node;
+    while (node = walker.nextNode()) {
+      let text = node.textContent;
+      if (!hasHebrew(text)) continue;
+      // Try full node match first
+      const trans = findTrans(text);
+      if (trans) {
+        const translated = currentLang === 'en' ? trans.en : trans.th;
+        if (translated) { node.textContent = translated; continue; }
+      }
+      // Inline replacement: find Hebrew dictionary keys within the text
+      let modified = text;
+      if (!sortedHebrewKeys) buildSortedKeys();
+      for (const [key, val] of sortedHebrewKeys) {
+        if (!modified.includes(key)) continue;
+        const translated = currentLang === 'en' ? val.en : val.th;
+        if (translated) modified = modified.replace(key, translated);
+        if (!hasHebrew(modified)) break;
+      }
+      if (modified !== text) node.textContent = modified;
+    }
+  }
+
+  // --- Sorted keys cache for inline replacement ---
+  let sortedHebrewKeys = null;
+  function buildSortedKeys() {
+    sortedHebrewKeys = Object.entries(T)
+      .filter(([k]) => k.length > 2 && hasHebrew(k))
+      .sort((a, b) => b[0].length - a[0].length);
+  }
+
   // --- Translate all elements ---
   function translateAll() {
     document.querySelectorAll(SEL).forEach(el => {
@@ -153,6 +187,10 @@
             el.textContent = translated;
           }
         }
+      } else if (el.childNodes.length > 1) {
+        // No full-element match — try translating individual text nodes
+        // This handles mixed content like <strong>580W</strong> — Hebrew text
+        translateTextNodes(el);
       }
     });
   }
@@ -256,6 +294,7 @@
     for (const [key, val] of Object.entries(obj)) {
       T[norm(key) || key] = val;
     }
+    sortedHebrewKeys = null; // reset cache
   }
 
   // --- Init ---

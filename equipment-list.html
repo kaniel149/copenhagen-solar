@@ -54,9 +54,20 @@ tr:hover{background:rgba(255,255,255,.02)}
 .priority-med{border-right:3px solid var(--gold)}
 .priority-low{border-right:3px solid #2ED89A}
 @media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* TM Energy Logo Header */
+.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
 </style>
 </head>
 <body>
+
+<div class="tm-logo-header">
+  <span class="brand-text">TM ENERGY</span>
+  <img src="visuals/tm-energy-logo.png" alt="TM Energy">
+</div>
+
 <div class="progress-bar" id="progress"></div>
 <button class="toc-btn" onclick="toggleTOC()">☰</button>
 <div class="toc-panel" id="tocPanel"><div id="tocList"></div></div>

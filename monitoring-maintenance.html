@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ko Phangan Solar — ניטור ותחזוקה</title>
+<title>TM Energy — Ko Phangan Solar — ניטור ותחזוקה</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
@@ -59,9 +59,38 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
 .img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+
+/* TM Energy Logo Header */
+.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
+.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
+.tri-text .lang-he,.tri-text .lang-en,.tri-text .lang-th{display:none}
+body[data-lang="he"] .tri-text .lang-he{display:block}
+body[data-lang="en"] .tri-text .lang-en{display:block}
+body[data-lang="th"] .tri-text .lang-th{display:block}
+body[data-lang="he"] .slide{direction:rtl;text-align:right}
+body[data-lang="en"] .slide{direction:ltr;text-align:left}
+body[data-lang="th"] .slide{direction:ltr;text-align:left}
+body[data-lang="en"] th{text-align:left}
+body[data-lang="th"] th{text-align:left}
+
 </style>
 </head>
-<body>
+<body data-lang="he">
+
+<div class="tm-logo-header">
+  <span class="brand-text">TM ENERGY</span>
+  <img src="visuals/tm-energy-logo.png" alt="TM Energy">
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('he')">עב</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+</div>
+
 <div class="progress-bar" id="progress"></div>
 <button class="toc-btn" onclick="toggleTOC()">☰</button>
 <div class="toc-panel" id="tocPanel"><h3 style="color:var(--gold);margin-bottom:20px;">תוכן עניינים</h3><div id="tocList"></div></div>
@@ -80,7 +109,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 <!-- SLIDE 1: Why Monitoring -->
 <div class="slide slide-ocean" data-title="למה ניטור">
   <span class="section-num">01</span>
-  <h2>📡 למה ניטור חשוב</h2>
+  <h2><span class="tri-text"><span class="lang-he">📡 למה ניטור חשוב</h2>
   <p class="subtitle">הגנה על ההשקעה + שביעות רצון לקוחות</p>
   <div class="stat-grid">
     <div><div class="big-num">5-15%</div><div class="stat-label">הפסד ייצור ללא ניטור<br>(תקלות לא מזוהות)</div></div>
@@ -346,7 +375,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 <!-- SLIDE 9: Revenue from O&M -->
 <div class="slide slide-ocean" data-title="הכנסה מ-O&M">
   <span class="section-num">09</span>
-  <h2>💰 הכנסה חוזרת מ-O&M</h2>
+  <h2>💰 הכנסה חוזרת מ-O&M</span><span class="lang-en">Supply Chain</span><span class="lang-th">ห่วงโซ่อุปทาน</span></span></h2>
   <div class="stat-grid">
     <div><div class="big-num">฿60K</div><div class="stat-label">MRR פוטנציאלי<br>20 לקוחות Standard</div></div>
     <div><div class="big-num">฿720K</div><div class="stat-label">ARR<br>הכנסה שנתית חוזרת</div></div>
@@ -399,5 +428,19 @@ document.addEventListener('click',e=>{const p=document.getElementById('tocPanel'
 (function(){const l=document.getElementById('tocList');slides.forEach((s,i)=>{const d=document.createElement('div');d.className='toc-item';d.innerHTML=`<span class="toc-num">${String(i+1).padStart(2,'0')}</span>${s.dataset.title}`;d.onclick=()=>{current=i;show(i);toggleTOC()};l.appendChild(d)})})();
 show(0);
 </script>
+
+<script>
+function setLang(lang){
+  document.body.setAttribute('data-lang',lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()==={he:'עב',en:'EN',th:'ไทย'}[lang]);
+  });
+  localStorage.setItem('tm-lang',lang);
+}
+// Restore
+const saved=localStorage.getItem('tm-lang');
+if(saved)setLang(saved);
+</script>
+
 </body>
 </html>

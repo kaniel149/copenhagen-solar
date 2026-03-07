@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ko Phangan Solar — Financing Deep Dive</title>
+    <title>TM Energy — Ko Phangan Solar — Financing Deep Dive</title>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --sun: #E8A820; --ocean: #0A3D5C; --ocean-deep: #062A40; --green: #43A047; --red: #E53935; --white: #FFFFFF; }
@@ -63,16 +63,45 @@
 .slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
 .img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+
+/* TM Energy Logo Header */
+.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
+.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
+.tri-text .lang-he,.tri-text .lang-en,.tri-text .lang-th{display:none}
+body[data-lang="he"] .tri-text .lang-he{display:block}
+body[data-lang="en"] .tri-text .lang-en{display:block}
+body[data-lang="th"] .tri-text .lang-th{display:block}
+body[data-lang="he"] .slide{direction:rtl;text-align:right}
+body[data-lang="en"] .slide{direction:ltr;text-align:left}
+body[data-lang="th"] .slide{direction:ltr;text-align:left}
+body[data-lang="en"] th{text-align:left}
+body[data-lang="th"] th{text-align:left}
+
 </style>
 </head>
-<body>
+<body data-lang="he">
+
+<div class="tm-logo-header">
+  <span class="brand-text">TM ENERGY</span>
+  <img src="visuals/tm-energy-logo.png" alt="TM Energy">
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('he')">עב</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+</div>
+
 
 <!-- SLIDE 0: COVER -->
 <div class="slide" style="background:linear-gradient(160deg,var(--ocean-deep),#0A0A0A 60%);">
     <div class="container">
         <span class="badge badge-gold" style="margin-bottom:1.5rem;">FINANCING DEEP DIVE</span>
         <h1>Ko Phangan <span class="accent">Solar</span></h1>
-        <h2 class="he" style="color:rgba(255,255,255,0.6);font-family:'Heebo';font-size:1.5rem;">מימון — בנקים, תנאים, מספרים אמיתיים</h2>
+        <h2 class="he" style="color:rgba(255,255,255,0.6);font-family:'Heebo';font-size:1.5rem;"><span class="tri-text"><span class="lang-he">מימון — בנקים, תנאים, מספרים אמיתיים</h2>
         <div style="margin-top:2rem;color:rgba(255,255,255,0.4);font-size:0.9rem;">מרץ 2026 · TM Energy</div>
     </div>
 </div>
@@ -81,7 +110,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">01 — FINANCING OVERVIEW</div>
-        <h2 class="he">3 מסלולי מימון</h2>
+        <h2 class="he"><span class="tri-text"><span class="lang-he">3 מסלולי מימון</span><span class="lang-en">Financing</span><span class="lang-th">การเงิน</span></span></h2>
         <div class="grid-3">
             <div class="card gold">
                 <div class="stat-big" style="font-size:2.5rem;">A</div>
@@ -113,7 +142,7 @@
     <div class="container">
         <div class="slide-num">02 — BANK RANKING</div>
 <img src="visuals/finance-02-bank.png" class="slide-img-sm" alt="Krungsri bank">
-        <h2 class="he">דירוג בנקים — מי הכי טוב?</h2>
+        <h2 class="he"><span class="tri-text"><span class="lang-he">דירוג בנקים — מי הכי טוב?</h2>
         
         <div class="bank-row" style="background:rgba(232,168,32,0.05);border-radius:16px 16px 0 0;">
             <div class="bank-rank">1</div>
@@ -193,7 +222,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">03 — KRUNGSRI DEEP DIVE</div>
-        <h2 class="he">Krungsri — 3 מוצרי סולאר</h2>
+        <h2 class="he">Krungsri — 3 מוצרי סולאר</span><span class="lang-en">Financing</span><span class="lang-th">การเงิน</span></span></h2>
         <div class="grid-3">
             <div class="card gold">
                 <h3 class="en accent">SME Transition Loan</h3>
@@ -238,7 +267,7 @@
     <div class="container">
         <div class="slide-num">04 — CUSTOMER FINANCING MODELS</div>
 <img src="visuals/finance-04-roi.png" class="slide-img" alt="ROI timeline">
-        <h2 class="he">איך הלקוחות שלנו משלמים</h2>
+        <h2 class="he"><span class="tri-text"><span class="lang-he">איך הלקוחות שלנו משלמים</h2>
         <div class="grid-2">
             <div>
                 <div class="card gold" style="margin-bottom:1.5rem;">
@@ -298,7 +327,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">05 — ESCO NUMBERS</div>
-        <h2 class="he">ESCO — המספרים</h2>
+        <h2 class="he">ESCO — המספרים</span><span class="lang-en">Financing</span><span class="lang-th">การเงิน</span></span></h2>
         <div class="he" style="margin-bottom:2rem;color:rgba(255,255,255,0.5);">דוגמה: Resort עם 50 חדרים, חשבון חשמל ฿120,000/חודש</div>
 
         <div class="grid-2">
@@ -353,7 +382,7 @@
     <div class="container">
         <div class="slide-num">07 — TAX & INCENTIVES</div>
 <img src="visuals/finance-07-signing.png" class="slide-img-sm" alt="PPA signing">
-        <h2 class="he">הטבות מס ותמריצים</h2>
+        <h2 class="he"><span class="tri-text"><span class="lang-he">הטבות מס ותמריצים</span><span class="lang-en">Cash Flow</span><span class="lang-th">กระแสเงินสด</span></span></h2>
         <div class="grid-2">
             <div>
                 <h3 class="he accent">תמריצים שלנו (החברה)</h3>
@@ -426,7 +455,7 @@
 <!-- SLIDE 9: SUMMARY -->
 <div class="slide" style="background:linear-gradient(160deg,var(--ocean-deep),#0A0A0A 60%);">
     <div class="container" style="text-align:center;">
-        <h2 class="he" style="margin-bottom:2rem;">סיכום מימון</h2>
+        <h2 class="he" style="margin-bottom:2rem;">סיכום מימון</span><span class="lang-en">Financing</span><span class="lang-th">การเงิน</span></span></h2>
         <div class="grid-3" style="max-width:800px;margin:0 auto;">
             <div>
                 <div class="stat-big">3.0-3.5%</div>
@@ -461,6 +490,20 @@
         </div>
     </div>
 </div>
+
+
+<script>
+function setLang(lang){
+  document.body.setAttribute('data-lang',lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()==={he:'עב',en:'EN',th:'ไทย'}[lang]);
+  });
+  localStorage.setItem('tm-lang',lang);
+}
+// Restore
+const saved=localStorage.getItem('tm-lang');
+if(saved)setLang(saved);
+</script>
 
 </body>
 </html>

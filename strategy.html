@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ko Phangan Solar — Strategy Deck</title>
+    <title>TM Energy — Ko Phangan Solar — Strategy Deck</title>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -159,9 +159,38 @@
 .slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
 .img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+
+/* TM Energy Logo Header */
+.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
+.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
+.tri-text .lang-he,.tri-text .lang-en,.tri-text .lang-th{display:none}
+body[data-lang="he"] .tri-text .lang-he{display:block}
+body[data-lang="en"] .tri-text .lang-en{display:block}
+body[data-lang="th"] .tri-text .lang-th{display:block}
+body[data-lang="he"] .slide{direction:rtl;text-align:right}
+body[data-lang="en"] .slide{direction:ltr;text-align:left}
+body[data-lang="th"] .slide{direction:ltr;text-align:left}
+body[data-lang="en"] th{text-align:left}
+body[data-lang="th"] th{text-align:left}
+
 </style>
 </head>
-<body>
+<body data-lang="he">
+
+<div class="tm-logo-header">
+  <span class="brand-text">TM ENERGY</span>
+  <img src="visuals/tm-energy-logo.png" alt="TM Energy">
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('he')">עב</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+</div>
+
 
 <div class="nav-dots" id="navDots"></div>
 
@@ -185,7 +214,7 @@
     <div class="slide-num">01 — THE OPPORTUNITY</div>
 <img src="visuals/strategy-03-resort.png" class="slide-img" alt="Thai resort with solar">
     <div class="container">
-        <h2 class="he">ההזדמנות</h2>
+        <h2 class="he"><span class="tri-text"><span class="lang-he">ההזדמנות</h2>
         <div class="grid-4" style="margin-bottom:3rem;">
             <div style="text-align:center;">
                 <div class="stat-big">114</div>
@@ -320,7 +349,7 @@
 <div class="slide" data-title="מודל עסקי">
     <div class="slide-num">04 — BUSINESS MODEL</div>
     <div class="container">
-        <h2 class="he">מודל עסקי</h2>
+        <h2 class="he">מודל עסקי</span><span class="lang-en">Business Model</span><span class="lang-th">โมเดลธุรกิจ</span></span></h2>
         <div class="grid-3">
             <div class="card">
                 <span class="badge badge-gold">מקור 1</span>
@@ -366,7 +395,7 @@
 <div class="slide" data-title="מימון">
     <div class="slide-num">05 — FINANCING & LEGAL</div>
     <div class="container">
-        <h2 class="he">מימון ומבנה משפטי</h2>
+        <h2 class="he"><span class="tri-text"><span class="lang-he">מימון ומבנה משפטי</h2>
         <div class="grid-2">
             <div>
                 <h3 class="he accent">מימון ללקוחות</h3>
@@ -404,7 +433,7 @@
 <div class="slide" data-title="שרשרת אספקה">
     <div class="slide-num">06 — SUPPLY CHAIN</div>
     <div class="container">
-        <h2 class="he">שרשרת אספקה</h2>
+        <h2 class="he">שרשרת אספקה</span><span class="lang-en">Business Model</span><span class="lang-th">โมเดลธุรกิจ</span></span></h2>
         <div class="grid-2">
             <div>
                 <table>
@@ -532,7 +561,7 @@
 <div class="slide" data-title="תמחור">
     <div class="slide-num">09 — PRICING PACKAGES</div>
     <div class="container">
-        <h2 class="he">חבילות תמחור</h2>
+        <h2 class="he"><span class="tri-text"><span class="lang-he">חבילות תמחור</span><span class="lang-en">Pricing</span><span class="lang-th">การกำหนดราคา</span></span></h2>
         <div class="grid-3">
             <div class="card">
                 <span class="badge badge-gold">VILLA</span>
@@ -736,6 +765,20 @@ const observer = new IntersectionObserver(entries => {
     });
 }, { threshold: 0.5 });
 slides.forEach(s => observer.observe(s));
+</script>
+
+
+<script>
+function setLang(lang){
+  document.body.setAttribute('data-lang',lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()==={he:'עב',en:'EN',th:'ไทย'}[lang]);
+  });
+  localStorage.setItem('tm-lang',lang);
+}
+// Restore
+const saved=localStorage.getItem('tm-lang');
+if(saved)setLang(saved);
 </script>
 
 </body>

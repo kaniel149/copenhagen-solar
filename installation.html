@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ko Phangan Solar — תהליך הקמה</title>
+<title>TM Energy — Ko Phangan Solar — תהליך הקמה</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
@@ -65,9 +65,38 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
 .img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+
+/* TM Energy Logo Header */
+.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
+.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
+.tri-text .lang-he,.tri-text .lang-en,.tri-text .lang-th{display:none}
+body[data-lang="he"] .tri-text .lang-he{display:block}
+body[data-lang="en"] .tri-text .lang-en{display:block}
+body[data-lang="th"] .tri-text .lang-th{display:block}
+body[data-lang="he"] .slide{direction:rtl;text-align:right}
+body[data-lang="en"] .slide{direction:ltr;text-align:left}
+body[data-lang="th"] .slide{direction:ltr;text-align:left}
+body[data-lang="en"] th{text-align:left}
+body[data-lang="th"] th{text-align:left}
+
 </style>
 </head>
-<body>
+<body data-lang="he">
+
+<div class="tm-logo-header">
+  <span class="brand-text">TM ENERGY</span>
+  <img src="visuals/tm-energy-logo.png" alt="TM Energy">
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('he')">עב</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+</div>
+
 <div class="progress-bar" id="progress"></div>
 <button class="toc-btn" onclick="toggleTOC()">☰</button>
 <div class="toc-panel" id="tocPanel"><h3 style="color:var(--gold);margin-bottom:20px;">תוכן עניינים</h3><div id="tocList"></div></div>
@@ -86,7 +115,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 <!-- SLIDE 1: Overview 7 Phases -->
 <div class="slide slide-ocean" data-title="סקירת 7 שלבים">
   <span class="section-num">01</span>
-  <h2>🔄 תהליך הקמה — <span class="gold">7 שלבים</span></h2>
+  <h2><span class="tri-text"><span class="lang-he">🔄 תהליך הקמה — <span class="gold">7 שלבים</span></span><span class="lang-en">Installation Process</span><span class="lang-th">ขั้นตอนการติดตั้ง</span></span></h2>
   <p class="subtitle">מהפנייה הראשונה ועד חשמל סולארי על הגג</p>
   <div class="flow-steps">
     <div class="flow-step"><div class="flow-icon" style="background:rgba(100,150,255,.2);color:#6496FF">📸</div><div class="flow-label">סקר גג</div><div class="flow-sub">יום 1</div></div>
@@ -313,7 +342,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 <div class="slide slide-dark" data-title="חשמל DC">
 <img src="visuals/install-04-mc4.png" class="slide-img-sm" alt="MC4 connector">
   <span class="section-num">05</span>
-  <h2>⚡ שלב 4: חשמל DC</h2>
+  <h2><span class="tri-text"><span class="lang-he">⚡ שלב 4: חשמל DC</h2>
   <p class="subtitle">שרשור פאנלים, כבלים, מפסקים</p>
 
   <!-- SVG: MC4 Connector + String Wiring -->
@@ -422,7 +451,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 <div class="slide slide-ocean" data-title="חשמל AC">
 <div class="img-row"><img src="visuals/install-05-cables.png" alt="Cable routing"><img src="visuals/install-06-panel.png" alt="Distribution board"></div>
   <span class="section-num">06</span>
-  <h2>🔌 שלב 5: חשמל AC — <span class="gold">חיבור לרשת</span></h2>
+  <h2>🔌 שלב 5: חשמל AC — <span class="gold">חיבור לרשת</span></span><span class="lang-en">Grid Connection</span><span class="lang-th">การเชื่อมต่อกริด</span></span></h2>
   <p class="subtitle">מהאינוורטר ועד הלוח הראשי</p>
 
   <!-- SVG: Single Line Diagram -->
@@ -532,7 +561,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 <div class="slide slide-reef" data-title="חיבור PEA">
 <img src="visuals/install-08-meter.png" class="slide-img-sm" alt="PEA meter">
   <span class="section-num">07</span>
-  <h2>✅ שלב 6: חיבור PEA + <span class="gold">Net Metering</span></h2>
+  <h2><span class="tri-text"><span class="lang-he">✅ שלב 6: חיבור PEA + <span class="gold">Net Metering</span></h2>
   <p class="subtitle">הרגולטור — Provincial Electricity Authority</p>
   <div class="two-col">
     <div>
@@ -572,7 +601,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 <!-- SLIDE 8: Quality Assurance -->
 <div class="slide slide-dark" data-title="בקרת איכות">
   <span class="section-num">08</span>
-  <h2>🔍 שלב 7: בקרת איכות + <span class="gold">מסירה</span></h2>
+  <h2>🔍 שלב 7: בקרת איכות + <span class="gold">מסירה</span></span><span class="lang-en">Grid Connection</span><span class="lang-th">การเชื่อมต่อกริด</span></span></h2>
   <div class="two-col">
     <div>
       <h3>בדיקות סיום</h3>
@@ -726,5 +755,19 @@ document.addEventListener('click',e=>{const p=document.getElementById('tocPanel'
 (function(){const l=document.getElementById('tocList');slides.forEach((s,i)=>{const d=document.createElement('div');d.className='toc-item';d.innerHTML=`<span class="toc-num">${String(i+1).padStart(2,'0')}</span>${s.dataset.title}`;d.onclick=()=>{current=i;show(i);toggleTOC()};l.appendChild(d)})})();
 show(0);
 </script>
+
+<script>
+function setLang(lang){
+  document.body.setAttribute('data-lang',lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()==={he:'עב',en:'EN',th:'ไทย'}[lang]);
+  });
+  localStorage.setItem('tm-lang',lang);
+}
+// Restore
+const saved=localStorage.getItem('tm-lang');
+if(saved)setLang(saved);
+</script>
+
 </body>
 </html>

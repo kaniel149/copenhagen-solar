@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ko Phangan Solar — רישוי מערכות סולאריות בתאילנד</title>
+<title>TM Energy — Ko Phangan Solar — רישוי מערכות סולאריות בתאילנד</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -180,9 +180,38 @@ a:hover { text-decoration: underline; }
 .slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
 .img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+
+/* TM Energy Logo Header */
+.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
+.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
+.tri-text .lang-he,.tri-text .lang-en,.tri-text .lang-th{display:none}
+body[data-lang="he"] .tri-text .lang-he{display:block}
+body[data-lang="en"] .tri-text .lang-en{display:block}
+body[data-lang="th"] .tri-text .lang-th{display:block}
+body[data-lang="he"] .slide{direction:rtl;text-align:right}
+body[data-lang="en"] .slide{direction:ltr;text-align:left}
+body[data-lang="th"] .slide{direction:ltr;text-align:left}
+body[data-lang="en"] th{text-align:left}
+body[data-lang="th"] th{text-align:left}
+
 </style>
 </head>
-<body>
+<body data-lang="he">
+
+<div class="tm-logo-header">
+  <span class="brand-text">TM ENERGY</span>
+  <img src="visuals/tm-energy-logo.png" alt="TM Energy">
+</div>
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('he')">עב</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+</div>
+
 
 <div class="progress-bar" id="progress"></div>
 <button class="toc-btn" onclick="toggleTOC()">☰</button>
@@ -210,7 +239,7 @@ a:hover { text-decoration: underline; }
 
 <!-- SLIDE 1: The Big Picture -->
 <div class="slide slide-ocean" data-title="מהפכת הרגולציה">
-  <h2>🎉 מהפכת הרגולציה — <span class="gold">מה השתנה?</span></h2>
+  <h2><span class="tri-text"><span class="lang-he">🎉 מהפכת הרגולציה — <span class="gold">מה השתנה?</span></h2>
   <p class="subtitle">תאילנד הסירה חסמים מרכזיים ב-2024-2025</p>
 
   <div class="stat-grid">
@@ -414,7 +443,7 @@ a:hover { text-decoration: underline; }
 <!-- SLIDE 4: Equipment Standards -->
 <div class="slide slide-dark" data-title="תקנים ותעודות ציוד">
   <span class="section-num">04</span>
-  <h2>📋 תקנים + תעודות ציוד</h2>
+  <h2><span class="tri-text"><span class="lang-he">📋 תקנים + תעודות ציוד</h2>
   <p class="subtitle">מה PEA דורש — ומה הלקוחות מצפים</p>
 
   <div class="two-col">
@@ -472,7 +501,7 @@ a:hover { text-decoration: underline; }
 <!-- SLIDE 5: Taxation -->
 <div class="slide slide-gold" data-title="מיסוי — הטבות ותשלומים">
   <span class="section-num">฿</span>
-  <h2>💰 מיסוי סולאר בתאילנד</h2>
+  <h2>💰 מיסוי סולאר בתאילנד</span><span class="lang-en">Safety</span><span class="lang-th">ความปลอดภัย</span></span></h2>
   <p class="subtitle">הטבות ללקוחות + חובות לחברה</p>
 
   <div class="two-col">
@@ -541,7 +570,7 @@ a:hover { text-decoration: underline; }
 <!-- SLIDE 6: ESCO / PPA Model -->
 <div class="slide slide-reef" data-title="ESCO/PPA — מודל עסקי">
   <span class="section-num">PPA</span>
-  <h2>🔄 ESCO / PPA — <span class="gold">המודל הכי חזק</span></h2>
+  <h2><span class="tri-text"><span class="lang-he">🔄 ESCO / PPA — <span class="gold">המודל הכי חזק</span></span><span class="lang-en">Business Model</span><span class="lang-th">โมเดลธุรกิจ</span></span></h2>
   <p class="subtitle">אפס השקעה ללקוח, הכנסה חוזרת לך</p>
 
   <div class="two-col">
@@ -612,7 +641,7 @@ a:hover { text-decoration: underline; }
 
 <!-- SLIDE 7: Permits Summary -->
 <div class="slide slide-dark" data-title="מה צריך / מה לא">
-  <h2>📊 סיכום: <span class="gold">מה צריך / מה לא צריך</span></h2>
+  <h2><span class="tri-text"><span class="lang-he">📊 סיכום: <span class="gold">מה צריך / מה לא צריך</span></h2>
 
   <div class="table-wrap" style="margin-top:20px;">
     <table style="font-size:14px;">
@@ -639,7 +668,7 @@ a:hover { text-decoration: underline; }
 <!-- SLIDE 8: Company Setup (Brief) -->
 <div class="slide slide-ocean" data-title="רישום חברה — תמצית">
   <span class="section-num">Co.</span>
-  <h2>🏢 רישום חברה — <span class="gold">תמצית</span></h2>
+  <h2>🏢 רישום חברה — <span class="gold">תמצית</span></span><span class="lang-en">Insurance</span><span class="lang-th">ประกันภัย</span></span></h2>
 
   <div class="card-grid">
     <div class="card">
@@ -692,7 +721,7 @@ a:hover { text-decoration: underline; }
 <!-- SLIDE 9: Koh Phangan Specifics -->
 <div class="slide slide-reef" data-title="ספציפי לקופנגן">
   <span class="section-num">🏝️</span>
-  <h2>🏝️ ספציפי ל-<span class="gold">Koh Phangan</span></h2>
+  <h2><span class="tri-text"><span class="lang-he">🏝️ ספציפי ל-<span class="gold">Koh Phangan</span></h2>
   <p class="subtitle">מה ייחודי באי שלנו</p>
 
   <div class="two-col">
@@ -748,7 +777,7 @@ a:hover { text-decoration: underline; }
 
 <!-- SLIDE 10: Action Checklist -->
 <div class="slide slide-dark" data-title="צ'קליסט פעולה">
-  <h2>✅ צ'קליסט — <span class="gold">מאפס לפרויקט ראשון</span></h2>
+  <h2>✅ צ'קליסט — <span class="gold">מאפס לפרויקט ראשון</span></span><span class="lang-en">Insurance</span><span class="lang-th">ประกันภัย</span></span></h2>
 
   <div class="two-col" style="margin-top:12px;">
     <div>
@@ -805,7 +834,7 @@ a:hover { text-decoration: underline; }
 
 <!-- SLIDE 11: Key Contacts -->
 <div class="slide slide-ocean" data-title="אנשי קשר + לינקים">
-  <h2>📞 אנשי קשר + לינקים</h2>
+  <h2>📞 אנשי קשר + לינקים</span><span class="lang-en">Grid Connection</span><span class="lang-th">การเชื่อมต่อกริด</span></span></h2>
 
   <div class="two-col">
     <div>
@@ -932,5 +961,19 @@ document.addEventListener('touchend', e => {
 
 updateUI();
 </script>
+
+<script>
+function setLang(lang){
+  document.body.setAttribute('data-lang',lang);
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.textContent.trim()==={he:'עב',en:'EN',th:'ไทย'}[lang]);
+  });
+  localStorage.setItem('tm-lang',lang);
+}
+// Restore
+const saved=localStorage.getItem('tm-lang');
+if(saved)setLang(saved);
+</script>
+
 </body>
 </html>

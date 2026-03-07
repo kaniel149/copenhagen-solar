@@ -83,21 +83,14 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
 .tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
-.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
-.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
-.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-body.lang-en body.lang-th 
+body.lang-en body.lang-th
 </style>
 </head>
 <body>
+<script src="auth.js"></script>
 <div class="tm-logo-header">
   <span class="brand-text">TM ENERGY</span>
   <img src="visuals/tm-energy-logo.png" alt="TM Energy">
-</div>
-<div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
-  <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
-  <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>
 </div>
 
 
@@ -509,8 +502,8 @@ body.lang-en body.lang-th
       </div>
       <div class="card" style="margin:10px 0">
         <h3>Escalation</h3>
-        <p>2% העלאת תעריף שנתית (PEA מעלים 3-5%/שנה).<br>
-        הלקוח עדיין חוסך, אנחנו מרוויחים יותר.</p>
+        <p>הצמדה CPI או עליית תעריפי PEA — הגבוה מביניהם (~3%/שנה).<br>
+        רצפה 0%, תקרה 5%. הלקוח עדיין חוסך, אנחנו מרוויחים יותר.</p>
       </div>
     </div>
   </div>
@@ -759,6 +752,297 @@ show(0);
 
 
 
+<script>
+window.PAGE_TRANSLATIONS = {
+  // Cover
+  "שיווק ומכירות": {en:"Sales & Marketing",th:"การขายและการตลาด"},
+  "ערוצים, סוכנים, תהליכים ויעדים": {en:"Channels, Agents, Processes & Targets",th:"ช่องทาง ตัวแทน กระบวนการ และเป้าหมาย"},
+  "Outbound — יזום": {en:"Outbound — Proactive",th:"Outbound — เชิงรุก"},
+  "Inbound — נכנס": {en:"Inbound — Incoming",th:"Inbound — เชิงรับ"},
+  "Referral — הפניות": {en:"Referral — Referrals",th:"Referral — การแนะนำ"},
+  "TM Energy — מרץ 2026": {en:"TM Energy — March 2026",th:"TM Energy — มีนาคม 2026"},
+
+  // TOC + slide titles
+  "שער": {en:"Cover",th:"หน้าปก"},
+  "אסטרטגיית שיווק": {en:"Marketing Strategy",th:"กลยุทธ์การตลาด"},
+  "ערוצי שיווק": {en:"Marketing Channels",th:"ช่องทางการตลาด"},
+  "מודעות Facebook & IG": {en:"Facebook & IG Ads",th:"โฆษณา Facebook & IG"},
+  "מודל סוכנים": {en:"Agent Model",th:"โมเดลตัวแทน"},
+  "תהליך מכירה": {en:"Sales Process",th:"กระบวนการขาย"},
+  "מקורות לידים": {en:"Lead Sources",th:"แหล่งที่มาของลีด"},
+  "Pitch לפי סגמנט": {en:"Pitch by Segment",th:"Pitch ตามกลุ่มเป้าหมาย"},
+  "אסטרטגיית תמחור": {en:"Pricing Strategy",th:"กลยุทธ์การกำหนดราคา"},
+  "שיווק תוכן": {en:"Content Marketing",th:"การตลาดเนื้อหา"},
+  "KPIs ויעדים": {en:"KPIs & Targets",th:"KPI และเป้าหมาย"},
+  "תקציב שיווק": {en:"Marketing Budget",th:"งบประมาณการตลาด"},
+  "כלים וטכנולוגיה": {en:"Tools & Technology",th:"เครื่องมือและเทคโนโลยี"},
+
+  // Slide 1
+  "אסטרטגיית שיווק — 3 שלבים": {en:"Marketing Strategy — 3 Phases",th:"กลยุทธ์การตลาด — 3 ขั้นตอน"},
+  "מ-Lighthouse ועד Scale — תוכנית 12 חודשים": {en:"From Lighthouse to Scale — 12-Month Plan",th:"จาก Lighthouse ถึง Scale — แผน 12 เดือน"},
+  "שלב 1: Lighthouse": {en:"Phase 1: Lighthouse",th:"ขั้นที่ 1: Lighthouse"},
+  "חודשים 1-3": {en:"Months 1–3",th:"เดือน 1–3"},
+  "3-5 התקנות ראשונות ברזורטים/וילות": {en:"3–5 first installations at resorts/villas",th:"การติดตั้งครั้งแรก 3–5 ครั้งในรีสอร์ท/วิลล่า"},
+  "סוכן מכירות #1 מיום 1": {en:"Sales agent #1 from Day 1",th:"ตัวแทนขาย #1 ตั้งแต่วันแรก"},
+  "שותפות בנקאית (Krungsri/BBL) מיום 1": {en:"Bank partnership (Krungsri/BBL) from Day 1",th:"พันธมิตรธนาคาร (Krungsri/BBL) ตั้งแต่วันแรก"},
+  "צילום מקצועי + case studies": {en:"Professional photography + case studies",th:"การถ่ายภาพมืออาชีพ + กรณีศึกษา"},
+  "יחסים אישיים עם בעלי עסקים": {en:"Personal relationships with business owners",th:"ความสัมพันธ์ส่วนตัวกับเจ้าของธุรกิจ"},
+  "הפניות מ-property managers": {en:"Referrals from property managers",th:"การแนะนำจากผู้จัดการทรัพย์สิน"},
+  "תקציב: ฿50K/חודש": {en:"Budget: ฿50K/month",th:"งบประมาณ: ฿50K/เดือน"},
+  "שלב 2: Referral Machine": {en:"Phase 2: Referral Machine",th:"ขั้นที่ 2: Referral Machine"},
+  "חודשים 4-8": {en:"Months 4–8",th:"เดือน 4–8"},
+  "תוכנית הפניות 5% עמלה": {en:"5% commission referral program",th:"โปรแกรมแนะนำค่าคอมมิชชัน 5%"},
+  "שותפויות עם קבלנים ואדריכלים": {en:"Partnerships with contractors & architects",th:"ความร่วมมือกับผู้รับเหมาและสถาปนิก"},
+  "FB/IG ads ממוקדים": {en:"Targeted FB/IG ads",th:"โฆษณา FB/IG แบบกำหนดเป้าหมาย"},
+  "Google Ads על מילות מפתח": {en:"Google Ads on keywords",th:"Google Ads ตามคำสำคัญ"},
+  "תקציב: ฿80K/חודש": {en:"Budget: ฿80K/month",th:"งบประมาณ: ฿80K/เดือน"},
+  "שלב 3: Scale": {en:"Phase 3: Scale",th:"ขั้นที่ 3: Scale"},
+  "חודשים 9-12": {en:"Months 9–12",th:"เดือน 9–12"},
+  "סוכני מכירות חיצוניים (10% עמלה)": {en:"External sales agents (10% commission)",th:"ตัวแทนขายภายนอก (ค่าคอมมิชชัน 10%)"},
+  "YouTube channel + תוכן": {en:"YouTube channel + content",th:"YouTube channel + เนื้อหา"},
+  "אירועי networking + תערוכות": {en:"Networking events + exhibitions",th:"งาน networking + นิทรรศการ"},
+  "הרחבה ל-Koh Samui": {en:"Expansion to Koh Samui",th:"ขยายไปยังเกาะสมุย"},
+  "שותפויות עם בנקים": {en:"Bank partnerships",th:"ความร่วมมือกับธนาคาร"},
+
+  // Slide 2
+  "ערוצי שיווק — מה עובד בתאילנד": {en:"Marketing Channels — What Works in Thailand",th:"ช่องทางการตลาด — อะไรได้ผลในไทย"},
+  "קהל יעד: אקספטים, בעלי וילות, בעלי עסקים. קבוצות: \"Koh Phangan Community\", \"Expats in Thailand\". CPM: ฿50-120 — הזול בעולם.": {en:"Target: expats, villa owners, business owners. Groups: \"Koh Phangan Community\", \"Expats in Thailand\". CPM: ฿50–120 — cheapest in the world.",th:"กลุ่มเป้าหมาย: ชาวต่างชาติ เจ้าของวิลล่า เจ้าของธุรกิจ กลุ่ม: \"Koh Phangan Community\", \"Expats in Thailand\" CPM: ฿50–120 — ถูกที่สุดในโลก"},
+  "מילות מפתח: \"solar panel koh phangan\", \"solar installation thailand\", \"rooftop solar thailand\". CPC: ฿15-45. עמוד נחיתה ב-EN+TH.": {en:"Keywords: \"solar panel koh phangan\", \"solar installation thailand\", \"rooftop solar thailand\". CPC: ฿15–45. Landing page in EN+TH.",th:"คำสำคัญ: \"solar panel koh phangan\", \"solar installation thailand\", \"rooftop solar thailand\" CPC: ฿15–45 Landing page ภาษาอังกฤษ+ไทย"},
+  "Line = WhatsApp של תאילנד. 90% מהתאילנדים משתמשים. Rich menus, auto-reply, broadcast. חובה לשוק המקומי.": {en:"Line = Thailand's WhatsApp. 90% of Thais use it. Rich menus, auto-reply, broadcast. Essential for the local market.",th:"Line = WhatsApp ของไทย ชาวไทย 90% ใช้งาน Rich menus, auto-reply, broadcast จำเป็นสำหรับตลาดท้องถิ่น"},
+  "לקהל האקספטי והבינלאומי. קטלוג מוצרים, תבניות הצעת מחיר, מעקב אוטומטי אחרי לידים.": {en:"For the expat and international audience. Product catalog, quote templates, automated lead follow-up.",th:"สำหรับกลุ่มชาวต่างชาติและนานาชาติ แคตาล็อกสินค้า แบบฟอร์มใบเสนอราคา ติดตามลีดอัตโนมัติ"},
+  "שותפויות מקומיות": {en:"Local Partnerships",th:"ความร่วมมือในพื้นที่"},
+  "Property managers (10+), סוכני נדל\"ן (9), קבלני בנייה (4). עמלה 5-10% על כל הפניה שמומרת.": {en:"Property managers (10+), real estate agents (9), construction contractors (4). 5–10% commission per converted referral.",th:"ผู้จัดการทรัพย์สิน (10+), ตัวแทนอสังหาริมทรัพย์ (9), ผู้รับเหมาก่อสร้าง (4) ค่าคอมมิชชัน 5–10% ต่อการแนะนำที่ปิดได้"},
+  "YouTube & תוכן": {en:"YouTube & Content",th:"YouTube & เนื้อหา"},
+  "סרטוני Before/After, מחשבון ROI אונליין, case studies. תוכן ב-EN + TH. SEO ארוך טווח.": {en:"Before/After videos, online ROI calculator, case studies. Content in EN + TH. Long-term SEO.",th:"วิดีโอ Before/After เครื่องคำนวณ ROI ออนไลน์ กรณีศึกษา เนื้อหาภาษาอังกฤษ+ไทย SEO ระยะยาว"},
+  "תובנה מפתח: בתאילנד, Line > WhatsApp לשוק מקומי. Facebook > LinkedIn לעסקים. Google מינימלי — רוב ההחלטות קורות בקבוצות FB ו-Line.": {en:"Key insight: In Thailand, Line > WhatsApp for local market. Facebook > LinkedIn for business. Google minimal — most decisions happen in FB groups and Line.",th:"ข้อมูลเชิงลึก: ในไทย Line > WhatsApp สำหรับตลาดท้องถิ่น Facebook > LinkedIn สำหรับธุรกิจ Google น้อยมาก — การตัดสินใจส่วนใหญ่เกิดในกลุ่ม FB และ Line"},
+
+  // Slide 3
+  "מודעות Facebook & Instagram": {en:"Facebook & Instagram Ads",th:"โฆษณา Facebook & Instagram"},
+  "5 סוגי מודעות × טרגוט מדויק": {en:"5 ad types × precise targeting",th:"โฆษณา 5 ประเภท × การกำหนดเป้าหมายแม่นยำ"},
+  "סוגי מודעות": {en:"Ad Types",th:"ประเภทโฆษณา"},
+  "1. Pain Point — הפסקות חשמל": {en:"1. Pain Point — Power Outages",th:"1. Pain Point — ไฟดับ"},
+  "\"Tired of blackouts? Your roof can power your home 24/7.\" תמונת חושך באי עם בית מואר בסולאר.": {en:"\"Tired of blackouts? Your roof can power your home 24/7.\" Image: darkness on the island, house lit by solar.",th:"\"เบื่อไฟดับไหม? หลังคาของคุณสามารถจ่ายไฟบ้านได้ 24/7\" ภาพความมืดบนเกาะพร้อมบ้านที่สว่างด้วยโซลาร์"},
+  "\"How much is your electricity bill? See your savings.\" טופס אינטראקטיבי → ליד.": {en:"\"How much is your electricity bill? See your savings.\" Interactive form → lead.",th:"\"ค่าไฟของคุณเท่าไหร่? ดูการประหยัดของคุณ\" แบบฟอร์มอินเทอร์แอคทีฟ → ลีด"},
+  "קרוסלה: גג לפני ← פאנלים ← אפליקציית ניטור ← חשבון חשמל ฿0.": {en:"Carousel: roof before ← panels ← monitoring app ← electricity bill ฿0.",th:"Carousel: หลังคาก่อน ← แผงโซลาร์ ← แอปติดตาม ← ค่าไฟ ฿0"},
+  "עדות לקוח מרזורט מקומי. וידאו 30 שניות.": {en:"Customer testimonial from a local resort. 30-second video.",th:"คำรับรองลูกค้าจากรีสอร์ทในพื้นที่ วิดีโอ 30 วินาที"},
+  "\"฿0 upfront. Start saving from day 1.\" מודל ESCO.": {en:"\"฿0 upfront. Start saving from day 1.\" ESCO model.",th:"\"฿0 ล่วงหน้า เริ่มประหยัดตั้งแต่วันแรก\" โมเดล ESCO"},
+  "טרגוט": {en:"Targeting",th:"การกำหนดเป้าหมาย"},
+  "קהל": {en:"Audience",th:"กลุ่มเป้าหมาย"},
+  "תקציב חודשי: ฿15,000": {en:"Monthly budget: ฿15,000",th:"งบประมาณรายเดือน: ฿15,000"},
+  "צפי לידים: 40-80/חודש": {en:"Expected leads: 40–80/month",th:"คาดการณ์ลีด: 40–80/เดือน"},
+  "CPL: ฿187-375": {en:"CPL: ฿187–375",th:"CPL: ฿187–375"},
+
+  // Slide 4
+  "מודל סוכני מכירות": {en:"Sales Agent Model",th:"โมเดลตัวแทนขาย"},
+  "רשת הפצה מבוססת עמלות — בלי שכר קבוע": {en:"Commission-based distribution network — no fixed salary",th:"เครือข่ายกระจายสินค้าแบบค่าคอมมิชชัน — ไม่มีเงินเดือนประจำ"},
+  "3 סוגי סוכנים": {en:"3 Agent Types",th:"ตัวแทน 3 ประเภท"},
+  "סוכן הפניות (Referrer)": {en:"Referral Agent (Referrer)",th:"ตัวแทนแนะนำ (Referrer)"},
+  "Property managers, אדריכלים, קבלנים, סוכני נדל\"ן. מפנים ליד חם → אנחנו סוגרים.": {en:"Property managers, architects, contractors, real estate agents. Refer a warm lead → we close.",th:"ผู้จัดการทรัพย์สิน สถาปนิก ผู้รับเหมา ตัวแทนอสังหาริมทรัพย์ ส่งต่อลีดที่อุ่น → เราปิดการขาย"},
+  "עמלה: 5% מערך העסקה": {en:"Commission: 5% of deal value",th:"ค่าคอมมิชชัน: 5% ของมูลค่าดีล"},
+  "מערכת 30kWp = ฿900K → עמלה ฿45,000": {en:"30kWp system = ฿900K → commission ฿45,000",th:"ระบบ 30kWp = ฿900K → ค่าคอมมิชชัน ฿45,000"},
+  "סוכן מכירות (Closer)": {en:"Sales Agent (Closer)",th:"ตัวแทนขาย (Closer)"},
+  "אנשי מכירות שמנהלים את כל התהליך: פגישה → סקר → הצעה → סגירה.": {en:"Sales people managing the full process: meeting → survey → proposal → close.",th:"พนักงานขายที่จัดการกระบวนการทั้งหมด: ประชุม → สำรวจ → เสนอราคา → ปิดการขาย"},
+  "עמלה: 8-10% מערך העסקה": {en:"Commission: 8–10% of deal value",th:"ค่าคอมมิชชัน: 8–10% ของมูลค่าดีล"},
+  "מערכת 30kWp = ฿900K → עמלה ฿72K-90K": {en:"30kWp system = ฿900K → commission ฿72K–90K",th:"ระบบ 30kWp = ฿900K → ค่าคอมมิชชัน ฿72K–90K"},
+  "שותף אסטרטגי": {en:"Strategic Partner",th:"พันธมิตรเชิงกลยุทธ์"},
+  "קבלני בנייה שמציעים סולאר כחלק מפרויקט. חברות ניהול נכסים עם פורטפוליו.": {en:"Construction contractors offering solar as part of a project. Property management companies with portfolios.",th:"ผู้รับเหมาก่อสร้างที่เสนอโซลาร์เป็นส่วนหนึ่งของโครงการ บริษัทจัดการทรัพย์สินที่มีพอร์ตโฟลิโอ"},
+  "דגם: Revenue Share או Bundle Deal": {en:"Model: Revenue Share or Bundle Deal",th:"โมเดล: Revenue Share หรือ Bundle Deal"},
+  "איך זה עובד": {en:"How It Works",th:"วิธีการทำงาน"},
+  "סוכן נרשם דרך WhatsApp/Line": {en:"Agent registers via WhatsApp/Line",th:"ตัวแทนลงทะเบียนผ่าน WhatsApp/Line"},
+  "מקבל קישור ייחודי + חומרי שיווק": {en:"Receives unique link + marketing materials",th:"ได้รับลิงก์เฉพาะ + สื่อการตลาด"},
+  "מפנה ליד → נכנס ל-CRM אוטומטית": {en:"Refers a lead → automatically enters CRM",th:"ส่งต่อลีด → เข้า CRM อัตโนมัติ"},
+  "אנחנו מנהלים את תהליך המכירה": {en:"We manage the sales process",th:"เราจัดการกระบวนการขาย"},
+  "סגירה → עמלה תוך 7 ימים מתשלום ראשון": {en:"Close → commission within 7 days of first payment",th:"ปิดการขาย → ค่าคอมมิชชันภายใน 7 วันหลังรับชำระครั้งแรก"},
+  "דשבורד סוכן: רואה סטטוס לידים + עמלות": {en:"Agent dashboard: sees lead status + commissions",th:"แดชบอร์ดตัวแทน: เห็นสถานะลีด + ค่าคอมมิชชัน"},
+  "יעד: 10 סוכנים פעילים עד חודש 6": {en:"Target: 10 active agents by month 6",th:"เป้าหมาย: ตัวแทนที่ใช้งานอยู่ 10 คนภายในเดือนที่ 6"},
+  "צפי: 3-5 הפניות/חודש/סוכן": {en:"Forecast: 3–5 referrals/month/agent",th:"คาดการณ์: 3–5 การแนะนำ/เดือน/ตัวแทน"},
+  "יחס סגירה: 20-30% (הפניות חמות)": {en:"Close rate: 20–30% (warm referrals)",th:"อัตราปิดการขาย: 20–30% (ลีดที่อุ่น)"},
+  "סוכן #1 מיום 1: גיוס סוכן מכירות מנוסה (Closer) כבר בחודש הראשון.": {en:"Agent #1 from Day 1: recruit an experienced closer in month one.",th:"ตัวแทน #1 ตั้งแต่วันแรก: คัดเลือกตัวแทนขายที่มีประสบการณ์ในเดือนแรก"},
+  "מביא לידים + סוגר עסקאות בזמן שהצוות מתמקד בהתקנות.": {en:"Brings leads + closes deals while the team focuses on installations.",th:"นำลีดมา + ปิดดีลขณะที่ทีมมุ่งเน้นการติดตั้ง"},
+
+  // Slide 5
+  "תהליך מכירה — 7 שלבים": {en:"Sales Process — 7 Steps",th:"กระบวนการขาย — 7 ขั้นตอน"},
+  "ליד נכנס": {en:"Incoming Lead",th:"ลีดเข้า"},
+  "FB/Google/הפניה": {en:"FB/Google/Referral",th:"FB/Google/การแนะนำ"},
+  "שיחה ראשונה": {en:"First Call",th:"โทรศัพท์ครั้งแรก"},
+  "תוך 2 שעות": {en:"Within 2 hours",th:"ภายใน 2 ชั่วโมง"},
+  "סקר גג": {en:"Roof Survey",th:"สำรวจหลังคา"},
+  "דרון + מדידות": {en:"Drone + measurements",th:"โดรน + การวัด"},
+  "הצעת מחיר": {en:"Quotation",th:"ใบเสนอราคา"},
+  "תוך 48 שעות": {en:"Within 48 hours",th:"ภายใน 48 ชั่วโมง"},
+  "בנק/PPA": {en:"Bank/PPA",th:"ธนาคาร/PPA"},
+  "חתימה דיגיטלית": {en:"Digital signature",th:"ลายเซ็นดิจิทัล"},
+  "התקנה": {en:"Installation",th:"การติดตั้ง"},
+  "5-7 ימי עבודה": {en:"5–7 working days",th:"5–7 วันทำการ"},
+  "SLA פנימי": {en:"Internal SLA",th:"SLA ภายใน"},
+  "זמן תגובה": {en:"Response Time",th:"เวลาตอบสนอง"},
+  "אחראי": {en:"Responsible",th:"ผู้รับผิดชอบ"},
+  "ליד חדש → שיחה": {en:"New lead → call",th:"ลีดใหม่ → โทรศัพท์"},
+  "2 שעות": {en:"2 hours",th:"2 ชั่วโมง"},
+  "מנהל מכירות": {en:"Sales Manager",th:"ผู้จัดการฝ่ายขาย"},
+  "שיחה → סקר גג": {en:"Call → roof survey",th:"โทรศัพท์ → สำรวจหลังคา"},
+  "3 ימים": {en:"3 days",th:"3 วัน"},
+  "צוות טכני": {en:"Technical team",th:"ทีมเทคนิค"},
+  "סקר → הצעת מחיר": {en:"Survey → quotation",th:"สำรวจ → ใบเสนอราคา"},
+  "48 שעות": {en:"48 hours",th:"48 ชั่วโมง"},
+  "מהנדס + מכירות": {en:"Engineer + sales",th:"วิศวกร + ขาย"},
+  "הצעה → Follow-up": {en:"Proposal → Follow-up",th:"ข้อเสนอ → Follow-up"},
+  "חתימה → התחלת עבודה": {en:"Signature → work starts",th:"ลงนาม → เริ่มงาน"},
+  "7-14 יום": {en:"7–14 days",th:"7–14 วัน"},
+  "מנהל פרויקט": {en:"Project Manager",th:"ผู้จัดการโครงการ"},
+  "תנאי תשלום": {en:"Payment Terms",th:"เงื่อนไขการชำระเงิน"},
+  "EPC — מכירה ישירה": {en:"EPC — Direct Sale",th:"EPC — การขายตรง"},
+  "30% מקדמה → 40% אמצע עבודה → 30% חיבור לרשת": {en:"30% deposit → 40% mid-work → 30% grid connection",th:"30% มัดจำ → 40% กลางงาน → 30% เชื่อมต่อกริด"},
+  "PPA — הכנסה חוזרת": {en:"PPA — Recurring Revenue",th:"PPA — รายได้ประจำ"},
+  "฿0 מהלקוח. תשלום חודשי לפי kWh בפועל. ฿4.50/kWh × 15-25 שנים.": {en:"฿0 from client. Monthly payment per actual kWh. ฿4.50/kWh × 15–25 years.",th:"฿0 จากลูกค้า ชำระรายเดือนตาม kWh จริง ฿4.50/kWh × 15–25 ปี"},
+  "שותפות בנקאית — מיום 1": {en:"Bank Partnership — From Day 1",th:"พันธมิตรธนาคาร — ตั้งแต่วันแรก"},
+  "Krungsri + Bangkok Bank: 100% מימון ללקוח.": {en:"Krungsri + Bangkok Bank: 100% financing for client.",th:"Krungsri + Bangkok Bank: เงินทุน 100% สำหรับลูกค้า"},
+  "3.5% ריבית, 5-10 שנים. הלקוח חוסך מיום 1.": {en:"3.5% interest, 5–10 years. Client saves from day 1.",th:"ดอกเบี้ย 3.5%, 5–10 ปี ลูกค้าประหยัดตั้งแต่วันแรก"},
+  "אנחנו מפנים → הבנק מאשר → Win-Win-Win.": {en:"We refer → bank approves → Win-Win-Win.",th:"เราแนะนำ → ธนาคารอนุมัติ → Win-Win-Win"},
+  "פגישה עם branch manager מקומי כבר בחודש 1.": {en:"Meeting with local branch manager in month 1.",th:"ประชุมกับผู้จัดการสาขาท้องถิ่นในเดือนที่ 1"},
+
+  // Slide 6
+  "מקורות לידים — 165+ מזוהים": {en:"Lead Sources — 165+ Identified",th:"แหล่งที่มาของลีด — ระบุแล้ว 165+"},
+  "לידים מועשרים": {en:"Enriched leads",th:"ลีดที่เพิ่มคุณค่า"},
+  "עם פרטי קשר": {en:"with contact details",th:"พร้อมรายละเอียดการติดต่อ"},
+  "לידים בסיסיים": {en:"Basic leads",th:"ลีดพื้นฐาน"},
+  "ממיפוי שוק": {en:"from market mapping",th:"จากการทำแผนที่ตลาด"},
+  "לידים נוספים": {en:"Additional leads",th:"ลีดเพิ่มเติม"},
+  "עסקים + מוסדות": {en:"businesses + institutions",th:"ธุรกิจ + สถาบัน"},
+  "יובאו ל-CRM": {en:"Imported to CRM",th:"นำเข้า CRM"},
+  "מוכנים לעבודה": {en:"ready to work",th:"พร้อมทำงาน"},
+  "רזורטים": {en:"Resorts",th:"รีสอร์ท"},
+  "42 לידים": {en:"42 leads",th:"42 ลีด"},
+  "וילות": {en:"Villas",th:"วิลล่า"},
+  "35 לידים": {en:"35 leads",th:"35 ลีด"},
+  "עסקים": {en:"Businesses",th:"ธุรกิจ"},
+  "28 לידים": {en:"28 leads",th:"28 ลีด"},
+  "מוסדות": {en:"Institutions",th:"สถาบัน"},
+  "12 לידים": {en:"12 leads",th:"12 ลีด"},
+  "שותפים": {en:"Partners",th:"พันธมิตร"},
+  "23 לידים": {en:"23 leads",th:"23 ลีด"},
+  "הפניות": {en:"Referrals",th:"การแนะนำ"},
+  "Lighthouse Targets (סדר עדיפות): Anantara Rasananda, Santhiya Resort, Panviman Resort, Koh Phangan Hospital, Thong Sala Walking Street": {en:"Lighthouse Targets (priority order): Anantara Rasananda, Santhiya Resort, Panviman Resort, Koh Phangan Hospital, Thong Sala Walking Street",th:"เป้าหมาย Lighthouse (ลำดับความสำคัญ): Anantara Rasananda, Santhiya Resort, Panviman Resort, Koh Phangan Hospital, Thong Sala Walking Street"},
+
+  // Slide 7
+  "כל לקוח שומע מה שחשוב לו": {en:"Every client hears what matters to them",th:"ลูกค้าทุกคนได้ยินสิ่งที่สำคัญสำหรับเขา"},
+  "כאב: הפסקות חשמל הורסות חווית אורח. חשבון חשמל ฿500K+/חודש.": {en:"Pain: blackouts destroy guest experience. Electricity bill ฿500K+/month.",th:"ปัญหา: ไฟดับทำลายประสบการณ์ผู้เข้าพัก ค่าไฟ ฿500K+/เดือน"},
+  "Pitch: \"אפס הפסקות, אפס חשבון. Eco-resort branding שמשך תיירים premium.\"": {en:"Pitch: \"Zero blackouts, zero bill. Eco-resort branding that attracts premium tourists.\"",th:"Pitch: \"ไม่มีไฟดับ ไม่มีค่าไฟ แบรนด์ Eco-resort ที่ดึงดูดนักท่องเที่ยวระดับพรีเมียม\""},
+  "מודל: PPA — ฿0 מקדמה, חוסכים 20-30% מיום 1.": {en:"Model: PPA — ฿0 upfront, save 20–30% from day 1.",th:"โมเดล: PPA — ฿0 ล่วงหน้า ประหยัด 20–30% ตั้งแต่วันแรก"},
+  "ROI: 3-4 שנים (EPC) / מיידי (PPA).": {en:"ROI: 3–4 years (EPC) / immediate (PPA).",th:"ROI: 3–4 ปี (EPC) / ทันที (PPA)"},
+  "כאב: חשבון חשמל מפתיע. מזגנים 24/7. תחזוקה מרחוק.": {en:"Pain: surprising electricity bill. Air-con 24/7. Remote maintenance.",th:"ปัญหา: ค่าไฟที่น่าตกใจ แอร์ 24/7 บำรุงรักษาระยะไกล"},
+  "Pitch: \"השקעה שמחזירה את עצמה. ניטור מהטלפון מכל מקום בעולם.\"": {en:"Pitch: \"An investment that pays for itself. Monitor from your phone anywhere in the world.\"",th:"Pitch: \"การลงทุนที่คืนทุนเอง ติดตามจากโทรศัพท์ได้ทุกที่ในโลก\""},
+  "מודל: EPC + מימון Krungsri 100%.": {en:"Model: EPC + 100% Krungsri financing.",th:"โมเดล: EPC + เงินทุน Krungsri 100%"},
+  "ROI: 4-5 שנים, אחזקה ฿1,500/חודש.": {en:"ROI: 4–5 years, maintenance ฿1,500/month.",th:"ROI: 4–5 ปี ค่าบำรุงรักษา ฿1,500/เดือน"},
+  "כאב: עלויות תפעול גבוהות. אין גנרטור backup.": {en:"Pain: high operating costs. No backup generator.",th:"ปัญหา: ต้นทุนการดำเนินงานสูง ไม่มีเครื่องกำเนิดไฟฟ้าสำรอง"},
+  "Pitch: \"הטבת מס 50% — ניכוי מואץ על סולאר. הטבות מס זמינות.\"": {en:"Pitch: \"50% tax benefit — accelerated depreciation on solar. Tax benefits available.\"",th:"Pitch: \"สิทธิประโยชน์ทางภาษี 50% — การหักค่าเสื่อมราคาเร่งสำหรับโซลาร์ สิทธิประโยชน์ทางภาษีพร้อมใช้\""},
+  "מודל: EPC + ניכוי מס.": {en:"Model: EPC + tax deduction.",th:"โมเดล: EPC + การหักภาษี"},
+  "ROI: 2.5-3.5 שנים עם הטבות מס.": {en:"ROI: 2.5–3.5 years with tax benefits.",th:"ROI: 2.5–3.5 ปีพร้อมสิทธิประโยชน์ทางภาษี"},
+
+  // Slide 8
+  "אסטרטגיית תמחור": {en:"Pricing Strategy",th:"กลยุทธ์การกำหนดราคา"},
+  "רכיב": {en:"Component",th:"ส่วนประกอบ"},
+  "עלות/kWp": {en:"Cost/kWp",th:"ต้นทุน/kWp"},
+  "% מהמחיר": {en:"% of price",th:"% ของราคา"},
+  "פאנלים (Longi Hi-MO 6)": {en:"Panels (Longi Hi-MO 6)",th:"แผงโซลาร์ (Longi Hi-MO 6)"},
+  "אינוורטר (Huawei)": {en:"Inverter (Huawei)",th:"อินเวอร์เตอร์ (Huawei)"},
+  "קונסטרוקציה": {en:"Structure",th:"โครงสร้าง"},
+  "BOS + חומרים": {en:"BOS + Materials",th:"BOS + วัสดุ"},
+  "עלות ציוד": {en:"Equipment cost",th:"ต้นทุนอุปกรณ์"},
+  "עבודה + לוגיסטיקה": {en:"Labor + logistics",th:"แรงงาน + โลจิสติกส์"},
+  "תכנון + הנדסה": {en:"Planning + engineering",th:"วางแผน + วิศวกรรม"},
+  "Overhead + רווח": {en:"Overhead + profit",th:"ค่าโสหุ้ย + กำไร"},
+  "מחיר ללקוח": {en:"Client price",th:"ราคาสำหรับลูกค้า"},
+  "מרווח גולמי: 60% (฿18,000/kWp)": {en:"Gross margin: 60% (฿18,000/kWp)",th:"อัตรากำไรขั้นต้น: 60% (฿18,000/kWp)"},
+  "Benchmark: Green Global Tech מוכרים ב-฿32K/kWp — אנחנו תחרותיים.": {en:"Benchmark: Green Global Tech sells at ฿32K/kWp — we are competitive.",th:"Benchmark: Green Global Tech ขายที่ ฿32K/kWp — เราแข่งขันได้"},
+  "PPA/ESCO — הכנסה חוזרת": {en:"PPA/ESCO — Recurring Revenue",th:"PPA/ESCO — รายได้ประจำ"},
+  "תעריף ללקוח": {en:"Client tariff",th:"อัตราค่าบริการลูกค้า"},
+  "מול תעריף PEA: ฿5-7/kWh": {en:"vs. PEA tariff: ฿5–7/kWh",th:"เทียบกับอัตรา PEA: ฿5–7/kWh"},
+  "חיסכון ללקוח: 25% מיום 1": {en:"Client savings: 25% from day 1",th:"การประหยัดของลูกค้า: 25% ตั้งแต่วันแรก"},
+  "דוגמה: רזורט 50kWp": {en:"Example: 50kWp Resort",th:"ตัวอย่าง: รีสอร์ท 50kWp"},
+  "ייצור שנתי: ~82,000 kWh": {en:"Annual production: ~82,000 kWh",th:"การผลิตรายปี: ~82,000 kWh"},
+  "הכנסה שנתית: ฿369,000 (הצמדה CPI/PEA ~3%/שנה)": {en:"Annual revenue: ฿369,000 (CPI/PEA escalation ~3%/year)",th:"รายได้รายปี: ฿369,000 (การปรับตาม CPI/PEA ~3%/ปี)"},
+  "עלות מערכת: ฿1,000,000": {en:"System cost: ฿1,000,000",th:"ต้นทุนระบบ: ฿1,000,000"},
+  "ROI: 2.7 שנים": {en:"ROI: 2.7 years",th:"ROI: 2.7 ปี"},
+  "חוזה 15 שנים = ฿6.6M הכנסות": {en:"15-year contract = ฿6.6M revenue",th:"สัญญา 15 ปี = รายได้ ฿6.6M"},
+  "הצמדה CPI או עליית תעריפי PEA — הגבוה מביניהם (~3%/שנה).": {en:"Pegged to CPI or PEA tariff increase — whichever is higher (~3%/year).",th:"ผูกกับ CPI หรือการขึ้นอัตรา PEA — อย่างใดที่สูงกว่า (~3%/ปี)"},
+  "רצפה 0%, תקרה 5%. הלקוח עדיין חוסך, אנחנו מרוויחים יותר.": {en:"Floor 0%, ceiling 5%. Client still saves, we earn more.",th:"พื้น 0% เพดาน 5% ลูกค้ายังประหยัด เราได้กำไรมากขึ้น"},
+
+  // Slide 9
+  "Line & WhatsApp — שיווק דיגיטלי ישיר": {en:"Line & WhatsApp — Direct Digital Marketing",th:"Line & WhatsApp — การตลาดดิจิทัลโดยตรง"},
+  "Line Official Account (שוק תאילנדי)": {en:"Line Official Account (Thai market)",th:"Line Official Account (ตลาดไทย)"},
+  "Rich Menu: מחשבון חיסכון, הזמנת סקר, תיק עבודות": {en:"Rich Menu: savings calculator, survey booking, portfolio",th:"Rich Menu: เครื่องคำนวณการประหยัด จองการสำรวจ ผลงาน"},
+  "Auto-reply: תשובות מיידיות 24/7 ב-TH": {en:"Auto-reply: instant 24/7 replies in Thai",th:"Auto-reply: ตอบกลับทันที 24/7 ภาษาไทย"},
+  "Broadcast: מבצעים, case studies, טיפים": {en:"Broadcast: promotions, case studies, tips",th:"Broadcast: โปรโมชัน กรณีศึกษา เคล็ดลับ"},
+  "Line Ads: טרגוט לפי אזור (Surat Thani province)": {en:"Line Ads: targeting by area (Surat Thani province)",th:"Line Ads: กำหนดเป้าหมายตามพื้นที่ (จังหวัดสุราษฎร์ธานี)"},
+  "QR Code: על כרטיסי ביקור, שלטים, רכב": {en:"QR Code: on business cards, signs, vehicle",th:"QR Code: บนนามบัตร ป้าย รถยนต์"},
+  "עלות: ฿0 (עד 500 הודעות/חודש)": {en:"Cost: ฿0 (up to 500 messages/month)",th:"ต้นทุน: ฿0 (สูงสุด 500 ข้อความ/เดือน)"},
+  "WhatsApp Business (אקספטים)": {en:"WhatsApp Business (Expats)",th:"WhatsApp Business (ชาวต่างชาติ)"},
+  "קטלוג: חבילות סולאר עם מחירים": {en:"Catalog: solar packages with prices",th:"แคตาล็อก: แพ็กเกจโซลาร์พร้อมราคา"},
+  "תבניות: הצעות מחיר, Follow-up אוטומטי": {en:"Templates: quotes, automated follow-up",th:"เทมเพลต: ใบเสนอราคา Follow-up อัตโนมัติ"},
+  "קבוצות: \"Solar Koh Phangan\" community": {en:"Groups: \"Solar Koh Phangan\" community",th:"กลุ่ม: ชุมชน \"Solar Koh Phangan\""},
+  "Status: Before/After, עבודות בביצוע": {en:"Status: Before/After, ongoing work",th:"Status: ก่อน/หลัง งานที่กำลังดำเนินการ"},
+  "Click-to-WhatsApp ads: מ-FB/IG ישירות לצ'אט": {en:"Click-to-WhatsApp ads: from FB/IG directly to chat",th:"Click-to-WhatsApp ads: จาก FB/IG ตรงสู่แชท"},
+  "עלות: ฿0": {en:"Cost: ฿0",th:"ต้นทุน: ฿0"},
+  "טעות נפוצה: חברות זרות משתמשות רק ב-WhatsApp. 90% מהתאילנדים משתמשים ב-Line. חובה להיות בשניהם.": {en:"Common mistake: foreign companies use only WhatsApp. 90% of Thais use Line. You must be on both.",th:"ความผิดพลาดที่พบบ่อย: บริษัทต่างชาติใช้เฉพาะ WhatsApp ชาวไทย 90% ใช้ Line จำเป็นต้องอยู่ทั้งสองช่องทาง"},
+
+  // Slide 10
+  "תוכן שמושך לידים ובונה אמון": {en:"Content that attracts leads and builds trust",th:"เนื้อหาที่ดึงดูดลีดและสร้างความไว้วางใจ"},
+  "אחרי כל התקנה: צילום מקצועי, נתוני חיסכון, עדות לקוח. PDF + פוסט + וידאו 60 שניות.": {en:"After each installation: professional photography, savings data, customer testimonial. PDF + post + 60-second video.",th:"หลังการติดตั้งทุกครั้ง: ถ่ายภาพมืออาชีพ ข้อมูลการประหยัด คำรับรองลูกค้า PDF + โพสต์ + วิดีโอ 60 วินาที"},
+  "הלקוח מזין חשבון חשמל → רואה חיסכון שנתי + Payback. ליד אוטומטי ל-CRM.": {en:"Client enters electricity bill → sees annual savings + payback. Automatic lead to CRM.",th:"ลูกค้ากรอกค่าไฟ → เห็นการประหยัดรายปี + ระยะคืนทุน ลีดอัตโนมัติเข้า CRM"},
+  "\"Solar 101 Thailand\" — 10 פרקים: למה סולאר, איך עובד, כמה עולה, רגולציה, התקנה.": {en:"\"Solar 101 Thailand\" — 10 episodes: why solar, how it works, cost, regulation, installation.",th:"\"Solar 101 Thailand\" — 10 ตอน: ทำไมต้องโซลาร์ ทำงานอย่างไร ค่าใช้จ่าย กฎระเบียบ การติดตั้ง"},
+  "מאמרים ב-EN+TH: \"Complete guide to solar in Koh Phangan\", \"Solar tax benefits Thailand 2026\".": {en:"Articles in EN+TH: \"Complete guide to solar in Koh Phangan\", \"Solar tax benefits Thailand 2026\".",th:"บทความภาษาอังกฤษ+ไทย: \"Complete guide to solar in Koh Phangan\", \"Solar tax benefits Thailand 2026\""},
+  "רצף 5 מיילים אחרי הרשמה: Welcome → ROI → Case Study → PPA Offer → סקר גג חינם.": {en:"5-email sequence after sign-up: Welcome → ROI → Case Study → PPA Offer → free roof survey.",th:"ลำดับอีเมล 5 ฉบับหลังลงทะเบียน: Welcome → ROI → Case Study → PPA Offer → สำรวจหลังคาฟรี"},
+  "אירועים מקומיים": {en:"Local Events",th:"กิจกรรมในพื้นที่"},
+  "Workshop חודשי \"Solar for Your Business\" — ב-co-working spaces. 15-20 משתתפים → 3-5 לידים.": {en:"Monthly workshop \"Solar for Your Business\" — in co-working spaces. 15–20 participants → 3–5 leads.",th:"Workshop รายเดือน \"Solar for Your Business\" — ใน co-working spaces 15–20 ผู้เข้าร่วม → 3–5 ลีด"},
+
+  // Slide 11
+  "KPIs ויעדים — שנה ראשונה": {en:"KPIs & Targets — Year One",th:"KPI และเป้าหมาย — ปีแรก"},
+  "יעדים חודשיים (ממוצע)": {en:"Monthly Targets (average)",th:"เป้าหมายรายเดือน (เฉลี่ย)"},
+  "חודש 1-3": {en:"Month 1–3",th:"เดือน 1–3"},
+  "חודש 4-8": {en:"Month 4–8",th:"เดือน 4–8"},
+  "חודש 9-12": {en:"Month 9–12",th:"เดือน 9–12"},
+  "לידים חדשים": {en:"New leads",th:"ลีดใหม่"},
+  "סקרי גג": {en:"Roof surveys",th:"การสำรวจหลังคา"},
+  "הצעות מחיר": {en:"Quotations",th:"ใบเสนอราคา"},
+  "עסקאות סגורות": {en:"Deals closed",th:"ดีลที่ปิดได้"},
+  "הכנסה": {en:"Revenue",th:"รายได้"},
+  "מדדי ביצוע מפתח": {en:"Key Performance Indicators",th:"ตัวชี้วัดผลการปฏิบัติงานหลัก"},
+  "יחס המרה": {en:"Conversion Rate",th:"อัตราการแปลง"},
+  "LTV לפי סגמנט": {en:"LTV by Segment",th:"LTV ตามกลุ่ม"},
+  "יעד שנה 1: 25-35 עסקאות, הכנסה ฿12-18M, רווח גולמי ฿7-10M, 5+ PPA = ฿150K MRR חוזר": {en:"Year 1 target: 25–35 deals, revenue ฿12–18M, gross profit ฿7–10M, 5+ PPA = ฿150K recurring MRR",th:"เป้าหมายปีที่ 1: 25–35 ดีล รายได้ ฿12–18M กำไรขั้นต้น ฿7–10M, 5+ PPA = MRR ประจำ ฿150K"},
+
+  // Slide 12
+  "תקציב שיווק שנתי": {en:"Annual Marketing Budget",th:"งบประมาณการตลาดประจำปี"},
+  "תוכן + וידאו": {en:"Content + video",th:"เนื้อหา + วิดีโอ"},
+  "אירועים + Networking": {en:"Events + Networking",th:"กิจกรรม + Networking"},
+  "חומרי שיווק + דפוס": {en:"Marketing materials + print",th:"สื่อการตลาด + สิ่งพิมพ์"},
+  "סה\"כ: ฿960K/שנה = ฿80K/חודש (תואם OpEx ב-P&L). עמלות סוכנים בנפרד מרווח גולמי.": {en:"Total: ฿960K/year = ฿80K/month (matches OpEx in P&L). Agent commissions separate from gross margin.",th:"รวม: ฿960K/ปี = ฿80K/เดือน (ตรงกับ OpEx ใน P&L) ค่าคอมมิชชันตัวแทนแยกต่างหากจากอัตรากำไรขั้นต้น"},
+  "סה\"כ תקציב שנתי (מדיה + תוכן)": {en:"Total Annual Budget (media + content)",th:"งบประมาณรายปีรวม (สื่อ + เนื้อหา)"},
+  "~$27K USD / שנה": {en:"~$27K USD / year",th:"~$27K USD / ปี"},
+  "฿80,000/חודש ממוצע (תואם P&L OpEx)": {en:"฿80,000/month average (matches P&L OpEx)",th:"฿80,000/เดือนเฉลี่ย (ตรงกับ P&L OpEx)"},
+  "ROI על שיווק": {en:"Marketing ROI",th:"ROI ด้านการตลาด"},
+  "תקציב: ฿960K": {en:"Budget: ฿960K",th:"งบประมาณ: ฿960K"},
+  "צפי הכנסות: ฿109.1M (EPC חיצוני)": {en:"Expected revenue: ฿109.1M (external EPC)",th:"รายได้ที่คาดการณ์: ฿109.1M (EPC ภายนอก)"},
+  "ROI: 114x": {en:"ROI: 114x",th:"ROI: 114x"},
+  "עמלות סוכנים (בנפרד): 5-10% מעסקה. צפי שנה 1: ~฿3-5M. מגיע מתוך הרווח הגולמי 60%, לא מתקציב השיווק.": {en:"Agent commissions (separate): 5–10% per deal. Year 1 forecast: ~฿3–5M. Comes from the 60% gross margin, not the marketing budget.",th:"ค่าคอมมิชชันตัวแทน (แยก): 5–10% ต่อดีล คาดการณ์ปีที่ 1: ~฿3–5M มาจากอัตรากำไรขั้นต้น 60% ไม่ใช่งบประมาณการตลาด"},
+  "עיקרון: בתאילנד, שיווק זול מאוד. CPM ב-FB: ฿50-120 (מול $10-30 בארה\"ב). הכסף הגדול הולך לאיכות התוכן, לא לפרסום.": {en:"Principle: In Thailand, marketing is very cheap. CPM on FB: ฿50–120 (vs $10–30 in the US). The big money goes to content quality, not advertising.",th:"หลักการ: ในไทย การตลาดถูกมาก CPM บน FB: ฿50–120 (เทียบกับ $10–30 ในสหรัฐ) เงินส่วนใหญ่ไปที่คุณภาพเนื้อหา ไม่ใช่การโฆษณา"},
+
+  // Slide 13
+  "מערכות שיווק ומכירות": {en:"Marketing & Sales Systems",th:"ระบบการตลาดและการขาย"},
+  "מערכת ניהול לידים, פרויקטים, הצעות מחיר, חוזים. דשבורד בזמן אמת. נבנתה in-house.": {en:"Lead, project, quotation & contract management system. Real-time dashboard. Built in-house.",th:"ระบบจัดการลีด โครงการ ใบเสนอราคา และสัญญา แดชบอร์ดแบบเรียลไทม์ พัฒนาภายในองค์กร"},
+  "ניטור אונליין": {en:"Online Monitoring",th:"การติดตามออนไลน์"},
+  "Huawei FusionSolar / SolarEdge — ניטור ייצור בזמן אמת. התראות ישירות ל-CRM.": {en:"Huawei FusionSolar / SolarEdge — real-time production monitoring. Alerts directly to CRM.",th:"Huawei FusionSolar / SolarEdge — ติดตามการผลิตแบบเรียลไทม์ การแจ้งเตือนตรงสู่ CRM"},
+  "אוטומציה": {en:"Automation",th:"ระบบอัตโนมัติ"},
+  "ליד חדש → WhatsApp/Line auto-reply → CRM → Follow-up sequence → סקר גג.": {en:"New lead → WhatsApp/Line auto-reply → CRM → follow-up sequence → roof survey.",th:"ลีดใหม่ → WhatsApp/Line ตอบกลับอัตโนมัติ → CRM → ลำดับ follow-up → สำรวจหลังคา"},
+  "עיצוב מערכות": {en:"System Design",th:"การออกแบบระบบ"},
+  "PVsyst / Helioscope לסימולציה. AutoCAD ל-SLD. Roof Scanner בתוך ה-CRM.": {en:"PVsyst / Helioscope for simulation. AutoCAD for SLD. Roof Scanner inside the CRM.",th:"PVsyst / Helioscope สำหรับการจำลอง AutoCAD สำหรับ SLD Roof Scanner ภายใน CRM"},
+
+  // Nav
+  "→ הקודם": {en:"→ Prev",th:"→ ก่อนหน้า"},
+  "הבא ←": {en:"Next ←",th:"ถัดไป ←"},
+};
+</script>
 <script src="tm-lang.js"></script>
 </body>
 </html>

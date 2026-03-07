@@ -1,176 +1,290 @@
-/* TM Energy Tri-Lingual Engine v2
-   Translates h2/h3 headers, changes direction, shows language prominently */
+/* TM Energy Tri-Lingual Engine v3
+   Full-page translation: all text elements, auto lang-bar, no flash */
 (function(){
-  // Translation dictionary: Hebrew → {en, th}
-  const T = {
-    // Strategy
-    'ההזדמנות': {en:'The Opportunity',th:'โอกาส'},
-    'גודל השוק': {en:'Market Size',th:'ขนาดตลาด'},
-    'מפת תחרות': {en:'Competitive Landscape',th:'ภูมิทัศน์การแข่งขัน'},
-    'מודל עסקי': {en:'Business Model',th:'โมเดลธุรกิจ'},
-    'מימון ומבנה משפטי': {en:'Financing & Legal',th:'การเงินและกฎหมาย'},
-    'שרשרת אספקה': {en:'Supply Chain',th:'ห่วงโซ่อุปทาน'},
-    'אסטרטגיית שיווק': {en:'Marketing Strategy',th:'กลยุทธ์การตลาด'},
-    'חבילות תמחור': {en:'Pricing Packages',th:'แพ็คเกจราคา'},
-    'מה מוכן עכשיו': {en:'Deliverables',th:'สิ่งที่พร้อม'},
-    'מקורות ושיטת מחקר': {en:'Sources & Methodology',th:'แหล่งข้อมูล'},
-    // Business Plan
-    'תוכנית עסקית': {en:'Business Plan',th:'แผนธุรกิจ'},
-    'תחזית הכנסות': {en:'Revenue Forecast',th:'คาดการณ์รายได้'},
-    'תזרים מזומנים': {en:'Cash Flow',th:'กระแสเงินสด'},
-    'מבנה צוות': {en:'Team Structure',th:'โครงสร้างทีม'},
-    'סיכום': {en:'Summary',th:'สรุป'},
-    'אסטרטגיית תמחור': {en:'Pricing Strategy',th:'กลยุทธ์ราคา'},
-    'סיכונים': {en:'Risks',th:'ความเสี่ยง'},
-    // Sales & Marketing
-    'שיווק ומכירות': {en:'Sales & Marketing',th:'การขายและการตลาด'},
-    'ערוצי שיווק': {en:'Marketing Channels',th:'ช่องทางการตลาด'},
-    'אסטרטגיית מכירות': {en:'Sales Strategy',th:'กลยุทธ์การขาย'},
-    'תקציב שיווק': {en:'Marketing Budget',th:'งบประมาณการตลาด'},
-    'תוכן ומסרים': {en:'Content & Messaging',th:'เนื้อหาและข้อความ'},
-    'KPIs ויעדים': {en:'KPIs & Goals',th:'ตัวชี้วัดและเป้าหมาย'},
-    // Installation
-    'תהליך הקמה': {en:'Installation Process',th:'ขั้นตอนการติดตั้ง'},
-    'סקר גג': {en:'Roof Survey',th:'สำรวจหลังคา'},
-    'קונסטרוקציה': {en:'Construction',th:'การก่อสร้าง'},
-    'חיבור לרשת': {en:'Grid Connection',th:'เชื่อมต่อกริด'},
-    'בטיחות': {en:'Safety',th:'ความปลอดภัย'},
-    'בדיקות והפעלה': {en:'Testing & Commissioning',th:'ทดสอบและเปิดใช้'},
-    'בקרת איכות': {en:'Quality Control',th:'ควบคุมคุณภาพ'},
-    // Procurement
-    'רכש והנדסה': {en:'Procurement & Engineering',th:'จัดซื้อและวิศวกรรม'},
-    'ציוד ומפרט': {en:'Equipment & Specs',th:'อุปกรณ์'},
-    'מבנה עלויות': {en:'Cost Structure',th:'โครงสร้างต้นทุน'},
-    'לוגיסטיקה': {en:'Logistics',th:'โลจิสติกส์'},
-    // Legal
-    'חוזים והסכמים': {en:'Contracts & Agreements',th:'สัญญาและข้อตกลง'},
-    'הסכם תחזוקה': {en:'Maintenance Agreement',th:'สัญญาบำรุงรักษา'},
-    'אחריות': {en:'Warranty',th:'การรับประกัน'},
-    'ביטוח': {en:'Insurance',th:'ประกันภัย'},
-    'מיסוי': {en:'Taxation',th:'ภาษี'},
-    'יישוב סכסוכים': {en:'Dispute Resolution',th:'การระงับข้อพิพาท'},
-    // Monitoring
-    'ניטור ותחזוקה': {en:'Monitoring & Maintenance',th:'ติดตามและบำรุงรักษา'},
-    'תחזוקה מונעת': {en:'Preventive Maintenance',th:'บำรุงรักษาเชิงป้องกัน'},
-    'חבילות O&M': {en:'O&M Packages',th:'แพ็คเกจ O&M'},
-    'התראות': {en:'Alerts',th:'แจ้งเตือน'},
-    'הכנסה חוזרת': {en:'Recurring Revenue',th:'รายได้ประจำ'},
-    // Licensing
-    'רישוי ורגולציה': {en:'Licensing & Regulation',th:'ใบอนุญาตและกฎระเบียบ'},
-    'תהליך רישוי': {en:'Licensing Process',th:'ขั้นตอนการขอใบอนุญาต'},
-    'מיסוי סולאר': {en:'Solar Taxation',th:'ภาษีโซลาร์'},
-    'רישום חברה': {en:'Company Registration',th:'จดทะเบียนบริษัท'},
-    'אנשי קשר': {en:'Contacts',th:'ติดต่อ'},
-    // Financing
-    'מימון': {en:'Financing',th:'การเงิน'},
-    'מקורות מימון': {en:'Funding Sources',th:'แหล่งเงินทุน'},
-    'הלוואות': {en:'Loans',th:'สินเชื่อ'},
-    'הטבות מס': {en:'Tax Incentives',th:'สิทธิประโยชน์ทางภาษี'},
-    'ESCO': {en:'ESCO Model',th:'โมเดล ESCO'},
-    'סיכום מימון': {en:'Financing Summary',th:'สรุปการเงิน'},
-    // P&L
-    'הוצאות תפעוליות': {en:'Operating Expenses',th:'ค่าดำเนินงาน'},
-    'כוח אדם': {en:'Workforce',th:'กำลังคน'},
-    'שלושה מסלולי הכנסה': {en:'Three Revenue Streams',th:'สามช่องทางรายได้'},
-    'תחזית 5 שנים': {en:'5-Year Forecast',th:'คาดการณ์ 5 ปี'},
-    'מעקב ביצועים': {en:'Performance Tracking',th:'ติดตามผลงาน'},
-    // General
-    'לוח זמנים': {en:'Timeline',th:'ไทม์ไลน์'},
-    'צ\'קליסט': {en:'Checklist',th:'เช็คลิสต์'},
+  // --- Core dictionary (common terms across all files) ---
+  const CORE = {
+    'סה"כ':{en:'Total',th:'รวม'},
+    'תקציב':{en:'Budget',th:'งบประมาณ'},
+    'הערה':{en:'Note',th:'หมายเหตุ'},
+    'הערות':{en:'Notes',th:'หมายเหตุ'},
+    'שים לב':{en:'Note',th:'หมายเหตุ'},
+    'פרמטר':{en:'Parameter',th:'พารามิเตอร์'},
+    'פירוט':{en:'Details',th:'รายละเอียด'},
+    'למה':{en:'Why',th:'ทำไม'},
+    'מתאים ל-':{en:'Suitable for',th:'เหมาะสำหรับ'},
+    'ערך':{en:'Value',th:'ค่า'},
+    'יתרון':{en:'Advantage',th:'ข้อดี'},
+    'חיסרון':{en:'Disadvantage',th:'ข้อเสีย'},
+    'דרישה':{en:'Requirement',th:'ข้อกำหนด'},
+    'שלב':{en:'Phase',th:'ขั้นตอน'},
+    'זמן':{en:'Time',th:'เวลา'},
+    'עלות':{en:'Cost',th:'ต้นทุน'},
+    'רווח':{en:'Profit',th:'กำไร'},
+    'ריבית':{en:'Interest',th:'ดอกเบี้ย'},
+    'תקופה':{en:'Period',th:'ระยะเวลา'},
+    'מימון':{en:'Financing',th:'การเงิน'},
+    'מטרה':{en:'Goal',th:'เป้าหมาย'},
+    'בטחונות':{en:'Collateral',th:'หลักประกัน'},
+    'סטטוס':{en:'Status',th:'สถานะ'},
+    'מדד':{en:'Metric',th:'ตัวชี้วัด'},
+    'תכנון':{en:'Plan',th:'แผน'},
+    'ביצוע':{en:'Actual',th:'จริง'},
+    'חודש':{en:'Month',th:'เดือน'},
+    'שנה':{en:'Year',th:'ปี'},
+    'סגמנט':{en:'Segment',th:'กลุ่ม'},
+    'כמות':{en:'Quantity',th:'จำนวน'},
+    'גודל':{en:'Size',th:'ขนาด'},
+    'מצגת':{en:'Presentation',th:'การนำเสนอ'},
+    'מדריך':{en:'Guide',th:'คู่มือ'},
+    'חוזה':{en:'Contract',th:'สัญญา'},
+    'כלי':{en:'Tool',th:'เครื่องมือ'},
+    'מימון':{en:'Financing',th:'การเงิน'},
+    'מיתוג':{en:'Branding',th:'แบรนด์'},
+    'מסמך':{en:'Document',th:'เอกสาร'},
+    'הדפסה':{en:'Print',th:'พิมพ์'},
+    'קטגוריה':{en:'Category',th:'หมวดหมู่'},
+    'תוכן עניינים':{en:'Table of Contents',th:'สารบัญ'},
+    'סיכום':{en:'Summary',th:'สรุป'},
+    'נתון':{en:'Data',th:'ข้อมูล'},
+    'הסבר':{en:'Explanation',th:'คำอธิบาย'},
+    'צוות':{en:'Team',th:'ทีม'},
+    'עובדים':{en:'Employees',th:'พนักงาน'},
+    'לקוח':{en:'Client',th:'ลูกค้า'},
+    'לקוחות':{en:'Clients',th:'ลูกค้า'},
+    'ספק':{en:'Supplier',th:'ผู้จำหน่าย'},
+    'ספק ראשי':{en:'Main Supplier',th:'ผู้จำหน่ายหลัก'},
+    'רזורטים גדולים':{en:'Large Resorts',th:'รีสอร์ทขนาดใหญ่'},
+    'רזורטים בינוניים':{en:'Medium Resorts',th:'รีสอร์ทขนาดกลาง'},
+    'חזרה לנכסים':{en:'Back to Assets',th:'กลับไปที่สินทรัพย์'},
+    'הדפס / PDF':{en:'Print / PDF',th:'พิมพ์ / PDF'},
+    'חינם!':{en:'Free!',th:'ฟรี!'},
+    'מומלץ':{en:'Recommended',th:'แนะนำ'},
+    'קריטי':{en:'Critical',th:'สำคัญ'},
+    'גבוה':{en:'High',th:'สูง'},
+    'בינוני':{en:'Medium',th:'ปานกลาง'},
+    'נמוך':{en:'Low',th:'ต่ำ'},
+    'שנות אחריות':{en:'Warranty Years',th:'ปีรับประกัน'},
+    'על פאנלים':{en:'On Panels',th:'บนแผงโซลาร์'},
+    'כל השנה':{en:'All Year',th:'ตลอดปี'},
+    'באי':{en:'On the Island',th:'บนเกาะ'},
+    'כבר במערכת':{en:'Already in System',th:'อยู่ในระบบแล้ว'},
+    'עב':{en:'HE',th:'HE'},
+    'לידים מזוהים':{en:'Identified Leads',th:'ลีดที่ระบุแล้ว'},
   };
 
+  let T = {}; // Merged dictionary
   let currentLang = 'he';
-  const originals = new Map();
+  const origMap = new Map();
 
+  // --- Normalize text for matching ---
+  function norm(s) {
+    if (!s) return '';
+    return s
+      .replace(/<[^>]*>/g, '')
+      .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{200D}\u{20E3}\u{E0020}-\u{E007F}]/gu, '')
+      .replace(/[📊📋💰🎯⚡🔧📦⚖️📡📋📊🏦📈🛸🛠️📜🎨💻📢📄👕⛑️💼🏷️🚧🧢☂️🔑🔋🏳️📎🎁✅❌⚠️✓🔴🟢📞✉️🌐📐🏗️🌳⚙️🔌💡📸📝🚨🔍💪🎓🗓️📑🚛🚗☀️🔄🏨🌿🏡🏢🏝️🏅📱⭐📉👷🌅📈🛰️🧾🏥🏫⛩️🍽️🛒🏠🛖🎉🔥🏆👥📒🧪🔬✨🌊💵🗺️⚾🫧🔶🟡]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  // --- Find translation ---
+  function findTrans(text) {
+    const n = norm(text);
+    if (!n || n.length < 2) return null;
+    // Exact match
+    if (T[n]) return T[n];
+    // Try without trailing/leading punctuation
+    const stripped = n.replace(/^[—\-:·•▸]+\s*/, '').replace(/\s*[—\-:·•]+$/, '').trim();
+    if (stripped && T[stripped]) return T[stripped];
+    // Substring match: if dict key is contained in text (for compound headers)
+    for (const [key, val] of Object.entries(T)) {
+      if (key.length > 3 && n === key) return val;
+    }
+    return null;
+  }
+
+  // --- Check if text has Hebrew ---
+  function hasHebrew(s) {
+    return /[\u0590-\u05FF]/.test(s);
+  }
+
+  // --- Selectors for translatable elements ---
+  const SEL = [
+    'h1','h2','h3','h4','h5','h6',
+    'p','li','td','th','dt','dd',
+    'label','button','summary','figcaption','caption','legend',
+    '.subtitle','.stat-label','.stat-num','.tag','.cover-meta',
+    '.card-icon + h3','.card p','.filter-label',
+    'a[href]'
+  ].join(',');
+
+  // --- Translate all elements ---
+  function translateAll() {
+    document.querySelectorAll(SEL).forEach(el => {
+      // Skip elements inside lang-bar or script
+      if (el.closest('.lang-bar') || el.closest('.lang-indicator')) return;
+      if (['SCRIPT','STYLE','NOSCRIPT'].includes(el.tagName)) return;
+
+      // Store original
+      if (!origMap.has(el)) {
+        origMap.set(el, el.innerHTML);
+      }
+
+      if (currentLang === 'he') {
+        el.innerHTML = origMap.get(el);
+        return;
+      }
+
+      const origHtml = origMap.get(el);
+      const origText = el.textContent;
+
+      // Skip if no Hebrew
+      if (!hasHebrew(origText)) return;
+
+      const trans = findTrans(origText);
+      if (trans) {
+        const translated = currentLang === 'en' ? trans.en : trans.th;
+        if (translated) {
+          // For headers, show Hebrew subtitle
+          if (/^H[1-6]$/.test(el.tagName)) {
+            const heText = norm(origText);
+            el.innerHTML = `<span>${translated}</span><span style="display:block;font-size:0.45em;opacity:0.35;margin-top:2px;font-weight:400">${heText}</span>`;
+          } else {
+            el.textContent = translated;
+          }
+        }
+      }
+    });
+  }
+
+  // --- Set language ---
   function setLang(lang) {
     currentLang = lang;
     localStorage.setItem('tm-lang', lang);
-    
+
     // Update buttons
     document.querySelectorAll('.lang-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.l === lang);
     });
 
-    // Update body direction
-    document.body.style.direction = lang === 'he' ? 'rtl' : 'ltr';
-    
-    // Update all h2 and h3 elements
-    document.querySelectorAll('h2, h3').forEach(el => {
-      // Store original Hebrew text
-      if (!originals.has(el)) {
-        originals.set(el, el.innerHTML);
-      }
-      
-      const orig = originals.get(el);
-      // Extract pure text for matching (strip HTML tags and emojis for lookup)
-      const textOnly = orig.replace(/<[^>]*>/g, '').replace(/[\u{1F300}-\u{1FAFF}]/gu, '').trim();
-      
-      if (lang === 'he') {
-        el.innerHTML = orig;
-        el.style.direction = 'rtl';
-        el.style.textAlign = 'right';
-      } else {
-        // Find matching translation
-        let found = null;
-        for (const [he, trans] of Object.entries(T)) {
-          if (textOnly.includes(he)) {
-            found = trans;
-            break;
-          }
-        }
-        
-        if (found) {
-          const transText = lang === 'en' ? found.en : found.th;
-          // Show translation prominently with Hebrew small below
-          el.innerHTML = `<span style="display:block">${transText}</span><span style="display:block;font-size:0.5em;opacity:0.4;margin-top:2px">${textOnly}</span>`;
-          el.style.direction = 'ltr';
-          el.style.textAlign = 'left';
-        } else {
-          el.innerHTML = orig;
-          el.style.direction = lang === 'he' ? 'rtl' : 'ltr';
-          el.style.textAlign = lang === 'he' ? 'right' : 'left';
-        }
-      }
+    // Direction
+    const rtl = lang === 'he';
+    document.documentElement.dir = rtl ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    document.body.style.direction = rtl ? 'rtl' : 'ltr';
+
+    // Translate elements
+    translateAll();
+
+    // Update containers direction
+    document.querySelectorAll('.slide,.container,.card,.grid,.grid-2,.grid-3,.grid-4').forEach(el => {
+      el.style.direction = rtl ? 'rtl' : 'ltr';
     });
 
-    // Update slide direction
-    document.querySelectorAll('.slide, .container').forEach(el => {
-      el.style.direction = lang === 'he' ? 'rtl' : 'ltr';
-      el.style.textAlign = lang === 'he' ? 'right' : 'left';
-    });
-    
-    // Update tables
+    // Table alignment
     document.querySelectorAll('th').forEach(th => {
-      th.style.textAlign = lang === 'he' ? 'right' : 'left';
+      th.style.textAlign = rtl ? 'right' : 'left';
     });
 
-    // Show language indicator
-    let indicator = document.getElementById('lang-indicator');
-    if (!indicator) {
-      indicator = document.createElement('div');
-      indicator.id = 'lang-indicator';
-      indicator.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:999;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;pointer-events:none;transition:all .3s';
-      document.body.appendChild(indicator);
-    }
-    const labels = {he:'עברית 🇮🇱',en:'English 🇬🇧',th:'ภาษาไทย 🇹🇭'};
-    const colors = {he:'rgba(0,56,184,.8)',en:'rgba(0,82,33,.8)',th:'rgba(164,30,30,.8)'};
-    indicator.textContent = labels[lang];
-    indicator.style.background = colors[lang];
-    indicator.style.color = 'white';
-    
-    // Fade out after 2s
-    clearTimeout(indicator._timer);
-    indicator.style.opacity = '1';
-    indicator._timer = setTimeout(() => { indicator.style.opacity = '0'; }, 2000);
+    // Heading alignment
+    document.querySelectorAll('h1,h2,h3,h4,h5,h6,.subtitle,p,li').forEach(el => {
+      if (el.closest('.lang-bar')) return;
+      el.style.direction = rtl ? 'rtl' : 'ltr';
+      el.style.textAlign = rtl ? 'right' : 'left';
+    });
+
+    // Show indicator
+    showIndicator(lang);
+
+    // Dispatch event
+    document.dispatchEvent(new CustomEvent('langchange', {detail:{lang}}));
   }
 
-  // Make global
-  window.setLang = setLang;
+  // --- Language indicator ---
+  function showIndicator(lang) {
+    let ind = document.getElementById('tm-lang-indicator');
+    if (!ind) {
+      ind = document.createElement('div');
+      ind.id = 'tm-lang-indicator';
+      ind.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;padding:8px 16px;border-radius:8px;font-size:12px;font-weight:700;pointer-events:none;transition:opacity .3s;font-family:sans-serif';
+      document.body.appendChild(ind);
+    }
+    const labels = {he:'Hebrew',en:'English',th:'Thai'};
+    const flags = {he:'🇮🇱',en:'🇬🇧',th:'🇹🇭'};
+    const colors = {he:'rgba(0,56,184,.85)',en:'rgba(0,82,33,.85)',th:'rgba(164,30,30,.85)'};
+    ind.textContent = labels[lang] + ' ' + flags[lang];
+    ind.style.background = colors[lang];
+    ind.style.color = 'white';
+    ind.style.opacity = '1';
+    clearTimeout(ind._t);
+    ind._t = setTimeout(() => { ind.style.opacity = '0'; }, 2500);
+  }
 
-  // Restore saved language
-  const saved = localStorage.getItem('tm-lang');
-  if (saved && saved !== 'he') {
-    // Small delay to ensure DOM is ready
-    setTimeout(() => setLang(saved), 100);
+  // --- Auto-inject lang-bar if not present ---
+  function injectLangBar() {
+    if (document.querySelector('.lang-bar')) return;
+    const bar = document.createElement('div');
+    bar.className = 'lang-bar';
+    bar.innerHTML = `
+      <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
+      <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
+      <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>`;
+    document.body.appendChild(bar);
+  }
+
+  // --- Auto-inject CSS ---
+  function injectCSS() {
+    if (document.getElementById('tm-lang-css')) return;
+    const style = document.createElement('style');
+    style.id = 'tm-lang-css';
+    style.textContent = `
+      .lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:9999;
+        background:rgba(0,0,0,.5);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+        border-radius:24px;padding:3px;display:flex;gap:2px;border:1px solid rgba(255,255,255,.1)}
+      .lang-btn{padding:5px 14px;border-radius:20px;border:none;background:transparent;
+        color:rgba(255,255,255,.45);font-size:12px;font-weight:600;cursor:pointer;
+        transition:all .2s;font-family:'Heebo',sans-serif;letter-spacing:.3px}
+      .lang-btn:hover{color:rgba(255,255,255,.7)}
+      .lang-btn.active{background:rgba(232,168,32,.25);color:#E8A820}
+      @media(max-width:600px){.lang-bar{top:8px;padding:2px}.lang-btn{padding:4px 10px;font-size:11px}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  // --- Merge translations ---
+  function merge(obj) {
+    for (const [key, val] of Object.entries(obj)) {
+      T[norm(key) || key] = val;
+    }
+  }
+
+  // --- Init ---
+  function init() {
+    // Merge core dictionary
+    merge(CORE);
+
+    // Merge per-file translations
+    if (window.PAGE_TRANSLATIONS) merge(window.PAGE_TRANSLATIONS);
+
+    // Inject UI
+    injectCSS();
+    injectLangBar();
+
+    // Restore saved language (no delay — immediate)
+    const saved = localStorage.getItem('tm-lang');
+    if (saved && saved !== 'he') {
+      setLang(saved);
+    }
+  }
+
+  // Global
+  window.setLang = setLang;
+  window.tmLangMerge = merge;
+
+  // Run on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 })();

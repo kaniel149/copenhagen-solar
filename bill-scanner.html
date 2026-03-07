@@ -125,6 +125,7 @@ body{font-family:'Space Grotesk','Heebo',sans-serif;background:var(--night);colo
 </style>
 </head>
 <body>
+<script src="auth.js"></script>
 
 <a href="assets.html" class="back-btn">Back to Assets</a>
 
@@ -528,8 +529,8 @@ function goStep(n) {
 
   document.querySelectorAll('.step').forEach((s, i) => {
     s.classList.remove('active', 'done');
-    if (i/2 + 1 < n) s.classList.add('done');
-    if (i/2 + 1 === n) s.classList.add('active');
+    if (i + 1 < n) s.classList.add('done');
+    if (i + 1 === n) s.classList.add('active');
   });
 
   if (n === 3) renderProposal();

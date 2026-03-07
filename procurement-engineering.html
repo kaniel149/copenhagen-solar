@@ -72,21 +72,13 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
 .tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
-.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
-.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
-.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-body.lang-en body.lang-th 
 </style>
 </head>
 <body>
+<script src="auth.js"></script>
 <div class="tm-logo-header">
   <span class="brand-text">TM ENERGY</span>
   <img src="visuals/tm-energy-logo.png" alt="TM Energy">
-</div>
-<div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
-  <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
-  <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>
 </div>
 
 
@@ -158,7 +150,7 @@ body.lang-en body.lang-th
     <div>
       <h3>למה Longi?</h3>
       <div class="card" style="margin:8px 0;border-color:var(--gold)">
-        <h3>Hi-MO 6 Explorer (580W)</h3>
+        <h3>Hi-MO X6 Explorer (580W)</h3>
         <ul style="font-size:13px;line-height:2;list-style:none;padding:0">
           <li>▸ <strong>580W</strong> — נמוך יותר = פחות פאנלים לkWp</li>
           <li>▸ <strong>22.3% יעילות</strong> — HPBC technology</li>
@@ -183,7 +175,7 @@ body.lang-en body.lang-th
       </div>
       <div class="table-wrap" style="margin-top:16px">
         <table>
-          <tr><th>מפרט</th><th>Hi-MO 6 (580W)</th></tr>
+          <tr><th>מפרט</th><th>Hi-MO X6 (580W)</th></tr>
           <tr><td>מידות</td><td>2278 × 1134 × 30 mm</td></tr>
           <tr><td>משקל</td><td>27.5 kg</td></tr>
           <tr><td>Voc</td><td>51.7V</td></tr>
@@ -543,6 +535,209 @@ show(0);
 
 
 
+<script>
+window.PAGE_TRANSLATIONS = {
+  "תוכן עניינים": {en: "Table of Contents", th: "สารบัญ"},
+  "שער": {en: "Cover", th: "หน้าปก"},
+  "רכש והנדסה": {en: "Procurement & Engineering", th: "การจัดซื้อและวิศวกรรม"},
+  "שרשרת אספקה, ציוד, עיצוב מערכות": {en: "Supply chain, equipment, system design", th: "ห่วงโซ่อุปทาน อุปกรณ์ การออกแบบระบบ"},
+  "מרץ 2026": {en: "March 2026", th: "มีนาคม 2026"},
+  "שרשרת אספקה": {en: "Supply Chain", th: "ห่วงโซ่อุปทาน"},
+  "סין → בנגקוק → סורת תאני → מעבורת → קו פנגן": {en: "China → Bangkok → Surat Thani → Ferry → Ko Phangan", th: "จีน → กรุงเทพฯ → สุราษฎร์ธานี → เรือเฟอร์รี่ → เกาะพะงัน"},
+  "יצרן": {en: "Manufacturer", th: "ผู้ผลิต"},
+  "מפיץ": {en: "Distributor", th: "ผู้จัดจำหน่าย"},
+  "מחסן BKK": {en: "BKK Warehouse", th: "คลังสินค้า BKK"},
+  "שחרור מכס": {en: "Customs clearance", th: "การผ่านพิธีศุลกากร"},
+  "איחסון זמני": {en: "Temporary storage", th: "การจัดเก็บชั่วคราว"},
+  "מעבורת": {en: "Ferry", th: "เรือเฟอร์รี่"},
+  "מחסן באי": {en: "Island Warehouse", th: "คลังสินค้าบนเกาะ"},
+  "אתר התקנה": {en: "Installation site", th: "สถานที่ติดตั้ง"},
+  "זמני אספקה": {en: "Lead Times", th: "ระยะเวลาการจัดส่ง"},
+  "שלב": {en: "Stage", th: "ขั้นตอน"},
+  "זמן": {en: "Time", th: "เวลา"},
+  "הזמנה → יצרן": {en: "Order → Manufacturer", th: "สั่งซื้อ → ผู้ผลิต"},
+  "מכס + שחרור": {en: "Customs + clearance", th: "ศุลกากร + การผ่านพิธี"},
+  "סה\"כ (חדש)": {en: "Total (new order)", th: "รวม (สั่งใหม่)"},
+  "מלאי במפיץ": {en: "Distributor stock", th: "สินค้าคงคลังที่ผู้จัดจำหน่าย"},
+  "לוגיסטיקה באי": {en: "Island Logistics", th: "โลจิสติกส์บนเกาะ"},
+  "אתגרים:": {en: "Challenges:", th: "ความท้าทาย:"},
+  "גודל משאית מוגבל (כבישים צרים)": {en: "Limited truck size (narrow roads)", th: "ขนาดรถบรรทุกจำกัด (ถนนแคบ)"},
+  "Ferry schedule: 3 יציאות/יום בלבד": {en: "Ferry schedule: 3 departures/day only", th: "ตารางเรือเฟอร์รี่: 3 เที่ยวต่อวันเท่านั้น"},
+  "מונסון: ferry מבוטל בסערות": {en: "Monsoon: ferry cancelled in storms", th: "มรสุม: เรือเฟอร์รี่ถูกยกเลิกในช่วงพายุ"},
+  "אין מנוף באי — פריקה ידנית": {en: "No crane on island — manual unloading", th: "ไม่มีเครนบนเกาะ — ขนถ่ายด้วยมือ"},
+  "אחסון: צריך מחסן יבש 20m²": {en: "Storage: need dry warehouse 20m²", th: "การจัดเก็บ: ต้องการโกดังแห้ง 20m²"},
+  "פאנלים": {en: "Panels", th: "แผงโซลาร์"},
+  "בחירת פאנלים — Longi Hi-MO": {en: "Panel Selection — Longi Hi-MO", th: "การเลือกแผงโซลาร์ — Longi Hi-MO"},
+  "למה Longi?": {en: "Why Longi?", th: "ทำไมต้อง Longi?"},
+  "נמוך יותר = פחות פאנלים לkWp": {en: "Higher wattage = fewer panels per kWp", th: "วัตต์สูงกว่า = ใช้แผงน้อยกว่าต่อ kWp"},
+  "22.3% יעילות": {en: "22.3% efficiency", th: "ประสิทธิภาพ 22.3%"},
+  "30 שנות אחריות ביצועים": {en: "30-year performance warranty", th: "การรับประกันประสิทธิภาพ 30 ปี"},
+  "12 שנות אחריות מוצר": {en: "12-year product warranty", th: "การรับประกันผลิตภัณฑ์ 12 ปี"},
+  "בנקים מכירים": {en: "banks recognize it", th: "ธนาคารให้การยอมรับ"},
+  "זמין": {en: "Available", th: "มีพร้อม"},
+  "מלאי קבוע ב-BayWa Thailand": {en: "Permanent stock at BayWa Thailand", th: "สต็อกถาวรที่ BayWa Thailand"},
+  "דור חדש. BC (Back Contact) technology. 23%+ יעילות. יקר יותר ~10%. לפרויקטים premium.": {en: "New generation. BC (Back Contact) technology. 23%+ efficiency. ~10% more expensive. For premium projects.", th: "รุ่นใหม่ เทคโนโลยี BC (Back Contact) ประสิทธิภาพ 23%+ ราคาแพงกว่า ~10% สำหรับโครงการระดับพรีเมียม"},
+  "למה Tier-1 חשוב": {en: "Why Tier-1 Matters", th: "ทำไม Tier-1 จึงสำคัญ"},
+  "בנקים (Krungsri, Bangkok Bank) מממנים רק Tier-1": {en: "Banks (Krungsri, Bangkok Bank) only finance Tier-1", th: "ธนาคาร (กรุงศรี, กรุงเทพ) ให้สินเชื่อเฉพาะ Tier-1"},
+  "אחריות אמיתית:": {en: "Real warranty:", th: "การรับประกันจริง:"},
+  "לא יעלם": {en: "won't disappear", th: "ไม่หายไปไหน"},
+  "ביצועים מוכחים:": {en: "Proven performance:", th: "ประสิทธิภาพที่พิสูจน์แล้ว:"},
+  "מעבדות עצמאיות (TÜV, UL)": {en: "Independent labs (TÜV, UL)", th: "ห้องปฏิบัติการอิสระ (TÜV, UL)"},
+  "חברות ביטוח דורשות Tier-1": {en: "Insurance companies require Tier-1", th: "บริษัทประกันภัยต้องการ Tier-1"},
+  "מפרט": {en: "Spec", th: "ข้อมูลจำเพาะ"},
+  "מידות": {en: "Dimensions", th: "ขนาด"},
+  "משקל": {en: "Weight", th: "น้ำหนัก"},
+  "חשוב בתאילנד!": {en: "Important in Thailand!", th: "สำคัญในประเทศไทย!"},
+  "אינוורטרים": {en: "Inverters", th: "อินเวอร์เตอร์"},
+  "סדרת SUN2000": {en: "SUN2000 Series", th: "ซีรีส์ SUN2000"},
+  "דגם": {en: "Model", th: "รุ่น"},
+  "הספק": {en: "Power", th: "กำลังไฟ"},
+  "שימוש": {en: "Use", th: "การใช้งาน"},
+  "עלות": {en: "Cost", th: "ราคา"},
+  "וילות קטנות": {en: "Small villas", th: "วิลล่าขนาดเล็ก"},
+  "וילות": {en: "Villas", th: "วิลล่า"},
+  "וילות גדולות": {en: "Large villas", th: "วิลล่าขนาดใหญ่"},
+  "עסקים קטנים": {en: "Small businesses", th: "ธุรกิจขนาดเล็ก"},
+  "רזורטים": {en: "Resorts", th: "รีสอร์ท"},
+  "רזורטים גדולים": {en: "Large resorts", th: "รีสอร์ทขนาดใหญ่"},
+  "מסחרי גדול": {en: "Large commercial", th: "เชิงพาณิชย์ขนาดใหญ่"},
+  "למה Huawei?": {en: "Why Huawei?", th: "ทำไมต้อง Huawei?"},
+  "ייצור מקסימלי": {en: "Maximum production", th: "การผลิตสูงสุด"},
+  "חוץ, עמיד לגשם": {en: "Outdoor, rain-resistant", th: "ภายนอก ทนต่อฝน"},
+  "תקשורת מובנית": {en: "Built-in communications", th: "การสื่อสารในตัว"},
+  "15 בהרחבה": {en: "15 with extended warranty", th: "15 ปีพร้อมการรับประกันเพิ่มเติม"},
+  "שירות בתאילנד": {en: "Service in Thailand", th: "บริการในประเทศไทย"},
+  "מחסן בבנגקוק": {en: "Warehouse in Bangkok", th: "คลังสินค้าในกรุงเทพฯ"},
+  "עלות/W מצוינת": {en: "Excellent cost/W", th: "ต้นทุน/W ที่ยอดเยี่ยม"},
+  "מומלץ בתאילנד (oversizing). חום מוריד ביצועי אינוורטר — oversizing DC מפצה.": {en: "Recommended in Thailand (oversizing). Heat reduces inverter performance — DC oversizing compensates.", th: "แนะนำในประเทศไทย (oversizing) ความร้อนลดประสิทธิภาพอินเวอร์เตอร์ — การ oversizing DC ชดเชย"},
+  "קונסטרוקציה": {en: "Mounting", th: "โครงยึด"},
+  "מערכות הרכבה — Marine Grade": {en: "Mounting Systems — Marine Grade", th: "ระบบโครงยึด — เกรดทางทะเล"},
+  "חומרים חובה (island environment)": {en: "Required materials (island environment)", th: "วัสดุที่จำเป็น (สภาพแวดล้อมบนเกาะ)"},
+  "כלל ברזל:": {en: "Iron rule:", th: "กฎเหล็ก:"},
+  "Koh Phangan = אוויר מלוח. ברגים מגולוונים = חלודה תוך 6-12 חודשים.": {en: "Koh Phangan = salty air. Galvanized bolts = rust within 6-12 months.", th: "เกาะพะงัน = อากาศเค็ม สลักเกลียวชุบกัลวาไนซ์ = เกิดสนิมภายใน 6-12 เดือน"},
+  "רכיב": {en: "Component", th: "ส่วนประกอบ"},
+  "חומר": {en: "Material", th: "วัสดุ"},
+  "סה\"כ": {en: "Total", th: "รวม"},
+  "לפי סוג גג": {en: "By Roof Type", th: "ตามประเภทหลังคา"},
+  "רעפים (Tile)": {en: "Tile Roof", th: "หลังคากระเบื้อง"},
+  "Hook מתחת לרעף → rail → clamp. לא קודחים דרך הרעף. נפוץ ברזורטים.": {en: "Hook under tile → rail → clamp. No drilling through tile. Common in resorts.", th: "ตะขอใต้กระเบื้อง → ราง → แคลมป์ ไม่ต้องเจาะผ่านกระเบื้อง พบมากในรีสอร์ท"},
+  "מתכת (Standing Seam)": {en: "Metal (Standing Seam)", th: "โลหะ (Standing Seam)"},
+  "Clamp ישירות על seam. בלי חורים = בלי נזילות. מחסנים ותעשייה.": {en: "Clamp directly on seam. No holes = no leaks. Warehouses and industry.", th: "แคลมป์โดยตรงบน seam ไม่มีรู = ไม่มีการรั่วซึม โกดังและอุตสาหกรรม"},
+  "מתכת (Corrugated)": {en: "Metal (Corrugated)", th: "โลหะ (ลอนคลื่น)"},
+  "L-foot + bolt דרך הגג. חובה: butyl tape + sealant. איטום קריטי.": {en: "L-foot + bolt through roof. Required: butyl tape + sealant. Sealing is critical.", th: "L-foot + สลักเกลียวผ่านหลังคา จำเป็น: butyl tape + sealant การปิดผนึกสำคัญมาก"},
+  "שטוח (Flat)": {en: "Flat Roof", th: "หลังคาแบน"},
+  "Tilt frame 10-15°. בלסט או עיגון. ניקוז גשם חשוב בטרופי.": {en: "Tilt frame 10-15°. Ballast or anchor. Rain drainage important in tropics.", th: "โครงเอียง 10-15° บาลาสต์หรือยึดด้วยสมอ การระบายน้ำฝนสำคัญในเขตร้อน"},
+  "עד 130 km/h. עיגון כל 1.2m. Rail spacing ≤ 1.4m.": {en: "Up to 130 km/h. Anchor every 1.2m. Rail spacing ≤ 1.4m.", th: "สูงสุด 130 km/h ยึดทุก 1.2m ระยะห่างราง ≤ 1.4m"},
+  "כבלי DC": {en: "DC Cables", th: "สายเคเบิล DC"},
+  "תעלות PVC בחוץ.": {en: "PVC conduits outdoors.", th: "ท่อ PVC ภายนอก"},
+  "רק מקוריים!": {en: "Originals only!", th: "ของแท้เท่านั้น!"},
+  "MC4 מזויפים = arc fault = שריפה.": {en: "Fake MC4 = arc fault = fire.", th: "MC4 ปลอม = arc fault = ไฟไหม้"},
+  "ליד האינוורטר. חובה לפי PEA.": {en: "Next to inverter. Mandatory per PEA.", th: "ติดตั้งข้างอินเวอร์เตอร์ บังคับตาม PEA"},
+  "קריטי באי — ברקים!": {en: "Critical on island — lightning!", th: "สำคัญมากบนเกาะ — ฟ้าผ่า!"},
+  "MCB C-curve. Solar dedicated breaker בלוח ראשי. גודל לפי אינוורטר output.": {en: "MCB C-curve. Solar dedicated breaker in main panel. Size per inverter output.", th: "MCB C-curve เบรกเกอร์เฉพาะโซลาร์ในตู้หลัก ขนาดตาม output ของอินเวอร์เตอร์"},
+  "הארקה (Earthing)": {en: "Earthing (Grounding)", th: "การต่อสายดิน"},
+  "סה\"כ BOS/kWp:": {en: "Total BOS/kWp:", th: "รวม BOS/kWp:"},
+  "ספקים": {en: "Suppliers", th: "ผู้จัดหา"},
+  "ספקים ומפיצים": {en: "Suppliers & Distributors", th: "ผู้จัดหาและผู้จัดจำหน่าย"},
+  "מפיצים ראשיים": {en: "Main Distributors", th: "ผู้จัดจำหน่ายหลัก"},
+  "מפיץ Tier-1 מוביל.": {en: "Leading Tier-1 distributor.", th: "ผู้จัดจำหน่าย Tier-1 ชั้นนำ"},
+  "מלאי בבנגקוק. אשראי 30-60 יום לשותפים. הדרכות טכניות.": {en: "Stock in Bangkok. 30-60 day credit for partners. Technical training.", th: "สต็อกในกรุงเทพฯ เครดิต 30-60 วันสำหรับพันธมิตร อบรมเทคนิค"},
+  "מפיץ מקומי ותיק. מלאי רחב. מחירים תחרותיים על volumes. משלוח לכל תאילנד.": {en: "Established local distributor. Wide stock. Competitive pricing on volumes. Delivery across Thailand.", th: "ผู้จัดจำหน่ายท้องถิ่นที่มีประสบการณ์ สต็อกกว้าง ราคาแข่งขันสำหรับปริมาณมาก จัดส่งทั่วประเทศไทย"},
+  "יצרן תאילנדי של אינוורטרים + UPS. alternative מקומי. שירות מהיר. מחיר נמוך.": {en: "Thai manufacturer of inverters + UPS. Local alternative. Fast service. Low price.", th: "ผู้ผลิตไทยของอินเวอร์เตอร์ + UPS ทางเลือกในท้องถิ่น บริการรวดเร็ว ราคาต่ำ"},
+  "ישיר מיצרן": {en: "Direct from Manufacturer", th: "ตรงจากผู้ผลิต"},
+  "MOQ: 1 container (20ft = ~550 panels = ~320kWp). משתלם מ-10 פרויקטים+. Lead time: 4-6 שבועות.": {en: "MOQ: 1 container (20ft = ~550 panels = ~320kWp). Worth it from 10+ projects. Lead time: 4-6 weeks.", th: "MOQ: 1 ตู้คอนเทนเนอร์ (20ft = ~550 แผง = ~320kWp) คุ้มค่าตั้งแต่ 10+ โครงการ Lead time: 4-6 สัปดาห์"},
+  "MOQ: 20 units per model. נציגות בבנגקוק. warranty direct. Training programs.": {en: "MOQ: 20 units per model. Representative in Bangkok. Direct warranty. Training programs.", th: "MOQ: 20 หน่วยต่อรุ่น ตัวแทนในกรุงเทพฯ การรับประกันโดยตรง โปรแกรมฝึกอบรม"},
+  "אסטרטגיה:": {en: "Strategy:", th: "กลยุทธ์:"},
+  "שנה 1: BayWa (אין MOQ, מלאי מיידי)": {en: "Year 1: BayWa (no MOQ, immediate stock)", th: "ปีที่ 1: BayWa (ไม่มี MOQ สต็อกทันที)"},
+  "שנה 2+: Direct import (מרווח גבוה יותר)": {en: "Year 2+: Direct import (higher margin)", th: "ปีที่ 2+: นำเข้าตรง (กำไรมากขึ้น)"},
+  "חיסכון direct: 15-25% vs מפיץ": {en: "Direct saving: 15-25% vs distributor", th: "ประหยัดจากการสั่งตรง: 15-25% เทียบกับผู้จัดจำหน่าย"},
+  "מכס וייבוא": {en: "Customs & Import", th: "ศุลกากรและการนำเข้า"},
+  "מכס וייבוא — הטבות מפתיעות": {en: "Customs & Import — Surprising Benefits", th: "ศุลกากรและการนำเข้า — สิทธิประโยชน์ที่น่าประหลาดใจ"},
+  "שיעורי מכס": {en: "Customs Rates", th: "อัตราภาษีศุลกากร"},
+  "פריט": {en: "Item", th: "รายการ"},
+  "מכס רגיל": {en: "Standard Duty", th: "ภาษีปกติ"},
+  "הטבה": {en: "Benefit", th: "สิทธิประโยชน์"},
+  "פאנלים סולאריים": {en: "Solar panels", th: "แผงโซลาร์เซลล์"},
+  "כבלים חשמל": {en: "Electrical cables", th: "สายไฟ"},
+  "קונסטרוקציה AL": {en: "AL mounting structure", th: "โครงยึดอลูมิเนียม"},
+  "הטבות = VAT exempt on imported machinery.": {en: "Benefits = VAT exempt on imported machinery.", th: "สิทธิประโยชน์ = ยกเว้น VAT สำหรับเครื่องจักรนำเข้า"},
+  "תהליך ייבוא": {en: "Import Process", th: "กระบวนการนำเข้า"},
+  "הזמנה + PO ליצרן": {en: "Order + PO to manufacturer", th: "สั่งซื้อ + PO ไปยังผู้ผลิต"},
+  "תשלום (30% מקדמה, 70% T/T before ship)": {en: "Payment (30% advance, 70% T/T before ship)", th: "การชำระเงิน (30% มัดจำ, 70% T/T ก่อนส่งสินค้า)"},
+  "Sea freight — Shenzhen → Laem Chabang (12-16 ימים)": {en: "Sea freight — Shenzhen → Laem Chabang (12-16 days)", th: "ขนส่งทางเรือ — เซินเจิ้น → แหลมฉบัง (12-16 วัน)"},
+  "Customs broker — שחרור מכס (3-5 ימים)": {en: "Customs broker — customs clearance (3-5 days)", th: "โบรกเกอร์ศุลกากร — ผ่านพิธีศุลกากร (3-5 วัน)"},
+  "משאית → Surat Thani (8 שעות)": {en: "Truck → Surat Thani (8 hours)", th: "รถบรรทุก → สุราษฎร์ธานี (8 ชั่วโมง)"},
+  "Ferry → Koh Phangan (2.5 שעות)": {en: "Ferry → Koh Phangan (2.5 hours)", th: "เรือเฟอร์รี่ → เกาะพะงัน (2.5 ชั่วโมง)"},
+  "עם הטבות ממשלתיות:": {en: "With government benefits:", th: "พร้อมสิทธิประโยชน์จากรัฐบาล:"},
+  "0% מכס + 0% VAT = חיסכון ~12% על ייבוא ציוד סולארי.": {en: "0% customs + 0% VAT = ~12% savings on solar equipment import.", th: "0% ภาษีศุลกากร + 0% VAT = ประหยัด ~12% จากการนำเข้าอุปกรณ์โซลาร์"},
+  "תהליך עיצוב": {en: "Design Process", th: "กระบวนการออกแบบ"},
+  "תהליך עיצוב מערכת": {en: "System Design Process", th: "กระบวนการออกแบบระบบ"},
+  "6 שלבים": {en: "6 Steps", th: "6 ขั้นตอน"},
+  "תמונות drone, מדידות, חשבונות חשמל, סוג גג": {en: "Drone photos, measurements, electricity bills, roof type", th: "ภาพถ่ายโดรน การวัด ใบเรียกเก็บค่าไฟ ประเภทหลังคา"},
+  "ייצור שנתי, PR, הפסדים (temp, shading, soiling).": {en: "Annual production, PR, losses (temp, shading, soiling).", th: "การผลิตประจำปี PR การสูญเสีย (อุณหภูมิ เงา ความสกปรก)"},
+  "כמות פאנלים/string, Voc range vs MPPT window, temperature correction (min 22°C, max 45°C cell)": {en: "Number of panels/string, Voc range vs MPPT window, temperature correction (min 22°C, max 45°C cell)", th: "จำนวนแผง/string ช่วง Voc เทียบกับช่วง MPPT การแก้ไขอุณหภูมิ (ต่ำสุด 22°C สูงสุด 45°C cell)"},
+  "סכמה חשמלית: DC strings → isolators → inverter → AC isolator → SPD → breaker → grid": {en: "Electrical diagram: DC strings → isolators → inverter → AC isolator → SPD → breaker → grid", th: "แผนผังไฟฟ้า: DC strings → isolators → inverter → AC isolator → SPD → breaker → grid"},
+  "פריסת פאנלים על הגג. מרווחים: wind gaps, fire access, maintenance access": {en: "Panel layout on roof. Gaps: wind gaps, fire access, maintenance access", th: "การจัดวางแผงบนหลังคา ระยะห่าง: ช่องลม การเข้าถึงกรณีไฟไหม้ การเข้าถึงเพื่อซ่อมบำรุง"},
+  "Bill of Materials מלא → הצעת מחיר → CRM → PDF ללקוח": {en: "Full Bill of Materials → Quote → CRM → PDF to client", th: "Bill of Materials ครบถ้วน → ใบเสนอราคา → CRM → PDF ถึงลูกค้า"},
+  "כלי תכנון": {en: "Design Tools", th: "เครื่องมือออกแบบ"},
+  "סימולציה שעתית. Shading scene 3D. Bankable reports.": {en: "Hourly simulation. 3D shading scene. Bankable reports.", th: "การจำลองรายชั่วโมง ฉากเงา 3D รายงานที่ธนาคารยอมรับ"},
+  "רישיון: CHF 450/שנה": {en: "License: CHF 450/year", th: "ใบอนุญาต: CHF 450/ปี"},
+  "Roof Scanner מובנה. הצעות מחיר אוטומטיות. BOM generator.": {en: "Built-in Roof Scanner. Automatic quotes. BOM generator.", th: "Roof Scanner ในตัว ใบเสนอราคาอัตโนมัติ ตัวสร้าง BOM"},
+  "חינם (שלנו)": {en: "Free (ours)", th: "ฟรี (ของเรา)"},
+  "$95/חודש": {en: "$95/month", th: "$95/เดือน"},
+  "$500/שנה": {en: "$500/year", th: "$500/ปี"},
+  "תקנים": {en: "Standards", th: "มาตรฐาน"},
+  "תקנים ודרישות טכניות": {en: "Standards & Technical Requirements", th: "มาตรฐานและข้อกำหนดทางเทคนิค"},
+  "תקנים בינלאומיים": {en: "International Standards", th: "มาตรฐานสากล"},
+  "תקן": {en: "Standard", th: "มาตรฐาน"},
+  "נושא": {en: "Subject", th: "หัวข้อ"},
+  "רלוונטיות": {en: "Relevance", th: "ความเกี่ยวข้อง"},
+  "פאנלים — design qualification": {en: "Panels — design qualification", th: "แผงโซลาร์ — คุณสมบัติการออกแบบ"},
+  "פאנלים — safety": {en: "Panels — safety", th: "แผงโซลาร์ — ความปลอดภัย"},
+  "אינוורטרים — safety": {en: "Inverters — safety", th: "อินเวอร์เตอร์ — ความปลอดภัย"},
+  "חובה": {en: "Mandatory", th: "บังคับ"},
+  "חובה PEA": {en: "Mandatory (PEA)", th: "บังคับโดย PEA"},
+  "מומלץ": {en: "Recommended", th: "แนะนำ"},
+  "מומלץ (באי!)": {en: "Recommended (on island!)", th: "แนะนำ (บนเกาะ!)"},
+  "דרישות PEA": {en: "PEA Requirements", th: "ข้อกำหนดของ PEA"},
+  "Anti-islanding protection (חובה)": {en: "Anti-islanding protection (mandatory)", th: "การป้องกัน Anti-islanding (บังคับ)"},
+  "עומד בכל דרישות PEA out-of-the-box. Anti-islanding certified. Plug and play.": {en: "Meets all PEA requirements out-of-the-box. Anti-islanding certified. Plug and play.", th: "ตรงตามข้อกำหนด PEA ทุกข้อแบบ out-of-the-box ผ่านการรับรอง Anti-islanding ใช้งานได้ทันที"},
+  "מבנה עלויות": {en: "Cost Structure", th: "โครงสร้างต้นทุน"},
+  "מבנה עלויות — ฿/kWp": {en: "Cost Structure — ฿/kWp", th: "โครงสร้างต้นทุน — ฿/kWp"},
+  "עלות ציוד": {en: "Equipment cost", th: "ต้นทุนอุปกรณ์"},
+  "מחיר EPC ללקוח": {en: "EPC price to client", th: "ราคา EPC สำหรับลูกค้า"},
+  "מרווח גולמי": {en: "Gross margin", th: "กำไรขั้นต้น"},
+  "רווח גולמי": {en: "Gross profit", th: "กำไรขั้นต้น"},
+  "פאנלים Longi": {en: "Longi Panels", th: "แผง Longi"},
+  "אינוורטר Huawei": {en: "Huawei Inverter", th: "อินเวอร์เตอร์ Huawei"},
+  "ציוד + עבודה (฿12K/kWp):": {en: "Equipment + labor (฿12K/kWp):", th: "อุปกรณ์ + แรงงาน (฿12K/kWp):"},
+  "כולל עלות התקנה. Direct import (שנה 2+): עלות ציוד בלבד יורדת ל-฿8K/kWp (חיסכון ~15%). מרווח עולה ל-65%+.": {en: "Includes installation cost. Direct import (Year 2+): equipment cost alone drops to ฿8K/kWp (saving ~15%). Margin rises to 65%+.", th: "รวมค่าติดตั้ง นำเข้าตรง (ปีที่ 2+): ต้นทุนอุปกรณ์อย่างเดียวลดลงเหลือ ฿8K/kWp (ประหยัด ~15%) กำไรเพิ่มขึ้นเป็น 65%+"},
+  "ניהול מלאי": {en: "Inventory Management", th: "การจัดการสินค้าคงคลัง"},
+  "ניהול מלאי באי": {en: "Island Inventory Management", th: "การจัดการสินค้าคงคลังบนเกาะ"},
+  "מלאי רצוי (20kWp)": {en: "Desired inventory (20kWp)", th: "สินค้าคงคลังที่ต้องการ (20kWp)"},
+  "כמות": {en: "Quantity", th: "จำนวน"},
+  "ערך": {en: "Value", th: "มูลค่า"},
+  "כללי מלאי": {en: "Inventory Rules", th: "กฎการจัดการสินค้าคงคลัง"},
+  "מספיק ל-2 וילות או 1 עסק קטן": {en: "Enough for 2 villas or 1 small business", th: "เพียงพอสำหรับ 2 วิลล่าหรือ 1 ธุรกิจขนาดเล็ก"},
+  "כשמלאי < 10kWp → הזמנה": {en: "When stock < 10kWp → reorder", th: "เมื่อสต็อก < 10kWp → สั่งซื้อ"},
+  "לפני מונסון (ספט):": {en: "Before monsoon (Sept):", th: "ก่อนมรสุม (ก.ย.):"},
+  "מחסן:": {en: "Warehouse:", th: "โกดัง:"},
+  "20m², יבש, מוצל, מאוורר, מנעול": {en: "20m², dry, shaded, ventilated, locked", th: "20m² แห้ง ร่มเย็น มีการระบายอากาศ ล็อค"},
+  "ביטוח מלאי:": {en: "Inventory insurance:", th: "ประกันสินค้าคงคลัง:"},
+  "שריפה, גניבה, הצפה": {en: "fire, theft, flooding", th: "ไฟไหม้ การโจรกรรม น้ำท่วม"},
+  "תזרים מזומנים:": {en: "Cash flow:", th: "กระแสเงินสด:"},
+  "מלאי = הון חסום ฿421K. הכנסה מפרויקט 20kWp = ฿700K.": {en: "Inventory = locked capital ฿421K. Revenue from 20kWp project = ฿700K.", th: "สินค้าคงคลัง = เงินทุนถูกล็อค ฿421K รายได้จากโครงการ 20kWp = ฿700K"},
+  "ROI על מלאי: 66% תוך חודש.": {en: "ROI on inventory: 66% within a month.", th: "ROI จากสินค้าคงคลัง: 66% ภายในหนึ่งเดือน"},
+  "→ הקודם": {en: "← Prev", th: "← ก่อนหน้า"},
+  "הבא ←": {en: "Next →", th: "ถัดไป →"},
+  "3-5 ימי עבודה": {en: "3-5 working days", th: "3-5 วันทำงาน"},
+  "8 שעות": {en: "8 hours", th: "8 ชั่วโมง"},
+  "2.5 שעות": {en: "2.5 hours", th: "2.5 ชั่วโมง"},
+  "3-5 שבועות": {en: "3-5 weeks", th: "3-5 สัปดาห์"},
+  "3-5 ימים": {en: "3-5 days", th: "3-5 วัน"},
+  "monitoring חינם, fleet mgmt": {en: "free monitoring, fleet mgmt", th: "ติดตามฟรี fleet mgmt"},
+};
+</script>
 <script src="tm-lang.js"></script>
 </body>
 </html>

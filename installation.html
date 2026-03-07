@@ -73,21 +73,14 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
 .tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
-.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
-.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
-.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-body.lang-en body.lang-th 
+body.lang-en body.lang-th
 </style>
 </head>
 <body>
+<script src="auth.js"></script>
 <div class="tm-logo-header">
   <span class="brand-text">TM ENERGY</span>
   <img src="visuals/tm-energy-logo.png" alt="TM Energy">
-</div>
-<div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
-  <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
-  <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>
 </div>
 
 
@@ -708,19 +701,19 @@ body.lang-en body.lang-th
   <span class="section-num">11</span>
   <h2>💰 פירוט עלויות — 30kWp טיפוסי</h2>
   <div class="stat-grid">
-    <div><div class="big-num">฿1.05M</div><div class="stat-label">מחיר ללקוח<br>(฿35K/kWp)</div></div>
-    <div><div class="big-num">฿420K</div><div class="stat-label">עלות ציוד<br>(40%)</div></div>
-    <div><div class="big-num">฿630K</div><div class="stat-label">רווח גולמי<br>(60%)</div></div>
+    <div><div class="big-num">฿900K</div><div class="stat-label">מחיר ללקוח<br>(฿30K/kWp)</div></div>
+    <div><div class="big-num">฿285K</div><div class="stat-label">עלות ציוד<br>(32%)</div></div>
+    <div><div class="big-num">฿615K</div><div class="stat-label">רווח גולמי<br>(68%)</div></div>
     <div><div class="big-num">3.5</div><div class="stat-label">שנים<br>ROI ללקוח</div></div>
   </div>
   <div class="two-col" style="margin-top:8px">
     <div>
       <div class="bar-chart">
         <h3>פירוט עלויות (฿/kWp)</h3>
-        <div class="bar-row"><div class="bar-label">פאנלים</div><div class="bar-wrap"><div class="bar-fill" style="width:57%;background:var(--gold)">฿8,000</div></div></div>
-        <div class="bar-row"><div class="bar-label">אינוורטר</div><div class="bar-wrap"><div class="bar-fill" style="width:21%;background:#6496FF">฿3,000</div></div></div>
-        <div class="bar-row"><div class="bar-label">קונסטרוקציה</div><div class="bar-wrap"><div class="bar-fill" style="width:14%;background:#2ED89A">฿2,000</div></div></div>
-        <div class="bar-row"><div class="bar-label">BOS + כבלים</div><div class="bar-wrap"><div class="bar-fill" style="width:7%;background:var(--coral)">฿1,000</div></div></div>
+        <div class="bar-row"><div class="bar-label">פאנלים</div><div class="bar-wrap"><div class="bar-fill" style="width:55%;background:var(--gold)">฿5,200</div></div></div>
+        <div class="bar-row"><div class="bar-label">אינוורטר</div><div class="bar-wrap"><div class="bar-fill" style="width:21%;background:#6496FF">฿2,000</div></div></div>
+        <div class="bar-row"><div class="bar-label">קונסטרוקציה</div><div class="bar-wrap"><div class="bar-fill" style="width:16%;background:#2ED89A">฿1,550</div></div></div>
+        <div class="bar-row"><div class="bar-label">BOS + כבלים</div><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:var(--coral)">฿750</div></div></div>
       </div>
     </div>
     <div>
@@ -757,6 +750,276 @@ show(0);
 
 
 
+<script>
+window.PAGE_TRANSLATIONS = {
+  // Cover
+  "תהליך הקמה": {en:"Installation Process",th:"กระบวนการติดตั้ง"},
+  "מסקר גג ועד חיבור לרשת — 7 שלבים": {en:"From roof survey to grid connection — 7 steps",th:"จากการสำรวจหลังคาถึงการเชื่อมต่อกริด — 7 ขั้นตอน"},
+  "TM Energy — מרץ 2026": {en:"TM Energy — March 2026",th:"TM Energy — มีนาคม 2026"},
+
+  // TOC + slide titles
+  "תוכן עניינים": {en:"Table of Contents",th:"สารบัญ"},
+  "שער": {en:"Cover",th:"หน้าปก"},
+  "סקירת 7 שלבים": {en:"7-Phase Overview",th:"ภาพรวม 7 ขั้นตอน"},
+  "סקר גג": {en:"Roof Survey",th:"สำรวจหลังคา"},
+  "תכנון והנדסה": {en:"Planning & Engineering",th:"การวางแผนและวิศวกรรม"},
+  "קונסטרוקציה": {en:"Structure",th:"โครงสร้าง"},
+  "חשמל DC": {en:"DC Electrical",th:"ระบบไฟฟ้า DC"},
+  "חשמל AC": {en:"AC Electrical",th:"ระบบไฟฟ้า AC"},
+  "חיבור PEA": {en:"PEA Connection",th:"การเชื่อมต่อ PEA"},
+  "בקרת איכות": {en:"Quality Control",th:"การควบคุมคุณภาพ"},
+  "בטיחות": {en:"Safety",th:"ความปลอดภัย"},
+  "צוות ולו״ז": {en:"Crew & Schedule",th:"ทีมงานและกำหนดการ"},
+  "פירוט עלויות": {en:"Cost Breakdown",th:"รายละเอียดต้นทุน"},
+
+  // Slide 1 — overview
+  "מהפנייה הראשונה ועד חשמל סולארי על הגג": {en:"From first inquiry to solar electricity on the roof",th:"จากการติดต่อครั้งแรกถึงไฟฟ้าพลังงานโซลาร์บนหลังคา"},
+  "תכנון": {en:"Planning",th:"การวางแผน"},
+  "ימים 2-4": {en:"Days 2–4",th:"วันที่ 2–4"},
+  "הזמנת ציוד": {en:"Equipment Order",th:"สั่งซื้ออุปกรณ์"},
+  "ימים 5-14": {en:"Days 5–14",th:"วันที่ 5–14"},
+  "ימים 15-17": {en:"Days 15–17",th:"วันที่ 15–17"},
+  "DC חשמל": {en:"DC Electrical",th:"ระบบไฟฟ้า DC"},
+  "ימים 18-19": {en:"Days 18–19",th:"วันที่ 18–19"},
+  "AC חשמל": {en:"AC Electrical",th:"ระบบไฟฟ้า AC"},
+  "יום 20": {en:"Day 20",th:"วันที่ 20"},
+  "חיבור PEA": {en:"PEA Connection",th:"การเชื่อมต่อ PEA"},
+  "ימים 21-28": {en:"Days 21–28",th:"วันที่ 21–28"},
+  "לו\"ז טיפוסי: מערכת 30kWp — 5-7 ימי עבודה בשטח + 7-14 ימים תיאום PEA. סה\"כ: 3-4 שבועות מחתימה ועד חשמל.": {en:"Typical schedule: 30kWp system — 5–7 working days on site + 7–14 days PEA coordination. Total: 3–4 weeks from signing to electricity.",th:"กำหนดการทั่วไป: ระบบ 30kWp — ทำงานภาคสนาม 5–7 วัน + ประสานงาน PEA 7–14 วัน รวม: 3–4 สัปดาห์จากลงนามถึงมีไฟฟ้า"},
+  "אנשי צוות\nבהתקנה": {en:"Crew members\nin installation",th:"สมาชิกทีม\nในการติดตั้ง"},
+  "ימי עבודה\nבשטח": {en:"Working days\non site",th:"วันทำงาน\nในพื้นที่"},
+  "עלות חומרים\nמסה\"כ": {en:"Materials cost\nof total",th:"ต้นทุนวัสดุ\nของทั้งหมด"},
+  "שנות אחריות\nעל פאנלים": {en:"Warranty years\non panels",th:"ปีรับประกัน\nบนแผงโซลาร์"},
+
+  // Slide 2 — roof survey
+  "שלב 1: סקר גג — לפני הכל": {en:"Phase 1: Roof Survey — Before Everything",th:"ขั้นที่ 1: สำรวจหลังคา — ก่อนทุกอย่าง"},
+  "צילום, מדידות, הערכה מבנית": {en:"Photography, measurements, structural assessment",th:"การถ่ายภาพ การวัด การประเมินโครงสร้าง"},
+  "מה בודקים": {en:"What We Check",th:"สิ่งที่ตรวจสอบ"},
+  "מדידות פיזיות": {en:"Physical measurements",th:"การวัดทางกายภาพ"},
+  "שטח גג, זווית שיפוע (tilt), כיוון (azimuth). אופטימלי בתאילנד: 10-15° שיפוע, דרום.": {en:"Roof area, tilt angle, azimuth direction. Optimal in Thailand: 10–15° tilt, south-facing.",th:"พื้นที่หลังคา มุมเอียง (tilt) ทิศทาง (azimuth) ที่เหมาะสมในไทย: เอียง 10–15° หันไปทางทิศใต้"},
+  "מצב מבני": {en:"Structural condition",th:"สภาพโครงสร้าง"},
+  "סוג גג (רעפים, מתכת, שטוח), גיל, עומס מותר. בתאילנד: בדיקת נזקי מונסון קודמים.": {en:"Roof type (tile, metal, flat), age, allowable load. In Thailand: check for previous monsoon damage.",th:"ประเภทหลังคา (กระเบื้อง โลหะ แบน) อายุ น้ำหนักที่ยอมรับได้ ในไทย: ตรวจสอบความเสียหายจากมรสุมก่อนหน้า"},
+  "הצללות": {en:"Shading",th:"การบัง"},
+  "עצים, מבנים סמוכים, אנטנות. שימוש ב-Solar Pathfinder או SunEye.": {en:"Trees, adjacent structures, antennas. Using Solar Pathfinder or SunEye.",th:"ต้นไม้ อาคารใกล้เคียง เสาอากาศ ใช้ Solar Pathfinder หรือ SunEye"},
+  "לוח חשמל": {en:"Electrical panel",th:"ตู้ไฟฟ้า"},
+  "מיקום Main Panel, גודל Main Breaker, מרחק מהגג. חיבור חד/תלת פאזי.": {en:"Main panel location, main breaker size, distance from roof. Single/three-phase connection.",th:"ตำแหน่งตู้หลัก ขนาด Main Breaker ระยะห่างจากหลังคา การต่อแบบ single/three-phase"},
+  "חשבונות חשמל": {en:"Electricity bills",th:"ใบเรียกเก็บค่าไฟ"},
+  "12 חודשים אחרונים. דפוס צריכה: פיק, בסיס, עונתיות.": {en:"Last 12 months. Consumption pattern: peak, base, seasonality.",th:"12 เดือนล่าสุด รูปแบบการใช้งาน: ช่วงพีค ฐาน ความเป็นฤดูกาล"},
+  "כלים": {en:"Tools",th:"เครื่องมือ"},
+  "כלי": {en:"Tool",th:"เครื่องมือ"},
+  "שימוש": {en:"Use",th:"การใช้งาน"},
+  "עלות": {en:"Cost",th:"ต้นทุน"},
+  "צילום אווירי + מדידות": {en:"Aerial photography + measurements",th:"การถ่ายภาพทางอากาศ + การวัด"},
+  "לייזר מדידה Bosch": {en:"Bosch laser measurer",th:"เลเซอร์วัดระยะ Bosch"},
+  "מרחקים ושטחים": {en:"Distances and areas",th:"ระยะทางและพื้นที่"},
+  "מד שיפוע דיגיטלי": {en:"Digital inclinometer",th:"เครื่องวัดความลาดชันดิจิทัล"},
+  "זווית גג": {en:"Roof angle",th:"มุมหลังคา"},
+  "מצפן / אפליקציה": {en:"Compass / app",th:"เข็มทิศ / แอป"},
+  "כיוון (azimuth)": {en:"Direction (azimuth)",th:"ทิศทาง (azimuth)"},
+  "מצלמה תרמית FLIR": {en:"FLIR thermal camera",th:"กล้องถ่ายภาพความร้อน FLIR"},
+  "בדיקת חשמל קיים": {en:"Existing electrical inspection",th:"ตรวจสอบระบบไฟฟ้าที่มีอยู่"},
+  "ספציפי לאי: אוויר מלוח → בדיקת קורוזיה על חיבורים קיימים. לחות גבוהה → בדיקת עמידות חיווט. קקטוסים וגלשנים על הגגות → ניקוי לפני צילום.": {en:"Island-specific: salt air → check corrosion on existing connections. High humidity → check wiring resistance. Debris on roofs → clean before photography.",th:"เฉพาะเกาะ: อากาศเค็ม → ตรวจสอบการกัดกร่อนบนจุดต่อที่มีอยู่ ความชื้นสูง → ตรวจสอบความต้านทานของสายไฟ เศษซากบนหลังคา → ทำความสะอาดก่อนถ่ายภาพ"},
+  "תוצר": {en:"Output",th:"ผลลัพธ์"},
+  "דו\"ח סקר כולל: תמונות drone, מדידות, הערכה מבנית, המלצת גודל מערכת, סימולציית PVsyst ראשונית. נשלח ללקוח תוך 48 שעות.": {en:"Full survey report: drone photos, measurements, structural assessment, system size recommendation, initial PVsyst simulation. Sent to client within 48 hours.",th:"รายงานสำรวจฉบับสมบูรณ์: ภาพโดรน การวัด การประเมินโครงสร้าง การแนะนำขนาดระบบ การจำลอง PVsyst เบื้องต้น ส่งให้ลูกค้าภายใน 48 ชั่วโมง"},
+
+  // Slide 3 — design
+  "שלב 2: תכנון והנדסה": {en:"Phase 2: Planning & Engineering",th:"ขั้นที่ 2: การวางแผนและวิศวกรรม"},
+  "סימולציה, עיצוב חשמלי, חישובים מבניים": {en:"Simulation, electrical design, structural calculations",th:"การจำลอง การออกแบบไฟฟ้า การคำนวณโครงสร้าง"},
+  "תהליך תכנון": {en:"Design Process",th:"กระบวนการออกแบบ"},
+  "סימולציית PVsyst — ייצור שנתי, Performance Ratio, הפסדי הצללה, טמפרטורה (חשוב בתאילנד — ממוצע 35°C).": {en:"PVsyst simulation — annual production, Performance Ratio, shading losses, temperature (important in Thailand — avg 35°C).",th:"การจำลอง PVsyst — การผลิตรายปี Performance Ratio การสูญเสียจากการบัง อุณหภูมิ (สำคัญในไทย — เฉลี่ย 35°C)"},
+  "String Configuration — חישוב כמות פאנלים בסטרינג, Voc בקור (בתאילנד min ~22°C), MPPT matching.": {en:"String Configuration — calculating panels per string, Voc in cold (Thailand min ~22°C), MPPT matching.",th:"String Configuration — คำนวณจำนวนแผงต่อสตริง Voc ในอุณหภูมิต่ำ (ไทย min ~22°C) MPPT matching"},
+  "Inverter Sizing — DC/AC ratio (1.1-1.3 בתאילנד), MPPT ranges, transformer matching.": {en:"Inverter Sizing — DC/AC ratio (1.1–1.3 in Thailand), MPPT ranges, transformer matching.",th:"Inverter Sizing — อัตราส่วน DC/AC (1.1–1.3 ในไทย) MPPT ranges การจับคู่หม้อแปลง"},
+  "SLD — Single Line Diagram — סכמה חשמלית מלאה: DC isolators, AC breakers, SPD, earthing, meter.": {en:"SLD — Single Line Diagram — full electrical schematic: DC isolators, AC breakers, SPD, earthing, meter.",th:"SLD — Single Line Diagram — แผนผังไฟฟ้าฉบับสมบูรณ์: DC isolators, AC breakers, SPD, earthing, meter"},
+  "Layout Drawing — מיקום פאנלים על הגג, מרווחים (wind gaps), מסלולי כבלים.": {en:"Layout Drawing — panel positioning on roof, spacing (wind gaps), cable routes.",th:"Layout Drawing — ตำแหน่งแผงบนหลังคา ระยะห่าง (wind gaps) เส้นทางสาย"},
+  "Structural Calc — עומס רוח (Koh Phangan zone), עומס עצמי, עומס גשם, עיגון.": {en:"Structural Calc — wind load (Koh Phangan zone), self-weight, rain load, anchoring.",th:"Structural Calc — แรงลม (เขต Koh Phangan) น้ำหนักตัวเอง น้ำหนักฝน การยึด"},
+  "תוכנות": {en:"Software",th:"ซอฟต์แวร์"},
+  "סימולציית ייצור מדויקת. נתוני מזג אוויר TMY Koh Phangan. Output: דו\"ח ייצור שנתי.": {en:"Precise production simulation. TMY weather data Koh Phangan. Output: annual production report.",th:"การจำลองการผลิตที่แม่นยำ ข้อมูลสภาพอากาศ TMY Koh Phangan ผลลัพธ์: รายงานการผลิตรายปี"},
+  "עיצוב מהיר online. פריסת פאנלים על תמונת drone. הצעת מחיר מיידית.": {en:"Fast online design. Panel layout on drone image. Instant quotation.",th:"การออกแบบออนไลน์รวดเร็ว จัดวางแผงบนภาพโดรน ใบเสนอราคาทันที"},
+  "שרטוט SLD, layout drawings, הגשה ל-PEA.": {en:"SLD drawing, layout drawings, submission to PEA.",th:"วาด SLD ภาพวาด layout ยื่นต่อ PEA"},
+  "תקנים": {en:"Standards",th:"มาตรฐาน"},
+  "פאנלים | אינוורטרים": {en:"Panels | Inverters",th:"แผงโซลาร์ | อินเวอร์เตอร์"},
+  "חיווט + הארקה": {en:"Wiring + earthing",th:"การเดินสาย + การต่อสายดิน"},
+  "חיבור לרשת": {en:"Grid connection",th:"การเชื่อมต่อกริด"},
+
+  // Slide 4 — construction
+  "שלב 3: קונסטרוקציה — שלד הרכבה": {en:"Phase 3: Structure — Mounting Frame",th:"ขั้นที่ 3: โครงสร้าง — โครงยึด"},
+  "ימים 1-2 של עבודה בשטח": {en:"Days 1–2 of on-site work",th:"วันที่ 1–2 ของงานในพื้นที่"},
+  "לפי סוג גג": {en:"By Roof Type",th:"ตามประเภทหลังคา"},
+  "גג רעפים (Tile Roof)": {en:"Tile Roof",th:"หลังคากระเบื้อง"},
+  "הוקים ייעודיים (tile hooks) מתחת לרעף. לא קודחים דרך הרעף! הוק → rail → clamp → panel.": {en:"Dedicated tile hooks under the tile. No drilling through the tile! Hook → rail → clamp → panel.",th:"ตะขอกระเบื้องเฉพาะใต้กระเบื้อง ไม่เจาะผ่านกระเบื้อง! Hook → rail → clamp → panel"},
+  "נפוץ ברזורטים ווילות סגנון תאילנדי.": {en:"Common in resorts and Thai-style villas.",th:"พบบ่อยในรีสอร์ทและวิลล่าสไตล์ไทย"},
+  "גג מתכת (Metal Roof)": {en:"Metal Roof",th:"หลังคาโลหะ"},
+  "קלאמפים על ה-standing seam או L-feet + bolts. איטום סביב חורים חובה (butyl tape + sealant).": {en:"Clamps on standing seam or L-feet + bolts. Sealing around holes is mandatory (butyl tape + sealant).",th:"แคลมป์บน standing seam หรือ L-feet + สลักเกลียว การซีลรอบรูเป็นสิ่งจำเป็น (butyl tape + sealant)"},
+  "נפוץ במבני תעשייה ומחסנים.": {en:"Common in industrial buildings and warehouses.",th:"พบบ่อยในอาคารอุตสาหกรรมและคลังสินค้า"},
+  "גג שטוח (Flat Roof)": {en:"Flat Roof",th:"หลังคาแบน"},
+  "שתי אפשרויות: Ballast (משקולות, בלי קדיחה) או Tilt frame (שלד בזווית 10-15°). ב-Koh Phangan: tilt frame עדיף — ניקוז גשם.": {en:"Two options: Ballast (weights, no drilling) or Tilt frame (angled frame at 10–15°). In Koh Phangan: tilt frame preferred — rain drainage.",th:"สองตัวเลือก: Ballast (น้ำหนักถ่วง ไม่เจาะ) หรือ Tilt frame (โครงเอียง 10–15°) ใน Koh Phangan: Tilt frame ดีกว่า — ระบายน้ำฝน"},
+  "חומרים — Marine Grade": {en:"Materials — Marine Grade",th:"วัสดุ — ระดับทางทะเล"},
+  "קריטי באי: אוויר מלוח = קורוזיה מואצת. רק אלומיניום 6005-T5 (rails) + נירוסטה 316 (brgs). ברגים מגולוונים = חלודה תוך שנה!": {en:"Critical on island: salt air = accelerated corrosion. Only aluminum 6005-T5 (rails) + stainless 316 (fasteners). Galvanized bolts = rust within a year!",th:"สำคัญมากบนเกาะ: อากาศเค็ม = การกัดกร่อนเร่งขึ้น ใช้เฉพาะอลูมิเนียม 6005-T5 (rails) + สแตนเลส 316 (fasteners) สลักเกลียวชุบสังกะสี = สนิมภายในหนึ่งปี!"},
+  "Rails (פסים)": {en:"Rails",th:"Rails (รางยึด)"},
+  "Clamps (קלאמפים)": {en:"Clamps",th:"Clamps (แคลมป์)"},
+  "חומר": {en:"Material",th:"วัสดุ"},
+  "עלות/kWp": {en:"Cost/kWp",th:"ต้นทุน/kWp"},
+  "סה\"כ": {en:"Total",th:"รวม"},
+
+  // Slide 5 — DC electrical
+  "שלב 4: חשמל DC": {en:"Phase 4: DC Electrical",th:"ขั้นที่ 4: ระบบไฟฟ้า DC"},
+  "שרשור פאנלים, כבלים, מפסקים": {en:"Panel stringing, cables, isolators",th:"การต่อแผงแบบอนุกรม สายไฟ สวิตช์ตัดวงจร"},
+  "רצף עבודה": {en:"Work Sequence",th:"ลำดับการทำงาน"},
+  "הנחת פאנלים על Rails (clamps מהודקים ל-35 N·m)": {en:"Place panels on rails (clamps torqued to 35 N·m)",th:"วางแผงบน rails (ขันแคลมป์ที่ 35 N·m)"},
+  "חיבור MC4 — שרשור פאנלים בסטרינג": {en:"MC4 connection — string panels in series",th:"ต่อ MC4 — ต่อแผงเป็นสตริงแบบอนุกรม"},
+  "ניתוב כבלי DC בתעלות (UV-resistant conduit)": {en:"Route DC cables in conduit (UV-resistant conduit)",th:"เดินสาย DC ในท่อ (conduit ทนรังสี UV)"},
+  "התקנת DC Isolator ליד האינוורטר": {en:"Install DC isolator near the inverter",th:"ติดตั้ง DC isolator ใกล้อินเวอร์เตอร์"},
+  "הארקת שלד (PE conductor → earthing rod)": {en:"Frame earthing (PE conductor → earthing rod)",th:"ต่อสายดินโครง (PE conductor → earthing rod)"},
+  "בדיקת Voc + Isc כל סטרינג (multimeter)": {en:"Test Voc + Isc per string (multimeter)",th:"ทดสอบ Voc + Isc ทุกสตริง (มัลติมิเตอร์)"},
+  "בדיקת בידוד (insulation resistance > 1MΩ)": {en:"Insulation test (resistance > 1MΩ)",th:"ทดสอบฉนวน (ความต้านทาน > 1MΩ)"},
+  "זמן: 1-2 ימים לצוות של 4 (מערכת 30kWp)": {en:"Time: 1–2 days for a crew of 4 (30kWp system)",th:"เวลา: 1–2 วันสำหรับทีม 4 คน (ระบบ 30kWp)"},
+  "מפרט כבלים": {en:"Cable Specifications",th:"ข้อกำหนดสายไฟ"},
+  "רכיב": {en:"Component",th:"ส่วนประกอบ"},
+  "מפרט": {en:"Spec",th:"ข้อกำหนด"},
+  "כבל DC": {en:"DC cable",th:"สาย DC"},
+  "Surge Protection": {en:"Surge Protection",th:"การป้องกันไฟกระชาก"},
+  "Cable tray": {en:"Cable tray",th:"รางสาย"},
+  "Earthing": {en:"Earthing",th:"การต่อสายดิน"},
+  "אזהרה: כבלי DC תחת מתח גם כשהמערכת \"כבויה\" (כל עוד יש אור). עבודה רק עם כפפות 1000V + כלים מבודדים. אין לעבוד ב-DC בגשם!": {en:"Warning: DC cables are live even when system is \"off\" (as long as there is light). Work only with 1000V gloves + insulated tools. Do not work on DC in rain!",th:"คำเตือน: สาย DC มีไฟแม้เมื่อระบบ \"ปิด\" (ตราบเท่าที่มีแสง) ทำงานกับถุงมือ 1000V + เครื่องมือฉนวนเท่านั้น ห้ามทำงานกับ DC ในฝน!"},
+
+  // Slide 6 — AC electrical
+  "שלב 5: חשמל AC — חיבור לרשת": {en:"Phase 5: AC Electrical — Grid Connection",th:"ขั้นที่ 5: ระบบไฟฟ้า AC — เชื่อมต่อกริด"},
+  "מהאינוורטר ועד הלוח הראשי": {en:"From the inverter to the main panel",th:"จากอินเวอร์เตอร์ถึงตู้หลัก"},
+  "SLD — Single Line Diagram (תרשים חד-קווי)": {en:"SLD — Single Line Diagram",th:"SLD — แผนผังเส้นเดี่ยว"},
+  "התקנת אינוורטר (Huawei SUN2000) — קיר מוצל, מאוורר": {en:"Install inverter (Huawei SUN2000) — shaded wall, ventilated",th:"ติดตั้งอินเวอร์เตอร์ (Huawei SUN2000) — ผนังร่ม มีการระบายอากาศ"},
+  "חיבור סטרינגים DC → MPPT inputs": {en:"Connect DC strings → MPPT inputs",th:"ต่อสตริง DC → MPPT inputs"},
+  "AC Isolator — ליד האינוורטר": {en:"AC Isolator — near the inverter",th:"AC Isolator — ใกล้อินเวอร์เตอร์"},
+  "כבל AC → Main Distribution Board": {en:"AC cable → Main Distribution Board",th:"สาย AC → Main Distribution Board"},
+  "Solar Breaker — dedicated, מתחת ל-Main Breaker": {en:"Solar Breaker — dedicated, below Main Breaker",th:"Solar Breaker — เฉพาะ ด้านล่าง Main Breaker"},
+  "SPD Type I+II (הגנת ברקים — קריטי באי!)": {en:"SPD Type I+II (lightning protection — critical on island!)",th:"SPD Type I+II (การป้องกันฟ้าผ่า — สำคัญมากบนเกาะ!)"},
+  "CT Clamp / Smart Meter — לניטור ייצוא": {en:"CT Clamp / Smart Meter — for export monitoring",th:"CT Clamp / Smart Meter — สำหรับติดตามการส่งออก"},
+  "חיבור תקשורת — WiFi / Ethernet → FusionSolar": {en:"Communication connection — WiFi / Ethernet → FusionSolar",th:"การเชื่อมต่อสื่อสาร — WiFi / Ethernet → FusionSolar"},
+  "חיבור פאזות": {en:"Phase Connection",th:"การต่อเฟส"},
+  "חד-פאזי (< 5kW)": {en:"Single-phase (< 5kW)",th:"เฟสเดียว (< 5kW)"},
+  "וילות קטנות. L + N + PE. Breaker 32A.": {en:"Small villas. L + N + PE. 32A breaker.",th:"วิลล่าขนาดเล็ก L + N + PE เบรกเกอร์ 32A"},
+  "תלת-פאזי (5-100kW)": {en:"Three-phase (5–100kW)",th:"สามเฟส (5–100kW)"},
+  "רזורטים ועסקים. 3L + N + PE. Balance בין פאזות. רוב ההתקנות שלנו.": {en:"Resorts and businesses. 3L + N + PE. Balance between phases. Most of our installations.",th:"รีสอร์ทและธุรกิจ 3L + N + PE สมดุลระหว่างเฟส การติดตั้งส่วนใหญ่ของเรา"},
+  "Huawei SUN2000 יתרונות:": {en:"Huawei SUN2000 advantages:",th:"ข้อดีของ Huawei SUN2000:"},
+  "2-6 MPPT trackers (גמישות בשרשור)": {en:"2–6 MPPT trackers (stringing flexibility)",th:"2–6 MPPT trackers (ความยืดหยุ่นในการต่อสตริง)"},
+  "Built-in WiFi + 4G dongle": {en:"Built-in WiFi + 4G dongle",th:"WiFi ในตัว + 4G dongle"},
+  "FusionSolar monitoring חינם": {en:"FusionSolar monitoring free",th:"FusionSolar monitoring ฟรี"},
+  "IP65 — מתאים לחוץ": {en:"IP65 — suitable for outdoor",th:"IP65 — เหมาะสำหรับภายนอก"},
+  "10 שנות אחריות (15 בהרחבה)": {en:"10-year warranty (15 with extension)",th:"รับประกัน 10 ปี (15 ปีพร้อมส่วนขยาย)"},
+
+  // Slide 7 — PEA
+  "שלב 6: חיבור PEA + Net Metering": {en:"Phase 6: PEA Connection + Net Metering",th:"ขั้นที่ 6: เชื่อมต่อ PEA + Net Metering"},
+  "הרגולטור — Provincial Electricity Authority": {en:"The regulator — Provincial Electricity Authority",th:"ผู้กำกับดูแล — Provincial Electricity Authority"},
+  "תהליך PEA (מפושט מ-11/2025)": {en:"PEA process (simplified from 11/2025)",th:"กระบวนการ PEA (ปรับปรุงจาก 11/2025)"},
+  "הגשת בקשה — טופס + SLD + מפרט טכני": {en:"Submit application — form + SLD + technical spec",th:"ยื่นคำขอ — แบบฟอร์ม + SLD + ข้อกำหนดทางเทคนิค"},
+  "PEA בודק מסמכים (3-5 ימי עבודה)": {en:"PEA reviews documents (3–5 working days)",th:"PEA ตรวจสอบเอกสาร (3–5 วันทำการ)"},
+  "בדיקה בשטח — מפקח PEA מגיע לאתר": {en:"On-site inspection — PEA inspector visits site",th:"ตรวจสอบในพื้นที่ — ผู้ตรวจสอบ PEA มาที่ไซต์"},
+  "אישור → החלפת מונה לדו-כיווני": {en:"Approval → meter replaced with bi-directional",th:"อนุมัติ → เปลี่ยนมิเตอร์เป็นแบบสองทิศทาง"},
+  "Commissioning Test — בדיקת Anti-Islanding": {en:"Commissioning Test — Anti-Islanding check",th:"Commissioning Test — ตรวจสอบ Anti-Islanding"},
+  "חיבור לרשת — LIVE!": {en:"Grid connection — LIVE!",th:"เชื่อมต่อกริด — เปิดใช้งาน!"},
+  "חדש (2025): אין צורך בהיתר בנייה, אין רישיון מפעל. רק תיאום PEA. זמן: 7-14 יום מהגשה עד חיבור.": {en:"New (2025): no building permit required, no factory license. Only PEA coordination. Time: 7–14 days from submission to connection.",th:"ใหม่ (2025): ไม่ต้องมีใบอนุญาตก่อสร้าง ไม่ต้องมีใบอนุญาตโรงงาน ประสานงาน PEA เท่านั้น เวลา: 7–14 วันจากการยื่นถึงการเชื่อมต่อ"},
+  "Net Metering בתאילנד": {en:"Net Metering in Thailand",th:"Net Metering ในไทย"},
+  "איך זה עובד": {en:"How it works",th:"วิธีการทำงาน"},
+  "עודף ייצור → נזרק לרשת → מונה חוזר אחורה. יחס 1:1 — כל kWh שמיוצא = kWh חינם בלילה.": {en:"Excess production → exported to grid → meter runs backwards. 1:1 ratio — every kWh exported = free kWh at night.",th:"การผลิตส่วนเกิน → ส่งออกสู่กริด → มิเตอร์เดินถอยหลัง อัตราส่วน 1:1 — ทุก kWh ที่ส่งออก = kWh ฟรีตอนกลางคืน"},
+  "הגבלות": {en:"Limitations",th:"ข้อจำกัด"},
+  "מערכת ≤ גודל החיבור הקיים. ייצוא לא עולה על ייבוא שנתי. עודף סוף שנה → לא מפוצה.": {en:"System ≤ existing connection size. Export does not exceed annual import. Year-end surplus → not compensated.",th:"ระบบ ≤ ขนาดการเชื่อมต่อที่มีอยู่ การส่งออกไม่เกินการนำเข้ารายปี ส่วนเกินสิ้นปี → ไม่ได้รับการชดเชย"},
+
+  // Slide 8 — QA
+  "שלב 7: בקרת איכות + מסירה": {en:"Phase 7: Quality Control + Handover",th:"ขั้นที่ 7: การควบคุมคุณภาพ + การส่งมอบ"},
+  "בדיקות סיום": {en:"Final Tests",th:"การทดสอบสุดท้าย"},
+  "בדיקת ביצועי כל סטרינג מול מפרט יצרן. זיהוי פאנלים פגומים.": {en:"Testing each string's performance against manufacturer spec. Identifying damaged panels.",th:"ทดสอบประสิทธิภาพของทุกสตริงเทียบกับข้อกำหนดของผู้ผลิต ระบุแผงที่เสียหาย"},
+  "מצלמת FLIR — זיהוי hot spots, חיבורים רופפים, תאים פגומים. חובה לפני מסירה.": {en:"FLIR camera — identify hot spots, loose connections, damaged cells. Mandatory before handover.",th:"กล้อง FLIR — ระบุ hot spots การต่อที่หลวม เซลล์ที่เสียหาย จำเป็นก่อนส่งมอบ"},
+  "השוואת ייצור בפועל מול סימולציה. PR צפוי: 75-82% (תאילנד — טמפרטורה גבוהה).": {en:"Compare actual production vs simulation. Expected PR: 75–82% (Thailand — high temperature).",th:"เปรียบเทียบการผลิตจริงกับการจำลอง PR ที่คาดหวัง: 75–82% (ไทย — อุณหภูมิสูง)"},
+  "רשימת ליקויים → תיקון → אישור לקוח → מסירה.": {en:"Defect list → repair → client approval → handover.",th:"รายการข้อบกพร่อง → ซ่อมแซม → อนุมัติลูกค้า → ส่งมอบ"},
+  "חבילת מסירה": {en:"Handover Package",th:"ชุดเอกสารส่งมอบ"},
+  "מסמך": {en:"Document",th:"เอกสาร"},
+  "תיאור": {en:"Description",th:"คำอธิบาย"},
+  "שרטוטים סופיים כולל שינויים": {en:"Final drawings including changes",th:"แบบวาดสุดท้ายรวมการเปลี่ยนแปลง"},
+  "סכמה חשמלית סופית": {en:"Final electrical schematic",th:"แผนผังไฟฟ้าสุดท้าย"},
+  "מדריך תפעול ותחזוקה": {en:"Operation and maintenance manual",th:"คู่มือการใช้งานและบำรุงรักษา"},
+  "פאנלים (25yr) + אינוורטר (10yr)": {en:"Panels (25yr) + inverter (10yr)",th:"แผงโซลาร์ (25 ปี) + อินเวอร์เตอร์ (10 ปี)"},
+  "אישור חיבור": {en:"Connection approval",th:"การอนุมัติการเชื่อมต่อ"},
+  "דו\"ח בדיקות סיום": {en:"Commissioning test report",th:"รายงานการทดสอบ commissioning"},
+  "אפליקציה + גישה ללקוח": {en:"App + client access",th:"แอป + การเข้าถึงของลูกค้า"},
+  "תמונות Before/After": {en:"Before/After photos",th:"ภาพก่อน/หลัง"},
+  "לתיעוד + שיווק": {en:"for documentation + marketing",th:"สำหรับเอกสาร + การตลาด"},
+  "אחריות: 10 שנים על עבודה | 25 שנים על פאנלים | 10 שנים על אינוורטר | 10 שנים על קונסטרוקציה": {en:"Warranty: 10 years on workmanship | 25 years on panels | 10 years on inverter | 10 years on structure",th:"การรับประกัน: 10 ปีสำหรับงาน | 25 ปีสำหรับแผงโซลาร์ | 10 ปีสำหรับอินเวอร์เตอร์ | 10 ปีสำหรับโครงสร้าง"},
+
+  // Slide 9 — safety
+  "בטיחות — סביבה טרופית": {en:"Safety — Tropical Environment",th:"ความปลอดภัย — สภาพแวดล้อมเขตร้อน"},
+  "אתגרים ייחודיים לאי": {en:"Island-Specific Challenges",th:"ความท้าทายเฉพาะบนเกาะ"},
+  "חום קיצוני": {en:"Extreme heat",th:"ความร้อนสุดขีด"},
+  "35-42°C על הגג. הפסקות כל שעה. מים + אלקטרוליטים. עבודה 7:00-11:00 + 14:00-17:00 בלבד.": {en:"35–42°C on the roof. Breaks every hour. Water + electrolytes. Work hours 7:00–11:00 + 14:00–17:00 only.",th:"35–42°C บนหลังคา พักทุกชั่วโมง น้ำ + อิเล็กโทรไลต์ เวลาทำงาน 7:00–11:00 + 14:00–17:00 เท่านั้น"},
+  "עונת מונסון (אוק-דצמ)": {en:"Monsoon season (Oct–Dec)",th:"ฤดูมรสุม (ต.ค.–ธ.ค.)"},
+  "גשמים כבדים. אין עבודת DC בגשם. תכנון עבודות לעונה יבשה (ינואר-ספט).": {en:"Heavy rains. No DC work in rain. Plan work for dry season (Jan–Sep).",th:"ฝนหนัก ห้ามทำงาน DC ในฝน วางแผนงานสำหรับฤดูแล้ง (ม.ค.–ก.ย.)"},
+  "ברקים": {en:"Lightning",th:"ฟ้าผ่า"},
+  "Koh Phangan = אזור ברקים גבוה. SPD Type I+II חובה. Earthing rod 2.4m minimum.": {en:"Koh Phangan = high lightning zone. SPD Type I+II mandatory. Earthing rod 2.4m minimum.",th:"Koh Phangan = เขตฟ้าผ่าสูง SPD Type I+II จำเป็น Earthing rod ขั้นต่ำ 2.4m"},
+  "אוויר מלוח": {en:"Salt air",th:"อากาศเค็ม"},
+  "קורוזיה מואצת. בדיקת חיבורים חשמליים כל 6 חודשים. רק SS316 + aluminum.": {en:"Accelerated corrosion. Inspect electrical connections every 6 months. Only SS316 + aluminum.",th:"การกัดกร่อนเร่งขึ้น ตรวจสอบจุดต่อไฟฟ้าทุก 6 เดือน ใช้เฉพาะ SS316 + อลูมิเนียม"},
+  "ציוד בטיחות חובה": {en:"Mandatory Safety Equipment",th:"อุปกรณ์ความปลอดภัยที่จำเป็น"},
+  "פריט": {en:"Item",th:"รายการ"},
+  "תקן": {en:"Standard",th:"มาตรฐาน"},
+  "רתמת גוף + חבל": {en:"Body harness + rope",th:"สายรัดตัว + เชือก"},
+  "עבודה בגובה > 2m": {en:"Work at height > 2m",th:"งานที่สูงกว่า 2m"},
+  "כפפות DC 1000V": {en:"DC 1000V gloves",th:"ถุงมือ DC 1000V"},
+  "נעלי בטיחות": {en:"Safety shoes",th:"รองเท้าเซฟตี้"},
+  "מבודדות": {en:"Insulated",th:"มีฉนวน"},
+  "קסדה": {en:"Helmet",th:"หมวกนิรภัย"},
+  "משקפי מגן": {en:"Safety goggles",th:"แว่นครอบตาเซฟตี้"},
+  "הגנת שמש": {en:"Sun protection",th:"การป้องกันแดด"},
+  "SPF 50+ / חולצת UV": {en:"SPF 50+ / UV shirt",th:"SPF 50+ / เสื้อกันรังสี UV"},
+  "ערכת עזרה ראשונה": {en:"First aid kit",th:"ชุดปฐมพยาบาล"},
+  "כולל טיפול חום": {en:"including heat treatment",th:"รวมการรักษาอาการเพลียแดด"},
+  "ביטוח חובה: CAR (Contractor All Risk) לכל אתר. אחריות צד ג'. פיצוי עובדים (Social Security).": {en:"Mandatory insurance: CAR (Contractor All Risk) per site. Third-party liability. Workers' compensation (Social Security).",th:"ประกันที่จำเป็น: CAR (Contractor All Risk) ต่อไซต์ ความรับผิดต่อบุคคลที่สาม ค่าชดเชยแรงงาน (ประกันสังคม)"},
+
+  // Slide 10 — crew & schedule
+  "צוות ולו\"ז טיפוסי": {en:"Typical Crew & Schedule",th:"ทีมงานและกำหนดการทั่วไป"},
+  "מערכת 30kWp — רזורט בינוני": {en:"30kWp system — medium resort",th:"ระบบ 30kWp — รีสอร์ทขนาดกลาง"},
+  "הרכב צוות": {en:"Crew Composition",th:"องค์ประกอบทีม"},
+  "תפקיד": {en:"Role",th:"บทบาท"},
+  "שכר יומי": {en:"Daily wage",th:"ค่าจ้างรายวัน"},
+  "מנהל פרויקט": {en:"Project Manager",th:"ผู้จัดการโครงการ"},
+  "חשמלאי מוסמך": {en:"Licensed electrician",th:"ช่างไฟฟ้าที่มีใบอนุญาต"},
+  "מתקינים": {en:"Installers",th:"ช่างติดตั้ง"},
+  "סה\"כ/יום": {en:"Total/day",th:"รวม/วัน"},
+  "שכר שבועי: ฿42,500 (5 ימים)": {en:"Weekly wages: ฿42,500 (5 days)",th:"ค่าจ้างรายสัปดาห์: ฿42,500 (5 วัน)"},
+  "עלות עבודה 30kWp: ฿59,500 (7 ימים)": {en:"30kWp labor cost: ฿59,500 (7 days)",th:"ต้นทุนแรงงาน 30kWp: ฿59,500 (7 วัน)"},
+  "לו\"ז — 30kWp": {en:"Schedule — 30kWp",th:"กำหนดการ — 30kWp"},
+  "יום": {en:"Day",th:"วัน"},
+  "משימה": {en:"Task",th:"งาน"},
+  "אבן דרך": {en:"Milestone",th:"จุดสำคัญ"},
+  "הכנת גג + סימון": {en:"Roof prep + marking",th:"เตรียมหลังคา + ทำเครื่องหมาย"},
+  "קונסטרוקציה (rails, hooks)": {en:"Structure (rails, hooks)",th:"โครงสร้าง (rails, hooks)"},
+  "שלד מוכן ✅": {en:"Frame ready ✅",th:"โครงพร้อม ✅"},
+  "הנחת פאנלים + DC cabling": {en:"Panel placement + DC cabling",th:"วางแผง + เดินสาย DC"},
+  "DC מוכן ✅": {en:"DC ready ✅",th:"DC พร้อม ✅"},
+  "אינוורטר + AC + SPD": {en:"Inverter + AC + SPD",th:"อินเวอร์เตอร์ + AC + SPD"},
+  "AC מוכן ✅": {en:"AC ready ✅",th:"AC พร้อม ✅"},
+  "Commissioning + בדיקות": {en:"Commissioning + testing",th:"Commissioning + การทดสอบ"},
+  "מערכת חיה ✅": {en:"System live ✅",th:"ระบบใช้งานได้ ✅"},
+  "ניקיון + תיעוד + מסירה": {en:"Cleanup + documentation + handover",th:"ทำความสะอาด + เอกสาร + ส่งมอบ"},
+  "מסירה ✅": {en:"Handover ✅",th:"ส่งมอบ ✅"},
+  "* בדיקת PEA: 7-14 ימים נוספים": {en:"* PEA inspection: 7–14 additional days",th:"* การตรวจสอบ PEA: 7–14 วันเพิ่มเติม"},
+
+  // Slide 11 — cost breakdown
+  "פירוט עלויות — 30kWp טיפוסי": {en:"Cost Breakdown — Typical 30kWp",th:"รายละเอียดต้นทุน — 30kWp ทั่วไป"},
+  "מחיר ללקוח": {en:"Client price",th:"ราคาสำหรับลูกค้า"},
+  "עלות ציוד": {en:"Equipment cost",th:"ต้นทุนอุปกรณ์"},
+  "רווח גולמי": {en:"Gross profit",th:"กำไรขั้นต้น"},
+  "שנים\nROI ללקוח": {en:"years\nclient ROI",th:"ปี\nROI ของลูกค้า"},
+  "פירוט עלויות (฿/kWp)": {en:"Cost breakdown (฿/kWp)",th:"รายละเอียดต้นทุน (฿/kWp)"},
+  "פאנלים": {en:"Panels",th:"แผงโซลาร์"},
+  "אינוורטר": {en:"Inverter",th:"อินเวอร์เตอร์"},
+  "BOS + כבלים": {en:"BOS + cables",th:"BOS + สายไฟ"},
+  "פירוט תפעול (฿/kWp)": {en:"Operations breakdown (฿/kWp)",th:"รายละเอียดการดำเนินงาน (฿/kWp)"},
+  "עבודה": {en:"Labor",th:"แรงงาน"},
+  "לוגיסטיקה": {en:"Logistics",th:"โลจิสติกส์"},
+  "הנדסה": {en:"Engineering",th:"วิศวกรรม"},
+
+  // Nav
+  "→ הקודם": {en:"→ Prev",th:"→ ก่อนหน้า"},
+  "הבא ←": {en:"Next ←",th:"ถัดไป ←"},
+};
+</script>
 <script src="tm-lang.js"></script>
 </body>
 </html>

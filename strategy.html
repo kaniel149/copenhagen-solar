@@ -124,7 +124,7 @@
         .nav-dot.active { background: var(--sun); transform: scale(1.4); }
 
         /* FOOTNOTES */
-        .fn { 
+        .fn {
             display: inline-block;
             font-size: 0.65rem;
             color: var(--sun);
@@ -154,7 +154,7 @@
             .vs-divider { padding-top: 0; justify-content: center; }
             .nav-dots { display: none; }
         }
-    
+
 .slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
 .slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
 .img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
@@ -167,24 +167,14 @@
 .tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
 .tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
-.lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
-.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
-.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-body.lang-en body.lang-th 
 </style>
 </head>
 <body>
+<script src="auth.js"></script>
 <div class="tm-logo-header">
   <span class="brand-text">TM ENERGY</span>
   <img src="visuals/tm-energy-logo.png" alt="TM Energy">
 </div>
-<div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
-  <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
-  <button class="lang-btn" onclick="setLang('th')" data-l="th">ไทย</button>
-</div>
-
-
 
 
 
@@ -351,12 +341,12 @@ body.lang-en body.lang-th
             <div class="card">
                 <span class="badge badge-gold">מקור 1</span>
                 <h3 class="he" style="margin-top:1rem;">EPC — התקנה</h3>
-                <p class="he">מכירה + התקנה + הפעלה. תמחור: ฿35-55K/kWp. מרווח: 30-40%.</p>
+                <p class="he">מכירה + התקנה + הפעלה. תמחור: ฿30,000/kWp. מרווח: 60%.</p>
                 <div style="margin-top:1rem;">
                     <div class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
-                        וילה 10kW = ฿250-350K<br>
-                        Resort 50kW = ฿1.5-2M<br>
-                        Commercial 100kW = ฿3-4M
+                        וילה 10kW = ฿300K<br>
+                        Resort 50kW = ฿1.5M<br>
+                        Commercial 100kW = ฿3M
                     </div>
                 </div>
             </div>
@@ -452,7 +442,7 @@ body.lang-en body.lang-th
                         🚛 משאית ל-Don Sak (סוראט תאני)<br>
                         ⛴ מעבורת Raja Ferry לקופנגן (~2.5 שעות)<br>
                         🏗 מחסן באי + צוות מקומי<br><br>
-                        <strong>עלות מותקנת באי: ฿35-55K/kWp</strong><span class="fn" title="Benchmark: Green Global Tech 105K/3kW=35K/kWp + Phangan.Solar pricing tiers + island logistics premium estimate">[12]</span><br>
+                        <strong>עלות מותקנת באי: ฿30,000/kWp</strong><span class="fn" title="Benchmark: Green Global Tech 105K/3kW=35K/kWp + Phangan.Solar pricing tiers + island logistics premium estimate">[12]</span><br>
                         <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);">(כולל premium לוגיסטיקת אי)</span>
                     </p>
                 </div>
@@ -764,11 +754,164 @@ const observer = new IntersectionObserver(entries => {
 slides.forEach(s => observer.observe(s));
 </script>
 
-
-
-
-
-
+<script>
+window.PAGE_TRANSLATIONS = {
+  "חברת הסולאר הראשונה והפרימיום של קופנגן, תאילנד.": {en: "The first and premium solar company of Koh Phangan, Thailand.", th: "บริษัทโซลาร์แห่งแรกและระดับพรีเมียมของเกาะพะงัน ประเทศไทย"},
+  "תוכנית עסקית ואסטרטגיה — מרץ 2026.": {en: "Business plan and strategy — March 2026.", th: "แผนธุรกิจและกลยุทธ์ — มีนาคม 2026"},
+  "ההזדמנות": {en: "The Opportunity", th: "โอกาสทางธุรกิจ"},
+  "לידים מזוהים": {en: "Identified Leads", th: "ลูกค้าเป้าหมายที่ระบุแล้ว"},
+  "חברות סולאר פרימיום": {en: "Premium Solar Companies", th: "บริษัทโซลาร์ระดับพรีเมียม"},
+  "חיסכון בחשמל": {en: "Electricity Savings", th: "การประหยัดไฟฟ้า"},
+  "שנות החזר השקעה": {en: "Years to ROI", th: "ปีคืนทุน"},
+  "אי ללא סולאר פרימיום": {en: "Island Without Premium Solar", th: "เกาะที่ยังไม่มีบริษัทโซลาร์ระดับพรีเมียม"},
+  "קופנגן — אי עם 50-100 מלונות, 200+ וילות יוקרה, 20+ coworking. אף חברת סולאר רצינית לא משרתת את השוק הזה.": {en: "Koh Phangan — an island with 50-100 hotels, 200+ luxury villas, 20+ coworking spaces. No serious solar company serves this market.", th: "เกาะพะงัน — เกาะที่มีโรงแรม 50-100 แห่ง วิลล่าหรูกว่า 200 แห่ง และโคเวิร์กกิ้งกว่า 20 แห่ง ยังไม่มีบริษัทโซลาร์ที่จริงจังให้บริการในตลาดนี้"},
+  "חשמל יקר + הפסקות": {en: "Expensive Electricity + Outages", th: "ไฟฟ้าแพง + ไฟดับบ่อย"},
+  "האי רץ על כבל תת-ימי יחיד. הפסקות חשמל תכופות.": {en: "The island runs on a single undersea cable. Frequent power outages.", th: "เกาะนี้ใช้สายเคเบิลใต้น้ำเส้นเดียว ส่งผลให้ไฟฟ้าดับบ่อยครั้ง"},
+  "תעריף מסחרי 6-8 באט/קוט\"ש.": {en: "Commercial rate 6-8 THB/kWh.", th: "อัตราค่าไฟฟ้าเชิงพาณิชย์ 6-8 บาท/หน่วย"},
+  "מלונות משלמים 50,000-200,000 באט/חודש.": {en: "Hotels pay 50,000-200,000 THB/month.", th: "โรงแรมจ่ายค่าไฟ 50,000-200,000 บาทต่อเดือน"},
+  "אפס רגולציה": {en: "Zero Regulation", th: "กฎระเบียบเป็นศูนย์"},
+  "תאילנד ביטלה את כל ההיתרים לסולאר על גגות (2025).": {en: "Thailand eliminated all solar rooftop permits (2025).", th: "ประเทศไทยยกเลิกใบอนุญาตติดตั้งโซลาร์บนหลังคาทั้งหมด (2025)"},
+  "רק הודעה 30 יום. Net metering זמין.": {en: "Only 30-day notification required. Net metering available.", th: "ต้องการเพียงการแจ้ง 30 วัน การวัดสุทธิพร้อมใช้งาน"},
+  "הטבות מס זמינות למשקיעים בסולאר.": {en: "Tax incentives available for solar investors.", th: "มีสิทธิประโยชน์ทางภาษีสำหรับนักลงทุนโซลาร์"},
+  "גודל השוק": {en: "Market Size", th: "ขนาดตลาด"},
+  "סגמנט": {en: "Segment", th: "กลุ่มลูกค้า"},
+  "כמות": {en: "Count", th: "จำนวน"},
+  "גודל ממוצע": {en: "Average Size", th: "ขนาดเฉลี่ย"},
+  "מלונות ו-Resorts": {en: "Hotels & Resorts", th: "โรงแรมและรีสอร์ต"},
+  "חברות וילות": {en: "Villa Companies", th: "บริษัทวิลล่า"},
+  "יזמי נדל\"ן": {en: "Real Estate Developers", th: "นักพัฒนาอสังหาริมทรัพย์"},
+  "מסעדות וביץ' בארים": {en: "Restaurants & Beach Bars", th: "ร้านอาหารและบีชบาร์"},
+  "Wellness / יוגה": {en: "Wellness / Yoga", th: "สถานดูแลสุขภาพ / โยคะ"},
+  "נוסף (בי\"ח, חנויות)": {en: "Other (Hospital, Shops)", th: "อื่นๆ (โรงพยาบาล, ร้านค้า)"},
+  "סה\"כ: 114 לידים מזוהים": {en: "Total: 114 Identified Leads", th: "รวม: 114 ลูกค้าเป้าหมายที่ระบุแล้ว"},
+  "TAM שנתי": {en: "Annual TAM", th: "TAM รายปี"},
+  "שמרני": {en: "Conservative", th: "แบบอนุรักษ์นิยม"},
+  "50 התקנות × 200K ממוצע": {en: "50 installations × 200K average", th: "50 การติดตั้ง × เฉลี่ย 200K"},
+  "אגרסיבי": {en: "Aggressive", th: "แบบรุกรุน"},
+  "200 התקנות × 500K ממוצע": {en: "200 installations × 500K average", th: "200 การติดตั้ง × เฉลี่ย 500K"},
+  "+ הכנסה חוזרת מ-O&M: ฿2-5K/חודש למערכת": {en: "+ Recurring revenue from O&M: ฿2-5K/month per system", th: "+ รายได้ประจำจาก O&M: ฿2-5K/เดือนต่อระบบ"},
+  "מפת תחרות": {en: "Competitive Landscape", th: "แผนที่การแข่งขัน"},
+  "מתחרה": {en: "Competitor", th: "คู่แข่ง"},
+  "מיקוד": {en: "Focus", th: "จุดเน้น"},
+  "תמחור": {en: "Pricing", th: "การกำหนดราคา"},
+  "חוזקות": {en: "Strengths", th: "จุดแข็ง"},
+  "חולשות": {en: "Weaknesses", th: "จุดอ่อน"},
+  "נוכחות מקומית, Longi+Huawei": {en: "Local presence, Longi+Huawei", th: "มีสถานะท้องถิ่น, Longi+Huawei"},
+  "עיצוב גרוע, שגיאות כתיב, אין אתר, אין branding": {en: "Poor design, spelling errors, no website, no branding", th: "ดีไซน์แย่ สะกดผิด ไม่มีเว็บไซต์ ไม่มี branding"},
+  "יבוא ישיר, תמחור שקוף": {en: "Direct import, transparent pricing", th: "นำเข้าตรง ราคาโปร่งใส"},
+  "עסק קטן, רק קופנגן": {en: "Small business, Koh Phangan only", th: "ธุรกิจเล็ก ให้บริการเฉพาะเกาะพะงัน"},
+  "מומחיות off-grid, כמה איים": {en: "Off-grid expertise, several islands", th: "ความเชี่ยวชาญ off-grid หลายเกาะ"},
+  "אין תמחור גלוי, צוות קטן": {en: "No transparent pricing, small team", th: "ไม่มีราคาโปร่งใส ทีมงานเล็ก"},
+  "חשמל + סולאר": {en: "Electrical + Solar", th: "ไฟฟ้า + โซลาร์"},
+  "Alpha ESS dealer, בסיס לקוחות": {en: "Alpha ESS dealer, customer base", th: "ตัวแทน Alpha ESS มีฐานลูกค้า"},
+  "סולאר לא ליבה, נוכחות אונליין חלשה": {en: "Solar not core business, weak online presence", th: "โซลาร์ไม่ใช่ธุรกิจหลัก สถานะออนไลน์อ่อนแอ"},
+  "חדשים, אין track record מקומי": {en: "New, no local track record", th: "ใหม่ ไม่มีประวัติผลงานในพื้นที่"},
+  "הזדמנות:": {en: "Opportunity:", th: "โอกาส:"},
+  "אף מתחרה לא מציע ESCO/PPA, מערכת monitoring, branding ללקוחות, או שיווק דיגיטלי רציני. השוק פתוח לשחקן פרימיום.": {en: "No competitor offers ESCO/PPA, monitoring system, customer branding, or serious digital marketing. The market is open for a premium player.", th: "ไม่มีคู่แข่งรายใดเสนอ ESCO/PPA ระบบ monitoring การสร้าง branding ให้ลูกค้า หรือการตลาดดิจิทัลที่จริงจัง ตลาดเปิดกว้างสำหรับผู้เล่นระดับพรีเมียม"},
+  "מודל עסקי": {en: "Business Model", th: "รูปแบบธุรกิจ"},
+  "מקור 1": {en: "Revenue 1", th: "แหล่งรายได้ 1"},
+  "EPC — התקנה": {en: "EPC — Installation", th: "EPC — การติดตั้ง"},
+  "מכירה + התקנה + הפעלה. תמחור: ฿30,000/kWp. מרווח: 60%.": {en: "Sale + Installation + Commissioning. Pricing: ฿30,000/kWp. Margin: 60%.", th: "ขาย + ติดตั้ง + เปิดใช้งาน ราคา: ฿30,000/kWp อัตรากำไร: 60%"},
+  "מקור 2 — ליבה": {en: "Revenue 2 — Core", th: "แหล่งรายได้ 2 — หลัก"},
+  "אנחנו מממנים + מתקינים + מתחזקים. הלקוח משלם לפי צריכה — בלי upfront. חוזה 15-25 שנה.": {en: "We finance + install + maintain. The client pays per consumption — no upfront cost. 15-25 year contract.", th: "เราจัดหาเงิน + ติดตั้ง + บำรุงรักษา ลูกค้าจ่ายตามการใช้งาน — ไม่มีต้นทุนล่วงหน้า สัญญา 15-25 ปี"},
+  "הלקוח חוסך 20-30% מיום 1": {en: "Client saves 20-30% from day 1", th: "ลูกค้าประหยัด 20-30% ตั้งแต่วันแรก"},
+  "אנחנו מקבלים 70-80% מהחשבון": {en: "We receive 70-80% of the bill", th: "เราได้รับ 70-80% ของค่าไฟ"},
+  "Recurring revenue לטווח ארוך": {en: "Long-term recurring revenue", th: "รายได้ประจำระยะยาว"},
+  "מקור 3": {en: "Revenue 3", th: "แหล่งรายได้ 3"},
+  "O&M — תחזוקה": {en: "O&M — Maintenance", th: "O&M — การบำรุงรักษา"},
+  "ניטור 24/7, ניקוי, תיקונים. ฿2-5K/חודש למערכת. Recurring מכל התקנה.": {en: "24/7 monitoring, cleaning, repairs. ฿2-5K/month per system. Recurring from every installation.", th: "ติดตาม 24/7 ทำความสะอาด ซ่อมแซม ฿2-5K/เดือนต่อระบบ รายได้ประจำจากทุกการติดตั้ง"},
+  "50 מערכות × ฿3K = ฿150K/חודש": {en: "50 systems × ฿3K = ฿150K/month", th: "50 ระบบ × ฿3K = ฿150K/เดือน"},
+  "100 מערכות × ฿3K = ฿300K/חודש": {en: "100 systems × ฿3K = ฿300K/month", th: "100 ระบบ × ฿3K = ฿300K/เดือน"},
+  "מימון ומבנה משפטי": {en: "Financing & Legal Structure", th: "การจัดหาเงินทุนและโครงสร้างทางกฎหมาย"},
+  "מימון ללקוחות": {en: "Client Financing", th: "การจัดหาเงินทุนสำหรับลูกค้า"},
+  "אפס תשלום מראש, תשלום לפי חיסכון. חוזה 20-25 שנה. מועדף למלונות/resorts.": {en: "Zero upfront payment, pay per savings. 20-25 year contract. Preferred for hotels/resorts.", th: "ไม่มีเงินจ่ายล่วงหน้า จ่ายตามการประหยัด สัญญา 20-25 ปี เหมาะสำหรับโรงแรม/รีสอร์ต"},
+  "הלוואה ירוקה ב-3% קבוע ל-3 שנים, עד ฿30M. מועדף לעסקים.": {en: "Green loan at fixed 3% for 3 years, up to ฿30M. Preferred for businesses.", th: "สินเชื่อสีเขียวอัตราดอกเบี้ยคงที่ 3% เป็นเวลา 3 ปี วงเงินถึง ฿30M เหมาะสำหรับธุรกิจ"},
+  "הטבות מס": {en: "Tax Incentives", th: "สิทธิประโยชน์ทางภาษี"},
+  "ניכוי 50% CIT על ציוד סולאר + ฿200K ניכוי לבתים פרטיים.": {en: "50% CIT deduction on solar equipment + ฿200K deduction for private homes.", th: "หักลดหย่อน CIT 50% สำหรับอุปกรณ์โซลาร์ + หักลดหย่อน ฿200K สำหรับที่อยู่อาศัย"},
+  "฿6.01-6.85/kWh עבור מערכות עד 1MW. בונוס לדרום תאילנד (קופנגן!).": {en: "฿6.01-6.85/kWh for systems up to 1MW. Bonus for southern Thailand (Koh Phangan!).", th: "฿6.01-6.85/หน่วย สำหรับระบบขนาดไม่เกิน 1MW โบนัสพิเศษสำหรับภาคใต้ของไทย (เกาะพะงัน!)"},
+  "שני מסלולי הכנסה:": {en: "Two revenue streams:", th: "สองช่องทางรายได้:"},
+  "EPC — התקנה + מכירה (מרווח 60%)": {en: "EPC — Installation + Sale (60% margin)", th: "EPC — ติดตั้ง + ขาย (อัตรากำไร 60%)"},
+  "PPA — בעלות + מכירת חשמל (IRR ~45%)": {en: "PPA — Ownership + Electricity Sales (IRR ~45%)", th: "PPA — เป็นเจ้าของ + ขายไฟฟ้า (IRR ~45%)"},
+  "O&M — תחזוקה שוטפת (MRR)": {en: "O&M — Ongoing Maintenance (MRR)", th: "O&M — บำรุงรักษาต่อเนื่อง (MRR)"},
+  "מימון דרך בנקים מקומיים": {en: "Financing through local banks", th: "จัดหาเงินทุนผ่านธนาคารท้องถิ่น"},
+  "ESCO model ללקוחות": {en: "ESCO model for clients", th: "โมเดล ESCO สำหรับลูกค้า"},
+  "שרשרת אספקה": {en: "Supply Chain", th: "ห่วงโซ่อุปทาน"},
+  "רכיב": {en: "Component", th: "ส่วนประกอบ"},
+  "ספק": {en: "Supplier", th: "ซัพพลายเออร์"},
+  "עלות": {en: "Cost", th: "ต้นทุน"},
+  "פאנלים": {en: "Panels", th: "แผงโซลาร์"},
+  "ממירים": {en: "Inverters", th: "อินเวอร์เตอร์"},
+  "סוללות": {en: "Batteries", th: "แบตเตอรี่"},
+  "מרכבים": {en: "Mounting Structures", th: "โครงยึดแผง"},
+  "מכסים:": {en: "Tariffs:", th: "ภาษีนำเข้า:"},
+  "פאנלים 0%, ממירים 0-5% (0% עם FTA), סוללות 0-10%, + 7% VAT": {en: "Panels 0%, Inverters 0-5% (0% with FTA), Batteries 0-10%, + 7% VAT", th: "แผงโซลาร์ 0%, อินเวอร์เตอร์ 0-5% (0% กับ FTA), แบตเตอรี่ 0-10%, + VAT 7%"},
+  "לוגיסטיקה לאי": {en: "Island Logistics", th: "โลจิสติกส์ไปยังเกาะ"},
+  "הזמנה מ-BayWa / Solaris (בנגקוק/קראבי)": {en: "Order from BayWa / Solaris (Bangkok/Krabi)", th: "สั่งซื้อจาก BayWa / Solaris (กรุงเทพ/กระบี่)"},
+  "משאית ל-Don Sak (סוראט תאני)": {en: "Truck to Don Sak (Surat Thani)", th: "รถบรรทุกไปยัง Don Sak (สุราษฎร์ธานี)"},
+  "מעבורת Raja Ferry לקופנגן (~2.5 שעות)": {en: "Raja Ferry to Koh Phangan (~2.5 hours)", th: "เรือเฟอร์รี่ Raja ไปเกาะพะงัน (~2.5 ชั่วโมง)"},
+  "מחסן באי + צוות מקומי": {en: "Warehouse on island + local team", th: "คลังสินค้าบนเกาะ + ทีมงานท้องถิ่น"},
+  "עלות מותקנת באי: ฿30,000/kWp": {en: "Installed cost on island: ฿30,000/kWp", th: "ต้นทุนติดตั้งบนเกาะ: ฿30,000/kWp"},
+  "(כולל premium לוגיסטיקת אי)": {en: "(including island logistics premium)", th: "(รวมค่า premium โลจิสติกส์เกาะ)"},
+  "אסטרטגיית שיווק": {en: "Marketing Strategy", th: "กลยุทธ์การตลาด"},
+  "Hook #1: אי חוסמי הפסקות חשמל. הפסקות תכופות = כאב אמיתי. הפתרון: סולאר + סוללה.": {en: "Hook #1: The island that blocks power outages. Frequent outages = real pain. The solution: solar + battery.", th: "Hook #1: เกาะที่แก้ปัญหาไฟดับ ไฟดับบ่อย = ปัญหาจริง ทางออก: โซลาร์ + แบตเตอรี่"},
+  "10+ קבוצות פעילות באי. לא מכירה ישירה — תוכן על הפסקות חשמל, מדריכי חיסכון, סיפורי לקוחות. 1-2 פוסטים/שבוע.": {en: "10+ active groups on the island. No direct selling — content about power outages, savings guides, customer stories. 1-2 posts/week.", th: "กลุ่มที่ใช้งานบนเกาะมากกว่า 10 กลุ่ม ไม่ขายตรง — แชร์เนื้อหาเรื่องไฟดับ คู่มือการประหยัด เรื่องราวลูกค้า 1-2 โพสต์/สัปดาห์"},
+  "Before/after, time-lapse התקנות, ROI calculators, אווירת האי. סולאר = יוקרה, לא חיסכון.": {en: "Before/after, installation time-lapses, ROI calculators, island atmosphere. Solar = luxury, not savings.", th: "Before/after ไทม์แลปส์การติดตั้ง เครื่องคำนวณ ROI บรรยากาศเกาะ โซลาร์ = ความหรูหรา ไม่ใช่แค่การประหยัด"},
+  "תחרות אפסית על \"solar Koh Phangan\". בלוג + landing page = page 1 תוך חודש. Google Ads על מילות מפתח מקומיות.": {en: "Zero competition for \"solar Koh Phangan\". Blog + landing page = page 1 within a month. Google Ads on local keywords.", th: "แทบไม่มีการแข่งขันสำหรับ \"solar Koh Phangan\" บล็อก + หน้า landing = หน้าแรกของ Google ภายในเดือนเดียว Google Ads ด้วยคีย์เวิร์ดท้องถิ่น"},
+  "שותפויות": {en: "Partnerships", th: "การเป็นพันธมิตร"},
+  "Property managers, סוכני נדל\"ן, קבלני בנייה, עסקי eco. עמלת הפניה ฿10,000 להמרה.": {en: "Property managers, real estate agents, construction contractors, eco businesses. Referral commission ฿10,000 per conversion.", th: "ผู้จัดการทรัพย์สิน ตัวแทนอสังหาริมทรัพย์ ผู้รับเหมาก่อสร้าง ธุรกิจ eco ค่าคอมมิชชั่นการแนะนำ ฿10,000 ต่อการปิดการขาย"},
+  "התקנה ראשונה ב-resort ידוע = social proof לכל האי. תמחור מיוחד כנגד case study + PR.": {en: "First installation at a known resort = social proof for the whole island. Special pricing in exchange for case study + PR.", th: "การติดตั้งแรกที่รีสอร์ตชื่อดัง = social proof ทั่วทั้งเกาะ ราคาพิเศษแลกกับ case study + PR"},
+  "LINE הוא המסנג'ר #1 בתאילנד. WhatsApp לexpats. שני הערוצים פתוחים. Templates מוכנים.": {en: "LINE is the #1 messenger in Thailand. WhatsApp for expats. Both channels open. Templates ready.", th: "LINE คือแอปส่งข้อความอันดับ 1 ในไทย WhatsApp สำหรับชาวต่างชาติ เปิดทั้งสองช่องทาง มีเทมเพลตพร้อมใช้"},
+  "תקציב שיווק 90 יום:": {en: "90-day marketing budget:", th: "งบประมาณการตลาด 90 วัน:"},
+  "לוח זמנים — 90 יום": {en: "Timeline — 90 Days", th: "ไทม์ไลน์ — 90 วัน"},
+  "הקמת מבנה עסקי + רישיונות": {en: "Set up business structure + licenses", th: "จัดตั้งโครงสร้างธุรกิจ + ใบอนุญาต"},
+  "חשבונות Social (FB, IG, LINE)": {en: "Social accounts (FB, IG, LINE)", th: "บัญชีโซเชียล (FB, IG, LINE)"},
+  "הסכמי ספקים (BayWa / Solaris)": {en: "Supplier agreements (BayWa / Solaris)", th: "ข้อตกลงซัพพลายเออร์ (BayWa / Solaris)"},
+  "Lighthouse project — חוזה ראשון": {en: "Lighthouse project — first contract", th: "Lighthouse project — สัญญาแรก"},
+  "10 site surveys ראשונים": {en: "First 10 site surveys", th: "สำรวจพื้นที่ 10 แห่งแรก"},
+  "Cold outreach ל-Top 20 prospects": {en: "Cold outreach to Top 20 prospects", th: "ติดต่อโดยตรงกับ 20 ลูกค้าเป้าหมายชั้นนำ"},
+  "הפניות לקוחות": {en: "Customer Referrals", th: "การแนะนำจากลูกค้า"},
+  "סוללה אופציונלית": {en: "Optional Battery", th: "แบตเตอรี่เสริม (ตัวเลือก)"},
+  "אחריות 5 שנים": {en: "5-Year Warranty", th: "รับประกัน 5 ปี"},
+  "ESCO / PPA זמין": {en: "ESCO / PPA Available", th: "มี ESCO / PPA"},
+  "חוזה תחזוקה מלא": {en: "Full Maintenance Contract", th: "สัญญาบำรุงรักษาเต็มรูปแบบ"},
+  "סוללה + EMS": {en: "Battery + EMS", th: "แบตเตอรี่ + EMS"},
+  "Project Manager ייעודי": {en: "Dedicated Project Manager", th: "ผู้จัดการโครงการเฉพาะ"},
+  "מה מוכן עכשיו": {en: "What's Ready Now", th: "สิ่งที่พร้อมแล้วตอนนี้"},
+  "מסמכים (7 קבצים, ~80KB)": {en: "Documents (7 files, ~80KB)", th: "เอกสาร (7 ไฟล์, ~80KB)"},
+  "מחקר שוק, תעריפים, רגולציה": {en: "Market research, rates, regulation", th: "การวิจัยตลาด อัตราค่าไฟ กฎระเบียบ"},
+  "ספקים, מפיצים, לוגיסטיקה, מכסים": {en: "Suppliers, distributors, logistics, tariffs", th: "ซัพพลายเออร์ ผู้จัดจำหน่าย โลจิสติกส์ ภาษีนำเข้า"},
+  "הלוואות, ESCO, מימון": {en: "Loans, ESCO, financing", th: "สินเชื่อ ESCO การจัดหาเงินทุน"},
+  "תוכנית 30/60/90, ערוצים, תקציב": {en: "30/60/90 plan, channels, budget", th: "แผน 30/60/90 ช่องทาง งบประมาณ"},
+  "114 לידים ממופים": {en: "114 mapped leads", th: "ลูกค้าเป้าหมาย 114 รายที่ทำแผนที่แล้ว"},
+  "4 מתחרים + ניתוח פערים": {en: "4 competitors + gap analysis", th: "คู่แข่ง 4 ราย + การวิเคราะห์ช่องว่าง"},
+  "המצגת הזו": {en: "This presentation", th: "การนำเสนอนี้"},
+  "בתהליך": {en: "In Progress", th: "อยู่ระหว่างดำเนินการ"},
+  "נכסים דיגיטליים": {en: "Digital Assets", th: "สินทรัพย์ดิจิทัล"},
+  "צעדים הבאים": {en: "Next Steps", th: "ขั้นตอนถัดไป"},
+  "בחירת domain (kophangansolar.com?)": {en: "Choose domain (kophangansolar.com?)", th: "เลือกโดเมน (kophangansolar.com?)"},
+  "Deploy ל-Vercel": {en: "Deploy to Vercel", th: "Deploy ไปยัง Vercel"},
+  "הקמת חשבונות Social": {en: "Set up Social accounts", th: "จัดตั้งบัญชีโซเชียล"},
+  "הסכם עם ספק ראשון": {en: "Agreement with first supplier", th: "ข้อตกลงกับซัพพลายเออร์รายแรก"},
+  "Lighthouse project — מי הלקוח הראשון?": {en: "Lighthouse project — who is the first client?", th: "Lighthouse project — ลูกค้าแรกคือใคร?"},
+  "מקורות ושיטת מחקר": {en: "Sources & Research Methodology", th: "แหล่งข้อมูลและวิธีการวิจัย"},
+  "מקורות רשמיים": {en: "Official Sources", th: "แหล่งข้อมูลทางการ"},
+  "תעריפי חשמל רשמיים": {en: "Official electricity tariffs", th: "อัตราค่าไฟฟ้าทางการ"},
+  "מקורות שוק": {en: "Market Sources", th: "แหล่งข้อมูลตลาด"},
+  "הערכת צריכה: חדרים × AC load × PEA commercial rate": {en: "Consumption estimate: rooms × AC load × PEA commercial rate", th: "ประมาณการการใช้ไฟ: ห้อง × โหลด AC × อัตราเชิงพาณิชย์ PEA"},
+  "Green Global Tech flyer (צולם באי): 105K/3kW = 35K/kWp": {en: "Green Global Tech flyer (photographed on island): 105K/3kW = 35K/kWp", th: "ใบปลิว Green Global Tech (ถ่ายบนเกาะ): 105K/3kW = 35K/kWp"},
+  "Thai Revenue Dept — CIT deduction + household deduction (valid 2027)": {en: "Thai Revenue Dept — CIT deduction + household deduction (valid 2027)", th: "กรมสรรพากรไทย — การหักลดหย่อน CIT + การหักลดหย่อนที่อยู่อาศัย (ใช้ได้ถึง 2027)"},
+  "הערות זהירות": {en: "Caution Notes", th: "หมายเหตุข้อควรระวัง"},
+  "TAM (10-100M) = הערכה גסה, לא מחקר שוק מעמיק": {en: "TAM (10-100M) = rough estimate, not deep market research", th: "TAM (10-100M) = การประมาณคร่าวๆ ไม่ใช่การวิจัยตลาดเชิงลึก"},
+  "חשבונות חשמל מלונות = הערכה לפי חדרים, לא נתונים אמיתיים": {en: "Hotel electricity bills = estimate by room count, not real data", th: "ค่าไฟโรงแรม = ประมาณตามจำนวนห้อง ไม่ใช่ข้อมูลจริง"},
+  "מחירי ספקים מ-2024-2025, עשויים להשתנות": {en: "Supplier prices from 2024-2025, may change", th: "ราคาซัพพลายเออร์จากปี 2024-2025 อาจมีการเปลี่ยนแปลง"},
+  "70% חיסכון = תרחיש אופטימי עם סוללה. ריאלי: 40-60%": {en: "70% savings = optimistic scenario with battery. Realistic: 40-60%", th: "ประหยัด 70% = สถานการณ์ดีที่สุดพร้อมแบตเตอรี่ ที่สมจริง: 40-60%"},
+  "מחקר מתחרים דרך אתרים בלבד, לא mystery shopping": {en: "Competitor research via websites only, not mystery shopping", th: "การวิจัยคู่แข่งผ่านเว็บไซต์เท่านั้น ไม่ใช่ mystery shopping"},
+  "מהאי הראשון — לכל דרום תאילנד.": {en: "From the first island — to all of southern Thailand.", th: "จากเกาะแรก — สู่ภาคใต้ทั้งหมดของไทย"},
+  "Ko Phangan Solar — הסולאר של קופנגן.": {en: "Ko Phangan Solar — the solar of Koh Phangan.", th: "Ko Phangan Solar — โซลาร์ของเกาะพะงัน"},
+  "מספר וילות": {en: "number of villas", th: "จำนวนวิลล่า"},
+  "וילא 10kW = ฿300K": {en: "Villa 10kW = ฿300K", th: "วิลล่า 10kW = ฿300K"},
+};
+</script>
 <script src="tm-lang.js"></script>
 </body>
 </html>

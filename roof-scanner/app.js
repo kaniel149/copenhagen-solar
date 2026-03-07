@@ -10,7 +10,7 @@ const CATEGORY_LABELS = {
   healthcare: '🏥 Medical', education: '🏫 Education', temple: '⛩️ Temple'
 };
 const CENTER = [100.00, 9.73];
-const COST_PER_KWP_K = 11.8; // Cost per kWp in thousands THB (equipment + install)
+const COST_PER_KWP_K = 12.0; // Cost per kWp in thousands THB (equipment + install)
 
 // --- State ---
 let map, selId = null, hoverPopup = null;
@@ -20,6 +20,9 @@ let listLimit = 100;
 let sortBy = 'score';
 let compareSet = new Set();
 let detailMode = false; // true = sidebar shows detail instead of list
+
+// --- Fix pre-computed EPC prices (recalc at ฿30K/kWp) ---
+B.forEach(b => { b.epc = Math.round(b.kw * 30000); });
 
 // --- localStorage helpers ---
 function getNotes(id) {

@@ -69,6 +69,7 @@ section{padding:60px 0}
 </style>
 </head>
 <body>
+<script src="auth.js"></script>
 
 <div class="hero">
 <img src="visuals/tm-energy-logo.png" alt="TM Energy">
@@ -130,7 +131,7 @@ section{padding:60px 0}
 <p style="font-size:11px;color:var(--gray);margin-top:4px">DM Sans Medium 18px — גוף טקסט</p>
 </div>
 <div class="type-sample">
-<h3 style="font-size:18px;font-weight:500">฿32,500/kWp · ฿4.50/kWh PPA · 25-Year Warranty</h3>
+<h3 style="font-size:18px;font-weight:500">฿30,000/kWp · ฿4.50/kWh PPA · 25-Year Warranty</h3>
 <p style="font-size:11px;color:var(--gray);margin-top:4px">DM Sans Medium — מספרים ומחירים</p>
 </div>
 </div>
@@ -358,5 +359,114 @@ section{padding:60px 0}
 </div>
 </section>
 
+
+<script>
+window.PAGE_TRANSLATIONS = {
+  "מדריך מיתוג, לוגואים, צבעים, פונטים, ואסטים לשימוש בכל ערוצי התקשורת": {en: "Branding guide, logos, colors, fonts, and assets for use across all communication channels", th: "คู่มือแบรนด์ โลโก้ สี ฟอนต์ และสื่อต่างๆ สำหรับใช้ในทุกช่องทางการสื่อสาร"},
+  "לוגו TM Energy": {en: "TM Energy Logo", th: "โลโก้ TM Energy"},
+  "עיגול שחור עם TM בלבן ושמש זהובה — מתאים ל-TM Developers family. שימוש על רקע כהה, בהיר, או צבעוני.": {en: "Black circle with TM in white and gold sun — suitable for TM Developers family. Use on dark, light, or colored backgrounds.", th: "วงกลมสีดำพร้อม TM สีขาวและดวงอาทิตย์สีทอง — เหมาะสำหรับกลุ่ม TM Developers ใช้บนพื้นหลังสีเข้ม สว่าง หรือมีสี"},
+  "✓ כן": {en: "✓ Do", th: "✓ ควรทำ"},
+  "שמור על יחס 1:1. רקע נקי. מרחק מינימלי מקצוות = גובה הלוגו.": {en: "Maintain 1:1 ratio. Clean background. Minimum clearance from edges = logo height.", th: "รักษาอัตราส่วน 1:1 พื้นหลังสะอาด ระยะห่างขั้นต่ำจากขอบ = ความสูงโลโก้"},
+  "✕ לא": {en: "✕ Don't", th: "✕ ไม่ควรทำ"},
+  "לא למתוח. לא לשנות צבעים. לא להוסיף אפקטים. לא לסובב.": {en: "Do not stretch. Do not change colors. Do not add effects. Do not rotate.", th: "ห้ามยืด ห้ามเปลี่ยนสี ห้ามเพิ่มเอฟเฟกต์ ห้ามหมุน"},
+  "פלטת צבעים": {en: "Color Palette", th: "จานสี"},
+  "Navy + Gold — פרימיום, אמין, אנרגיה. Green = הצלחה/חיסכון. Coral = אזהרה/דחיפות.": {en: "Navy + Gold — premium, trustworthy, energy. Green = success/savings. Coral = warning/urgency.", th: "Navy + Gold — พรีเมียม น่าเชื่อถือ พลังงาน Green = ความสำเร็จ/การประหยัด Coral = คำเตือน/ความเร่งด่วน"},
+  "Navy (ראשי)": {en: "Navy (Primary)", th: "Navy (หลัก)"},
+  "Gold (משני)": {en: "Gold (Secondary)", th: "Gold (รอง)"},
+  "Green (הצלחה)": {en: "Green (Success)", th: "Green (ความสำเร็จ)"},
+  "Coral (אזהרה)": {en: "Coral (Warning)", th: "Coral (คำเตือน)"},
+  "טקסט על כהה": {en: "Text on dark", th: "ข้อความบนพื้นสีเข้ม"},
+  "Dark (רקע)": {en: "Dark (Background)", th: "Dark (พื้นหลัง)"},
+  "רקעים עמוקים": {en: "Deep backgrounds", th: "พื้นหลังสีเข้ม"},
+  "טיפוגרפיה": {en: "Typography", th: "การพิมพ์"},
+  "Space Grotesk לכותרות (בולד, טכנולוגי). DM Sans לגוף (קריא, מודרני). Noto Sans Thai לתאית.": {en: "Space Grotesk for headings (bold, technical). DM Sans for body text (readable, modern). Noto Sans Thai for Thai.", th: "Space Grotesk สำหรับหัวข้อ (ตัวหนา เทคโนโลยี) DM Sans สำหรับเนื้อหา (อ่านง่าย ทันสมัย) Noto Sans Thai สำหรับภาษาไทย"},
+  "Space Grotesk Bold 32px — כותרות ראשיות": {en: "Space Grotesk Bold 32px — Main headings", th: "Space Grotesk Bold 32px — หัวข้อหลัก"},
+  "DM Sans Medium 18px — גוף טקסט": {en: "DM Sans Medium 18px — Body text", th: "DM Sans Medium 18px — เนื้อหา"},
+  "DM Sans Medium — מספרים ומחירים": {en: "DM Sans Medium — Numbers and prices", th: "DM Sans Medium — ตัวเลขและราคา"},
+  "אסטים למיתוג": {en: "Branding Assets", th: "สื่อสำหรับแบรนด์"},
+  "18 פריטים ממותגים — מרכב ועד מתנת לקוח. הכל Navy + Gold, EN + TH.": {en: "18 branded items — from vehicle to client gift. All Navy + Gold, EN + TH.", th: "18 รายการที่มีแบรนด์ — ตั้งแต่รถยนต์จนถึงของขวัญลูกค้า ทั้งหมด Navy + Gold EN + TH"},
+  "🚗 עיטוף רכב — Toyota Hilux": {en: "Vehicle Wrap — Toyota Hilux", th: "สติกเกอร์รถยนต์ — Toyota Hilux"},
+  "לוגו TM Energy + พลังงานแสงอาทิตย์ על דלתות, ติดตั้งโซลาร์เซลล์ בגב. Navy + Gold.": {en: "TM Energy logo + พลังงานแสงอาทิตย์ on doors, ติดตั้งโซลาร์เซลล์ on rear. Navy + Gold.", th: "โลโก้ TM Energy + พลังงานแสงอาทิตย์ บนประตู ติดตั้งโซลาร์เซลล์ บริเวณท้าย Navy + Gold"},
+  "תבנית להדפסה: 3M vinyl wrap · 300 DPI": {en: "Print template: 3M vinyl wrap · 300 DPI", th: "แม่แบบสำหรับพิมพ์: 3M vinyl wrap · 300 DPI"},
+  "👕 חולצת עובדים — פולו כחול כהה": {en: "Staff Polo Shirt — Dark Navy", th: "เสื้อโปโลพนักงาน — Navy เข้ม"},
+  "לוגו בחזה, TM ENERGY + ทีเอ็ม เอนเนอร์จี้ พลังงานแสงอาทิตย์ בגב. Navy polo.": {en: "Logo on chest, TM ENERGY + ทีเอ็ม เอนเนอร์จี้ พลังงานแสงอาทิตย์ on back. Navy polo.", th: "โลโก้บนหน้าอก TM ENERGY + ทีเอ็ม เอนเนอร์จี้ พลังงานแสงอาทิตย์ ด้านหลัง Navy polo"},
+  "הזמנה: Polo cotton 220gsm · רקמה/הדפסה": {en: "Order: Polo cotton 220gsm · Embroidery/Print", th: "สั่งซื้อ: Polo cotton 220gsm · เย็บปัก/พิมพ์"},
+  "⛑️ קסדה + אפוד בטיחות": {en: "Hard Hat + Safety Vest", th: "หมวกนิรภัย + เสื้อกั๊กนิรภัย"},
+  "קסדה עם ทีเอ็ม เอนเนอร์จี้. אפוד עם ทีมติดตั้งโซลาร์ (Solar Installation Team) בגב.": {en: "Hard hat with ทีเอ็ม เอนเนอร์จี้. Vest with ทีมติดตั้งโซลาร์ (Solar Installation Team) on back.", th: "หมวกพร้อม ทีเอ็ม เอนเนอร์จี้ เสื้อกั๊กพร้อม ทีมติดตั้งโซลาร์ (Solar Installation Team) ด้านหลัง"},
+  "קסדה: מדבקה ויניל · אפוד: הדפסה על בד": {en: "Hard hat: vinyl sticker · Vest: fabric print", th: "หมวก: สติกเกอร์ไวนิล · เสื้อกั๊ก: พิมพ์บนผ้า"},
+  "💼 כרטיס ביקור": {en: "Business Card", th: "นามบัตร"},
+  "חזית: Navy + לוגו + שם + ผู้ร่วมก่อตั้ง. גב: เป็นเจ้าของพลังงาน + เกาะพะงัน สุราษฎร์ธานี.": {en: "Front: Navy + logo + name + ผู้ร่วมก่อตั้ง. Back: เป็นเจ้าของพลังงาน + เกาะพะงัน สุราษฎร์ธานี.", th: "หน้า: Navy + โลโก้ + ชื่อ + ผู้ร่วมก่อตั้ง หลัง: เป็นเจ้าของพลังงาน + เกาะพะงัน สุราษฎร์ธานี"},
+  "90×55mm · 350gsm matte · embossed gold foil": {en: "90×55mm · 350gsm matte · embossed gold foil", th: "90×55mm · 350gsm matte · ปั๊มฟอยล์ทอง"},
+  "🏷️ מדבקות ציוד": {en: "Equipment Stickers", th: "สติกเกอร์อุปกรณ์"},
+  "Weatherproof vinyl · UV resistant · 3-5 year outdoor": {en: "Weatherproof vinyl · UV resistant · 3-5 year outdoor", th: "ไวนิลกันน้ำ · ทนรังสี UV · ใช้ภายนอก 3-5 ปี"},
+  "🚧 שלט אתר בנייה": {en: "Construction Site Sign", th: "ป้ายสถานที่ก่อสร้าง"},
+  "กำลังติดตั้งระบบโซลาร์เซลล์ + SOLAR INSTALLATION IN PROGRESS + เกาะพะงัน. 3 מטר.": {en: "กำลังติดตั้งระบบโซลาร์เซลล์ + SOLAR INSTALLATION IN PROGRESS + เกาะพะงัน. 3 meters.", th: "กำลังติดตั้งระบบโซลาร์เซลล์ + SOLAR INSTALLATION IN PROGRESS + เกาะพะงัน ขนาด 3 เมตร"},
+  "3000×1000mm · PVC banner · 440gsm · eyelets": {en: "3000×1000mm · PVC banner · 440gsm · eyelets", th: "3000×1000mm · แบนเนอร์ PVC · 440gsm · ตาไก่"},
+  "🧢 כובע מצחייה": {en: "Cap", th: "หมวกแก็ป"},
+  "Navy + לבן. לוגו TM Energy רקום בחזית, ทีเอ็ม เอนเนอร์จี้ בצד. רצועה מתכווננת.": {en: "Navy + white. TM Energy logo embroidered on front, ทีเอ็ม เอนเนอร์จี้ on side. Adjustable strap.", th: "Navy + ขาว โลโก้ TM Energy เย็บปักด้านหน้า ทีเอ็ม เอนเนอร์จี้ ด้านข้าง สายปรับได้"},
+  "כובע כותנה/פוליאסטר · רקמה · one-size": {en: "Cotton/polyester cap · embroidery · one-size", th: "หมวกผ้าฝ้าย/โพลีเอสเตอร์ · เย็บปัก · ไซส์เดียว"},
+  "📓 ערכת משרד": {en: "Office Kit", th: "ชุดเครื่องเขียน"},
+  "מחברת A5, תיקיית מצגות, עט ממותג, USB סולארי. Navy + Gold.": {en: "A5 notebook, presentation folder, branded pen, solar USB. Navy + Gold.", th: "สมุดบันทึก A5 โฟลเดอร์นำเสนอ ปากกาแบรนด์ USB โซลาร์ Navy + Gold"},
+  "מחברת hardcover · תיקייה A4 · עט מתכת": {en: "Hardcover notebook · A4 folder · metal pen", th: "สมุดปกแข็ง · โฟลเดอร์ A4 · ปากกาโลหะ"},
+  "🥤 בקבוק + כוס תרמית": {en: "Water Bottle + Thermal Tumbler", th: "ขวดน้ำ + แก้วเทอร์มัล"},
+  "בקבוק 750ml + טמבלר מבודד. Navy matte עם לוגו זהב. חיוני לאקלים תאילנדי.": {en: "750ml bottle + insulated tumbler. Navy matte with gold logo. Essential for Thailand's climate.", th: "ขวด 750ml + แก้วเทอร์มัล Navy matte พร้อมโลโก้สีทอง จำเป็นสำหรับสภาพอากาศไทย"},
+  "נירוסטה 18/8 · שומר קור 24 שעות": {en: "18/8 stainless steel · keeps cold 24 hours", th: "สแตนเลส 18/8 · เก็บความเย็น 24 ชั่วโมง"},
+  "🎒 תיק + טוט": {en: "Backpack + Tote", th: "กระเป๋าเป้ + ถุงผ้า"},
+  "טוט בד Navy עם לוגו. תרמיל כלים שחור עם TM ENERGY רקום. לטכנאים בשטח.": {en: "Navy canvas tote with logo. Black tool backpack with TM ENERGY embroidered. For field technicians.", th: "ถุงผ้า Navy พร้อมโลโก้ กระเป๋าเป้ใส่เครื่องมือสีดำพร้อม TM ENERGY เย็บปัก สำหรับช่างในสนาม"},
+  "טוט: קנבס 600D · תרמיל: ניילון עמיד + כיסים": {en: "Tote: 600D canvas · Backpack: durable nylon + pockets", th: "ถุงผ้า: canvas 600D · กระเป๋าเป้: ไนลอนทนทาน + กระเป๋า"},
+  "🧲 מגנטים — רכב + מקרר": {en: "Magnets — Vehicle + Fridge", th: "แม่เหล็ก — รถยนต์ + ตู้เย็น"},
+  "מגנט דלת רכב 60×30cm + מגנט מקרר. ติดตั้งโซลาร์เซลล์ เกาะพะงัน. ניתן להסרה.": {en: "Vehicle door magnet 60×30cm + fridge magnet. ติดตั้งโซลาร์เซลล์ เกาะพะงัน. Removable.", th: "แม่เหล็กประตูรถ 60×30cm + แม่เหล็กตู้เย็น ติดตั้งโซลาร์เซลล์ เกาะพะงัน ถอดออกได้"},
+  "ויניל מגנטי · UV resistant · חוזר לשימוש": {en: "Magnetic vinyl · UV resistant · reusable", th: "ไวนิลแม่เหล็ก · ทนรังสี UV · ใช้ซ้ำได้"},
+  "🪪 שרוך + תג עובד": {en: "Lanyard + Employee Badge", th: "สายคล้องคอ + บัตรพนักงาน"},
+  "שרוך Navy עם TM ENERGY חוזר. תג: לוגו, שם, תפקיד ช่างติดตั้งโซลาร์, מספר.": {en: "Navy lanyard with repeating TM ENERGY. Badge: logo, name, role ช่างติดตั้งโซลาร์, number.", th: "สายคล้องคอ Navy พร้อม TM ENERGY ซ้ำ บัตร: โลโก้ ชื่อ ตำแหน่ง ช่างติดตั้งโซลาร์ หมายเลข"},
+  "שרוך פוליאסטר 20mm · תג PVC 86×54mm": {en: "Polyester lanyard 20mm · PVC badge 86×54mm", th: "สายโพลีเอสเตอร์ 20mm · บัตร PVC 86×54mm"},
+  "☂️ מטרייה ממותגת": {en: "Branded Umbrella", th: "ร่มแบรนด์"},
+  "מטריית גולף, פאנלים Navy + Gold לסירוגין. לוגו TM Energy על 2 פאנלים. מושלם לעונת הגשמים.": {en: "Golf umbrella, alternating Navy + Gold panels. TM Energy logo on 2 panels. Perfect for rainy season.", th: "ร่มกอล์ฟ สลับ Navy + Gold โลโก้ TM Energy บน 2 ช่อง เหมาะสำหรับฤดูฝน"},
+  "Golf umbrella 60\" · Fiberglass ribs · Auto-open": {en: "Golf umbrella 60\" · Fiberglass ribs · Auto-open", th: "ร่มกอล์ฟ 60\" · ก้านไฟเบอร์กลาส · เปิดอัตโนมัติ"},
+  "🔑 מחזיקי מפתחות": {en: "Keychains", th: "พวงกุญแจ"},
+  "3 סוגים: מתכת עם אמייל, עור Navy עם הטבעת זהב, קרבינר זהב. מתנה ללקוחות.": {en: "3 types: metal with enamel, Navy leather with gold emboss, gold carabiner. Client gift.", th: "3 แบบ: โลหะพร้อมอีนาเมล หนัง Navy พร้อมปั๊มทอง คาราบิเนอร์ทอง ของขวัญลูกค้า"},
+  "Metal enamel · Leather embossed · Carabiner clip": {en: "Metal enamel · Leather embossed · Carabiner clip", th: "โลหะอีนาเมล · หนังปั๊มนูน · คลิปคาราบิเนอร์"},
+  "🔋 סוללת גיבוי סולארית + PopSocket": {en: "Solar Backup Battery + PopSocket", th: "แบตเตอรี่สำรองโซลาร์ + PopSocket"},
+  "Power bank 20,000mAh עם פאנל סולארי. Navy + Gold. מתנה מושלמת — \"Own Your Energy\" בפועל.": {en: "Power bank 20,000mAh with solar panel. Navy + Gold. The perfect gift — \"Own Your Energy\" in practice.", th: "Power bank 20,000mAh พร้อมแผงโซลาร์ Navy + Gold ของขวัญสมบูรณ์แบบ — \"Own Your Energy\" ในทางปฏิบัติ"},
+  "Solar panel · USB-C + USB-A · 20000mAh": {en: "Solar panel · USB-C + USB-A · 20000mAh", th: "แผงโซลาร์ · USB-C + USB-A · 20000mAh"},
+  "🚩 דגלים + באנרים": {en: "Flags + Banners", th: "ธง + แบนเนอร์"},
+  "דגל טיפה (feather flag) + רול-אפ באנר. לאירועים, תערוכות, ומשרד. Navy + לוגו + קרני שמש.": {en: "Feather flag + roll-up banner. For events, exhibitions, and office. Navy + logo + sun rays.", th: "Feather flag + roll-up banner สำหรับงานอีเวนต์ นิทรรศการ และสำนักงาน Navy + โลโก้ + รัศมีดวงอาทิตย์"},
+  "Feather flag 3m · Roll-up banner 85×200cm": {en: "Feather flag 3m · Roll-up banner 85×200cm", th: "Feather flag 3m · Roll-up banner 85×200cm"},
+  "🧤 כפפות עבודה + משקפי בטיחות": {en: "Work Gloves + Safety Glasses", th: "ถุงมือทำงาน + แว่นนิรภัย"},
+  "כפפות מכניקאי Navy + Gold עם לוגו. משקפי בטיחות עם מסגרת Navy ולוגו TM על הזרועות.": {en: "Navy + Gold mechanic gloves with logo. Safety glasses with Navy frame and TM logo on arms.", th: "ถุงมือช่าง Navy + Gold พร้อมโลโก้ แว่นนิรภัยกรอบ Navy พร้อมโลโก้ TM บนขา"},
+  "Mechanic gloves · UV safety glasses · Anti-fog": {en: "Mechanic gloves · UV safety glasses · Anti-fog", th: "ถุงมือช่าง · แว่นนิรภัย UV · Anti-fog"},
+  "🎁 ערכת מתנה ללקוח": {en: "Client Gift Set", th: "ชุดของขวัญลูกค้า"},
+  "קופסה פרימיום Navy עם הטבעת זהב. בפנים: בקבוק, power bank, מחזיק מפתחות, כובע, כרטיס תודה.": {en: "Premium Navy box with gold emboss. Inside: bottle, power bank, keychain, cap, thank-you card.", th: "กล่อง Navy พรีเมียมพร้อมปั๊มทอง ด้านใน: ขวดน้ำ power bank พวงกุญแจ หมวก การ์ดขอบคุณ"},
+  "Premium box · Gold foil · Client welcome kit": {en: "Premium box · Gold foil · Client welcome kit", th: "กล่องพรีเมียม · ฟอยล์ทอง · ชุดต้อนรับลูกค้า"},
+  "סלוגנים ומסרים": {en: "Taglines and Messaging", th: "สโลแกนและข้อความ"},
+  "סלוגן ראשי — EN": {en: "Main tagline — EN", th: "สโลแกนหลัก — EN"},
+  "סלוגן ראשי — TH": {en: "Main tagline — TH", th: "สโลแกนหลัก — TH"},
+  "Tagline — EN": {en: "Tagline — EN", th: "แท็กไลน์ — EN"},
+  "Tagline — TH": {en: "Tagline — TH", th: "แท็กไลน์ — TH"},
+  "תת-כותרת — EN": {en: "Subtitle — EN", th: "คำบรรยาย — EN"},
+  "תת-כותרת — TH": {en: "Subtitle — TH", th: "คำบรรยาย — TH"},
+  "הורדת קבצים": {en: "Download Files", th: "ดาวน์โหลดไฟล์"},
+  "📥 לוגו PNG": {en: "Logo PNG", th: "โลโก้ PNG"},
+  "📥 עיטוף רכב": {en: "Vehicle Wrap", th: "สติกเกอร์รถยนต์"},
+  "📥 חולצה": {en: "T-shirt", th: "เสื้อ"},
+  "📥 ציוד בטיחות": {en: "Safety Equipment", th: "อุปกรณ์นิรภัย"},
+  "📥 כרטיס ביקור": {en: "Business Card", th: "นามบัตร"},
+  "📥 מדבקות": {en: "Stickers", th: "สติกเกอร์"},
+  "📥 שלט אתר": {en: "Site Sign", th: "ป้ายสถานที่"},
+  "📥 כובע": {en: "Cap", th: "หมวก"},
+  "📥 ערכת משרד": {en: "Office Kit", th: "ชุดเครื่องเขียน"},
+  "📥 בקבוק": {en: "Bottle", th: "ขวดน้ำ"},
+  "📥 תיקים": {en: "Bags", th: "กระเป๋า"},
+  "📥 מגנטים": {en: "Magnets", th: "แม่เหล็ก"},
+  "📥 שרוך+תג": {en: "Lanyard+Badge", th: "สายคล้องคอ+บัตร"},
+  "📥 מטרייה": {en: "Umbrella", th: "ร่ม"},
+  "📥 מחזיקי מפתחות": {en: "Keychains", th: "พวงกุญแจ"},
+  "📥 דגלים": {en: "Flags", th: "ธง"},
+  "📥 כפפות+משקפיים": {en: "Gloves+Glasses", th: "ถุงมือ+แว่น"},
+  "📥 ערכת מתנה": {en: "Gift Set", th: "ชุดของขวัญ"},
+  "🖨 תבניות הדפסה (טקסט מדויק)": {en: "Print Templates (exact text)", th: "แม่แบบสำหรับพิมพ์ (ข้อความแม่นยำ)"},
+};
+</script>
+<script src="tm-lang.js"></script>
 </body>
 </html>

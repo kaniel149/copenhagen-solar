@@ -278,7 +278,7 @@ a{color:var(--gold);text-decoration:none}
           <tr><td>נטו שנתי</td><td>฿44K</td></tr>
           <tr><td>Payback</td><td><strong class="gold">2.7 שנים</strong></td></tr>
           <tr><td>10yr profit</td><td><strong class="reef-text">฿320K</strong></td></tr>
-          <tr><td>IRR</td><td>23%</td></tr>
+          <tr><td>IRR</td><td>36%</td></tr>
         </table>
       </div>
     </div>
@@ -366,8 +366,8 @@ a{color:var(--gold);text-decoration:none}
       <h3>מימון לנו (PPA)</h3>
       <div class="card" style="margin:8px 0;border-color:rgba(46,216,154,.3)">
         <h3 class="reef-text">Self-funded (שנה 1)</h3>
-        <p>5 מערכות × ฿700K avg = ฿3.5M השקעה עצמית<br>
-        ROI: 2.6 שנים → ฿2.14M רווח/מערכת</p>
+        <p>5 מערכות × ฿600K avg = ฿3.0M השקעה עצמית<br>
+        ROI: 2.2 שנים → ฿2.24M רווח/מערכת</p>
       </div>
       <div class="card" style="margin:8px 0;border-color:rgba(100,150,255,.3)">
         <h3 style="color:#6496FF">Project Finance (שנה 2+)</h3>
@@ -398,14 +398,16 @@ a{color:var(--gold);text-decoration:none}
           <tr><th>פריט</th><th>עלות</th><th>הערה</th></tr>
           <tr><td>רישום חברה + עו"ד</td><td>฿50K</td><td>חברה תאילנדית</td></tr>
           <tr><td>Work Permit + Visa</td><td>฿30K</td><td>Non-B visa</td></tr>
-          <tr><td>רכב עבודה (Pickup)</td><td>฿300K</td><td>משומש Toyota Hilux</td></tr>
+          <tr><td>רכב עבודה</td><td>฿0</td><td>על TM Energy (חברת אם)</td></tr>
+          <tr><td>לפטופים</td><td>฿0</td><td>BYOL (תביא מהבית)</td></tr>
           <tr><td>כלי עבודה + בטיחות</td><td>฿130K</td><td>FLIR, multimeter, etc</td></tr>
           <tr><td>Drone (DJI Mini 4)</td><td>฿35K</td><td>סקרי גג</td></tr>
           <tr><td>מחסן (deposit + fit)</td><td>฿40K</td><td>Thong Sala</td></tr>
-          <tr><td>מלאי ראשוני (20kWp)</td><td>฿421K</td><td>פאנלים + אינוורטרים</td></tr>
+          <tr><td>מלאי ראשוני (50kWp)</td><td>฿475K</td><td>פאנלים + אינוורטרים</td></tr>
           <tr><td>PVsyst License</td><td>฿16K</td><td>CHF 450/שנה</td></tr>
           <tr><td>אתר + CRM + IT</td><td>฿0</td><td>נבנה in-house</td></tr>
-          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ CapEx</strong></td><td><strong class="gold">฿1.02M</strong></td><td><strong>~$28K</strong></td></tr>
+          <tr><td>הון חוזר + ספקים מראש</td><td>฿166K</td><td>Buffer / מקדמות</td></tr>
+          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ CapEx</strong></td><td><strong class="gold">฿942K</strong></td><td><strong>~$27K</strong></td></tr>
         </table>
       </div>
     </div>
@@ -425,7 +427,7 @@ a{color:var(--gold);text-decoration:none}
       </div>
       <div class="alert alert-success" style="margin-top:12px">
         <strong>סה"כ שנה 1:</strong><br>
-        CapEx: ฿1.02M + OpEx: ฿1.2M = <strong>฿2.22M (~$62K)</strong><br>
+        CapEx: ฿942K + OpEx: ฿1.2M = <strong>฿2.14M (~$61K)</strong><br>
         <strong>Breakeven on operations: חודש 2</strong>
       </div>
     </div>
@@ -441,7 +443,7 @@ a{color:var(--gold);text-decoration:none}
     <div>
       <div class="calc-input">
         <label>גודל מערכת (kWp)<input type="number" id="calcKwp" value="50" min="5" max="500"></label>
-        <label>עלות/kWp (฿)<input type="number" id="calcCostKwp" value="14000" min="10000" max="20000"></label>
+        <label>עלות/kWp (฿)<input type="number" id="calcCostKwp" value="12000" min="10000" max="20000"></label>
         <label>תעריף PPA (฿/kWh)<input type="number" id="calcRate" value="3.80" min="2" max="6" step="0.1"></label>
         <label>שעות שמש/יום<input type="number" id="calcSun" value="4.5" min="3" max="6" step="0.1"></label>
         <label>Degradation (%/שנה)<input type="number" id="calcDeg" value="0.5" min="0" max="2" step="0.1"></label>
@@ -454,10 +456,10 @@ a{color:var(--gold);text-decoration:none}
     <div>
       <div id="calcResults">
         <div class="stat-grid">
-          <div><div class="big-num" id="resInvest">฿700K</div><div class="stat-label">השקעה</div></div>
-          <div><div class="big-num" id="resPayback">2.6</div><div class="stat-label">שנות Payback</div></div>
-          <div><div class="big-num" id="resIRR">28%</div><div class="stat-label">IRR</div></div>
-          <div><div class="big-num" id="resProfit">฿2.1M</div><div class="stat-label">רווח נטו</div></div>
+          <div><div class="big-num" id="resInvest">฿600K</div><div class="stat-label">השקעה</div></div>
+          <div><div class="big-num" id="resPayback">2.2</div><div class="stat-label">שנות Payback</div></div>
+          <div><div class="big-num" id="resIRR">33%</div><div class="stat-label">IRR</div></div>
+          <div><div class="big-num" id="resProfit">฿2.2M</div><div class="stat-label">רווח נטו</div></div>
         </div>
         <div id="calcTable" style="margin-top:16px"></div>
       </div>

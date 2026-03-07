@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ko Phangan Solar — רשימת ציוד וכלי עבודה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
+.slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;display:flex;flex-direction:column;padding:36px 50px;opacity:0;transform:translateX(100px);transition:all .6s cubic-bezier(.23,1,.32,1);pointer-events:none;overflow-y:auto;padding-bottom:70px}
+.slide.active{opacity:1;transform:translateX(0);pointer-events:all}.slide.exit{opacity:0;transform:translateX(-100px)}
+.slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
+.slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
+.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:10px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:7px 22px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:13px;font-weight:500;transition:all .3s}
+.nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:13px}
+.progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
+.toc-btn{position:fixed;top:16px;left:16px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:102}
+.toc-btn:hover{background:var(--gold);color:var(--night)}
+.toc-panel{position:fixed;top:0;left:-340px;width:340px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s;padding:50px 24px 24px;overflow-y:auto}
+.toc-panel.open{left:0}
+.toc-item{padding:8px 14px;margin:3px 0;border-radius:8px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:8px}
+.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-num{font-family:'Space Grotesk';font-weight:700;font-size:11px;color:var(--gold);min-width:22px}
+h1{font-size:clamp(28px,4.5vw,48px);font-weight:900;line-height:1.1;margin-bottom:12px}
+h2{font-size:clamp(18px,2.5vw,28px);font-weight:700;margin-bottom:16px}
+h3{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px;margin-top:12px}
+.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}.blue-text{color:#6496FF}
+.section-num{font-family:'Space Grotesk';font-size:60px;font-weight:700;color:rgba(232,168,32,.08);position:absolute;top:10px;right:30px}
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{background:rgba(232,168,32,.12);color:var(--gold);padding:8px 12px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
+tr:hover{background:rgba(255,255,255,.02)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
+.big-num{font-family:'Space Grotesk';font-size:clamp(20px,2.8vw,32px);font-weight:700;color:var(--gold)}
+.stat-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px}
+.alert{padding:12px 16px;border-radius:8px;font-size:12px;line-height:1.6}
+.alert-info{background:rgba(100,150,255,.08);border:1px solid rgba(100,150,255,.2)}
+.alert-success{background:rgba(46,216,154,.08);border:1px solid rgba(46,216,154,.2)}
+.alert-warn{background:rgba(232,168,32,.08);border:1px solid rgba(232,168,32,.2)}
+.lazada-link{display:inline-block;background:rgba(232,93,58,.12);border:1px solid rgba(232,93,58,.25);color:var(--coral);padding:3px 10px;border-radius:4px;font-size:11px;text-decoration:none;transition:all .2s;margin-top:4px}
+.lazada-link:hover{background:var(--coral);color:var(--white)}
+.qty-badge{display:inline-block;background:rgba(232,168,32,.15);color:var(--gold);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.priority-high{border-right:3px solid var(--coral)}
+.priority-med{border-right:3px solid var(--gold)}
+.priority-low{border-right:3px solid #2ED89A}
+@media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<button class="toc-btn" onclick="toggleTOC()">☰</button>
+<div class="toc-panel" id="tocPanel"><div id="tocList"></div></div>
+<div class="slide-container">
+
+<!-- SLIDE 1: Cover -->
+<div class="slide slide-cover" data-title="שער">
+  <h1>🛠️ רשימת ציוד וכלי עבודה</h1>
+  <p style="font-size:18px;color:rgba(255,255,255,.7);max-width:600px">Ko Phangan Solar Division — Shopping List</p>
+  <div style="margin-top:24px;font-size:14px;color:var(--gold)">
+    <strong>הון ראשוני נדרש: ฿1.89M (~$52K)</strong><br>
+    <span style="color:rgba(255,255,255,.5)">ציוד + כלי עבודה + תשתית IT בלבד</span>
+  </div>
+  <div class="stat-grid" style="max-width:700px;margin-top:24px">
+    <div><div class="big-num">3</div><div class="stat-label">צוותי התקנה</div></div>
+    <div><div class="big-num">6</div><div class="stat-label">קטגוריות ציוד</div></div>
+    <div><div class="big-num">~50</div><div class="stat-label">פריטים לרכישה</div></div>
+    <div><div class="big-num">Lazada</div><div class="stat-label">ספק ראשי</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 2: Summary Budget -->
+<div class="slide slide-dark" data-title="סיכום תקציב">
+  <span class="section-num">01</span>
+  <h2>💰 סיכום תקציב — <span class="gold">לפי קטגוריה</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>קטגוריה</th><th>תקציב</th><th>% מסה"כ</th><th>עדיפות</th></tr>
+      <tr class="priority-high"><td><strong>רכבים (3 × Toyota Hilux)</strong></td><td><strong>฿900K</strong></td><td>47.6%</td><td style="color:var(--coral)">קריטי</td></tr>
+      <tr class="priority-high"><td><strong>כלי עבודה חשמליים</strong></td><td><strong>฿390K</strong></td><td>20.6%</td><td style="color:var(--coral)">קריטי</td></tr>
+      <tr class="priority-high"><td><strong>ציוד בטיחות</strong></td><td><strong>฿120K</strong></td><td>6.3%</td><td style="color:var(--coral)">קריטי</td></tr>
+      <tr class="priority-med"><td><strong>מכשירי מדידה + QA</strong></td><td><strong>฿180K</strong></td><td>9.5%</td><td style="color:var(--gold)">גבוה</td></tr>
+      <tr class="priority-med"><td><strong>רחפנים + תוכנה</strong></td><td><strong>฿102K</strong></td><td>5.4%</td><td style="color:var(--gold)">גבוה</td></tr>
+      <tr class="priority-low"><td><strong>מחסן + לוגיסטיקה</strong></td><td><strong>฿180K</strong></td><td>9.5%</td><td style="color:#2ED89A">בינוני</td></tr>
+      <tr class="priority-low"><td><strong>תשתית IT + משרד</strong></td><td><strong>฿120K</strong></td><td>6.3%</td><td style="color:#2ED89A">בינוני</td></tr>
+      <tr style="background:rgba(232,168,32,.12)"><td><strong class="gold">סה"כ</strong></td><td><strong class="gold">฿1.89M</strong></td><td><strong>100%</strong></td><td></td></tr>
+    </table>
+  </div>
+  <div class="alert alert-warn">
+    <strong>שים לב:</strong> מלאי (פאנלים, אינוורטרים, קונסטרוקציה) <strong>לא</strong> נכלל כאן — ממומן מהזמנות ראשונות של TM + מימון בנקאי ללקוחות.
+  </div>
+</div>
+
+<!-- SLIDE 3: Vehicles -->
+<div class="slide slide-ocean" data-title="רכבים">
+  <span class="section-num">02</span>
+  <h2>🚛 רכבים — <span class="gold">3 × Toyota Hilux Revo</span></h2>
+  <div class="two-col">
+    <div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>כמות</th><th>מחיר/יח׳</th><th>סה"כ</th></tr>
+          <tr><td><strong>Toyota Hilux Revo Cab (משומש 2020-2022)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">2.4L Diesel, 4WD, מגש אלומיניום</span></td><td>3</td><td>฿250K</td><td><strong>฿750K</strong></td></tr>
+          <tr><td>ארגז כלים (Truck Toolbox) אלומיניום<br><a href="https://www.lazada.co.th/tag/car-accessories-toyota-hilux/" target="_blank" class="lazada-link">Lazada — Hilux Accessories</a></td><td>3</td><td>฿15K</td><td>฿45K</td></tr>
+          <tr><td>מגנט לוגו חברה + סטיקרים</td><td>3</td><td>฿5K</td><td>฿15K</td></tr>
+          <tr><td>מדף פנימי לציוד</td><td>3</td><td>฿8K</td><td>฿24K</td></tr>
+          <tr><td>GPS Tracker (OBD)</td><td>3</td><td>฿2K</td><td>฿6K</td></tr>
+          <tr><td>Dashcam קדמי + אחורי</td><td>3</td><td>฿3K</td><td>฿9K</td></tr>
+          <tr><td>ביטוח שנתי (Class 1)</td><td>3</td><td>฿17K</td><td>฿51K</td></tr>
+          <tr style="background:rgba(232,168,32,.08)"><td colspan="3"><strong>סה"כ רכבים</strong></td><td><strong class="gold">฿900K</strong></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-info">
+        <strong>למה Hilux?</strong><br>
+        • מנוע דיזל — חסכוני לנסיעות באי<br>
+        • 4WD — הכרחי לדרכי עפר בקופנגן<br>
+        • מגש אחורי — להעמסת פאנלים וציוד<br>
+        • חלקי חילוף זמינים בכל מקום בתאילנד<br>
+        • ערך שני-יד יציב
+      </div>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <strong>איפה לקנות:</strong><br>
+        • <strong>Facebook Marketplace</strong> — Koh Phangan / Surat Thani<br>
+        • <strong>Kaidee.com</strong> — אתר יד שנייה תאילנדי<br>
+        • <strong>Toyota Used Car</strong> — סוכנות רשמית Surat Thani<br>
+        • תקציב ฿250K = רכב 2020-2022, 50-80K ק"מ
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: Power Tools -->
+<div class="slide slide-dark" data-title="כלי עבודה חשמליים">
+  <span class="section-num">03</span>
+  <h2>⚡ כלי עבודה חשמליים — <span class="gold">3 סטים לצוותים</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>פריט</th><th>כמות</th><th>מחיר/יח׳</th><th>סה"כ</th><th>לינק Lazada</th></tr>
+      <tr><td><strong>Makita 18V Impact Driver + Drill Combo Kit</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">DTD172 + DDF487, 2 סוללות, מטען</span></td><td>3</td><td>฿12K</td><td>฿36K</td><td><a href="https://www.lazada.co.th/tag/makita-cordless-impact-drill/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Bosch Angle Grinder GWS 900-100S (4")</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">900W, חיתוך rails + conduit</span></td><td>3</td><td>฿2.5K</td><td>฿7.5K</td><td><a href="https://www.lazada.co.th/tag/bosch-angle-grinder/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>MC4 Crimping Tool Kit (מקצועי)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">crimper + stripper + spanner wrench</span></td><td>6</td><td>฿1.5K</td><td>฿9K</td><td><a href="https://www.lazada.co.th/products/mc4-tool-mc4-crimping-tool-mc4-connector-i597120586.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Cable Cutter (גדול, עד 240mm²)</strong></td><td>3</td><td>฿2K</td><td>฿6K</td><td><a href="https://www.lazada.co.th/tag/steel-cable-cutter/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Wire Stripper אוטומטי</strong></td><td>6</td><td>฿800</td><td>฿4.8K</td><td><a href="https://www.lazada.co.th/tag/wire-stripper/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Hilti / Bosch Rotary Hammer (SDS+)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">לקידוח בטון גגות</span></td><td>3</td><td>฿8K</td><td>฿24K</td><td><a href="https://www.lazada.co.th/shop-hand-tools-&-accessories/hilti/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Torque Wrench Set</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">להידוק clamps לפי מפרט</span></td><td>3</td><td>฿3K</td><td>฿9K</td><td><a href="https://www.lazada.co.th/tag/angle-grinder-set/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Socket Set + Allen Key Set</strong></td><td>3</td><td>฿2K</td><td>฿6K</td><td></td></tr>
+      <tr><td><strong>Rivnut Gun (M6/M8)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">לחיבורי קונסטרוקציה</span></td><td>3</td><td>฿3K</td><td>฿9K</td><td></td></tr>
+      <tr><td><strong>Silicon Gun + Sealant Kit</strong></td><td>6</td><td>฿500</td><td>฿3K</td><td></td></tr>
+      <tr><td><strong>Extension Cord Industrial (30m)</strong></td><td>6</td><td>฿1.5K</td><td>฿9K</td><td></td></tr>
+      <tr><td><strong>Cable Tie Gun + אזיקונים (bulk)</strong></td><td>3</td><td>฿1K</td><td>฿3K</td><td></td></tr>
+      <tr><td><strong>Roof Anchor Points (נקודות עיגון)</strong></td><td>20</td><td>฿800</td><td>฿16K</td><td></td></tr>
+      <tr><td><strong>סולם מתקפל אלומיניום (6m)</strong></td><td>3</td><td>฿5K</td><td>฿15K</td><td></td></tr>
+      <tr><td><strong>ארגז כלים מקצועי (נייד)</strong></td><td>6</td><td>฿2.5K</td><td>฿15K</td><td></td></tr>
+      <tr><td><strong>סט מפתחות ברגים + שקעים</strong></td><td>3</td><td>฿3K</td><td>฿9K</td><td></td></tr>
+      <tr><td><strong>כלים שונים (פלסים, סרטי מידה, סכינים)</strong></td><td>—</td><td>—</td><td>฿8K</td><td></td></tr>
+      <tr style="background:rgba(232,168,32,.08)"><td colspan="3"><strong>סה"כ כלי עבודה</strong></td><td colspan="2"><strong class="gold">~฿390K</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 5: Safety Equipment -->
+<div class="slide slide-reef" data-title="ציוד בטיחות">
+  <span class="section-num">04</span>
+  <h2>🦺 ציוד בטיחות — <span class="gold">3 סטים + מחסן</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>ציוד אישי (PPE) — לכל עובד</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>כמות</th><th>מחיר/יח׳</th><th>סה"כ</th><th>לינק</th></tr>
+          <tr><td><strong>Full-Body Safety Harness</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">EN 361, 2 hooks + shock absorber</span></td><td>12</td><td>฿2K</td><td>฿24K</td><td><a href="https://www.lazada.co.th/products/safety-harness-2-safety-harness-bssa008-i5123995721.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+          <tr><td><strong>קסדת בטיחות (ABS, Class E)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">עם מגן שמש + רצועת סנטר</span></td><td>15</td><td>฿500</td><td>฿7.5K</td><td><a href="https://www.lazada.co.th/tag/construction-safety-helmet/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+          <tr><td><strong>כפפות עבודה (חשמל + מכני)</strong></td><td>30 זוגות</td><td>฿200</td><td>฿6K</td><td></td></tr>
+          <tr><td><strong>משקפי בטיחות UV</strong></td><td>15</td><td>฿300</td><td>฿4.5K</td><td></td></tr>
+          <tr><td><strong>נעלי בטיחות (steel toe)</strong></td><td>12</td><td>฿1.5K</td><td>฿18K</td><td></td></tr>
+          <tr><td><strong>אפוד זוהר (Hi-Vis)</strong></td><td>15</td><td>฿200</td><td>฿3K</td><td></td></tr>
+          <tr><td><strong>קרם הגנה SPF50 (bulk)</strong></td><td>—</td><td>—</td><td>฿3K</td><td></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>ציוד בטיחות צוותי</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>כמות</th><th>מחיר</th></tr>
+          <tr><td><strong>ערכת עזרה ראשונה (מקצועית)</strong></td><td>3 + 1 משרד</td><td>฿8K</td></tr>
+          <tr><td><strong>מטף כיבוי אש (ABC, 5kg)</strong></td><td>6</td><td>฿6K</td></tr>
+          <tr><td><strong>Lockout/Tagout Kit</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">נעילת חשמל בזמן התקנה</span></td><td>3</td><td>฿9K</td></tr>
+          <tr><td><strong>שלטי אזהרה (חשמל, גובה)</strong></td><td>—</td><td>฿5K</td></tr>
+          <tr><td><strong>חבל בטיחות (50m × 12mm)</strong></td><td>6</td><td>฿6K</td></tr>
+          <tr><td><strong>רשת בטיחות לגג</strong></td><td>3</td><td>฿12K</td></tr>
+          <tr><td><strong>מכשיר קשר (Walkie-Talkie)</strong></td><td>8</td><td>฿8K</td></tr>
+          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ בטיחות</strong></td><td><strong class="gold">~฿120K</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-success" style="margin-top:8px">
+        <strong>חובה לפי חוק תאילנדי:</strong><br>
+        Safety Officer מוסמך (จป.), הדרכת בטיחות חודשית, PPE לכל עובד בשטח, ביטוח Workmen's Comp
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Testing & Measurement -->
+<div class="slide slide-dark" data-title="מכשירי מדידה">
+  <span class="section-num">05</span>
+  <h2>🔬 מכשירי מדידה + QA — <span class="gold">ציוד בדיקות</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>פריט</th><th>כמות</th><th>מחיר/יח׳</th><th>סה"כ</th><th>שימוש</th><th>לינק Lazada</th></tr>
+      <tr><td><strong>FLIR TG165-X Thermal Camera</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">80×60 IR, -25°C to 380°C</span></td><td>1</td><td>฿35K</td><td>฿35K</td><td>זיהוי hot spots בפאנלים</td><td><a href="https://www.lazada.co.th/products/flir-tg165-x-thermal-imaging-camera-with-bullseye-laser-commercial-grade-infrared-camera-for-building-inspection-hvac-and-electrical-i5179567217.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Fluke 1587 FC Insulation Multimeter</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">2-in-1: מגר + מולטימטר</span></td><td>2</td><td>฿18K</td><td>฿36K</td><td>בדיקת בידוד + מתח DC/AC</td><td><a href="https://www.lazada.co.th/products/fluke-1587-fc2-in-1-insulation-multimeter-i2475185822.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Fluke 101 Digital Multimeter</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">AC/DC 600V, compact</span></td><td>4</td><td>฿2.5K</td><td>฿10K</td><td>מדידה יומית בשטח</td><td><a href="https://www.lazada.co.th/products/fluke-101-kit-esp-digital-multimeter-acdc-voltage-600v-and-ac-600mv-i5896922885.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Solar IV Curve Tracer</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">PV200/PV210 או מקביל</span></td><td>1</td><td>฿25K</td><td>฿25K</td><td>אישור ביצועי string</td><td></td></tr>
+      <tr><td><strong>Earth Ground Resistance Tester</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">DY4100 או Fluke 1625-2</span></td><td>2</td><td>฿4K</td><td>฿8K</td><td>בדיקת הארקה</td><td><a href="https://www.lazada.co.th/tag/earth-ground-tester/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Clamp Meter (AC/DC 1000A)</strong></td><td>3</td><td>฿3K</td><td>฿9K</td><td>מדידת זרם ללא ניתוק</td><td><a href="https://www.lazada.co.th/tag/fluke-multimeter/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Irradiance Meter (Solar)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">TES-1333R או מקביל</span></td><td>2</td><td>฿5K</td><td>฿10K</td><td>מדידת קרינה לבדיקת ביצועים</td><td><a href="https://www.lazada.co.th/tag/solar-panel-multimeter/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Laser Distance Meter (100m)</strong></td><td>3</td><td>฿2.5K</td><td>฿7.5K</td><td>מדידות גג מהירות</td><td></td></tr>
+      <tr><td><strong>Inclinometer / Tilt Meter</strong></td><td>3</td><td>฿1K</td><td>฿3K</td><td>זווית גג + פאנלים</td><td></td></tr>
+      <tr><td><strong>Compass + Roof Pitch Tool</strong></td><td>3</td><td>฿500</td><td>฿1.5K</td><td>כיוון + שיפוע</td><td></td></tr>
+      <tr><td><strong>Label Printer (P-Touch)</strong></td><td>2</td><td>฿3K</td><td>฿6K</td><td>תיוג כבלים + לוחות</td><td></td></tr>
+      <tr style="background:rgba(232,168,32,.08)"><td colspan="3"><strong>סה"כ מכשירי מדידה</strong></td><td colspan="3"><strong class="gold">~฿180K</strong></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 7: Drones + Software -->
+<div class="slide slide-gold" data-title="רחפנים + תוכנה">
+  <span class="section-num">06</span>
+  <h2>🚁 רחפנים + תוכנה — <span class="gold">סקר ותכנון</span></h2>
+  <div class="two-col">
+    <div>
+      <h3>רחפנים</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>כמות</th><th>מחיר</th><th>לינק</th></tr>
+          <tr><td><strong>DJI Mini 4 Pro (RC 2)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">4K/60fps, 249g, obstacle sensing<br>סקרי גג + צילום case studies</span></td><td>2</td><td>฿35K × 2 = ฿70K</td><td><a href="https://www.lazada.co.th/products/dji-mini-4-pro-drone-i5083121168.html" target="_blank" class="lazada-link">Lazada — DJI Mini 4 Pro</a></td></tr>
+          <tr><td>סוללות נוספות (DJI Mini 4)</td><td>4</td><td>฿8K</td><td><a href="https://www.lazada.co.th/tag/dji-mini-4/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+          <tr><td>ND Filter Set</td><td>2</td><td>฿2K</td><td></td></tr>
+          <tr><td>Landing Pad מתקפל</td><td>2</td><td>฿1K</td><td></td></tr>
+          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ רחפנים</strong></td><td colspan="2"><strong>฿81K</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-info" style="margin-top:8px">
+        <strong>למה Mini 4 Pro?</strong><br>
+        • מתחת ל-250g = <strong>לא צריך רישיון CAAT</strong> בתאילנד<br>
+        • 4K + obstacle avoidance = בטיחות גגות<br>
+        • תמונות ortho לתכנון מערכת<br>
+        • שימוש כפול: סקרי גג + שיווק
+      </div>
+    </div>
+    <div>
+      <h3>רישיונות תוכנה</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>תוכנה</th><th>כמות</th><th>מחיר שנתי</th><th>הערה</th></tr>
+          <tr><td><strong>PVsyst 8 (Premium)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">סימולציית ייצור + shading</span></td><td>2 רישיונות</td><td>฿32K<br><span style="font-size:10px">(CHF 450 × 2)</span></td><td><a href="https://www.lazada.co.th/tag/pvsyst/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+          <tr><td><strong>AutoCAD LT</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">שרטוטי SLD + layout</span></td><td>1</td><td>฿15K/שנה</td><td>או SketchUp Pro</td></tr>
+          <tr><td><strong>DJI FlightHub 2</strong></td><td>1</td><td>฿5K/שנה</td><td>ניהול טיסות</td></tr>
+          <tr><td><strong>Google Workspace Business</strong></td><td>5 users</td><td>฿12K/שנה</td><td>דוא"ל + Drive + Sheets</td></tr>
+          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ תוכנה (שנתי)</strong></td><td colspan="2"><strong>~฿64K/שנה</strong></td></tr>
+        </table>
+      </div>
+      <div class="alert alert-warn" style="margin-top:8px">
+        <strong>הערה:</strong> PVsyst רישיון רשמי מ-pvsyst.com (CHF 450/שנה). גרסאות ב-Lazada הן לא רשמיות — <strong>לקנות ישירות מהיצרן.</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: Warehouse & Logistics -->
+<div class="slide slide-dark" data-title="מחסן + לוגיסטיקה">
+  <span class="section-num">07</span>
+  <h2>🏭 מחסן + לוגיסטיקה — <span class="gold">ציוד אחסון</span></h2>
+  <div class="two-col">
+    <div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>כמות</th><th>מחיר</th><th>לינק</th></tr>
+          <tr><td><strong>מלגזה ידנית (Pallet Jack)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">2.5 טון, לפריקת containers</span></td><td>1</td><td>฿25K</td><td><a href="https://www.lazada.co.th/tag/forklift/" target="_blank" class="lazada-link">Lazada — Forklift</a></td></tr>
+          <tr><td><strong>מדפים תעשייתיים (Pallet Rack)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">5 שורות × 3 מדפים, 500kg/מדף</span></td><td>5</td><td>฿50K</td><td></td></tr>
+          <tr><td><strong>עגלת משטחים (Trolley)</strong></td><td>2</td><td>฿6K</td><td></td></tr>
+          <tr><td><strong>סרטי קשירה (Ratchet Straps)</strong></td><td>20</td><td>฿4K</td><td></td></tr>
+          <tr><td><strong>משטחי עץ (Pallets)</strong></td><td>30</td><td>฿6K</td><td></td></tr>
+          <tr><td><strong>כיסויי ברזנט (Tarpaulin)</strong></td><td>10</td><td>฿5K</td><td></td></tr>
+          <tr><td><strong>מאוורר תעשייתי + תאורה LED</strong></td><td>—</td><td>฿15K</td><td></td></tr>
+          <tr><td><strong>שלטי מחסן + סימון רצפה</strong></td><td>—</td><td>฿3K</td><td></td></tr>
+          <tr><td><strong>מצלמות אבטחה (4 ערוצים)</strong></td><td>1 סט</td><td>฿8K</td><td></td></tr>
+          <tr><td><strong>כספת (למסמכים + מפתחות)</strong></td><td>1</td><td>฿5K</td><td></td></tr>
+          <tr><td><strong>ארון כלים מחסן (גדול)</strong></td><td>2</td><td>฿10K</td><td></td></tr>
+          <tr><td><strong>ציוד ניקיון + תחזוקה</strong></td><td>—</td><td>฿3K</td><td></td></tr>
+          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ מחסן</strong></td><td colspan="2"><strong class="gold">~฿180K</strong></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-info">
+        <strong>המחסן עצמו על TM Energy</strong><br>
+        שכירות + deposit על חשבון TM. הציוד הפנימי — על חשבון הדיוויזן הסולארי.
+      </div>
+      <h3 style="margin-top:12px">Layout מחסן מומלץ</h3>
+      <div class="card">
+        <div style="font-size:12px;line-height:2">
+          <div>🟨 <strong>אזור A:</strong> פאנלים (מדפים אנכיים)</div>
+          <div>🟦 <strong>אזור B:</strong> אינוורטרים + BOS</div>
+          <div>🟩 <strong>אזור C:</strong> קונסטרוקציה (rails, clamps)</div>
+          <div>🟧 <strong>אזור D:</strong> כבלים + חומרי מתכלה</div>
+          <div>⬜ <strong>אזור E:</strong> כלי עבודה + ציוד בטיחות</div>
+          <div>🟥 <strong>אזור F:</strong> פריקה + העמסה</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: IT & Office -->
+<div class="slide slide-ocean" data-title="IT + משרד">
+  <span class="section-num">08</span>
+  <h2>💻 תשתית IT + משרד — <span class="gold">฿120K</span></h2>
+  <div class="two-col">
+    <div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>פריט</th><th>כמות</th><th>מחיר</th></tr>
+          <tr><td><strong>MacBook Air M3 (מנהלים)</strong></td><td>2</td><td>฿70K</td></tr>
+          <tr><td><strong>Windows Laptop (מהנדסים)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">לPVsyst + AutoCAD</span></td><td>1</td><td>฿25K</td></tr>
+          <tr><td><strong>iPad + Apple Pencil (סקרים)</strong></td><td>2</td><td>—</td></tr>
+          <tr><td><strong>מסך חיצוני 27"</strong></td><td>3</td><td>—</td></tr>
+          <tr><td><strong>מדפסת A3 צבעונית</strong></td><td>1</td><td>—</td></tr>
+          <tr><td><strong>Router WiFi 6 + UPS</strong></td><td>1</td><td>—</td></tr>
+          <tr><td><strong>NAS Storage (4TB)</strong></td><td>1</td><td>—</td></tr>
+          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ IT</strong></td><td><strong class="gold">฿120K</strong></td></tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-info">
+        <strong>המשרד עצמו על TM Energy</strong><br>
+        שכירות, ריהוט בסיסי, חשמל — על חשבון TM.<br>
+        IT וציוד מחשוב — על הדיוויזן הסולארי.
+      </div>
+      <div class="alert alert-warn" style="margin-top:12px">
+        <strong>תוכנות חינמיות:</strong><br>
+        • <strong>Helioscope</strong> — תכנון מערכת (free tier)<br>
+        • <strong>Google Earth Pro</strong> — סקר גגות ראשוני<br>
+        • <strong>Canva Pro</strong> — הצעות מחיר + שיווק<br>
+        • <strong>Trello/Notion</strong> — ניהול פרויקטים<br>
+        • <strong>LINE Official</strong> — תקשורת עם לקוחות
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 10: Purchase Timeline -->
+<div class="slide slide-dark" data-title="לו״ז רכישות">
+  <span class="section-num">09</span>
+  <h2>📅 לו"ז רכישות — <span class="gold">לפי חודש הקמה</span></h2>
+  <div class="table-wrap">
+    <table>
+      <tr><th>חודש</th><th>רכישות</th><th>תקציב</th><th>אבן דרך</th></tr>
+      <tr style="background:rgba(232,93,58,.08)"><td><strong>חודש 1</strong><br><span class="qty-badge">דחוף</span></td><td>
+        • רכב ראשון (Hilux #1)<br>
+        • IT: מחשבים + מסכים<br>
+        • תוכנה: PVsyst × 2, Google Workspace<br>
+        • כלי עבודה: סט ראשון (drill, crimper, multimeter)
+      </td><td>฿450K</td><td>מתחילים סקרי גגות + תכנון ראשון</td></tr>
+      <tr><td><strong>חודש 2</strong></td><td>
+        • רכבים #2 + #3<br>
+        • ציוד בטיחות (כל ה-PPE)<br>
+        • כלי עבודה: סט #2 + #3<br>
+        • DJI Mini 4 Pro × 2
+      </td><td>฿900K</td><td>3 צוותים מצוידים + מוכנים לשטח</td></tr>
+      <tr style="background:rgba(232,168,32,.08)"><td><strong>חודש 3</strong></td><td>
+        • מכשירי מדידה (FLIR, Fluke)<br>
+        • ציוד מחסן (מדפים, pallet jack)<br>
+        • ציוד QA (IV curve, earth tester)
+      </td><td>฿440K</td><td>מחסן מאובזר + בדיקות QA</td></tr>
+      <tr><td><strong>חודש 4+</strong></td><td>
+        • חומרי מתכלה (חודשי)<br>
+        • החלפת ציוד שבלה<br>
+        • שדרוגים לפי צורך
+      </td><td>~฿100K</td><td>תפעול שוטף</td></tr>
+      <tr style="background:rgba(232,168,32,.12)"><td colspan="2"><strong class="gold">סה"כ הון ראשוני</strong></td><td><strong class="gold">฿1.89M</strong></td><td><strong>~$52K</strong></td></tr>
+    </table>
+  </div>
+  <div class="stat-grid" style="margin-top:12px">
+    <div><div class="big-num">฿1.89M</div><div class="stat-label">הון ראשוני כולל</div></div>
+    <div><div class="big-num">~$52K</div><div class="stat-label">בדולרים</div></div>
+    <div><div class="big-num">3 חודשים</div><div class="stat-label">עד מוכנות מלאה</div></div>
+    <div><div class="big-num">฿0</div><div class="stat-label">מלאי (על הלקוחות)</div></div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Lazada Quick Links -->
+<div class="slide slide-cover" data-title="לינקים מהירים">
+  <span class="section-num">10</span>
+  <h2>🔗 Lazada Quick Links — <span class="gold">קטגוריות ראשיות</span></h2>
+  <div class="three-col" style="max-width:900px;margin:0 auto">
+    <div class="card">
+      <h3>כלי עבודה</h3>
+      <div style="font-size:12px;line-height:2.2">
+        <a href="https://www.lazada.co.th/tag/makita-cordless-impact-drill/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Makita Cordless Drills</a>
+        <a href="https://www.lazada.co.th/tag/bosch-angle-grinder/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Bosch Angle Grinders</a>
+        <a href="https://www.lazada.co.th/tag/mc4-crimping-tool/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">MC4 Crimping Tools</a>
+        <a href="https://www.lazada.co.th/tag/wire-stripper/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Wire Strippers</a>
+        <a href="https://www.lazada.co.th/tag/steel-cable-cutter/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Cable Cutters</a>
+        <a href="https://www.lazada.co.th/shop-hand-tools-&-accessories/hilti/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Hilti Tools</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>מכשירי מדידה</h3>
+      <div style="font-size:12px;line-height:2.2">
+        <a href="https://www.lazada.co.th/flir/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">FLIR Thermal Cameras</a>
+        <a href="https://www.lazada.co.th/shop/fluke/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Fluke Official Store</a>
+        <a href="https://www.lazada.co.th/tag/earth-ground-tester/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Earth Ground Testers</a>
+        <a href="https://www.lazada.co.th/tag/solar-panel-multimeter/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Solar Multimeters</a>
+        <a href="https://www.lazada.co.th/tag/fluke-multimeter/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Fluke Multimeters</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>בטיחות + רחפנים</h3>
+      <div style="font-size:12px;line-height:2.2">
+        <a href="https://www.lazada.co.th/tag/safety-harness/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Safety Harnesses</a>
+        <a href="https://www.lazada.co.th/tag/construction-safety-helmet/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Safety Helmets</a>
+        <a href="https://www.lazada.co.th/tag/fall-arrest-harness/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Fall Arrest Systems</a>
+        <a href="https://www.lazada.co.th/tag/dji-mini-4-pro/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">DJI Mini 4 Pro</a>
+        <a href="https://www.lazada.co.th/tag/solar-panel-mounting/" target="_blank" class="lazada-link" style="display:block;margin:4px 0">Solar Mounting Hardware</a>
+      </div>
+    </div>
+  </div>
+  <div class="alert alert-warn" style="max-width:700px;margin:20px auto;text-align:center">
+    <strong>טיפ:</strong> הזמנות מעל ฿5,000 — בדוק מחירים גם ב-<strong>Shopee</strong> ו-<strong>Thai Watsadu</strong> (HomePro). לציוד מקצועי — <strong>Misumi</strong> ו-<strong>RS Components Thailand</strong>.
+  </div>
+</div>
+
+</div><!-- end slides -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">→ הקודם</button>
+  <span class="slide-counter" id="counter"></span>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">הבא ←</button>
+</div>
+<script>
+const slides=document.querySelectorAll('.slide'),total=slides.length;let current=0;
+function show(n){slides.forEach((s,i)=>{s.classList.remove('active','exit');if(i===n)s.classList.add('active');else if(i<n)s.classList.add('exit')});document.getElementById('counter').textContent=`${n+1} / ${total}`;document.getElementById('progress').style.width=`${((n+1)/total)*100}%`;document.getElementById('prevBtn').disabled=n===0;document.getElementById('nextBtn').disabled=n===total-1;document.querySelectorAll('.toc-item').forEach((t,i)=>{t.classList.toggle('active',i===n)})}
+function navigate(d){current=Math.max(0,Math.min(total-1,current+d));show(current)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')navigate(1);if(e.key==='ArrowRight')navigate(-1);if(e.key==='Escape')toggleTOC()});
+let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);document.addEventListener('touchend',e=>{const d=tx-e.changedTouches[0].clientX;if(Math.abs(d)>50)navigate(d>0?1:-1)});
+function toggleTOC(){document.getElementById('tocPanel').classList.toggle('open')}
+document.addEventListener('click',e=>{const p=document.getElementById('tocPanel');if(p.classList.contains('open')&&!p.contains(e.target)&&!e.target.classList.contains('toc-btn'))p.classList.remove('open')});
+(function(){const l=document.getElementById('tocList');slides.forEach((s,i)=>{const d=document.createElement('div');d.className='toc-item';d.innerHTML=`<span class="toc-num">${String(i+1).padStart(2,'0')}</span>${s.dataset.title}`;d.onclick=()=>{current=i;show(i);toggleTOC()};l.appendChild(d)})})();
+show(0);
+</script>
+</body>
+</html>

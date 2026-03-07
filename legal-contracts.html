@@ -71,15 +71,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
 .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
 .lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-.th-sub{display:none;font-size:0.6em;color:rgba(232,168,32,.5);font-weight:400;margin-top:4px;font-family:'Noto Sans Thai',sans-serif}
-.en-sub{display:none;font-size:0.6em;color:rgba(255,255,255,.4);font-weight:400;margin-top:4px}
-body.lang-en .en-sub{display:block}
-body.lang-th .th-sub{display:block}
-body.lang-en .slide{direction:ltr;text-align:left}
-body.lang-th .slide{direction:ltr;text-align:left}
-body.lang-en th{text-align:left}
-body.lang-th th{text-align:left}
-
+body.lang-en body.lang-th 
 </style>
 </head>
 <body>
@@ -294,7 +286,6 @@ body.lang-th th{text-align:left}
 <div class="slide slide-ocean" data-title="אחריות">
   <span class="section-num">06</span>
   <h2>🛡️ ניהול אחריות</h2>
-<div class="en-sub">Warranty</div><div class="th-sub">การรับประกัน</div>
   <div class="two-col">
     <div>
       <h3>מפת אחריות</h3>
@@ -332,7 +323,6 @@ body.lang-th th{text-align:left}
 <img src="visuals/legal-07-storm.png" class="slide-img" alt="Storm damage">
   <span class="section-num">07</span>
   <h2>🛡️ ביטוח — חובה ומומלץ</h2>
-<div class="en-sub">Insurance</div><div class="th-sub">ประกันภัย</div>
   <div class="card-grid">
     <div class="card" style="border-color:var(--coral)">
       <div class="card-icon">🏗️</div>
@@ -377,7 +367,6 @@ body.lang-th th{text-align:left}
 <div class="slide slide-dark" data-title="מיסוי">
   <span class="section-num">08</span>
   <h2>💰 מיסוי — הזדמנויות ומחויבויות</h2>
-<div class="en-sub">Taxation</div><div class="th-sub">ภาษี</div>
   <div class="two-col">
     <div>
       <h3>מסים חובה</h3>
@@ -547,13 +536,7 @@ show(0);
 
 
 
-<script>
-function setLang(l){
-  document.body.className=document.body.className.replace(/lang-\w+/g,'').trim()+' lang-'+l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
-  localStorage.setItem('tm-lang',l);
-}
-(function(){var s=localStorage.getItem('tm-lang');if(s)setLang(s)})();
-</script>
+
+<script src="tm-lang.js"></script>
 </body>
 </html>

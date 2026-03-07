@@ -74,15 +74,7 @@ tr:hover td{background:rgba(255,255,255,.03)}
 .lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
 .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
 .lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-.th-sub{display:none;font-size:0.6em;color:rgba(232,168,32,.5);font-weight:400;margin-top:4px;font-family:'Noto Sans Thai',sans-serif}
-.en-sub{display:none;font-size:0.6em;color:rgba(255,255,255,.4);font-weight:400;margin-top:4px}
-body.lang-en .en-sub{display:block}
-body.lang-th .th-sub{display:block}
-body.lang-en .slide{direction:ltr;text-align:left}
-body.lang-th .slide{direction:ltr;text-align:left}
-body.lang-en th{text-align:left}
-body.lang-th th{text-align:left}
-
+body.lang-en body.lang-th 
 </style>
 </head>
 <body>
@@ -143,7 +135,6 @@ body.lang-th th{text-align:left}
 <div class="slide slide-ocean" data-title="שלושה מסלולי הכנסה">
   <span class="section-num">03</span>
   <h2>💰 שלושה מסלולי הכנסה</h2>
-<div class="en-sub">Revenue Streams</div><div class="th-sub">ช่องทางรายได้</div>
   
   <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:24px 0">
     <div class="org-box" style="border-color:#6496FF;min-width:220px;padding:14px 20px">
@@ -554,7 +545,6 @@ body.lang-th th{text-align:left}
 <div class="slide slide-gold" data-title="תזרים מזומנים">
   <span class="section-num">11</span>
   <h2>💧 תזרים מזומנים — 3 שנים (מאוחד)</h2>
-<div class="en-sub">Cash Flow</div><div class="th-sub">กระแสเงินสด</div>
   <div class="table-wrap">
     <table>
       <tr><th></th><th>שנה 1</th><th>שנה 2</th><th>שנה 3</th></tr>
@@ -590,8 +580,6 @@ body.lang-th th{text-align:left}
 <div class="slide slide-ocean" data-title="מקורות מימון">
   <span class="section-num">12</span>
   <h2>💰 מקורות מימון — מאיפה הכסף?</h2>
-<div class="en-sub">Financing</div><div class="th-sub">การเงิน</div>
-<div class="en-sub">Funding</div><div class="th-sub">แหล่งเงินทุน</div>
   <div class="two-col">
     <div>
       <h3>שלב 1: הקמה (חודשים 1-3)</h3>
@@ -776,7 +764,6 @@ body.lang-th th{text-align:left}
 <div class="slide slide-cover" data-title="סיכום">
   <span class="section-num">17</span>
   <h2>סיכום — המספרים</h2>
-<div class="en-sub">Summary</div><div class="th-sub">สรุป</div>
   <div class="stat-grid" style="max-width:900px">
     <div><div class="big-num">50,000 m²</div><div class="stat-label">שטח גגות שנתי</div></div>
     <div><div class="big-num">9.09 MWp</div><div class="stat-label">הספק שנתי</div></div>
@@ -816,13 +803,7 @@ show(0);
 
 
 
-<script>
-function setLang(l){
-  document.body.className=document.body.className.replace(/lang-\w+/g,'').trim()+' lang-'+l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
-  localStorage.setItem('tm-lang',l);
-}
-(function(){var s=localStorage.getItem('tm-lang');if(s)setLang(s)})();
-</script>
+
+<script src="tm-lang.js"></script>
 </body>
 </html>

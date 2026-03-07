@@ -64,15 +64,7 @@ tr:hover{background:rgba(255,255,255,.02)}
 .lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
 .lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
 .lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
-.th-sub{display:none;font-size:0.6em;color:rgba(232,168,32,.5);font-weight:400;margin-top:4px;font-family:'Noto Sans Thai',sans-serif}
-.en-sub{display:none;font-size:0.6em;color:rgba(255,255,255,.4);font-weight:400;margin-top:4px}
-body.lang-en .en-sub{display:block}
-body.lang-th .th-sub{display:block}
-body.lang-en .slide{direction:ltr;text-align:left}
-body.lang-th .slide{direction:ltr;text-align:left}
-body.lang-en th{text-align:left}
-body.lang-th th{text-align:left}
-
+body.lang-en body.lang-th 
 </style>
 </head>
 <body>
@@ -114,7 +106,6 @@ body.lang-th th{text-align:left}
 <div class="slide slide-dark" data-title="סיכום תקציב">
   <span class="section-num">01</span>
   <h2>💰 סיכום תקציב — לפי קטגוריה</h2>
-<div class="en-sub">Summary</div><div class="th-sub">สรุป</div>
   <div class="table-wrap">
     <table>
       <tr><th>קטגוריה</th><th>תקציב</th><th>% מסה"כ</th><th>הערה</th></tr>
@@ -529,13 +520,7 @@ document.addEventListener('click',e=>{const p=document.getElementById('tocPanel'
 show(0);
 </script>
 
-<script>
-function setLang(l){
-  document.body.className=document.body.className.replace(/lang-\w+/g,'').trim()+' lang-'+l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.l===l));
-  localStorage.setItem('tm-lang',l);
-}
-(function(){var s=localStorage.getItem('tm-lang');if(s)setLang(s)})();
-</script>
+
+<script src="tm-lang.js"></script>
 </body>
 </html>

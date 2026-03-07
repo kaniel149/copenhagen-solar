@@ -32,39 +32,67 @@
     <button class="tab-btn on" onclick="showTab('list',this)">📋 List</button>
     <button class="tab-btn" onclick="showTab('analytics',this)">📊 Analytics</button>
   </div>
-  <div class="filters" id="filtersRow">
-    <button class="fbtn on" data-f="all">All</button>
-    <button class="fbtn" data-f="A">🥇A</button>
-    <button class="fbtn" data-f="B">🥈B</button>
-    <button class="fbtn" data-f="C">🥉C</button>
-    <button class="fbtn" data-f="D">D</button>
-    <button class="fbtn" data-cat="hospitality">🏨</button>
-    <button class="fbtn" data-cat="food_beverage">🍽️</button>
-    <button class="fbtn" data-cat="retail">🛒</button>
-    <button class="fbtn" data-cat="residential">🏠</button>
-    <button class="fbtn" data-cat="bungalow">🛖</button>
-    <button class="fbtn" data-cat="healthcare">🏥</button>
-    <button class="fbtn" data-sz="100">100m²+</button>
-    <button class="fbtn" data-sz="500">500m²+</button>
-    <button class="fbtn" data-sp="phone">📞</button>
-    <button class="fbtn" data-sp="email">✉️</button>
-    <button class="fbtn" data-sp="pipeline">🟢 Pipeline</button>
+
+  <div class="sidebar-list-content">
+    <div class="filters" id="filtersRow">
+      <div class="filter-group">
+        <span class="filter-label">Priority</span>
+        <div class="filter-chips">
+          <button class="fbtn on" data-f="all">All</button>
+          <button class="fbtn" data-f="A">🥇 A</button>
+          <button class="fbtn" data-f="B">🥈 B</button>
+          <button class="fbtn" data-f="C">🥉 C</button>
+          <button class="fbtn" data-f="D">D</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Type</span>
+        <div class="filter-chips">
+          <button class="fbtn" data-cat="hospitality">🏨</button>
+          <button class="fbtn" data-cat="food_beverage">🍽️</button>
+          <button class="fbtn" data-cat="retail">🛒</button>
+          <button class="fbtn" data-cat="residential">🏠</button>
+          <button class="fbtn" data-cat="bungalow">🛖</button>
+          <button class="fbtn" data-cat="healthcare">🏥</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Size</span>
+        <div class="filter-chips">
+          <button class="fbtn" data-sz="100">100m²+</button>
+          <button class="fbtn" data-sz="500">500m²+</button>
+        </div>
+        <span class="filter-count">0</span>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">Contact</span>
+        <div class="filter-chips">
+          <button class="fbtn" data-sp="phone">📞</button>
+          <button class="fbtn" data-sp="email">✉️</button>
+          <button class="fbtn" data-sp="pipeline">🟢 Pipeline</button>
+        </div>
+      </div>
+    </div>
+    <div class="search-sort-row">
+      <input type="text" id="search" placeholder="🔍 Search name, category, phone...">
+      <select id="sortSelect">
+        <option value="score">Score ↓</option>
+        <option value="area">Area ↓</option>
+        <option value="kwp">kWp ↓</option>
+        <option value="savings">Savings ↓</option>
+        <option value="name">Name A-Z</option>
+      </select>
+    </div>
   </div>
-  <div class="sort-row">
-    <label>Sort:</label>
-    <select id="sortSelect">
-      <option value="score">Score ↓</option>
-      <option value="area">Area ↓</option>
-      <option value="kwp">kWp ↓</option>
-      <option value="savings">Savings ↓</option>
-      <option value="name">Name A-Z</option>
-    </select>
+
+  <div class="sidebar-body">
+    <div class="building-list" id="buildingList"></div>
+    <div class="analytics" id="analyticsPanel"></div>
+    <div class="detail-view">
+      <div id="detailContent"></div>
+    </div>
   </div>
-  <div class="search-box">
-    <input type="text" id="search" placeholder="🔍 Search by name, category, phone...">
-  </div>
-  <div class="building-list" id="buildingList"></div>
-  <div class="analytics" id="analyticsPanel"></div>
+
   <div class="compare-bar">
     <span>Compare: <span class="compare-count">0</span>/5 selected</span>
     <button class="compare-go" onclick="showComparison()">Compare</button>
@@ -102,9 +130,6 @@
     <div class="lg-i"><div class="lg-d" style="background:#6496FF"></div>C — Low</div>
     <div class="lg-i"><div class="lg-d" style="background:#666"></div>D — Small</div>
     <div class="lg-i"><div class="lg-d" style="background:#1A7A5A;border:2px solid #2ED89A"></div>Pipeline</div>
-  </div>
-  <div class="detail-panel" id="detailPanel">
-    <div id="detailContent"></div>
   </div>
 </div>
 

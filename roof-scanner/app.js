@@ -1,26 +1,25 @@
 // ============================================================
-// Ko Phangan Solar — Roof Scanner Pro v2
+// Ko Phangan Solar — Roof Scanner Pro v3 (UX Overhaul)
 // ============================================================
 
 // --- Constants ---
 const PRIORITY_COLORS = { A: '#E8A820', B: '#2ED89A', C: '#6496FF', D: '#666' };
 const CATEGORY_LABELS = {
-  hospitality: '🏨 מלון/ריזורט', food_beverage: '🍽️ מסעדה/בר', retail: '🛒 חנות',
-  residential: '🏠 מגורים', bungalow: '🛖 בנגלו', commercial: '🏢 מסחרי',
-  healthcare: '🏥 רפואי', education: '🏫 חינוך', temple: '⛩️ מקדש'
+  hospitality: '🏨 Hotel/Resort', food_beverage: '🍽️ Restaurant/Bar', retail: '🛒 Shop',
+  residential: '🏠 Residential', bungalow: '🛖 Bungalow', commercial: '🏢 Commercial',
+  healthcare: '🏥 Medical', education: '🏫 Education', temple: '⛩️ Temple'
 };
 const CENTER = [100.00, 9.73];
-// Cost per kWp in thousands of THB (equipment + installation)
-const COST_PER_KWP_K = 11.8;
+const COST_PER_KWP_K = 11.8; // Cost per kWp in thousands THB (equipment + install)
 
 // --- State ---
-let map, selId = null;
+let map, selId = null, hoverPopup = null;
 let fPri = 'all', fCat = null, fSz = null, fSp = null, fPip = false;
 let heatOn = false, polyOn = false, clusterOn = false;
 let listLimit = 100;
-let sortBy = 'score'; // score | area | kwp | name
+let sortBy = 'score';
 let compareSet = new Set();
-let searchTimeout = null;
+let detailMode = false; // true = sidebar shows detail instead of list
 
 // --- localStorage helpers ---
 function getNotes(id) {
@@ -40,7 +39,6 @@ function savePipelineLocal(set) {
   try { localStorage.setItem('scanner_pipeline', JSON.stringify([...set])); } catch {}
 }
 
-// Merge localStorage pipeline into data on load
 function mergePipeline() {
   const local = getPipelineLocal();
   if (local.size === 0) return;
@@ -75,6 +73,18 @@ function debounce(fn, ms) {
   return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); };
 }
 
+// --- HTML/CSV escaping ---
+function escHtml(s) {
+  if (!s) return '';
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+function escCsv(val) {
+  if (val == null) return '';
+  const s = String(val);
+  if (s.includes(',') || s.includes('"') || s.includes('\n')) return '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+
 // --- Map Init ---
 function initMap() {
   try {
@@ -93,35 +103,24 @@ function initMap() {
         ]
       },
       center: CENTER, zoom: 13, maxZoom: 22,
-      maxBounds: [[99.7, 9.55], [100.2, 9.95]],
-      fadeDuration: 0
+      maxBounds: [[99.7, 9.55], [100.2, 9.95]], fadeDuration: 0
     });
-
     map.on('load', onMapLoad);
-    map.on('error', (e) => {
-      console.error('Map error:', e);
-      showMapError();
-    });
+    map.on('error', () => showMapError());
   } catch (e) {
     console.error('Map init failed:', e);
     showMapError();
   }
 }
 
-function showMapError() {
-  document.querySelector('.map-error').classList.add('show');
-}
-
-function retryMap() {
-  document.querySelector('.map-error').classList.remove('show');
-  initMap();
-}
+function showMapError() { document.querySelector('.map-error').classList.add('show'); }
+function retryMap() { document.querySelector('.map-error').classList.remove('show'); initMap(); }
 
 function onMapLoad() {
   const pts = B.map(b => ({
     type: 'Feature',
     geometry: { type: 'Point', coordinates: [b.lo, b.la] },
-    properties: { i: b.i, pr: b.pr, s: b.s, a: b.a, pip: b.pip, n: b.n, c: b.c }
+    properties: { i: b.i, pr: b.pr, s: b.s, a: b.a, pip: b.pip, n: b.n, c: b.c, kw: b.kw }
   }));
 
   map.addSource('pts', { type: 'geojson', data: { type: 'FeatureCollection', features: pts } });
@@ -132,39 +131,37 @@ function onMapLoad() {
     properties: { i: b.i, pr: b.pr, pip: b.pip }
   }));
   map.addSource('polys', { type: 'geojson', data: { type: 'FeatureCollection', features: polys } });
-
   map.addSource('clusters', {
     type: 'geojson', data: { type: 'FeatureCollection', features: pts },
     cluster: true, clusterMaxZoom: 14, clusterRadius: 60,
     clusterProperties: { totalKw: ['+', ['get', 'a']], countA: ['+', ['case', ['==', ['get', 'pr'], 'A'], 1, 0]] }
   });
 
-  // Polygon layers
+  // Layers
   map.addLayer({ id: 'poly-fill', type: 'fill', source: 'polys', layout: { visibility: 'none' },
     paint: { 'fill-color': ['match', ['get', 'pr'], 'A', '#E8A820', 'B', '#2ED89A', 'C', '#6496FF', '#666'], 'fill-opacity': 0.3 } });
   map.addLayer({ id: 'poly-line', type: 'line', source: 'polys', layout: { visibility: 'none' },
     paint: { 'line-color': ['match', ['get', 'pr'], 'A', '#E8A820', 'B', '#2ED89A', 'C', '#6496FF', '#666'], 'line-width': 1.5, 'line-opacity': 0.7 } });
-
-  // Pipeline ring
   map.addLayer({ id: 'pip-ring', type: 'circle', source: 'pts', filter: ['==', ['get', 'pip'], 1],
     paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 5, 14, 10, 17, 16],
       'circle-color': 'transparent', 'circle-stroke-width': 2.5, 'circle-stroke-color': '#2ED89A', 'circle-opacity': 0 } });
 
-  // Main circles
+  // Selected building highlight ring
+  map.addLayer({ id: 'sel-ring', type: 'circle', source: 'pts', filter: ['==', ['get', 'i'], -1],
+    paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 6, 14, 12, 17, 18],
+      'circle-color': 'transparent', 'circle-stroke-width': 3, 'circle-stroke-color': '#E8A820',
+      'circle-stroke-opacity': ['interpolate', ['linear'], ['zoom'], 10, 0.6, 17, 0.9] } });
+
   map.addLayer({ id: 'bldg', type: 'circle', source: 'pts',
     paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 10, 2, 14, 5, 17, 9],
       'circle-color': ['match', ['get', 'pr'], 'A', '#E8A820', 'B', '#2ED89A', 'C', '#6496FF', '#666'],
       'circle-opacity': 0.85, 'circle-stroke-width': 0.5, 'circle-stroke-color': 'rgba(255,255,255,0.2)' } });
-
-  // Heatmap
   map.addLayer({ id: 'heat', type: 'heatmap', source: 'pts', layout: { visibility: 'none' },
     paint: { 'heatmap-weight': ['interpolate', ['linear'], ['get', 's'], 0, 0, 100, 1],
       'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 10, 1, 15, 3],
       'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 10, 15, 15, 30],
       'heatmap-color': ['interpolate', ['linear'], ['heatmap-density'], 0, 'rgba(0,0,0,0)', 0.2, '#1A7A5A', 0.4, '#2ED89A', 0.6, '#E8A820', 0.8, '#E85D3A', 1, '#FF2222'],
       'heatmap-opacity': 0.7 } });
-
-  // Clusters
   map.addLayer({ id: 'cl-circle', type: 'circle', source: 'clusters', filter: ['has', 'point_count'], layout: { visibility: 'none' },
     paint: { 'circle-color': ['step', ['get', 'point_count'], '#2ED89A', 20, '#E8A820', 50, '#E85D3A'],
       'circle-radius': ['step', ['get', 'point_count'], 18, 20, 24, 50, 32], 'circle-opacity': 0.9 } });
@@ -172,16 +169,30 @@ function onMapLoad() {
     'text-field': '{point_count_abbreviated}', 'text-font': ['Open Sans Regular'], 'text-size': 12 },
     paint: { 'text-color': '#fff' } });
 
+  // Click handlers
   map.on('click', 'bldg', e => { if (e.features.length) selectBuilding(e.features[0].properties.i); });
   map.on('click', 'cl-circle', e => { map.easeTo({ center: e.lngLat, zoom: map.getZoom() + 2 }); });
-  map.on('mouseenter', 'bldg', () => map.getCanvas().style.cursor = 'pointer');
-  map.on('mouseleave', 'bldg', () => map.getCanvas().style.cursor = '');
+
+  // Hover tooltip
+  hoverPopup = new maplibregl.Popup({ closeButton: false, closeOnClick: false, offset: 10 });
+  map.on('mouseenter', 'bldg', e => {
+    map.getCanvas().style.cursor = 'pointer';
+    if (!e.features.length) return;
+    const p = e.features[0].properties;
+    const name = p.n || CATEGORY_LABELS[p.c] || p.c;
+    hoverPopup.setLngLat(e.lngLat).setHTML(
+      `<div class="popup-name">${escHtml(name)}</div>` +
+      `<div class="popup-stats">${p.pr} · ${p.kw ? Number(p.kw).toFixed(1) : '?'}kWp · ${Number(p.a).toLocaleString()}m²</div>`
+    ).addTo(map);
+  });
+  map.on('mousemove', 'bldg', e => { if (e.features.length) hoverPopup.setLngLat(e.lngLat); });
+  map.on('mouseleave', 'bldg', () => { map.getCanvas().style.cursor = ''; hoverPopup.remove(); });
 
   // Hide loading
-  document.querySelector('.loading-overlay').classList.add('hide');
-  setTimeout(() => document.querySelector('.loading-overlay').remove(), 500);
+  const loader = document.querySelector('.loading-overlay');
+  if (loader) { loader.classList.add('hide'); setTimeout(() => loader.remove(), 500); }
 
-  // Show keyboard hint briefly
+  // Keyboard hint
   const hint = document.querySelector('.kbd-hint');
   if (hint) { hint.classList.add('show'); setTimeout(() => hint.classList.remove('show'), 4000); }
 
@@ -202,14 +213,10 @@ function getFiltered() {
   if (fSp === 'pipeline' || fPip) f = f.filter(b => b.pip);
   const q = document.getElementById('search').value.toLowerCase().trim();
   if (q) f = f.filter(b =>
-    (b.n || '').toLowerCase().includes(q) ||
-    (b.c || '').includes(q) ||
-    (b.ph || '').includes(q) ||
-    (b.nth || '').toLowerCase().includes(q)
+    (b.n || '').toLowerCase().includes(q) || (b.c || '').includes(q) ||
+    (b.ph || '').includes(q) || (b.nth || '').toLowerCase().includes(q)
   );
-  // Sort
-  f = sortFiltered(f);
-  return f;
+  return sortFiltered(f);
 }
 
 function sortFiltered(f) {
@@ -219,12 +226,29 @@ function sortFiltered(f) {
     case 'kwp': return copy.sort((a, b) => b.kw - a.kw);
     case 'name': return copy.sort((a, b) => (a.n || '').localeCompare(b.n || ''));
     case 'savings': return copy.sort((a, b) => b.sav - a.sav);
-    case 'score':
-    default: return copy.sort((a, b) => b.s - a.s);
+    case 'score': default: return copy.sort((a, b) => b.s - a.s);
   }
 }
 
+function countActiveFilters() {
+  let c = 0;
+  if (fPri !== 'all') c++;
+  if (fCat) c++;
+  if (fSz) c++;
+  if (fSp) c++;
+  if (fPip) c++;
+  if (document.getElementById('search').value.trim()) c++;
+  return c;
+}
+
+function updateFilterCount() {
+  const c = countActiveFilters();
+  const el = document.querySelector('.filter-count');
+  if (el) { el.textContent = c; el.classList.toggle('show', c > 0); }
+}
+
 function updateMapFilter() {
+  if (!map || !map.getLayer('bldg')) return;
   const f = getFiltered();
   const ids = new Set(f.map(b => b.i));
   const fltr = ['in', ['get', 'i'], ['literal', [...ids]]];
@@ -236,6 +260,25 @@ function updateMapFilter() {
   document.getElementById('s-named').textContent = f.filter(b => b.n).length.toLocaleString();
   document.getElementById('s-a').textContent = f.filter(b => b.pr === 'A').length.toLocaleString();
   document.getElementById('s-pip').textContent = f.filter(b => b.pip).length;
+  updateFilterCount();
+}
+
+// --- Sidebar View Switching ---
+function showListView() {
+  detailMode = false;
+  document.querySelector('.sidebar-list-content').classList.remove('hidden');
+  document.querySelector('.detail-view').classList.remove('show');
+  document.querySelector('.export-bar').style.display = 'flex';
+  selId = null;
+  if (map && map.getLayer('sel-ring')) map.setFilter('sel-ring', ['==', ['get', 'i'], -1]);
+  updateUrlState();
+}
+
+function showDetailView() {
+  detailMode = true;
+  document.querySelector('.sidebar-list-content').classList.add('hidden');
+  document.querySelector('.detail-view').classList.add('show');
+  document.querySelector('.export-bar').style.display = 'none';
 }
 
 // --- List Rendering ---
@@ -251,74 +294,73 @@ function renderListInner() {
   const show = f.slice(0, listLimit);
   const inCompare = compareSet.size > 0;
 
+  if (f.length === 0) {
+    el.innerHTML = `<div class="empty-state">
+      <p>No buildings match your filters</p>
+      <button onclick="resetFilters()">Reset Filters</button>
+    </div>`;
+    updateMapFilter();
+    return;
+  }
+
   el.innerHTML = show.map(b => `
-    <div class="bc${selId === b.i ? ' sel' : ''}${b.pip ? ' pipeline' : ''}" onclick="selectBuilding(${b.i})" data-id="${b.i}">
+    <div class="bc pri-${b.pr.toLowerCase()}${selId === b.i ? ' sel' : ''}${b.pip ? ' pipeline' : ''}" onclick="selectBuilding(${b.i})" data-id="${b.i}">
       <div class="bc-top">
         <div class="bc-name">${escHtml(b.n || CATEGORY_LABELS[b.c] || b.c)}</div>
         <span class="badge p${b.pr.toLowerCase()}">${b.pr}·${b.s}</span>
-        ${inCompare ? `<input type="checkbox" ${compareSet.has(b.i) ? 'checked' : ''} onclick="event.stopPropagation();toggleCompare(${b.i})" style="margin-right:4px;cursor:pointer">` : ''}
+        ${inCompare ? `<input type="checkbox" ${compareSet.has(b.i) ? 'checked' : ''} onclick="event.stopPropagation();toggleCompare(${b.i})" style="margin-left:4px;cursor:pointer">` : ''}
       </div>
       <div class="bc-row">
-        <span>📐${b.a.toLocaleString()}m²</span>
-        <span>⚡${b.kw.toFixed(1)}kWp</span>
-        <span>🔢${b.p}</span>
+        <span>📐 ${b.a.toLocaleString()}m²</span>
+        <span>⚡ ${b.kw.toFixed(1)}kWp</span>
+        <span>🔢 ${b.p}</span>
         ${b.ph ? '<span>📞</span>' : ''}${b.em ? '<span>✉️</span>' : ''}${b.w ? '<span>🌐</span>' : ''}
       </div>
       ${b.pip ? '<span class="bc-pip">🟢 Pipeline</span>' : ''}<span class="bc-tag">${CATEGORY_LABELS[b.c] || b.c}</span>
     </div>`).join('') +
-    (f.length > listLimit ? `<div class="load-more" onclick="loadMore()">+ ${(f.length - listLimit).toLocaleString()} עוד — לחץ לטעינה</div>` : '');
-
+    (f.length > listLimit ? `<div class="load-more" onclick="loadMore()">+ ${(f.length - listLimit).toLocaleString()} more — click to load</div>` : '');
   updateMapFilter();
 }
 
-function loadMore() {
-  listLimit += 100;
-  renderListInner();
+function loadMore() { listLimit += 100; renderListInner(); }
+
+function resetFilters() {
+  fPri = 'all'; fCat = null; fSz = null; fSp = null; fPip = false;
+  document.getElementById('search').value = '';
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('on'));
+  document.querySelector('.fbtn[data-f="all"]')?.classList.add('on');
+  renderList();
 }
 
-// --- HTML escaping ---
-function escHtml(s) {
-  if (!s) return '';
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-// --- CSV escaping ---
-function escCsv(val) {
-  if (val == null) return '';
-  const s = String(val);
-  if (s.includes(',') || s.includes('"') || s.includes('\n')) {
-    return '"' + s.replace(/"/g, '""') + '"';
-  }
-  return s;
-}
-
-// --- Building Selection ---
+// --- Building Selection (detail in sidebar) ---
 function selectBuilding(id) {
   selId = id;
   const b = B.find(x => x.i === id);
   if (!b) return;
+
   map.flyTo({ center: [b.lo, b.la], zoom: 17, duration: 600 });
   if (polyOn) {
     map.setLayoutProperty('poly-fill', 'visibility', 'visible');
     map.setLayoutProperty('poly-line', 'visibility', 'visible');
   }
 
-  const waMsg = encodeURIComponent(
-    `Hello! I'm from Ko Phangan Solar / สวัสดีครับ! เราจาก Ko Phangan Solar.\n\n` +
-    `We noticed ${b.n || 'your building'} could benefit from a ${b.kw.toFixed(0)}kWp solar system ` +
-    `that would save approximately ฿${b.sav.toLocaleString()}/month on electricity.\n\n` +
-    `Would you be interested in a free consultation? / สนใจปรึกษาฟรีไหมครับ?`
-  );
+  // Highlight on map
+  if (map.getLayer('sel-ring')) map.setFilter('sel-ring', ['==', ['get', 'i'], id]);
 
+  const waMsg = encodeURIComponent(
+    `Hello! I'm from Ko Phangan Solar / สวัสดีครับ!\n\n` +
+    `We noticed ${b.n || 'your building'} could benefit from a ${b.kw.toFixed(0)}kWp solar system ` +
+    `saving ~฿${b.sav.toLocaleString()}/month.\n\nInterested in a free consultation? / สนใจปรึกษาฟรีไหมครับ?`
+  );
   const noteText = getNotes(b.i);
 
   document.getElementById('detailContent').innerHTML = `
+    <button class="detail-back" onclick="showListView()">← Back to list</button>
     <div class="dp-head">
-      <h2>${escHtml(b.n || CATEGORY_LABELS[b.c] || 'מבנה')} <span class="badge p${b.pr.toLowerCase()}" style="font-size:10px">${b.pr}·${b.s}</span>${b.pip ? '<span class="bc-pip" style="font-size:9px;margin-right:6px">🟢 Pipeline</span>' : ''}</h2>
-      <button class="dp-close" onclick="closeDetail()">✕</button>
+      <h2>${escHtml(b.n || CATEGORY_LABELS[b.c] || 'Building')} <span class="badge p${b.pr.toLowerCase()}" style="font-size:10px">${b.pr}·${b.s}</span>${b.pip ? '<span class="bc-pip" style="font-size:9px;margin-left:6px">🟢 Pipeline</span>' : ''}</h2>
     </div>
     <div class="dp-meta">
-      ${CATEGORY_LABELS[b.c] || b.c}${b.nth ? ' · ' + escHtml(b.nth) : ''}${b.cu ? ' · ' + escHtml(b.cu) : ''}${b.st ? ' · ' + b.st + '⭐' : ''}${b.rm ? ' · ' + b.rm + ' חדרים' : ''}
+      ${CATEGORY_LABELS[b.c] || b.c}${b.nth ? ' · ' + escHtml(b.nth) : ''}${b.cu ? ' · ' + escHtml(b.cu) : ''}${b.st ? ' · ' + b.st + '⭐' : ''}${b.rm ? ' · ' + b.rm + ' rooms' : ''}
       ${b.ph ? ' · 📞 <a href="tel:' + b.ph + '">' + escHtml(b.ph) + '</a>' : ''}
       ${b.w ? ' · 🌐 <a href="' + escHtml(b.w) + '" target="_blank">Website</a>' : ''}
       ${b.em ? ' · ✉️ ' + escHtml(b.em) : ''}
@@ -327,30 +369,30 @@ function selectBuilding(id) {
       ${b.ig ? ' · <a href="https://instagram.com/' + escHtml(b.ig) + '" target="_blank">IG</a>' : ''}
     </div>
     <div class="dp-grid">
-      <div class="dg"><div class="dg-v" style="color:var(--gold)">${b.a.toLocaleString()}</div><div class="dg-l">שטח גג m²</div></div>
-      <div class="dg"><div class="dg-v" style="color:var(--gold)">${b.u.toLocaleString()}</div><div class="dg-l">שמיש m²</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--gold)">${b.a.toLocaleString()}</div><div class="dg-l">Roof m²</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--gold)">${b.u.toLocaleString()}</div><div class="dg-l">Usable m²</div></div>
       <div class="dg"><div class="dg-v" style="color:#2ED89A">${b.kw.toFixed(1)}</div><div class="dg-l">kWp</div></div>
-      <div class="dg"><div class="dg-v" style="color:#2ED89A">${b.p}</div><div class="dg-l">פאנלים</div></div>
-      <div class="dg"><div class="dg-v" style="color:#6496FF">${(b.kwh / 1000).toFixed(1)}K</div><div class="dg-l">kWh/שנה</div></div>
-      <div class="dg"><div class="dg-v" style="color:var(--coral)">${b.ppap}</div><div class="dg-l">החזר PPA</div></div>
+      <div class="dg"><div class="dg-v" style="color:#2ED89A">${b.p}</div><div class="dg-l">Panels</div></div>
+      <div class="dg"><div class="dg-v" style="color:#6496FF">${(b.kwh / 1000).toFixed(1)}K</div><div class="dg-l">kWh/yr</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--coral)">${b.ppap}yr</div><div class="dg-l">PPA Payback</div></div>
     </div>
     <div class="dp-cols">
       <div class="dp-col">
-        <h4>EPC — מכירה ללקוח</h4>
+        <h4>EPC — Sell to Client</h4>
         <table class="dt">
-          <tr><td>מחיר</td><td>฿${(b.epc / 1000).toFixed(0)}K</td></tr>
-          <tr><td>עלות (${COST_PER_KWP_K}K/kWp)</td><td>฿${(b.kw * COST_PER_KWP_K).toFixed(0)}K</td></tr>
-          <tr><td>רווח</td><td style="color:#2ED89A">฿${(b.ep / 1000).toFixed(0)}K</td></tr>
-          <tr><td>חיסכון/חודש</td><td style="color:var(--gold)">฿${b.sav.toLocaleString()}</td></tr>
+          <tr><td>Price</td><td>฿${(b.epc / 1000).toFixed(0)}K</td></tr>
+          <tr><td>Cost (${COST_PER_KWP_K}K/kWp)</td><td>฿${(b.kw * COST_PER_KWP_K).toFixed(0)}K</td></tr>
+          <tr><td>Profit</td><td style="color:#2ED89A">฿${(b.ep / 1000).toFixed(0)}K</td></tr>
+          <tr><td>Monthly Savings</td><td style="color:var(--gold)">฿${b.sav.toLocaleString()}</td></tr>
         </table>
       </div>
       <div class="dp-col">
-        <h4>PPA — מכירת חשמל</h4>
+        <h4>PPA — Sell Electricity</h4>
         <table class="dt">
-          <tr><td>השקעה</td><td>฿${(b.ppai / 1000).toFixed(0)}K</td></tr>
-          <tr><td>הכנסה/שנה</td><td style="color:#2ED89A">฿${(b.ppar / 1000).toFixed(0)}K</td></tr>
+          <tr><td>Investment</td><td>฿${(b.ppai / 1000).toFixed(0)}K</td></tr>
+          <tr><td>Revenue/yr</td><td style="color:#2ED89A">฿${(b.ppar / 1000).toFixed(0)}K</td></tr>
           <tr><td>MRR</td><td style="color:var(--gold)">฿${(b.ppar / 12000).toFixed(1)}K</td></tr>
-          <tr><td>רווח 25 שנה</td><td style="color:#2ED89A">฿${((b.ppar * 25 - b.ppai) / 1e6).toFixed(1)}M</td></tr>
+          <tr><td>25yr Profit</td><td style="color:#2ED89A">฿${((b.ppar * 25 - b.ppai) / 1e6).toFixed(1)}M</td></tr>
         </table>
       </div>
     </div>
@@ -358,20 +400,17 @@ function selectBuilding(id) {
       <a class="act-map" href="https://www.google.com/maps/@${b.la},${b.lo},19z" target="_blank">📍 Maps</a>
       <a class="act-sat" href="https://www.google.com/maps/@${b.la},${b.lo},60m/data=!3m1!1e3" target="_blank">🛰️ Satellite</a>
       ${b.ph ? `<a class="act-wa" href="https://wa.me/${b.ph.replace(/[^0-9+]/g, '')}?text=${waMsg}" target="_blank">💬 WhatsApp</a><a class="act-call" href="tel:${b.ph}">📞 Call</a>` : ''}
-      <button class="act-pdf" onclick="genPDF(${b.i})">📄 PDF Proposal</button>
-      <button class="act-pip" onclick="toggleBuildingPipeline(${b.i})">${b.pip ? '🔴 הסר מ-Pipeline' : '🟢 הוסף ל-Pipeline'}</button>
+      <button class="act-pdf" onclick="genPDF(${b.i})">📄 PDF</button>
+      <button class="act-pip" onclick="toggleBuildingPipeline(${b.i})">${b.pip ? '🔴 Remove Pipeline' : '🟢 Add Pipeline'}</button>
     </div>
     <div class="dp-notes">
-      <label>📝 הערות (נשמר מקומית)</label>
-      <textarea id="noteArea" placeholder="הוסף הערות על המבנה...">${escHtml(noteText)}</textarea>
-      <div class="note-saved" id="noteSaved">✓ נשמר</div>
+      <label>📝 Notes (saved locally)</label>
+      <textarea id="noteArea" placeholder="Add notes about this building...">${escHtml(noteText)}</textarea>
+      <div class="note-saved" id="noteSaved">✓ Saved</div>
     </div>
-    <div class="dp-note">* חישובי PPA: 4.5 שעות שמש, ฿4.5/kWh, 70% ניצולת גג. כפוף לסקר שטח.</div>`;
+    <div class="dp-note">* PPA calc: 4.5 sun hours, ฿4.5/kWh, 70% roof utilization. Subject to site survey.</div>`;
 
-  document.getElementById('detailPanel').classList.add('show');
-  document.querySelectorAll('.bc').forEach(c => c.classList.remove('sel'));
-  const card = document.querySelector(`.bc[data-id="${id}"]`);
-  if (card) { card.classList.add('sel'); card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+  showDetailView();
 
   // Note auto-save
   const noteArea = document.getElementById('noteArea');
@@ -382,20 +421,11 @@ function selectBuilding(id) {
       if (saved) { saved.classList.add('show'); setTimeout(() => saved.classList.remove('show'), 1500); }
     }, 500));
   }
-
   updateUrlState();
 }
 
-function closeDetail() {
-  document.getElementById('detailPanel').classList.remove('show');
-  selId = null;
-  updateUrlState();
-}
-
-function resetView() {
-  map.flyTo({ center: CENTER, zoom: 13, duration: 600 });
-  closeDetail();
-}
+function closeDetail() { showListView(); }
+function resetView() { map.flyTo({ center: CENTER, zoom: 13, duration: 600 }); showListView(); }
 
 // --- Pipeline Toggle ---
 function toggleBuildingPipeline(id) {
@@ -405,9 +435,7 @@ function toggleBuildingPipeline(id) {
   const local = getPipelineLocal();
   if (b.pip) local.add(id); else local.delete(id);
   savePipelineLocal(local);
-  // Re-render
   selectBuilding(id);
-  renderList();
   renderAnalytics();
 }
 
@@ -420,38 +448,30 @@ function setStyle(s, el) {
   map.setLayoutProperty('satellite', 'visibility', s === 'sat' ? 'visible' : 'none');
   map.setLayoutProperty('streets', 'visibility', s === 'str' ? 'visible' : 'none');
 }
-
 function toggleHeat(el) {
-  heatOn = !heatOn;
-  if (el) el.classList.toggle('on', heatOn);
+  heatOn = !heatOn; if (el) el.classList.toggle('on', heatOn);
   map.setLayoutProperty('heat', 'visibility', heatOn ? 'visible' : 'none');
   map.setLayoutProperty('bldg', 'visibility', heatOn ? 'none' : 'visible');
 }
-
 function togglePolygons(el) {
-  polyOn = !polyOn;
-  if (el) el.classList.toggle('on', polyOn);
+  polyOn = !polyOn; if (el) el.classList.toggle('on', polyOn);
   map.setLayoutProperty('poly-fill', 'visibility', polyOn ? 'visible' : 'none');
   map.setLayoutProperty('poly-line', 'visibility', polyOn ? 'visible' : 'none');
 }
-
 function toggleClusters(el) {
-  clusterOn = !clusterOn;
-  if (el) el.classList.toggle('on', clusterOn);
+  clusterOn = !clusterOn; if (el) el.classList.toggle('on', clusterOn);
   map.setLayoutProperty('cl-circle', 'visibility', clusterOn ? 'visible' : 'none');
   map.setLayoutProperty('cl-text', 'visibility', clusterOn ? 'visible' : 'none');
   map.setLayoutProperty('bldg', 'visibility', clusterOn ? 'none' : 'visible');
 }
 
-// --- Filter Management (supports multi-filter) ---
+// --- Filter Management ---
 function setFilter(p) {
   fPri = p;
   document.querySelectorAll('.fbtn[data-f]').forEach(b => b.classList.remove('on'));
   document.querySelector(`.fbtn[data-f="${p}"]`)?.classList.add('on');
-  // Don't reset category/size when changing priority (multi-filter)
   renderList();
 }
-
 function togglePipeline() {
   fPip = !fPip;
   document.querySelector('.fbtn[data-sp="pipeline"]')?.classList.toggle('on', fPip);
@@ -475,10 +495,8 @@ function setupFilters() {
         document.querySelectorAll('.fbtn[data-sz]').forEach(b => b.classList.remove('on'));
         if (fSz) btn.classList.add('on');
       } else if (sp) {
-        if (sp === 'pipeline') {
-          fPip = !fPip;
-          btn.classList.toggle('on', fPip);
-        } else {
+        if (sp === 'pipeline') { fPip = !fPip; btn.classList.toggle('on', fPip); }
+        else {
           fSp = fSp === sp ? null : sp;
           document.querySelectorAll('.fbtn[data-sp]:not([data-sp="pipeline"])').forEach(b => b.classList.remove('on'));
           if (fSp) btn.classList.add('on');
@@ -492,56 +510,55 @@ function setupFilters() {
 // --- Sort ---
 function setupSort() {
   const sel = document.getElementById('sortSelect');
-  if (sel) {
-    sel.addEventListener('change', () => {
-      sortBy = sel.value;
-      renderList();
-    });
-  }
+  if (sel) sel.addEventListener('change', () => { sortBy = sel.value; renderList(); });
 }
 
 // --- Tabs ---
 function showTab(tab, el) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('on'));
   el.classList.add('on');
-  document.getElementById('buildingList').style.display = tab === 'list' ? 'block' : 'none';
-  document.getElementById('filtersRow').style.display = tab === 'list' ? 'flex' : 'none';
-  document.querySelector('.search-box').style.display = tab === 'list' ? 'block' : 'none';
-  document.querySelector('.sort-row').style.display = tab === 'list' ? 'flex' : 'none';
-  document.getElementById('analyticsPanel').classList.toggle('show', tab === 'analytics');
+  const listContent = document.querySelector('.sidebar-list-content');
+  const analytics = document.getElementById('analyticsPanel');
+  if (tab === 'list') {
+    if (listContent) listContent.classList.remove('hidden');
+    analytics.classList.remove('show');
+    if (detailMode) showDetailView();
+  } else {
+    if (listContent) listContent.classList.add('hidden');
+    document.querySelector('.detail-view')?.classList.remove('show');
+    analytics.classList.add('show');
+  }
 }
 
 // --- Analytics ---
 function renderAnalytics() {
   const el = document.getElementById('analyticsPanel');
-  const byCat = {};
-  B.forEach(b => { byCat[b.c] = (byCat[b.c] || 0) + 1; });
+  const byCat = {}; B.forEach(b => { byCat[b.c] = (byCat[b.c] || 0) + 1; });
   const catEntries = Object.entries(byCat).sort((a, b) => b[1] - a[1]);
   const maxCat = catEntries[0] ? catEntries[0][1] : 1;
-  const byPri = { A: 0, B: 0, C: 0, D: 0 };
-  B.forEach(b => byPri[b.pr]++);
+  const byPri = { A: 0, B: 0, C: 0, D: 0 }; B.forEach(b => byPri[b.pr]++);
   const totalEpc = B.reduce((s, b) => s + b.epc, 0);
   const totalPpaRev = B.reduce((s, b) => s + b.ppar, 0);
   const topAreas = B.slice().sort((a, b) => b.a - a.a).slice(0, 10);
 
   el.innerHTML = `
-    <h3>סיכום כללי</h3>
+    <h3>Overview</h3>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px">
-      <div class="dg"><div class="dg-v" style="color:var(--gold)">${B.length}</div><div class="dg-l">מבנים</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--gold)">${B.length}</div><div class="dg-l">Buildings</div></div>
       <div class="dg"><div class="dg-v" style="color:#2ED89A">${(B.reduce((s, b) => s + b.kw, 0) / 1000).toFixed(1)}</div><div class="dg-l">MWp</div></div>
-      <div class="dg"><div class="dg-v" style="color:#6496FF">${B.reduce((s, b) => s + b.p, 0).toLocaleString()}</div><div class="dg-l">פאנלים</div></div>
+      <div class="dg"><div class="dg-v" style="color:#6496FF">${B.reduce((s, b) => s + b.p, 0).toLocaleString()}</div><div class="dg-l">Panels</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:10px">
-      <div class="dg"><div class="dg-v" style="color:var(--gold)">฿${(totalEpc / 1e9).toFixed(2)}B</div><div class="dg-l">שווי EPC כולל</div></div>
-      <div class="dg"><div class="dg-v" style="color:#2ED89A">฿${(totalPpaRev / 1e6).toFixed(0)}M</div><div class="dg-l">PPA שנתי</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--gold)">฿${(totalEpc / 1e9).toFixed(2)}B</div><div class="dg-l">Total EPC Value</div></div>
+      <div class="dg"><div class="dg-v" style="color:#2ED89A">฿${(totalPpaRev / 1e6).toFixed(0)}M</div><div class="dg-l">PPA Annual</div></div>
     </div>
-    <h3>לפי עדיפות</h3>
+    <h3>By Priority</h3>
     ${['A', 'B', 'C', 'D'].map(p => `<div class="chart-bar">
       <div class="chart-bar-lbl">${p} (${byPri[p]})</div>
       <div class="chart-bar-fill" style="width:${byPri[p] / B.length * 200}px;background:${PRIORITY_COLORS[p]}"></div>
       <div class="chart-bar-val">${(byPri[p] / B.length * 100).toFixed(0)}%</div>
     </div>`).join('')}
-    <h3>לפי קטגוריה</h3>
+    <h3>By Category</h3>
     ${catEntries.map(([c, n]) => `<div class="chart-bar">
       <div class="chart-bar-lbl">${CATEGORY_LABELS[c] || c}</div>
       <div class="chart-bar-fill" style="width:${n / maxCat * 180}px;background:var(--gold)"></div>
@@ -549,27 +566,26 @@ function renderAnalytics() {
     </div>`).join('')}
     <h3>Pipeline</h3>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:10px">
-      <div class="dg"><div class="dg-v" style="color:var(--reef)">${B.filter(b => b.pip).length}</div><div class="dg-l">לידים</div></div>
-      <div class="dg"><div class="dg-v" style="color:var(--gold)">฿${(B.filter(b => b.pip).reduce((s, b) => s + b.epc, 0) / 1e6).toFixed(0)}M</div><div class="dg-l">שווי EPC</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--reef)">${B.filter(b => b.pip).length}</div><div class="dg-l">Leads</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--gold)">฿${(B.filter(b => b.pip).reduce((s, b) => s + b.epc, 0) / 1e6).toFixed(0)}M</div><div class="dg-l">EPC Value</div></div>
     </div>
-    <h3>🏆 Top 10 גגות</h3>
+    <h3>🏆 Top 10 Roofs</h3>
     ${topAreas.map((b, i) => `<div class="chart-bar">
       <div class="chart-bar-lbl">${i + 1}. ${escHtml(b.n || b.c)}</div>
       <div class="chart-bar-fill" style="width:${b.a / topAreas[0].a * 150}px;background:${PRIORITY_COLORS[b.pr]}"></div>
       <div class="chart-bar-val">${b.a.toLocaleString()}m²</div>
     </div>`).join('')}
-    <h3>נתוני קשר</h3>
+    <h3>Contact Data</h3>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
-      <div class="dg"><div class="dg-v" style="color:var(--gold)">${B.filter(b => b.ph).length}</div><div class="dg-l">📞 טלפון</div></div>
-      <div class="dg"><div class="dg-v" style="color:#2ED89A">${B.filter(b => b.w).length}</div><div class="dg-l">🌐 אתר</div></div>
-      <div class="dg"><div class="dg-v" style="color:#6496FF">${B.filter(b => b.em).length}</div><div class="dg-l">✉️ מייל</div></div>
+      <div class="dg"><div class="dg-v" style="color:var(--gold)">${B.filter(b => b.ph).length}</div><div class="dg-l">📞 Phone</div></div>
+      <div class="dg"><div class="dg-v" style="color:#2ED89A">${B.filter(b => b.w).length}</div><div class="dg-l">🌐 Website</div></div>
+      <div class="dg"><div class="dg-v" style="color:#6496FF">${B.filter(b => b.em).length}</div><div class="dg-l">✉️ Email</div></div>
     </div>`;
 }
 
-// --- PDF (pass building ID, not polygon data) ---
+// --- PDF ---
 function genPDF(id) {
-  const b = B.find(x => x.i === id);
-  if (!b) return;
+  const b = B.find(x => x.i === id); if (!b) return;
   const p = new URLSearchParams({
     id: b.i, n: b.n || '', a: b.a, u: b.u, kw: b.kw, p: b.p, kwh: b.kwh,
     epc: b.epc, sav: b.sav, ph: b.ph || '', la: b.la, lo: b.lo
@@ -588,7 +604,6 @@ function exportCSV() {
   ].join(','));
   dl(h + '\n' + rows.join('\n'), 'text/csv', `kophangan_roofs_${new Date().toISOString().slice(0, 10)}.csv`);
 }
-
 function exportTop() {
   const top = B.filter(b => b.pr === 'A' && b.n).slice(0, 50);
   let t = '# Ko Phangan Solar — Top 50 Leads\n\n';
@@ -596,80 +611,64 @@ function exportTop() {
     t += `${i + 1}. **${b.n}** (${CATEGORY_LABELS[b.c] || b.c})${b.pip ? ' 🟢 Pipeline' : ''}\n`;
     t += `   📐 ${b.a}m² | ⚡ ${b.kw.toFixed(1)}kWp | 🔢 ${b.p} panels\n`;
     t += `   💰 EPC: ฿${(b.epc / 1000).toFixed(0)}K | PPA: ฿${(b.ppar / 1000).toFixed(0)}K/yr\n`;
-    if (b.ph) t += `   📞 ${b.ph}\n`;
-    if (b.w) t += `   🌐 ${b.w}\n`;
-    if (b.em) t += `   ✉️ ${b.em}\n`;
+    if (b.ph) t += `   📞 ${b.ph}\n`; if (b.w) t += `   🌐 ${b.w}\n`; if (b.em) t += `   ✉️ ${b.em}\n`;
     t += `   📍 ${b.la}, ${b.lo}\n\n`;
   });
   dl(t, 'text/markdown', 'kophangan_top50.md');
 }
-
 function exportPipeline() {
   const pip = B.filter(b => b.pip);
   let t = '# Ko Phangan Solar — Pipeline Leads\n\n';
   pip.forEach((b, i) => {
     t += `${i + 1}. **${b.n}** — ${CATEGORY_LABELS[b.c] || b.c}, ${b.a}m², ${b.kw.toFixed(1)}kWp\n`;
     t += `   EPC: ฿${(b.epc / 1000).toFixed(0)}K | PPA: ฿${(b.ppar / 1000).toFixed(0)}K/yr\n`;
-    if (b.ph) t += `   📞 ${b.ph} `;
-    if (b.em) t += `✉️ ${b.em} `;
-    if (b.w) t += `🌐 ${b.w}`;
+    if (b.ph) t += `   📞 ${b.ph} `; if (b.em) t += `✉️ ${b.em} `; if (b.w) t += `🌐 ${b.w}`;
     t += '\n\n';
   });
   dl(t, 'text/markdown', 'kophangan_pipeline.md');
 }
-
 function dl(content, type, name) {
-  const b = new Blob([content], { type });
-  const u = URL.createObjectURL(b);
-  const a = document.createElement('a');
-  a.href = u; a.download = name; a.click();
-  URL.revokeObjectURL(u);
+  const b = new Blob([content], { type }); const u = URL.createObjectURL(b);
+  const a = document.createElement('a'); a.href = u; a.download = name; a.click(); URL.revokeObjectURL(u);
 }
 
-// --- Comparison Mode ---
-function startCompare() {
-  compareSet.clear();
-  document.querySelector('.compare-bar').classList.add('show');
-  renderListInner();
-}
-
+// --- Compare ---
+function startCompare() { compareSet.clear(); document.querySelector('.compare-bar').classList.add('show'); renderListInner(); }
 function toggleCompare(id) {
   if (compareSet.has(id)) compareSet.delete(id); else if (compareSet.size < 5) compareSet.add(id);
   document.querySelector('.compare-count').textContent = compareSet.size;
   renderListInner();
 }
-
 function clearCompare() {
   compareSet.clear();
   document.querySelector('.compare-bar').classList.remove('show');
   document.querySelector('.compare-panel').classList.remove('show');
   renderListInner();
 }
-
 function showComparison() {
   if (compareSet.size < 2) return;
   const buildings = [...compareSet].map(id => B.find(b => b.i === id)).filter(Boolean);
   const panel = document.querySelector('.compare-panel');
   panel.innerHTML = `
     <div class="compare-header">
-      <h2>השוואת מבנים (${buildings.length})</h2>
-      <button class="dp-close" onclick="clearCompare()" style="font-size:22px">✕</button>
+      <h2>Compare Buildings (${buildings.length})</h2>
+      <button class="dp-close" onclick="clearCompare()" style="font-size:22px;background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer">✕</button>
     </div>
     <div class="compare-grid">
       ${buildings.map(b => `
         <div class="compare-card">
-          <h3>${escHtml(b.n || CATEGORY_LABELS[b.c] || 'מבנה')} <span class="badge p${b.pr.toLowerCase()}">${b.pr}</span></h3>
+          <h3>${escHtml(b.n || CATEGORY_LABELS[b.c] || 'Building')} <span class="badge p${b.pr.toLowerCase()}">${b.pr}</span></h3>
           <table class="dt">
-            <tr><td>שטח גג</td><td>${b.a.toLocaleString()} m²</td></tr>
-            <tr><td>שמיש</td><td>${b.u.toLocaleString()} m²</td></tr>
+            <tr><td>Roof Area</td><td>${b.a.toLocaleString()} m²</td></tr>
+            <tr><td>Usable</td><td>${b.u.toLocaleString()} m²</td></tr>
             <tr><td>kWp</td><td>${b.kw.toFixed(1)}</td></tr>
-            <tr><td>פאנלים</td><td>${b.p}</td></tr>
-            <tr><td>kWh/שנה</td><td>${b.kwh.toLocaleString()}</td></tr>
-            <tr><td>חיסכון/חודש</td><td style="color:var(--gold)">฿${b.sav.toLocaleString()}</td></tr>
-            <tr><td>EPC מחיר</td><td>฿${(b.epc / 1000).toFixed(0)}K</td></tr>
-            <tr><td>EPC רווח</td><td style="color:#2ED89A">฿${(b.ep / 1000).toFixed(0)}K</td></tr>
-            <tr><td>PPA שנתי</td><td>฿${(b.ppar / 1000).toFixed(0)}K</td></tr>
-            <tr><td>החזר PPA</td><td>${b.ppap} שנים</td></tr>
+            <tr><td>Panels</td><td>${b.p}</td></tr>
+            <tr><td>kWh/yr</td><td>${b.kwh.toLocaleString()}</td></tr>
+            <tr><td>Monthly Savings</td><td style="color:var(--gold)">฿${b.sav.toLocaleString()}</td></tr>
+            <tr><td>EPC Price</td><td>฿${(b.epc / 1000).toFixed(0)}K</td></tr>
+            <tr><td>EPC Profit</td><td style="color:#2ED89A">฿${(b.ep / 1000).toFixed(0)}K</td></tr>
+            <tr><td>PPA Annual</td><td>฿${(b.ppar / 1000).toFixed(0)}K</td></tr>
+            <tr><td>PPA Payback</td><td>${b.ppap} years</td></tr>
             <tr><td>Score</td><td>${b.s}/100</td></tr>
           </table>
         </div>`).join('')}
@@ -677,40 +676,22 @@ function showComparison() {
   panel.classList.add('show');
 }
 
-// --- Keyboard Shortcuts ---
+// --- Keyboard ---
 function setupKeyboard() {
   document.addEventListener('keydown', e => {
-    // Don't capture when typing in inputs
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT') return;
-
     switch (e.key) {
       case 'Escape':
-        if (document.querySelector('.compare-panel.show')) { clearCompare(); }
-        else { closeDetail(); }
+        if (document.querySelector('.compare-panel.show')) clearCompare();
+        else if (detailMode) showListView();
         break;
-      case '/':
-        e.preventDefault();
-        document.getElementById('search').focus();
-        break;
-      case 'h':
-        toggleHeat(document.querySelector('.htb:nth-child(3)'));
-        break;
-      case 'p':
-        togglePolygons(document.querySelector('.htb:nth-child(4)'));
-        break;
-      case 'r':
-        resetView();
-        break;
-      case 'c':
-        if (!compareSet.size) startCompare(); else showComparison();
-        break;
+      case '/': e.preventDefault(); document.getElementById('search').focus(); break;
+      case 'h': toggleHeat(document.querySelector('.htb:nth-child(3)')); break;
+      case 'p': togglePolygons(document.querySelector('.htb:nth-child(4)')); break;
+      case 'r': resetView(); break;
+      case 'c': if (!compareSet.size) startCompare(); else showComparison(); break;
     }
   });
-}
-
-// --- Search Setup ---
-function setupSearch() {
-  document.getElementById('search').addEventListener('input', debounce(() => renderList(), 300));
 }
 
 // --- Init ---
@@ -718,6 +699,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMap();
   setupFilters();
   setupSort();
-  setupSearch();
+  document.getElementById('search').addEventListener('input', debounce(() => renderList(), 300));
   setupKeyboard();
 });

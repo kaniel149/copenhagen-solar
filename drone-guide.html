@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TM Energy — מדריך סריקת גגות ברחפן</title>
+<style>
+:root{--navy:#0D2137;--gold:#E8A820;--green:#1A7A5A;--coral:#E85D3A;--light:#F8FAFC}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--navy);color:#E2E8F0;line-height:1.7}
+.container{max-width:900px;margin:0 auto;padding:24px}
+header{text-align:center;padding:40px 20px 20px}
+header img{height:60px;margin-bottom:16px}
+header h1{font-size:28px;color:white;margin-bottom:8px}
+header p{opacity:.5;font-size:14px}
+.section{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;margin:16px 0}
+.section h2{color:var(--gold);font-size:20px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section h3{color:#88BBFF;font-size:16px;margin:16px 0 8px}
+.important{background:rgba(232,168,32,.1);border:1px solid rgba(232,168,32,.3);border-radius:10px;padding:16px;margin:12px 0}
+.warning{background:rgba(232,93,58,.1);border:1px solid rgba(232,93,58,.3);border-radius:10px;padding:16px;margin:12px 0}
+.success{background:rgba(26,122,90,.1);border:1px solid rgba(26,122,90,.3);border-radius:10px;padding:16px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
+th{background:rgba(232,168,32,.15);color:var(--gold);padding:8px 12px;text-align:right}
+td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;font-size:12px;direction:ltr;display:inline-block}
+ol,ul{padding-right:24px;margin:8px 0}
+li{margin:6px 0;font-size:14px}
+.step{display:flex;gap:16px;margin:12px 0;align-items:flex-start}
+.step-num{background:var(--gold);color:var(--navy);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.step-content{flex:1}
+.diagram{background:rgba(0,0,0,.2);border-radius:10px;padding:20px;margin:12px 0;text-align:center;font-size:13px;direction:ltr}
+.diagram pre{text-align:left;white-space:pre;color:#88BBFF;font-size:12px;line-height:1.6}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:16px}
+.card h4{color:var(--gold);font-size:14px;margin-bottom:6px}
+.badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.badge-gold{background:rgba(232,168,32,.2);color:var(--gold)}
+.badge-green{background:rgba(26,122,90,.2);color:var(--green)}
+.upload-zone{border:2px dashed rgba(232,168,32,.4);border-radius:14px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;margin:16px 0}
+.upload-zone:hover{border-color:var(--gold);background:rgba(232,168,32,.05)}
+.upload-zone.active{border-color:var(--green);background:rgba(26,122,90,.05)}
+#fileList{margin:12px 0;font-size:12px;text-align:right}
+.file-item{padding:6px;background:rgba(255,255,255,.03);border-radius:6px;margin:4px 0;display:flex;justify-content:space-between}
+#uploadBtn{padding:12px 32px;background:var(--gold);color:var(--navy);border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin:8px 0}
+#uploadBtn:disabled{opacity:.4;cursor:not-allowed}
+#results{margin:16px 0}
+.result-img{max-width:100%;border-radius:8px;margin:8px 0}
+</style>
+</head>
+<body>
+<header>
+<img src="visuals/tm-energy-logo.png" alt="TM Energy">
+<h1>מדריך סריקת גגות ברחפן</h1>
+<p>איך לצלם גגות עם רחפן כדי למדוד שטח, לתכנן פאנלים, וליצור הצעות מחיר מדויקות</p>
+</header>
+
+<div class="container">
+
+<!-- SECTION 1: What Drone -->
+<div class="section">
+<h2>🚁 איזה רחפן צריך?</h2>
+<table>
+<tr><th>רחפן</th><th>רזולוציה</th><th>GSD ב-30 מ'</th><th>מתאים ל-</th></tr>
+<tr><td>DJI Mini 4 Pro</td><td>48MP</td><td>~0.7 cm/px</td><td>גגות בודדים, עלות נמוכה</td></tr>
+<tr><td>DJI Air 3</td><td>48MP × 2</td><td>~0.6 cm/px</td><td>סקר שכונתי</td></tr>
+<tr><td>DJI Mavic 3 Enterprise</td><td>20MP + Thermal</td><td>~0.8 cm/px</td><td>סקר תעשייתי + תרמי</td></tr>
+<tr><td>DJI Phantom 4 RTK</td><td>20MP + RTK</td><td>~0.8 cm/px</td><td>מיפוי מדויק עם GPS</td></tr>
+</table>
+<div class="success">
+<strong>מינימום:</strong> כל רחפן DJI עם מצלמה 12MP+ מספיק. DJI Mini 4 Pro (~$760) = יחס עלות/תועלת הכי טוב. מצלמת טלפון מ-30 מ' לא מספיקה.
+</div>
+</div>
+
+<!-- SECTION 2: Flight Settings -->
+<div class="section">
+<h2>⚙️ הגדרות טיסה</h2>
+
+<h3>סריקת גג בודד (Inspection)</h3>
+<table>
+<tr><th>פרמטר</th><th>ערך</th><th>למה</th></tr>
+<tr><td>גובה</td><td><strong>25-30 מ'</strong> מעל הגג</td><td>GSD ~1 cm = רואים כל אריח</td></tr>
+<tr><td>זווית מצלמה</td><td><strong>-90° (nadir)</strong></td><td>ישר למטה = מדידות מדויקות</td></tr>
+<tr><td>חפיפה קדמית</td><td><strong>80%</strong></td><td>חיוני ל-3D ומדידות</td></tr>
+<tr><td>חפיפה צידית</td><td><strong>70%</strong></td><td>כיסוי מלא ללא חורים</td></tr>
+<tr><td>מהירות</td><td><strong>3-4 מ'/שנייה</strong></td><td>תמונות חדות ללא motion blur</td></tr>
+<tr><td>פורמט</td><td><strong>JPEG + DNG (RAW)</strong></td><td>RAW למדידות, JPEG לתצוגה</td></tr>
+<tr><td>GPS</td><td><strong>מופעל (EXIF)</strong></td><td>חובה — בלי זה אי אפשר למדוד</td></tr>
+</table>
+
+<h3>מיפוי אזורי (Mapping Mission)</h3>
+<table>
+<tr><th>פרמטר</th><th>ערך</th><th>למה</th></tr>
+<tr><td>גובה</td><td><strong>50-80 מ'</strong></td><td>כיסוי רחב, GSD ~2-3 cm</td></tr>
+<tr><td>תבנית טיסה</td><td><strong>Grid (רשת)</strong></td><td>כיסוי שיטתי של כל השטח</td></tr>
+<tr><td>חפיפה</td><td><strong>80% / 70%</strong></td><td>orthomosaic מדויק</td></tr>
+<tr><td>מספר תמונות</td><td><strong>100-300 לדונם</strong></td><td>תלוי בגובה וחפיפה</td></tr>
+</table>
+
+<div class="important">
+<strong>חוק תאילנד (CAAT):</strong><br>
+• מקסימום 90 מ' (300 רגל) גובה<br>
+• שמירה על קו ראייה ישיר לרחפן (VLOS)<br>
+• רחפן מעל 250 גרם — רישום חובה<br>
+• לא לטוס ליד שדות תעופה, מקדשים, אירועים
+</div>
+</div>
+
+<!-- SECTION 3: How to Fly -->
+<div class="section">
+<h2>🎯 איך לצלם — שלב אחר שלב</h2>
+
+<h3>A. סריקת גג בודד (5-10 דקות)</h3>
+<div class="step"><div class="step-num">1</div><div class="step-content">
+<strong>הכנה:</strong> עמוד מרחק בטוח מהמבנה. ודא GPS lock (8+ לוויינים). צלם תמונת ייחוס של החזית עם שם העסק/כתובת.
+</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content">
+<strong>עלייה:</strong> הרם ל-30 מ' מעל הגג. כוון מצלמה ל-90° (ישר למטה).
+</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content">
+<strong>סריקה:</strong> טוס בקווים מקבילים מעל הגג (כמו מכסחת דשא). 
+<div class="diagram"><pre>
+  ←←←←←←←←←←←←←  Pass 1
+  →→→→→→→→→→→→→  Pass 2
+  ←←←←←←←←←←←←←  Pass 3
+  →→→→→→→→→→→→→  Pass 4
+  ────────────── Roof edge
+</pre></div>
+חפיפה: כל pass חופפת 70% מהקודמת. חרג 5 מ' מקצוות הגג.
+</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content">
+<strong>תמונות אלכסוניות (אופציונלי):</strong> כוון מצלמה ל-45° וצלם 4 תמונות מכל כיוון (צפון/דרום/מזרח/מערב). זה עוזר ל-3D.
+</div></div>
+<div class="step"><div class="step-num">5</div><div class="step-content">
+<strong>GCP (Ground Control Point):</strong> הנח 2-3 סימנים על הקרקע (X לבן, 50×50 ס"מ). מדוד מרחק ביניהם עם מטר. זה נותן דיוק ס"מ.
+</div></div>
+<div class="step"><div class="step-num">6</div><div class="step-content">
+<strong>בדיקה:</strong> ודא ש-GPS מופיע ב-EXIF (פתח תמונה → Properties → GPS). ודא שכל הגג מכוסה.
+</div></div>
+
+<h3>B. מיפוי אזורי (20-40 דקות)</h3>
+<div class="step"><div class="step-num">1</div><div class="step-content">
+<strong>תוכנת תכנון:</strong> השתמש ב-DJI Pilot 2 / Litchi / Pix4Dcapture (חינם). צייר את האזור על המפה.
+</div></div>
+<div class="step"><div class="step-num">2</div><div class="step-content">
+<strong>הגדרות:</strong> גובה 60 מ', Grid pattern, 80/70% overlap. האפליקציה מחשבת את הנתיב אוטומטית.
+</div></div>
+<div class="step"><div class="step-num">3</div><div class="step-content">
+<strong>טיסה:</strong> לחץ Start — הרחפן טס לבד. רק עקוב אחריו.
+</div></div>
+<div class="step"><div class="step-num">4</div><div class="step-content">
+<strong>סוללות:</strong> תכנן 2-3 סוללות לאזור של 500×500 מ'. החלף ב-landing point.
+</div></div>
+
+<div class="warning">
+<strong>דגשים קריטיים למדידות:</strong><br>
+• <strong>GPS חייב להיות מופעל בתמונות</strong> — בלי זה אי אפשר לחשב מידות<br>
+• <strong>לא לזום</strong> — תמיד wide angle<br>
+• <strong>שמש גבוהה (10:00-14:00)</strong> — פחות צללים = מדידות טובות<br>
+• <strong>ללא רוח חזקה</strong> — מעל 20 km/h = motion blur<br>
+• <strong>מינימום 20 תמונות לגג</strong> — יותר = יותר מדויק
+</div>
+</div>
+
+<!-- SECTION 4: Upload -->
+<div class="section">
+<h2>📤 העלאת תמונות</h2>
+<p>העלה את תמונות הרחפן כאן. המערכת תחלץ GPS, תחשב שטח גג, ותייצר הצעת מחיר.</p>
+
+<div class="upload-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+<input type="file" id="fileInput" multiple accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+<p style="font-size:18px;margin-bottom:8px">📸 גרור תמונות לכאן</p>
+<p style="opacity:.5;font-size:13px">או לחץ לבחירת קבצים · JPEG/PNG עם GPS</p>
+</div>
+
+<div id="fileList"></div>
+<div id="summary" style="display:none" class="success"></div>
+<button id="uploadBtn" disabled onclick="processImages()">🔍 ניתוח תמונות</button>
+<div id="results"></div>
+</div>
+
+<!-- SECTION 5: What Happens -->
+<div class="section">
+<h2>🔄 מה קורה עם התמונות</h2>
+<div class="grid">
+<div class="card">
+<h4>1. חילוץ GPS</h4>
+<p style="font-size:13px">קריאת קואורדינטות מ-EXIF של כל תמונה. חישוב מרכז ותיחום הגג.</p>
+</div>
+<div class="card">
+<h4>2. חישוב שטח</h4>
+<p style="font-size:13px">מ-GPS + גובה טיסה → GSD → מידות הגג במטרים. דיוק: ±5% (ללא GCP), ±1% (עם GCP).</p>
+</div>
+<div class="card">
+<h4>3. Orthomosaic</h4>
+<p style="font-size:13px">חיבור כל התמונות לתמונה אחת שטוחה (כמו Google Earth אבל ברזולוציה של 1 ס"מ).</p>
+</div>
+<div class="card">
+<h4>4. הצעת מחיר</h4>
+<p style="font-size:13px">חישוב: שטח → kWp → מספר פאנלים → עלות EPC → חיסכון PPA → הצעה מותאמת אישית.</p>
+</div>
+</div>
+</div>
+
+<!-- SECTION 6: Software -->
+<div class="section">
+<h2>🖥️ תוכנות עיבוד</h2>
+<div class="grid">
+<div class="card">
+<h4>WebODM (חינם)</h4>
+<p style="font-size:13px">Open source. מייצר orthomosaic + DSM + 3D model. צריך Docker + 16GB RAM.</p>
+<span class="badge badge-green">מומלץ</span>
+</div>
+<div class="card">
+<h4>DJI Terra</h4>
+<p style="font-size:13px">$299/שנה. Real-time mapping, תוצאות מעולות. רק DJI drones.</p>
+<span class="badge badge-gold">פרימיום</span>
+</div>
+<div class="card">
+<h4>Pix4Dmapper</h4>
+<p style="font-size:13px">$350/חודש. Standard בתעשייה. מדידות מדויקות, דוחות PDF.</p>
+<span class="badge badge-gold">תעשייתי</span>
+</div>
+<div class="card">
+<h4>QGIS (חינם)</h4>
+<p style="font-size:13px">GIS חינמי. מייבא orthomosaic ומאפשר מדידות שטח/מרחק/polygons.</p>
+<span class="badge badge-green">כלי עזר</span>
+</div>
+</div>
+</div>
+
+<!-- SECTION 7: Checklist -->
+<div class="section">
+<h2>✅ צ'קליסט לפני טיסה</h2>
+<div style="column-count:2;column-gap:24px;font-size:13px">
+<label><input type="checkbox"> סוללה מלאה (רחפן + שלט)</label><br>
+<label><input type="checkbox"> כרטיס SD ריק</label><br>
+<label><input type="checkbox"> GPS lock (8+ לוויינים)</label><br>
+<label><input type="checkbox"> מצלמה: JPEG+RAW, wide angle</label><br>
+<label><input type="checkbox"> גובה: 25-30 מ' (גג בודד) / 60 מ' (אזורי)</label><br>
+<label><input type="checkbox"> חפיפה: 80/70%</label><br>
+<label><input type="checkbox"> שעה: 10:00-14:00 (שמש גבוהה)</label><br>
+<label><input type="checkbox"> רוח: מתחת ל-20 km/h</label><br>
+<label><input type="checkbox"> GCP markers הונחו (אם יש)</label><br>
+<label><input type="checkbox"> צילום ייחוס (חזית + שם העסק)</label><br>
+<label><input type="checkbox"> אין מכשולים (עצים, חוטי חשמל)</label><br>
+<label><input type="checkbox"> אישור מבעל הנכס</label><br>
+</div>
+</div>
+
+</div><!-- container -->
+
+<script>
+let files=[];
+const dropZone=document.getElementById('dropZone');
+const fileList=document.getElementById('fileList');
+const summary=document.getElementById('summary');
+const uploadBtn=document.getElementById('uploadBtn');
+
+['dragenter','dragover'].forEach(e=>dropZone.addEventListener(e,ev=>{ev.preventDefault();dropZone.classList.add('active')}));
+['dragleave','drop'].forEach(e=>dropZone.addEventListener(e,ev=>{ev.preventDefault();dropZone.classList.remove('active')}));
+dropZone.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
+
+function handleFiles(newFiles){
+  files=[...files,...Array.from(newFiles).filter(f=>f.type.startsWith('image/'))];
+  renderFileList();
+}
+
+function renderFileList(){
+  if(!files.length){fileList.innerHTML='';summary.style.display='none';uploadBtn.disabled=true;return}
+  let html=files.map((f,i)=>`<div class="file-item"><span>${f.name} (${(f.size/1024/1024).toFixed(1)}MB)</span><span style="cursor:pointer;color:var(--coral)" onclick="files.splice(${i},1);renderFileList()">✕</span></div>`).join('');
+  fileList.innerHTML=html;
+  const totalMB=files.reduce((s,f)=>s+f.size,0)/1024/1024;
+  summary.style.display='block';
+  summary.innerHTML=`<strong>${files.length} תמונות</strong> · ${totalMB.toFixed(0)} MB סה"כ`;
+  uploadBtn.disabled=false;
+}
+
+async function processImages(){
+  const results=document.getElementById('results');
+  results.innerHTML='<p style="color:var(--gold)">🔄 מנתח תמונות...</p>';
+  
+  const gpsData=[];
+  
+  for(const file of files){
+    try{
+      const ab=await file.arrayBuffer();
+      const gps=extractGPS(new Uint8Array(ab));
+      if(gps){
+        gpsData.push({name:file.name,lat:gps.lat,lng:gps.lng,alt:gps.alt||0});
+      }
+    }catch(e){}
+  }
+  
+  if(gpsData.length===0){
+    results.innerHTML='<div class="warning"><strong>לא נמצא GPS באף תמונה.</strong><br>ודא ש-GPS מופעל ברחפן ושהתמונות בפורמט JPEG עם EXIF.</div>';
+    return;
+  }
+  
+  const lats=gpsData.map(d=>d.lat);
+  const lngs=gpsData.map(d=>d.lng);
+  const centerLat=(Math.min(...lats)+Math.max(...lats))/2;
+  const centerLng=(Math.min(...lngs)+Math.max(...lngs))/2;
+  const avgAlt=gpsData.reduce((s,d)=>s+d.alt,0)/gpsData.length;
+  
+  // Calculate approximate area from bounding box
+  const latRange=Math.max(...lats)-Math.min(...lats);
+  const lngRange=Math.max(...lngs)-Math.min(...lngs);
+  const mPerDegLat=111320;
+  const mPerDegLng=111320*Math.cos(centerLat*Math.PI/180);
+  const widthM=lngRange*mPerDegLng;
+  const heightM=latRange*mPerDegLat;
+  const areaM2=widthM*heightM*0.7; // 70% usable
+  const kwp=areaM2/5.5;
+  const panels=Math.floor(areaM2/2.58);
+  
+  results.innerHTML=`
+    <div class="success">
+      <h3 style="color:var(--green);margin-bottom:8px">✅ ניתוח הושלם — ${gpsData.length}/${files.length} תמונות עם GPS</h3>
+      <table>
+        <tr><td>מרכז</td><td><strong>${centerLat.toFixed(6)}, ${centerLng.toFixed(6)}</strong></td></tr>
+        <tr><td>גובה ממוצע</td><td><strong>${avgAlt.toFixed(0)} מ'</strong></td></tr>
+        <tr><td>שטח מוערך (bounding box)</td><td><strong>${areaM2.toFixed(0)} מ"ר</strong></td></tr>
+        <tr><td>שטח שמיש (70%)</td><td><strong>${(areaM2*0.7).toFixed(0)} מ"ר</strong></td></tr>
+        <tr><td>הספק מוערך</td><td><strong>${kwp.toFixed(1)} kWp</strong></td></tr>
+        <tr><td>פאנלים</td><td><strong>${panels}</strong></td></tr>
+        <tr><td>עלות EPC</td><td><strong>฿${(kwp*32500).toLocaleString()}</strong></td></tr>
+        <tr><td>חיסכון חודשי (PPA)</td><td><strong>฿${Math.round(kwp*4.5*30*1.5).toLocaleString()}</strong></td></tr>
+      </table>
+      <div style="margin-top:12px">
+        <a href="proposal.html?n=Drone+Scan&a=${Math.round(areaM2)}&kw=${kwp.toFixed(1)}&p=${panels}&kwh=${Math.round(kwp*4.5*365)}&epc=${Math.round(kwp*32500)}&sav=${Math.round(kwp*4.5*30*1.5)}&la=${centerLat}&lo=${centerLng}" 
+           target="_blank" style="color:var(--gold);font-weight:700;text-decoration:underline">
+           → פתח הצעת מחיר TM Energy
+        </a>
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;opacity:.5">
+      * שטח מחושב מ-bounding box של נקודות GPS. למדידה מדויקת — יש צורך ב-orthomosaic (WebODM/Pix4D).<br>
+      * GSD (ב-30 מ'): ~0.7-1.0 cm/pixel = מספיק למדידת גג ±5%.
+    </div>
+  `;
+}
+
+// Basic EXIF GPS extractor (simplified)
+function extractGPS(data){
+  // Find EXIF start
+  if(data[0]!==0xFF||data[1]!==0xD8)return null; // Not JPEG
+  let offset=2;
+  while(offset<data.length-1){
+    if(data[offset]!==0xFF)break;
+    const marker=data[offset+1];
+    if(marker===0xE1){ // APP1 (EXIF)
+      const len=(data[offset+2]<<8)|data[offset+3];
+      const exif=data.slice(offset+4,offset+2+len);
+      return parseExifGPS(exif);
+    }
+    const segLen=(data[offset+2]<<8)|data[offset+3];
+    offset+=2+segLen;
+  }
+  return null;
+}
+
+function parseExifGPS(exif){
+  // Check for "Exif\0\0"
+  if(String.fromCharCode(...exif.slice(0,4))!=='Exif')return null;
+  const tiff=exif.slice(6);
+  const le=tiff[0]===0x49; // Little endian?
+  
+  function u16(o){return le?(tiff[o]|tiff[o+1]<<8):(tiff[o]<<8|tiff[o+1])}
+  function u32(o){return le?(tiff[o]|tiff[o+1]<<8|tiff[o+2]<<16|tiff[o+3]<<24):(tiff[o]<<24|tiff[o+1]<<16|tiff[o+2]<<8|tiff[o+3])}
+  
+  // Find GPS IFD
+  let ifdOff=u32(4);
+  let gpsOff=0;
+  
+  for(let attempt=0;attempt<2&&ifdOff>0;attempt++){
+    const count=u16(ifdOff);
+    for(let i=0;i<count;i++){
+      const tag=u16(ifdOff+2+i*12);
+      if(tag===0x8825){ // GPSInfo
+        gpsOff=u32(ifdOff+2+i*12+8);
+        break;
+      }
+    }
+    if(gpsOff)break;
+    // Next IFD
+    ifdOff=u32(ifdOff+2+count*12);
+  }
+  
+  if(!gpsOff)return null;
+  
+  function rational(o){
+    const n=u32(o), d=u32(o+4);
+    return d?n/d:0;
+  }
+  function dms(o){
+    return rational(o)+rational(o+8)/60+rational(o+16)/3600;
+  }
+  
+  const gpsCount=u16(gpsOff);
+  let lat=0,lng=0,alt=0,latRef='N',lngRef='E';
+  
+  for(let i=0;i<gpsCount;i++){
+    const tag=u16(gpsOff+2+i*12);
+    const valOff=u32(gpsOff+2+i*12+8);
+    switch(tag){
+      case 1: latRef=String.fromCharCode(tiff[gpsOff+2+i*12+8]);break;
+      case 2: lat=dms(valOff);break;
+      case 3: lngRef=String.fromCharCode(tiff[gpsOff+2+i*12+8]);break;
+      case 4: lng=dms(valOff);break;
+      case 6: alt=rational(valOff);break;
+    }
+  }
+  
+  if(!lat&&!lng)return null;
+  if(latRef==='S')lat=-lat;
+  if(lngRef==='W')lng=-lng;
+  return{lat,lng,alt};
+}
+</script>
+</body>
+</html>

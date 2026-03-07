@@ -187,9 +187,9 @@
             el.textContent = translated;
           }
         }
-      } else if (el.childNodes.length > 1) {
+      } else {
         // No full-element match — try translating individual text nodes
-        // This handles mixed content like <strong>580W</strong> — Hebrew text
+        // Handles mixed content: <strong>580W</strong> — Hebrew text, or "5-10/שנה"
         translateTextNodes(el);
       }
     });

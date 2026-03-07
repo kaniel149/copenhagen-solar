@@ -1,6 +1,8 @@
 /* TM Energy — Central Translation Dictionary
    Hebrew → English + Thai for all presentations and documents */
-window.PAGE_TRANSLATIONS = {
+(function() {
+var _existing = window.PAGE_TRANSLATIONS || {};
+var _central = {
   // ===== NAVIGATION & UI =====
   "הבא ←":{en:"Next →",th:"ถัดไป →"},
   "→ הקודם":{en:"← Previous",th:"← ก่อนหน้า"},
@@ -478,3 +480,6 @@ window.PAGE_TRANSLATIONS = {
   "אתגרים:":{en:"Challenges:",th:"ความท้าทาย:"},
   "יכולות":{en:"Capabilities",th:"ความสามารถ"},
 };
+// Merge: central as base, per-page translations override
+window.PAGE_TRANSLATIONS = Object.assign({}, _central, _existing);
+})();

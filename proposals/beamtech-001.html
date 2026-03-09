@@ -1,511 +1,1270 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TM Energy — Solar Proposal #TM-2026-001</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<title>TM Energy — Solar Proposal for Beamtech Residences</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0D2137;--gold:#E8A820;--green:#1A7A5A;--coral:#E85D3A;--white:#FEFEFE;--dark:#0A1929;--gray:#8899AA;--light:#F0F4F8;}
-*{margin:0;padding:0;box-sizing:border-box;}
-@media print{.no-print{display:none!important;} .page{break-after:page;} body{background:#fff;}}
-body{font-family:'Inter',sans-serif;background:var(--light);color:var(--navy);line-height:1.6;}
+/* ============================================
+   TM ENERGY — PROPOSAL TEMPLATE v2.0
+   Design: Noa / TM Energy Design System
+   ============================================ */
 
-/* NAV */
-.topnav{position:fixed;top:0;left:0;right:0;background:rgba(13,33,55,.97);backdrop-filter:blur(12px);z-index:100;padding:12px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(232,168,32,.2);}
-.topnav .logo{display:flex;align-items:center;gap:10px;}
-.topnav .logo-circle{width:36px;height:36px;border-radius:50%;background:#1A1A1A;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:11px;color:var(--gold);}
-.topnav .logo-text{font-weight:700;font-size:14px;color:var(--gold);letter-spacing:2px;}
-.topnav .ref{color:var(--gray);font-size:12px;}
-.lang-switch{display:flex;gap:4px;}
-.lang-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:#fff;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;}
-.lang-btn.active{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+:root {
+  --navy: #0D2137;
+  --navy-light: #132D4A;
+  --gold: #E8A820;
+  --gold-soft: rgba(232,168,32,.08);
+  --green: #1A7A5A;
+  --green-soft: rgba(26,122,90,.08);
+  --white: #FFFFFF;
+  --bg: #F7F8FA;
+  --text: #1A2332;
+  --text-secondary: #6B7A8D;
+  --border: rgba(0,0,0,.06);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.06);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
 
-/* HERO */
-.hero{margin-top:60px;background:linear-gradient(160deg,var(--navy),var(--dark));padding:80px 60px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(232,168,32,.08),transparent 70%);border-radius:50%;}
-.hero-badge{display:inline-block;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:20px;}
-.hero h1{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:#fff;line-height:1.15;max-width:700px;}
-.hero h1 span{color:var(--gold);}
-.hero-sub{color:rgba(255,255,255,.6);font-size:18px;margin-top:12px;max-width:600px;}
-.hero-meta{display:flex;gap:40px;margin-top:32px;}
-.hero-meta-item{color:rgba(255,255,255,.5);font-size:13px;}
-.hero-meta-item b{color:#fff;font-size:15px;display:block;margin-top:2px;}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* SECTIONS */
-.section{max-width:1100px;margin:0 auto;padding:60px 40px;}
-.section-title{font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--navy);margin-bottom:8px;}
-.section-sub{color:var(--gray);font-size:15px;margin-bottom:32px;}
-.divider{width:60px;height:3px;background:var(--gold);margin-bottom:32px;}
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
 
-/* PROJECT INFO */
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.info-card{background:#fff;border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.06);}
-.info-card h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:12px;}
-.info-card .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04);font-size:14px;}
-.info-card .row:last-child{border-bottom:none;}
-.info-card .row .label{color:var(--gray);}
-.info-card .row .value{font-weight:600;color:var(--navy);}
+/* ── TYPOGRAPHY ── */
+h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+.th { font-family: 'Inter', sans-serif; color: var(--text-secondary); font-size: 0.85em; font-weight: 400; display: block; margin-top: 2px; }
 
-/* ILLUSTRATION */
-.illustration{background:var(--navy);border-radius:20px;padding:40px;margin:40px 0;position:relative;overflow:hidden;}
-.illustration h3{color:var(--gold);font-size:14px;text-transform:uppercase;letter-spacing:2px;margin-bottom:24px;}
-.roof-svg{width:100%;max-width:1000px;margin:0 auto;display:block;}
+/* ── LAYOUT ── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+section { padding: 72px 0; }
+.section-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.section-heading {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.section-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 560px;
+  margin-bottom: 40px;
+}
 
-/* OPTIONS */
-.options{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:32px;}
-.option{background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 12px rgba(0,0,0,.04);border:2px solid rgba(0,0,0,.06);position:relative;transition:all .3s;}
-.option:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.08);}
-.option.recommended{border-color:var(--gold);background:linear-gradient(180deg,rgba(232,168,32,.03),#fff);}
-.option.recommended::before{content:'RECOMMENDED';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:10px;font-weight:800;padding:4px 16px;border-radius:100px;letter-spacing:1px;}
-.option-icon{font-size:40px;margin-bottom:16px;}
-.option h3{font-size:20px;font-weight:800;margin-bottom:4px;}
-.option .price{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);margin:12px 0;}
-.option .price small{font-size:14px;font-weight:400;color:var(--gray);font-family:'Inter',sans-serif;}
-.option .detail{font-size:13px;color:var(--gray);line-height:1.6;}
-.option .feature{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;}
-.option .feature .check{color:var(--green);font-weight:700;}
-.option .specs{margin-top:16px;padding-top:16px;border-top:1px solid rgba(0,0,0,.06);}
+/* ── STICKY NAV ── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(13,33,55,.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(232,168,32,.15);
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+.nav-brand {
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--gold);
+  letter-spacing: 2.5px;
+}
+.nav-ref {
+  font-size: 12px;
+  color: rgba(255,255,255,.4);
+}
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #25D366;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform .2s;
+}
+.nav-cta:hover { transform: scale(1.04); }
 
-/* COMPARISON TABLE */
-.comparison{width:100%;border-collapse:collapse;margin-top:24px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.04);}
-.comparison th{background:var(--navy);color:#fff;padding:14px 20px;text-align:left;font-size:13px;text-transform:uppercase;letter-spacing:1px;}
-.comparison td{padding:12px 20px;border-bottom:1px solid rgba(0,0,0,.04);font-size:14px;}
-.comparison tr:last-child td{border-bottom:none;}
-.comparison .highlight{background:rgba(232,168,32,.06);font-weight:700;color:var(--gold);}
+/* ── HERO ── */
+.hero {
+  margin-top: 56px;
+  background: linear-gradient(165deg, var(--navy) 0%, #091620 100%);
+  padding: clamp(48px, 10vw, 100px) 24px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(232,168,32,.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(232,168,32,.12);
+  border: 1px solid rgba(232,168,32,.25);
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 6px 18px;
+  border-radius: 100px;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-size: clamp(32px, 5.5vw, 56px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.12;
+  max-width: 720px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+}
+.hero-subtitle {
+  font-size: clamp(15px, 2vw, 18px);
+  color: rgba(255,255,255,.5);
+  margin-top: 16px;
+  max-width: 580px;
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 40px;
+}
+.hero-stat {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  padding: 16px 24px;
+  min-width: 140px;
+}
+.hero-stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--gold);
+}
+.hero-stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,.45);
+  margin-top: 2px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.hero-meta-item { font-size: 13px; color: rgba(255,255,255,.35); }
+.hero-meta-item strong { color: rgba(255,255,255,.8); display: block; margin-top: 2px; }
 
-/* SAVINGS */
-.savings-chart{display:flex;align-items:flex-end;gap:8px;height:200px;margin:32px 0;padding:0 20px;}
-.bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;}
-.bar{border-radius:6px 6px 0 0;width:100%;position:relative;transition:height .5s;min-height:4px;}
-.bar.pea{background:linear-gradient(180deg,#E53935,#B71C1C);}
-.bar.solar{background:linear-gradient(180deg,var(--gold),#D4922A);}
-.bar.storage{background:linear-gradient(180deg,var(--green),#0D5A3A);}
-.bar-label{font-size:10px;color:var(--gray);text-align:center;}
-.bar-value{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;white-space:nowrap;}
+/* ── PROJECT / IMAGES ── */
+.project-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.project-images img {
+  width: 100%;
+  border-radius: var(--radius);
+  display: block;
+}
+.img-wrapper {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.img-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,.7));
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.project-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.detail-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  border: 1px solid var(--border);
+}
+.detail-card h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.detail-row:last-child { border-bottom: none; }
+.detail-label { color: var(--text-secondary); }
+.detail-value { font-weight: 600; color: var(--navy); text-align: right; }
 
-/* TIMELINE */
-.timeline{position:relative;padding-left:40px;margin-top:24px;}
-.timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),var(--green));}
-.timeline-item{position:relative;padding:16px 0 16px 24px;}
-.timeline-dot{position:absolute;left:-33px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:3px solid var(--light);}
-.timeline-item h4{font-size:15px;font-weight:700;}
-.timeline-item p{font-size:13px;color:var(--gray);margin-top:2px;}
-.timeline-item .days{font-size:12px;color:var(--gold);font-weight:600;}
+/* ── OPTIONS CARDS ── */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.option-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  border: 2px solid var(--border);
+  position: relative;
+  transition: all .3s ease;
+}
+.option-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.option-card.featured {
+  border-color: var(--gold);
+  box-shadow: 0 8px 32px rgba(232,168,32,.15);
+  transform: scale(1.03);
+  z-index: 2;
+}
+.option-card.featured:hover { transform: scale(1.05); }
+.option-tag {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  padding: 5px 20px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.option-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+.option-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.option-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 4px 0 16px;
+}
+.option-price {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 900;
+  color: var(--navy);
+  line-height: 1.1;
+}
+.option-price-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  display: block;
+  margin-top: 4px;
+}
+.option-features {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.option-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 5px 0;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.check-icon {
+  color: var(--green);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.option-bottom {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+.option-bottom.gold { background: var(--gold-soft); }
+.option-bottom.green { background: var(--green-soft); }
+.option-bottom-label { font-size: 12px; color: var(--text-secondary); }
+.option-bottom-value { font-size: 22px; font-weight: 800; margin: 4px 0; }
+.option-bottom-value.gold-text { color: var(--gold); }
+.option-bottom-value.green-text { color: var(--green); }
+.option-bottom-sub { font-size: 12px; color: var(--text-secondary); }
 
-/* FOOTER */
-.footer{background:var(--navy);color:rgba(255,255,255,.6);padding:60px;text-align:center;margin-top:60px;}
-.footer .logo-row{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:16px;}
-.footer .logo-circle{width:48px;height:48px;border-radius:50%;background:#1A1A1A;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:var(--gold);}
-.footer .logo-text{font-weight:800;font-size:20px;color:var(--gold);letter-spacing:3px;}
-.footer p{font-size:13px;margin-top:8px;}
-.footer .contact{margin-top:24px;display:flex;gap:32px;justify-content:center;font-size:14px;color:#fff;}
-.footer .validity{margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:12px;}
+/* ── SYSTEM DETAILS ── */
+.specs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.spec-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid var(--border);
+}
+.spec-card h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  font-size: 14px;
+  border-bottom: 1px dashed var(--border);
+}
+.spec-item:last-child { border-bottom: none; }
+.spec-label { color: var(--text-secondary); }
+.spec-val { font-weight: 600; }
+.spec-image {
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 20px;
+}
+.spec-image img { width: 100%; display: block; }
 
-/* CTA */
-.cta-section{background:linear-gradient(135deg,var(--gold),#D4922A);padding:48px;border-radius:20px;text-align:center;margin:40px 0;}
-.cta-section h2{font-family:'Playfair Display',serif;font-size:36px;color:var(--navy);font-weight:900;}
-.cta-section p{color:rgba(13,33,55,.7);font-size:16px;margin:12px 0 24px;}
-.cta-btn{display:inline-block;background:var(--navy);color:#fff;font-weight:700;font-size:16px;padding:16px 40px;border-radius:12px;text-decoration:none;transition:all .3s;}
-.cta-btn:hover{transform:scale(1.05);box-shadow:0 8px 24px rgba(0,0,0,.2);}
-.cta-whatsapp{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;font-weight:700;font-size:16px;padding:16px 32px;border-radius:12px;text-decoration:none;margin-left:12px;}
+/* ── SAVINGS VISUAL ── */
+.savings-visual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.savings-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.savings-bar-group h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+}
+.savings-bar {
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  position: relative;
+}
+.bar-pea {
+  background: linear-gradient(90deg, #c0392b, #e74c3c);
+  width: 100%;
+}
+.bar-solar {
+  background: linear-gradient(90deg, #d4922a, var(--gold));
+  width: 30%;
+}
+.bar-diff {
+  position: absolute;
+  right: -140px;
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+.savings-numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.savings-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.savings-card-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+}
+.savings-card-value.gold { color: var(--gold); }
+.savings-card-value.green { color: var(--green); }
+.savings-card-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
 
-/* BATTERY SECTION */
-.battery-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px;}
-.battery-card{background:#fff;border-radius:16px;padding:28px;border:2px solid rgba(0,0,0,.06);position:relative;}
-.battery-card.highlight{border-color:var(--green);background:linear-gradient(180deg,rgba(26,122,90,.03),#fff);}
-.battery-card h3{font-size:18px;font-weight:800;margin-bottom:4px;}
-.battery-card .capacity{font-family:'Playfair Display',serif;font-size:32px;color:var(--green);font-weight:900;margin:8px 0;}
-.battery-card .detail{font-size:13px;color:var(--gray);line-height:1.7;}
+/* ── TIMELINE ── */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.timeline-grid::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  right: 32px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--green));
+  border-radius: 2px;
+}
+.tl-step {
+  text-align: center;
+  position: relative;
+  padding: 0 8px;
+}
+.tl-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 4px solid var(--bg);
+  margin: 18px auto 16px;
+  position: relative;
+  z-index: 2;
+}
+.tl-step:last-child .tl-dot { background: var(--green); }
+.tl-week {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.tl-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 8px 0 4px;
+}
+.tl-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ── WARRANTIES ── */
+.warranty-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.warranty-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: box-shadow .2s;
+}
+.warranty-card:hover { box-shadow: var(--shadow-md); }
+.warranty-icon { font-size: 32px; margin-bottom: 8px; }
+.warranty-years {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--navy);
+}
+.warranty-years span { font-size: 16px; font-weight: 400; color: var(--text-secondary); }
+.warranty-label { font-size: 14px; font-weight: 600; margin-top: 4px; }
+.warranty-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+/* ── BATTERY ADD-ON ── */
+.battery-section {
+  background: var(--navy);
+  border-radius: 24px;
+  padding: clamp(32px, 5vw, 56px);
+  color: #fff;
+}
+.battery-section .section-label { color: var(--green); }
+.battery-section .section-heading { color: #fff; }
+.battery-section .section-desc { color: rgba(255,255,255,.5); }
+.battery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.battery-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.battery-card.recommended {
+  border-color: var(--green);
+  background: rgba(26,122,90,.1);
+}
+.battery-card h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255,255,255,.6);
+}
+.battery-capacity {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: var(--green);
+  margin: 4px 0 16px;
+}
+.battery-detail {
+  font-size: 13px;
+  color: rgba(255,255,255,.5);
+  line-height: 1.8;
+}
+.battery-detail strong { color: rgba(255,255,255,.85); }
+.battery-recommend-tag {
+  display: inline-block;
+  background: var(--green);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+/* ── CTA ── */
+.cta-block {
+  background: linear-gradient(135deg, var(--gold) 0%, #D49520 100%);
+  border-radius: 24px;
+  padding: clamp(40px, 6vw, 64px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-block::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,.08);
+  border-radius: 50%;
+}
+.cta-block h2 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 900;
+  color: var(--navy);
+  position: relative;
+}
+.cta-block .cta-sub {
+  font-size: 16px;
+  color: rgba(13,33,55,.65);
+  margin: 12px 0 8px;
+  position: relative;
+}
+.cta-block .cta-sub-th {
+  font-size: 15px;
+  color: rgba(13,33,55,.5);
+  margin-bottom: 32px;
+  position: relative;
+}
+.cta-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; position: relative; }
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 18px 36px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all .2s;
+  box-shadow: 0 4px 16px rgba(37,211,102,.3);
+}
+.btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 8px 28px rgba(37,211,102,.4); }
+.btn-phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 18px 32px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all .2s;
+}
+.btn-phone:hover { transform: scale(1.05); }
+.cta-steps {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  font-size: 13px;
+  color: rgba(13,33,55,.5);
+  position: relative;
+}
+.cta-steps strong { color: var(--navy); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--navy);
+  padding: 48px 24px;
+  text-align: center;
+  color: rgba(255,255,255,.4);
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.footer-logo .logo-mark {
+  width: 42px;
+  height: 42px;
+  font-size: 14px;
+}
+.footer-brand {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--gold);
+  letter-spacing: 3px;
+}
+.footer-tagline { font-size: 14px; margin-bottom: 20px; }
+.footer-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  font-size: 13px;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 24px;
+}
+.footer-legal {
+  font-size: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+/* ── FLOATING WHATSAPP ── */
+.floating-wa {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: #25D366;
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+  transition: transform .2s;
+  animation: pulse-wa 2s infinite;
+}
+.floating-wa:hover { transform: scale(1.1); }
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,.4); }
+  50% { box-shadow: 0 4px 30px rgba(37,211,102,.6); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .nav-ref { display: none; }
+  .hero-stats { flex-direction: column; gap: 8px; }
+  .hero-stat { min-width: unset; }
+  .hero-meta { flex-direction: column; gap: 12px; }
+  .project-images { grid-template-columns: 1fr; }
+  .project-details { grid-template-columns: 1fr; }
+  .options-grid { grid-template-columns: 1fr; }
+  .option-card.featured { transform: none; }
+  .option-card.featured:hover { transform: translateY(-3px); }
+  .specs-row { grid-template-columns: 1fr; }
+  .savings-visual { grid-template-columns: 1fr; }
+  .bar-diff { position: static; margin-top: 8px; display: inline-block; }
+  .timeline-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .timeline-grid::before { display: none; }
+  .warranty-grid { grid-template-columns: 1fr; }
+  .battery-grid { grid-template-columns: 1fr; }
+  .cta-steps { flex-direction: column; gap: 12px; }
+  .footer-contacts { flex-direction: column; gap: 8px; }
+  .savings-numbers { grid-template-columns: 1fr; }
+}
+
+/* ── PRINT ── */
+@media print {
+  .nav, .floating-wa, .nav-cta { display: none !important; }
+  .hero { margin-top: 0; }
+  body { background: #fff; }
+  section { padding: 32px 0; break-inside: avoid; }
+  .option-card.featured { transform: none; border: 3px solid var(--gold); }
+  .battery-section { background: #f0f4f8; color: var(--navy); }
+  .battery-section .section-heading { color: var(--navy); }
+  .battery-section .section-desc { color: var(--text-secondary); }
+  .battery-card { background: #fff; border: 1px solid #ddd; }
+  .battery-card h4 { color: var(--text-secondary); }
+  .battery-detail { color: var(--text-secondary); }
+  .battery-detail strong { color: var(--navy); }
+  .cta-block { break-before: page; }
+  .footer { background: #f5f5f5; color: #333; }
+}
 </style>
 </head>
 <body>
 
-<!-- TOP NAV -->
-<div class="topnav no-print">
-<div class="logo"><div class="logo-circle">TM</div><div class="logo-text">TM ENERGY</div></div>
-<div class="ref">Proposal #TM-2026-001</div>
-<div class="lang-switch">
-<button class="lang-btn active" onclick="setLang('en')">EN</button>
-<button class="lang-btn" onclick="setLang('th')">TH</button>
-<button class="lang-btn" onclick="setLang('he')">HE</button>
-</div>
-</div>
+<!-- ─── STICKY NAV ─── -->
+<nav class="nav no-print">
+  <div class="nav-logo">
+    <div class="logo-mark">TM</div>
+    <div class="nav-brand">TM ENERGY</div>
+  </div>
+  <div class="nav-ref">#TM-2026-001</div>
+  <a href="https://wa.me/66623480119?text=Hi%20TM%20Energy%2C%20I%27m%20interested%20in%20proposal%20TM-2026-001" class="nav-cta" target="_blank">💬 WhatsApp Us</a>
+</nav>
 
-<!-- HERO -->
-<div class="hero page">
-<div class="hero-badge">SOLAR ENERGY PROPOSAL</div>
-<h1>30.2 kWp Solar System<br>for <span>Beamtech Residences</span></h1>
-<div class="hero-sub">Complete solar power solution for 2 residential buildings, 24 units — Koh Phangan, Surat Thani</div>
-<div class="hero-meta">
-<div class="hero-meta-item">Proposal Date<b>9 March 2026</b></div>
-<div class="hero-meta-item">Reference<b>TM-2026-001</b></div>
-<div class="hero-meta-item">Valid Until<b>8 April 2026</b></div>
-<div class="hero-meta-item">Prepared For<b>Beamtech Block & Beam Floor Asia Co., Ltd.</b></div>
-</div>
-</div>
+<!-- ─── FLOATING WHATSAPP ─── -->
+<a href="https://wa.me/66623480119?text=Hi%20TM%20Energy%2C%20I%27m%20interested%20in%20proposal%20TM-2026-001" class="floating-wa no-print" target="_blank" title="Chat on WhatsApp">💬</a>
 
-<!-- PROJECT INFO -->
-<div class="section page">
-<div class="section-title">Project Overview</div>
-<div class="divider"></div>
-<div class="info-grid">
-<div class="info-card">
-<h3>🏢 Property Details</h3>
-<div class="row"><span class="label">Owner</span><span class="value">Beamtech Block & Beam Floor Asia Co., Ltd.</span></div>
-<div class="row"><span class="label">Location</span><span class="value">Koh Phangan, Surat Thani 84280</span></div>
-<div class="row"><span class="label">Building Type</span><span class="value">2-Story RC Residential (×2 buildings)</span></div>
-<div class="row"><span class="label">Total Units</span><span class="value">24 units (12 per building)</span></div>
-<div class="row"><span class="label">Engineer</span><span class="value">Rock Civil Engineering (License #79221)</span></div>
-<div class="row"><span class="label">Drawings</span><span class="value">35 sheets, dated 04/12/2025</span></div>
-</div>
-<div class="info-card">
-<h3>☀️ Solar Assessment</h3>
-<div class="row"><span class="label">Roof Type</span><span class="value">Gable — Metal Sheet 0.35mm</span></div>
-<div class="row"><span class="label">Roof Insulation</span><span class="value">Aluminum Foil</span></div>
-<div class="row"><span class="label">Total Roof Area</span><span class="value">163 m² (4 slopes)</span></div>
-<div class="row"><span class="label">Usable Area (85%)</span><span class="value">139 m²</span></div>
-<div class="row"><span class="label">Roof Slope</span><span class="value">~17° (optimal for KP latitude)</span></div>
-<div class="row"><span class="label">Shading</span><span class="value">None — fully exposed</span></div>
-</div>
-</div>
-</div>
+<!-- ════════════════════════════════════════════
+     1. HERO
+     ════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">SOLAR ENERGY PROPOSAL · ข้อเสนอพลังงานแสงอาทิตย์</div>
 
-<!-- SYSTEM ILLUSTRATION -->
-<div class="section">
-<div class="illustration">
-<h3>System Visualization</h3>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-<div style="position:relative;border-radius:12px;overflow:hidden;">
-<img src="beamtech-render-1.png" style="width:100%;display:block;border-radius:12px;" alt="Aerial view — 2 buildings with solar panels"/>
-<div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.7);color:#E8A820;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;">Aerial View — 52 Panels · 30.2 kWp</div>
-</div>
-<div style="position:relative;border-radius:12px;overflow:hidden;">
-<img src="beamtech-render-2.png" style="width:100%;display:block;border-radius:12px;" alt="Close-up — panel installation on metal roof"/>
-<div style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.7);color:#E8A820;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;">LONGi Hi-MO X6 · Trapezoidal Clamp Mount</div>
-</div>
-</div>
-<div style="margin-top:16px;border-radius:12px;overflow:hidden;max-width:500px;">
-<img src="beamtech-render-3.png" style="width:100%;display:block;border-radius:12px;" alt="Huawei LUNA2000 battery + SUN2000 inverter"/>
-<div style="text-align:center;padding:8px;color:rgba(255,255,255,.5);font-size:12px;">Huawei LUNA2000 Battery + SUN2000 Inverter (Option C)</div>
-</div>
+    <h1>Solar Power for<br><em>Beamtech Residences</em></h1>
+    <p class="hero-subtitle">Complete 30.2 kWp rooftop solar system for 2 buildings, 24 units — Koh Phangan, Surat Thani<br><span style="color:rgba(255,255,255,.35);">ระบบโซลาร์เซลล์บนหลังคา 30.2 กิโลวัตต์ สำหรับ 2 อาคาร 24 ยูนิต — เกาะพะงัน สุราษฎร์ธานี</span></p>
 
-<!-- 3 OPTIONS -->
-<div class="section page">
-<div class="section-title">Choose Your Plan</div>
-<div class="section-sub">Three options to fit your budget and goals</div>
-<div class="divider"></div>
-<div class="options">
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">฿244,200</div>
+        <div class="hero-stat-label">Annual Savings / ประหยัดต่อปี</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">4.0 yrs</div>
+        <div class="hero-stat-label">Payback Period / คืนทุน</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">40,700</div>
+        <div class="hero-stat-label">kWh/year Production</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">25 yrs</div>
+        <div class="hero-stat-label">Panel Warranty</div>
+      </div>
+    </div>
 
-<!-- OPTION A: EPC -->
-<div class="option">
-<div class="option-icon">⚡</div>
-<h3>Option A: EPC</h3>
-<p style="color:var(--gray);font-size:13px;">Own your system outright</p>
-<div class="price">฿981,500<br><small>one-time payment</small></div>
-<div class="specs">
-<div class="feature"><span class="check">✓</span> 52× LONGi Hi-MO X6 580W</div>
-<div class="feature"><span class="check">✓</span> 2× Huawei SUN2000-15KTL</div>
-<div class="feature"><span class="check">✓</span> Full mounting system + cables</div>
-<div class="feature"><span class="check">✓</span> PEA license included</div>
-<div class="feature"><span class="check">✓</span> 25-year panel warranty</div>
-<div class="feature"><span class="check">✓</span> 10-year inverter warranty</div>
-<div class="feature"><span class="check">✓</span> 10-year workmanship warranty</div>
-<div class="feature"><span class="check">✓</span> 24/7 monitoring (1yr free)</div>
-</div>
-<div style="margin-top:16px;padding:12px;background:rgba(26,122,90,.08);border-radius:8px;">
-<div style="font-size:12px;color:var(--gray);">Savings per year</div>
-<div style="font-size:20px;font-weight:800;color:var(--green);">฿244,200</div>
-<div style="font-size:12px;color:var(--gray);">Payback: <b>4.0 years</b></div>
-</div>
-</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Prepared for<strong>Beamtech Block & Beam Floor Asia Co., Ltd.</strong></div>
+      <div class="hero-meta-item">Proposal Date<strong>9 March 2026</strong></div>
+      <div class="hero-meta-item">Reference<strong>TM-2026-001</strong></div>
+      <div class="hero-meta-item">Valid Until<strong>8 April 2026 (30 days)</strong></div>
+    </div>
+  </div>
+</header>
 
-<!-- OPTION B: PPA -->
-<div class="option recommended">
-<div class="option-icon">☀️</div>
-<h3>Option B: PPA</h3>
-<p style="color:var(--gray);font-size:13px;">Zero upfront — we own, you save</p>
-<div class="price">฿0<br><small>upfront · pay ฿4.50/kWh</small></div>
-<div class="specs">
-<div class="feature"><span class="check">✓</span> Everything in Option A</div>
-<div class="feature"><span class="check">✓</span> ฿0 installation cost</div>
-<div class="feature"><span class="check">✓</span> 25% lower than PEA rate</div>
-<div class="feature"><span class="check">✓</span> Fixed rate (2% annual escalation)</div>
-<div class="feature"><span class="check">✓</span> Free maintenance & monitoring</div>
-<div class="feature"><span class="check">✓</span> Free panel cleaning (2×/yr)</div>
-<div class="feature"><span class="check">✓</span> System replacement guarantee</div>
-<div class="feature"><span class="check">✓</span> 20-year contract</div>
-</div>
-<div style="margin-top:16px;padding:12px;background:rgba(232,168,32,.08);border-radius:8px;">
-<div style="font-size:12px;color:var(--gray);">Your monthly savings</div>
-<div style="font-size:20px;font-weight:800;color:var(--gold);">฿5,075/mo</div>
-<div style="font-size:12px;color:var(--gray);">vs current PEA bill · Day 1 savings</div>
-</div>
-</div>
+<!-- ════════════════════════════════════════════
+     2. YOUR PROJECT
+     ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">Your Project · โปรเจกต์ของคุณ</div>
+    <h2 class="section-heading">Two Buildings, One Solar System</h2>
+    <p class="section-desc">We'll install 52 high-efficiency solar panels across both rooftops, generating clean energy for all 24 units.<span class="th">ติดตั้ง 52 แผงโซลาร์ประสิทธิภาพสูงบนหลังคาทั้ง 2 อาคาร ผลิตพลังงานสะอาดสำหรับทั้ง 24 ยูนิต</span></p>
 
-<!-- OPTION C: EPC + STORAGE -->
-<div class="option">
-<div class="option-icon">🔋</div>
-<h3>Option C: EPC + Storage</h3>
-<p style="color:var(--gray);font-size:13px;">Maximum independence</p>
-<div class="price">฿1,531,500<br><small>solar + 30kWh battery</small></div>
-<div class="specs">
-<div class="feature"><span class="check">✓</span> Everything in Option A</div>
-<div class="feature"><span class="check">✓</span> 2× Huawei LUNA2000-15kWh</div>
-<div class="feature"><span class="check">✓</span> 30 kWh total storage</div>
-<div class="feature"><span class="check">✓</span> Blackout backup (8-10 hours)</div>
-<div class="feature"><span class="check">✓</span> 85% self-consumption</div>
-<div class="feature"><span class="check">✓</span> Peak shaving capability</div>
-<div class="feature"><span class="check">✓</span> 10-year battery warranty</div>
-<div class="feature"><span class="check">✓</span> Smart energy management</div>
-</div>
-<div style="margin-top:16px;padding:12px;background:rgba(26,122,90,.08);border-radius:8px;">
-<div style="font-size:12px;color:var(--gray);">Savings per year</div>
-<div style="font-size:20px;font-weight:800;color:var(--green);">฿294,000</div>
-<div style="font-size:12px;color:var(--gray);">Payback: <b>5.2 years</b></div>
-</div>
-</div>
-</div>
-</div>
+    <div class="project-images">
+      <div class="img-wrapper">
+        <img src="beamtech-render-1.png" alt="Aerial view — 2 buildings with solar panels" loading="lazy">
+        <div class="img-caption">Aerial View — 52 Panels · 30.2 kWp across 2 Buildings</div>
+      </div>
+      <div class="img-wrapper">
+        <img src="beamtech-render-2.png" alt="Close-up — panel installation detail" loading="lazy">
+        <div class="img-caption">LONGi Hi-MO X6 580W — Trapezoidal Clamp Mount</div>
+      </div>
+    </div>
 
-<!-- BATTERY STORAGE DETAIL -->
-<div class="section">
-<div class="section-title">🔋 Battery Storage Options</div>
-<div class="section-sub">Huawei LUNA2000 — Modular, scalable, smart energy storage</div>
-<div class="divider"></div>
-<div class="battery-grid">
-<div class="battery-card">
-<h3>LUNA2000-15-S0 × 1</h3>
-<div class="capacity">15 kWh</div>
-<div class="detail">
-<strong>Best for:</strong> Essential backup + evening self-consumption<br>
-<strong>Backup duration:</strong> 4-5 hours (common areas)<br>
-<strong>Self-consumption:</strong> 70% → 80%<br>
-<strong>Additional cost:</strong> ฿275,000<br>
-<strong>Additional savings:</strong> ฿24,900/year<br>
-<strong>Warranty:</strong> 10 years<br>
-<strong>Cycles:</strong> 6,000+ (16 years at 1 cycle/day)
-</div>
-</div>
-<div class="battery-card highlight">
-<h3>LUNA2000-15-S0 × 2</h3>
-<div class="capacity">30 kWh</div>
-<div class="detail">
-<strong>Best for:</strong> Full independence + blackout protection<br>
-<strong>Backup duration:</strong> 8-10 hours (all units)<br>
-<strong>Self-consumption:</strong> 70% → 85%<br>
-<strong>Additional cost:</strong> ฿550,000<br>
-<strong>Additional savings:</strong> ฿49,800/year<br>
-<strong>Warranty:</strong> 10 years<br>
-<strong>Cycles:</strong> 6,000+ (16 years at 1 cycle/day)<br><br>
-<strong style="color:var(--green);">✦ Recommended for 24-unit residential</strong>
-</div>
-</div>
-</div>
-</div>
+    <div class="project-details">
+      <div class="detail-card">
+        <h4>🏢 Property Details / รายละเอียดโครงการ</h4>
+        <div class="detail-row"><span class="detail-label">Owner</span><span class="detail-value">Beamtech Block & Beam Floor Asia Co., Ltd.</span></div>
+        <div class="detail-row"><span class="detail-label">Location</span><span class="detail-value">Koh Phangan, Surat Thani</span></div>
+        <div class="detail-row"><span class="detail-label">Buildings</span><span class="detail-value">2 × Two-Story RC Residential</span></div>
+        <div class="detail-row"><span class="detail-label">Total Units</span><span class="detail-value">24 units (12 per building)</span></div>
+      </div>
+      <div class="detail-card">
+        <h4>☀️ Roof Assessment / ประเมินหลังคา</h4>
+        <div class="detail-row"><span class="detail-label">Roof Type</span><span class="detail-value">Gable — Metal Sheet</span></div>
+        <div class="detail-row"><span class="detail-label">Usable Area</span><span class="detail-value">139 m² (85% of 163 m²)</span></div>
+        <div class="detail-row"><span class="detail-label">Roof Slope</span><span class="detail-value">~17° (optimal for Koh Phangan)</span></div>
+        <div class="detail-row"><span class="detail-label">Shading</span><span class="detail-value">None — fully exposed ✓</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- FINANCIAL COMPARISON -->
-<div class="section page">
-<div class="section-title">10-Year Financial Projection</div>
-<div class="section-sub">All options vs continuing with PEA grid power</div>
-<div class="divider"></div>
-<table class="comparison">
-<thead>
-<tr><th>Metric</th><th>PEA Grid Only</th><th>Option A: EPC</th><th>Option B: PPA</th><th>Option C: EPC+Storage</th></tr>
-</thead>
-<tbody>
-<tr><td>Upfront Cost</td><td>฿0</td><td>฿981,500</td><td class="highlight">฿0</td><td>฿1,531,500</td></tr>
-<tr><td>Year 1 Electricity Cost</td><td>฿244,200</td><td>฿73,260</td><td class="highlight">฿183,150</td><td>฿48,840</td></tr>
-<tr><td>Year 1 Savings</td><td>—</td><td>฿170,940</td><td class="highlight">฿61,050</td><td>฿195,360</td></tr>
-<tr><td>Payback Period</td><td>—</td><td>4.0 years</td><td class="highlight">Immediate</td><td>5.2 years</td></tr>
-<tr><td>10-Year Total Cost</td><td>฿2,929,000</td><td>฿1,714,100</td><td class="highlight">฿2,014,000</td><td>฿2,019,900</td></tr>
-<tr><td>10-Year Net Savings</td><td>—</td><td>฿1,214,900</td><td class="highlight">฿915,000</td><td>฿909,100</td></tr>
-<tr><td>25-Year Net Savings</td><td>—</td><td><b>฿5,123,500</b></td><td class="highlight"><b>฿2,287,500</b></td><td><b>฿4,832,700</b></td></tr>
-<tr><td>Blackout Protection</td><td>❌ None</td><td>❌ Daytime only</td><td>❌ Daytime only</td><td class="highlight">✅ 8-10 hours</td></tr>
-<tr><td>Ownership</td><td>—</td><td>You own</td><td>TM Energy owns</td><td>You own</td></tr>
-<tr><td>CO₂ Saved (10yr)</td><td>—</td><td>203 tons</td><td>203 tons</td><td>203 tons</td></tr>
-</tbody>
-</table>
-</div>
+<!-- ════════════════════════════════════════════
+     3. WHAT YOU GET — 3 OPTIONS
+     ════════════════════════════════════════════ -->
+<section style="background:#fff;">
+  <div class="container">
+    <div class="section-label">Choose Your Plan · เลือกแผนของคุณ</div>
+    <h2 class="section-heading">Three Options, One Goal: Lower Bills</h2>
+    <p class="section-desc">Pick the plan that fits your budget. All options use the same premium equipment.<span class="th">เลือกแผนที่เหมาะกับงบประมาณของคุณ ทุกตัวเลือกใช้อุปกรณ์คุณภาพระดับพรีเมียมเหมือนกัน</span></p>
 
-<!-- EQUIPMENT -->
-<div class="section">
-<div class="section-title">Equipment Specifications</div>
-<div class="divider"></div>
-<div class="info-grid">
-<div class="info-card">
-<h3>☀️ Solar Panels — LONGi Hi-MO X6</h3>
-<div class="row"><span class="label">Model</span><span class="value">LR5-72HGD 580W</span></div>
-<div class="row"><span class="label">Quantity</span><span class="value">52 panels</span></div>
-<div class="row"><span class="label">Cell Type</span><span class="value">N-type TOPCon</span></div>
-<div class="row"><span class="label">Efficiency</span><span class="value">22.3%</span></div>
-<div class="row"><span class="label">Dimensions</span><span class="value">2,278 × 1,134 × 30mm</span></div>
-<div class="row"><span class="label">Weight</span><span class="value">27.5 kg per panel</span></div>
-<div class="row"><span class="label">Warranty</span><span class="value">25yr product · 30yr performance</span></div>
-<div class="row"><span class="label">Degradation</span><span class="value">≤1% Y1 · ≤0.4%/yr after</span></div>
-<div class="row"><span class="label">Tier</span><span class="value">Tier 1 — Bloomberg BNEF</span></div>
-</div>
-<div class="info-card">
-<h3>⚡ Inverters — Huawei SUN2000</h3>
-<div class="row"><span class="label">Model</span><span class="value">SUN2000-15KTL-M3</span></div>
-<div class="row"><span class="label">Quantity</span><span class="value">2 units (1 per building)</span></div>
-<div class="row"><span class="label">Rated Power</span><span class="value">15 kW per unit</span></div>
-<div class="row"><span class="label">Max Efficiency</span><span class="value">98.6%</span></div>
-<div class="row"><span class="label">MPPT Trackers</span><span class="value">4 per unit</span></div>
-<div class="row"><span class="label">IP Rating</span><span class="value">IP66 (outdoor rated)</span></div>
-<div class="row"><span class="label">Warranty</span><span class="value">10 years</span></div>
-<div class="row"><span class="label">Monitoring</span><span class="value">Huawei FusionSolar App</span></div>
-</div>
-<div class="info-card">
-<h3>🔋 Battery — Huawei LUNA2000</h3>
-<div class="row"><span class="label">Model</span><span class="value">LUNA2000-15-S0</span></div>
-<div class="row"><span class="label">Capacity (Option C)</span><span class="value">2 × 15 kWh = 30 kWh</span></div>
-<div class="row"><span class="label">Usable Capacity</span><span class="value">28.5 kWh (95% DoD)</span></div>
-<div class="row"><span class="label">Chemistry</span><span class="value">LFP (Lithium Iron Phosphate)</span></div>
-<div class="row"><span class="label">Round-trip Efficiency</span><span class="value">97%</span></div>
-<div class="row"><span class="label">Cycles</span><span class="value">6,000+ @ 95% DoD</span></div>
-<div class="row"><span class="label">Warranty</span><span class="value">10 years</span></div>
-<div class="row"><span class="label">IP Rating</span><span class="value">IP66</span></div>
-</div>
-<div class="info-card">
-<h3>🔧 Mounting & BOS</h3>
-<div class="row"><span class="label">Mounting Type</span><span class="value">Trapezoidal clamps (no drilling)</span></div>
-<div class="row"><span class="label">Material</span><span class="value">Anodized aluminum + stainless steel</span></div>
-<div class="row"><span class="label">Wind Rating</span><span class="value">Up to 60 m/s (typhoon rated)</span></div>
-<div class="row"><span class="label">DC Cables</span><span class="value">4mm² solar cable (TUV rated)</span></div>
-<div class="row"><span class="label">AC Cables</span><span class="value">Sized per PEA standards</span></div>
-<div class="row"><span class="label">Protection</span><span class="value">SPD Type II + RCD 30mA + MCB</span></div>
-<div class="row"><span class="label">Grounding</span><span class="value">Full system + lightning protection</span></div>
-<div class="row"><span class="label">Weight on Roof</span><span class="value">~12 kg/m² (incl. mounting)</span></div>
-</div>
-</div>
-</div>
+    <div class="options-grid">
 
-<!-- ENERGY PRODUCTION -->
-<div class="section">
-<div class="section-title">Annual Energy Production</div>
-<div class="divider"></div>
-<div class="info-card" style="max-width:100%;">
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;padding:20px 0;">
-<div><div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--gold);">30.2</div><div style="color:var(--gray);font-size:13px;">kWp System Size</div></div>
-<div><div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--gold);">40,700</div><div style="color:var(--gray);font-size:13px;">kWh/year Production</div></div>
-<div><div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--green);">20.4</div><div style="color:var(--gray);font-size:13px;">Tons CO₂ Saved/year</div></div>
-<div><div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--coral);">4.5</div><div style="color:var(--gray);font-size:13px;">Peak Sun Hours/day</div></div>
-</div>
-<div style="margin-top:16px;font-size:13px;color:var(--gray);text-align:center;">
-Formula: 30.2 kWp × 4.5 sun hours × 365 days × 0.82 performance ratio = 40,700 kWh/year<br>
-Performance ratio accounts for heat derating, cable losses, inverter efficiency, and soiling
-</div>
-</div>
-</div>
+      <!-- OPTION A: EPC -->
+      <div class="option-card">
+        <div class="option-icon">⚡</div>
+        <div class="option-name">Option A: EPC</div>
+        <div class="option-desc">Own your system outright / เป็นเจ้าของระบบ</div>
+        <div class="option-price">฿981,500<span class="option-price-note">one-time payment / จ่ายครั้งเดียว</span></div>
+        <div class="option-features">
+          <div class="option-feature"><span class="check-icon">✓</span> 52 panels + 2 inverters — fully installed</div>
+          <div class="option-feature"><span class="check-icon">✓</span> PEA license & grid connection included</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 25-year panel warranty</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 10-year inverter & workmanship warranty</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 24/7 monitoring (1 year free)</div>
+          <div class="option-feature"><span class="check-icon">✓</span> You own the system — all savings are yours</div>
+        </div>
+        <div class="option-bottom green">
+          <div class="option-bottom-label">Annual Savings / ประหยัดต่อปี</div>
+          <div class="option-bottom-value green-text">฿244,200</div>
+          <div class="option-bottom-sub">Payback: <strong>4.0 years</strong> / คืนทุน 4 ปี</div>
+        </div>
+      </div>
 
-<!-- INSTALLATION TIMELINE -->
-<div class="section page">
-<div class="section-title">Installation Timeline</div>
-<div class="section-sub">From approval to power generation in 6-8 weeks</div>
-<div class="divider"></div>
-<div class="timeline">
-<div class="timeline-item"><div class="timeline-dot"></div>
-<div class="days">Week 1</div>
-<h4>Site Survey & Design</h4>
-<p>Detailed roof measurement, electrical assessment, system design with PVsyst simulation</p>
-</div>
-<div class="timeline-item"><div class="timeline-dot"></div>
-<div class="days">Week 1-2</div>
-<h4>Structural Approval</h4>
-<p>Load assessment by Rock Engineering, structural approval letter for 12 kg/m² additional load</p>
-</div>
-<div class="timeline-item"><div class="timeline-dot"></div>
-<div class="days">Week 2-3</div>
-<h4>PEA License Application</h4>
-<p>Submit application to PEA Koh Phangan with SLD, equipment specs, and structural letter</p>
-</div>
-<div class="timeline-item"><div class="timeline-dot"></div>
-<div class="days">Week 2-4</div>
-<h4>Equipment Procurement</h4>
-<p>Order from Solaris Green Energy (Krabi) — LONGi panels, Huawei inverters, mounting system</p>
-</div>
-<div class="timeline-item"><div class="timeline-dot"></div>
-<div class="days">Week 4-5</div>
-<h4>Installation — Building 1</h4>
-<p>Mounting, panels, inverter, DC/AC wiring, protection devices (3-4 days)</p>
-</div>
-<div class="timeline-item"><div class="timeline-dot"></div>
-<div class="days">Week 5-6</div>
-<h4>Installation — Building 2</h4>
-<p>Same scope as Building 1 (3-4 days)</p>
-</div>
-<div class="timeline-item"><div class="timeline-dot"></div>
-<div class="days">Week 6-7</div>
-<h4>Testing & Commissioning</h4>
-<p>System testing, insulation resistance, earth continuity, PEA inspection</p>
-</div>
-<div class="timeline-item"><div class="timeline-dot" style="background:var(--green);"></div>
-<div class="days">Week 7-8</div>
-<h4>Grid Connection & Go Live ✓</h4>
-<p>PEA meter installation, grid synchronization, monitoring setup, handover</p>
-</div>
-</div>
-</div>
+      <!-- OPTION B: PPA (RECOMMENDED) -->
+      <div class="option-card featured">
+        <div class="option-tag">★ RECOMMENDED / แนะนำ</div>
+        <div class="option-icon">☀️</div>
+        <div class="option-name">Option B: PPA</div>
+        <div class="option-desc">Zero upfront — we install, you save / ไม่ต้องจ่ายล่วงหน้า</div>
+        <div class="option-price">฿0 Upfront<span class="option-price-note">pay only ฿4.50/kWh (25% less than PEA)</span></div>
+        <div class="option-features">
+          <div class="option-feature"><span class="check-icon">✓</span> ฿0 installation — TM Energy pays for everything</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 25% cheaper than PEA grid rate</div>
+          <div class="option-feature"><span class="check-icon">✓</span> Free maintenance & monitoring for 20 years</div>
+          <div class="option-feature"><span class="check-icon">✓</span> Free panel cleaning 2× per year</div>
+          <div class="option-feature"><span class="check-icon">✓</span> System replacement guarantee</div>
+          <div class="option-feature"><span class="check-icon">✓</span> Start saving from Day 1 — zero risk</div>
+        </div>
+        <div class="option-bottom gold">
+          <div class="option-bottom-label">Monthly Savings / ประหยัดต่อเดือน</div>
+          <div class="option-bottom-value gold-text">฿5,075/mo</div>
+          <div class="option-bottom-sub">Savings start <strong>immediately</strong> / เริ่มประหยัดทันที</div>
+        </div>
+      </div>
 
-<!-- WARRANTY & MAINTENANCE -->
-<div class="section">
-<div class="section-title">Warranty & Maintenance</div>
-<div class="divider"></div>
-<div class="info-grid">
-<div class="info-card">
-<h3>🛡️ Warranty Coverage</h3>
-<div class="row"><span class="label">Solar Panels</span><span class="value">25-year product warranty</span></div>
-<div class="row"><span class="label">Panel Performance</span><span class="value">30-year (≥87.4% at Year 25)</span></div>
-<div class="row"><span class="label">Inverters</span><span class="value">10-year manufacturer warranty</span></div>
-<div class="row"><span class="label">Battery (if Option C)</span><span class="value">10-year / 6,000 cycles</span></div>
-<div class="row"><span class="label">Workmanship</span><span class="value">10-year TM Energy warranty</span></div>
-<div class="row"><span class="label">Mounting System</span><span class="value">15-year structural warranty</span></div>
-</div>
-<div class="info-card">
-<h3>🔧 Included Maintenance</h3>
-<div class="row"><span class="label">Monitoring</span><span class="value">24/7 remote via FusionSolar</span></div>
-<div class="row"><span class="label">Panel Cleaning</span><span class="value">2× per year (included Y1)</span></div>
-<div class="row"><span class="label">Annual Inspection</span><span class="value">Full system check</span></div>
-<div class="row"><span class="label">Response Time</span><span class="value">Same-day on Koh Phangan</span></div>
-<div class="row"><span class="label">Local Team</span><span class="value">TM Developers — on-island 24/7</span></div>
-<div class="row"><span class="label">O&M Package (optional)</span><span class="value">฿2,500/month after Year 1</span></div>
-</div>
-</div>
-</div>
+      <!-- OPTION C: EPC + STORAGE -->
+      <div class="option-card">
+        <div class="option-icon">🔋</div>
+        <div class="option-name">Option C: EPC + Battery</div>
+        <div class="option-desc">Maximum independence / พึ่งพาตนเองสูงสุด</div>
+        <div class="option-price">฿1,531,500<span class="option-price-note">solar + 30 kWh battery storage</span></div>
+        <div class="option-features">
+          <div class="option-feature"><span class="check-icon">✓</span> Everything in Option A, plus:</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 2× Huawei LUNA2000 = 30 kWh storage</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 8-10 hours blackout backup</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 85% self-consumption rate</div>
+          <div class="option-feature"><span class="check-icon">✓</span> 10-year battery warranty</div>
+          <div class="option-feature"><span class="check-icon">✓</span> Smart energy management via app</div>
+        </div>
+        <div class="option-bottom green">
+          <div class="option-bottom-label">Annual Savings / ประหยัดต่อปี</div>
+          <div class="option-bottom-value green-text">฿294,000</div>
+          <div class="option-bottom-sub">Payback: <strong>5.2 years</strong> / คืนทุน 5.2 ปี</div>
+        </div>
+      </div>
 
-<!-- CTA -->
-<div class="section">
-<div class="cta-section">
-<h2>Ready to Start Saving?</h2>
-<p>This proposal is valid for 30 days. Contact us to proceed with your preferred option.</p>
-<a href="https://wa.me/66623480119?text=Hi%20TM%20Energy%2C%20I%27d%20like%20to%20proceed%20with%20proposal%20TM-2026-001" class="cta-whatsapp" target="_blank">💬 WhatsApp Us</a>
-<a href="tel:+66623480119" class="cta-btn">📞 062-348-0119</a>
-</div>
-</div>
+    </div>
+  </div>
+</section>
 
-<!-- FOOTER -->
-<div class="footer">
-<div class="logo-row"><div class="logo-circle">TM</div><div class="logo-text">TM ENERGY</div></div>
-<p>ทีเอ็ม เอเนอร์จี — Professional Solar Solutions for Koh Phangan</p>
-<div class="contact">
-<span>📞 062-348-0119</span>
-<span>💬 WhatsApp: +66 62 348 0119</span>
-<span>📧 info@tmenergy.asia</span>
-<span>📍 107/5 Moo 1, Koh Phangan</span>
-</div>
-<div class="validity">
-Proposal #TM-2026-001 · Valid until 8 April 2026 · Prices include VAT<br>
-© 2026 TM Energy — A TM Developers Company · All rights reserved
-</div>
-</div>
+<!-- ════════════════════════════════════════════
+     4. SYSTEM DETAILS
+     ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">System Details · รายละเอียดระบบ</div>
+    <h2 class="section-heading">Premium Equipment, Built to Last</h2>
+    <p class="section-desc">Tier 1 solar panels and world-leading inverters — designed for Thailand's tropical climate.<span class="th">แผงโซลาร์ระดับ Tier 1 และอินเวอร์เตอร์ชั้นนำของโลก — ออกแบบสำหรับสภาพอากาศเขตร้อน</span></p>
 
-<script>
-function setLang(lang) {
-document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-event.target.classList.add('active');
-// Tri-lingual content can be expanded here
-}
-</script>
+    <div class="specs-row">
+      <div>
+        <div class="spec-card" style="margin-bottom:16px;">
+          <h4>☀️ Solar Panels — LONGi Hi-MO X6</h4>
+          <div class="spec-item"><span class="spec-label">Model</span><span class="spec-val">LR5-72HGD 580W</span></div>
+          <div class="spec-item"><span class="spec-label">Quantity</span><span class="spec-val">52 panels (26 per building)</span></div>
+          <div class="spec-item"><span class="spec-label">Total Capacity</span><span class="spec-val">30.2 kWp</span></div>
+          <div class="spec-item"><span class="spec-label">Cell Technology</span><span class="spec-val">N-type TOPCon · 22.3% efficiency</span></div>
+          <div class="spec-item"><span class="spec-label">Warranty</span><span class="spec-val">25-year product · 30-year performance</span></div>
+          <div class="spec-item"><span class="spec-label">Tier</span><span class="spec-val">Tier 1 — Bloomberg BNEF</span></div>
+        </div>
+        <div class="spec-card">
+          <h4>⚡ Inverters — Huawei SUN2000-15KTL</h4>
+          <div class="spec-item"><span class="spec-label">Quantity</span><span class="spec-val">2 units (1 per building)</span></div>
+          <div class="spec-item"><span class="spec-label">Power</span><span class="spec-val">15 kW each · 98.6% efficiency</span></div>
+          <div class="spec-item"><span class="spec-label">Features</span><span class="spec-val">IP66 outdoor · 4 MPPT trackers</span></div>
+          <div class="spec-item"><span class="spec-label">Monitoring</span><span class="spec-val">Huawei FusionSolar App</span></div>
+          <div class="spec-item"><span class="spec-label">Warranty</span><span class="spec-val">10 years</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="spec-image">
+          <img src="beamtech-render-3.png" alt="Huawei LUNA2000 battery and SUN2000 inverter" loading="lazy">
+        </div>
+        <div class="spec-card" style="margin-top:16px;">
+          <h4>🔧 Installation Includes</h4>
+          <div class="spec-item"><span class="spec-label">Mounting</span><span class="spec-val">Trapezoidal clamps (no roof drilling)</span></div>
+          <div class="spec-item"><span class="spec-label">Wind Rating</span><span class="spec-val">Up to 60 m/s (typhoon rated)</span></div>
+          <div class="spec-item"><span class="spec-label">Protection</span><span class="spec-val">Surge protector + circuit breakers</span></div>
+          <div class="spec-item"><span class="spec-label">Grounding</span><span class="spec-val">Full system + lightning protection</span></div>
+          <div class="spec-item"><span class="spec-label">PEA License</span><span class="spec-val">Application & approval handled by us</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     5. YOUR SAVINGS
+     ════════════════════════════════════════════ -->
+<section style="background:#fff;">
+  <div class="container">
+    <div class="section-label">Your Savings · เงินที่คุณประหยัดได้</div>
+    <h2 class="section-heading">See How Much You'll Save</h2>
+    <p class="section-desc">Compare your current electricity costs with solar — the numbers speak for themselves.<span class="th">เปรียบเทียบค่าไฟปัจจุบันกับโซลาร์ — ตัวเลขพูดเอง</span></p>
+
+    <div class="savings-visual">
+      <div class="savings-comparison">
+        <div class="savings-bar-group">
+          <h4>Current PEA Bill (annual) / ค่าไฟปัจจุบัน</h4>
+          <div class="savings-bar bar-pea">฿244,200/year</div>
+        </div>
+        <div class="savings-bar-group">
+          <h4>With Solar — Option A (annual) / หลังติดตั้งโซลาร์</h4>
+          <div style="position:relative;">
+            <div class="savings-bar bar-solar">฿73,260</div>
+            <div class="bar-diff">Save ฿170,940/yr ↓</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:16px 20px;background:var(--green-soft);border-radius:12px;font-size:14px;">
+          <strong style="color:var(--green);">70% reduction</strong> in electricity costs from Day 1
+          <span class="th">ลดค่าไฟฟ้าลง 70% ตั้งแต่วันแรก</span>
+        </div>
+      </div>
+
+      <div class="savings-numbers">
+        <div class="savings-card">
+          <div class="savings-card-value gold">฿244,200</div>
+          <div class="savings-card-label">Annual Savings (EPC)<br>ประหยัดต่อปี</div>
+        </div>
+        <div class="savings-card">
+          <div class="savings-card-value green">฿2.44M</div>
+          <div class="savings-card-label">10-Year Savings<br>ประหยัด 10 ปี</div>
+        </div>
+        <div class="savings-card">
+          <div class="savings-card-value gold">4.0</div>
+          <div class="savings-card-label">Years to Payback<br>ปีที่คืนทุน</div>
+        </div>
+        <div class="savings-card">
+          <div class="savings-card-value green">20.4 t</div>
+          <div class="savings-card-label">CO₂ Saved/Year<br>ลด CO₂ ต่อปี</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     6. HOW IT WORKS — TIMELINE
+     ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-label">How It Works · ขั้นตอนการดำเนินงาน</div>
+    <h2 class="section-heading">From Approval to Power in 6–8 Weeks</h2>
+    <p class="section-desc">A straightforward process — we handle everything from permits to grid connection.<span class="th">กระบวนการที่ตรงไปตรงมา — เราจัดการทุกอย่างตั้งแต่ใบอนุญาตจนถึงเชื่อมต่อสายส่ง</span></p>
+
+    <div class="timeline-grid">
+      <div class="tl-step">
+        <div class="tl-week">Week 1</div>
+        <div class="tl-dot"></div>
+        <div class="tl-title">Survey & Design</div>
+        <div class="tl-desc">Site measurement, electrical assessment, system design</div>
+        <div class="tl-desc th">สำรวจพื้นที่และออกแบบระบบ</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 2–3</div>
+        <div class="tl-dot"></div>
+        <div class="tl-title">Permits & Procurement</div>
+        <div class="tl-desc">PEA license, structural approval, equipment order</div>
+        <div class="tl-desc th">ขอใบอนุญาต PEA และสั่งอุปกรณ์</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 4–6</div>
+        <div class="tl-dot"></div>
+        <div class="tl-title">Installation</div>
+        <div class="tl-desc">Mount panels, install inverters, complete wiring for both buildings</div>
+        <div class="tl-desc th">ติดตั้งแผงโซลาร์และอินเวอร์เตอร์ทั้ง 2 อาคาร</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 7–8</div>
+        <div class="tl-dot" style="background:var(--green);"></div>
+        <div class="tl-title">Go Live ✓</div>
+        <div class="tl-desc">Testing, PEA inspection, grid connection, monitoring setup</div>
+        <div class="tl-desc th">ทดสอบ ตรวจ PEA เชื่อมต่อระบบ เริ่มผลิตไฟ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     7. WARRANTIES & SUPPORT
+     ════════════════════════════════════════════ -->
+<section style="background:#fff;">
+  <div class="container">
+    <div class="section-label">Warranties & Support · การรับประกันและบริการ</div>
+    <h2 class="section-heading">Protected for Decades</h2>
+    <p class="section-desc">Industry-leading warranties backed by global manufacturers and our local team on Koh Phangan.<span class="th">การรับประกันระดับโลกจากผู้ผลิตชั้นนำ พร้อมทีมบริการบนเกาะพะงัน</span></p>
+
+    <div class="warranty-grid">
+      <div class="warranty-card">
+        <div class="warranty-icon">☀️</div>
+        <div class="warranty-years">25 <span>years</span></div>
+        <div class="warranty-label">Solar Panel Warranty</div>
+        <div class="warranty-sub">LONGi product warranty<br>30-year performance guarantee</div>
+        <span class="th">รับประกันแผงโซลาร์ 25 ปี</span>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">⚡</div>
+        <div class="warranty-years">10 <span>years</span></div>
+        <div class="warranty-label">Inverter Warranty</div>
+        <div class="warranty-sub">Huawei manufacturer warranty<br>98.6% efficiency guaranteed</div>
+        <span class="th">รับประกันอินเวอร์เตอร์ 10 ปี</span>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">🔧</div>
+        <div class="warranty-years">10 <span>years</span></div>
+        <div class="warranty-label">Workmanship Warranty</div>
+        <div class="warranty-sub">TM Energy installation warranty<br>Same-day service on Koh Phangan</div>
+        <span class="th">รับประกันงานติดตั้ง 10 ปี</span>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">📡</div>
+        <div class="warranty-years">24/7</div>
+        <div class="warranty-label">Remote Monitoring</div>
+        <div class="warranty-sub">FusionSolar App<br>Real-time system tracking</div>
+        <span class="th">ตรวจสอบระบบ 24 ชั่วโมง</span>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">🧹</div>
+        <div class="warranty-years">2× <span>/year</span></div>
+        <div class="warranty-label">Panel Cleaning</div>
+        <div class="warranty-sub">Professional cleaning included<br>Year 1 free (all options)</div>
+        <span class="th">ทำความสะอาดแผง 2 ครั้ง/ปี</span>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">🏝️</div>
+        <div class="warranty-years">Local</div>
+        <div class="warranty-label">On-Island Team</div>
+        <div class="warranty-sub">TM Developers — on Koh Phangan<br>Same-day response</div>
+        <span class="th">ทีมประจำเกาะพะงัน บริการวันเดียว</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     8. BATTERY OPTION
+     ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="battery-section">
+      <div class="section-label">Battery Add-On · ตัวเลือกแบตเตอรี่</div>
+      <h2 class="section-heading">Add Energy Storage for Full Independence</h2>
+      <p class="section-desc">Store solar energy for nighttime use and blackout protection. Available as add-on to Option A, or included in Option C.<span class="th" style="color:rgba(255,255,255,.35);">เก็บพลังงานแสงอาทิตย์ไว้ใช้ตอนกลางคืนและป้องกันไฟดับ</span></p>
+
+      <div class="battery-grid">
+        <div class="battery-card">
+          <h4>LUNA2000 × 1</h4>
+          <div class="battery-capacity">15 kWh</div>
+          <div class="battery-detail">
+            <strong>Best for:</strong> Essential backup + evening use<br>
+            <strong>Backup:</strong> 4-5 hours (common areas)<br>
+            <strong>Self-consumption:</strong> 70% → 80%<br>
+            <strong>Additional cost:</strong> ฿275,000<br>
+            <strong>Extra savings:</strong> ฿24,900/year<br>
+            <strong>Warranty:</strong> 10 years / 6,000+ cycles
+          </div>
+        </div>
+        <div class="battery-card recommended">
+          <h4>LUNA2000 × 2</h4>
+          <div class="battery-capacity">30 kWh</div>
+          <div class="battery-detail">
+            <strong>Best for:</strong> Full independence + blackout protection<br>
+            <strong>Backup:</strong> 8-10 hours (all 24 units)<br>
+            <strong>Self-consumption:</strong> 70% → 85%<br>
+            <strong>Additional cost:</strong> ฿550,000<br>
+            <strong>Extra savings:</strong> ฿49,800/year<br>
+            <strong>Warranty:</strong> 10 years / 6,000+ cycles
+          </div>
+          <div class="battery-recommend-tag">★ RECOMMENDED FOR 24 UNITS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     9. NEXT STEPS — CTA
+     ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="cta-block">
+      <h2>Ready to Start Saving?</h2>
+      <p class="cta-sub">This proposal is valid for 30 days. Let's discuss your preferred option.</p>
+      <p class="cta-sub-th">ข้อเสนอนี้มีอายุ 30 วัน — ติดต่อเราเพื่อเริ่มต้น</p>
+
+      <div class="cta-buttons">
+        <a href="https://wa.me/66623480119?text=Hi%20TM%20Energy%2C%20I%27d%20like%20to%20proceed%20with%20proposal%20TM-2026-001" class="btn-whatsapp" target="_blank">💬 WhatsApp Us Now</a>
+        <a href="tel:+66623480119" class="btn-phone">📞 062-348-0119</a>
+      </div>
+
+      <div class="cta-steps">
+        <span><strong>1.</strong> Choose your option</span>
+        <span><strong>2.</strong> Sign agreement</span>
+        <span><strong>3.</strong> We start work within 1 week</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     10. FOOTER
+     ════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">
+    <div class="logo-mark">TM</div>
+    <div class="footer-brand">TM ENERGY</div>
+  </div>
+  <div class="footer-tagline">ทีเอ็ม เอเนอร์จี — Professional Solar Solutions for Koh Phangan</div>
+
+  <div class="footer-contacts">
+    <span>📞 062-348-0119</span>
+    <span>💬 WhatsApp: +66 62 348 0119</span>
+    <span>📧 info@tmenergy.asia</span>
+    <span>📍 107/5 Moo 1, Koh Phangan</span>
+  </div>
+
+  <div class="footer-legal">
+    Proposal #TM-2026-001 · Valid until 8 April 2026 · All prices include VAT<br>
+    © 2026 TM Energy — A TM Developers Company · All rights reserved
+  </div>
+</footer>
+
 </body>
 </html>

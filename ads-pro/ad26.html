@@ -3,7 +3,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;position:relative;background:linear-gradient(160deg,#1A7A5A 0%,#0D2137 60%);}
+body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;position:relative;background:url("bg26.png") center/cover no-repeat;}
+.overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(26,122,90,.8) 0%,rgba(13,33,55,.85) 60%);}
 .logo{position:absolute;top:40px;left:40px;display:flex;align-items:center;gap:12px;z-index:2;}
 .logo-circle{width:44px;height:44px;border-radius:50%;background:rgba(0,0,0,.3);border:2px solid #E8A820;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#E8A820;}
 .logo-text{font-weight:700;font-size:16px;color:#E8A820;letter-spacing:2px;}
@@ -24,6 +25,7 @@ body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;p
 .phone b{color:#fff;}
 </style></head>
 <body>
+<div class="overlay"></div>
 <div class="logo"><div class="logo-circle">TM</div><div class="logo-text">TM ENERGY</div></div>
 <div class="free-badge">100% FREE</div>
 <div class="content">

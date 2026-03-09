@@ -3,7 +3,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;position:relative;background:linear-gradient(160deg,#0D2137,#0A1929);}
+body{width:1080px;height:1080px;overflow:hidden;font-family:"Inter",sans-serif;position:relative;background:url("bg27.png") center/cover;}
+.overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(13,33,55,.9),rgba(10,25,41,.88));}
 .logo{position:absolute;top:40px;left:40px;display:flex;align-items:center;gap:12px;z-index:2;}
 .logo-circle{width:44px;height:44px;border-radius:50%;background:#1A1A1A;border:2px solid #E8A820;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#E8A820;}
 .logo-text{font-weight:700;font-size:16px;color:#E8A820;letter-spacing:2px;}
@@ -28,6 +29,7 @@ body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;p
 .cta-sub{font-size:15px;color:rgba(255,255,255,.4);text-align:right;}
 </style></head>
 <body>
+<div class="overlay"></div>
 <div class="logo"><div class="logo-circle">TM</div><div class="logo-text">TM ENERGY</div></div>
 <div class="badge">TIER-1 ONLY</div>
 <div class="headline">Only the Best <span>Equipment</span><br>on Your Roof</div>

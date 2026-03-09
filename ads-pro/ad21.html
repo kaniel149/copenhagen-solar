@@ -4,7 +4,8 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;position:relative;
-background:linear-gradient(160deg,#0A1929 0%,#0D2137 40%,#132F4F 100%);}
+background:url('bg21.png') center/cover no-repeat;}
+.overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,25,41,.85) 0%,rgba(13,33,55,.75) 40%,rgba(19,47,79,.7) 100%);}
 .logo{position:absolute;top:40px;left:40px;display:flex;align-items:center;gap:12px;}
 .logo-circle{width:44px;height:44px;border-radius:50%;background:#1A1A1A;border:2px solid #E8A820;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#E8A820;letter-spacing:1px;}
 .logo-text{font-weight:700;font-size:16px;color:#E8A820;letter-spacing:2px;}
@@ -23,6 +24,7 @@ background:linear-gradient(160deg,#0A1929 0%,#0D2137 40%,#132F4F 100%);}
 .cta-phone b{color:#fff;}
 </style></head>
 <body>
+<div class="overlay"></div>
 <div class="logo"><div class="logo-circle">TM</div><div class="logo-text">TM ENERGY</div></div>
 <div class="big-zero">฿0</div>
 <div class="main-content">

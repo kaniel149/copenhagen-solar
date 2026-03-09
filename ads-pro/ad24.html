@@ -3,7 +3,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;position:relative;background:#0D2137;}
+body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;position:relative;background:url("bg24.png") center/cover no-repeat;}
+.overlay-bg{position:absolute;inset:0;background:rgba(13,33,55,.85);}
 .bg-pattern{position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(232,168,32,.08),transparent 60%),radial-gradient(circle at 20% 80%,rgba(26,122,90,.08),transparent 60%);}
 .logo{position:absolute;top:40px;left:40px;display:flex;align-items:center;gap:12px;z-index:2;}
 .logo-circle{width:44px;height:44px;border-radius:50%;background:#1A1A1A;border:2px solid #E8A820;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#E8A820;}
@@ -25,6 +26,7 @@ body{width:1080px;height:1080px;overflow:hidden;font-family:'Inter',sans-serif;p
 .cta-sub{font-size:15px;color:rgba(255,255,255,.4);}
 </style></head>
 <body>
+<div class="overlay-bg"></div>
 <div class="bg-pattern"></div>
 <div class="logo"><div class="logo-circle">TM</div><div class="logo-text">TM ENERGY</div></div>
 <div class="stars">⭐⭐⭐⭐⭐</div>

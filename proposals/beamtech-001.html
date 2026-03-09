@@ -794,6 +794,207 @@ section { padding: 72px 0; }
   .savings-numbers { grid-template-columns: 1fr; }
 }
 
+/* ── AGREEMENT SECTION ── */
+.agreement-section {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  margin: 0 auto;
+  max-width: 1080px;
+  position: relative;
+}
+.agreement-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 40px;
+  right: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), #D49520);
+  border-radius: 2px;
+}
+.agreement-header {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--border);
+}
+.agreement-sub-header {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 28px 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.option-select {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.option-radio {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all .2s;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  flex: 1;
+  min-width: 200px;
+}
+.option-radio:hover {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+}
+.option-radio .radio-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  flex-shrink: 0;
+  position: relative;
+}
+.option-radio:hover .radio-dot {
+  border-color: var(--gold);
+}
+.key-terms-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+}
+.key-terms-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.6;
+}
+.key-terms-list li:last-child { border-bottom: none; }
+.key-terms-list li::before {
+  content: '•';
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.terms-toggle {
+  background: #f8f9fa;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+.terms-toggle summary {
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.terms-toggle summary::-webkit-details-marker { display: none; }
+.terms-toggle summary::before {
+  content: '▶';
+  font-size: 10px;
+  color: var(--gold);
+  transition: transform .2s;
+}
+.terms-toggle[open] summary::before {
+  transform: rotate(90deg);
+}
+.terms-content {
+  padding: 0 20px 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+.terms-content ol {
+  padding-left: 20px;
+  margin: 0;
+}
+.terms-content li {
+  margin-bottom: 8px;
+}
+.signature-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 2px solid var(--border);
+}
+.sig-party {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.sig-party-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sig-line {
+  border-bottom: 1px solid #333;
+  height: 48px;
+}
+.sig-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sig-field-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.sig-field-input {
+  border-bottom: 1px solid #ccc;
+  height: 28px;
+}
+.stamp-area {
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #ccc;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #bbb;
+  text-align: center;
+  margin-top: 8px;
+}
+.agreement-consent {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
 /* ── PRINT ── */
 @media print {
   .nav, .floating-wa, .nav-cta { display: none !important; }
@@ -810,6 +1011,12 @@ section { padding: 72px 0; }
   .battery-detail strong { color: var(--navy); }
   .cta-block { break-before: page; }
   .footer { background: #f5f5f5; color: #333; }
+  .agreement-section { border: 2px solid #333; box-shadow: none; page-break-inside: avoid; }
+  .agreement-section::before { background: var(--gold); }
+  .terms-toggle { break-inside: avoid; }
+  .terms-toggle[open] .terms-content { display: block; }
+  .signature-block { break-inside: avoid; }
+  .stamp-area { border-color: #999; }
 }
 </style>
 </head>
@@ -1367,7 +1574,98 @@ section { padding: 72px 0; }
 </section>
 
 <!-- ════════════════════════════════════════════
-     11. FOOTER
+     11. SERVICE AGREEMENT
+     ════════════════════════════════════════════ -->
+<section id="agreement">
+  <div class="container">
+    <div class="agreement-section">
+      <h2 class="agreement-header">Service Agreement</h2>
+
+      <div class="agreement-sub-header">Selected Option / האופציה הנבחרת</div>
+      <div class="option-select">
+        <label class="option-radio">
+          <span class="radio-dot"></span>
+          Option A: EPC — ฿981,500
+        </label>
+        <label class="option-radio">
+          <span class="radio-dot"></span>
+          Option B: PPA — ฿0 Upfront
+        </label>
+        <label class="option-radio">
+          <span class="radio-dot"></span>
+          Option C: EPC + Battery — ฿1,531,500
+        </label>
+      </div>
+
+      <div class="agreement-sub-header">Key Terms</div>
+      <ul class="key-terms-list">
+        <li>System: 30.2 kWp solar installation on 2 buildings (52× LONGi Hi-MO X6 580W panels)</li>
+        <li>Inverters: 2× Huawei SUN2000-15KTL (15 kW each)</li>
+        <li>If Option C selected: + 2× Huawei LUNA2000-15kWh battery storage (30 kWh total)</li>
+        <li>Installation timeline: 6–8 weeks from date of signing</li>
+        <li>Warranty: 25-year panels, 10-year inverters, 10-year workmanship</li>
+        <li>Payment terms per selected option (see proposal details above)</li>
+      </ul>
+
+      <details class="terms-toggle">
+        <summary>Terms & Conditions</summary>
+        <div class="terms-content">
+          <ol>
+            <li>TM Energy will complete installation within 8 weeks of receiving the deposit payment.</li>
+            <li>Client shall provide unobstructed roof access and electrical panel access for the duration of the installation.</li>
+            <li>Client is responsible for maintaining clear access to the installation areas during the project.</li>
+            <li><strong>Force Majeure:</strong> Delays caused by monsoon weather, material shipping delays, or other circumstances beyond reasonable control shall extend the timeline accordingly.</li>
+            <li><strong>Cancellation:</strong> Full refund if cancelled within 7 days of signing. After site survey begins, a 50% cancellation fee applies.</li>
+            <li><strong>Dispute Resolution:</strong> Any disputes shall be resolved under Thai law at the Surat Thani Provincial Court.</li>
+            <li><strong>PPA Specific (Option B only):</strong> 20-year contract term with 2% annual price escalation. Agreement is transferable to new building owner upon property sale.</li>
+          </ol>
+        </div>
+      </details>
+
+      <div class="signature-block">
+        <div class="sig-party">
+          <div class="sig-party-label">Client</div>
+          <div class="sig-line"></div>
+          <div class="sig-field">
+            <span class="sig-field-label">Full Name</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="sig-field">
+            <span class="sig-field-label">Position / Title</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="sig-field">
+            <span class="sig-field-label">Date</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="stamp-area">Company<br>Stamp</div>
+        </div>
+        <div class="sig-party">
+          <div class="sig-party-label">TM Energy</div>
+          <div class="sig-line"></div>
+          <div class="sig-field">
+            <span class="sig-field-label">Full Name</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="sig-field">
+            <span class="sig-field-label">Position / Title</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="sig-field">
+            <span class="sig-field-label">Date</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="stamp-area">Company<br>Stamp</div>
+        </div>
+      </div>
+
+      <p class="agreement-consent">By signing above, both parties agree to the terms and conditions outlined in this agreement and the proposal #TM-2026-001.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     12. FOOTER
      ════════════════════════════════════════════ -->
 <footer class="footer">
   <div class="footer-logo">

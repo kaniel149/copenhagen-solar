@@ -326,7 +326,7 @@
 
 ### Project Overview
 - **Location:** Koh Phaluai, Surat Thani Province (Gulf of Thailand)
-- **Developer:** EGAT (Electricity Generating Authority of Thailand)
+- **Developer:** PEA (Electricity Generating Authority of Thailand)
 - **Type:** Island micro-grid — solar + BESS + diesel hybrid
 - **Commission date:** 2019 (Phase 1), 2022 (expansion)
 - **Population served:** ~1,000 residents
@@ -449,7 +449,7 @@
 | Model | FiT ฿2.17-2.25 | Government-funded | Private PPA ฿4.50 |
 | Cost/MW | ฿24-30M | ฿172M (all-in) | ฿32M (est. w/BESS) |
 | IRR | 8-12% | N/A (public project) | 18-21% (projected) |
-| Risk | Low | Low (EGAT) | Medium (off-take) |
+| Risk | Low | Low (PEA) | Medium (off-take) |
 | Advantage | Scale, FiT guarantee | Government backing | Premium PPA rate |
 
 ### Our Competitive Advantages

@@ -503,7 +503,7 @@ While not an island project, the **EGAT Mae Hong Son Smart Grid Pilot** is Thail
 | Parameter | Detail |
 |-----------|--------|
 | **Location** | Mae Hong Son Province (northern Thailand) |
-| **Developer** | EGAT |
+| **Developer** | PEA (Provincial Electricity Authority) |
 | **Contractor** | Italthai Engineering |
 | **Solar PV** | **3 MW** |
 | **BESS** | **4 MW / 4 MWh** (estimated) |

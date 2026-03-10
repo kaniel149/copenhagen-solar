@@ -731,7 +731,7 @@ Before achieving COD, VSPP developers must:
 | **Structure** | One project per local community; one VSPP per grid connection point |
 | **Type** | Ground-mounted (not rooftop) |
 | **Status** | Framework approved October 2025; applications December 2025 |
-| **FiT** | To be determined under draft ERC regulations |
+| **FiT** | ฿2.25/kWh (confirmed by ERC, 25-year PPA) |
 
 **Source:** Ratchaburi Holding press releases; GPSC Group annual reports; ADB project documentation; PV Magazine; Hunton Andrews Kurth 2025
 
@@ -813,7 +813,7 @@ Approved October 27, 2025, by the ERC as part of the Ministry of Energy's **"Qui
 - **Installation type:** Ground-mounted only (not rooftop)
 - **Structure:** One project per local community; one VSPP per grid connection point
 - **Operator:** VSPP entity (community-linked)
-- **PPA type:** To be determined (draft ERC regulations expected November 2025)
+- **PPA type:** ฿2.25/kWh for 25-year term (ERC regulations announced late 2025)
 
 **Objectives:**
 1. Boost local energy security

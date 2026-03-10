@@ -1489,8 +1489,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Store original HTML for each translatable element
 const originals = new Map();
 function storeOriginals() {
-  document.querySelectorAll('[data-t]').forEach(el => {
-    if (!originals.has(el)) originals.set(el, el.innerHTML);
+  var sels = 'nav .nav-links a, .pre-title, .hero h1, .hero .subtitle, .stat-label, .section-header h2, .section-header p, .card h3, .card li, .card p, .bar-label, th, td, .timeline-item h4, .timeline-item .tl-meta, .timeline-item p, .highlight-box h4, .highlight-box p, .highlight-box li, .kpi-label, .compare-box h3, .compare-box li, .compare-box p, .citation, h3, footer p';
+  document.querySelectorAll(sels).forEach(function(el) {
+    originals.set(el, el.innerHTML);
   });
 }
 

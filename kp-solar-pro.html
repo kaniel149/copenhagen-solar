@@ -460,11 +460,11 @@ function initMapLayers() {
     type:'Feature',geometry:{type:'Point',coordinates:[z.center[1],z.center[0]]},
     properties:{label:z.id+' — '+z.name}
   }))}});
-  map.addLayer({
+  try { map.addLayer({
     id:'zone-labels-layer',type:'symbol',source:'zone-labels',
-    layout:{'text-field':['get','label'],'text-size':12,'text-font':['Open Sans Bold']},
+    layout:{'text-field':['get','label'],'text-size':12,'text-font':['Noto Sans Regular']},
     paint:{'text-color':'#E8A820','text-halo-color':'rgba(13,33,55,0.9)','text-halo-width':2}
-  });
+  }); } catch(e) { console.warn('Zone labels skipped:', e.message); }
   
   // National Park
   map.addSource('park',{type:'geojson',data:{type:'FeatureCollection',features:[{

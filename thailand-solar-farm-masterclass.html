@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thailand Solar Farm Masterclass | TM Energy</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&family=Heebo:wght@300;400;500;600;700;800;900&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -67,6 +67,17 @@ nav .nav-links a {
   transition: all 0.2s;
 }
 nav .nav-links a:hover { color: var(--gold); background: var(--gold-dim); }
+
+/* ===== TRI-LINGUAL ===== */
+.lang-group { display:flex; gap:4px; align-items:center; flex-shrink:0; }
+.lang-btn { padding:4px 10px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:600; background:transparent; border:1px solid rgba(232,168,32,.3); color:var(--gray); transition:all .2s; font-family:inherit; }
+.lang-btn.active { background:var(--gold); color:var(--navy); border-color:var(--gold); }
+.lang-btn:hover { border-color:var(--gold); color:var(--gold); }
+[data-lang="he"] { direction:rtl; font-family:'Heebo',sans-serif; }
+[data-lang="he"] .hero h1, [data-lang="he"] .section-header h2 { font-family:'Heebo',sans-serif; }
+[data-lang="he"] nav .nav-links { direction:ltr; }
+[data-lang="th"] { font-family:'Sarabun',sans-serif; }
+[data-lang="th"] .hero h1, [data-lang="th"] .section-header h2 { font-family:'Sarabun',sans-serif; }
 
 /* ===== CONTAINER ===== */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
@@ -305,6 +316,11 @@ footer p { color: var(--gray); font-size: 0.85rem; }
       <a href="#cases">Cases</a>
       <a href="#players">Players</a>
       <a href="#kohphangan">Koh Phangan</a>
+    </div>
+    <div class="lang-group">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('he')">עב</button>
+      <button class="lang-btn" onclick="setLang('th')">TH</button>
     </div>
   </div>
 </nav>
@@ -1468,6 +1484,247 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 });
+
+// ===== TRI-LINGUAL TRANSLATION ENGINE =====
+const translations = {
+  he: {
+    // Hero
+    'TM ENERGY': 'TM ENERGY',
+    'TM Energy — Investor Briefing 2025–2026': 'TM Energy — תדריך משקיעים 2025–2026',
+    'Thailand Solar Farm': 'שדות סולאריים בתאילנד',
+    'Development Masterclass': 'מסטרקלאס פיתוח',
+    'Comprehensive guide to developing solar farms up to 10 MW in Thailand — covering on-grid, micro-grid, community solar, BESS, and island projects.': 'מדריך מקיף לפיתוח שדות סולאריים עד 10 מגוואט בתאילנד — כולל חיבור לרשת, מיקרו-גריד, סולאר קהילתי, אגירת אנרגיה ופרויקטי איים.',
+    'Community Solar Target': 'יעד סולאר קהילתי',
+    'FiT per kWh': 'תעריף הזנה ל-kWh',
+    'PPA Duration': 'משך הסכם PPA',
+    'BOI Tax Holiday': 'פטור מס BOI',
+    // Nav
+    'Market': 'שוק',
+    'Regulations': 'רגולציה',
+    'On-Grid': 'חיבור לרשת',
+    'Micro-Grid': 'מיקרו-גריד',
+    'Permitting': 'רישוי',
+    'Grid Tech': 'טכנולוגיית רשת',
+    'Costs': 'עלויות',
+    'BESS': 'אגירה',
+    'Financial': 'פיננסי',
+    'Cases': 'מקרי בוחן',
+    'Players': 'שחקנים',
+    'Koh Phangan': 'קו פנגן',
+    // Section headers
+    'Thailand Energy Market': 'שוק האנרגיה בתאילנד',
+    'Solar Farm Regulations': 'רגולציית שדות סולאריים',
+    'On-Grid Solar Farms': 'שדות סולאריים מחוברים לרשת',
+    'Micro-Grid & Island Solar': 'מיקרו-גריד וסולאר באיים',
+    'Permits & Approval Process': 'רישוי ותהליך אישורים',
+    'Grid Connection — Technical': 'חיבור לרשת — טכני',
+    'CapEx, OpEx & Real Costs': 'עלויות הקמה, תפעול ועלויות אמיתיות',
+    'Battery Energy Storage (BESS)': 'אגירת אנרגיה (BESS)',
+    'Financial Models & Returns': 'מודלים פיננסיים ותשואות',
+    'Real Case Studies': 'מקרי בוחן אמיתיים',
+    'Key Players & Contacts': 'שחקנים מרכזיים ואנשי קשר',
+    'Koh Phangan — Island Opportunity': 'קו פנגן — הזדמנות באי',
+    // Common terms
+    'Source:': 'מקור:',
+    'Year': 'שנה',
+    'Cost': 'עלות',
+    'Revenue': 'הכנסות',
+    'Total': 'סה"כ',
+    'Annual': 'שנתי',
+    'Monthly': 'חודשי',
+    'Timeline': 'ציר זמן',
+    'Duration': 'משך',
+    'Agency': 'גוף מאשר',
+    'Documents': 'מסמכים',
+    'Phase': 'שלב',
+    'Capacity': 'הספק',
+    'Status': 'סטטוס',
+    'Category': 'קטגוריה',
+    'Description': 'תיאור',
+    'Location': 'מיקום',
+    'Investment': 'השקעה',
+    'Type': 'סוג',
+    'Component': 'רכיב',
+    'Specification': 'מפרט',
+    'Notes': 'הערות',
+    'Recommended': 'מומלץ',
+    'RECOMMENDED': 'מומלץ',
+    'Key Documents': 'מסמכים עיקריים',
+    'Permit / Approval': 'אישור / רישיון',
+    'Item': 'פריט',
+    'Price Range': 'טווח מחירים',
+    'Unit': 'יחידה',
+    'Provider': 'ספק',
+    'Rate': 'תעריף',
+    'Risk': 'סיכון',
+    'Pros': 'יתרונות',
+    'Cons': 'חסרונות',
+    'Model': 'מודל',
+    'IRR': 'IRR',
+    'NPV': 'NPV',
+    'Payback': 'החזר השקעה',
+    'Company': 'חברה',
+    'Specialty': 'התמחות',
+    'Contact': 'איש קשר',
+    'Website': 'אתר',
+    'Name': 'שם',
+    'Size': 'גודל',
+    'Technology': 'טכנולוגיה',
+    'Lesson Learned': 'לקח',
+    'Key Takeaway': 'תובנה מרכזית',
+    // Table values
+    'VSPP (Very Small Power Producer)': 'VSPP (יצרן חשמל קטן מאוד)',
+    'SPP (Small Power Producer)': 'SPP (יצרן חשמל קטן)',
+    'Private PPA': 'PPA פרטי',
+    'Community Solar FiT': 'תעריף הזנה סולאר קהילתי',
+    'Self-Consumption': 'צריכה עצמית',
+    'Peak Shaving': 'גילוח שיא',
+    'Arbitrage': 'ארביטראז\'',
+    'Grid Services': 'שירותי רשת',
+    'Backup Power': 'חשמל גיבוי',
+    // Card titles
+    'EGAT': 'EGAT',
+    'PEA': 'PEA',
+    'MEA': 'MEA',
+  },
+  th: {
+    // Hero
+    'TM ENERGY': 'TM ENERGY',
+    'TM Energy — Investor Briefing 2025–2026': 'TM Energy — บทสรุปสำหรับนักลงทุน 2025–2026',
+    'Thailand Solar Farm': 'ฟาร์มโซลาร์ประเทศไทย',
+    'Development Masterclass': 'มาสเตอร์คลาสการพัฒนา',
+    'Comprehensive guide to developing solar farms up to 10 MW in Thailand — covering on-grid, micro-grid, community solar, BESS, and island projects.': 'คู่มือฉบับสมบูรณ์สำหรับการพัฒนาฟาร์มโซลาร์ขนาดไม่เกิน 10 MW ในประเทศไทย — ครอบคลุมระบบเชื่อมต่อสายส่ง ไมโครกริด โซลาร์ชุมชน แบตเตอรี่สำรอง และโครงการบนเกาะ',
+    'Community Solar Target': 'เป้าหมายโซลาร์ชุมชน',
+    'FiT per kWh': 'อัตรารับซื้อต่อ kWh',
+    'PPA Duration': 'ระยะเวลา PPA',
+    'BOI Tax Holiday': 'สิทธิ์ยกเว้นภาษี BOI',
+    // Nav
+    'Market': 'ตลาด',
+    'Regulations': 'กฎระเบียบ',
+    'On-Grid': 'ระบบสายส่ง',
+    'Micro-Grid': 'ไมโครกริด',
+    'Permitting': 'ใบอนุญาต',
+    'Grid Tech': 'เทคนิคสายส่ง',
+    'Costs': 'ต้นทุน',
+    'BESS': 'แบตเตอรี่',
+    'Financial': 'การเงิน',
+    'Cases': 'กรณีศึกษา',
+    'Players': 'ผู้เล่น',
+    'Koh Phangan': 'เกาะพะงัน',
+    // Section headers
+    'Thailand Energy Market': 'ตลาดพลังงานประเทศไทย',
+    'Solar Farm Regulations': 'กฎระเบียบฟาร์มโซลาร์',
+    'On-Grid Solar Farms': 'ฟาร์มโซลาร์เชื่อมต่อระบบสายส่ง',
+    'Micro-Grid & Island Solar': 'ไมโครกริดและโซลาร์บนเกาะ',
+    'Permits & Approval Process': 'ใบอนุญาตและขั้นตอนการอนุมัติ',
+    'Grid Connection — Technical': 'การเชื่อมต่อระบบสายส่ง — ด้านเทคนิค',
+    'CapEx, OpEx & Real Costs': 'ต้นทุนการลงทุน ต้นทุนดำเนินงาน และต้นทุนจริง',
+    'Battery Energy Storage (BESS)': 'ระบบกักเก็บพลังงานแบตเตอรี่ (BESS)',
+    'Financial Models & Returns': 'โมเดลทางการเงินและผลตอบแทน',
+    'Real Case Studies': 'กรณีศึกษาจริง',
+    'Key Players & Contacts': 'ผู้เล่นหลักและข้อมูลติดต่อ',
+    'Koh Phangan — Island Opportunity': 'เกาะพะงัน — โอกาสบนเกาะ',
+    // Common terms
+    'Source:': 'แหล่งที่มา:',
+    'Year': 'ปี',
+    'Cost': 'ต้นทุน',
+    'Revenue': 'รายได้',
+    'Total': 'รวม',
+    'Annual': 'ต่อปี',
+    'Monthly': 'ต่อเดือน',
+    'Timeline': 'ไทม์ไลน์',
+    'Duration': 'ระยะเวลา',
+    'Agency': 'หน่วยงาน',
+    'Documents': 'เอกสาร',
+    'Phase': 'ขั้นตอน',
+    'Capacity': 'กำลังการผลิต',
+    'Status': 'สถานะ',
+    'Category': 'หมวดหมู่',
+    'Description': 'รายละเอียด',
+    'Location': 'สถานที่',
+    'Investment': 'การลงทุน',
+    'Type': 'ประเภท',
+    'Component': 'ส่วนประกอบ',
+    'Specification': 'ข้อกำหนด',
+    'Notes': 'หมายเหตุ',
+    'Recommended': 'แนะนำ',
+    'RECOMMENDED': 'แนะนำ',
+    'Key Documents': 'เอกสารสำคัญ',
+    'Permit / Approval': 'ใบอนุญาต / การอนุมัติ',
+    'Item': 'รายการ',
+    'Price Range': 'ช่วงราคา',
+    'Unit': 'หน่วย',
+    'Provider': 'ผู้ให้บริการ',
+    'Rate': 'อัตรา',
+    'Risk': 'ความเสี่ยง',
+    'Pros': 'ข้อดี',
+    'Cons': 'ข้อเสีย',
+    'Model': 'โมเดล',
+    'Payback': 'ระยะคืนทุน',
+    'Company': 'บริษัท',
+    'Specialty': 'ความเชี่ยวชาญ',
+    'Contact': 'ติดต่อ',
+    'Website': 'เว็บไซต์',
+    'Name': 'ชื่อ',
+    'Size': 'ขนาด',
+    'Technology': 'เทคโนโลยี',
+    'Lesson Learned': 'บทเรียน',
+    'Key Takeaway': 'ประเด็นสำคัญ',
+    'VSPP (Very Small Power Producer)': 'VSPP (ผู้ผลิตไฟฟ้าขนาดเล็กมาก)',
+    'SPP (Small Power Producer)': 'SPP (ผู้ผลิตไฟฟ้าขนาดเล็ก)',
+    'Private PPA': 'PPA ภาคเอกชน',
+    'Community Solar FiT': 'อัตรารับซื้อโซลาร์ชุมชน',
+    'Self-Consumption': 'ใช้ไฟฟ้าเอง',
+    'Peak Shaving': 'ลดพีค',
+    'Arbitrage': 'อาร์บิทราจ',
+    'Grid Services': 'บริการระบบสายส่ง',
+    'Backup Power': 'ไฟฟ้าสำรอง',
+  }
+};
+
+function setLang(lang) {
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
+  localStorage.setItem('masterclass-lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    var map = {en:'EN', he:'עב', th:'TH'};
+    b.classList.toggle('active', b.textContent.trim() === map[lang]);
+  });
+  if (lang === 'en') {
+    // Restore originals
+    document.querySelectorAll('[data-original]').forEach(function(el) {
+      el.textContent = el.getAttribute('data-original');
+    });
+    return;
+  }
+  var dict = translations[lang];
+  if (!dict) return;
+  // Walk all text nodes and translate
+  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+  while (walker.nextNode()) {
+    var node = walker.currentNode;
+    var text = node.textContent.trim();
+    if (!text || text.length < 2) continue;
+    if (dict[text]) {
+      if (!node.parentElement.hasAttribute('data-original')) {
+        node.parentElement.setAttribute('data-original', text);
+      }
+      node.textContent = dict[text];
+    }
+  }
+  // Also translate section headers h2 specifically
+  document.querySelectorAll('.section-header h2, .hero h1, .hero .subtitle, .hero .pre-title, .hero .stat-label, .kpi-label, nav .nav-links a').forEach(function(el) {
+    var origText = el.getAttribute('data-original') || el.textContent.trim();
+    if (!el.hasAttribute('data-original')) el.setAttribute('data-original', origText);
+    if (dict[origText]) el.textContent = dict[origText];
+  });
+}
+// Init
+(function() {
+  var lang = localStorage.getItem('masterclass-lang') || 'en';
+  if (lang !== 'en') setTimeout(function(){ setLang(lang); }, 100);
+})();
 </script>
 
 </body>

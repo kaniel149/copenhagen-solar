@@ -3,249 +3,434 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solar Farm Scout — Koh Phangan | TM Energy</title>
+<title>Solar Farm + Storage Scout — Koh Phangan | TM Energy</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', Arial, sans-serif; background: #0a1929; }
-#map { width: 100%; height: 100vh; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',Arial,sans-serif; background:#0a1929; color:#ccc; }
+#map { width:100%; height:100vh; }
 
+/* TOP BAR */
 .top-bar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(13,33,55,.95); backdrop-filter: blur(12px);
-  padding: 8px 16px; display: flex; align-items: center; gap: 10px;
-  border-bottom: 1px solid rgba(232,168,32,.2);
+  position:fixed; top:0; left:0; right:0; z-index:1001;
+  background:rgba(13,33,55,.97); backdrop-filter:blur(14px);
+  padding:8px 16px; display:flex; align-items:center; gap:10px;
+  border-bottom:1px solid rgba(232,168,32,.25);
 }
-.top-bar .logo { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #E8A820; display: flex; align-items: center; justify-content: center; color: #E8A820; font-weight: 900; font-size: 10px; flex-shrink: 0; }
-.top-bar h1 { color: #fff; font-size: 14px; font-weight: 700; }
-.top-bar .ver { color: rgba(255,255,255,.3); font-size: 10px; }
+.top-bar .logo { width:30px; height:30px; border-radius:50%; border:2px solid #E8A820; display:flex; align-items:center; justify-content:center; color:#E8A820; font-weight:900; font-size:10px; flex-shrink:0; }
+.top-bar h1 { color:#fff; font-size:14px; font-weight:700; }
+.top-bar .badge { background:rgba(232,168,32,.15); color:#E8A820; padding:2px 8px; border-radius:10px; font-size:9px; font-weight:700; }
+.top-bar .right { margin-left:auto; display:flex; gap:8px; align-items:center; }
 
+/* TOOLBAR */
 .toolbar {
-  position: fixed; top: 46px; left: 0; right: 0; z-index: 999;
-  background: rgba(13,33,55,.9); backdrop-filter: blur(8px);
-  padding: 6px 12px; display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
-  border-bottom: 1px solid rgba(255,255,255,.05);
+  position:fixed; top:46px; left:0; right:0; z-index:1000;
+  background:rgba(13,33,55,.92); backdrop-filter:blur(8px);
+  padding:5px 12px; display:flex; gap:5px; flex-wrap:wrap; align-items:center;
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
-.toolbar button {
-  background: rgba(255,255,255,.08); color: #ccc; border: 1px solid rgba(255,255,255,.1);
-  padding: 5px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; transition: all .2s;
+.toolbar button, .toolbar select {
+  background:rgba(255,255,255,.07); color:#aaa; border:1px solid rgba(255,255,255,.08);
+  padding:4px 9px; border-radius:5px; font-size:10px; cursor:pointer; transition:all .15s;
+  font-family:inherit;
 }
-.toolbar button:hover { background: rgba(232,168,32,.2); color: #E8A820; border-color: #E8A820; }
-.toolbar button.active { background: #E8A820; color: #0D2137; border-color: #E8A820; font-weight: 700; }
-.toolbar .sep { width: 1px; height: 20px; background: rgba(255,255,255,.1); margin: 0 4px; }
+.toolbar button:hover { background:rgba(232,168,32,.2); color:#E8A820; border-color:#E8A820; }
+.toolbar button.active { background:#E8A820; color:#0D2137; border-color:#E8A820; font-weight:700; }
+.toolbar .sep { width:1px; height:18px; background:rgba(255,255,255,.08); margin:0 3px; }
 
-.side-panel {
-  position: fixed; top: 90px; right: 12px; z-index: 998; width: 320px;
-  background: rgba(13,33,55,.95); backdrop-filter: blur(12px);
-  border-radius: 12px; border: 1px solid rgba(232,168,32,.15);
-  max-height: calc(100vh - 110px); overflow-y: auto;
-  box-shadow: 0 8px 32px rgba(0,0,0,.4);
+/* PANELS */
+.panel {
+  position:fixed; z-index:999;
+  background:rgba(10,25,41,.96); backdrop-filter:blur(14px);
+  border-radius:10px; border:1px solid rgba(232,168,32,.12);
+  box-shadow:0 8px 32px rgba(0,0,0,.5);
+  font-size:12px; overflow:hidden;
 }
-.side-panel h3 { color: #E8A820; font-size: 13px; padding: 12px 16px 8px; border-bottom: 1px solid rgba(255,255,255,.05); }
+.panel h3 { color:#E8A820; font-size:12px; padding:10px 14px 6px; display:flex; align-items:center; gap:6px; }
+.panel h3 .collapse-btn { margin-left:auto; cursor:pointer; color:rgba(255,255,255,.3); font-size:14px; line-height:1; }
+.panel h3 .collapse-btn:hover { color:#E8A820; }
+
+/* SIDE PANEL — Sites */
+.side-panel { top:82px; right:10px; width:300px; max-height:calc(100vh - 100px); overflow-y:auto; }
+.side-panel .filters { padding:4px 12px 8px; display:flex; gap:4px; }
+.side-panel .filters select { font-size:10px; padding:3px 6px; background:rgba(255,255,255,.06); color:#aaa; border:1px solid rgba(255,255,255,.08); border-radius:4px; }
 .site-card {
-  padding: 10px 16px; border-bottom: 1px solid rgba(255,255,255,.03);
-  cursor: pointer; transition: background .2s;
+  padding:8px 14px; border-bottom:1px solid rgba(255,255,255,.03);
+  cursor:pointer; transition:background .15s; position:relative;
 }
-.site-card:hover { background: rgba(232,168,32,.08); }
-.site-card .name { color: #fff; font-size: 13px; font-weight: 600; }
-.site-card .meta { color: rgba(255,255,255,.4); font-size: 11px; margin-top: 2px; }
-.site-card .score { float: right; background: var(--sc); color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+.site-card:hover { background:rgba(232,168,32,.06); }
+.site-card.selected { background:rgba(232,168,32,.12); border-left:3px solid #E8A820; }
+.site-card .hdr { display:flex; align-items:center; gap:6px; }
+.site-card .name { color:#fff; font-size:12px; font-weight:600; flex:1; }
+.site-card .score-badge { padding:2px 7px; border-radius:8px; font-size:10px; font-weight:700; color:#fff; flex-shrink:0; }
+.site-card .meta { color:rgba(255,255,255,.35); font-size:10px; margin-top:3px; line-height:1.5; }
+.site-card .quick-stats { display:flex; gap:6px; margin-top:5px; }
+.site-card .qs { background:rgba(255,255,255,.04); padding:3px 6px; border-radius:4px; font-size:9px; color:rgba(255,255,255,.5); }
+.site-card .qs b { color:#E8A820; }
+.site-card .compare-check { position:absolute; top:8px; right:12px; opacity:.3; cursor:pointer; font-size:14px; }
+.site-card .compare-check:hover { opacity:.8; }
+.site-card .compare-check.checked { opacity:1; color:#E8A820; }
 
-.calc-panel {
-  position: fixed; bottom: 16px; left: 12px; z-index: 998;
-  background: rgba(13,33,55,.95); backdrop-filter: blur(12px);
-  border-radius: 12px; border: 1px solid rgba(232,168,32,.15);
-  padding: 14px 18px; width: 360px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.4);
-}
-.calc-panel h3 { color: #E8A820; font-size: 13px; margin-bottom: 8px; }
-.calc-row { display: flex; justify-content: space-between; padding: 3px 0; font-size: 12px; }
-.calc-row .k { color: rgba(255,255,255,.5); }
-.calc-row .v { color: #fff; font-weight: 600; }
-.calc-row.highlight .v { color: #E8A820; font-size: 14px; }
+/* DETAIL PANEL */
+.detail-panel { top:82px; left:10px; width:340px; max-height:calc(100vh - 100px); overflow-y:auto; display:none; }
+.detail-panel .section { padding:8px 14px; border-bottom:1px solid rgba(255,255,255,.03); }
+.detail-panel .section-title { color:rgba(255,255,255,.5); font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+.detail-panel .row { display:flex; justify-content:space-between; padding:2px 0; }
+.detail-panel .row .k { color:rgba(255,255,255,.4); }
+.detail-panel .row .v { color:#fff; font-weight:600; }
+.detail-panel .row.gold .v { color:#E8A820; font-size:13px; }
 
-.criteria-panel {
-  position: fixed; top: 90px; left: 12px; z-index: 998; width: 260px;
-  background: rgba(13,33,55,.95); backdrop-filter: blur(12px);
-  border-radius: 12px; border: 1px solid rgba(232,168,32,.15);
-  padding: 14px 18px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.4);
-}
-.criteria-panel h3 { color: #E8A820; font-size: 13px; margin-bottom: 10px; }
-.criteria-item { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 11px; color: rgba(255,255,255,.6); }
-.criteria-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.criteria-item.pass .criteria-dot { background: #00cc44; }
-.criteria-item.warn .criteria-dot { background: #ff6600; }
-.criteria-item.fail .criteria-dot { background: #ff3333; }
+/* SCORE BREAKDOWN */
+.score-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+.score-item { background:rgba(255,255,255,.03); padding:4px 8px; border-radius:4px; display:flex; justify-content:space-between; }
+.score-item .label { color:rgba(255,255,255,.4); font-size:10px; }
+.score-item .val { font-weight:700; font-size:10px; }
+.score-item .val.green { color:#00cc44; }
+.score-item .val.yellow { color:#E8A820; }
+.score-item .val.red { color:#ff4444; }
 
-.legend-bar {
-  position: fixed; bottom: 16px; right: 12px; z-index: 998;
-  background: rgba(13,33,55,.95); backdrop-filter: blur(12px);
-  border-radius: 12px; border: 1px solid rgba(232,168,32,.15);
-  padding: 10px 14px;
-}
-.legend-bar h4 { color: #E8A820; font-size: 11px; margin-bottom: 6px; }
-.legend-row { display: flex; align-items: center; gap: 6px; font-size: 10px; color: rgba(255,255,255,.5); margin: 3px 0; }
-.legend-swatch { width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(255,255,255,.1); }
+/* STORAGE SECTION */
+.storage-card { background:rgba(26,122,90,.1); border:1px solid rgba(26,122,90,.2); border-radius:8px; padding:8px 10px; margin-top:6px; }
+.storage-card .title { color:#1A7A5A; font-size:10px; font-weight:700; margin-bottom:4px; }
 
+/* COMPARE PANEL */
+.compare-panel { bottom:14px; left:50%; transform:translateX(-50%); width:auto; max-width:90vw; display:none; padding:12px 16px; }
+.compare-table { border-collapse:collapse; font-size:10px; }
+.compare-table th { color:#E8A820; font-weight:600; padding:4px 10px; text-align:left; border-bottom:1px solid rgba(255,255,255,.08); }
+.compare-table td { padding:4px 10px; border-bottom:1px solid rgba(255,255,255,.02); }
+.compare-table .best { color:#00cc44; font-weight:700; }
+
+/* DISTANCE LINE LABEL */
+.dist-label { background:rgba(13,33,55,.9); color:#ff6600; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:700; border:1px solid rgba(255,100,0,.3); white-space:nowrap; }
+
+/* LEGEND */
+.legend-bar { bottom:14px; right:10px; padding:8px 12px; }
+.legend-bar h4 { color:#E8A820; font-size:10px; margin-bottom:4px; }
+.legend-row { display:flex; align-items:center; gap:5px; font-size:9px; color:rgba(255,255,255,.4); margin:2px 0; }
+.legend-swatch { width:12px; height:12px; border-radius:2px; border:1px solid rgba(255,255,255,.08); flex-shrink:0; }
+
+/* TOAST */
 .toast {
-  position: fixed; top: 100px; left: 50%; transform: translateX(-50%); z-index: 9999;
-  background: #E8A820; color: #0D2137; padding: 8px 20px; border-radius: 8px;
-  font-size: 12px; font-weight: 700; box-shadow: 0 4px 16px rgba(0,0,0,.3);
-  opacity: 0; transition: opacity .3s; pointer-events: none;
+  position:fixed; top:94px; left:50%; transform:translateX(-50%); z-index:9999;
+  background:#E8A820; color:#0D2137; padding:6px 16px; border-radius:6px;
+  font-size:11px; font-weight:700; box-shadow:0 4px 16px rgba(0,0,0,.3);
+  opacity:0; transition:opacity .3s; pointer-events:none;
 }
-.toast.show { opacity: 1; }
+.toast.show { opacity:1; }
+
+/* MOBILE */
+@media(max-width:768px) {
+  .side-panel { width:100%; right:0; top:auto; bottom:0; max-height:35vh; border-radius:12px 12px 0 0; }
+  .detail-panel { width:100%; left:0; top:82px; max-height:50vh; border-radius:0 0 12px 12px; }
+  .compare-panel { width:95vw; }
+  .legend-bar { display:none; }
+}
+
+/* PRINT */
+@media print {
+  .toolbar, .top-bar, .legend-bar { display:none !important; }
+  .side-panel, .detail-panel { position:static; width:100%; max-height:none; box-shadow:none; border:1px solid #ddd; margin:10px 0; background:#fff; color:#333; }
+  #map { height:60vh; }
+}
 </style>
 </head>
 <body>
 
 <div class="top-bar">
   <div class="logo">TM</div>
-  <h1>Solar Farm Scout</h1>
-  <span class="ver">Koh Phangan · v2 Karpathy</span>
+  <h1>Solar Farm + Storage Scout</h1>
+  <span class="badge">Koh Phangan · v3</span>
+  <div class="right">
+    <span style="color:rgba(255,255,255,.3);font-size:9px;">☀️ 1,600 kWh/m²/yr avg · 9.7°N</span>
+  </div>
 </div>
 
 <div class="toolbar">
   <button onclick="setLayer('satellite')" class="active" id="btn-sat">🛰️ Satellite</button>
-  <button onclick="setLayer('topo')" id="btn-topo">🏔️ Terrain</button>
+  <button onclick="setLayer('topo')" id="btn-topo">🏔️ Topo</button>
   <button onclick="setLayer('osm')" id="btn-osm">🗺️ Roads</button>
   <div class="sep"></div>
-  <button onclick="toggleGrid()" id="btn-grid">⬜ Show Grid</button>
-  <button onclick="togglePower()" id="btn-power">⚡ Power Lines</button>
-  <button onclick="toggleZones()" id="btn-zones">🟩 Suitable Zones</button>
+  <button onclick="togglePower()" id="btn-power">⚡ Grid</button>
+  <button onclick="toggleZones()" id="btn-zones">🟩 Zones</button>
+  <button onclick="toggleGrid()" id="btn-grid">⬜ Grid</button>
   <div class="sep"></div>
-  <button onclick="addPin()">📌 Drop Pin</button>
-  <button onclick="measureMode()">📐 Measure Area</button>
-  <button onclick="exportData()">💾 Export</button>
+  <button onclick="addPin()">📌 Pin</button>
+  <button onclick="measureMode()">📐 Measure</button>
+  <button onclick="clearSelection()">✕ Clear</button>
+  <div class="sep"></div>
+  <button onclick="exportJSON()">💾 JSON</button>
+  <button onclick="window.print()">🖨️ Print</button>
+  <button onclick="toggleCompare()" id="btn-compare" style="display:none;">⚖️ Compare (<span id="compare-count">0</span>)</button>
 </div>
 
 <div id="map"></div>
 
-<div class="criteria-panel">
-  <h3>📋 Site Criteria</h3>
-  <div class="criteria-item pass"><div class="criteria-dot"></div> Flat terrain (&lt;5° slope)</div>
-  <div class="criteria-item pass"><div class="criteria-dot"></div> &gt;5 rai (8,000 m²) contiguous</div>
-  <div class="criteria-item pass"><div class="criteria-dot"></div> Within 2km of 33kV line</div>
-  <div class="criteria-item pass"><div class="criteria-dot"></div> Road access (min 4m width)</div>
-  <div class="criteria-item warn"><div class="criteria-dot"></div> Not national park / forest</div>
-  <div class="criteria-item warn"><div class="criteria-dot"></div> Not flood zone</div>
-  <div class="criteria-item pass"><div class="criteria-dot"></div> No shading (south-facing ideal)</div>
-  <div class="criteria-item pass"><div class="criteria-dot"></div> Agricultural zoning OK</div>
-  <hr style="border-color:rgba(255,255,255,.05);margin:10px 0;">
-  <div style="font-size:10px;color:rgba(255,255,255,.3);line-height:1.6;">
-    <b>Regulations:</b><br>
-    VSPP: max 10 MW/site<br>
-    Agrivoltaic: up to 23yr lease<br>
-    LAO consent required<br>
-    Foreign: need BOI or Thai entity
+<!-- SITE LIST -->
+<div class="panel side-panel" id="sidePanel">
+  <h3>📍 Candidate Sites <span class="collapse-btn" onclick="togglePanel('sidePanel')">−</span></h3>
+  <div class="filters">
+    <select id="sortBy" onchange="sortSites()">
+      <option value="score">Sort: Score ↓</option>
+      <option value="size">Sort: Size ↓</option>
+      <option value="grid">Sort: Grid Distance ↑</option>
+      <option value="roi">Sort: ROI ↓</option>
+    </select>
+    <select id="filterMin" onchange="filterSites()">
+      <option value="0">Min: All</option>
+      <option value="7">Min Score: 7+</option>
+      <option value="8">Min Score: 8+</option>
+    </select>
+  </div>
+  <div id="siteList"></div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="panel detail-panel" id="detailPanel">
+  <h3 id="detailTitle">— <span class="collapse-btn" onclick="hideDetail()">✕</span></h3>
+
+  <div class="section">
+    <div class="section-title">Score Breakdown</div>
+    <div class="score-grid" id="scoreGrid"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Solar Capacity</div>
+    <div class="row"><span class="k">Land Area</span><span class="v" id="dArea">—</span></div>
+    <div class="row"><span class="k">Usable (70%)</span><span class="v" id="dUsable">—</span></div>
+    <div class="row"><span class="k">Panels (LONGi 580W)</span><span class="v" id="dPanels">—</span></div>
+    <div class="row"><span class="k">DC Capacity</span><span class="v" id="dKwp">—</span></div>
+    <div class="row"><span class="k">Annual Production</span><span class="v" id="dKwh">—</span></div>
+    <div class="row"><span class="k">Sun Hours</span><span class="v">~1,600 kWh/m²/yr</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">🔋 Battery Storage</div>
+    <div class="storage-card">
+      <div class="title">BESS Configuration</div>
+      <div class="row"><span class="k">Recommended Size</span><span class="v" id="dBattSize">—</span></div>
+      <div class="row"><span class="k">Battery Type</span><span class="v">Huawei LUNA2000</span></div>
+      <div class="row"><span class="k">Units Needed</span><span class="v" id="dBattUnits">—</span></div>
+      <div class="row"><span class="k">Backup Duration</span><span class="v" id="dBackup">—</span></div>
+      <div class="row"><span class="k">Battery Cost</span><span class="v" id="dBattCost">—</span></div>
+    </div>
+    <div style="margin-top:6px;">
+      <div class="row"><span class="k">Peak Shaving Value</span><span class="v" id="dPeakShave">—</span></div>
+      <div class="row"><span class="k">Arbitrage (day/night)</span><span class="v" id="dArbitrage">—</span></div>
+      <div class="row"><span class="k">Grid Stability Premium</span><span class="v" id="dGridPrem">—</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">💰 Financial Summary</div>
+    <div class="row gold"><span class="k">EPC Revenue</span><span class="v" id="dEpc">—</span></div>
+    <div class="row gold"><span class="k">PPA Annual Revenue</span><span class="v" id="dPpa">—</span></div>
+    <div class="row"><span class="k">Total CapEx (Solar+Storage)</span><span class="v" id="dCapex">—</span></div>
+    <div class="row"><span class="k">Est. Land Cost</span><span class="v" id="dLand">—</span></div>
+    <div class="row"><span class="k">Payback Period</span><span class="v" id="dPayback">—</span></div>
+    <div class="row"><span class="k">IRR (20yr)</span><span class="v" id="dIrr">—</span></div>
+    <div class="row"><span class="k">NPV (8% discount)</span><span class="v" id="dNpv">—</span></div>
+    <div class="row"><span class="k">20yr PPA Total Revenue</span><span class="v" id="d20yr">—</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚡ Grid Connection</div>
+    <div class="row"><span class="k">Distance to 33kV</span><span class="v" id="dGridDist">—</span></div>
+    <div class="row"><span class="k">Connection Cost (est)</span><span class="v" id="dGridCost">—</span></div>
+    <div class="row"><span class="k">VSPP Limit</span><span class="v">10 MW</span></div>
+    <div class="row"><span class="k">PEA Office</span><span class="v">077-377072</span></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">⚠️ Risks & Notes</div>
+    <div id="dRisks" style="color:rgba(255,255,255,.4);font-size:11px;line-height:1.6;"></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">📋 Next Steps</div>
+    <div id="dNextSteps" style="color:rgba(255,255,255,.5);font-size:11px;line-height:1.8;"></div>
   </div>
 </div>
 
-<div class="side-panel">
-  <h3>📍 Candidate Sites (7)</h3>
-  <div class="site-card" onclick="flyTo(9.7300, 99.9750, 'Ban Tai Flatlands')" style="--sc:#00cc44;">
-    <span class="score" style="background:#00cc44;">9.2</span>
-    <div class="name">1. Ban Tai Flatlands</div>
-    <div class="meta">~40 rai · Flat coconut land · 800m from 33kV · Road access ✓</div>
-  </div>
-  <div class="site-card" onclick="flyTo(9.7180, 99.9830, 'Thongsala South')" style="--sc:#00cc44;">
-    <span class="score" style="background:#00cc44;">8.8</span>
-    <div class="name">2. Thongsala South</div>
-    <div class="meta">~25 rai · Flat · 300m from substation · Prime grid access</div>
-  </div>
-  <div class="site-card" onclick="flyTo(9.7480, 99.9720, 'Sri Thanu Plains')" style="--sc:#22aa44;">
-    <span class="score" style="background:#22aa44;">8.5</span>
-    <div class="name">3. Sri Thanu Plains</div>
-    <div class="meta">~30 rai · Coconut plantation · 1.2km from 33kV · Quiet area</div>
-  </div>
-  <div class="site-card" onclick="flyTo(9.7950, 99.9950, 'Chaloklum Valley')" style="--sc:#22aa44;">
-    <span class="score" style="background:#22aa44;">8.0</span>
-    <div class="name">4. Chaloklum Valley</div>
-    <div class="meta">~20 rai · Low valley · 1.5km from 33kV · Road needs check</div>
-  </div>
-  <div class="site-card" onclick="flyTo(9.7100, 100.0100, 'Wok Tum East')" style="--sc:#ffaa00;">
-    <span class="score" style="background:#ffaa00;">7.5</span>
-    <div class="name">5. Wok Tum East</div>
-    <div class="meta">~15 rai · Gentle slope · 500m from 33kV · Near main road</div>
-  </div>
-  <div class="site-card" onclick="flyTo(9.6950, 100.0300, 'Ban Khai Inland')" style="--sc:#ffaa00;">
-    <span class="score" style="background:#ffaa00;">7.0</span>
-    <div class="name">6. Ban Khai Inland</div>
-    <div class="meta">~18 rai · Rubber plantation · 2km from 33kV · Steep access</div>
-  </div>
-  <div class="site-card" onclick="flyTo(9.7650, 99.9750, 'Hin Kong Plateau')" style="--sc:#ffaa00;">
-    <span class="score" style="background:#ffaa00;">7.2</span>
-    <div class="name">7. Hin Kong Plateau</div>
-    <div class="meta">~12 rai · Elevated flat · 1km from 33kV · Good sun exposure</div>
-  </div>
+<!-- COMPARE PANEL -->
+<div class="panel compare-panel" id="comparePanel">
+  <h3>⚖️ Site Comparison <span class="collapse-btn" onclick="document.getElementById('comparePanel').style.display='none'">✕</span></h3>
+  <table class="compare-table" id="compareTable"></table>
 </div>
 
-<div class="calc-panel" id="calcPanel" style="display:none;">
-  <h3>📊 Site Calculator</h3>
-  <div class="calc-row"><span class="k">Selected Area</span><span class="v" id="calcArea">—</span></div>
-  <div class="calc-row"><span class="k">Usable (70%)</span><span class="v" id="calcUsable">—</span></div>
-  <div class="calc-row"><span class="k">Panel Capacity</span><span class="v" id="calcKwp">—</span></div>
-  <div class="calc-row"><span class="k">Annual Production</span><span class="v" id="calcKwh">—</span></div>
-  <div class="calc-row"><span class="k">Battery Storage (opt)</span><span class="v" id="calcBatt">—</span></div>
-  <hr style="border-color:rgba(255,255,255,.05);margin:6px 0;">
-  <div class="calc-row highlight"><span class="k">EPC Revenue</span><span class="v" id="calcEpc">—</span></div>
-  <div class="calc-row highlight"><span class="k">PPA Annual Revenue</span><span class="v" id="calcPpa">—</span></div>
-  <div class="calc-row"><span class="k">Est. Land Cost</span><span class="v" id="calcLand">—</span></div>
-</div>
-
-<div class="legend-bar">
-  <h4>Map Layers</h4>
-  <div class="legend-row"><div class="legend-swatch" style="background:rgba(0,200,50,.3);border-color:rgba(0,200,50,.5);"></div> Suitable Zone (flat, &lt;5° slope)</div>
-  <div class="legend-row"><div class="legend-swatch" style="background:rgba(255,100,0,.3);border-color:rgba(255,100,0,.5);"></div> 33kV Distribution Line</div>
-  <div class="legend-row"><div class="legend-swatch" style="background:rgba(255,0,0,.3);border-color:rgba(255,0,0,.5);"></div> 115kV Substation / Cable</div>
-  <div class="legend-row"><div class="legend-swatch" style="background:rgba(232,168,32,.5);border-color:#E8A820;"></div> Candidate Site Pin</div>
-  <div class="legend-row"><div class="legend-swatch" style="background:rgba(100,100,100,.3);border-color:rgba(100,100,100,.5);"></div> National Park (excluded)</div>
+<!-- LEGEND -->
+<div class="panel legend-bar" id="legendBar">
+  <h4>Layers</h4>
+  <div class="legend-row"><div class="legend-swatch" style="background:rgba(0,200,50,.3);"></div> Suitable Zone</div>
+  <div class="legend-row"><div class="legend-swatch" style="background:rgba(255,100,0,.4);"></div> 33kV Line</div>
+  <div class="legend-row"><div class="legend-swatch" style="background:rgba(255,0,0,.4);"></div> 115kV / Submarine</div>
+  <div class="legend-row"><div class="legend-swatch" style="background:rgba(232,168,32,.6);"></div> Candidate Site</div>
+  <div class="legend-row"><div class="legend-swatch" style="background:rgba(26,122,90,.4);"></div> Storage Potential</div>
+  <div class="legend-row"><div class="legend-swatch" style="background:rgba(100,100,100,.3);"></div> National Park</div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const map = L.map('map', { zoomControl: false }).setView([9.745, 100.00], 13);
-L.control.zoom({ position: 'bottomright' }).addTo(map);
+// ═══════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════
+const PANEL_PER_KWP = 5.5; // m2 per kWp
+const USABLE_RATIO = 0.7;
+const SUN_HOURS = 1350; // effective kWh/kWp/yr
+const SALE_PER_KWP = 32500; // EPC
+const PPA_RATE = 4.5; // THB/kWh
+const PPA_ESCALATION = 0.02; // 2%/yr
+const BATT_COST_PER_KWH = 18000; // THB
+const LUNA_UNIT_KWH = 15; // per module
+const LAND_COST_PER_RAI = 800000;
+const GRID_CONN_PER_KM = 200000; // THB/km estimate
+const PANEL_AREA = 2.28 * 1.13; // LONGi 580W
+const PANEL_W = 580;
+const DISCOUNT_RATE = 0.08;
 
-// Tile layers
-const tiles = {
-  satellite: L.tileLayer('https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', { maxZoom: 22 }),
-  roads: L.tileLayer('https://mt0.google.com/vt/lyrs=h&hl=en&x={x}&y={y}&z={z}', { maxZoom: 22, opacity: 0.6 }),
-  topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17 }),
-  osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 })
-};
-tiles.satellite.addTo(map);
-tiles.roads.addTo(map);
-let currentBase = 'satellite';
+const sites = [
+  {
+    id:1, lat:9.7300, lng:99.9750, name:'Ban Tai Flatlands', rai:40, gridKm:0.8,
+    scores:{terrain:10,size:10,grid:9,road:9,zoning:9,shade:9,flood:7,env:9},
+    risks:['Seasonal flooding near coast—verify drainage','Popular tourist area—land competition','May need LAO consent meeting'],
+    notes:'Largest flat parcel. Coconut plantation, owners may lease. Excellent road (Route 4169).'
+  },
+  {
+    id:2, lat:9.7180, lng:99.9830, name:'Thongsala South', rai:25, gridKm:0.3,
+    scores:{terrain:9,size:8,grid:10,road:10,zoning:9,shade:8,flood:7,env:8},
+    risks:['Close to town—visual impact concerns','Higher land prices near Thongsala','Underground cabling may be required'],
+    notes:'Closest to 115kV substation. Best grid access on the island. Near port and services.'
+  },
+  {
+    id:3, lat:9.7480, lng:99.9720, name:'Sri Thanu Plains', rai:30, gridKm:1.2,
+    scores:{terrain:9,size:9,grid:8,road:8,zoning:9,shade:9,flood:8,env:9},
+    risks:['Yoga/wellness community may resist','Slightly further from grid','Check chanot title status'],
+    notes:'Quiet area, large coconut plots. Good sun exposure, flat terrain. Spiritual community nearby.'
+  },
+  {
+    id:4, lat:9.7950, lng:99.9950, name:'Chaloklum Valley', rai:20, gridKm:1.5,
+    scores:{terrain:8,size:7,grid:7,road:7,zoning:9,shade:8,flood:9,env:8},
+    risks:['Access road narrow in parts','Grid connection costs higher','Fishing village—community relations important'],
+    notes:'Protected valley, good for agrivoltaic. Lower tourist pressure. Fishing village co-op potential.'
+  },
+  {
+    id:5, lat:9.7100, lng:100.0100, name:'Wok Tum East', rai:15, gridKm:0.5,
+    scores:{terrain:7,size:6,grid:9,road:9,zoning:8,shade:7,flood:7,env:8},
+    risks:['Gentle slope needs grading','Smaller parcel limits scale','Partial afternoon shading from hills'],
+    notes:'Good grid access. Near main road. May combine with adjacent parcels. Mixed use potential.'
+  },
+  {
+    id:6, lat:9.6950, lng:100.0300, name:'Ban Khai Inland', rai:18, gridKm:2.0,
+    scores:{terrain:7,size:7,grid:6,road:6,zoning:8,shade:7,flood:8,env:7},
+    risks:['Steep access road','Furthest from grid—high connection cost','Rubber plantation—landowner negotiation needed'],
+    notes:'Remote rubber plantation. Lower land cost. Need road improvement. Storage makes more sense here (grid stability).'
+  },
+  {
+    id:7, lat:9.7650, lng:99.9750, name:'Hin Kong Plateau', rai:12, gridKm:1.0,
+    scores:{terrain:8,size:5,grid:8,road:8,zoning:8,shade:10,flood:9,env:8},
+    risks:['Smallest site—limited to ~1.5 MWp','Elevated—wind exposure for panels','May need retaining walls'],
+    notes:'Elevated flat area. Best sun exposure (no shading). Good for premium installation. Wind exposure = natural cooling.'
+  },
+];
 
-function setLayer(name) {
-  map.removeLayer(tiles.satellite); map.removeLayer(tiles.topo); map.removeLayer(tiles.osm); map.removeLayer(tiles.roads);
-  tiles[name].addTo(map);
-  if (name === 'satellite') tiles.roads.addTo(map);
-  document.querySelectorAll('.toolbar button').forEach(b => b.classList.remove('active'));
-  document.getElementById('btn-' + (name === 'satellite' ? 'sat' : name)).classList.add('active');
-  currentBase = name;
+// Score calculation
+function calcScore(s) {
+  const w = {terrain:15,size:12,grid:15,road:10,zoning:10,shade:12,flood:10,env:8}; // weights out of ~92
+  let total=0, max=0;
+  for (const k in w) { total += (s.scores[k]||0)*w[k]; max += 10*w[k]; }
+  return Math.round(total/max*100)/10;
+}
+sites.forEach(s => { s.score = calcScore(s); });
+
+// Financial calculations
+function calcFinancials(s) {
+  const areaM2 = s.rai * 1600;
+  const usable = areaM2 * USABLE_RATIO;
+  const kwp = usable / PANEL_PER_KWP;
+  const panels = Math.floor(usable / PANEL_AREA);
+  const kwh = kwp * SUN_HOURS;
+  const battKwh = Math.round(kwp * 0.25); // 25% solar:storage ratio
+  const battUnits = Math.ceil(battKwh / LUNA_UNIT_KWH);
+  const battCost = battKwh * BATT_COST_PER_KWH;
+  const epc = kwp * SALE_PER_KWP;
+  const ppaAnnual = kwh * PPA_RATE;
+  const capex = kwp * 11800 + battCost; // cost basis + battery
+  const landCost = s.rai * LAND_COST_PER_RAI;
+  const gridCost = s.gridKm * GRID_CONN_PER_KM;
+  const totalInvest = capex + landCost + gridCost;
+
+  // PPA 20yr with 2% escalation
+  let ppa20 = 0, cumulativeCF = 0, paybackYr = 0;
+  let npv = -totalInvest;
+  for (let y = 1; y <= 20; y++) {
+    const rev = ppaAnnual * Math.pow(1 + PPA_ESCALATION, y-1);
+    const opex = capex * 0.015; // 1.5% maintenance
+    const cf = rev - opex;
+    ppa20 += rev;
+    cumulativeCF += cf;
+    npv += cf / Math.pow(1 + DISCOUNT_RATE, y);
+    if (paybackYr === 0 && cumulativeCF >= totalInvest) paybackYr = y;
+  }
+  if (paybackYr === 0) paybackYr = '>20';
+
+  // Simple IRR approximation
+  const avgCF = (ppa20 - capex * 0.015 * 20) / 20;
+  const irr = avgCF / totalInvest;
+
+  // Storage economics
+  const peakShave = battKwh * 365 * 1.5; // peak shaving THB/yr (conservative)
+  const arbitrage = battKwh * 365 * 2.0; // day/night spread
+  const gridPrem = battKwh * 365 * 0.5; // grid stability
+
+  return {
+    areaM2, usable, kwp, panels, kwh, battKwh, battUnits, battCost,
+    epc, ppaAnnual, capex, landCost, gridCost, totalInvest,
+    ppa20, paybackYr, npv, irr, peakShave, arbitrage, gridPrem,
+    backupHrs: Math.round(battKwh / (kwp * 0.15) * 10) / 10
+  };
 }
 
-// === POWER INFRASTRUCTURE ===
-const powerGroup = L.layerGroup();
-let powerVisible = false;
+// ═══════════════════════════════════════
+// MAP SETUP
+// ═══════════════════════════════════════
+const map = L.map('map', { zoomControl:false }).setView([9.745, 100.00], 13);
+L.control.zoom({ position:'bottomright' }).addTo(map);
 
-// 115kV Substation
+const tiles = {
+  satellite: L.tileLayer('https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', { maxZoom:22 }),
+  roads: L.tileLayer('https://mt0.google.com/vt/lyrs=h&hl=en&x={x}&y={y}&z={z}', { maxZoom:22, opacity:0.55 }),
+  topo: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom:17 }),
+  osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom:19 })
+};
+tiles.satellite.addTo(map); tiles.roads.addTo(map);
+
+function setLayer(name) {
+  [tiles.satellite, tiles.topo, tiles.osm, tiles.roads].forEach(t => map.removeLayer(t));
+  tiles[name].addTo(map);
+  if (name==='satellite') tiles.roads.addTo(map);
+  document.querySelectorAll('.toolbar button').forEach(b => { if(b.id.startsWith('btn-')) b.classList.remove('active'); });
+  document.getElementById('btn-'+(name==='satellite'?'sat':name)).classList.add('active');
+}
+
+// ═══════════════════════════════════════
+// POWER INFRASTRUCTURE
+// ═══════════════════════════════════════
+const powerGroup = L.layerGroup(); let powerOn = false;
+
 L.polygon([[9.706905,99.994643],[9.7062097,99.9946189],[9.7062361,99.9950775],[9.7069711,99.995048]], {
   color:'#ff0000', weight:3, fillColor:'#ff0000', fillOpacity:0.4
-}).addTo(powerGroup).bindPopup('<b>⚡ 115kV Substation</b><br>Main PEA substation');
+}).addTo(powerGroup).bindPopup('<b>⚡ 115kV Substation (PEA)</b><br>Main island substation<br>📞 077-377072');
 
-// Submarine cable
 L.polyline([[9.5672,100.0032],[9.5691,100.0034],[9.5733,100.0035],[9.5885,100.0036],[9.7056,99.9949],[9.7063,99.9948],[9.7065,99.9948]], {
   color:'#ff0000', weight:4, dashArray:'10,8', opacity:0.8
-}).addTo(powerGroup).bindPopup('<b>115kV Submarine Cable</b><br>From Koh Samui');
+}).addTo(powerGroup).bindPopup('<b>115kV Submarine Cable</b><br>Koh Samui → Koh Phangan<br>Operator: PEA');
 
-// 33kV Distribution
+// 33kV lines (nearest points for distance calc)
+const grid33kVPoints = [];
 const dist33 = [
   [[9.7066,99.9948],[9.712,99.99],[9.7175,99.986],[9.725,99.983],[9.735,99.978],[9.745,99.976],[9.755,99.977],[9.765,99.978],[9.775,99.98],[9.785,99.983],[9.795,99.987],[9.805,99.993]],
   [[9.7066,99.9948],[9.71,100.0],[9.713,100.006],[9.716,100.012],[9.72,100.018],[9.725,100.025],[9.73,100.032]],
@@ -253,139 +438,306 @@ const dist33 = [
   [[9.785,99.983],[9.79,99.99],[9.795,99.995],[9.8,100.002],[9.805,100.007]],
   [[9.73,100.032],[9.74,100.04],[9.75,100.045],[9.76,100.048],[9.77,100.045],[9.78,100.035],[9.79,100.025],[9.8,100.01]]
 ];
-dist33.forEach(c => L.polyline(c, { color:'#ff6600', weight:3, opacity:0.7, dashArray:'8,5' }).addTo(powerGroup));
-
-function togglePower() {
-  powerVisible = !powerVisible;
-  if (powerVisible) { powerGroup.addTo(map); document.getElementById('btn-power').classList.add('active'); }
-  else { map.removeLayer(powerGroup); document.getElementById('btn-power').classList.remove('active'); }
-}
-
-// === SUITABLE ZONES (flat areas) ===
-const zonesGroup = L.layerGroup();
-let zonesVisible = false;
-
-const suitableZones = [
-  { name: 'Ban Tai Flatlands', coords: [[9.726,99.970],[9.726,99.980],[9.734,99.980],[9.734,99.970]], score: 9.2, rai: 40 },
-  { name: 'Thongsala South', coords: [[9.714,99.979],[9.714,99.988],[9.722,99.988],[9.722,99.979]], score: 8.8, rai: 25 },
-  { name: 'Sri Thanu Plains', coords: [[9.744,99.968],[9.744,99.977],[9.752,99.977],[9.752,99.968]], score: 8.5, rai: 30 },
-  { name: 'Chaloklum Valley', coords: [[9.791,99.991],[9.791,99.999],[9.799,99.999],[9.799,99.991]], score: 8.0, rai: 20 },
-  { name: 'Wok Tum East', coords: [[9.706,100.006],[9.706,100.014],[9.714,100.014],[9.714,100.006]], score: 7.5, rai: 15 },
-  { name: 'Ban Khai Inland', coords: [[9.691,100.026],[9.691,100.034],[9.699,100.034],[9.699,100.026]], score: 7.0, rai: 18 },
-  { name: 'Hin Kong Plateau', coords: [[9.761,99.971],[9.761,99.979],[9.769,99.979],[9.769,99.971]], score: 7.2, rai: 12 },
-];
-
-suitableZones.forEach(z => {
-  const color = z.score >= 8.5 ? '#00cc44' : z.score >= 7.5 ? '#88cc00' : '#ffaa00';
-  L.polygon(z.coords, {
-    color, weight: 2, fillColor: color, fillOpacity: 0.25
-  }).addTo(zonesGroup).bindPopup(`<b>${z.name}</b><br>Score: ${z.score}/10<br>Area: ~${z.rai} rai<br>Capacity: ~${Math.round(z.rai * 1600 * 0.7 / 5.5)} kWp`);
+dist33.forEach(c => {
+  L.polyline(c, { color:'#ff6600', weight:3, opacity:0.65, dashArray:'8,5' }).addTo(powerGroup);
+  c.forEach(p => grid33kVPoints.push(p));
 });
 
-// National Park approximate boundary (interior mountains)
-L.polygon([
-  [9.74,100.005],[9.745,100.015],[9.755,100.025],[9.77,100.035],[9.785,100.035],
-  [9.795,100.02],[9.79,100.005],[9.78,99.995],[9.77,99.99],[9.755,99.99],[9.745,99.995],[9.74,100.005]
-], { color:'#666', weight:1, fillColor:'#666', fillOpacity:0.15, dashArray:'4,4' }).addTo(zonesGroup)
-  .bindPopup('<b>🌳 Than Sadet National Park</b><br>Protected area — no development<br><i>อุทยานแห่งชาติธารเสด็จ</i>');
-
-function toggleZones() {
-  zonesVisible = !zonesVisible;
-  if (zonesVisible) { zonesGroup.addTo(map); document.getElementById('btn-zones').classList.add('active'); }
-  else { map.removeLayer(zonesGroup); document.getElementById('btn-zones').classList.remove('active'); }
+function togglePower() {
+  powerOn = !powerOn;
+  if (powerOn) { powerGroup.addTo(map); } else { map.removeLayer(powerGroup); }
+  document.getElementById('btn-power').classList.toggle('active', powerOn);
 }
 
-// === CANDIDATE SITE MARKERS ===
-const sites = [
-  { lat: 9.7300, lng: 99.9750, name: 'Ban Tai Flatlands', score: 9.2, rai: 40 },
-  { lat: 9.7180, lng: 99.9830, name: 'Thongsala South', score: 8.8, rai: 25 },
-  { lat: 9.7480, lng: 99.9720, name: 'Sri Thanu Plains', score: 8.5, rai: 30 },
-  { lat: 9.7950, lng: 99.9950, name: 'Chaloklum Valley', score: 8.0, rai: 20 },
-  { lat: 9.7100, lng: 100.0100, name: 'Wok Tum East', score: 7.5, rai: 15 },
-  { lat: 9.6950, lng: 100.0300, name: 'Ban Khai Inland', score: 7.0, rai: 18 },
-  { lat: 9.7650, lng: 99.9750, name: 'Hin Kong Plateau', score: 7.2, rai: 12 },
-];
+// ═══════════════════════════════════════
+// SUITABLE ZONES + NATIONAL PARK
+// ═══════════════════════════════════════
+const zonesGroup = L.layerGroup(); let zonesOn = false;
 
-sites.forEach((s, i) => {
+sites.forEach(s => {
+  const color = s.score >= 8.5 ? '#00cc44' : s.score >= 7.5 ? '#88cc00' : '#ffaa00';
+  const d = Math.sqrt(s.rai * 1600) / 111320; // approx degrees for area
+  L.polygon([
+    [s.lat - d/2, s.lng - d/2], [s.lat - d/2, s.lng + d/2],
+    [s.lat + d/2, s.lng + d/2], [s.lat + d/2, s.lng - d/2]
+  ], { color, weight:2, fillColor:color, fillOpacity:0.2 }).addTo(zonesGroup);
+});
+
+L.polygon([
+  [9.74,100.005],[9.745,100.015],[9.755,100.025],[9.77,100.035],[9.785,100.035],
+  [9.795,100.02],[9.79,100.005],[9.78,99.995],[9.77,99.99],[9.755,99.99],[9.745,99.995]
+], { color:'#666', weight:1, fillColor:'#444', fillOpacity:0.15, dashArray:'4,4' }).addTo(zonesGroup)
+  .bindPopup('<b>🌳 Than Sadet National Park</b><br>Protected — no development');
+
+function toggleZones() {
+  zonesOn = !zonesOn;
+  if (zonesOn) zonesGroup.addTo(map); else map.removeLayer(zonesGroup);
+  document.getElementById('btn-zones').classList.toggle('active', zonesOn);
+}
+
+// ═══════════════════════════════════════
+// SITE MARKERS
+// ═══════════════════════════════════════
+const siteMarkers = {};
+sites.forEach((s,i) => {
   const color = s.score >= 8.5 ? '#00cc44' : s.score >= 7.5 ? '#E8A820' : '#ff6600';
-  L.circleMarker([s.lat, s.lng], {
-    radius: 12, color: '#0D2137', weight: 3, fillColor: color, fillOpacity: 0.9
-  }).addTo(map).bindPopup(`<b>☀️ ${s.name}</b><br>Score: ${s.score}/10<br>Area: ~${s.rai} rai (${(s.rai*1600).toLocaleString()} m²)<br>Est. Capacity: ~${Math.round(s.rai*1600*0.7/5.5)} kWp<br>Est. Annual: ~${Math.round(s.rai*1600*0.7/5.5*1350).toLocaleString()} kWh`);
+  const cm = L.circleMarker([s.lat, s.lng], {
+    radius:13, color:'#0D2137', weight:3, fillColor:color, fillOpacity:0.9
+  }).addTo(map).on('click', () => selectSite(s.id));
 
   L.marker([s.lat, s.lng], {
     icon: L.divIcon({
-      className: '',
-      html: `<div style="background:${color};color:#0D2137;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.3);">${i+1}. ${s.score}</div>`,
-      iconAnchor: [25, -8]
+      className:'',
+      html:`<div style="background:${color};color:#0D2137;padding:2px 7px;border-radius:4px;font-size:9px;font-weight:800;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.3);cursor:pointer;" onclick="selectSite(${s.id})">${i+1}</div>`,
+      iconAnchor:[8,-10]
     })
   }).addTo(map);
+
+  siteMarkers[s.id] = cm;
 });
 
-// === DRAW TOOLS ===
+// ═══════════════════════════════════════
+// SITE SELECTION + DETAIL
+// ═══════════════════════════════════════
+let selectedSiteId = null;
+let distLine = null;
+let distLabel = null;
+
+function selectSite(id) {
+  selectedSiteId = id;
+  const s = sites.find(x => x.id === id);
+  if (!s) return;
+
+  // Fly
+  map.flyTo([s.lat, s.lng], 15, { duration: 0.8 });
+
+  // Highlight card
+  document.querySelectorAll('.site-card').forEach(c => c.classList.remove('selected'));
+  const card = document.querySelector(`.site-card[data-id="${id}"]`);
+  if (card) card.classList.add('selected');
+
+  // Draw distance line to nearest 33kV
+  if (distLine) { map.removeLayer(distLine); distLine = null; }
+  if (distLabel) { map.removeLayer(distLabel); distLabel = null; }
+  let minDist = Infinity, nearest = null;
+  grid33kVPoints.forEach(p => {
+    const d = Math.sqrt(Math.pow((s.lat-p[0])*111320,2) + Math.pow((s.lng-p[1])*111320*Math.cos(s.lat*Math.PI/180),2));
+    if (d < minDist) { minDist = d; nearest = p; }
+  });
+  if (nearest) {
+    distLine = L.polyline([[s.lat, s.lng], nearest], {
+      color:'#ff6600', weight:2, dashArray:'6,4', opacity:0.8
+    }).addTo(map);
+    const mid = [(s.lat+nearest[0])/2, (s.lng+nearest[1])/2];
+    distLabel = L.marker(mid, {
+      icon: L.divIcon({ className:'dist-label', html:`${(minDist/1000).toFixed(1)} km`, iconAnchor:[20,10] })
+    }).addTo(map);
+  }
+
+  // Show detail panel
+  showDetail(s);
+}
+
+function showDetail(s) {
+  const p = document.getElementById('detailPanel');
+  p.style.display = 'block';
+  document.getElementById('detailTitle').innerHTML = `☀️ ${s.name} <span class="collapse-btn" onclick="hideDetail()">✕</span>`;
+
+  // Score breakdown
+  const labels = {terrain:'Terrain',size:'Size',grid:'Grid Access',road:'Road',zoning:'Zoning',shade:'Sun/Shade',flood:'Flood Risk',env:'Environment'};
+  let gridHTML = '';
+  for (const k in s.scores) {
+    const v = s.scores[k];
+    const cls = v >= 8 ? 'green' : v >= 6 ? 'yellow' : 'red';
+    gridHTML += `<div class="score-item"><span class="label">${labels[k]||k}</span><span class="val ${cls}">${v}/10</span></div>`;
+  }
+  document.getElementById('scoreGrid').innerHTML = gridHTML;
+
+  // Financials
+  const f = calcFinancials(s);
+  document.getElementById('dArea').textContent = `${f.areaM2.toLocaleString()} m² (${s.rai} rai)`;
+  document.getElementById('dUsable').textContent = `${f.usable.toLocaleString()} m²`;
+  document.getElementById('dPanels').textContent = `${f.panels.toLocaleString()} panels`;
+  document.getElementById('dKwp').textContent = `${f.kwp.toFixed(0)} kWp (${(f.kwp/1000).toFixed(2)} MWp)`;
+  document.getElementById('dKwh').textContent = `${f.kwh.toLocaleString(undefined,{maximumFractionDigits:0})} kWh/yr`;
+
+  // Storage
+  document.getElementById('dBattSize').textContent = `${f.battKwh} kWh`;
+  document.getElementById('dBattUnits').textContent = `${f.battUnits}× LUNA2000-15kWh`;
+  document.getElementById('dBackup').textContent = `~${f.backupHrs} hrs`;
+  document.getElementById('dBattCost').textContent = `฿${f.battCost.toLocaleString()}`;
+  document.getElementById('dPeakShave').textContent = `฿${f.peakShave.toLocaleString()}/yr`;
+  document.getElementById('dArbitrage').textContent = `฿${f.arbitrage.toLocaleString()}/yr`;
+  document.getElementById('dGridPrem').textContent = `฿${f.gridPrem.toLocaleString()}/yr`;
+
+  // Financial
+  document.getElementById('dEpc').textContent = `฿${f.epc.toLocaleString()}`;
+  document.getElementById('dPpa').textContent = `฿${f.ppaAnnual.toLocaleString()}/yr`;
+  document.getElementById('dCapex').textContent = `฿${f.totalInvest.toLocaleString()}`;
+  document.getElementById('dLand').textContent = `฿${f.landCost.toLocaleString()}`;
+  document.getElementById('dPayback').textContent = `${f.paybackYr} years`;
+  document.getElementById('dIrr').textContent = `${(f.irr*100).toFixed(1)}%`;
+  document.getElementById('dNpv').textContent = `฿${f.npv.toLocaleString(undefined,{maximumFractionDigits:0})}`;
+  document.getElementById('d20yr').textContent = `฿${f.ppa20.toLocaleString(undefined,{maximumFractionDigits:0})}`;
+
+  // Grid
+  document.getElementById('dGridDist').textContent = `${s.gridKm} km`;
+  document.getElementById('dGridCost').textContent = `฿${f.gridCost.toLocaleString()}`;
+
+  // Risks
+  document.getElementById('dRisks').innerHTML = s.risks.map(r => `⚠️ ${r}`).join('<br>');
+
+  // Next steps
+  document.getElementById('dNextSteps').innerHTML = `
+    1. 📞 Contact local land broker<br>
+    2. 🗺️ Verify chanot (title deed) status<br>
+    3. 📐 Commission topographic survey<br>
+    4. ⚡ Request PEA grid capacity assessment<br>
+    5. 🏛️ LAO consent application<br>
+    6. 📊 Full feasibility study<br>
+    7. 💼 Present to investor / TM Developers`;
+}
+
+function hideDetail() {
+  document.getElementById('detailPanel').style.display = 'none';
+  if (distLine) { map.removeLayer(distLine); distLine = null; }
+  if (distLabel) { map.removeLayer(distLabel); distLabel = null; }
+  selectedSiteId = null;
+  document.querySelectorAll('.site-card').forEach(c => c.classList.remove('selected'));
+}
+
+// ═══════════════════════════════════════
+// SITE LIST RENDERING
+// ═══════════════════════════════════════
+function renderSiteList(list) {
+  const container = document.getElementById('siteList');
+  container.innerHTML = '';
+  list.forEach((s, i) => {
+    const color = s.score >= 8.5 ? '#00cc44' : s.score >= 7.5 ? '#E8A820' : '#ff6600';
+    const f = calcFinancials(s);
+    const card = document.createElement('div');
+    card.className = 'site-card' + (s.id === selectedSiteId ? ' selected' : '');
+    card.dataset.id = s.id;
+    card.onclick = () => selectSite(s.id);
+    card.innerHTML = `
+      <span class="compare-check ${compareSet.has(s.id)?'checked':''}" onclick="event.stopPropagation();toggleCompareItem(${s.id})">☐</span>
+      <div class="hdr">
+        <div class="name">${i+1}. ${s.name}</div>
+        <div class="score-badge" style="background:${color}">${s.score}</div>
+      </div>
+      <div class="meta">${s.rai} rai · ${s.gridKm}km to grid · ${s.notes.split('.')[0]}</div>
+      <div class="quick-stats">
+        <div class="qs"><b>${(f.kwp/1000).toFixed(1)}</b> MWp</div>
+        <div class="qs"><b>฿${(f.ppaAnnual/1e6).toFixed(1)}M</b>/yr</div>
+        <div class="qs"><b>${f.paybackYr}</b>yr payback</div>
+        <div class="qs">🔋<b>${f.battKwh}</b>kWh</div>
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+function sortSites() {
+  const by = document.getElementById('sortBy').value;
+  const list = [...sites];
+  if (by==='score') list.sort((a,b) => b.score - a.score);
+  else if (by==='size') list.sort((a,b) => b.rai - a.rai);
+  else if (by==='grid') list.sort((a,b) => a.gridKm - b.gridKm);
+  else if (by==='roi') list.sort((a,b) => calcFinancials(b).irr - calcFinancials(a).irr);
+  filterAndRender(list);
+}
+
+function filterSites() { sortSites(); }
+
+function filterAndRender(list) {
+  const min = parseFloat(document.getElementById('filterMin').value);
+  renderSiteList(list.filter(s => s.score >= min));
+}
+
+// ═══════════════════════════════════════
+// COMPARE MODE
+// ═══════════════════════════════════════
+const compareSet = new Set();
+
+function toggleCompareItem(id) {
+  if (compareSet.has(id)) compareSet.delete(id); else compareSet.add(id);
+  document.getElementById('compare-count').textContent = compareSet.size;
+  document.getElementById('btn-compare').style.display = compareSet.size >= 2 ? '' : 'none';
+  sortSites(); // re-render to update checkboxes
+}
+
+function toggleCompare() {
+  const panel = document.getElementById('comparePanel');
+  if (panel.style.display === 'block') { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+
+  const selected = sites.filter(s => compareSet.has(s.id));
+  const fins = selected.map(s => ({ s, f: calcFinancials(s) }));
+
+  // Find best values
+  const bestScore = Math.max(...fins.map(x => x.s.score));
+  const bestIrr = Math.max(...fins.map(x => x.f.irr));
+  const bestPayback = Math.min(...fins.map(x => typeof x.f.paybackYr === 'number' ? x.f.paybackYr : 99));
+
+  let html = '<tr><th></th>' + fins.map(x => `<th>${x.s.name}</th>`).join('') + '</tr>';
+  const rows = [
+    ['Score', fins.map(x => ({v:x.s.score, best:x.s.score===bestScore}))],
+    ['Area (rai)', fins.map(x => ({v:x.s.rai}))],
+    ['Capacity', fins.map(x => ({v:`${(x.f.kwp/1000).toFixed(1)} MWp`}))],
+    ['Grid Distance', fins.map(x => ({v:`${x.s.gridKm} km`}))],
+    ['Battery', fins.map(x => ({v:`${x.f.battKwh} kWh`}))],
+    ['PPA Revenue/yr', fins.map(x => ({v:`฿${(x.f.ppaAnnual/1e6).toFixed(1)}M`}))],
+    ['EPC Revenue', fins.map(x => ({v:`฿${(x.f.epc/1e6).toFixed(1)}M`}))],
+    ['Total Investment', fins.map(x => ({v:`฿${(x.f.totalInvest/1e6).toFixed(1)}M`}))],
+    ['Payback', fins.map(x => ({v:`${x.f.paybackYr} yr`, best:x.f.paybackYr===bestPayback}))],
+    ['IRR', fins.map(x => ({v:`${(x.f.irr*100).toFixed(1)}%`, best:x.f.irr===bestIrr}))],
+    ['NPV', fins.map(x => ({v:`฿${(x.f.npv/1e6).toFixed(1)}M`}))],
+  ];
+  rows.forEach(([label, cells]) => {
+    html += `<tr><td style="color:rgba(255,255,255,.5)">${label}</td>`;
+    cells.forEach(c => { html += `<td class="${c.best?'best':''}">${c.v}</td>`; });
+    html += '</tr>';
+  });
+  document.getElementById('compareTable').innerHTML = html;
+}
+
+// ═══════════════════════════════════════
+// DRAW + MEASURE
+// ═══════════════════════════════════════
 const drawnItems = new L.FeatureGroup();
 map.addLayer(drawnItems);
-
-const drawControl = new L.Control.Draw({
-  position: 'topright',
-  draw: { polyline: false, circle: false, circlemarker: false, marker: true, rectangle: true, polygon: true },
-  edit: { featureGroup: drawnItems }
-});
 
 map.on(L.Draw.Event.CREATED, function(e) {
   drawnItems.addLayer(e.layer);
   if (e.layer.getLatLngs) {
-    const area = L.GeometryUtil ? L.GeometryUtil.geodesicArea(e.layer.getLatLngs()[0]) : calcArea(e.layer.getLatLngs()[0]);
-    showCalc(area);
+    const lls = e.layer.getLatLngs()[0];
+    let area = 0;
+    for (let i=0; i<lls.length; i++) {
+      const j=(i+1)%lls.length;
+      area += lls[i].lng*lls[j].lat - lls[j].lng*lls[i].lat;
+    }
+    area = Math.abs(area)/2 * 111320*111320*Math.cos(lls[0].lat*Math.PI/180);
+    const f = { rai: area/1600, kwp: area*USABLE_RATIO/PANEL_PER_KWP };
+    e.layer.bindPopup(`<b>📐 Custom Area</b><br>${area.toLocaleString(undefined,{maximumFractionDigits:0})} m² (${f.rai.toFixed(1)} rai)<br>${f.kwp.toFixed(0)} kWp | ${(f.kwp*SUN_HOURS).toLocaleString(undefined,{maximumFractionDigits:0})} kWh/yr<br>EPC: ฿${(f.kwp*SALE_PER_KWP).toLocaleString()}`).openPopup();
   }
 });
 
-function calcArea(latlngs) {
-  // Approximate geodesic area
-  let area = 0;
-  for (let i = 0; i < latlngs.length; i++) {
-    const j = (i + 1) % latlngs.length;
-    area += latlngs[i].lng * latlngs[j].lat;
-    area -= latlngs[j].lng * latlngs[i].lat;
-  }
-  area = Math.abs(area) / 2;
-  return area * 111320 * 111320 * Math.cos(latlngs[0].lat * Math.PI / 180);
-}
-
-function showCalc(areaM2) {
-  const panel = document.getElementById('calcPanel');
-  panel.style.display = 'block';
-  const rai = areaM2 / 1600;
-  const usable = areaM2 * 0.7;
-  const kwp = usable / 5.5;
-  const kwh = kwp * 1350;
-  const batt = Math.round(kwp * 0.3);
-
-  document.getElementById('calcArea').textContent = `${areaM2.toLocaleString(undefined,{maximumFractionDigits:0})} m² (${rai.toFixed(1)} rai)`;
-  document.getElementById('calcUsable').textContent = `${usable.toLocaleString(undefined,{maximumFractionDigits:0})} m²`;
-  document.getElementById('calcKwp').textContent = `${kwp.toFixed(0)} kWp (${(kwp/1000).toFixed(2)} MWp)`;
-  document.getElementById('calcKwh').textContent = `${kwh.toLocaleString(undefined,{maximumFractionDigits:0})} kWh/yr`;
-  document.getElementById('calcBatt').textContent = `${batt} kWh (30% ratio)`;
-  document.getElementById('calcEpc').textContent = `฿${(kwp * 32500).toLocaleString(undefined,{maximumFractionDigits:0})}`;
-  document.getElementById('calcPpa').textContent = `฿${(kwh * 4.5).toLocaleString(undefined,{maximumFractionDigits:0})}/yr`;
-  document.getElementById('calcLand').textContent = `฿${(rai * 800000).toLocaleString(undefined,{maximumFractionDigits:0})} (~฿800K/rai)`;
-}
-
-function flyTo(lat, lng, name) {
-  map.flyTo([lat, lng], 16, { duration: 1 });
-  showToast(`📍 ${name}`);
-}
-
 function addPin() {
   showToast('Click map to drop pin');
-  map.once('click', function(e) {
-    const marker = L.marker(e.latlng, { draggable: true }).addTo(drawnItems);
-    marker.bindPopup(`<b>📌 Custom Pin</b><br>Lat: ${e.latlng.lat.toFixed(6)}<br>Lng: ${e.latlng.lng.toFixed(6)}`).openPopup();
+  map.once('click', e => {
+    L.marker(e.latlng, {draggable:true}).addTo(drawnItems)
+      .bindPopup(`<b>📌 Pin</b><br>${e.latlng.lat.toFixed(6)}, ${e.latlng.lng.toFixed(6)}`).openPopup();
   });
 }
 
 function measureMode() {
-  showToast('Draw polygon to measure area');
-  new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+  showToast('Click to draw polygon, double-click to finish');
+  new L.Draw.Polygon(map, {}).enable();
+}
+
+function clearSelection() {
+  hideDetail();
+  drawnItems.clearLayers();
+  showToast('Cleared');
 }
 
 let gridVisible = false;
@@ -393,44 +745,47 @@ const gridGroup = L.layerGroup();
 function toggleGrid() {
   gridVisible = !gridVisible;
   if (gridVisible) {
-    for (let lat = 9.68; lat <= 9.82; lat += 0.01) {
-      L.polyline([[lat, 99.95], [lat, 100.08]], { color: 'rgba(255,255,255,.15)', weight: 0.5 }).addTo(gridGroup);
-    }
-    for (let lng = 99.95; lng <= 100.08; lng += 0.01) {
-      L.polyline([[9.68, lng], [9.82, lng]], { color: 'rgba(255,255,255,.15)', weight: 0.5 }).addTo(gridGroup);
-    }
+    for (let lat=9.68;lat<=9.82;lat+=0.01) L.polyline([[lat,99.95],[lat,100.08]],{color:'rgba(255,255,255,.12)',weight:.5}).addTo(gridGroup);
+    for (let lng=99.95;lng<=100.08;lng+=0.01) L.polyline([[9.68,lng],[9.82,lng]],{color:'rgba(255,255,255,.12)',weight:.5}).addTo(gridGroup);
     gridGroup.addTo(map);
-    document.getElementById('btn-grid').classList.add('active');
-  } else {
-    map.removeLayer(gridGroup);
-    document.getElementById('btn-grid').classList.remove('active');
-  }
+  } else { map.removeLayer(gridGroup); }
+  document.getElementById('btn-grid').classList.toggle('active', gridVisible);
 }
 
-function exportData() {
-  const data = { sites, drawn: [] };
+function exportJSON() {
+  const data = { exported: new Date().toISOString(), sites: sites.map(s => ({...s, financials: calcFinancials(s)})), drawn:[] };
   drawnItems.eachLayer(l => {
-    if (l.getLatLng) data.drawn.push({ type: 'marker', latlng: l.getLatLng() });
-    else if (l.getLatLngs) data.drawn.push({ type: 'polygon', latlngs: l.getLatLngs() });
+    if (l.getLatLng) data.drawn.push({type:'marker',latlng:l.getLatLng()});
+    else if (l.getLatLngs) data.drawn.push({type:'polygon',latlngs:l.getLatLngs()});
   });
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'solar-farm-scout-kp.json';
-  a.click();
-  showToast('Exported!');
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='solar-farm-scout-kp.json'; a.click();
+  showToast('Exported JSON');
+}
+
+function togglePanel(id) {
+  const el = document.getElementById(id);
+  const content = el.querySelector('.site-card, .filters, .section, #siteList');
+  // Simple toggle
+  if (el.dataset.collapsed === 'true') {
+    el.style.maxHeight = ''; el.dataset.collapsed = 'false';
+  } else {
+    el.style.maxHeight = '40px'; el.dataset.collapsed = 'true';
+  }
 }
 
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
+  t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2000);
 }
 
-// Start with power lines + zones visible
+// ═══════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════
 togglePower();
 toggleZones();
+sortSites();
 </script>
 </body>
 </html>

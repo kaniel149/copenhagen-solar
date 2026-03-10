@@ -32,8 +32,8 @@ h2{font-size:clamp(22px,3.5vw,36px);font-weight:700;line-height:1.2;margin-botto
 h3{font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:8px}
 .subtitle{font-size:clamp(16px,2vw,22px);font-weight:300;opacity:.8;margin-bottom:24px}
 .gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}
-.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;transition:all .3s}
-.card:hover{border-color:var(--gold)}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;transition:all .3s ease}
+.card:hover{border-color:var(--gold);box-shadow:0 4px 24px rgba(232,168,32,.1);transform:translateY(-2px)}
 .card h3{font-size:16px;margin-bottom:6px}.card p{font-size:13px;opacity:.7;line-height:1.5}
 .table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
 table{width:100%;border-collapse:collapse;font-size:12px}
@@ -48,7 +48,56 @@ a{color:var(--gold);text-decoration:none}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
 .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
 .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
-@media(max-width:768px){.two-col,.three-col,.four-col{grid-template-columns:1fr}.slide{padding:24px 20px}}
+@media(max-width:768px){
+  .two-col,.three-col,.four-col{grid-template-columns:1fr}
+  .slide{padding:20px 16px;padding-bottom:72px}
+  .section-num{font-size:40px;top:10px;left:16px}
+  h1{font-size:28px}h2{font-size:20px}
+  .nav-bar{padding:8px 16px}
+  .nav-btn{padding:6px 16px;font-size:13px}
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .dash-val{font-size:22px}
+  .big-num{font-size:28px}
+  .bar-label{min-width:60px;font-size:11px}
+  .calc-input label{width:100%}
+  .calc-input input{width:100%}
+  .table-wrap{font-size:11px}
+  table{font-size:10px}
+  th,td{padding:6px 6px}
+  .tm-logo-header{top:8px;right:12px}
+  .tm-logo-header img{height:28px}
+  .toc-btn{top:8px;left:12px;width:36px;height:36px;font-size:16px}
+  .toc-panel{width:280px;left:-280px;padding:50px 20px 20px}
+  .img-float{float:none;width:100%}
+  .img-row{flex-direction:column}
+  .slide-img{max-height:180px}
+}
+@media(max-width:480px){
+  .four-col{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .slide{padding:16px 12px;padding-bottom:68px}
+}
+@media print{
+  body{overflow:visible;height:auto;background:#fff;color:#000}
+  .slide-container{width:auto;height:auto;position:static}
+  .slide{position:static;opacity:1!important;transform:none!important;pointer-events:all;page-break-after:always;page-break-inside:avoid;padding:20px;background:#fff!important;color:#000!important}
+  .slide.exit{opacity:1!important;transform:none!important}
+  .nav-bar,.progress-bar,.toc-btn,.toc-panel,.tm-logo-header{display:none!important}
+  .section-num{color:rgba(232,168,32,.3)!important}
+  .card,.dash-card{border:1px solid #ddd;background:#fafafa!important}
+  .gold,.dash-val.gold{color:#B8860B!important}
+  .reef-text{color:#0A6B3F!important}
+  .coral-text{color:#C44A2C!important}
+  .alert{border:1px solid #ddd}
+  .bar-fill{color:#000!important}
+  table{border:1px solid #ccc}
+  th{background:#f0f0f0!important;color:#000!important}
+  td{border-top:1px solid #ddd!important}
+  .big-num{color:#B8860B!important}
+  h1,h2,h3{color:#0D2137!important}
+  a{color:#0D2137!important}
+  .mini-chart .mini-bar{background:#B8860B!important}
+}
 .slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
 .section-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;color:var(--gold);opacity:.15;position:absolute;top:20px;left:40px}
 .big-num{font-family:'Space Grotesk';font-size:clamp(28px,5vw,56px);font-weight:700;color:var(--gold)}
@@ -61,7 +110,8 @@ a{color:var(--gold);text-decoration:none}
 .bar-fill{height:100%;border-radius:12px;display:flex;align-items:center;padding:0 10px;font-size:10px;font-weight:600;font-family:'Space Grotesk'}
 .bar-val{font-family:'Space Grotesk';font-size:12px;min-width:60px;text-align:left;font-weight:600}
 /* Dashboard widgets */
-.dash-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px}
+.dash-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:20px;transition:all .3s ease}
+.dash-card:hover{border-color:rgba(232,168,32,.25);box-shadow:0 8px 32px rgba(0,0,0,.2)}
 .dash-card h4{font-size:12px;opacity:.5;font-weight:400;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
 .dash-val{font-family:'Space Grotesk';font-size:28px;font-weight:700}
 .dash-delta{font-size:12px;margin-top:4px}
@@ -119,14 +169,14 @@ a{color:var(--gold);text-decoration:none}
   <div class="four-col">
     <div class="dash-card">
       <h4>הכנסות צפויות</h4>
-      <div class="dash-val gold">฿15M</div>
+      <div class="dash-val gold">฿12.1M</div>
       <div class="dash-delta dash-up">▲ Target Year 1</div>
       <div class="mini-chart"><div class="mini-bar" style="height:15%"></div><div class="mini-bar" style="height:25%"></div><div class="mini-bar" style="height:35%"></div><div class="mini-bar" style="height:40%"></div><div class="mini-bar" style="height:55%"></div><div class="mini-bar" style="height:60%"></div><div class="mini-bar" style="height:70%"></div><div class="mini-bar" style="height:75%"></div><div class="mini-bar" style="height:85%"></div><div class="mini-bar" style="height:90%"></div><div class="mini-bar" style="height:95%"></div><div class="mini-bar" style="height:100%"></div></div>
     </div>
     <div class="dash-card">
-      <h4>רווח גולמי</h4>
-      <div class="dash-val reef-text">฿9M</div>
-      <div class="dash-delta dash-up">60% Gross Margin</div>
+      <h4>רווח נקי</h4>
+      <div class="dash-val reef-text">฿5.18M</div>
+      <div class="dash-delta dash-up">43% Net Margin</div>
       <div class="mini-chart"><div class="mini-bar" style="height:20%;background:#2ED89A"></div><div class="mini-bar" style="height:30%;background:#2ED89A"></div><div class="mini-bar" style="height:40%;background:#2ED89A"></div><div class="mini-bar" style="height:50%;background:#2ED89A"></div><div class="mini-bar" style="height:55%;background:#2ED89A"></div><div class="mini-bar" style="height:60%;background:#2ED89A"></div><div class="mini-bar" style="height:65%;background:#2ED89A"></div><div class="mini-bar" style="height:70%;background:#2ED89A"></div><div class="mini-bar" style="height:75%;background:#2ED89A"></div><div class="mini-bar" style="height:80%;background:#2ED89A"></div><div class="mini-bar" style="height:85%;background:#2ED89A"></div><div class="mini-bar" style="height:90%;background:#2ED89A"></div></div>
     </div>
     <div class="dash-card">
@@ -146,18 +196,18 @@ a{color:var(--gold);text-decoration:none}
     <div class="dash-card">
       <h4>הכנסות לפי מודל</h4>
       <div class="bar-chart">
-        <div class="bar-row"><div class="bar-label">EPC Direct</div><div class="bar-wrap"><div class="bar-fill" style="width:70%;background:var(--gold)">฿10.5M</div></div></div>
-        <div class="bar-row"><div class="bar-label">PPA/ESCO</div><div class="bar-wrap"><div class="bar-fill" style="width:20%;background:#2ED89A">฿3M</div></div></div>
-        <div class="bar-row"><div class="bar-label">O&M</div><div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#6496FF">฿1.5M</div></div></div>
+        <div class="bar-row"><div class="bar-label">EPC Direct</div><div class="bar-wrap"><div class="bar-fill" style="width:87%;background:var(--gold)">฿10.5M</div></div></div>
+        <div class="bar-row"><div class="bar-label">PPA/ESCO</div><div class="bar-wrap"><div class="bar-fill" style="width:10%;background:#2ED89A">฿1.17M</div></div></div>
+        <div class="bar-row"><div class="bar-label">O&M</div><div class="bar-wrap"><div class="bar-fill" style="width:3%;background:#6496FF">฿393K</div></div></div>
       </div>
     </div>
     <div class="dash-card">
       <h4>הוצאות לפי קטגוריה</h4>
       <div class="bar-chart">
-        <div class="bar-row"><div class="bar-label">ציוד</div><div class="bar-wrap"><div class="bar-fill" style="width:55%;background:var(--coral)">฿4.2M</div></div></div>
-        <div class="bar-row"><div class="bar-label">עבודה</div><div class="bar-wrap"><div class="bar-fill" style="width:20%;background:rgba(255,255,255,.3)">฿1.2M</div></div></div>
-        <div class="bar-row"><div class="bar-label">שיווק</div><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:rgba(255,255,255,.2)">฿384K</div></div></div>
-        <div class="bar-row"><div class="bar-label">Overhead</div><div class="bar-wrap"><div class="bar-fill" style="width:12%;background:rgba(255,255,255,.15)">฿600K</div></div></div>
+        <div class="bar-row"><div class="bar-label">ציוד</div><div class="bar-wrap"><div class="bar-fill" style="width:67%;background:var(--coral)">฿4.62M</div></div></div>
+        <div class="bar-row"><div class="bar-label">עבודה</div><div class="bar-wrap"><div class="bar-fill" style="width:19%;background:rgba(255,255,255,.3)">฿1.28M</div></div></div>
+        <div class="bar-row"><div class="bar-label">שיווק</div><div class="bar-wrap"><div class="bar-fill" style="width:6%;background:rgba(255,255,255,.2)">฿384K</div></div></div>
+        <div class="bar-row"><div class="bar-label">Overhead</div><div class="bar-wrap"><div class="bar-fill" style="width:9%;background:rgba(255,255,255,.15)">฿600K</div></div></div>
       </div>
     </div>
   </div>
@@ -587,7 +637,7 @@ function calcPPA(){
     const prod=Math.round(annual_prod*Math.pow(1-deg,y-1));
     const r=rate*Math.pow(1+esc,y-1);
     const rev=Math.round(prod*r);
-    const insurance=Math.round(invest*0.01/1);
+    const insurance=Math.round(invest*0.01);
     const cost=Math.round(kWp*om)+insurance;
     const net=rev-cost;
     cumulative+=net;totalRev+=rev;totalCost+=cost;
@@ -621,6 +671,7 @@ window.PAGE_TRANSLATIONS = {
   "דשבורד מנהלים — שנה 1 תכנון": {en: "Executive Dashboard — Year 1 Plan", th: "แดชบอร์ดผู้บริหาร — แผนปีที่ 1"},
   "הכנסות צפויות": {en: "Expected Revenue", th: "รายได้ที่คาดการณ์"},
   "רווח גולמי": {en: "Gross Profit", th: "กำไรขั้นต้น"},
+  "רווח נקי": {en: "Net Profit", th: "กำไรสุทธิ"},
   "עסקאות": {en: "Deals", th: "ดีล"},
   "הכנסות לפי מודל": {en: "Revenue by Model", th: "รายได้ตามรูปแบบ"},
   "הוצאות לפי קטגוריה": {en: "Expenses by Category", th: "ค่าใช้จ่ายตามหมวดหมู่"},

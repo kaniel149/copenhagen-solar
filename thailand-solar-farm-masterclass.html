@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1485,7 +1485,15 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// ===== TRI-LINGUAL TRANSLATION ENGINE =====
+// ===== TRI-LINGUAL ENGINE v2 — AGGRESSIVE =====
+// Store original HTML for each translatable element
+const originals = new Map();
+function storeOriginals() {
+  document.querySelectorAll('[data-t]').forEach(el => {
+    if (!originals.has(el)) originals.set(el, el.innerHTML);
+  });
+}
+
 const translations = {
   he: {
     // Hero
@@ -1583,9 +1591,117 @@ const translations = {
     'Grid Services': 'שירותי רשת',
     'Backup Power': 'חשמל גיבוי',
     // Card titles
-    'EGAT': 'EGAT',
-    'PEA': 'PEA',
-    'MEA': 'MEA',
+    // Card titles (h3)
+    'EGAT — Generation & Transmission': 'EGAT — ייצור והולכה',
+    'PEA — Provincial Distribution': 'PEA — חלוקה מחוזית',
+    'MEA — Metropolitan Distribution': 'MEA — חלוקה מטרופולינית',
+    'SPP — Small Power Producer': 'SPP — יצרן חשמל קטן',
+    'BOI Incentives (Category A1–A3)': 'הטבות BOI (קטגוריה A1–A3)',
+    'Without BOI': 'ללא BOI',
+    'Island Grid Challenges': 'אתגרי רשת חשמל באיים',
+    'Micro-Grid Architecture': 'ארכיטקטורת מיקרו-גריד',
+    'Regulatory Framework': 'מסגרת רגולטורית',
+    'Koh Phaluai — First Island Micro-Grid': 'קו פאלואי — מיקרו-גריד ראשון באי',
+    'Koh Tao — Wave + Solar Micro-Grid': 'קו טאו — מיקרו-גריד גל + סולאר',
+    'Protection Relay Requirements': 'דרישות ממסר הגנה',
+    'Power Quality & SCADA': 'איכות חשמל ו-SCADA',
+    'Model A: Community Solar FiT': 'מודל A: תעריף הזנה סולאר קהילתי',
+    'Model B: Hybrid FiT (Solar + BESS)': 'מודל B: תעריף הזנה משולב (סולאר + אגירה)',
+    'Model C: Private PPA / Self-Consumption': 'מודל C: PPA פרטי / צריכה עצמית',
+    'Kehua 10 MW — Tyre Factory': 'Kehua 10 MW — מפעל צמיגים',
+    'Equator Solar One — 10 MW Farm': 'Equator Solar One — שדה 10 MW',
+    'Koh Phaluai — Island Micro-Grid': 'קו פאלואי — מיקרו-גריד באי',
+    'Koh Tao — Wave+Solar Hybrid': 'קו טאו — היברידי גל+סולאר',
+    'Solventia — Industrial EPC': 'Solventia — EPC תעשייתי',
+    'Thai Solar Energy PLC — Portfolio': 'Thai Solar Energy PLC — תיק פרויקטים',
+    // Section subtitles
+    'Understanding the structure, pricing, and trajectory of Thailand\'s power sector': 'הבנת מבנה, תמחור ומגמות ענף החשמל בתאילנד',
+    'Electricity Generating Authority of Thailand': 'רשות ייצור החשמל של תאילנד',
+    'Provincial Electricity Authority': 'רשות החשמל המחוזית',
+    'Metropolitan Electricity Authority': 'רשות החשמל המטרופולינית',
+    'Thailand Energy Mix (2024)': 'תמהיל אנרגיה בתאילנד (2024)',
+    'Natural Gas': 'גז טבעי',
+    'Coal/Lignite': 'פחם/ליגניט',
+    'Imports (Laos)': 'יבוא (לאוס)',
+    'Hydro': 'הידרו',
+    'Solar PV': 'סולאר PV',
+    'Biomass/Wind/Other': 'ביומסה/רוח/אחר',
+    'Electricity Tariffs by Consumer Type': 'תעריפי חשמל לפי סוג צרכן',
+    'Consumer Type': 'סוג צרכן',
+    'Residential': 'מגורים',
+    'Small Business': 'עסק קטן',
+    'Medium Business': 'עסק בינוני',
+    'Large Industry': 'תעשייה גדולה',
+    'Government': 'ממשל',
+    'Rate Range': 'טווח תעריפים',
+    // Bar labels
+    'Panels': 'פאנלים',
+    'Inverters': 'ממירים',
+    'Mounting': 'הרכבה',
+    'BOS & Electrical': 'BOS וחשמל',
+    'Civil Works': 'עבודות אזרחיות',
+    'Transformer': 'שנאי',
+    'Land': 'קרקע',
+    'Soft Costs': 'עלויות רכות',
+    // Table headers
+    'Category': 'קטגוריה',
+    'Key Requirements': 'דרישות עיקריות',
+    '33 kV System': 'מערכת 33 kV',
+    'NMC': 'NMC',
+    'LFP': 'LFP',
+    'Origin': 'מקור',
+    'Product': 'מוצר',
+    'Specialty': 'התמחות',
+    'Risk': 'סיכון',
+    'Notes': 'הערות',
+    // Common phrases
+    'Installed capacity': 'הספק מותקן',
+    'Peak demand': 'שיא ביקוש',
+    'Single buyer model': 'מודל קונה יחיד',
+    'grid connection': 'חיבור לרשת',
+    'Power Purchase Agreement': 'הסכם רכישת חשמל',
+    'Feed-in Tariff': 'תעריף הזנה',
+    'Levelized Cost of Energy': 'עלות מנורמלת של אנרגיה',
+    'Internal Rate of Return': 'שיעור תשואה פנימי',
+    'Net Present Value': 'ערך נוכחי נקי',
+    'RECOMMENDED': 'מומלץ',
+    'years': 'שנים',
+    'months': 'חודשים',
+    'weeks': 'שבועות',
+    'per MW': 'למגוואט',
+    'per kWh': 'ל-kWh',
+    'per kWp': 'ל-kWp',
+    'Total CapEx': 'סה"כ CapEx',
+    'Annual O&M': 'O&M שנתי',
+    'Payback Period': 'תקופת החזר',
+    'Project IRR': 'IRR פרויקט',
+    'Equity IRR': 'IRR הון עצמי',
+    '25-year NPV': 'NPV 25 שנה',
+    'LCOE': 'LCOE',
+    'Financing Sources': 'מקורות מימון',
+    'EPC Companies': 'חברות EPC',
+    'Equipment Suppliers': 'ספקי ציוד',
+    'Law Firms': 'משרדי עורכי דין',
+    'Banks & Finance': 'בנקים ומימון',
+    'Government Agencies': 'גופים ממשלתיים',
+    'Island Grid': 'רשת חשמל באי',
+    'Land Market': 'שוק קרקעות',
+    'Tourism Impact': 'השפעת תיירות',
+    'Solar Potential': 'פוטנציאל סולארי',
+    'Why Koh Phangan': 'למה קו פנגן',
+    'TM Energy Concept': 'קונספט TM Energy',
+    'Next Steps': 'צעדים הבאים',
+    'Key Takeaway': 'תובנה מרכזית',
+    'Summary': 'סיכום',
+    'Comparison': 'השוואה',
+    'Advantages': 'יתרונות',
+    'Disadvantages': 'חסרונות',
+    'Requirements': 'דרישות',
+    'Process': 'תהליך',
+    'Timeline': 'ציר זמן',
+    'Budget': 'תקציב',
+    'Schedule': 'לוח זמנים',
+    'Milestone': 'אבן דרך',
   },
   th: {
     // Hero
@@ -1679,6 +1795,93 @@ const translations = {
     'Arbitrage': 'อาร์บิทราจ',
     'Grid Services': 'บริการระบบสายส่ง',
     'Backup Power': 'ไฟฟ้าสำรอง',
+    // Card titles
+    'EGAT — Generation & Transmission': 'EGAT — การผลิตและส่งไฟฟ้า',
+    'PEA — Provincial Distribution': 'PEA — การจำหน่ายส่วนภูมิภาค',
+    'MEA — Metropolitan Distribution': 'MEA — การจำหน่ายนครหลวง',
+    'SPP — Small Power Producer': 'SPP — ผู้ผลิตไฟฟ้าขนาดเล็ก',
+    'BOI Incentives (Category A1–A3)': 'สิทธิประโยชน์ BOI (หมวด A1–A3)',
+    'Without BOI': 'ไม่มี BOI',
+    'Island Grid Challenges': 'ความท้าทายระบบไฟฟ้าเกาะ',
+    'Micro-Grid Architecture': 'สถาปัตยกรรมไมโครกริด',
+    'Regulatory Framework': 'กรอบกฎระเบียบ',
+    'Koh Phaluai — First Island Micro-Grid': 'เกาะพลวย — ไมโครกริดเกาะแห่งแรก',
+    'Koh Tao — Wave + Solar Micro-Grid': 'เกาะเต่า — ไมโครกริดคลื่น + โซลาร์',
+    'Protection Relay Requirements': 'ข้อกำหนดรีเลย์ป้องกัน',
+    'Power Quality & SCADA': 'คุณภาพไฟฟ้าและ SCADA',
+    'Model A: Community Solar FiT': 'โมเดล A: อัตรารับซื้อโซลาร์ชุมชน',
+    'Model B: Hybrid FiT (Solar + BESS)': 'โมเดล B: อัตรารับซื้อแบบผสม (โซลาร์ + แบตเตอรี่)',
+    'Model C: Private PPA / Self-Consumption': 'โมเดล C: PPA ภาคเอกชน / ใช้ไฟฟ้าเอง',
+    'Kehua 10 MW — Tyre Factory': 'Kehua 10 MW — โรงงานยาง',
+    'Equator Solar One — 10 MW Farm': 'Equator Solar One — ฟาร์ม 10 MW',
+    'Koh Phaluai — Island Micro-Grid': 'เกาะพลวย — ไมโครกริดบนเกาะ',
+    'Koh Tao — Wave+Solar Hybrid': 'เกาะเต่า — ไฮบริดคลื่น+โซลาร์',
+    'Solventia — Industrial EPC': 'Solventia — EPC อุตสาหกรรม',
+    'Thai Solar Energy PLC — Portfolio': 'Thai Solar Energy PLC — พอร์ตโฟลิโอ',
+    'Understanding the structure, pricing, and trajectory of Thailand\'s power sector': 'ทำความเข้าใจโครงสร้าง ราคา และแนวโน้มของภาคพลังงานไทย',
+    'Thailand Energy Mix (2024)': 'สัดส่วนพลังงานไทย (2024)',
+    'Natural Gas': 'ก๊าซธรรมชาติ',
+    'Coal/Lignite': 'ถ่านหิน/ลิกไนต์',
+    'Imports (Laos)': 'นำเข้า (ลาว)',
+    'Hydro': 'พลังน้ำ',
+    'Solar PV': 'โซลาร์ PV',
+    'Biomass/Wind/Other': 'ชีวมวล/ลม/อื่นๆ',
+    'Electricity Tariffs by Consumer Type': 'อัตราค่าไฟฟ้าตามประเภทผู้ใช้',
+    'Consumer Type': 'ประเภทผู้ใช้',
+    'Residential': 'ที่อยู่อาศัย',
+    'Small Business': 'ธุรกิจขนาดเล็ก',
+    'Medium Business': 'ธุรกิจขนาดกลาง',
+    'Large Industry': 'อุตสาหกรรมขนาดใหญ่',
+    'Government': 'ภาครัฐ',
+    'Rate Range': 'ช่วงอัตรา',
+    'Panels': 'แผงโซลาร์',
+    'Inverters': 'อินเวอร์เตอร์',
+    'Mounting': 'โครงสร้างรองรับ',
+    'BOS & Electrical': 'BOS และไฟฟ้า',
+    'Civil Works': 'งานโยธา',
+    'Transformer': 'หม้อแปลง',
+    'Land': 'ที่ดิน',
+    'Soft Costs': 'ต้นทุนอ่อน',
+    'Category': 'หมวดหมู่',
+    'Key Requirements': 'ข้อกำหนดหลัก',
+    '33 kV System': 'ระบบ 33 kV',
+    'Origin': 'แหล่งที่มา',
+    'Product': 'ผลิตภัณฑ์',
+    'years': 'ปี',
+    'months': 'เดือน',
+    'weeks': 'สัปดาห์',
+    'per MW': 'ต่อ MW',
+    'per kWh': 'ต่อ kWh',
+    'per kWp': 'ต่อ kWp',
+    'Total CapEx': 'CapEx รวม',
+    'Annual O&M': 'O&M ต่อปี',
+    'Payback Period': 'ระยะเวลาคืนทุน',
+    'Project IRR': 'IRR โครงการ',
+    'Equity IRR': 'IRR ทุนของตนเอง',
+    '25-year NPV': 'NPV 25 ปี',
+    'Financing Sources': 'แหล่งเงินทุน',
+    'EPC Companies': 'บริษัท EPC',
+    'Equipment Suppliers': 'ผู้จัดจำหน่ายอุปกรณ์',
+    'Law Firms': 'สำนักงานกฎหมาย',
+    'Banks & Finance': 'ธนาคารและการเงิน',
+    'Government Agencies': 'หน่วยงานภาครัฐ',
+    'Island Grid': 'ระบบไฟฟ้าเกาะ',
+    'Land Market': 'ตลาดที่ดิน',
+    'Tourism Impact': 'ผลกระทบจากการท่องเที่ยว',
+    'Solar Potential': 'ศักยภาพโซลาร์',
+    'Why Koh Phangan': 'ทำไมเกาะพะงัน',
+    'TM Energy Concept': 'แนวคิด TM Energy',
+    'Next Steps': 'ขั้นตอนถัดไป',
+    'Key Takeaway': 'ประเด็นสำคัญ',
+    'Summary': 'สรุป',
+    'Comparison': 'การเปรียบเทียบ',
+    'Advantages': 'ข้อดี',
+    'Disadvantages': 'ข้อเสีย',
+    'Requirements': 'ข้อกำหนด',
+    'Process': 'กระบวนการ',
+    'Budget': 'งบประมาณ',
+    'Schedule': 'กำหนดการ',
+    'Milestone': 'เป้าหมาย',
   }
 };
 
@@ -1691,40 +1894,74 @@ function setLang(lang) {
     var map = {en:'EN', he:'עב', th:'TH'};
     b.classList.toggle('active', b.textContent.trim() === map[lang]);
   });
-  if (lang === 'en') {
-    // Restore originals
-    document.querySelectorAll('[data-original]').forEach(function(el) {
-      el.textContent = el.getAttribute('data-original');
-    });
-    return;
-  }
+  
+  // Restore originals first
+  originals.forEach(function(html, el) { el.innerHTML = html; });
+  
+  if (lang === 'en') return;
+  
   var dict = translations[lang];
   if (!dict) return;
-  // Walk all text nodes and translate
-  var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-  while (walker.nextNode()) {
-    var node = walker.currentNode;
-    var text = node.textContent.trim();
-    if (!text || text.length < 2) continue;
-    if (dict[text]) {
-      if (!node.parentElement.hasAttribute('data-original')) {
-        node.parentElement.setAttribute('data-original', text);
-      }
-      node.textContent = dict[text];
-    }
-  }
-  // Also translate section headers h2 specifically
-  document.querySelectorAll('.section-header h2, .hero h1, .hero .subtitle, .hero .pre-title, .hero .stat-label, .kpi-label, nav .nav-links a').forEach(function(el) {
-    var origText = el.getAttribute('data-original') || el.textContent.trim();
-    if (!el.hasAttribute('data-original')) el.setAttribute('data-original', origText);
-    if (dict[origText]) el.textContent = dict[origText];
+  
+  // AGGRESSIVE: translate ALL visible text elements
+  var selectors = [
+    'nav .nav-links a',
+    '.pre-title',
+    '.hero h1',
+    '.hero .subtitle',
+    '.stat-label',
+    '.section-header h2',
+    '.section-header p',
+    '.card h3',
+    '.card li',
+    '.card p',
+    '.bar-label',
+    'th',
+    'td',
+    '.timeline-item h4',
+    '.timeline-item .tl-meta',
+    '.timeline-item p',
+    '.highlight-box h4',
+    '.highlight-box p',
+    '.highlight-box li',
+    '.kpi-label',
+    '.compare-box h3',
+    '.compare-box li',
+    '.compare-box p',
+    '.citation',
+    'h3',
+    'footer p'
+  ];
+  
+  selectors.forEach(function(sel) {
+    document.querySelectorAll(sel).forEach(function(el) {
+      if (!originals.has(el)) originals.set(el, el.innerHTML);
+      var txt = el.textContent.trim();
+      // Exact match
+      if (dict[txt]) { el.textContent = dict[txt]; return; }
+      // Partial: replace known phrases inside innerHTML
+      var html = el.innerHTML;
+      var changed = false;
+      // Sort keys by length descending to match longest first
+      var keys = Object.keys(dict).sort(function(a,b){return b.length - a.length;});
+      keys.forEach(function(k) {
+        if (k.length < 3) return;
+        if (html.indexOf(k) !== -1) {
+          html = html.split(k).join(dict[k]);
+          changed = true;
+        }
+      });
+      if (changed) el.innerHTML = html;
+    });
   });
 }
-// Init
-(function() {
+
+// Init after DOM ready
+document.addEventListener('DOMContentLoaded', function() {
+  storeOriginals();
   var lang = localStorage.getItem('masterclass-lang') || 'en';
-  if (lang !== 'en') setTimeout(function(){ setLang(lang); }, 100);
-})();
+  if (lang !== 'en') setLang(lang);
+});
 </script>
 
 </body>

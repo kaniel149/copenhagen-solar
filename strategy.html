@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ko Phangan Solar — Premium solar solutions for Koh Phangan. Strategy deck by TM Energy, March 2026.">
     <title>TM Energy — Ko Phangan Solar — Strategy Deck</title>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --sun: #E8A820;
             --sun-light: #F5D76E;
-            --ocean: #0A3D5C;
-            --ocean-deep: #062A40;
-            --palm: #1B5E20;
+            --ocean: #0D2137;
+            --ocean-deep: #091520;
+            --navy: #0D2137;
+            --palm: #1A7A5A;
             --sand: #FFF8E7;
             --white: #FFFFFF;
             --text: #1A1A1A;
             --text-light: #5A5A5A;
             --red: #E53935;
-            --green: #43A047;
+            --green: #1A7A5A;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #0A0A0A; color: var(--white); overflow-x: hidden; }
+        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
         /* SLIDE SYSTEM */
         .slide {
@@ -30,16 +32,18 @@
             flex-direction: column;
             justify-content: center;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
         }
+        .slide:nth-child(even) { background: rgba(0,0,0,0.12); }
         .slide-num {
             position: absolute;
             top: 2rem;
             left: 2rem;
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.3);
-            letter-spacing: 0.15em;
-            font-weight: 500;
+            font-size: 0.7rem;
+            color: rgba(232,168,32,0.4);
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            text-transform: uppercase;
         }
         .container { max-width: 1100px; margin: 0 auto; width: 100%; }
 
@@ -53,7 +57,7 @@
         .en { direction: ltr; text-align: left; }
 
         /* COVER */
-        .cover { background: linear-gradient(160deg, var(--ocean-deep), #0A0A0A 60%); }
+        .cover { background: linear-gradient(160deg, var(--ocean-deep), var(--navy) 60%); }
         .cover h1 { margin-bottom: 1rem; }
         .cover-meta { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-top: 2rem; }
 
@@ -64,38 +68,40 @@
 
         /* CARDS */
         .card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.07);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
-        .card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); }
+        .card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
         .card-icon { font-size: 2rem; margin-bottom: 1rem; }
         .card p { color: rgba(255,255,255,0.6); line-height: 1.6; font-size: 0.95rem; }
 
         /* STAT */
-        .stat-big { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--sun); line-height: 1; }
+        .stat-big { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--sun); line-height: 1; text-shadow: 0 2px 12px rgba(232,168,32,0.15); }
         .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
 
         /* TABLE */
         table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        th { text-align: right; padding: 0.8rem 1rem; background: rgba(255,255,255,0.05); color: var(--sun); font-weight: 600; border-bottom: 2px solid rgba(255,255,255,0.1); }
+        th { text-align: right; padding: 0.8rem 1rem; background: rgba(232,168,32,0.06); color: var(--sun); font-weight: 600; border-bottom: 2px solid rgba(232,168,32,0.2); }
         td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
-        tr:hover td { background: rgba(255,255,255,0.03); }
+        tr:hover td { background: rgba(232,168,32,0.04); }
 
         /* TIMELINE */
         .timeline { position: relative; padding-right: 3rem; }
         .timeline::before { content: ''; position: absolute; right: 0.6rem; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.1); }
         .tl-item { position: relative; margin-bottom: 2.5rem; }
-        .tl-item::before { content: ''; position: absolute; right: -2.65rem; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); border: 3px solid #0A0A0A; }
+        .tl-item::before { content: ''; position: absolute; right: -2.65rem; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); border: 3px solid var(--navy); }
         .tl-date { font-size: 0.8rem; color: var(--sun); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
         .tl-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
         .tl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
 
         /* BADGE */
         .badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
-        .badge-green { background: rgba(67,160,71,0.15); color: var(--green); }
+        .badge-green { background: rgba(26,122,90,0.15); color: var(--green); }
         .badge-red { background: rgba(229,57,53,0.15); color: var(--red); }
         .badge-gold { background: rgba(232,168,32,0.15); color: var(--sun); }
 
@@ -146,13 +152,61 @@
         .sources a:hover { color: var(--sun); }
         .src-num { color: var(--sun); font-weight: 600; margin-left: 0.3rem; }
 
-        /* RESPONSIVE */
+        /* RESPONSIVE — Tablet */
+        @media (max-width: 1024px) {
+            .slide { padding: 3.5rem 2rem; }
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+            .grid-4 { grid-template-columns: 1fr 1fr; }
+        }
+
+        /* RESPONSIVE — Mobile */
         @media (max-width: 768px) {
-            .slide { padding: 3rem 1.5rem; }
-            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .slide { padding: 2.5rem 1.25rem; min-height: auto; min-height: 100svh; }
+            .slide-num { top: 1rem; left: 1rem; font-size: 0.65rem; }
+            h1 { font-size: clamp(2rem, 8vw, 3rem); }
+            h2 { font-size: clamp(1.5rem, 5vw, 2rem); margin-bottom: 1.5rem; }
+            h3 { font-size: 1.1rem; }
+            .subtitle { font-size: 1rem; }
+            .stat-big { font-size: 2.5rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 1.2rem; }
             .vs-grid { grid-template-columns: 1fr; }
             .vs-divider { padding-top: 0; justify-content: center; }
             .nav-dots { display: none; }
+            .card { padding: 1.5rem; border-radius: 12px; }
+            table { font-size: 0.8rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            th, td { padding: 0.6rem 0.7rem; white-space: nowrap; }
+            .img-float { float: none; width: 100%; margin: 0 0 12px 0; }
+            .tm-logo-header { top: 10px; right: 12px; }
+            .tm-logo-header img { height: 28px; }
+            .tm-logo-header .brand-text { font-size: 9px; }
+            .sources { font-size: 0.75rem; }
+        }
+
+        /* RESPONSIVE — Small phones */
+        @media (max-width: 400px) {
+            .slide { padding: 2rem 1rem; }
+            .card { padding: 1.2rem; }
+            .stat-big { font-size: 2rem; }
+        }
+
+        /* PRINT */
+        @media print {
+            body { background: #fff; color: #1A1A1A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .slide { min-height: auto; padding: 2rem 1rem; page-break-inside: avoid; break-inside: avoid; border-bottom: 1px solid #ddd; }
+            .cover { background: #fff !important; }
+            .nav-dots, .tm-logo-header { display: none; }
+            h1, h2 { color: var(--navy); }
+            .accent { color: #C48A10; }
+            .stat-big { color: #C48A10; text-shadow: none; }
+            .card { background: #f7f7f7; border: 1px solid #ddd; backdrop-filter: none; box-shadow: none; }
+            .card p, td, .tl-desc, .subtitle, .he { color: #333; }
+            .badge-green { background: #e8f5e9; color: #1A7A5A; }
+            .badge-gold { background: #fff8e1; color: #C48A10; }
+            .badge-red { background: #fce4ec; color: #c62828; }
+            th { background: #f0f0f0; color: #333; border-bottom-color: #bbb; }
+            a { color: #0D2137; }
+            .slide-img, .slide-img-sm { max-height: 180px; }
+            .grid-2, .grid-3, .grid-4 { gap: 1rem; }
         }
 
 .slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
@@ -182,7 +236,7 @@
 <div class="nav-dots" id="navDots"></div>
 
 <!-- SLIDE 0: COVER -->
-<div class="slide cover" data-title="Cover" style="background:linear-gradient(rgba(10,10,10,.5),rgba(10,61,92,.65)),url(visuals/strategy-01-aerial.png) center/cover">
+<div class="slide cover" data-title="Cover" style="background:linear-gradient(rgba(13,33,55,.55),rgba(13,33,55,.75)),url(visuals/strategy-01-aerial.png) center/cover">
     <div class="container">
         <span class="badge badge-gold" style="margin-bottom:1.5rem;">CONFIDENTIAL — TM Energy</span>
         <h1>Ko Phangan <span class="accent">Solar</span></h1>
@@ -322,11 +376,11 @@
                 <td><strong style="color:var(--sun);">Ko Phangan Solar</strong></td>
                 <td><strong>Premium / Commercial</strong></td>
                 <td>250K+ THB</td>
-                <td style="color:var(--green);">Brand, CRM, ESCO/PPA, monitoring, marketing</td>
+                <td style="color:var(--palm);">Brand, CRM, ESCO/PPA, monitoring, marketing</td>
                 <td>חדשים, אין track record מקומי</td>
             </tr>
         </table>
-        <div class="he" style="margin-top:2rem;padding:1.5rem;background:rgba(67,160,71,0.08);border-radius:12px;border:1px solid rgba(67,160,71,0.2);">
+        <div class="he" style="margin-top:2rem;padding:1.5rem;background:rgba(26,122,90,0.08);border-radius:12px;border:1px solid rgba(26,122,90,0.2);">
             <strong>הזדמנות:</strong> אף מתחרה לא מציע ESCO/PPA, מערכת monitoring, branding ללקוחות, או שיווק דיגיטלי רציני. השוק פתוח לשחקן פרימיום.
         </div>
     </div>
@@ -403,7 +457,7 @@
                 <h3 class="he accent">מודל עסקי</h3>
                 <div class="card" style="background:rgba(232,168,32,0.06);">
                     <p class="he" style="line-height:1.8;">
-                        <strong>שני מסלולי הכנסה:</strong><br>
+                        <strong>מסלולי הכנסה:</strong><br>
                         🔧 EPC — התקנה + מכירה (מרווח 60%)<br>
                         ⚡ PPA — בעלות + מכירת חשמל (IRR ~45%)<br>
                         🔄 O&M — תחזוקה שוטפת (MRR)<br>
@@ -514,8 +568,8 @@
                     <li>→ 10 site surveys ראשונים</li>
                 </ul>
             </div>
-            <div class="card" style="border-top:3px solid var(--green);">
-                <h3 class="en" style="color:var(--green);">Days 31-60: Traction</h3>
+            <div class="card" style="border-top:3px solid var(--palm);">
+                <h3 class="en" style="color:var(--palm);">Days 31-60: Traction</h3>
                 <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,255,255,0.7);">
                     <li>→ Lighthouse install + case study</li>
                     <li>→ FB/IG ad campaigns live</li>
@@ -548,7 +602,7 @@
 <div class="slide" data-title="תמחור">
     <div class="slide-num">09 — PRICING PACKAGES</div>
     <div class="container">
-        <h2 class="he"></h2>
+        <h2 class="he">חבילות תמחור</h2>
         <div class="grid-3">
             <div class="card">
                 <span class="badge badge-gold">VILLA</span>
@@ -808,6 +862,7 @@ window.PAGE_TRANSLATIONS = {
   "חדשים, אין track record מקומי": {en: "New, no local track record", th: "ใหม่ ไม่มีประวัติผลงานในพื้นที่"},
   "הזדמנות:": {en: "Opportunity:", th: "โอกาส:"},
   "אף מתחרה לא מציע ESCO/PPA, מערכת monitoring, branding ללקוחות, או שיווק דיגיטלי רציני. השוק פתוח לשחקן פרימיום.": {en: "No competitor offers ESCO/PPA, monitoring system, customer branding, or serious digital marketing. The market is open for a premium player.", th: "ไม่มีคู่แข่งรายใดเสนอ ESCO/PPA ระบบ monitoring การสร้าง branding ให้ลูกค้า หรือการตลาดดิจิทัลที่จริงจัง ตลาดเปิดกว้างสำหรับผู้เล่นระดับพรีเมียม"},
+  "חבילות תמחור": {en: "Pricing Packages", th: "แพ็คเกจราคา"},
   "מודל עסקי": {en: "Business Model", th: "รูปแบบธุรกิจ"},
   "מקור 1": {en: "Revenue 1", th: "แหล่งรายได้ 1"},
   "EPC — התקנה": {en: "EPC — Installation", th: "EPC — การติดตั้ง"},
@@ -829,7 +884,7 @@ window.PAGE_TRANSLATIONS = {
   "הטבות מס": {en: "Tax Incentives", th: "สิทธิประโยชน์ทางภาษี"},
   "ניכוי 50% CIT על ציוד סולאר + ฿200K ניכוי לבתים פרטיים.": {en: "50% CIT deduction on solar equipment + ฿200K deduction for private homes.", th: "หักลดหย่อน CIT 50% สำหรับอุปกรณ์โซลาร์ + หักลดหย่อน ฿200K สำหรับที่อยู่อาศัย"},
   "฿6.01-6.85/kWh עבור מערכות עד 1MW. בונוס לדרום תאילנד (קופנגן!).": {en: "฿6.01-6.85/kWh for systems up to 1MW. Bonus for southern Thailand (Koh Phangan!).", th: "฿6.01-6.85/หน่วย สำหรับระบบขนาดไม่เกิน 1MW โบนัสพิเศษสำหรับภาคใต้ของไทย (เกาะพะงัน!)"},
-  "שני מסלולי הכנסה:": {en: "Two revenue streams:", th: "สองช่องทางรายได้:"},
+  "מסלולי הכנסה:": {en: "Revenue streams:", th: "ช่องทางรายได้:"},
   "EPC — התקנה + מכירה (מרווח 60%)": {en: "EPC — Installation + Sale (60% margin)", th: "EPC — ติดตั้ง + ขาย (อัตรากำไร 60%)"},
   "PPA — בעלות + מכירת חשמל (IRR ~45%)": {en: "PPA — Ownership + Electricity Sales (IRR ~45%)", th: "PPA — เป็นเจ้าของ + ขายไฟฟ้า (IRR ~45%)"},
   "O&M — תחזוקה שוטפת (MRR)": {en: "O&M — Ongoing Maintenance (MRR)", th: "O&M — บำรุงรักษาต่อเนื่อง (MRR)"},

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KP Solar Atlas — Koh Phangan Drone Survey Map</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.css" />
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -32,7 +33,7 @@ select:focus { border-color:#E8A820; outline:none; }
 .leg-dot { width:12px; height:12px; border-radius:50%; }
 
 /* Map */
-#map { height:calc(100vh - 120px); width:100%; }
+#map { height:calc(100vh - 170px - 44px); width:100%; }
 
 /* Popup */
 .roof-popup { min-width:300px; }
@@ -62,6 +63,90 @@ select:focus { border-color:#E8A820; outline:none; }
 .phase-planning { background:rgba(232,168,32,0.2); color:#E8A820; }
 .phase-scanning { background:rgba(26,122,90,0.2); color:#1A7A5A; }
 .phase-complete { background:rgba(26,122,90,0.4); color:#1A7A5A; }
+
+/* Action buttons toolbar */
+.action-bar { background:#0D2137; padding:8px 24px; display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid rgba(255,255,255,0.1); position:relative; z-index:1000; }
+.action-btn { background:#1a3a5c; border:1px solid rgba(255,255,255,0.2); color:#fff; padding:6px 14px; border-radius:6px; font-size:12px; cursor:pointer; transition:all 0.2s; font-family:'Inter',sans-serif; }
+.action-btn:hover { background:#E8A820; color:#0D2137; border-color:#E8A820; }
+.action-btn.active { background:#E8A820; color:#0D2137; border-color:#E8A820; font-weight:600; }
+.action-btn.danger { border-color:#E85D3A; }
+.action-btn.danger:hover { background:#E85D3A; }
+.action-sep { width:1px; background:rgba(255,255,255,0.15); margin:0 4px; }
+
+/* Comparison panel */
+.compare-panel { position:fixed; bottom:0; left:0; right:0; background:rgba(13,33,55,0.97); border-top:2px solid #E8A820; z-index:2000; padding:16px 24px; display:none; max-height:260px; overflow-y:auto; }
+.compare-panel.visible { display:block; }
+.compare-panel h4 { color:#E8A820; margin-bottom:12px; font-size:14px; display:flex; justify-content:space-between; align-items:center; }
+.compare-grid { display:flex; gap:16px; overflow-x:auto; }
+.compare-card { background:#1a3a5c; border-radius:8px; padding:12px 16px; min-width:200px; flex-shrink:0; border:1px solid rgba(255,255,255,0.1); }
+.compare-card h5 { color:#E8A820; font-size:13px; margin-bottom:8px; }
+.compare-card .cmp-row { display:flex; justify-content:space-between; font-size:12px; padding:3px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.compare-card .cmp-label { opacity:0.6; }
+.compare-card .cmp-val { font-weight:600; }
+
+/* Route planner */
+.route-panel { position:fixed; top:140px; right:20px; background:rgba(13,33,55,0.97); border:1px solid rgba(232,168,32,0.3); border-radius:10px; z-index:1500; padding:16px; width:280px; display:none; }
+.route-panel.visible { display:block; }
+.route-panel h4 { color:#E8A820; margin-bottom:10px; font-size:14px; }
+.route-stop { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:12px; border-bottom:1px solid rgba(255,255,255,0.05); }
+.route-num { background:#E8A820; color:#0D2137; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:11px; flex-shrink:0; }
+.route-total { margin-top:10px; padding-top:10px; border-top:1px solid rgba(232,168,32,0.3); font-size:13px; }
+.route-total span { color:#E8A820; font-weight:700; }
+.gmaps-btn { display:block; text-align:center; background:#1A7A5A; color:#fff; padding:8px; border-radius:6px; text-decoration:none; font-weight:600; font-size:12px; margin-top:10px; }
+.gmaps-btn:hover { background:#15634a; }
+
+/* Stats sidebar */
+.stats-sidebar { position:fixed; top:0; right:-380px; width:380px; height:100vh; background:rgba(13,33,55,0.98); border-left:2px solid #E8A820; z-index:3000; padding:20px; overflow-y:auto; transition:right 0.3s ease; }
+.stats-sidebar.visible { right:0; }
+.stats-sidebar h3 { color:#E8A820; font-size:16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; }
+.stats-sidebar .close-btn { background:none; border:none; color:#fff; font-size:20px; cursor:pointer; opacity:0.6; }
+.stats-sidebar .close-btn:hover { opacity:1; }
+.stat-section { margin-bottom:20px; }
+.stat-section h4 { font-size:13px; color:#E8A820; margin-bottom:8px; text-transform:uppercase; letter-spacing:1px; }
+.bar-chart { display:flex; flex-direction:column; gap:6px; }
+.bar-row { display:flex; align-items:center; gap:8px; font-size:12px; }
+.bar-label { width:80px; text-align:right; opacity:0.7; flex-shrink:0; }
+.bar-track { flex:1; height:18px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden; position:relative; }
+.bar-fill { height:100%; border-radius:4px; transition:width 0.5s ease; display:flex; align-items:center; padding-left:6px; font-size:10px; font-weight:600; }
+.bar-count { margin-left:8px; font-size:11px; opacity:0.6; width:30px; }
+.pie-chart-container { display:flex; align-items:center; gap:16px; margin:8px 0; }
+.pie-chart { width:100px; height:100px; border-radius:50%; position:relative; }
+.pie-legend { font-size:12px; }
+.pie-legend-item { display:flex; align-items:center; gap:6px; margin-bottom:4px; }
+.pie-legend-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.summary-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.summary-card { background:#1a3a5c; border-radius:6px; padding:10px; text-align:center; }
+.summary-card .sv { font-size:18px; font-weight:800; color:#E8A820; }
+.summary-card .sl { font-size:10px; opacity:0.6; text-transform:uppercase; margin-top:2px; }
+.top-list { list-style:none; }
+.top-list li { display:flex; justify-content:space-between; padding:5px 0; font-size:12px; border-bottom:1px solid rgba(255,255,255,0.05); }
+.top-list li .tl-rank { color:#E8A820; font-weight:700; width:20px; }
+.top-list li .tl-name { flex:1; }
+.top-list li .tl-val { font-weight:600; color:#1A7A5A; }
+
+/* Timeline slider */
+.timeline-bar { background:#0D2137; padding:12px 24px; border-top:1px solid rgba(255,255,255,0.1); position:fixed; bottom:0; left:0; right:0; z-index:1000; display:flex; align-items:center; gap:16px; }
+.timeline-bar.hidden-by-compare { bottom:260px; }
+.timeline-label { font-size:12px; font-weight:600; color:#E8A820; white-space:nowrap; }
+.timeline-track { flex:1; position:relative; }
+.timeline-track input[type="range"] { width:100%; -webkit-appearance:none; appearance:none; height:6px; background:linear-gradient(to right, #E8A820 0%, #1a3a5c 0%); border-radius:3px; outline:none; border:none; padding:0; }
+.timeline-track input[type="range"]::-webkit-slider-thumb { -webkit-appearance:none; width:18px; height:18px; background:#E8A820; border-radius:50%; cursor:pointer; border:2px solid #0D2137; }
+.timeline-phases { display:flex; justify-content:space-between; margin-top:4px; }
+.timeline-phases span { font-size:10px; opacity:0.5; cursor:pointer; transition:all 0.2s; }
+.timeline-phases span.active { opacity:1; color:#E8A820; font-weight:600; }
+
+/* Leaflet draw overrides */
+.leaflet-draw-toolbar a { background-color:#1a3a5c !important; }
+
+/* Print styles */
+@media print {
+  .header, .controls, .action-bar, .info-panel, .compare-panel, .route-panel, .stats-sidebar, .timeline-bar { display:none !important; }
+  #map { height:100vh !important; }
+  body { background:#fff; }
+}
+
+/* Route number markers */
+.route-number-icon { background:#E8A820; color:#0D2137; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px; border:2px solid #fff; box-shadow:0 2px 6px rgba(0,0,0,0.5); }
 </style>
 </head>
 <body>
@@ -132,7 +217,82 @@ select:focus { border-color:#E8A820; outline:none; }
   </div>
 </div>
 
+<div class="action-bar">
+  <button class="action-btn" id="btn-draw" title="Draw roof polygon on map">✏️ Draw Roof</button>
+  <div class="action-sep"></div>
+  <button class="action-btn" id="btn-export-csv" title="Export visible roofs as CSV">📄 Export CSV</button>
+  <button class="action-btn" id="btn-export-geojson" title="Export roof markers as GeoJSON">🗺️ Export GeoJSON</button>
+  <button class="action-btn" id="btn-print" title="Print clean report">🖨️ Print Report</button>
+  <div class="action-sep"></div>
+  <button class="action-btn" id="btn-compare" title="Compare 2-3 roofs side by side">⚖️ Compare</button>
+  <button class="action-btn" id="btn-route" title="Plan a sales route between roofs">🚗 Plan Route</button>
+  <div class="action-sep"></div>
+  <button class="action-btn" id="btn-stats" title="Open statistics panel">📊 Stats</button>
+</div>
+
 <div id="map"></div>
+
+<!-- Comparison Panel -->
+<div class="compare-panel" id="compare-panel">
+  <h4>
+    <span>⚖️ Roof Comparison</span>
+    <button class="action-btn danger" id="btn-clear-compare" style="font-size:11px; padding:4px 10px;">Clear</button>
+  </h4>
+  <div class="compare-grid" id="compare-grid"></div>
+</div>
+
+<!-- Route Planner Panel -->
+<div class="route-panel" id="route-panel">
+  <h4>🚗 Route Planner</h4>
+  <div id="route-stops"></div>
+  <div class="route-total" id="route-total" style="display:none;">
+    Total distance: <span id="route-distance">0</span> km
+  </div>
+  <a class="gmaps-btn" id="route-gmaps" href="#" target="_blank" style="display:none;">📍 Open in Google Maps</a>
+  <div style="margin-top:8px; display:flex; gap:6px;">
+    <button class="action-btn danger" id="btn-clear-route" style="flex:1; font-size:11px;">Clear Route</button>
+  </div>
+  <p style="font-size:10px; opacity:0.5; margin-top:8px;">Click roofs on the map to add stops.</p>
+</div>
+
+<!-- Stats Sidebar -->
+<div class="stats-sidebar" id="stats-sidebar">
+  <h3>
+    <span>📊 Solar Atlas Statistics</span>
+    <button class="close-btn" id="btn-close-stats">✕</button>
+  </h3>
+  <div class="summary-grid" id="stats-summary"></div>
+  <div class="stat-section" style="margin-top:16px;">
+    <h4>Roofs by Zone</h4>
+    <div class="bar-chart" id="stats-zone-bars"></div>
+  </div>
+  <div class="stat-section">
+    <h4>Roof Type Distribution</h4>
+    <div class="pie-chart-container">
+      <canvas id="pie-canvas" width="100" height="100"></canvas>
+      <div class="pie-legend" id="pie-legend"></div>
+    </div>
+  </div>
+  <div class="stat-section">
+    <h4>Top 10 Highest Potential</h4>
+    <ol class="top-list" id="top-list"></ol>
+  </div>
+</div>
+
+<!-- Timeline Slider -->
+<div class="timeline-bar" id="timeline-bar">
+  <div class="timeline-label">Scan Progress</div>
+  <div class="timeline-track">
+    <input type="range" id="timeline-slider" min="0" max="4" value="0" step="1">
+    <div class="timeline-phases">
+      <span class="active" data-phase="0">Planning</span>
+      <span data-phase="1">Phase 1</span>
+      <span data-phase="2">Phase 2</span>
+      <span data-phase="3">Phase 3</span>
+      <span data-phase="4">Complete</span>
+    </div>
+  </div>
+</div>
 
 <div class="info-panel">
   <h4>🛸 KP Solar Atlas</h4>
@@ -147,6 +307,7 @@ select:focus { border-color:#E8A820; outline:none; }
 </div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw@1.0.4/dist/leaflet.draw.js"></script>
 <script>
 // Koh Phangan center
 var map = L.map('map', {
@@ -369,6 +530,439 @@ L.polygon([
   className: 'zone-label',
   direction: 'center'
 });
+
+// =============================================
+// FEATURE 1: ROOF POLYGON DRAWING
+// =============================================
+var drawnItems = new L.FeatureGroup();
+map.addLayer(drawnItems);
+
+var drawControl = new L.Control.Draw({
+  draw: {
+    polygon: { shapeOptions: { color: '#E8A820', weight: 3, fillOpacity: 0.3 } },
+    polyline: false, rectangle: false, circle: false, circlemarker: false, marker: false
+  },
+  edit: { featureGroup: drawnItems }
+});
+
+var drawActive = false;
+document.getElementById('btn-draw').addEventListener('click', function() {
+  drawActive = !drawActive;
+  this.classList.toggle('active', drawActive);
+  if (drawActive) {
+    map.addControl(drawControl);
+  } else {
+    map.removeControl(drawControl);
+  }
+});
+
+map.on(L.Draw.Event.CREATED, function(e) {
+  var layer = e.layer;
+  drawnItems.addLayer(layer);
+  var latlngs = layer.getLatLngs()[0];
+  var areaSqM = L.GeometryUtil ? L.GeometryUtil.geodesicArea(latlngs) : turf_area(latlngs);
+  // Approximate area calc if GeometryUtil not available
+  if (!L.GeometryUtil) {
+    areaSqM = computePolygonArea(latlngs);
+  }
+  var s = calcSolar(areaSqM);
+  layer.bindPopup(
+    '<div class="roof-popup">' +
+    '<h3>Custom Roof Drawing</h3>' +
+    '<div style="font-size:11px;color:#888;margin-bottom:6px;">Drawn area: ' + Math.round(areaSqM) + ' m²</div>' +
+    '<div class="specs">' +
+      '<div><div class="spec-label">System Size</div><div class="spec-val">' + s.kwp + ' kWp</div></div>' +
+      '<div><div class="spec-label">Panels</div><div class="spec-val">' + s.panels + ' panels</div></div>' +
+      '<div><div class="spec-label">Annual Output</div><div class="spec-val">' + s.annual_kwh.toLocaleString() + ' kWh</div></div>' +
+      '<div><div class="spec-label">Monthly Savings</div><div class="spec-val">฿' + s.monthly_savings.toLocaleString() + '</div></div>' +
+      '<div><div class="spec-label">EPC Cost</div><div class="spec-val">฿' + s.epc_cost.toLocaleString() + '</div></div>' +
+      '<div><div class="spec-label">Payback</div><div class="spec-val">' + s.payback + ' yrs</div></div>' +
+    '</div></div>', { maxWidth: 300 }
+  ).openPopup();
+});
+
+function computePolygonArea(latlngs) {
+  // Shoelace formula with lat/lng → approximate m²
+  var n = latlngs.length;
+  var area = 0;
+  for (var i = 0; i < n; i++) {
+    var j = (i + 1) % n;
+    var xi = latlngs[i].lng * 111320 * Math.cos(latlngs[i].lat * Math.PI / 180);
+    var yi = latlngs[i].lat * 110540;
+    var xj = latlngs[j].lng * 111320 * Math.cos(latlngs[j].lat * Math.PI / 180);
+    var yj = latlngs[j].lat * 110540;
+    area += xi * yj - xj * yi;
+  }
+  return Math.abs(area / 2);
+}
+
+// =============================================
+// FEATURE 2: EXPORT FEATURES
+// =============================================
+function getVisibleRoofs() {
+  return markers.filter(function(m) {
+    var style = m.marker.options;
+    return style.fillOpacity > 0.5;
+  });
+}
+
+document.getElementById('btn-export-csv').addEventListener('click', function() {
+  var visible = getVisibleRoofs();
+  var csv = 'Name,Zone,Roof Type,Area (m²),kWp,Annual kWh,Monthly Savings (฿),EPC Cost (฿),Payback (yrs),Owner,Lat,Lng\n';
+  visible.forEach(function(m) {
+    csv += '"' + m.data.name + '",' + m.data.zone + ',' + m.data.type + ',' + m.data.area + ',' +
+      m.solar.kwp + ',' + m.solar.annual_kwh + ',' + m.solar.monthly_savings + ',' +
+      m.solar.epc_cost + ',' + m.solar.payback + ',"' + m.data.owner + '",' +
+      m.data.lat + ',' + m.data.lng + '\n';
+  });
+  downloadFile('kp-solar-atlas-roofs.csv', csv, 'text/csv');
+});
+
+document.getElementById('btn-export-geojson').addEventListener('click', function() {
+  var visible = getVisibleRoofs();
+  var geojson = {
+    type: 'FeatureCollection',
+    features: visible.map(function(m) {
+      return {
+        type: 'Feature',
+        geometry: { type: 'Point', coordinates: [m.data.lng, m.data.lat] },
+        properties: {
+          name: m.data.name, zone: m.data.zone, roofType: m.data.type,
+          area_m2: m.data.area, kwp: m.solar.kwp, annual_kwh: m.solar.annual_kwh,
+          epc_cost: m.solar.epc_cost, payback_years: m.solar.payback, owner: m.data.owner
+        }
+      };
+    })
+  };
+  downloadFile('kp-solar-atlas.geojson', JSON.stringify(geojson, null, 2), 'application/json');
+});
+
+document.getElementById('btn-print').addEventListener('click', function() {
+  window.print();
+});
+
+function downloadFile(filename, content, type) {
+  var blob = new Blob([content], { type: type });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// =============================================
+// FEATURE 3: COMPARISON MODE
+// =============================================
+var compareMode = false;
+var compareList = [];
+var comparePanel = document.getElementById('compare-panel');
+var compareGrid = document.getElementById('compare-grid');
+
+document.getElementById('btn-compare').addEventListener('click', function() {
+  compareMode = !compareMode;
+  this.classList.toggle('active', compareMode);
+  if (!compareMode) {
+    comparePanel.classList.remove('visible');
+    document.getElementById('timeline-bar').classList.remove('hidden-by-compare');
+  }
+});
+
+document.getElementById('btn-clear-compare').addEventListener('click', function() {
+  compareList = [];
+  compareGrid.innerHTML = '';
+  comparePanel.classList.remove('visible');
+  document.getElementById('timeline-bar').classList.remove('hidden-by-compare');
+});
+
+function addToCompare(markerData) {
+  if (compareList.length >= 3) return;
+  if (compareList.find(function(c) { return c.data.name === markerData.data.name; })) return;
+  compareList.push(markerData);
+  renderCompare();
+}
+
+function renderCompare() {
+  compareGrid.innerHTML = '';
+  if (compareList.length === 0) {
+    comparePanel.classList.remove('visible');
+    document.getElementById('timeline-bar').classList.remove('hidden-by-compare');
+    return;
+  }
+  comparePanel.classList.add('visible');
+  document.getElementById('timeline-bar').classList.add('hidden-by-compare');
+  compareList.forEach(function(m) {
+    var card = document.createElement('div');
+    card.className = 'compare-card';
+    card.innerHTML =
+      '<h5>' + m.data.name + '</h5>' +
+      '<div class="cmp-row"><span class="cmp-label">Zone</span><span class="cmp-val">' + m.data.zone + '</span></div>' +
+      '<div class="cmp-row"><span class="cmp-label">Area</span><span class="cmp-val">' + m.data.area + ' m²</span></div>' +
+      '<div class="cmp-row"><span class="cmp-label">kWp</span><span class="cmp-val">' + m.solar.kwp + '</span></div>' +
+      '<div class="cmp-row"><span class="cmp-label">Annual Savings</span><span class="cmp-val">฿' + m.solar.annual_savings.toLocaleString() + '</span></div>' +
+      '<div class="cmp-row"><span class="cmp-label">Payback</span><span class="cmp-val">' + m.solar.payback + ' yrs</span></div>' +
+      '<div class="cmp-row"><span class="cmp-label">EPC Cost</span><span class="cmp-val">฿' + m.solar.epc_cost.toLocaleString() + '</span></div>';
+    compareGrid.appendChild(card);
+  });
+}
+
+// =============================================
+// FEATURE 4: ROUTE PLANNER
+// =============================================
+var routeMode = false;
+var routeStops = [];
+var routeMarkers = [];
+var routePolyline = null;
+var routePanel = document.getElementById('route-panel');
+
+document.getElementById('btn-route').addEventListener('click', function() {
+  routeMode = !routeMode;
+  this.classList.toggle('active', routeMode);
+  routePanel.classList.toggle('visible', routeMode);
+  if (!routeMode) clearRoute();
+});
+
+document.getElementById('btn-clear-route').addEventListener('click', function() {
+  clearRoute();
+  routePanel.classList.add('visible');
+});
+
+function clearRoute() {
+  routeStops = [];
+  routeMarkers.forEach(function(m) { map.removeLayer(m); });
+  routeMarkers = [];
+  if (routePolyline) { map.removeLayer(routePolyline); routePolyline = null; }
+  document.getElementById('route-stops').innerHTML = '';
+  document.getElementById('route-total').style.display = 'none';
+  document.getElementById('route-gmaps').style.display = 'none';
+}
+
+function addToRoute(markerData) {
+  routeStops.push(markerData);
+  renderRoute();
+}
+
+function renderRoute() {
+  var stopsEl = document.getElementById('route-stops');
+  stopsEl.innerHTML = '';
+  
+  // Remove old route markers
+  routeMarkers.forEach(function(m) { map.removeLayer(m); });
+  routeMarkers = [];
+  if (routePolyline) { map.removeLayer(routePolyline); routePolyline = null; }
+  
+  var latlngs = [];
+  routeStops.forEach(function(s, i) {
+    var stop = document.createElement('div');
+    stop.className = 'route-stop';
+    stop.innerHTML = '<div class="route-num">' + (i + 1) + '</div><span>' + s.data.name + ' (' + s.solar.kwp + ' kWp)</span>';
+    stopsEl.appendChild(stop);
+    
+    // Numbered marker on map
+    var icon = L.divIcon({
+      className: '',
+      html: '<div class="route-number-icon">' + (i + 1) + '</div>',
+      iconSize: [26, 26],
+      iconAnchor: [13, 13]
+    });
+    var rm = L.marker([s.data.lat, s.data.lng], { icon: icon, zIndexOffset: 2000 }).addTo(map);
+    routeMarkers.push(rm);
+    latlngs.push([s.data.lat, s.data.lng]);
+  });
+  
+  // Draw polyline
+  if (latlngs.length > 1) {
+    routePolyline = L.polyline(latlngs, { color: '#E8A820', weight: 3, dashArray: '8,6', opacity: 0.8 }).addTo(map);
+    
+    // Total distance
+    var totalDist = 0;
+    for (var i = 1; i < latlngs.length; i++) {
+      totalDist += map.distance(L.latLng(latlngs[i - 1]), L.latLng(latlngs[i]));
+    }
+    document.getElementById('route-distance').textContent = (totalDist / 1000).toFixed(1);
+    document.getElementById('route-total').style.display = 'block';
+    
+    // Google Maps link
+    var origin = latlngs[0][0] + ',' + latlngs[0][1];
+    var dest = latlngs[latlngs.length - 1][0] + ',' + latlngs[latlngs.length - 1][1];
+    var waypoints = latlngs.slice(1, -1).map(function(ll) { return ll[0] + ',' + ll[1]; }).join('|');
+    var gmUrl = 'https://www.google.com/maps/dir/?api=1&origin=' + origin + '&destination=' + dest;
+    if (waypoints) gmUrl += '&waypoints=' + waypoints;
+    gmUrl += '&travelmode=driving';
+    document.getElementById('route-gmaps').href = gmUrl;
+    document.getElementById('route-gmaps').style.display = 'block';
+  }
+}
+
+// =============================================
+// MARKER CLICK HANDLER (for compare + route)
+// =============================================
+markers.forEach(function(m) {
+  m.marker.on('click', function() {
+    if (compareMode) {
+      addToCompare(m);
+    }
+    if (routeMode) {
+      addToRoute(m);
+    }
+  });
+});
+
+// =============================================
+// FEATURE 5: STATISTICS PANEL
+// =============================================
+var statsSidebar = document.getElementById('stats-sidebar');
+
+document.getElementById('btn-stats').addEventListener('click', function() {
+  statsSidebar.classList.add('visible');
+  renderStats();
+});
+
+document.getElementById('btn-close-stats').addEventListener('click', function() {
+  statsSidebar.classList.remove('visible');
+});
+
+function renderStats() {
+  // Summary cards
+  var totalRoofs = markers.length;
+  var totalKwpAll = markers.reduce(function(s, m) { return s + m.solar.kwp; }, 0);
+  var totalValueAll = markers.reduce(function(s, m) { return s + m.solar.epc_cost; }, 0);
+  var avgKwp = totalKwpAll / totalRoofs;
+  
+  document.getElementById('stats-summary').innerHTML =
+    '<div class="summary-card"><div class="sv">' + totalRoofs + '</div><div class="sl">Total Roofs</div></div>' +
+    '<div class="summary-card"><div class="sv">' + avgKwp.toFixed(1) + '</div><div class="sl">Avg kWp</div></div>' +
+    '<div class="summary-card"><div class="sv">' + (totalKwpAll / 1000).toFixed(2) + '</div><div class="sl">Total MWp</div></div>' +
+    '<div class="summary-card"><div class="sv">฿' + (totalValueAll / 1000000).toFixed(1) + 'M</div><div class="sl">Total Value</div></div>';
+  
+  // Zone bar chart
+  var zoneCounts = {};
+  zones.forEach(function(z) { zoneCounts[z.id] = { name: z.name, count: 0, color: z.color }; });
+  markers.forEach(function(m) { if (zoneCounts[m.data.zone]) zoneCounts[m.data.zone].count++; });
+  var maxCount = Math.max.apply(null, Object.values(zoneCounts).map(function(z) { return z.count; }));
+  
+  var barsHtml = '';
+  Object.keys(zoneCounts).forEach(function(zid) {
+    var z = zoneCounts[zid];
+    var pct = maxCount > 0 ? (z.count / maxCount * 100) : 0;
+    barsHtml += '<div class="bar-row">' +
+      '<span class="bar-label">' + zid + '</span>' +
+      '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%;background:' + z.color + ';">' + z.count + '</div></div>' +
+    '</div>';
+  });
+  document.getElementById('stats-zone-bars').innerHTML = barsHtml;
+  
+  // Pie chart (roof types)
+  var typeCounts = { metal: 0, concrete: 0, tile: 0 };
+  markers.forEach(function(m) { typeCounts[m.data.type]++; });
+  var typeColors = { metal: '#E8A820', concrete: '#1A7A5A', tile: '#E85D3A' };
+  var total = markers.length;
+  
+  var canvas = document.getElementById('pie-canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, 100, 100);
+  var startAngle = -Math.PI / 2;
+  Object.keys(typeCounts).forEach(function(type) {
+    var sliceAngle = (typeCounts[type] / total) * 2 * Math.PI;
+    ctx.beginPath();
+    ctx.moveTo(50, 50);
+    ctx.arc(50, 50, 45, startAngle, startAngle + sliceAngle);
+    ctx.closePath();
+    ctx.fillStyle = typeColors[type];
+    ctx.fill();
+    startAngle += sliceAngle;
+  });
+  
+  var legendHtml = '';
+  Object.keys(typeCounts).forEach(function(type) {
+    var pct = Math.round(typeCounts[type] / total * 100);
+    legendHtml += '<div class="pie-legend-item"><div class="pie-legend-dot" style="background:' + typeColors[type] + '"></div>' +
+      type.charAt(0).toUpperCase() + type.slice(1) + ' (' + typeCounts[type] + ', ' + pct + '%)</div>';
+  });
+  document.getElementById('pie-legend').innerHTML = legendHtml;
+  
+  // Top 10
+  var sorted = markers.slice().sort(function(a, b) { return b.solar.kwp - a.solar.kwp; });
+  var topHtml = '';
+  sorted.slice(0, 10).forEach(function(m, i) {
+    topHtml += '<li><span class="tl-rank">' + (i + 1) + '.</span><span class="tl-name">' + m.data.name + '</span><span class="tl-val">' + m.solar.kwp + ' kWp</span></li>';
+  });
+  document.getElementById('top-list').innerHTML = topHtml;
+}
+
+// =============================================
+// FEATURE 6: TIMELINE SLIDER
+// =============================================
+var timelineSlider = document.getElementById('timeline-slider');
+var phaseLabels = document.querySelectorAll('.timeline-phases span');
+
+// Zone-to-phase mapping: which zones light up at each phase
+var phaseZones = {
+  0: [],                              // Planning: all dashed
+  1: ['Z1', 'Z2'],                   // Phase 1: main commercial areas
+  2: ['Z1', 'Z2', 'Z3', 'Z6'],      // Phase 2: + Haad Rin, Wok Tum
+  3: ['Z1', 'Z2', 'Z3', 'Z4', 'Z5', 'Z6'], // Phase 3: + Sri Thanu, Chaloklum
+  4: ['Z1', 'Z2', 'Z3', 'Z4', 'Z5', 'Z6', 'Z7', 'Z8'] // Complete: all
+};
+
+// Store zone polygon layers for timeline control
+var zoneLayers = [];
+zones.forEach(function(z, i) {
+  // We need to re-access the polygons. Since they were added inline, let's re-create tracked references
+  // We'll overlay transparent polygons we can control
+  var overlay = L.polygon(z.coords, {
+    color: z.color,
+    weight: 0,
+    fillOpacity: 0,
+    className: 'zone-overlay-' + z.id
+  }).addTo(map);
+  zoneLayers.push({ id: z.id, layer: overlay, color: z.color });
+});
+
+timelineSlider.addEventListener('input', function() {
+  var phase = parseInt(this.value);
+  var activeZones = phaseZones[phase];
+  
+  // Update phase labels
+  phaseLabels.forEach(function(label) {
+    label.classList.toggle('active', parseInt(label.dataset.phase) <= phase);
+  });
+  
+  // Update slider track gradient
+  var pct = (phase / 4) * 100;
+  this.style.background = 'linear-gradient(to right, #E8A820 ' + pct + '%, #1a3a5c ' + pct + '%)';
+  
+  // Light up/dim zone overlays
+  zoneLayers.forEach(function(zl) {
+    if (activeZones.indexOf(zl.id) >= 0) {
+      zl.layer.setStyle({ fillOpacity: 0.15, weight: 2, color: zl.color });
+    } else {
+      zl.layer.setStyle({ fillOpacity: 0, weight: 0 });
+    }
+  });
+  
+  // Update markers visibility by zone
+  markers.forEach(function(m) {
+    if (phase === 0) {
+      // Planning: all markers dimmed
+      m.marker.setStyle({ opacity: 0.3, fillOpacity: 0.2 });
+    } else if (activeZones.indexOf(m.data.zone) >= 0) {
+      m.marker.setStyle({ opacity: 1, fillOpacity: 0.8 });
+    } else {
+      m.marker.setStyle({ opacity: 0.2, fillOpacity: 0.1 });
+    }
+  });
+});
+
+// Phase label click
+phaseLabels.forEach(function(label) {
+  label.addEventListener('click', function() {
+    timelineSlider.value = this.dataset.phase;
+    timelineSlider.dispatchEvent(new Event('input'));
+  });
+});
+
+// Initialize timeline at Planning
+timelineSlider.dispatchEvent(new Event('input'));
 </script>
 </body>
 </html>

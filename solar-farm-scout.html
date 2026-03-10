@@ -145,7 +145,8 @@ body { font-family:'Inter',Arial,sans-serif; background:#0a1929; color:#ccc; }
   <h1>Solar Farm + Storage Scout</h1>
   <span class="badge">Koh Phangan · v3</span>
   <div class="right">
-    <span style="color:rgba(255,255,255,.3);font-size:9px;">☀️ 1,600 kWh/m²/yr avg · 9.7°N</span>
+    <span style="color:rgba(255,255,255,.3);font-size:9px;">☀️ 1,600 kWh/m²/yr · 9.7°N</span>
+    <span style="color:rgba(255,100,0,.6);font-size:9px;margin-left:8px;">⚠️ 33kV lines = estimated along roads · GPS pins = area center, not exact plots</span>
   </div>
 </div>
 
@@ -297,43 +298,57 @@ const sites = [
     id:1, lat:9.7085, lng:100.0280, name:'Ban Tai Coconut Flats', rai:40, gridKm:0.8,
     scores:{terrain:10,size:10,grid:9,road:9,zoning:9,shade:9,flood:7,env:9},
     risks:['Seasonal flooding near coast—verify drainage','Popular tourist area—land competition','May need LAO consent meeting'],
-    notes:'Largest flat coconut plantation strip along Ban Tai coast. Route 4169 road access. South-facing, minimal shading.'
+    notes:'Largest flat coconut plantation strip along Ban Tai coast. Route 4169 road access. South-facing, minimal shading.',
+    listings:'islanders-properties.com/thailand/type-land/for-sale/koh-phangan/baan-tai/',
+    priceRange:'฿3.5M–130M (1–20 rai)', verified:'area ✓ | GPS ~approx | listings ✓'
   },
   {
     id:2, lat:9.7095, lng:99.9965, name:'Thongsala South (nr Substation)', rai:25, gridKm:0.3,
     scores:{terrain:9,size:8,grid:10,road:10,zoning:9,shade:8,flood:7,env:8},
     risks:['Close to town—visual impact concerns','Higher land prices near Thongsala','Underground cabling may be required'],
-    notes:'300m from 115kV substation. Best grid access on island. Flat cleared land south of main town. Near port.'
+    notes:'300m from 115kV substation. Best grid access on island. Flat cleared land south of main town. Near port.',
+    listings:'kpnproperties.com/area/thongsala/',
+    priceRange:'฿1.9M–250M (flat+beachfront)', verified:'area ✓ | GPS ~approx | listings ✓'
   },
   {
     id:3, lat:9.7520, lng:99.9880, name:'Sri Thanu Inland', rai:30, gridKm:1.2,
     scores:{terrain:9,size:9,grid:8,road:8,zoning:9,shade:9,flood:8,env:9},
     risks:['Yoga/wellness community may resist','Slightly further from grid','Check chanot title status'],
-    notes:'Inland from Sri Thanu beach. Coconut plantation plots, flat terrain. Quiet area, less tourist pressure.'
+    notes:'Inland from Sri Thanu beach. Coconut plantation plots, flat terrain. Quiet area, less tourist pressure.',
+    listings:'islanders-properties.com/thailand/type-land/for-sale/koh-phangan/srithanu/',
+    priceRange:'฿2.8M–10M (550sqm–1.7rai)', verified:'area ✓ | GPS ~approx | listings ✓'
   },
   {
     id:4, lat:9.7940, lng:100.0050, name:'Chaloklum Valley', rai:20, gridKm:1.5,
     scores:{terrain:8,size:7,grid:7,road:7,zoning:9,shade:8,flood:9,env:8},
     risks:['Access road narrow in parts','Grid connection costs higher','Fishing village—community relations important'],
-    notes:'Flat valley behind Chaloklum fishing village. Good for agrivoltaic. Lower tourist pressure. Co-op potential.'
+    notes:'Flat valley behind Chaloklum fishing village. Good for agrivoltaic. Lower tourist pressure. Co-op potential.',
+    listings:'immolucky.com/en/property/for-sale-land-chaloklum-koh-phangan/',
+    priceRange:'฿10.5M/rai (2 rai flat beachfront chanote)', verified:'area ✓ | GPS ~approx | listings ✓'
   },
   {
     id:5, lat:9.7150, lng:100.0100, name:'Wok Tum Inland', rai:15, gridKm:0.5,
     scores:{terrain:7,size:6,grid:9,road:9,zoning:8,shade:7,flood:7,env:8},
     risks:['Gentle slope needs grading','Smaller parcel limits scale','Partial afternoon shading from hills'],
-    notes:'Between Thongsala and Ban Tai. Near main road, good grid access. May combine with adjacent parcels.'
+    notes:'Between Thongsala and Ban Tai. Near main road, good grid access. May combine with adjacent parcels.',
+    listings:'conradproperties.asia/index.php/properties/land-for-sale-koh-phangan-wok-tum',
+    priceRange:'฿1.95M–12.68M (496sqm–2,740sqm)', verified:'area ✓ | GPS ~approx | listings ✓'
   },
   {
     id:6, lat:9.6980, lng:100.0400, name:'Ban Khai South', rai:18, gridKm:2.0,
     scores:{terrain:7,size:7,grid:6,road:6,zoning:8,shade:7,flood:8,env:7},
     risks:['Steep access road','Furthest from grid—high connection cost','Rubber plantation—landowner negotiation needed'],
-    notes:'Rubber plantation inland from south coast. Lower land cost. Storage important here (far from grid).'
+    notes:'Rubber plantation inland from south coast. Lower land cost. Storage important here (far from grid).',
+    listings:'hipflat.com/land-for-sale/surat-thani/ko-phangan',
+    priceRange:'฿2M–8M (est.)', verified:'area ✓ | GPS ~approx | listings ~indirect'
   },
   {
     id:7, lat:9.7600, lng:99.9870, name:'Hin Kong Elevated', rai:12, gridKm:1.0,
     scores:{terrain:8,size:5,grid:8,road:8,zoning:8,shade:10,flood:9,env:8},
     risks:['Smallest site—limited to ~1.5 MWp','Elevated—wind exposure for panels','May need retaining walls'],
-    notes:'Elevated flat plateau above Hin Kong beach. Best sun exposure (no shading, south-facing). Natural wind cooling.'
+    notes:'Elevated flat plateau above Hin Kong beach. Best sun exposure (no shading, south-facing). Natural wind cooling.',
+    listings:'islanders-properties.com/realty/land-for-sale-hin-kong-koh-phangan-1-rai-8082',
+    priceRange:'฿5.5M–8.6M (0.5–1 rai)', verified:'area ✓ | GPS ~approx | listings ✓'
   },
 ];
 
@@ -444,7 +459,8 @@ const dist33 = [
   [[9.712,100.022],[9.720,100.030],[9.730,100.038],[9.740,100.043],[9.750,100.045],[9.760,100.043],[9.770,100.038],[9.780,100.030],[9.790,100.018],[9.798,100.008]]
 ];
 dist33.forEach(c => {
-  L.polyline(c, { color:'#ff6600', weight:3, opacity:0.65, dashArray:'8,5' }).addTo(powerGroup);
+  L.polyline(c, { color:'#ff6600', weight:3, opacity:0.65, dashArray:'8,5' }).addTo(powerGroup)
+    .bindPopup('<b>33kV Distribution (ESTIMATED)</b><br>Route estimated along main roads<br>Not mapped in OSM · Verify with PEA');
   c.forEach(p => grid33kVPoints.push(p));
 });
 
@@ -601,6 +617,11 @@ function showDetail(s) {
     5. 🏛️ LAO consent application<br>
     6. 📊 Full feasibility study<br>
     7. 💼 Present to investor / TM Developers`;
+
+  // Listings link
+  if (s.listings) {
+    document.getElementById('dNextSteps').innerHTML += `<br><br>🔗 <a href="https://${s.listings}" target="_blank" style="color:#E8A820;">${s.listings.split('/')[0]}</a><br>💰 Price range: ${s.priceRange||'—'}<br>✅ ${s.verified||''}`;
+  }
 }
 
 function hideDetail() {

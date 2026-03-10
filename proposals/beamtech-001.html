@@ -32,6 +32,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', -apple-system, sans-serif;
@@ -792,6 +793,9 @@ section { padding: 72px 0; }
   .cta-steps { flex-direction: column; gap: 12px; }
   .footer-contacts { flex-direction: column; gap: 8px; }
   .savings-numbers { grid-template-columns: 1fr; }
+  .savings-cards { grid-template-columns: 1fr 1fr !important; }
+  .option-select { flex-direction: column; }
+  .signature-block { grid-template-columns: 1fr !important; }
 }
 
 /* ── AGREEMENT SECTION ── */
@@ -995,6 +999,21 @@ section { padding: 72px 0; }
   border-top: 1px solid var(--border);
 }
 
+/* ── LANGUAGE SWITCHER ACTIVE STATE ── */
+.lang-active {
+  background: var(--gold) !important;
+  color: var(--navy) !important;
+}
+
+/* ── SMOOTH TRANSITIONS ON ALL INTERACTIVE ELEMENTS ── */
+.detail-card, .spec-card, .savings-card, .tl-step {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.detail-card:hover, .spec-card:hover, .savings-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 /* ── PRINT ── */
 @media print {
   .nav, .floating-wa, .nav-cta { display: none !important; }
@@ -1048,7 +1067,7 @@ section { padding: 72px 0; }
     <div class="hero-badge">SOLAR ENERGY PROPOSAL · ข้อเสนอพลังงานแสงอาทิตย์</div>
 
     <h1>Solar Power for<br><em>Beamtech Residences</em></h1>
-    <p class="hero-subtitle">Complete 32.5 kWp rooftop solar system for 2 buildings, 24 units — Koh Phangan, Surat Thani. 150% DC:AC ratio maximizes roof utilization — your panels produce more power than the inverters' rated capacity, capturing every ray of sunlight. Electricity provided by PEA (Provincial Electricity Authority — การไฟฟ้าส่วนภูมิภาค).<br><span style="color:rgba(255,255,255,.35);">ระบบโซลาร์เซลล์บนหลังคา 32.5 กิโลวัตต์ สำหรับ 2 อาคาร 24 ยูนิต — อัตราส่วน DC:AC 150% ใช้พื้นที่หลังคาอย่างเต็มประสิทธิภาพ — เกาะพะงัน สุราษฎร์ธานี</span></p>
+    <p class="hero-subtitle">Complete 32.5 kWp rooftop solar system for 2 residential buildings, 24 units — Koh Phangan, Surat Thani<br><span style="color:rgba(255,255,255,.35);">ระบบโซลาร์เซลล์ 32.5 kWp บนหลังคา 2 อาคาร 24 ยูนิต — เกาะพะงัน สุราษฎร์ธานี</span></p>
 
     <div class="hero-stats">
       <div class="hero-stat">
@@ -1162,6 +1181,10 @@ section { padding: 72px 0; }
         <div class="option-name">Option B: PPA</div>
         <div class="option-desc">Zero upfront — we install, you save / ไม่ต้องจ่ายล่วงหน้า</div>
         <div class="option-price">฿0 Upfront<span class="option-price-note">pay only ฿4.50/kWh (25% less than PEA)</span></div>
+        <div style="margin-top:8px;padding:8px 12px;background:rgba(26,122,90,.06);border-left:3px solid var(--green);border-radius:0 8px 8px 0;font-size:11px;color:var(--text-secondary);line-height:1.6;">
+          <strong style="color:var(--navy);">What is PPA?</strong> We install solar on your roof at zero cost. You simply buy the electricity it produces at ฿4.50/kWh — 25% cheaper than PEA's ฿6/kWh rate.<br>
+          <span class="th">PPA คืออะไร? เราติดตั้งโซลาร์ฟรี คุณเพียงซื้อไฟฟ้าที่ผลิตได้ในราคา ฿4.50/kWh — ถูกกว่า PEA 25%</span>
+        </div>
         <div style="margin-top:12px;padding:10px 14px;background:var(--gold-soft);border-radius:8px;font-size:12px;color:var(--text-secondary);line-height:1.6;">
           <strong style="color:var(--navy);">Payment Terms / เงื่อนไขการชำระ:</strong><br>
           ฿0 deposit — monthly billing starts after commissioning
@@ -1182,10 +1205,11 @@ section { padding: 72px 0; }
         </div>
         <div style="margin-top:12px;padding:12px 14px;background:rgba(0,0,0,.03);border-radius:8px;font-size:11px;color:var(--text-secondary);line-height:1.7;">
           <strong style="color:var(--navy);font-size:12px;">PPA Details / รายละเอียด PPA:</strong><br>
-          • Total cost over 20 years: ~฿3.94M (฿4.50 × 43,800 kWh × 20 yrs)<br>
+          • Estimated total over 20 years: ~฿3.94M at current rate*<br>
           • System ownership: TM Energy owns during contract<br>
           • After 20 years: buy at residual value or renew at lower rate<br>
-          • Building sale: PPA agreement transfers to new owner
+          • Building sale: PPA agreement transfers to new owner<br>
+          <span style="font-size:10px;opacity:.7;">*Rate subject to 2% annual adjustment per T&C. PEA rates typically increase faster.</span>
         </div>
       </div>
 
@@ -1211,7 +1235,7 @@ section { padding: 72px 0; }
         <div class="option-bottom green">
           <div class="option-bottom-label">Annual Savings / ประหยัดต่อปี</div>
           <div class="option-bottom-value green-text">฿316,300</div>
-          <div class="option-bottom-sub">Payback: <strong>5.1 years</strong> / คืนทุน 5.2 ปี</div>
+          <div class="option-bottom-sub">Payback: <strong>5.1 years</strong> / คืนทุน 5.1 ปี</div>
         </div>
       </div>
 
@@ -1254,7 +1278,7 @@ section { padding: 72px 0; }
           <tr style="border-bottom:1px solid var(--border);">
             <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);">Annual Savings<br><span class="th">ประหยัดต่อปี</span></td>
             <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);">฿262,800</td>
-            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);background:var(--gold-soft);">฿65,700</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);background:var(--gold-soft);">฿65,700<br><span style="font-size:10px;font-weight:400;color:var(--text-secondary);">vs PEA rate</span></td>
             <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);">฿316,300</td>
           </tr>
           <tr style="border-bottom:1px solid var(--border);">
@@ -1274,6 +1298,12 @@ section { padding: 72px 0; }
             <td style="padding:14px 20px;text-align:center;font-weight:700;">4.0 years</td>
             <td style="padding:14px 20px;text-align:center;font-weight:700;background:var(--gold-soft);">Immediate</td>
             <td style="padding:14px 20px;text-align:center;font-weight:700;">5.1 years</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);">Blackout Protection<br><span class="th">ป้องกันไฟดับ</span></td>
+            <td style="padding:14px 20px;text-align:center;">❌ Daytime only</td>
+            <td style="padding:14px 20px;text-align:center;background:var(--gold-soft);">❌ Daytime only</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);">✅ 8-10 hours</td>
           </tr>
           <tr>
             <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);">Ownership<br><span class="th">กรรมสิทธิ์</span></td>
@@ -1315,6 +1345,7 @@ section { padding: 72px 0; }
           <div class="spec-item"><span class="spec-label">Features</span><span class="spec-val">IP66 outdoor · 4 MPPT trackers</span></div>
           <div class="spec-item"><span class="spec-label">Monitoring</span><span class="spec-val">Huawei FusionSolar App</span></div>
           <div class="spec-item"><span class="spec-label">Warranty</span><span class="spec-val">10 years</span></div>
+          <div class="spec-item"><span class="spec-label">DC:AC Ratio</span><span class="spec-val">150% — maximizes roof utilization</span></div>
         </div>
       </div>
       <div>
@@ -1346,21 +1377,22 @@ section { padding: 72px 0; }
     <div class="savings-visual">
       <div class="savings-comparison">
         <div class="savings-bar-group">
-          <h4>Solar System Production Value (annual) / มูลค่าไฟฟ้าที่ผลิตได้ต่อปี</h4>
-          <div class="savings-bar" style="background:linear-gradient(90deg,var(--green),#2ecc71);width:100%;">฿262,800/year saved</div>
+          <h4>Without Solar — Annual Electricity Cost / ค่าไฟรายปีโดยไม่มีโซลาร์</h4>
+          <div class="savings-bar bar-pea">฿262,800+/year to PEA</div>
         </div>
-        <div style="margin-top:8px;font-size:12px;color:var(--text-secondary);line-height:1.7;">
+        <div class="savings-bar-group" style="margin-top:16px;">
+          <h4>With Solar (EPC) — Your New Cost / ค่าไฟกับโซลาร์</h4>
+          <div class="savings-bar bar-solar" style="width:2%;min-width:60px;">฿0</div>
+          <span style="display:inline-block;margin-top:8px;background:var(--green);color:#fff;font-size:13px;font-weight:700;padding:6px 14px;border-radius:8px;">Save ฿262,800/yr / ประหยัด ฿262,800/ปี</span>
+        </div>
+        <div style="margin-top:16px;font-size:12px;color:var(--text-secondary);line-height:1.7;">
           <strong>How it works:</strong> System produces 43,800 kWh/year. Your 24-unit building consumes more than this, so all solar energy is used on-site — saving you ฿262,800/year at ฿6/kWh PEA rate.<br>
           <span class="th">ระบบผลิต 43,800 kWh/ปี อาคาร 24 ยูนิตใช้ไฟมากกว่าที่ผลิตได้ จึงใช้พลังงานแสงอาทิตย์ทั้งหมด ประหยัดได้ ฿262,800/ปี</span>
         </div>
-        <div style="margin-top:16px;padding:16px 20px;background:var(--green-soft);border-radius:12px;font-size:14px;">
-          <strong style="color:var(--green);">฿262,800/year</strong> offset from your electricity bill from Day 1
-          <span class="th">ลดค่าไฟฟ้า ฿262,800/ปี ตั้งแต่วันแรก</span>
-        </div>
         <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <div style="padding:12px 16px;background:var(--green-soft);border-radius:10px;font-size:13px;">
-            <strong style="color:var(--green);">☀️ Net Metering</strong><br>
-            <span style="color:var(--text-secondary);">Excess power sold back to PEA at agreed rate<br><span class="th">ขายไฟส่วนเกินคืนให้ PEA ในอัตราที่ตกลงกัน</span></span>
+            <strong style="color:var(--green);">☀️ 100% Self-Consumption</strong><br>
+            <span style="color:var(--text-secondary);">Building uses more power than panels produce — every kWh saves you ฿6<br><span class="th">อาคารใช้ไฟมากกว่าที่แผงผลิตได้ — ทุก kWh ประหยัด ฿6</span></span>
           </div>
           <div style="padding:12px 16px;background:var(--green-soft);border-radius:10px;font-size:13px;">
             <strong style="color:var(--green);">🔌 Future Expansion</strong><br>
@@ -1368,26 +1400,27 @@ section { padding: 72px 0; }
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="savings-numbers">
-        <div class="savings-card">
-          <div class="savings-card-value gold">฿262,800</div>
-          <div class="savings-card-label">Annual Savings (EPC)<br>ประหยัดต่อปี</div>
-        </div>
-        <div class="savings-card">
-          <div class="savings-card-value green">฿2.63M</div>
-          <div class="savings-card-label">10-Year Savings<br>ประหยัด 10 ปี</div>
-        </div>
-        <div class="savings-card">
-          <div class="savings-card-value gold">4.0</div>
-          <div class="savings-card-label">Years to Payback<br>ปีที่คืนทุน</div>
-        </div>
-        <div class="savings-card">
-          <div class="savings-card-value green">21.9 t</div>
-          <div class="savings-card-label">CO₂ Saved/Year<br>ลด CO₂ ต่อปี</div>
-        </div>
+    <div class="savings-cards" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;">
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);">฿262,800</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">Annual Savings<br>ประหยัดต่อปี</div>
+      </div>
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);">฿2.63M</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">10-Year Savings<br>ประหยัด 10 ปี</div>
+      </div>
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold);">4.0</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">Years to Payback<br>ปีที่คืนทุน</div>
+      </div>
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);">21.9t</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">CO₂ Saved/Year<br>ลด CO₂ ต่อปี</div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -1550,7 +1583,7 @@ section { padding: 72px 0; }
 
       <div class="cta-steps">
         <span><strong>1.</strong> Choose your option<br><span style="font-size:11px;opacity:.6;">เลือกแผนของคุณ</span></span>
-        <span><strong>2.</strong> Sign agreement<br><span style="font-size:11px;opacity:.6;">เซ็นสัญญา</span></span>
+        <span><strong>2.</strong> <a href="#agreement" style="color:inherit;text-decoration:underline;">Sign agreement</a><br><span style="font-size:11px;opacity:.6;">เซ็นสัญญา</span></span>
         <span><strong>3.</strong> We start work within 1 week<br><span style="font-size:11px;opacity:.6;">เราเริ่มงานภายใน 1 สัปดาห์</span></span>
       </div>
     </div>
@@ -1571,6 +1604,24 @@ section { padding: 72px 0; }
       <p style="font-size:14px;color:var(--text-secondary);margin-top:12px;">
         <strong style="color:var(--navy);">Powered by TM Developers</strong> — Koh Phangan's trusted construction company.
       </p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:24px;">
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">100+</div>
+          <div style="font-size:12px;color:var(--text-secondary);">Projects Completed<br><span class="th">โครงการที่เสร็จสมบูรณ์</span></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">10+</div>
+          <div style="font-size:12px;color:var(--text-secondary);">Years on Koh Phangan<br><span class="th">ปีบนเกาะพะงัน</span></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">Tier 1</div>
+          <div style="font-size:12px;color:var(--text-secondary);">Equipment Only<br><span class="th">ใช้อุปกรณ์ Tier 1 เท่านั้น</span></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">Local</div>
+          <div style="font-size:12px;color:var(--text-secondary);">On-Island Team<br><span class="th">ทีมประจำเกาะ</span></div>
+        </div>
+      </div>
       <p style="font-size:13px;color:var(--text-secondary);margin-top:16px;line-height:1.7;">
         <span class="th">TM Energy ให้บริการโซลาร์เซลล์ครบวงจรบนเกาะพะงัน ออกแบบ ติดตั้ง และดูแลรักษาระบบโซลาร์คุณภาพสูง<br>โดย TM Developers — บริษัทก่อสร้างที่ได้รับความไว้วางใจบนเกาะพะงัน</span>
       </p>
@@ -1586,7 +1637,7 @@ section { padding: 72px 0; }
     <div class="agreement-section">
       <h2 class="agreement-header">Service Agreement</h2>
 
-      <div class="agreement-sub-header">Selected Option / האופציה הנבחרת</div>
+      <div class="agreement-sub-header">Selected Option / ตัวเลือกที่เลือก</div>
       <div class="option-select">
         <label class="option-radio">
           <span class="radio-dot"></span>

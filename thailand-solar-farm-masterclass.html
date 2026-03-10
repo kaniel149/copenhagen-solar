@@ -76,6 +76,16 @@ nav .nav-links a:hover { color: var(--gold); background: var(--gold-dim); }
 [data-lang="he"] { direction:rtl; font-family:'Heebo',sans-serif; }
 [data-lang="he"] .hero h1, [data-lang="he"] .section-header h2 { font-family:'Heebo',sans-serif; }
 [data-lang="he"] nav .nav-links { direction:ltr; }
+[data-lang="he"] th { text-align: right; }
+[data-lang="he"] .bar-label { text-align: left; }
+[data-lang="he"] .card ul li { padding-left: 0; padding-right: 20px; }
+[data-lang="he"] .card ul li::before { left: auto; right: 0; }
+[data-lang="he"] .timeline { padding-left: 0; padding-right: 40px; }
+[data-lang="he"] .timeline::before { left: auto; right: 15px; }
+[data-lang="he"] .timeline-item::before { left: auto; right: -33px; }
+[data-lang="he"] .compare-box.gold::before { right: auto; left: -28px; transform: rotate(-45deg); }
+[data-lang="he"] .bar-fill { justify-content: flex-start; padding-right: 0; padding-left: 10px; }
+[data-lang="he"] .citation { direction: ltr; text-align: right; }
 [data-lang="th"] { font-family:'Sarabun',sans-serif; }
 [data-lang="th"] .hero h1, [data-lang="th"] .section-header h2 { font-family:'Sarabun',sans-serif; }
 
@@ -144,6 +154,8 @@ section:nth-child(even) { background: var(--navy-light); }
   font-weight: 800; margin-bottom: 8px;
 }
 .section-header .he { font-size: 0.6em; color: var(--gold); font-family: 'Inter', sans-serif; font-weight: 400; }
+[data-lang="he"] .section-header .he { display: none; }
+[data-lang="th"] .section-header .he { display: none; }
 .section-header p { color: var(--gray); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
 
 /* ===== CARDS ===== */
@@ -257,16 +269,23 @@ footer p { color: var(--gray); font-size: 0.85rem; }
 
 /* ===== PRINT ===== */
 @media print {
-  nav { display: none; }
+  nav, .lang-group { display: none; }
   body { background: white; color: #1a1a1a; font-size: 11pt; }
-  section, section:nth-child(even) { background: white; page-break-inside: avoid; }
-  .card, .compare-box, .highlight-box { border: 1px solid #ccc; background: #fafafa; }
+  section, section:nth-child(even) { background: white; page-break-inside: avoid; padding: 30px 0; }
+  .card, .compare-box, .highlight-box { border: 1px solid #ccc; background: #fafafa; page-break-inside: avoid; }
   .card h3, .section-header h2, .highlight-box h4 { color: #0D2137; }
   th { background: #f0e6c8; color: #0D2137; }
-  td, .card p, .card li, .timeline-item p { color: #333; }
+  td, .card p, .card li, .timeline-item p, .compare-box li, .compare-box p { color: #333; }
   .bar-fill { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .hero { min-height: auto; padding: 40px; }
-  .hero h1 { -webkit-text-fill-color: #0D2137; }
+  .hero h1 { -webkit-text-fill-color: #0D2137; background: none; }
+  .hero .subtitle { color: #555; }
+  .stat-box { border-color: #ccc; background: #fafafa; }
+  .stat-num { color: #0D2137 !important; }
+  .kpi { border-color: #ccc; background: #fafafa; }
+  .kpi-val { color: #0D2137 !important; }
+  footer { page-break-before: always; }
+  .compare-grid, .two-col { grid-template-columns: 1fr 1fr; }
 }
 
 /* ===== ANIMATIONS ===== */
@@ -973,12 +992,12 @@ footer p { color: var(--gray); font-size: 0.85rem; }
     <div class="highlight-box">
       <h4>10 MW Community Solar — Total Project Cost Estimate</h4>
       <div class="kpi-row">
-        <div class="kpi"><div class="kpi-val">฿260–370M</div><div class="kpi-label">Solar Only (EPC Turnkey)</div></div>
-        <div class="kpi"><div class="kpi-val">฿460–700M</div><div class="kpi-label">Solar + BESS (Hybrid)</div></div>
+        <div class="kpi"><div class="kpi-val">฿280–370M</div><div class="kpi-label">Solar Only (EPC Turnkey)</div></div>
+        <div class="kpi"><div class="kpi-val">฿500–750M</div><div class="kpi-label">Solar + BESS (Hybrid)</div></div>
         <div class="kpi"><div class="kpi-val">฿5–15M</div><div class="kpi-label">Land (100 rai, Isaan)</div></div>
         <div class="kpi"><div class="kpi-val">฿5–9M/yr</div><div class="kpi-label">Annual O&M</div></div>
       </div>
-      <p style="margin-top: 16px; font-size: 0.85rem; color: var(--gray);">Total development budget for 10 MW solar-only: approximately ฿280–400M ($8.5–12M USD). With 4-hour BESS: ฿500–750M ($15–22M USD). Assumes Isaan land, Tier-1 equipment, experienced Thai EPC.</p>
+      <p style="margin-top: 16px; font-size: 0.85rem; color: var(--gray);">Total development budget for 10 MW solar-only: approximately ฿280–370M ($8.5–11M USD). With 4-hour BESS: ฿500–750M ($15–22M USD). Assumes Isaan land, Tier-1 equipment, experienced Thai EPC.</p>
     </div>
 
     <p class="citation">Sources: Mordor Intelligence; Tabbre UK Solar Cost Analysis; NREL; Greenergy Thailand; Isan Real Estate; Thailand Property</p>
@@ -1438,6 +1457,60 @@ footer p { color: var(--gray); font-size: 0.85rem; }
     </div>
 
     <p class="citation">Sources: Canvas Solar (Koh Phangan Grid Analysis); PEA Surat Thani; local market research</p>
+
+    <!-- Investor Entry Points -->
+    <h3 style="margin: 40px 0 20px; font-size: 1.1rem;">Investor Entry Points — Capital Deployment Scenarios</h3>
+    <div class="card-grid" style="margin-bottom: 32px;">
+      <div class="card">
+        <h3>Entry Level: $250K–$500K</h3>
+        <ul>
+          <li><strong>Scope:</strong> 250–500 kW distributed rooftop solar on 5–10 resort properties</li>
+          <li><strong>Revenue:</strong> Private PPAs at ฿3.50–4.00/kWh with resort owners</li>
+          <li><strong>Est. Annual Return:</strong> ฿2.5–5M ($75K–$150K)</li>
+          <li><strong>Payback:</strong> 3–5 years (self-consumption model)</li>
+          <li><strong>Risk:</strong> <span class="pill pill-green">Low</span> — diversified across multiple offtakers</li>
+          <li><strong>Structure:</strong> Thai-registered SPV with BOI promotion; 100% foreign ownership possible</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Growth Level: $1M–$3M</h3>
+        <ul>
+          <li><strong>Scope:</strong> 1–3 MW ground-mount community solar + BESS</li>
+          <li><strong>Revenue:</strong> Community Solar FiT ฿2.25/kWh + private PPAs</li>
+          <li><strong>Est. Annual Return:</strong> ฿10–25M ($300K–$750K)</li>
+          <li><strong>Payback:</strong> 5–8 years (blended model)</li>
+          <li><strong>Risk:</strong> <span class="pill pill-gold">Medium</span> — land acquisition, LAO approval</li>
+          <li><strong>Structure:</strong> Equity + Thai bank debt (70/30 leverage)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Risk & Exit -->
+    <div class="highlight-box">
+      <h4>Risks & Exit Strategy</h4>
+      <div class="two-col">
+        <div>
+          <p style="font-size: 0.9rem; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Key Risks</p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Regulatory:</strong> Community solar framework still finalizing; policy changes possible</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Currency:</strong> THB/ILS exchange rate fluctuation (hedging recommended)</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Land:</strong> Foreign ownership restricted; must use Thai SPV or BOI structure</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Climate:</strong> Typhoons, flooding — insurance required (0.3–0.5% of asset/yr)</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Grid:</strong> PEA connection delays (2–6 months); limited island grid capacity</li>
+          </ul>
+        </div>
+        <div>
+          <p style="font-size: 0.9rem; color: var(--gold); font-weight: 700; margin-bottom: 8px;">Exit Options</p>
+          <ul style="list-style: none; padding: 0;">
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Trade Sale:</strong> Sell operating assets to Thai developers (B.Grimm, SPCG, EA) at 8–12x EBITDA</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Portfolio Roll-up:</strong> Build multiple projects, sell as portfolio to infrastructure funds</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Hold & Distribute:</strong> 25-year PPA provides steady dividends</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Repatriation:</strong> BOI-promoted profits freely repatriable; Thailand-Israel tax treaty applies</li>
+            <li style="padding: 4px 0; font-size: 0.88rem; color: var(--gray-light);">→ <strong>Tax:</strong> 8-year CIT holiday (BOI); Israeli tax credit for Thai taxes paid</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1769,6 +1842,530 @@ const translations = {
     'Peak demand: 36,792 MW reached May 2024': 'שיא ביקוש: 36,792 MW הושג במאי 2024',
     'Installed capacity: 64.61 GW (2025), growing to 65.98 GW by 2026': 'הספק מותקן: 64.61 GW (2025), צמיחה ל-65.98 GW עד 2026',
     'Electricity Generating Authority of Thailand — state monopoly on high-voltage transmission': 'רשות ייצור החשמל של תאילנד — מונופול ממלכתי על הולכת חשמל במתח גבוה',
+
+    // ===== ROUND 1 ADDITIONS: Section header h2 (exact match to HTML) =====
+    'Permitting Process': 'תהליך רישוי',
+    'Grid Connection Technical': 'חיבור טכני לרשת',
+    'Costs & Pricing': 'עלויות ותמחור',
+    'Battery Energy Storage': 'אגירת אנרגיה',
+    'Financial Models': 'מודלים פיננסיים',
+    'Koh Phangan Focus': 'קו פנגן — מיקוד',
+
+    // ===== Section subtitle <p> =====
+    'PPA structures, FiT rates, grid connection, and metering for grid-tied projects': 'מבני PPA, תעריפי הזנה, חיבור לרשת ומדידה לפרויקטים מחוברים',
+    'Off-grid, hybrid, and island-specific solar solutions for Thailand\'s archipelago': 'פתרונות סולאריים מנותקים, היברידיים וייעודיים לאיים בארכיפלג התאילנדי',
+    'Step-by-step timeline for developing a solar farm in Thailand': 'לוח זמנים שלב-אחר-שלב לפיתוח שדה סולארי בתאילנד',
+    'Technical requirements for interconnecting solar farms to Thailand\'s distribution grid': 'דרישות טכניות לחיבור שדות סולאריים לרשת החלוקה בתאילנד',
+    'Real cost data for solar farm development in Thailand (2025–2026)': 'נתוני עלויות אמיתיים לפיתוח שדות סולאריים בתאילנד (2025–2026)',
+    'BESS technology, regulations, sizing, and revenue streams for Thai solar farms': 'טכנולוגיית BESS, רגולציה, מימוד וזרמי הכנסות לשדות סולאריים בתאילנד',
+    'IRR, NPV, payback analysis, and financing options for Thai solar farms': 'IRR, NPV, ניתוח החזר והשקעה ואפשרויות מימון לשדות סולאריים בתאילנד',
+    'Actual Thai solar farm projects with costs, timelines, and lessons learned': 'פרויקטים סולאריים אמיתיים בתאילנד עם עלויות, לוחות זמנים ולקחים',
+    'EPC companies, equipment suppliers, law firms, and financiers in Thailand\'s solar sector': 'חברות EPC, ספקי ציוד, משרדי עו"ד ומממנים בענף הסולאר בתאילנד',
+    'Island-specific analysis for solar and micro-grid development on Koh Phangan': 'ניתוח ייעודי לאי לפיתוח סולאר ומיקרו-גריד בקו פנגן',
+
+    // ===== H3 titles =====
+    'Electricity Tariffs (2025)': 'תעריפי חשמל (2025)',
+    'VSPP — Very Small Power Producer': 'VSPP — יצרן חשמל קטן מאוד',
+    'Environmental Review Requirements': 'דרישות סקירה סביבתית',
+    'Foreign Ownership & BOI Investment Promotion': 'בעלות זרה וקידום השקעות BOI',
+    'PPA Structure (Community Solar)': 'מבנה PPA (סולאר קהילתי)',
+    'Revenue Models Comparison': 'השוואת מודלי הכנסות',
+    'PEA Grid Connection Process': 'תהליך חיבור לרשת PEA',
+    'Thai Island Solar Case Studies': 'מקרי בוחן סולאר באיים תאילנדיים',
+    'Interconnection Voltage Levels': 'רמות מתח חיבור',
+    'Transformer Requirements': 'דרישות שנאי',
+    'Protection & Safety': 'הגנה ובטיחות',
+    'Component Cost Breakdown': 'פירוט עלויות רכיבים',
+    'Land Costs by Region (per Rai = 1,600 m²)': 'עלויות קרקע לפי אזור (לראי = 1,600 מ"ר)',
+    'LFP vs NMC Comparison': 'השוואת LFP לעומת NMC',
+    'BESS Revenue Streams': 'זרמי הכנסות BESS',
+    'Sizing Guidelines': 'הנחיות מימוד',
+    'Revenue Model Comparison (10 MW)': 'השוואת מודלי הכנסות (10 MW)',
+    'Financing Options in Thailand': 'אפשרויות מימון בתאילנד',
+    'Top Solar Developers & EPC': 'מפתחי סולאר וחברות EPC מובילות',
+    'Energy Law Firms': 'משרדי עו"ד לאנרגיה',
+    'Financing Institutions': 'מוסדות מימון',
+    'Grid Infrastructure': 'תשתית רשת חשמל',
+    'Tourism & Electricity Demand': 'תיירות וביקוש לחשמל',
+    'Land & Development': 'קרקע ופיתוח',
+    'Opportunity Assessment': 'הערכת הזדמנות',
+
+    // ===== Highlight-box h4 =====
+    'Thailand Climate Commitments': 'התחייבויות אקלים של תאילנד',
+    'Net Metering Status (2025–2026)': 'סטטוס מדידה נטו (2025–2026)',
+    'Hybrid System Economics for Islands': 'כלכליות מערכת היברידית לאיים',
+    '10 MW Community Solar — Total Project Cost Estimate': '10 MW סולאר קהילתי — אומדן עלות פרויקט כוללת',
+    'Thailand BESS Market Outlook (PDP 2024)': 'תחזית שוק BESS בתאילנד (PDP 2024)',
+    'Key Financial Assumptions (10 MW Solar, Isaan Location)': 'הנחות פיננסיות מרכזיות (10 MW סולאר, איסאן)',
+    'TM Energy — Koh Phangan Project Concept': 'TM Energy — קונספט פרויקט קו פנגן',
+
+    // ===== Bar labels =====
+    'Coal / Lignite': 'פחם / ליגניט',
+    'Renewables': 'אנרגיות מתחדשות',
+    'Hydro (imports)': 'הידרו (יבוא)',
+    'Other': 'אחר',
+
+    // ===== KPI labels =====
+    'Total National Quota': 'מכסה ארצית כוללת',
+    'FiT Rate (THB/kWh)': 'תעריף FiT (בהט/kWh)',
+    'Total Permitting (Pre-Construction)': 'סה"כ רישוי (טרום-בנייה)',
+    'Construction Period': 'תקופת בנייה',
+    'Total Development to COD': 'סה"כ פיתוח עד COD',
+    'Land Requirement': 'דרישת קרקע',
+    'Solar Only (EPC Turnkey)': 'סולאר בלבד (EPC טורנקי)',
+    'Solar + BESS (Hybrid)': 'סולאר + אגירה (היברידי)',
+    'Land (100 rai, Isaan)': 'קרקע (100 ראי, איסאן)',
+    'Battery Target (Power)': 'יעד סוללות (הספק)',
+    'Battery Target (Energy)': 'יעד סוללות (אנרגיה)',
+    'Pumped Hydro Target': 'יעד שאיבה הידרו',
+    'BESS Needed by 2030': 'BESS נדרש עד 2030',
+    'Proposed Solar Capacity': 'הספק סולארי מוצע',
+    'BESS (4-hour)': 'BESS (4 שעות)',
+    'Est. Total Investment': 'אומדן השקעה כוללת',
+    'Target Payback': 'יעד החזר השקעה',
+
+    // ===== Timeline items =====
+    'Step 1 — Pre-Application': 'שלב 1 — טרום-הגשה',
+    'Step 2 — Application': 'שלב 2 — הגשת בקשה',
+    'Step 3 — Technical Review': 'שלב 3 — בדיקה טכנית',
+    'Step 4 — Grid Agreement': 'שלב 4 — הסכם חיבור לרשת',
+    'Step 5 — Commission': 'שלב 5 — הפעלה',
+    'Site Assessment & Feasibility': 'סקר אתר והיתכנות',
+    'Submit Connection Application to PEA': 'הגשת בקשת חיבור ל-PEA',
+    'PEA Engineering Assessment': 'הערכה הנדסית של PEA',
+    'Sign Grid Connection Agreement': 'חתימה על הסכם חיבור לרשת',
+    'Construction, Testing & COD': 'בנייה, בדיקות ותאריך הפעלה מסחרית',
+    'Conduct grid capacity study at nearest PEA substation. Confirm available capacity on 22kV or 33kV feeder line. Assess distance to interconnection point.': 'ביצוע מחקר קיבולת רשת בתחנת PEA הקרובה. אישור קיבולת זמינה על קו 22kV או 33kV. הערכת מרחק לנקודת החיבור.',
+    'Technical plans, single-line diagram, protection scheme, land rights documentation, LAO approval letter, and project company registration.': 'תוכניות טכניות, תרשים חד-קווי, מערך הגנה, תיעוד זכויות קרקע, מכתב אישור LAO ורישום חברת הפרויקט.',
+    'PEA reviews grid impact, transformer capacity, voltage stability. May require network upgrades at developer\'s cost.': 'PEA בודקת השפעה על הרשת, קיבולת שנאי, יציבות מתח. ייתכן צורך בשדרוגי רשת על חשבון היזם.',
+    'Formal agreement covering interconnection standards, metering points, power quality requirements, and cost sharing for any grid reinforcement.': 'הסכם רשמי הכולל תקני חיבור, נקודות מדידה, דרישות איכות חשמל וחלוקת עלויות לחיזוק רשת.',
+    'Build interconnection facilities, install meters, conduct relay testing, anti-islanding verification. PEA final inspection before Commercial Operation Date.': 'בניית מתקני חיבור, התקנת מונים, בדיקת ממסרים ואימות anti-islanding. בדיקה סופית של PEA לפני תאריך הפעלה מסחרית.',
+
+    // ===== Table headers =====
+    'Rate (THB/kWh)': 'תעריף (בהט/kWh)',
+    'USD Equiv.': 'שווה ערך USD',
+    'Project Scale': 'היקף פרויקט',
+    'Review Type': 'סוג סקירה',
+    'Cost (THB)': 'עלות (בהט)',
+    'Cost (USD)': 'עלות (USD)',
+    'Province / Region': 'מחוז / אזור',
+    'THB per Rai': 'בהט לראי',
+    'USD per Rai': 'USD לראי',
+    'Suitability': 'התאמה',
+    'Tenure': 'תקופה',
+    'Firm': 'משרד',
+    'Brand': 'מותג',
+    'Institution': 'מוסד',
+    'Contract': 'חוזה',
+    'Parameter': 'פרמטר',
+    '22 kV System': 'מערכת 22 kV',
+    'Source': 'מקור',
+    'Permit / Approval': 'רישיון / אישור',
+    'Key Documents': 'מסמכים עיקריים',
+
+    // ===== Table cell data - Section 1 =====
+    'Residential (0–150 kWh)': 'מגורים (0–150 kWh)',
+    'Residential (150–400 kWh)': 'מגורים (150–400 kWh)',
+    'Residential (400+ kWh)': 'מגורים (400+ kWh)',
+    'Industrial (Medium Voltage)': 'תעשייה (מתח בינוני)',
+    'Temporary / Special': 'זמני / מיוחד',
+    'Average 2025': 'ממוצע 2025',
+    'Tiered progressive pricing': 'תמחור מדורג פרוגרסיבי',
+    'Most households fall here': 'רוב משקי הבית נופלים כאן',
+    'High consumption tier': 'שכבת צריכה גבוהה',
+    'Construction sites, events': 'אתרי בנייה, אירועים',
+    'ERC quarterly review (Jan/May/Sep)': 'סקירה רבעונית של ERC (ינו/מאי/ספט)',
+
+    // ===== Climate commitments =====
+    'NDC: 30–40% GHG reduction vs. BAU': 'NDC: הפחתה של 30-40% בגזי חממה לעומת BAU',
+    '20 GW solar target under Power Development Plan': 'יעד 20 GW סולאר תחת תוכנית פיתוח החשמל',
+    'Carbon neutrality target; 50%+ renewable generation': 'יעד ניטרליות פחמנית; 50%+ ייצור מתחדש',
+    'Net-zero greenhouse gas emissions': 'אפס נטו פליטות גזי חממה',
+
+    // ===== Environmental review table =====
+    'IEE': 'IEE',
+    'IEE or EIA': 'IEE או EIA',
+    'Full EIA': 'EIA מלא',
+    'ONEP / ERC': 'ONEP / ERC',
+    'ONEP': 'ONEP',
+    'Checklist: soil, water, biodiversity, noise': 'רשימת בדיקה: קרקע, מים, מגוון ביולוגי, רעש',
+    'Location-dependent; public input may be required': 'תלוי מיקום; ייתכן צורך במשוב ציבורי',
+    'Full study, public hearings, air/water/ecology': 'מחקר מלא, שימועים ציבוריים, אוויר/מים/אקולוגיה',
+    'Protected zones, watersheds, coastal areas': 'אזורים מוגנים, אגני היקוות, אזורי חוף',
+    '2–4 months': '2-4 חודשים',
+    '4–8 months': '4-8 חודשים',
+    '8–18 months': '8-18 חודשים',
+    '12–24 months': '12-24 חודשים',
+    'Sensitive areas': 'אזורים רגישים',
+
+    // ===== Permitting table =====
+    'Company Registration': 'רישום חברה',
+    'DBD (Dept. of Business Development)': 'DBD (מחלקת פיתוח עסקי)',
+    '1–2 weeks': '1-2 שבועות',
+    'Thai-registered company; memorandum, shareholder list': 'חברה רשומה בתאילנד; תזכיר, רשימת בעלי מניות',
+    'Land Rights / Lease': 'זכויות קרקע / חכירה',
+    'Land Department': 'מחלקת קרקעות',
+    '2–8 weeks': '2-8 שבועות',
+    'Chanote title deed or 30-year lease; ~10 rai per MW needed': 'שטר בעלות Chanote או חכירה ל-30 שנה; ~10 ראי למגוואט',
+    'LAO Community Consent': 'הסכמת קהילה LAO',
+    'Local Administrative Organization': 'ארגון מנהלי מקומי',
+    '4–8 weeks': '4-8 שבועות',
+    'Formal community approval letter; public meeting minutes': 'מכתב אישור קהילתי רשמי; פרוטוקול ישיבה ציבורית',
+    'Environmental Review (IEE)': 'סקירה סביבתית (IEE)',
+    'Environmental checklist; soil, water, biodiversity assessment': 'רשימת בדיקה סביבתית; הערכת קרקע, מים, מגוון ביולוגי',
+    'Factory License (Ror. Ngor. 4)': 'רישיון מפעל (Ror. Ngor. 4)',
+    'Dept. of Industrial Works (DIW)': 'מחלקת עבודות תעשייתיות (DIW)',
+    '1–3 months': '1-3 חודשים',
+    'May be exempted under community solar framework; pending confirmation': 'ייתכן פטור במסגרת סולאר קהילתי; ממתין לאישור',
+    'ERC VSPP License': 'רישיון ERC VSPP',
+    'Energy Regulatory Commission': 'ועדת הסדרת אנרגיה',
+    'Application, technical plans, financial readiness proof': 'בקשה, תוכניות טכניות, הוכחת מוכנות פיננסית',
+    'PEA Grid Connection Agreement': 'הסכם חיבור לרשת PEA',
+    'Provincial Electricity Authority': 'רשות החשמל המחוזית',
+    '2–6 months': '2-6 חודשים',
+    'Single-line diagram, protection scheme, grid impact study': 'תרשים חד-קווי, מערך הגנה, מחקר השפעה על הרשת',
+    'Construction Permit': 'היתר בנייה',
+    'Local Municipality / LAO': 'עירייה מקומית / LAO',
+    '2–4 weeks': '2-4 שבועות',
+    'Building plans, structural drawings (ground-mount frames)': 'תוכניות בנייה, שרטוטי מבנה (מסגרות קרקע)',
+    'Electrical Installation Permit': 'היתר התקנה חשמלית',
+    'PEA / Licensed Engineer': 'PEA / מהנדס מורשה',
+    'Electrical drawings, PE certification, safety plan': 'שרטוטים חשמליים, אישור PE, תוכנית בטיחות',
+    'PPA Execution': 'חתימת PPA',
+    'PEA / MEA': 'PEA / MEA',
+    '25-year PPA signing after all approvals secured': 'חתימת PPA ל-25 שנה לאחר קבלת כל האישורים',
+    'Construction & Commissioning': 'בנייה והפעלה',
+    'EPC Contractor': 'קבלן EPC',
+    '6–12 months': '6-12 חודשים',
+    'EPC contract, equipment procurement, installation, testing': 'חוזה EPC, רכש ציוד, התקנה, בדיקות',
+    'COD & Commercial Operation': 'COD והפעלה מסחרית',
+    'PEA + ERC': 'PEA + ERC',
+    'Final inspection, meter installation, grid synchronization': 'בדיקה סופית, התקנת מונה, סנכרון לרשת',
+
+    // ===== Grid Tech Section =====
+    'Typical Use': 'שימוש טיפוסי',
+    'Most PEA distribution': 'רוב רשת החלוקה של PEA',
+    'Eastern / industrial areas': 'אזורים מזרחיים / תעשייתיים',
+    'Max VSPP Capacity': 'הספק VSPP מקסימלי',
+    'Step-up Transformer': 'שנאי מעלה',
+    'Feeder Length': 'אורך מזין',
+    'Up to 30 km': 'עד 30 ק"מ',
+    'Up to 50 km': 'עד 50 ק"מ',
+    'Voltage Regulation': 'ויסות מתח',
+
+    // ===== Cost Section =====
+    'Solar Panels (Bifacial)': 'פאנלים סולאריים (דו-צדדיים)',
+    'String Inverters': 'ממירי מחרוזת',
+    'Ground-Mount BOS': 'BOS הרכבה על קרקע',
+    'Step-up Transformer': 'שנאי מעלה',
+    'EPC Turnkey (Solar Only)': 'EPC טורנקי (סולאר בלבד)',
+    'BESS (LFP, 4-hour)': 'BESS (LFP, 4 שעות)',
+    'Solar + BESS Turnkey': 'סולאר + BESS טורנקי',
+    'O&M (Annual)': 'תפעול ותחזוקה (שנתי)',
+    'per Watt': 'לוואט',
+    'per unit': 'ליחידה',
+    'per MW': 'למגוואט',
+    'per kWh': 'ל-kWh',
+    'per MW/yr': 'למגוואט/שנה',
+    'Bifacial modules; Chinese Tier-1 brands': 'מודולים דו-צדדיים; מותגי Tier-1 סיניים',
+    'Huawei, Sungrow, Kehua dominant': 'Huawei, Sungrow, Kehua דומיננטיים',
+    'Racking, cabling, combiner boxes, trenching': 'מסגרות, כבילה, קופסאות שילוב, חפירה',
+    'All-in: panels, inverters, BOS, labor': 'הכל כלול: פאנלים, ממירים, BOS, עבודה',
+    'LFP dominant; 4-hour duration standard': 'LFP דומיננטי; 4 שעות סטנדרט',
+    'PV + 4-hour BESS combined': 'PV + BESS 4 שעות משולב',
+    'Cleaning, vegetation, monitoring, insurance': 'ניקוי, צמחייה, ניטור, ביטוח',
+
+    // ===== Land costs table =====
+    'Isaan (Nakhon Ratchasima)': 'איסאן (נאקון ראצ\'אסימה)',
+    'Lopburi / Central': 'לופבורי / מרכז',
+    'Phetchaburi / Western': 'פצ\'בורי / מערב',
+    'EEC (Chonburi/Rayong)': 'EEC (צ\'ונבורי/ראיונג)',
+    'Koh Phangan (Interior)': 'קו פנגן (פנים האי)',
+    'Flat, high irradiance, low cost': 'שטוח, קרינה גבוהה, עלות נמוכה',
+    'Proven solar belt; existing projects': 'חגורת סולאר מוכחת; פרויקטים קיימים',
+    'Coastal premium near Hua Hin': 'פרמיית חוף ליד הואה הין',
+    'Industrial zone; self-consumption model': 'אזור תעשייתי; מודל צריכה עצמית',
+    'Hilly terrain; limited flat land': 'שטח הררי; קרקע שטוחה מוגבלת',
+    'Excellent': 'מצוין',
+    'Good': 'טוב',
+    'Limited': 'מוגבל',
+    'Expensive': 'יקר',
+
+    // ===== BESS Section =====
+    'Chemistry': 'כימיה',
+    'Lithium Iron Phosphate': 'ליתיום ברזל פוספט',
+    'Nickel Manganese Cobalt': 'ניקל מנגן קובלט',
+    'Cycle Life': 'חיי מחזור',
+    'Energy Density': 'צפיפות אנרגיה',
+    'Safety': 'בטיחות',
+    'Thermal Stability': 'יציבות תרמית',
+    'Superior (tropical-suited)': 'מעולה (מתאים לטרופי)',
+    'Requires active cooling': 'דורש קירור אקטיבי',
+    'Recommendation': 'המלצה',
+    'Preferred for Thailand': 'מועדף לתאילנד',
+    'Niche applications only': 'יישומי נישה בלבד',
+    'Moderate': 'בינוני',
+
+    // ===== Financial Section =====
+    'ESG Green Loan': 'הלוואה ירוקה ESG',
+    'Green Loan': 'הלוואה ירוקה',
+    'Solar Loan': 'הלוואת סולאר',
+    'Green Energy Loan': 'הלוואת אנרגיה ירוקה',
+    'Green Loan / Bond': 'הלוואה / אג"ח ירוקה',
+    'Equipment Lease': 'ליסינג ציוד',
+    'Project Finance': 'מימון פרויקטים',
+    'Capital Markets': 'שוקי הון',
+    'Green Bonds': 'אג"ח ירוקות',
+    'Krungsri (Bank of Ayudhya)': 'Krungsri (Bank of Ayudhya)',
+    'Bangkok Bank': 'Bangkok Bank',
+    'SCB (Siam Commercial Bank)': 'SCB (Siam Commercial Bank)',
+    'Government Savings Bank': 'בנק חסכון ממשלתי',
+    'EXIM Thailand': 'EXIM Thailand',
+    'ICBC Leasing': 'ICBC Leasing',
+    'ADB / IFC': 'ADB / IFC',
+    'Sustainability-linked; preferred for solar': 'קשור לקיימות; מועדף לסולאר',
+    'Tied to sustainability KPIs': 'קשור ל-KPIs של קיימות',
+    'Dedicated solar financing desk': 'שולחן מימון סולאר ייעודי',
+    'Concessional': 'מוזל',
+    'Competitive': 'תחרותי',
+    'Multilateral; for larger or portfolio projects': 'רב-צדדי; לפרויקטים גדולים או תיקי פרויקטים',
+    'OECD roadmap supports Thai RE bonds': 'מפת דרכים של OECD תומכת באג"ח RE תאילנדיות',
+
+    // ===== Key Players tables =====
+    'Developer / IPP': 'מפתח / IPP',
+    'Developer': 'מפתח',
+    'Developer / DOO': 'מפתח / DOO',
+    'Developer / Mfg': 'מפתח / יצרן',
+    'EPC / Mfg': 'EPC / יצרן',
+    'EPC Contractor': 'קבלן EPC',
+    'EPC / O&M': 'EPC / תפעול',
+    'Utility-scale solar + industrial': 'סולאר בקנה מידה תעשייתי',
+    'Solar farm portfolio (largest Thai)': 'תיק שדות סולאריים (הגדול בתאילנד)',
+    'VSPP solar farms': 'שדות סולאריים VSPP',
+    'Solar + wind + EV integrated': 'סולאר + רוח + EV משולב',
+    'Solar + green energy': 'סולאר + אנרגיה ירוקה',
+    'Panels + full EPC services': 'פאנלים + שירותי EPC מלאים',
+    'C&I solar (Toyota, Nestlé)': 'סולאר C&I (טויוטה, נסטלה)',
+    'RE portfolio development': 'פיתוח תיק אנרגיה מתחדשת',
+    'Installation + maintenance': 'התקנה + תחזוקה',
+    'Bifacial PV Modules': 'מודולים PV דו-צדדיים',
+    'String Inverters': 'ממירי מחרוזת',
+    'Inverters + BESS': 'ממירים + BESS',
+    'LFP BESS Systems': 'מערכות BESS LFP',
+    'Lithium-ion BESS': 'BESS ליתיום-יון',
+    'Transformers, Switchgear': 'שנאים, מערכות מיתוג',
+    'China': 'סין',
+    'Europe': 'אירופה',
+
+    // ===== Law firms =====
+    'Project finance, RE M&A, green bonds, EPC contracts. Top-ranked Chambers/Legal500': 'מימון פרויקטים, M&A באנרגיה, אג"ח ירוקות, חוזי EPC. מדורגים ב-Chambers/Legal500',
+    'Community solar framework, RE regulatory advisory': 'מסגרת סולאר קהילתי, ייעוץ רגולטורי לאנרגיה מתחדשת',
+    'BOI, factory license, solar rooftop regulations': 'BOI, רישיון מפעל, רגולציית סולאר על גג',
+    'BOI incentives, foreign investment, RE': 'הטבות BOI, השקעות זרות, אנרגיה מתחדשת',
+    'Thailand energy regulatory guide authors': 'מחברי מדריך רגולציית אנרגיה בתאילנד',
+    'Energy & infrastructure, project development': 'אנרגיה ותשתיות, פיתוח פרויקטים',
+    'Solar regulatory updates, building codes': 'עדכוני רגולציית סולאר, תקני בנייה',
+
+    // ===== Financing institutions =====
+    'ESG Green Loan, sustainability-linked': 'הלוואה ירוקה ESG, קשורה לקיימות',
+    'Green Loan for clean energy': 'הלוואה ירוקה לאנרגיה נקייה',
+    'Solar Loan (dedicated desk)': 'הלוואת סולאר (שולחן ייעודי)',
+    'Green Energy Loan (concessional)': 'הלוואת אנרגיה ירוקה (מוזלת)',
+    'Green export finance': 'מימון ייצוא ירוק',
+    'Multilateral RE project finance': 'מימון רב-צדדי לפרויקטי RE',
+    'Equipment leasing (~2.99%)': 'ליסינג ציוד (~2.99%)',
+
+    // ===== Government agencies =====
+    'Energy Regulatory Commission — licensing': 'ועדת הסדרת אנרגיה — רישוי',
+    'Electricity Generating Authority — transmission': 'רשות ייצור חשמל — הולכה',
+    'Provincial Electricity Authority — distribution': 'רשות חשמל מחוזית — חלוקה',
+    'Metropolitan Electricity Authority — Bangkok': 'רשות חשמל מטרופולינית — בנגקוק',
+    'Board of Investment — tax incentives': 'מועצת השקעות — הטבות מס',
+    'Office of Natural Resources & Environmental Policy': 'משרד משאבי טבע ומדיניות סביבתית',
+    'Dept. of Industrial Works — factory license': 'מחלקת עבודות תעשייתיות — רישיון מפעל',
+
+    // ===== Koh Phangan Section =====
+    'Power Supply:': 'אספקת חשמל:',
+    'Voltage:': 'מתח:',
+    'Operator:': 'מפעיל:',
+    'Reliability:': 'אמינות:',
+    'Upgrades:': 'שדרוגים:',
+    'Peak Demand:': 'שיא ביקוש:',
+    'High Season:': 'עונה גבוהה:',
+    'Full Moon Parties:': 'מסיבות ירח מלא:',
+    'Hotel/Resort Load:': 'עומס מלונות/ריזורטים:',
+    'Growth:': 'צמיחה:',
+    'Blackout Cost:': 'עלות הפסקת חשמל:',
+    'Solar Opportunity:': 'הזדמנות סולארית:',
+    'Terrain:': 'מרחב:',
+    'Coastal Land:': 'קרקע חופית:',
+    'Interior Land:': 'קרקע פנים האי:',
+    'Title Types:': 'סוגי בעלות:',
+    'Challenge:': 'אתגר:',
+    'Alternative:': 'חלופה:',
+    'Zoning:': 'ייעוד:',
+    'Micro-Grid:': 'מיקרו-גריד:',
+    'Community Solar:': 'סולאר קהילתי:',
+    'Resort PPAs:': 'PPAs עם ריזורטים:',
+    'BESS Standalone:': 'BESS עצמאי:',
+    'EV Charging:': 'טעינת רכב חשמלי:',
+    'Carbon Credits:': 'קרדיטי פחמן:',
+    'Phase 1:': 'שלב 1:',
+    'Phase 2:': 'שלב 2:',
+    'Revenue Mix:': 'תמהיל הכנסות:',
+    'Competitive Edge:': 'יתרון תחרותי:',
+
+    // ===== Highlight-box p texts =====
+    'Thailand\'s net metering regulations remain': 'רגולציית מדידה נטו בתאילנד נותרת',
+    'underdeveloped and unclear': 'בלתי מפותחת ולא ברורה',
+    'Solar+BESS systems on Thai islands typically achieve': 'מערכות סולאר+BESS באיים תאילנדיים משיגות בדרך כלל',
+    '5-year payback': 'החזר השקעה תוך 5 שנים',
+    'Total development budget for 10 MW solar-only: approximately': 'תקציב פיתוח כולל ל-10 MW סולאר בלבד: כ-',
+
+    // ===== Footer =====
+    'Thailand Solar Farm Development — Investor Briefing 2025–2026': 'פיתוח שדות סולאריים בתאילנד — תדריך משקיעים 2025–2026',
+    'This presentation contains forward-looking statements and estimates based on publicly available data as of March 2026.': 'מצגת זו מכילה הצהרות צופות פני עתיד ואומדנים המבוססים על נתונים ציבוריים נכון למרץ 2026.',
+    'Actual costs, timelines, and regulations may vary. Consult local legal and technical advisors before making investment decisions.': 'עלויות, לוחות זמנים ורגולציה בפועל עשויים להשתנות. יש להתייעץ עם יועצים משפטיים וטכניים מקומיים לפני קבלת החלטות השקעה.',
+    'Prepared by TM Energy Research Division. All rights reserved.': 'הוכן ע"י מחלקת המחקר של TM Energy. כל הזכויות שמורות.',
+
+    // ===== On-Grid Section specifics =====
+    'Duration:': 'משך:',
+    'Offtaker:': 'רוכש:',
+    'FiT Rate:': 'תעריף FiT:',
+    'Hybrid FiT:': 'תעריף היברידי:',
+    'Non-firm:': 'לא-מוצק:',
+    'Community benefit:': 'תועלת קהילתית:',
+    'CapEx:': 'CapEx:',
+    'Annual Revenue:': 'הכנסות שנתיות:',
+    'Capacity Factor:': 'מקדם ניצול:',
+    'Annual Generation:': 'ייצור שנתי:',
+    'O&M:': 'תפעול:',
+    'Simple Payback:': 'החזר פשוט:',
+    'BESS adds:': 'BESS מוסיף:',
+    'Revenue Premium:': 'פרמיית הכנסות:',
+    'Contract:': 'חוזה:',
+    'Low': 'נמוך',
+    'Medium': 'בינוני',
+    'High': 'גבוה',
+    'Government-backed FiT': 'תעריף הזנה מגובה ממשלה',
+
+    // ===== BESS revenue streams =====
+    'Peak Shaving:': 'גילוח שיאים:',
+    'Energy Arbitrage:': 'ארביטראז\' אנרגיה:',
+    'Frequency Regulation:': 'ויסות תדר:',
+    'Capacity Firming:': 'ייצוב הספק:',
+    'Backup Power:': 'חשמל גיבוי:',
+    'Solar Clipping Recovery:': 'שחזור קיצוץ סולארי:',
+
+    // ===== Potential factory license line =====
+    'Potential factory license (Ror. Ngor. 4) exemption to speed approvals': 'פטור אפשרי מרישיון מפעל (Ror. Ngor. 4) לזירוז אישורים',
+
+    // ===== Citations (partial) =====
+    'Sources:': 'מקורות:',
+
+    // ===== Revenue models table =====
+    'Community Solar FiT': 'FiT סולאר קהילתי',
+    'Solar+BESS Hybrid FiT': 'FiT היברידי סולאר+BESS',
+    'Private PPA (Direct)': 'PPA פרטי (ישיר)',
+    'Self-consumption': 'צריכה עצמית',
+    'Net Metering': 'מדידה נטו',
+    '25 years': '25 שנה',
+    '10–20 years': '10-20 שנה',
+    'N/A': 'לא רלוונטי',
+    'TBD (2026)': 'ייקבע (2026)',
+    'TBD': 'ייקבע',
+
+    // ===== Case studies specifics =====
+    'Location:': 'מיקום:',
+    'Capacity:': 'הספק:',
+    'Annual Output:': 'תפוקה שנתית:',
+    'CO₂ Avoided:': 'CO₂ שנמנע:',
+    'Cost Savings:': 'חיסכון בעלויות:',
+    'ROI:': 'ROI:',
+    'Inverters:': 'ממירים:',
+    'Key Feature:': 'מאפיין מרכזי:',
+    'Developer:': 'מפתח:',
+    'Grid:': 'רשת:',
+    'PPA:': 'PPA:',
+    'Significance:': 'חשיבות:',
+    'Investment:': 'השקעה:',
+    'Solar:': 'סולאר:',
+    'Storage:': 'אגירה:',
+    'Backup:': 'גיבוי:',
+    'Status:': 'סטטוס:',
+    'Lesson:': 'לקח:',
+    'Consortium:': 'קונסורציום:',
+    'Funding:': 'מימון:',
+    'Technology:': 'טכנולוגיה:',
+    'Innovation:': 'חדשנות:',
+    'Client:': 'לקוח:',
+    'Other projects:': 'פרויקטים נוספים:',
+    'Range:': 'טווח:',
+    'Portfolio:': 'תיק:',
+    'Total Capacity:': 'הספק כולל:',
+    'Listed:': 'רשום:',
+    'Business Model:': 'מודל עסקי:',
+    'Funded by:': 'מומן ע"י:',
+    'Operator:': 'מפעיל:',
+    'Pricing:': 'תמחור:',
+    'Tech:': 'טכנולוגיה:',
+
+    // ===== Protection relay specifics =====
+    'Over/Under Voltage:': 'מתח יתר/חסר:',
+    'Over/Under Frequency:': 'תדר יתר/חסר:',
+    'Overcurrent:': 'זרם יתר:',
+    'Earth Fault:': 'תקלת הארקה:',
+    'Anti-Islanding:': 'Anti-Islanding:',
+    'Directional:': 'כיוונית:',
+    'Trip Time:': 'זמן ניתוק:',
+    'Power Factor:': 'מקדם הספק:',
+    'THD:': 'THD:',
+    'Voltage Flicker:': 'ריצוד מתח:',
+    'DC Injection:': 'הזרקת DC:',
+    'SCADA:': 'SCADA:',
+    'Monitoring:': 'ניטור:',
+    'Communication:': 'תקשורת:',
+    'LVRT:': 'LVRT:',
+    'Type:': 'סוג:',
+    'Impedance:': 'אימפדנס:',
+    'Cooling:': 'קירור:',
+    'Metering:': 'מדידה:',
+    'Standards:': 'תקנים:',
+
+    // ===== Financial assumptions =====
+    'Irradiance:': 'קרינה:',
+    'Degradation:': 'דגרדציה:',
+    'PR (Performance Ratio):': 'PR (יחס ביצועים):',
+    'Debt/Equity:': 'חוב/הון:',
+    'DSCR Target:': 'יעד DSCR:',
+    'Insurance:': 'ביטוח:',
+    'Land Lease:': 'חכירת קרקע:',
+
+    // ===== Koh Phangan card specifics =====
+    'Single undersea submarine cable from mainland (Surat Thani)': 'כבל תת-ימי יחיד מהיבשת (סוראט תאני)',
+    'Connected via 115kV submarine cable to Koh Samui, then 22kV distribution to Koh Phangan': 'מחובר דרך כבל תת-ימי 115kV לקו סמוי, ואז חלוקה ב-22kV לקו פנגן',
+    'PEA Surat Thani / PEA Koh Phangan office': 'PEA סוראט תאני / משרד PEA קו פנגן',
+    'Frequent blackouts (10 min to several hours)': 'הפסקות חשמל תכופות (10 דקות עד שעות)',
+    'Demand exceeds supply even in low season': 'ביקוש חורג מהיצע גם בעונה נמוכה',
+    'No major improvements planned until 2030+': 'אין שדרוגים מתוכננים עד 2030+',
+    'Full Moon Party periods — extreme spikes': 'תקופות מסיבות ירח מלא — קפיצות קיצוניות',
+    'Dec–Mar (peak occupancy, highest demand)': 'דצ-מרץ (תפוסה מירבית, ביקוש גבוה)',
+    'Monthly surge of 10,000–30,000 visitors': 'גל חודשי של 10,000-30,000 מבקרים',
+    'Air conditioning = 60–70% of commercial electricity': 'מיזוג אוויר = 60-70% מהחשמל המסחרי',
+    'New resorts, co-working spaces, crypto/digital nomad influx': 'ריזורטים חדשים, חללי עבודה, זרם נוודים דיגיטליים',
+    'Lost revenue for businesses, food spoilage, safety risks': 'הפסד הכנסות לעסקים, קלקול מזון, סיכוני בטיחות',
+    'Peak solar generation aligns with peak A/C demand': 'שיא ייצור סולארי חופף לשיא ביקוש מיזוג',
+    'Mountainous interior; limited flat land': 'פנים הררי; קרקע שטוחה מוגבלת',
+    'Mix of Chanote (freehold) and Nor Sor 3 Gor': 'שילוב Chanote (בעלות) ו-Nor Sor 3 Gor',
+    'Finding 50–100 rai of flat, accessible land for solar farm': 'מציאת 50-100 ראי של קרקע שטוחה ונגישה לשדה סולארי',
+    'Distributed rooftop solar across multiple properties': 'סולאר על גגות מבוזר במספר נכסים',
+    'National park areas restricted; coastal setbacks apply': 'אזורי פארק לאומי מוגבלים; הגבלות חופיות חלות',
+    'High value — addresses reliability + sustainability': 'ערך גבוה — מענה לאמינות + קיימות',
+    'Possible if LAO approval secured': 'אפשרי אם מתקבל אישור LAO',
+    'Private PPAs with luxury resorts (self-consumption)': 'PPAs פרטיים עם ריזורטים יוקרתיים (צריכה עצמית)',
+    'Battery storage for peak shaving / backup': 'אגירת סוללות לגילוח שיאים / גיבוי',
+    'Growing demand from electric scooter rentals': 'ביקוש גדל מהשכרת קטנועים חשמליים',
+    'Tourism operators seeking green certification': 'מפעילי תיירות המחפשים תעודות ירוקות',
   },
   th: {
     // Hero
@@ -2014,6 +2611,150 @@ const translations = {
     'Peak demand: 36,792 MW reached May 2024': 'ความต้องการสูงสุด: 36,792 MW ในเดือนพฤษภาคม 2024',
     'Installed capacity: 64.61 GW (2025), growing to 65.98 GW by 2026': 'กำลังการผลิตติดตั้ง: 64.61 GW (2025) เพิ่มเป็น 65.98 GW ภายในปี 2026',
     'Electricity Generating Authority of Thailand — state monopoly on high-voltage transmission': 'การไฟฟ้าฝ่ายผลิตแห่งประเทศไทย — ผูกขาดการส่งไฟฟ้าแรงดันสูง',
+
+    // ===== ROUND 1 ADDITIONS: Section header h2 =====
+    'Permitting Process': 'กระบวนการขออนุญาต',
+    'Grid Connection Technical': 'การเชื่อมต่อระบบสายส่ง — ด้านเทคนิค',
+    'Costs & Pricing': 'ต้นทุนและราคา',
+    'Battery Energy Storage': 'ระบบกักเก็บพลังงานแบตเตอรี่',
+    'Financial Models': 'โมเดลทางการเงิน',
+    'Koh Phangan Focus': 'เกาะพะงัน — จุดสนใจ',
+
+    // ===== Section subtitle <p> =====
+    'PPA structures, FiT rates, grid connection, and metering for grid-tied projects': 'โครงสร้าง PPA อัตรารับซื้อ การเชื่อมต่อระบบ และการวัดสำหรับโครงการเชื่อมต่อสายส่ง',
+    'Off-grid, hybrid, and island-specific solar solutions for Thailand\'s archipelago': 'โซลูชันโซลาร์แบบอิสระ ไฮบริด และเฉพาะเกาะสำหรับหมู่เกาะไทย',
+    'Step-by-step timeline for developing a solar farm in Thailand': 'ไทม์ไลน์ทีละขั้นตอนสำหรับการพัฒนาฟาร์มโซลาร์ในประเทศไทย',
+    'Technical requirements for interconnecting solar farms to Thailand\'s distribution grid': 'ข้อกำหนดทางเทคนิคสำหรับการเชื่อมต่อฟาร์มโซลาร์กับระบบจำหน่ายของไทย',
+    'Real cost data for solar farm development in Thailand (2025–2026)': 'ข้อมูลต้นทุนจริงสำหรับการพัฒนาฟาร์มโซลาร์ในประเทศไทย (2025–2026)',
+    'BESS technology, regulations, sizing, and revenue streams for Thai solar farms': 'เทคโนโลยี BESS กฎระเบียบ การกำหนดขนาด และช่องทางรายได้สำหรับฟาร์มโซลาร์ไทย',
+    'IRR, NPV, payback analysis, and financing options for Thai solar farms': 'IRR, NPV การวิเคราะห์คืนทุน และตัวเลือกทางการเงินสำหรับฟาร์มโซลาร์ไทย',
+    'Actual Thai solar farm projects with costs, timelines, and lessons learned': 'โครงการฟาร์มโซลาร์จริงในไทยพร้อมต้นทุน ไทม์ไลน์ และบทเรียน',
+    'EPC companies, equipment suppliers, law firms, and financiers in Thailand\'s solar sector': 'บริษัท EPC ผู้จัดจำหน่ายอุปกรณ์ สำนักงานกฎหมาย และสถาบันการเงินในภาคโซลาร์ไทย',
+    'Island-specific analysis for solar and micro-grid development on Koh Phangan': 'การวิเคราะห์เฉพาะเกาะสำหรับการพัฒนาโซลาร์และไมโครกริดบนเกาะพะงัน',
+
+    // ===== H3 titles =====
+    'Electricity Tariffs (2025)': 'อัตราค่าไฟฟ้า (2025)',
+    'VSPP — Very Small Power Producer': 'VSPP — ผู้ผลิตไฟฟ้าขนาดเล็กมาก',
+    'Environmental Review Requirements': 'ข้อกำหนดการทบทวนสิ่งแวดล้อม',
+    'Foreign Ownership & BOI Investment Promotion': 'การถือหุ้นต่างชาติและการส่งเสริมการลงทุน BOI',
+    'PPA Structure (Community Solar)': 'โครงสร้าง PPA (โซลาร์ชุมชน)',
+    'Revenue Models Comparison': 'เปรียบเทียบโมเดลรายได้',
+    'PEA Grid Connection Process': 'กระบวนการเชื่อมต่อระบบ PEA',
+    'Thai Island Solar Case Studies': 'กรณีศึกษาโซลาร์บนเกาะไทย',
+    'Interconnection Voltage Levels': 'ระดับแรงดันการเชื่อมต่อ',
+    'Transformer Requirements': 'ข้อกำหนดหม้อแปลง',
+    'Protection & Safety': 'การป้องกันและความปลอดภัย',
+    'Component Cost Breakdown': 'รายละเอียดต้นทุนส่วนประกอบ',
+    'Land Costs by Region (per Rai = 1,600 m²)': 'ต้นทุนที่ดินตามภูมิภาค (ต่อไร่ = 1,600 ตร.ม.)',
+    'LFP vs NMC Comparison': 'เปรียบเทียบ LFP กับ NMC',
+    'BESS Revenue Streams': 'ช่องทางรายได้ BESS',
+    'Sizing Guidelines': 'แนวทางการกำหนดขนาด',
+    'Revenue Model Comparison (10 MW)': 'เปรียบเทียบโมเดลรายได้ (10 MW)',
+    'Financing Options in Thailand': 'ตัวเลือกทางการเงินในประเทศไทย',
+    'Top Solar Developers & EPC': 'ผู้พัฒนาโซลาร์และ EPC ชั้นนำ',
+    'Energy Law Firms': 'สำนักงานกฎหมายด้านพลังงาน',
+    'Financing Institutions': 'สถาบันการเงิน',
+    'Grid Infrastructure': 'โครงสร้างพื้นฐานระบบไฟฟ้า',
+    'Tourism & Electricity Demand': 'การท่องเที่ยวและความต้องการไฟฟ้า',
+    'Land & Development': 'ที่ดินและการพัฒนา',
+    'Opportunity Assessment': 'การประเมินโอกาส',
+
+    // ===== Highlight-box h4 =====
+    'Thailand Climate Commitments': 'พันธกิจด้านสภาพภูมิอากาศของไทย',
+    'Net Metering Status (2025–2026)': 'สถานะ Net Metering (2025–2026)',
+    'Hybrid System Economics for Islands': 'เศรษฐศาสตร์ระบบไฮบริดสำหรับเกาะ',
+    '10 MW Community Solar — Total Project Cost Estimate': '10 MW โซลาร์ชุมชน — ประมาณการต้นทุนโครงการรวม',
+    'Thailand BESS Market Outlook (PDP 2024)': 'แนวโน้มตลาด BESS ไทย (PDP 2024)',
+    'Key Financial Assumptions (10 MW Solar, Isaan Location)': 'สมมติฐานทางการเงินหลัก (10 MW โซลาร์ อีสาน)',
+    'TM Energy — Koh Phangan Project Concept': 'TM Energy — แนวคิดโครงการเกาะพะงัน',
+
+    // ===== Bar labels =====
+    'Coal / Lignite': 'ถ่านหิน / ลิกไนต์',
+    'Renewables': 'พลังงานหมุนเวียน',
+    'Hydro (imports)': 'พลังน้ำ (นำเข้า)',
+    'Other': 'อื่นๆ',
+
+    // ===== KPI labels =====
+    'Total National Quota': 'โควตาระดับประเทศรวม',
+    'FiT Rate (THB/kWh)': 'อัตรา FiT (บาท/kWh)',
+    'Total Permitting (Pre-Construction)': 'รวมขั้นตอนอนุญาต (ก่อนก่อสร้าง)',
+    'Construction Period': 'ระยะเวลาก่อสร้าง',
+    'Total Development to COD': 'รวมพัฒนาถึง COD',
+    'Land Requirement': 'ความต้องการที่ดิน',
+    'Solar Only (EPC Turnkey)': 'โซลาร์อย่างเดียว (EPC Turnkey)',
+    'Solar + BESS (Hybrid)': 'โซลาร์ + BESS (ไฮบริด)',
+    'Land (100 rai, Isaan)': 'ที่ดิน (100 ไร่ อีสาน)',
+    'Battery Target (Power)': 'เป้าหมายแบตเตอรี่ (กำลัง)',
+    'Battery Target (Energy)': 'เป้าหมายแบตเตอรี่ (พลังงาน)',
+    'Pumped Hydro Target': 'เป้าหมายสูบน้ำกลับ',
+    'BESS Needed by 2030': 'BESS ที่ต้องการภายในปี 2030',
+    'Proposed Solar Capacity': 'กำลังผลิตโซลาร์ที่เสนอ',
+    'BESS (4-hour)': 'BESS (4 ชั่วโมง)',
+    'Est. Total Investment': 'ประมาณการลงทุนรวม',
+    'Target Payback': 'เป้าหมายคืนทุน',
+
+    // ===== Timeline items =====
+    'Step 1 — Pre-Application': 'ขั้นตอน 1 — ก่อนยื่นคำร้อง',
+    'Step 2 — Application': 'ขั้นตอน 2 — ยื่นคำร้อง',
+    'Step 3 — Technical Review': 'ขั้นตอน 3 — ตรวจสอบทางเทคนิค',
+    'Step 4 — Grid Agreement': 'ขั้นตอน 4 — สัญญาเชื่อมต่อระบบ',
+    'Step 5 — Commission': 'ขั้นตอน 5 — การรับมอบ',
+    'Site Assessment & Feasibility': 'การประเมินพื้นที่และความเป็นไปได้',
+    'Submit Connection Application to PEA': 'ยื่นคำร้องขอเชื่อมต่อกับ PEA',
+    'PEA Engineering Assessment': 'การประเมินทางวิศวกรรมของ PEA',
+    'Sign Grid Connection Agreement': 'ลงนามสัญญาเชื่อมต่อระบบ',
+    'Construction, Testing & COD': 'ก่อสร้าง ทดสอบ และ COD',
+    'Conduct grid capacity study at nearest PEA substation. Confirm available capacity on 22kV or 33kV feeder line. Assess distance to interconnection point.': 'ศึกษาความจุระบบไฟฟ้าที่สถานีย่อย PEA ใกล้สุด ยืนยันความจุบนสาย 22kV หรือ 33kV ประเมินระยะทางถึงจุดเชื่อมต่อ',
+    'Technical plans, single-line diagram, protection scheme, land rights documentation, LAO approval letter, and project company registration.': 'แผนเทคนิค แผนภาพเส้นเดียว ระบบป้องกัน เอกสารสิทธิ์ที่ดิน จดหมายอนุมัติ อปท. และทะเบียนบริษัท',
+    'PEA reviews grid impact, transformer capacity, voltage stability. May require network upgrades at developer\'s cost.': 'PEA ตรวจสอบผลกระทบต่อระบบ ความจุหม้อแปลง ความเสถียรแรงดัน อาจต้องอัพเกรดระบบโดยผู้พัฒนาเป็นผู้รับผิดชอบ',
+    'Formal agreement covering interconnection standards, metering points, power quality requirements, and cost sharing for any grid reinforcement.': 'สัญญาอย่างเป็นทางการครอบคลุมมาตรฐานการเชื่อมต่อ จุดวัด ข้อกำหนดคุณภาพไฟฟ้า และการแบ่งต้นทุนเสริมระบบ',
+    'Build interconnection facilities, install meters, conduct relay testing, anti-islanding verification. PEA final inspection before Commercial Operation Date.': 'สร้างสิ่งอำนวยการเชื่อมต่อ ติดตั้งมิเตอร์ ทดสอบรีเลย์ ตรวจสอบ anti-islanding PEA ตรวจขั้นสุดท้ายก่อน COD',
+
+    // ===== Table headers =====
+    'Rate (THB/kWh)': 'อัตรา (บาท/kWh)',
+    'USD Equiv.': 'เทียบเท่า USD',
+    'Project Scale': 'ขนาดโครงการ',
+    'Review Type': 'ประเภทการทบทวน',
+    'Cost (THB)': 'ต้นทุน (บาท)',
+    'Cost (USD)': 'ต้นทุน (USD)',
+    'Province / Region': 'จังหวัด / ภูมิภาค',
+    'THB per Rai': 'บาทต่อไร่',
+    'USD per Rai': 'USD ต่อไร่',
+    'Suitability': 'ความเหมาะสม',
+    'Tenure': 'ระยะเวลา',
+    'Firm': 'สำนักงาน',
+    'Brand': 'แบรนด์',
+    'Institution': 'สถาบัน',
+    'Contract': 'สัญญา',
+    'Parameter': 'พารามิเตอร์',
+    '22 kV System': 'ระบบ 22 kV',
+    'Source': 'แหล่งที่มา',
+    'Permit / Approval': 'ใบอนุญาต / การอนุมัติ',
+    'Key Documents': 'เอกสารสำคัญ',
+
+    // ===== Footer =====
+    'Thailand Solar Farm Development — Investor Briefing 2025–2026': 'การพัฒนาฟาร์มโซลาร์ไทย — บทสรุปนักลงทุน 2025–2026',
+    'This presentation contains forward-looking statements and estimates based on publicly available data as of March 2026.': 'เอกสารนี้มีข้อมูลคาดการณ์ล่วงหน้าจากข้อมูลสาธารณะ ณ มีนาคม 2026',
+    'Actual costs, timelines, and regulations may vary. Consult local legal and technical advisors before making investment decisions.': 'ต้นทุน ไทม์ไลน์ และกฎระเบียบจริงอาจแตกต่าง ปรึกษาที่ปรึกษากฎหมายและเทคนิคก่อนตัดสินใจลงทุน',
+    'Prepared by TM Energy Research Division. All rights reserved.': 'จัดทำโดยฝ่ายวิจัย TM Energy สงวนลิขสิทธิ์',
+
+    // ===== Sources prefix =====
+    'Sources:': 'แหล่งที่มา:',
+
+    // ===== Common labels =====
+    'Low': 'ต่ำ',
+    'Medium': 'ปานกลาง',
+    'High': 'สูง',
+    'Excellent': 'ดีเยี่ยม',
+    'Good': 'ดี',
+    'Limited': 'จำกัด',
+    'Expensive': 'แพง',
+    'Moderate': 'ปานกลาง',
+    'N/A': 'ไม่ระบุ',
+    'TBD': 'รอกำหนด',
+    'TBD (2026)': 'รอกำหนด (2026)',
+    '25 years': '25 ปี',
+    '10–20 years': '10-20 ปี',
   }
 };
 

@@ -294,46 +294,46 @@ const DISCOUNT_RATE = 0.08;
 
 const sites = [
   {
-    id:1, lat:9.7300, lng:99.9750, name:'Ban Tai Flatlands', rai:40, gridKm:0.8,
+    id:1, lat:9.7085, lng:100.0280, name:'Ban Tai Coconut Flats', rai:40, gridKm:0.8,
     scores:{terrain:10,size:10,grid:9,road:9,zoning:9,shade:9,flood:7,env:9},
     risks:['Seasonal flooding near coast—verify drainage','Popular tourist area—land competition','May need LAO consent meeting'],
-    notes:'Largest flat parcel. Coconut plantation, owners may lease. Excellent road (Route 4169).'
+    notes:'Largest flat coconut plantation strip along Ban Tai coast. Route 4169 road access. South-facing, minimal shading.'
   },
   {
-    id:2, lat:9.7180, lng:99.9830, name:'Thongsala South', rai:25, gridKm:0.3,
+    id:2, lat:9.7095, lng:99.9965, name:'Thongsala South (nr Substation)', rai:25, gridKm:0.3,
     scores:{terrain:9,size:8,grid:10,road:10,zoning:9,shade:8,flood:7,env:8},
     risks:['Close to town—visual impact concerns','Higher land prices near Thongsala','Underground cabling may be required'],
-    notes:'Closest to 115kV substation. Best grid access on the island. Near port and services.'
+    notes:'300m from 115kV substation. Best grid access on island. Flat cleared land south of main town. Near port.'
   },
   {
-    id:3, lat:9.7480, lng:99.9720, name:'Sri Thanu Plains', rai:30, gridKm:1.2,
+    id:3, lat:9.7520, lng:99.9880, name:'Sri Thanu Inland', rai:30, gridKm:1.2,
     scores:{terrain:9,size:9,grid:8,road:8,zoning:9,shade:9,flood:8,env:9},
     risks:['Yoga/wellness community may resist','Slightly further from grid','Check chanot title status'],
-    notes:'Quiet area, large coconut plots. Good sun exposure, flat terrain. Spiritual community nearby.'
+    notes:'Inland from Sri Thanu beach. Coconut plantation plots, flat terrain. Quiet area, less tourist pressure.'
   },
   {
-    id:4, lat:9.7950, lng:99.9950, name:'Chaloklum Valley', rai:20, gridKm:1.5,
+    id:4, lat:9.7940, lng:100.0050, name:'Chaloklum Valley', rai:20, gridKm:1.5,
     scores:{terrain:8,size:7,grid:7,road:7,zoning:9,shade:8,flood:9,env:8},
     risks:['Access road narrow in parts','Grid connection costs higher','Fishing village—community relations important'],
-    notes:'Protected valley, good for agrivoltaic. Lower tourist pressure. Fishing village co-op potential.'
+    notes:'Flat valley behind Chaloklum fishing village. Good for agrivoltaic. Lower tourist pressure. Co-op potential.'
   },
   {
-    id:5, lat:9.7100, lng:100.0100, name:'Wok Tum East', rai:15, gridKm:0.5,
+    id:5, lat:9.7150, lng:100.0100, name:'Wok Tum Inland', rai:15, gridKm:0.5,
     scores:{terrain:7,size:6,grid:9,road:9,zoning:8,shade:7,flood:7,env:8},
     risks:['Gentle slope needs grading','Smaller parcel limits scale','Partial afternoon shading from hills'],
-    notes:'Good grid access. Near main road. May combine with adjacent parcels. Mixed use potential.'
+    notes:'Between Thongsala and Ban Tai. Near main road, good grid access. May combine with adjacent parcels.'
   },
   {
-    id:6, lat:9.6950, lng:100.0300, name:'Ban Khai Inland', rai:18, gridKm:2.0,
+    id:6, lat:9.6980, lng:100.0400, name:'Ban Khai South', rai:18, gridKm:2.0,
     scores:{terrain:7,size:7,grid:6,road:6,zoning:8,shade:7,flood:8,env:7},
     risks:['Steep access road','Furthest from grid—high connection cost','Rubber plantation—landowner negotiation needed'],
-    notes:'Remote rubber plantation. Lower land cost. Need road improvement. Storage makes more sense here (grid stability).'
+    notes:'Rubber plantation inland from south coast. Lower land cost. Storage important here (far from grid).'
   },
   {
-    id:7, lat:9.7650, lng:99.9750, name:'Hin Kong Plateau', rai:12, gridKm:1.0,
+    id:7, lat:9.7600, lng:99.9870, name:'Hin Kong Elevated', rai:12, gridKm:1.0,
     scores:{terrain:8,size:5,grid:8,road:8,zoning:8,shade:10,flood:9,env:8},
     risks:['Smallest site—limited to ~1.5 MWp','Elevated—wind exposure for panels','May need retaining walls'],
-    notes:'Elevated flat area. Best sun exposure (no shading). Good for premium installation. Wind exposure = natural cooling.'
+    notes:'Elevated flat plateau above Hin Kong beach. Best sun exposure (no shading, south-facing). Natural wind cooling.'
   },
 ];
 
@@ -432,11 +432,16 @@ L.polyline([[9.5672,100.0032],[9.5691,100.0034],[9.5733,100.0035],[9.5885,100.00
 // 33kV lines (nearest points for distance calc)
 const grid33kVPoints = [];
 const dist33 = [
-  [[9.7066,99.9948],[9.712,99.99],[9.7175,99.986],[9.725,99.983],[9.735,99.978],[9.745,99.976],[9.755,99.977],[9.765,99.978],[9.775,99.98],[9.785,99.983],[9.795,99.987],[9.805,99.993]],
-  [[9.7066,99.9948],[9.71,100.0],[9.713,100.006],[9.716,100.012],[9.72,100.018],[9.725,100.025],[9.73,100.032]],
-  [[9.713,100.006],[9.705,100.01],[9.698,100.02],[9.692,100.035],[9.688,100.05],[9.687,100.06],[9.685,100.07]],
-  [[9.785,99.983],[9.79,99.99],[9.795,99.995],[9.8,100.002],[9.805,100.007]],
-  [[9.73,100.032],[9.74,100.04],[9.75,100.045],[9.76,100.048],[9.77,100.045],[9.78,100.035],[9.79,100.025],[9.8,100.01]]
+  // West coast: Substation → north along Rt 4169 through Sri Thanu, Hin Kong, Mae Haad
+  [[9.7066,99.9948],[9.712,99.993],[9.718,99.992],[9.725,99.991],[9.735,99.989],[9.745,99.988],[9.752,99.988],[9.760,99.988],[9.770,99.990],[9.780,99.992],[9.790,99.996],[9.798,100.002]],
+  // East: Substation → Thongsala → Ban Tai coast road
+  [[9.7066,99.9948],[9.708,99.998],[9.710,100.003],[9.712,100.008],[9.713,100.015],[9.712,100.022],[9.710,100.030],[9.708,100.038],[9.706,100.045]],
+  // South: Ban Tai → Haad Rin road
+  [[9.706,100.045],[9.702,100.052],[9.698,100.058],[9.694,100.063],[9.690,100.068],[9.687,100.073]],
+  // North: Mae Haad → Chaloklum
+  [[9.790,99.996],[9.793,100.000],[9.795,100.003],[9.797,100.005],[9.800,100.008]],
+  // East coast: from Ban Tai inland → Thong Nai Pan direction
+  [[9.712,100.022],[9.720,100.030],[9.730,100.038],[9.740,100.043],[9.750,100.045],[9.760,100.043],[9.770,100.038],[9.780,100.030],[9.790,100.018],[9.798,100.008]]
 ];
 dist33.forEach(c => {
   L.polyline(c, { color:'#ff6600', weight:3, opacity:0.65, dashArray:'8,5' }).addTo(powerGroup);

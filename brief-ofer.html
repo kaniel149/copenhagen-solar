@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>עופר וילנסקי — Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0f0f14;
+    color: #e2e8f0;
+    line-height: 1.75;
+    font-size: 16px;
+    padding: 2rem 1rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: #f1f5f9;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #f1f5f9;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #2a2a35;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p { margin-bottom: 0.9rem; }
+
+  .meta {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .meta span { display: block; margin-bottom: 0.2rem; }
+
+  hr {
+    border: none;
+    border-top: 1px solid #2a2a35;
+    margin: 2rem 0;
+  }
+
+  ul, ol {
+    padding-right: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  li { margin-bottom: 0.4rem; }
+  li ul { margin-top: 0.4rem; }
+
+  strong { color: #f1f5f9; font-weight: 600; }
+
+  a {
+    color: #60a5fa;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.15s;
+  }
+  a:hover { border-bottom-color: #60a5fa; }
+
+  /* Warning box */
+  .warning-box {
+    background: #1a1a10;
+    border: 2px solid #eab308;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .warning-box .warning-title {
+    font-weight: 700;
+    color: #facc15;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .warning-box p { margin-bottom: 0; color: #e2e8f0; }
+
+  /* Red flags */
+  .red-flags {
+    background: #1a0f0f;
+    border-right: 4px solid #ef4444;
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+  }
+  .red-flags h2 {
+    color: #fca5a5;
+    border-bottom-color: #3b1515;
+  }
+  .red-flags h3 { color: #fca5a5; }
+  .red-flags strong { color: #fca5a5; }
+
+  /* Green talking points */
+  .talking-points {
+    background: #0f1a14;
+    border-right: 4px solid #22c55e;
+    border-radius: 6px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0;
+  }
+  .talking-points h2 {
+    color: #86efac;
+    border-bottom-color: #153525;
+  }
+  .talking-points strong { color: #86efac; }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.92rem;
+  }
+  th, td {
+    padding: 0.6rem 0.8rem;
+    text-align: right;
+    border-bottom: 1px solid #2a2a35;
+  }
+  th {
+    background: #1a1a24;
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  td { color: #cbd5e1; }
+  tr:hover td { background: #15151f; }
+  .exit-highlight { color: #60a5fa; font-weight: 500; }
+
+  /* Footer */
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #2a2a35;
+    color: #64748b;
+    font-size: 0.82rem;
+    font-style: italic;
+  }
+  .footer p { margin-bottom: 0.3rem; }
+
+  /* Print */
+  @media print {
+    body { background: #fff; color: #111; padding: 0; font-size: 12pt; }
+    .container { max-width: 100%; }
+    h1, h2, h3, strong { color: #111; }
+    .warning-box { background: #fffde7; border-color: #c9a800; }
+    .warning-box .warning-title { color: #8b6914; }
+    .warning-box p { color: #333; }
+    .red-flags { background: #fff5f5; border-color: #d32f2f; }
+    .red-flags h2, .red-flags h3, .red-flags strong { color: #c62828; }
+    .talking-points { background: #f0fff4; border-color: #2e7d32; }
+    .talking-points h2, .talking-points strong { color: #1b5e20; }
+    th { background: #f5f5f5; color: #333; }
+    td { color: #333; }
+    a { color: #1a73e8; }
+    .footer { color: #888; }
+  }
+
+  @media (max-width: 480px) {
+    body { font-size: 15px; padding: 1rem 0.8rem; }
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.2rem; }
+    table { font-size: 0.82rem; }
+    th, td { padding: 0.4rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>עופר וילנסקי — Brief</h1>
+  <div class="meta">
+    <span><strong>תאריך:</strong> 2026-03-10</span>
+    <span><strong>הקשר:</strong> פגישה על שיתוף פעולה בסולאר בקופנגן, תאילנד</span>
+    <span><strong>רמת ודאות:</strong> בינונית — ייתכן שמדובר באדם אחר עם שם זהה (ראה הערה למטה)</span>
+  </div>
+
+  <div class="warning-box">
+    <div class="warning-title">⚠️ הערה חשובה</div>
+    <p>המידע המפורט להלן מתייחס ל-<strong>Ofer Vilenski</strong> — יזם טכנולוגיה ישראלי ידוע, מייסד Hola VPN ו-Bright Data. <strong>לא נמצא שום קשר ציבורי</strong> בין אדם זה לבין סולאר, אנרגיה מתחדשת, תאילנד, או קופנגן. ייתכן שהאדם שקניאל נפגש איתו הוא <strong>אדם אחר</strong> בשם דומה. מומלץ לאמת זהות בתחילת הפגישה.</p>
+  </div>
+
+  <h2>Background</h2>
+  <ul>
+    <li><strong>שם מלא:</strong> עופר וילנסקי (Ofer Vilenski)</li>
+    <li><strong>לאום:</strong> ישראלי</li>
+    <li><strong>השכלה:</strong> Technion — Israel Institute of Technology (טכניון)</li>
+    <li><strong>שותף עסקי קבוע:</strong> Derry Shribman (דרי שריבמן) — שותף בכל הווניצ'רים</li>
+  </ul>
+
+  <h2>Professional History</h2>
+
+  <h3>1. KRFTech (1998)</h3>
+  <ul>
+    <li>חברת כלי פיתוח תוכנה</li>
+    <li>שותף מייסד עם Derry Shribman</li>
+    <li>הרווחים מהחברה מימנו את Jungo</li>
+  </ul>
+
+  <h3>2. Jungo (2000–2006)</h3>
+  <ul>
+    <li>פיתוח מערכות הפעלה ל-home gateways (ראוטרים ביתיים)</li>
+    <li>CEO ומייסד</li>
+    <li>160 עובדים</li>
+    <li><strong>נמכרה ל-NDS (Cisco) ב-$107 מיליון</strong> (דצמבר 2006)</li>
+  </ul>
+
+  <h3>3. Hola VPN (2007–הווה)</h3>
+  <ul>
+    <li>מייסד ו-CEO</li>
+    <li>שירות VPN חינמי מבוסס peer-to-peer</li>
+    <li>גיוס $18 מיליון ממשקיעים: DFJ (Skype, Hotmail), Horizons Ventures (Li Ka-shing), Magma Venture Partners (Waze)</li>
+    <li>הושקה ב-2012, הגיעה ל-<strong>100 מיליון משתמשים</strong> בנובמבר 2016</li>
+    <li>צמיחה אקספוננציאלית: מ-80 הורדות ביום ל-40,000 תוך לילה אחד (ינואר 2013)</li>
+  </ul>
+
+  <h3>4. Luminati / Bright Data (2014–הווה)</h3>
+  <ul>
+    <li>חטיבה של Hola — רשת proxy מסחרית</li>
+    <li>שימוש בבסיס המשתמשים של Hola כ-exit nodes</li>
+    <li><strong>נמכרה רוב המניות ל-EMK Capital (לונדון) ב-$125–200 מיליון</strong> (2017)</li>
+    <li>וילנסקי נשאר כ-CEO של Luminati אחרי המכירה</li>
+    <li>שינתה שם ל-Bright Data במרץ 2021</li>
+    <li>CEO נוכחי: Or Lenchner (ייתכן שוילנסקי כבר לא פעיל בניהול יום-יומי)</li>
+    <li>Bright Data ניצחה במשפטים מול Meta ו-X Corp על web scraping</li>
+  </ul>
+
+  <h2>Companies & Roles</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>חברה</th>
+        <th>תפקיד</th>
+        <th>תקופה</th>
+        <th>Exit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>KRFTech</td>
+        <td>Co-Founder</td>
+        <td>1998–</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Jungo</td>
+        <td>CEO & Founder</td>
+        <td>2000–2006</td>
+        <td class="exit-highlight">$107M → NDS/Cisco</td>
+      </tr>
+      <tr>
+        <td>Hola VPN</td>
+        <td>CEO & Founder</td>
+        <td>2007–</td>
+        <td>פעילה, 100M+ users</td>
+      </tr>
+      <tr>
+        <td>Luminati/Bright Data</td>
+        <td>CEO & Founder</td>
+        <td>2014–</td>
+        <td class="exit-highlight">$125–200M → EMK Capital</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Total exits: ~$230–300M+</strong></p>
+
+  <h2>Solar / Energy Connection</h2>
+  <p><strong>לא נמצא קשר ציבורי</strong> לסולאר, אנרגיה מתחדשת, או cleantech.</p>
+  <p>רקע הטכנולוגי שלו הוא 100% תוכנה ואינטרנט: ראוטרים, VPN, proxy networks, web data.</p>
+  <p><strong>תרחישים אפשריים:</strong></p>
+  <ol>
+    <li>מחפש לגוון השקעות — טק → אנרגיה/נדל"ן</li>
+    <li>עבר לתאילנד (כמו ישראלים רבים) ורואה הזדמנות מקומית</li>
+    <li>מעוניין להשקיע בסולאר כפרויקט צד / lifestyle business</li>
+    <li>אדם אחר לגמרי — שם נפוץ יחסית</li>
+  </ol>
+
+  <h2>Thailand / Koh Phangan Connection</h2>
+  <p><strong>לא נמצא קשר ציבורי</strong> לתאילנד או קופנגן.</p>
+  <p>קהילת ישראלים גדולה בקופנגן — ייתכן שעבר לגור שם לאחרונה, כמו הרבה ישראלים בשנים האחרונות.</p>
+
+  <h2>Social Media & Contact</h2>
+  <ul>
+    <li><strong>Twitter/X:</strong> <a href="https://x.com/vilenski" target="_blank">@vilenski</a> — 284 עוקבים, לא פוסט (חשבון רדום)
+      <ul>
+        <li>ביו: "Previously founded Jungo (acquired by NDS), now building Hola! together with a great team of people"</li>
+      </ul>
+    </li>
+    <li><strong>LinkedIn:</strong> סביר שקיים אך לא אומת (LinkedIn חסם גישה)</li>
+    <li><strong>MarketScreener:</strong> <a href="https://www.marketscreener.com/insider/OFER-VILENSKI-A0QOSM/experience/" target="_blank">פרופיל</a></li>
+  </ul>
+
+  <h2>What He Likely Wants</h2>
+  <p><strong>אם זה אכן Ofer Vilenski של Hola VPN:</strong></p>
+  <ul>
+    <li><strong>משקיע</strong> — יש לו הון משמעותי מ-exits מרובים, מחפש הזדמנויות</li>
+    <li><strong>שותפות אסטרטגית</strong> — ייתכן שמעוניין בפלטפורמה טכנולוגית לניהול סולאר</li>
+    <li><strong>Lifestyle investment</strong> — סולאר בקופנגן כהשקעה + השפעה סביבתית</li>
+    <li><strong>נדל"ן + סולאר</strong> — ווילות עם מערכות סולאר (נפוץ בקופנגן)</li>
+  </ul>
+  <p><strong>אם זה אדם אחר:</strong></p>
+  <ul>
+    <li>יכול להיות כל דבר — קבלן, משקיע מקומי, בעל נכסים</li>
+  </ul>
+
+  <div class="talking-points">
+    <h2>Talking Points for Kaniel</h2>
+
+    <ol>
+      <li><strong>הכר את הרקע שלו לפני שאתה מדבר</strong> — תשאל מה הוא עושה, תן לו לספר. אל תניח שזה הבנאדם של Hola VPN.</li>
+      <li><strong>אם זה אכן איש הטק:</strong>
+        <ul>
+          <li>הדגש את הצד הטכנולוגי: Solar OS CRM, IoT monitoring, dashboards</li>
+          <li>דבר על scalability — לא רק התקנה אחת, אלא פלטפורמה</li>
+          <li>הוא מכיר P2P networks — אולי decentralized energy grids יעניינו אותו</li>
+          <li>ROI ומספרים — הוא ראה $100M+ exits, הוא מבין unit economics</li>
+        </ul>
+      </li>
+      <li><strong>המסר של קניאל:</strong>
+        <ul>
+          <li>Navitas בישראל = ניסיון מוכח בסולאר</li>
+          <li>קופנגן = שוק צומח, מעט תחרות איכותית</li>
+          <li>Full-cycle = מתכנון דרך התקנה ועד תחזוקה</li>
+          <li>Florida LLC = מבנה עסקי אמריקאי = אמינות</li>
+        </ul>
+      </li>
+      <li><strong>Common ground:</strong>
+        <ul>
+          <li>שניכם ישראלים בתאילנד</li>
+          <li>שניכם יזמים</li>
+          <li>שניכם בנו חברות מאפס</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <h2>Questions to Ask</h2>
+  <ol>
+    <li><strong>"ספר לי על עצמך — מה הרקע שלך?"</strong> (לאמת זהות)</li>
+    <li><strong>"מה הביא אותך לסולאר?"</strong> (להבין מוטיבציה)</li>
+    <li><strong>"יש לך נכסים בקופנגן?"</strong> (להבין אם הוא בעל נכסים שרוצה סולאר, או משקיע)</li>
+    <li><strong>"מה אתה מחפש — השקעה פסיבית או שותפות פעילה?"</strong></li>
+    <li><strong>"יש לך ניסיון בתעשיית האנרגיה?"</strong></li>
+    <li><strong>"מכיר את השוק המקומי? יש לך קשרים עם רשויות / קבלנים?"</strong></li>
+    <li><strong>"מה התקציב / ההיקף שאתה חושב עליו?"</strong></li>
+    <li><strong>"כמה זמן אתה בתאילנד? מתכנן להישאר?"</strong></li>
+  </ol>
+
+  <div class="red-flags">
+    <h2>Red Flags / Watch For</h2>
+
+    <h3>אם זה Ofer Vilenski של Hola VPN:</h3>
+    <ul>
+      <li><strong>Bright Data/Hola חוו מחלוקות אתיות</strong> — Hola הפכה משתמשי VPN חינמיים ל-botnet exit nodes בלי ידיעתם (2015). מוניטין שנוי במחלוקת בעולם הטכנולוגיה.</li>
+      <li><strong>סגנון "move fast, ask forgiveness"</strong> — ככה הוא בנה את Hola. ייתכן שיגיש הצעות אגרסיביות.</li>
+      <li><strong>כסף גדול = ציפיות גדולות</strong> — אם הוא רגיל ל-$100M exits, פרויקט סולאר קטן בקופנגן עלול להיראות לו "קטן מדי"</li>
+      <li><strong>שותף דומיננטי</strong> — הוא CEO serial, הוא רגיל להוביל. קניאל צריך לשמור על שליטה.</li>
+    </ul>
+
+    <h3>כללי:</h3>
+    <ul>
+      <li>אל תיתן מספרים ספציפיים לפני שאתה יודע מה הוא רוצה</li>
+      <li>אל תחתום על כלום בפגישה ראשונה</li>
+      <li>אם הוא מציע "אני שם כסף, אתה עושה הכל" — תוודא שהתנאים הוגנים</li>
+      <li>בדוק רישום חברות אם הוא מציג חברה — Companies House / TASE / SEC</li>
+      <li>אם הוא לא Ofer Vilenski של Hola — אין לך שום מידע רקע. תהיה זהיר יותר.</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>Brief נוצר ב-2026-03-10 23:45 ICT</p>
+    <p>מקורות: Wikipedia, MarketScreener, Brave Search, X/Twitter</p>
+    <p>מגבלות: Perplexity API down, search engines rate-limited. חלק מהמידע עשוי להיות חסר.</p>
+  </div>
+
+</div>
+</body>
+</html>

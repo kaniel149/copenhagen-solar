@@ -149,7 +149,46 @@ a:hover { text-decoration: underline; }
 .link-card:hover { border-color: var(--gold); text-decoration: none; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
-@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .slide { padding: 24px 20px; } }
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: 1fr; }
+  .slide { padding: 24px 20px; padding-bottom: 80px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .link-grid { grid-template-columns: 1fr; }
+  .section-num { font-size: 40px; left: 16px; top: 12px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  .big-num { font-size: 36px; }
+  .nav-bar { padding: 10px 16px; }
+  .nav-btn { padding: 6px 16px; font-size: 13px; }
+  .toc-panel { width: 280px; left: -280px; }
+  .table-wrap { font-size: 12px; }
+  table { font-size: 12px; }
+  th, td { padding: 8px 10px; }
+  .img-float { float: none; width: 100%; }
+  .img-row { flex-direction: column; }
+  .flow-step { padding: 12px; }
+  .flow-num { font-size: 20px; min-width: 32px; }
+  .tm-logo-header { top: 10px; right: 12px; }
+  .tm-logo-header img { height: 28px; }
+}
+
+@media print {
+  body { overflow: visible; height: auto; background: #fff; color: #000; }
+  .slide-container { height: auto; }
+  .slide { position: relative; opacity: 1; transform: none; pointer-events: all; page-break-after: always; padding: 24px; }
+  .slide.active, .slide { display: flex; opacity: 1; transform: none; }
+  .nav-bar, .toc-btn, .toc-panel, .progress-bar, .tm-logo-header { display: none; }
+  .slide-cover, .slide-dark, .slide-ocean, .slide-reef, .slide-gold { background: #fff; color: #000; }
+  .gold, .reef-text { color: #000; font-weight: 700; }
+  .card { border-color: #ccc; }
+  .alert { border-color: #999; }
+  .big-num { color: #333; }
+  .section-num { color: #ddd; }
+  a { color: #000; text-decoration: underline; }
+  table, th, td { border: 1px solid #ccc; }
+  th { background: #f0f0f0; }
+}
 
 .slide::-webkit-scrollbar { width: 4px; }
 .slide::-webkit-scrollbar-thumb { background: rgba(232, 168, 32, 0.3); border-radius: 2px; }
@@ -530,7 +569,7 @@ a:hover { text-decoration: underline; }
 
       <div class="card" style="margin:8px 0;">
         <h3>מס חברות 20%</h3>
-        <p>שיעור סטנדרטי. SME (הון ≤฿5M): 15% על ฿300K ראשונים, 20% מעל.</p>
+        <p>שיעור סטנדרטי. SME (הון ≤฿5M): 0% על ฿300K ראשונים, 15% על ฿300K-3M, 20% מעל.</p>
       </div>
 
       <div class="card" style="margin:8px 0;">
@@ -1113,7 +1152,7 @@ window.PAGE_TRANSLATIONS = {
   "חובה מעל ฿1.8M/שנה הכנסות. מומלץ להירשם מיום 1 — זיכוי מס תשומות על ציוד!": {en: "Required above ฿1.8M/year revenue. Recommended to register from day 1 — input tax credit on equipment!", th: "จำเป็นเมื่อรายได้เกิน ฿1.8M/ปี แนะนำให้จดทะเบียนตั้งแต่วันแรก — เครดิตภาษีซื้อสำหรับอุปกรณ์!"},
   "דוגמה: קונה פאנלים ב-฿1M + 7% מע\"מ = ฿70K שחוזרים אלייך": {en: "Example: buy panels at ฿1M + 7% VAT = ฿70K returned to you", th: "ตัวอย่าง: ซื้อแผงที่ ฿1M + 7% VAT = ฿70K คืนให้คุณ"},
   "מס חברות 20%": {en: "Corporate Tax 20%", th: "ภาษีนิติบุคคล 20%"},
-  "שיעור סטנדרטי. SME (הון ≤฿5M): 15% על ฿300K ראשונים, 20% מעל.": {en: "Standard rate. SME (capital ≤฿5M): 15% on first ฿300K, 20% above.", th: "อัตรามาตรฐาน SME (ทุน ≤฿5M): 15% สำหรับ ฿300K แรก, 20% ที่เกินนั้น"},
+  "שיעור סטנדרטי. SME (הון ≤฿5M): 0% על ฿300K ראשונים, 15% על ฿300K-3M, 20% מעל.": {en: "Standard rate. SME (capital ≤฿5M): 0% on first ฿300K, 15% on ฿300K-3M, 20% above.", th: "อัตรามาตรฐาน SME (ทุน ≤฿5M): 0% สำหรับ ฿300K แรก, 15% สำหรับ ฿300K-3M, 20% ที่เกินนั้น"},
   "ניכוי במקור": {en: "Withholding Tax", th: "ภาษีหัก ณ ที่จ่าย"},
   "3% על תשלום לקבלני משנה, 5% על שכ\"ד, 3% שירותים מקצועיים.": {en: "3% on payments to subcontractors, 5% on rent, 3% professional services.", th: "3% สำหรับการชำระเงินแก่ผู้รับเหมาช่วง, 5% สำหรับค่าเช่า, 3% บริการวิชาชีพ"},
   "הגשה": {en: "Filing", th: "การยื่น"},

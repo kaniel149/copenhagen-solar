@@ -358,8 +358,38 @@
         @media (max-width: 768px) {
             .slide { padding: 3rem 1.5rem; }
             .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
-            .pipeline { flex-wrap: wrap; }
+            .pipeline { flex-wrap: wrap; justify-content: center; }
+            .pipe-step { min-width: 70px; }
             .pipe-step::after { display: none; }
+            .tm-logo-header { top: 0.6rem; right: 0.6rem; }
+            .tm-logo-header img { height: 28px; }
+            .tm-logo-header span { font-size: 0.75rem; }
+            .lang-bar { top: 0.5rem; padding: 0.2rem; }
+            .lang-btn { padding: 0.25rem 0.6rem; font-size: 0.7rem; }
+            .toc-panel { width: 240px; }
+            h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+            .stat-big { font-size: 2.2rem; }
+            .module-header { flex-wrap: wrap; }
+            .mockup-body { padding: 1rem; }
+            .kanban { gap: 0.5rem; }
+            .kanban-col { min-width: 100px; }
+        }
+
+        @media print {
+            body { background: #fff; color: #1a1a1a; }
+            .slide { min-height: auto; padding: 1.5rem 1rem; page-break-inside: avoid; border-bottom: 1px solid #ddd; }
+            .tm-logo-header, .lang-bar, .toc-toggle, .toc-panel { display: none !important; }
+            .card { background: #f9f9f9; border-color: #ddd; }
+            .card:hover { transform: none; }
+            .accent { color: #b8860b; }
+            .stat-big { color: #b8860b; }
+            .pipe-circle { border-color: #b8860b; background: #fef3c7; }
+            .subtitle, .feat-list li, .card p { color: #444; }
+            .mockup { border-color: #ccc; }
+            .mockup-bar { display: none; }
+            .mockup-body { background: #f5f5f5; }
+            .badge { border: 1px solid currentColor; }
+            a[href]::after { content: none; }
         }
     </style>
 </head>
@@ -373,9 +403,9 @@
 
 <!-- Language bar -->
 <div class="lang-bar">
-    <button class="lang-btn active" onclick="setLang('he')">עברית</button>
-    <button class="lang-btn" onclick="setLang('en')">English</button>
-    <button class="lang-btn" onclick="setLang('th')">ไทย</button>
+    <button class="lang-btn active" data-lang="he" onclick="setLang('he')">עברית</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">English</button>
+    <button class="lang-btn" data-lang="th" onclick="setLang('th')">ไทย</button>
 </div>
 
 <!-- TOC -->
@@ -818,7 +848,7 @@
                         <div style="color:var(--sun);font-weight:700;font-size:1.1rem;">฿1,495,000</div>
                     </div>
                     <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">✍️ Signed: 2026-03-15 · 🛡 5yr warranty · 💳 30/40/30</div>
-                    <div style="margin-top:0.8rem;space-y:0.4rem;">
+                    <div style="margin-top:0.8rem;">
                         <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:0.4rem 0.6rem;border-radius:6px;margin-bottom:0.3rem;">
                             <span style="font-size:0.8rem;">✅ Advance Payment (30%)</span>
                             <span style="color:var(--green);font-size:0.85rem;font-weight:700;">฿448,500 PAID</span>
@@ -1059,18 +1089,14 @@
 <script>
 function setLang(lang) {
     document.body.setAttribute('data-lang', lang);
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
+    document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
     localStorage.setItem('tm-lang', lang);
 }
 // Restore
 const saved = localStorage.getItem('tm-lang');
-if (saved) {
-    document.body.setAttribute('data-lang', saved);
-    document.querySelectorAll('.lang-btn').forEach(b => {
-        b.classList.toggle('active', b.textContent.includes(saved === 'he' ? 'עברית' : saved === 'en' ? 'English' : 'ไทย'));
-    });
-}
+if (saved) setLang(saved);
 // Close TOC on link click
 document.querySelectorAll('.toc-link').forEach(a => a.addEventListener('click', () => document.querySelector('.toc-panel').classList.remove('open')));
 </script>

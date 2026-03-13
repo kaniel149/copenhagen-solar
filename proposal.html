@@ -568,23 +568,37 @@ section { padding: 72px 0; }
   </div>
 </header>
 
-<div class="content" id="mainContent">
-  <!-- Section: System Overview -->
-  <div class="section fade-in">
-    <div class="section-title"><div class="icon">⚡</div><span data-i18n="sysOverview">System Overview</span></div>
-    <div class="kpi-grid" id="kpiGrid">
-      <div class="kpi"><div class="kpi-val gold" id="kRoof">-</div><div class="kpi-lbl" data-i18n="roofArea">Roof Area (m²)</div></div>
-      <div class="kpi"><div class="kpi-val gold" id="kUsable">-</div><div class="kpi-lbl" data-i18n="usableArea">Usable Area (m²)</div></div>
-      <div class="kpi"><div class="kpi-val green" id="kKwp">-</div><div class="kpi-lbl" data-i18n="systemSize">System Size (kWp)</div></div>
-      <div class="kpi"><div class="kpi-val green" id="kPanels">-</div><div class="kpi-lbl" data-i18n="panels">Solar Panels</div></div>
-      <div class="kpi"><div class="kpi-val" id="kKwh">-</div><div class="kpi-lbl" data-i18n="annualGen">Annual Generation (kWh)</div></div>
-      <div class="kpi"><div class="kpi-val green" id="kCO2">-</div><div class="kpi-lbl" data-i18n="co2Saved">CO₂ Saved/Year (tons)</div></div>
+<div id="mainContent">
+
+<!-- ═══ 2. YOUR PROJECT (Conditional) ═══ -->
+<section id="projectSection" class="fade-in" style="display:none;">
+  <div class="container">
+    <div class="section-label" data-i18n="yourProject">Your Project</div>
+    <h2 class="section-heading" id="projectHeading">Your Solar Installation</h2>
+    <p class="section-desc" id="projectDesc"></p>
+    <div class="project-images" id="projectImages"></div>
+    <div class="project-details">
+      <div class="detail-card">
+        <h4>🏢 <span data-i18n="propDetails">Property Details</span></h4>
+        <div class="detail-row"><span class="detail-label" data-i18n="owner">Owner</span><span class="detail-value" id="detailOwner">-</span></div>
+        <div class="detail-row"><span class="detail-label" data-i18n="location">Location</span><span class="detail-value">Koh Phangan, Surat Thani</span></div>
+      </div>
+      <div class="detail-card">
+        <h4>☀️ <span data-i18n="roofAssess">Roof Assessment</span></h4>
+        <div class="detail-row"><span class="detail-label" data-i18n="roofArea">Roof Area</span><span class="detail-value" id="detailRoof">-</span></div>
+        <div class="detail-row"><span class="detail-label" data-i18n="usableArea">Usable Area</span><span class="detail-value" id="detailUsable">-</span></div>
+        <div class="detail-row"><span class="detail-label" data-i18n="systemSize">System Size</span><span class="detail-value" id="detailKwp">-</span></div>
+        <div class="detail-row"><span class="detail-label" data-i18n="panels">Panels</span><span class="detail-value" id="detailPanels">-</span></div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- Section: Roof Visualization -->
-  <div class="section fade-in" id="roofVizSection" style="display:none">
-    <div class="section-title"><div class="icon">🛰️</div><span data-i18n="roofViz">Your Roof — Panel Layout</span></div>
+<!-- ═══ 3. ROOF VISUALIZATION ═══ -->
+<section id="roofVizSection" class="fade-in" style="display:none;">
+  <div class="container">
+    <div class="section-label" data-i18n="roofViz">Your Roof — Panel Layout</div>
+    <h2 class="section-heading" data-i18n="roofVizHeading">Satellite Roof Analysis</h2>
     <div class="roof-viz">
       <div class="roof-map" id="roofMap"><div class="roof-map-overlay" id="roofOverlay"></div></div>
       <div class="roof-legend">
@@ -594,236 +608,688 @@ section { padding: 72px 0; }
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Section: Your Options -->
-  <div class="section fade-in">
-    <div class="section-title"><div class="icon">💡</div><span data-i18n="options">Your Options</span></div>
-    <div class="compare">
-      <div class="compare-card">
-        <h3 data-i18n="epcTitle">Option 1: Purchase (EPC)</h3>
-        <p style="font-size:12px;color:var(--gray)" data-i18n="epcDesc">Own your solar system outright</p>
-        <div class="price" id="epcPrice" style="color:var(--navy)">-</div>
-        <ul>
-          <li><span data-i18n="monthlySave">Monthly Savings</span><span id="epcSave" style="color:var(--green)">-</span></li>
-          <li><span data-i18n="annualSave">Annual Savings</span><span id="epcSaveYr">-</span></li>
-          <li><span data-i18n="payback">Payback Period</span><span id="epcPayback">-</span></li>
-          <li><span data-i18n="save25">25-Year Savings</span><span id="epcSave25" style="color:var(--green);font-size:16px">-</span></li>
-          <li><span data-i18n="ownership">Ownership</span><span data-i18n="immediate">Immediate</span></li>
-        </ul>
+<!-- ═══ 4. THREE OPTIONS ═══ -->
+<section style="background:#fff;" class="fade-in">
+  <div class="container">
+    <div class="section-label" data-i18n="choosePlan">Choose Your Plan</div>
+    <h2 class="section-heading" data-i18n="threeOptions">Three Options, One Goal: Lower Bills</h2>
+    <p class="section-desc" data-i18n="optionsDesc">Pick the plan that fits your budget. All options use the same premium equipment.</p>
+
+    <div class="options-grid">
+      <!-- OPTION A: EPC -->
+      <div class="option-card" id="optionCardA">
+        <div class="option-icon">⚡</div>
+        <div class="option-name" data-i18n="epcTitle">Option A: EPC</div>
+        <div class="option-desc" data-i18n="epcDesc">Own your system outright</div>
+        <div class="option-price" id="epcPrice">-</div>
+        <div class="option-features">
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="epcFeat1">Fully installed solar system</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="epcFeat2">PEA license & grid connection</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="epcFeat3">25-year panel warranty</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="epcFeat4">10-year inverter warranty</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="epcFeat5">24/7 monitoring (1 year free)</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="epcFeat6">You own — all savings are yours</span></div>
+        </div>
+        <div class="option-bottom green">
+          <div class="option-bottom-label" data-i18n="annualSave">Annual Savings</div>
+          <div class="option-bottom-value green-text" id="epcAnnualSav">-</div>
+          <div class="option-bottom-sub"><span data-i18n="payback">Payback</span>: <strong id="epcPaybackYrs">-</strong></div>
+        </div>
       </div>
-      <div class="compare-card recommended">
-        <h3 data-i18n="ppaTitle">Option 2: PPA — Zero Investment</h3>
-        <p style="font-size:12px;color:var(--gray)" data-i18n="ppaDesc">We install & maintain, you buy cheaper electricity</p>
-        <div class="price" style="color:var(--green)">฿0</div>
-        <ul>
-          <li><span data-i18n="upfront">Upfront Cost</span><span style="color:var(--green);font-weight:700" data-i18n="zero">฿0</span></li>
-          <li><span data-i18n="ppaRate">Electricity Rate</span><span>฿4.50/kWh</span></li>
-          <li><span data-i18n="discount">vs PEA Rate</span><span style="color:var(--green)">~25% Discount</span></li>
-          <li><span data-i18n="monthlySavePPA">Monthly Savings</span><span id="ppaSave" style="color:var(--green)">-</span></li>
-          <li><span data-i18n="contract">Contract Period</span><span>15-25 Years</span></li>
-          <li><span data-i18n="afterContract">After Contract</span><span data-i18n="youOwn">System is yours</span></li>
-        </ul>
+
+      <!-- OPTION B: PPA (RECOMMENDED) -->
+      <div class="option-card featured" id="optionCardB">
+        <div class="option-tag">★ RECOMMENDED</div>
+        <div class="option-icon">☀️</div>
+        <div class="option-name" data-i18n="ppaTitle">Option B: PPA</div>
+        <div class="option-desc" data-i18n="ppaDesc">Zero upfront — we install, you save</div>
+        <div class="option-price" style="color:var(--green);">฿0 Upfront<span class="option-price-note" id="ppaPriceNote">pay only ฿4.50/kWh</span></div>
+        <div class="option-features">
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="ppaFeat1">฿0 installation — we pay for everything</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span id="ppaDiscountText" data-i18n="ppaFeat2">25% cheaper than PEA grid rate</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="ppaFeat3">Free maintenance & monitoring for 20 years</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="ppaFeat4">Free panel cleaning 2x per year</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="ppaFeat5">System replacement guarantee</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="ppaFeat6">Start saving from Day 1 — zero risk</span></div>
+        </div>
+        <div class="option-bottom gold">
+          <div class="option-bottom-label" data-i18n="monthlySave">Monthly Savings</div>
+          <div class="option-bottom-value gold-text" id="ppaSave">-</div>
+          <div class="option-bottom-sub" data-i18n="ppaImmediate">Savings start immediately</div>
+        </div>
+      </div>
+
+      <!-- OPTION C: EPC + BATTERY -->
+      <div class="option-card" id="optionCardC">
+        <div class="option-icon">🔋</div>
+        <div class="option-name" data-i18n="epcBatTitle">Option C: EPC + Battery</div>
+        <div class="option-desc" data-i18n="epcBatDesc">Maximum independence</div>
+        <div class="option-price" id="epcBatPrice">-</div>
+        <div class="option-features">
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="batFeat1">Everything in Option A, plus:</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span id="batCapText">Huawei LUNA2000 battery storage</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span id="batBackupText" data-i18n="batFeat3">Blackout backup</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="batFeat4">10-year battery warranty</span></div>
+          <div class="option-feature"><span class="check-icon">✓</span> <span data-i18n="batFeat5">Smart energy management via app</span></div>
+        </div>
+        <div class="option-bottom green">
+          <div class="option-bottom-label" data-i18n="annualSave">Annual Savings</div>
+          <div class="option-bottom-value green-text" id="epcBatSav">-</div>
+          <div class="option-bottom-sub"><span data-i18n="payback">Payback</span>: <strong id="epcBatPayback">-</strong></div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Savings Projection -->
-  <div class="section fade-in">
-    <div class="section-title"><div class="icon">📈</div><span data-i18n="savingsProj">Savings Projection</span></div>
-    <div class="chart-container">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:13px;font-weight:600" data-i18n="cumSave">Cumulative Savings (EPC)</span>
-        <span style="font-size:11px;color:var(--gray)" data-i18n="over25">Over 25 years</span>
-      </div>
-      <div class="bar-chart" id="savingsChart"></div>
-    </div>
-  </div>
-
-  <!-- Equipment -->
-  <div class="section fade-in">
-    <div class="section-title"><div class="icon">🔧</div><span data-i18n="equipment">Premium Equipment</span></div>
-    <div class="equip-grid">
-      <div class="equip-card">
-        <img src="visuals/longi-panel.png" alt="LONGi Hi-MO X6 Solar Panel">
-        <div class="equip-info">
-          <h4>LONGi Hi-MO X6</h4>
-          <p>580W Mono PERC</p>
-          <p data-i18n="panelEff">Efficiency: 22.8%</p>
-        </div>
-      </div>
-      <div class="equip-card">
-        <img src="visuals/huawei-inverter.png" alt="Huawei SUN2000 Inverter">
-        <div class="equip-info">
-          <h4>Huawei SUN2000</h4>
-          <p data-i18n="inverterType">String Inverter</p>
-          <p data-i18n="inverterEff">Efficiency: 98.6%</p>
-        </div>
-      </div>
-      <div class="equip-card">
-        <img src="visuals/mounting-system.png" alt="Aluminum Mounting System">
-        <div class="equip-info">
-          <h4 data-i18n="mounting">Mounting System</h4>
-          <p data-i18n="mountType">Anodized Aluminum</p>
-          <p data-i18n="mountLife">Lifetime: 25+ years</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Warranty -->
-  <div class="section fade-in">
-    <div class="section-title"><div class="icon">🛡️</div><span data-i18n="warranty">Warranty & Support</span></div>
-    <div class="warranty-row">
-      <div class="warranty-card"><div class="yr">25</div><div class="wlbl" data-i18n="panelWarranty">Panel Performance</div></div>
-      <div class="warranty-card"><div class="yr">12</div><div class="wlbl" data-i18n="productWarranty">Panel Product</div></div>
-      <div class="warranty-card"><div class="yr">10</div><div class="wlbl" data-i18n="inverterWarranty">Inverter</div></div>
-      <div class="warranty-card"><div class="yr">5</div><div class="wlbl" data-i18n="installWarranty">Installation</div></div>
-    </div>
-    <div class="ptable" style="margin-top:16px">
-      <table style="width:100%;border-collapse:collapse">
-        <tr><th data-i18n="included">What's Included</th><th data-i18n="detail">Details</th></tr>
-        <tr><td data-i18n="freeDesign">Free Site Survey & Design</td><td data-i18n="freeDesignD">Professional engineers assess your roof</td></tr>
-        <tr><td data-i18n="permits">Permits & Paperwork</td><td data-i18n="permitsD">PEA application, building permits handled</td></tr>
-        <tr><td data-i18n="install">Full Installation</td><td data-i18n="installD">Certified team, 3-5 day installation</td></tr>
-        <tr><td data-i18n="monitoring">24/7 Monitoring</td><td data-i18n="monitoringD">Real-time system monitoring dashboard</td></tr>
-        <tr><td data-i18n="maintenance">Annual Maintenance</td><td data-i18n="maintenanceD">Panel cleaning, inverter check, report</td></tr>
+<!-- ═══ 5. COMPARISON TABLE ═══ -->
+<section class="fade-in">
+  <div class="container">
+    <div class="section-label" data-i18n="compareLabel">Side-by-Side Comparison</div>
+    <h2 class="section-heading" data-i18n="compareHeading">Compare All Options</h2>
+    <div style="overflow-x:auto;">
+      <table id="compareTable" style="width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);font-size:14px;">
+        <thead>
+          <tr style="background:var(--navy);color:#fff;">
+            <th style="padding:16px 20px;text-align:left;font-weight:600;font-size:13px;"></th>
+            <th style="padding:16px 20px;text-align:center;font-weight:700;font-size:14px;">⚡ Option A: EPC</th>
+            <th style="padding:16px 20px;text-align:center;font-weight:700;font-size:14px;background:rgba(232,168,32,.2);">☀️ Option B: PPA ★</th>
+            <th style="padding:16px 20px;text-align:center;font-weight:700;font-size:14px;" id="compareColC">🔋 Option C: EPC+Battery</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);" data-i18n="upfrontCost">Upfront Cost</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;" id="cmpEpcUpfront">-</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);background:var(--gold-soft);">฿0</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;" id="cmpBatUpfront">-</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);" data-i18n="monthlyPayment">Monthly Payment</td>
+            <td style="padding:14px 20px;text-align:center;">฿0 after purchase</td>
+            <td style="padding:14px 20px;text-align:center;background:var(--gold-soft);" id="cmpPpaMonthly">-</td>
+            <td style="padding:14px 20px;text-align:center;">฿0 after purchase</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);" data-i18n="annualSave">Annual Savings</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);" id="cmpEpcAnnual">-</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);background:var(--gold-soft);" id="cmpPpaAnnual">-</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);" id="cmpBatAnnual">-</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);" data-i18n="paybackPeriod">Payback Period</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;" id="cmpEpcPayback">-</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;background:var(--gold-soft);" data-i18n="immediate">Immediate</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;" id="cmpBatPayback">-</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--border);">
+            <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);" data-i18n="blackoutProtect">Blackout Protection</td>
+            <td style="padding:14px 20px;text-align:center;">❌ Daytime only</td>
+            <td style="padding:14px 20px;text-align:center;background:var(--gold-soft);">❌ Daytime only</td>
+            <td style="padding:14px 20px;text-align:center;font-weight:700;color:var(--green);" id="cmpBatBackup">-</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 20px;font-weight:600;color:var(--text-secondary);" data-i18n="ownership">Ownership</td>
+            <td style="padding:14px 20px;text-align:center;">You own it ✓</td>
+            <td style="padding:14px 20px;text-align:center;background:var(--gold-soft);">TM Energy<br><span style="font-size:11px;">(buy after 20 yrs)</span></td>
+            <td style="padding:14px 20px;text-align:center;">You own it ✓</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
+</section>
 
-  <!-- Signature -->
-  <div class="section fade-in">
-    <div class="section-title"><div class="icon">✍️</div><span data-i18n="signTitle">Accept This Proposal</span></div>
-    <div style="background:var(--light);border-radius:14px;padding:24px;margin:16px 0">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
-        <div>
-          <p style="font-size:12px;color:var(--gray);margin-bottom:8px" data-i18n="clientSign">Client Signature</p>
+<!-- ═══ 6. SAVINGS VISUALIZATION ═══ -->
+<section style="background:#fff;" class="fade-in">
+  <div class="container">
+    <div class="section-label" data-i18n="savingsLabel">Your Savings</div>
+    <h2 class="section-heading" data-i18n="savingsHeading">See How Much You'll Save</h2>
+    <p class="section-desc" data-i18n="savingsDesc">Compare your current electricity costs with solar — the numbers speak for themselves.</p>
+
+    <div class="savings-visual">
+      <div class="savings-comparison">
+        <div class="savings-bar-group">
+          <h4 data-i18n="withoutSolar">Without Solar — Annual Electricity Cost</h4>
+          <div class="savings-bar bar-pea" id="barPea">-</div>
+        </div>
+        <div class="savings-bar-group" style="margin-top:16px;">
+          <h4 data-i18n="withSolar">With Solar (EPC) — Your New Cost</h4>
+          <div class="savings-bar bar-solar" style="width:2%;min-width:60px;">฿0</div>
+          <span id="saveBadge" style="display:inline-block;margin-top:8px;background:var(--green);color:#fff;font-size:13px;font-weight:700;padding:6px 14px;border-radius:8px;">-</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;">
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);" id="savAnnual">-</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="annualSave">Annual Savings</div>
+      </div>
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);" id="sav10yr">-</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="tenYrSav">10-Year Savings</div>
+      </div>
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold);" id="savPayback">-</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="payback">Years to Payback</div>
+      </div>
+      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
+        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);" id="savCO2">-</div>
+        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="co2Saved">CO₂ Saved/Year</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 7. EQUIPMENT / SPECS ═══ -->
+<section class="fade-in">
+  <div class="container">
+    <div class="section-label" data-i18n="specsLabel">System Details</div>
+    <h2 class="section-heading" data-i18n="specsHeading">Premium Equipment, Built to Last</h2>
+    <p class="section-desc" data-i18n="specsDesc">Tier 1 solar panels and world-leading inverters — designed for Thailand's tropical climate.</p>
+
+    <div class="specs-row">
+      <div>
+        <div class="spec-card" style="margin-bottom:16px;">
+          <h4>☀️ Solar Panels — LONGi Hi-MO X6</h4>
+          <div class="spec-item"><span class="spec-label">Model</span><span class="spec-val">LR5-72HGD 580W</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="quantity">Quantity</span><span class="spec-val" id="specPanels">-</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="totalCapacity">Total Capacity</span><span class="spec-val" id="specKwp">-</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="cellTech">Cell Technology</span><span class="spec-val">N-type TOPCon · 22.3%</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="warranty">Warranty</span><span class="spec-val">25-year product</span></div>
+          <div class="spec-item"><span class="spec-label">Tier</span><span class="spec-val">Tier 1 — Bloomberg BNEF</span></div>
+        </div>
+        <div class="spec-card">
+          <h4>⚡ Inverters — Huawei SUN2000</h4>
+          <div class="spec-item"><span class="spec-label" data-i18n="power">Power</span><span class="spec-val">98.6% efficiency</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="features">Features</span><span class="spec-val">IP66 outdoor · MPPT trackers</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="monitoring">Monitoring</span><span class="spec-val">Huawei FusionSolar App</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="warranty">Warranty</span><span class="spec-val">10 years</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="spec-card">
+          <h4>🔧 <span data-i18n="installIncludes">Installation Includes</span></h4>
+          <div class="spec-item"><span class="spec-label" data-i18n="mounting">Mounting</span><span class="spec-val">No-drill roof clamps</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="windRating">Wind Rating</span><span class="spec-val">Up to 60 m/s (typhoon rated)</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="protection">Protection</span><span class="spec-val">Surge protector + breakers</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="grounding">Grounding</span><span class="spec-val">Full system + lightning</span></div>
+          <div class="spec-item"><span class="spec-label" data-i18n="peaLicense">PEA License</span><span class="spec-val">Application handled by us</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 8. TIMELINE ═══ -->
+<section style="background:#fff;" class="fade-in">
+  <div class="container">
+    <div class="section-label" data-i18n="timelineLabel">How It Works</div>
+    <h2 class="section-heading" data-i18n="timelineHeading">From Approval to Power in 6–8 Weeks</h2>
+    <p class="section-desc" data-i18n="timelineDesc">A straightforward process — we handle everything from permits to grid connection.</p>
+
+    <div class="timeline-grid">
+      <div class="tl-step">
+        <div class="tl-week">Week 1</div>
+        <div class="tl-dot"></div>
+        <div class="tl-title" data-i18n="tl1Title">Survey & Design</div>
+        <div class="tl-desc" data-i18n="tl1Desc">Site measurement, electrical assessment, system design</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 2–3</div>
+        <div class="tl-dot"></div>
+        <div class="tl-title" data-i18n="tl2Title">Permits & Procurement</div>
+        <div class="tl-desc" data-i18n="tl2Desc">PEA license, structural approval, equipment order</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 4–6</div>
+        <div class="tl-dot"></div>
+        <div class="tl-title" data-i18n="tl3Title">Installation</div>
+        <div class="tl-desc" data-i18n="tl3Desc">Mount panels, install inverters, complete wiring</div>
+      </div>
+      <div class="tl-step">
+        <div class="tl-week">Week 7–8</div>
+        <div class="tl-dot" style="background:var(--green);"></div>
+        <div class="tl-title" data-i18n="tl4Title">Go Live ✓</div>
+        <div class="tl-desc" data-i18n="tl4Desc">Testing, PEA inspection, grid connection, monitoring setup</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 9. WARRANTIES ═══ -->
+<section class="fade-in">
+  <div class="container">
+    <div class="section-label" data-i18n="warrantyLabel">Warranties & Support</div>
+    <h2 class="section-heading" data-i18n="warrantyHeading">Protected for Decades</h2>
+    <p class="section-desc" data-i18n="warrantyDesc">Industry-leading warranties backed by global manufacturers and our local team.</p>
+
+    <div class="warranty-grid">
+      <div class="warranty-card">
+        <div class="warranty-icon">☀️</div>
+        <div class="warranty-years">25 <span>years</span></div>
+        <div class="warranty-label" data-i18n="panelWarranty">Solar Panel Warranty</div>
+        <div class="warranty-sub">LONGi product warranty</div>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">⚡</div>
+        <div class="warranty-years">10 <span>years</span></div>
+        <div class="warranty-label" data-i18n="inverterWarranty">Inverter Warranty</div>
+        <div class="warranty-sub">Huawei manufacturer warranty</div>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">🔧</div>
+        <div class="warranty-years">24 <span>months</span></div>
+        <div class="warranty-label" data-i18n="workmanshipWarranty">Workmanship Warranty</div>
+        <div class="warranty-sub">TM Energy installation</div>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">📡</div>
+        <div class="warranty-years">24/7</div>
+        <div class="warranty-label" data-i18n="monitoring">Remote Monitoring</div>
+        <div class="warranty-sub">FusionSolar App</div>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">🧹</div>
+        <div class="warranty-years">2× <span>/year</span></div>
+        <div class="warranty-label" data-i18n="cleaning">Panel Cleaning</div>
+        <div class="warranty-sub">Professional cleaning included</div>
+      </div>
+      <div class="warranty-card">
+        <div class="warranty-icon">🏝️</div>
+        <div class="warranty-years">Local</div>
+        <div class="warranty-label" data-i18n="localTeam">On-Island Team</div>
+        <div class="warranty-sub">Same-day response</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 10. BATTERY ADD-ON (Conditional) ═══ -->
+<section id="batterySection" class="fade-in" style="display:none;">
+  <div class="container">
+    <div class="battery-section">
+      <div class="section-label" data-i18n="batteryLabel">Battery Add-On</div>
+      <h2 class="section-heading" data-i18n="batteryHeading">Add Energy Storage for Full Independence</h2>
+      <p class="section-desc" data-i18n="batteryDesc">Store solar energy for nighttime use and blackout protection.</p>
+
+      <div class="battery-grid">
+        <div class="battery-card">
+          <h4>LUNA2000 × 1</h4>
+          <div class="battery-capacity">15 kWh</div>
+          <div class="battery-detail">
+            <strong>Best for:</strong> Essential backup + evening use<br>
+            <strong>Backup:</strong> 4-5 hours<br>
+            <strong>Additional cost:</strong> <span id="bat15Cost">฿275,000</span><br>
+            <strong>Warranty:</strong> 10 years / 6,000+ cycles
+          </div>
+        </div>
+        <div class="battery-card recommended">
+          <h4>LUNA2000 × 2</h4>
+          <div class="battery-capacity">30 kWh</div>
+          <div class="battery-detail">
+            <strong>Best for:</strong> Full independence + blackout protection<br>
+            <strong>Backup:</strong> 8-10 hours<br>
+            <strong>Additional cost:</strong> <span id="bat30Cost">฿550,000</span><br>
+            <strong>Warranty:</strong> 10 years / 6,000+ cycles
+          </div>
+          <div class="battery-recommend-tag">★ RECOMMENDED</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 11. SERVICE AGREEMENT ═══ -->
+<section id="agreement" class="fade-in">
+  <div class="container">
+    <div class="agreement-section">
+      <h2 class="agreement-header" data-i18n="agreementTitle">Service Agreement</h2>
+
+      <div class="agreement-sub-header" data-i18n="selectedOption">Selected Option</div>
+      <div class="option-select" id="optionSelectRadios">
+        <label class="option-radio" data-option="A">
+          <span class="radio-dot"></span>
+          <span>Option A: EPC — <span id="agreeEpcPrice">-</span></span>
+        </label>
+        <label class="option-radio" data-option="B">
+          <span class="radio-dot"></span>
+          <span>Option B: PPA — ฿0 Upfront</span>
+        </label>
+        <label class="option-radio" data-option="C" id="agreeOptionC">
+          <span class="radio-dot"></span>
+          <span>Option C: EPC + Battery — <span id="agreeBatPrice">-</span></span>
+        </label>
+      </div>
+
+      <div class="agreement-sub-header" data-i18n="keyTerms">Key Terms</div>
+      <ul class="key-terms-list" id="keyTermsList">
+        <li id="termSystem">System: <span id="termKwp">-</span> kWp solar installation</li>
+        <li>Installation timeline: 6–8 weeks from date of signing</li>
+        <li>Warranty: 25-year panels, 10-year inverters, 24-month workmanship</li>
+        <li>Payment terms per selected option (see proposal details above)</li>
+      </ul>
+
+      <div style="display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;">
+        <a href="epc-contract.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--gold-soft);border:1px solid var(--gold);border-radius:8px;color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;" data-i18n="readEpcContract">📄 Read EPC Contract</a>
+        <a href="ppa-contract.html" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:10px 20px;background:var(--green-soft);border:1px solid var(--green);border-radius:8px;color:var(--navy);font-size:13px;font-weight:600;text-decoration:none;" data-i18n="readPpaContract">📄 Read PPA Contract</a>
+      </div>
+
+      <details class="terms-toggle">
+        <summary data-i18n="termsConditions">Terms & Conditions</summary>
+        <div class="terms-content">
+          <ol>
+            <li>TM Energy will complete installation within 8 weeks of receiving the deposit payment.</li>
+            <li>Client shall provide unobstructed roof access and electrical panel access during installation.</li>
+            <li><strong>Force Majeure:</strong> Delays from monsoon weather or shipping shall extend timeline accordingly.</li>
+            <li><strong>Cancellation:</strong> Full refund within 7 days of signing. After site survey, 50% cancellation fee applies.</li>
+            <li><strong>Dispute Resolution:</strong> Thai law at Surat Thani Provincial Court.</li>
+            <li><strong>PPA Specific (Option B only):</strong> 20-year term with 2% annual escalation. Transferable upon property sale.</li>
+          </ol>
+        </div>
+      </details>
+
+      <div class="signature-block">
+        <div class="sig-party">
+          <div class="sig-party-label" data-i18n="clientLabel">Client</div>
           <canvas id="sigCanvas" width="380" height="120" style="border:2px solid #E2E8F0;border-radius:8px;background:white;cursor:crosshair;width:100%;touch-action:none"></canvas>
           <div style="display:flex;gap:8px;margin-top:8px">
-            <button onclick="clearSig()" style="padding:6px 14px;border-radius:6px;border:1px solid #E2E8F0;background:white;font-size:11px;cursor:pointer;font-family:Inter" data-i18n="clearSig">Clear</button>
-            <input type="text" id="sigName" placeholder="Full Name / ชื่อ-นามสกุล / שם מלא" style="flex:1;padding:6px 12px;border-radius:6px;border:1px solid #E2E8F0;font-size:12px;font-family:Inter">
+            <button onclick="clearSig()" style="padding:6px 14px;border-radius:6px;border:1px solid var(--border);background:#fff;font-size:11px;cursor:pointer;font-family:Inter" data-i18n="clearSig">Clear</button>
+            <input type="text" id="sigName" placeholder="Full Name" style="flex:1;padding:6px 12px;border-radius:6px;border:1px solid var(--border);font-size:12px;font-family:Inter">
           </div>
-          <input type="text" id="sigTitle" placeholder="Position / ตำแหน่ง / תפקיד" style="width:100%;padding:6px 12px;border-radius:6px;border:1px solid #E2E8F0;font-size:12px;font-family:Inter;margin-top:6px">
-          <input type="date" id="sigDate" style="width:100%;padding:6px 12px;border-radius:6px;border:1px solid #E2E8F0;font-size:12px;font-family:Inter;margin-top:6px">
+          <div class="sig-field">
+            <span class="sig-field-label" data-i18n="positionTitle">Position / Title</span>
+            <input type="text" id="sigTitle" style="width:100%;padding:6px 12px;border-radius:6px;border:1px solid var(--border);font-size:12px;font-family:Inter">
+          </div>
+          <div class="sig-field">
+            <span class="sig-field-label" data-i18n="dateLabel">Date</span>
+            <input type="date" id="sigDate" style="width:100%;padding:6px 12px;border-radius:6px;border:1px solid var(--border);font-size:12px;font-family:Inter">
+          </div>
+          <div class="stamp-area">Company<br>Stamp</div>
         </div>
-        <div>
-          <p style="font-size:12px;color:var(--gray);margin-bottom:8px">TM Energy</p>
-          <div style="border:2px solid #E2E8F0;border-radius:8px;background:white;padding:16px;height:120px;display:flex;align-items:center;justify-content:center">
-            <img src="visuals/tm-energy-logo.png" alt="TM Energy" style="max-height:80px;filter:brightness(0.9)">
+        <div class="sig-party">
+          <div class="sig-party-label">TM Energy</div>
+          <div class="sig-line"></div>
+          <div class="sig-field">
+            <span class="sig-field-label">Full Name</span>
+            <div class="sig-field-input"></div>
           </div>
-          <p style="font-size:11px;margin-top:8px;color:var(--gray)">TM Energy</p>
-          <p style="font-size:11px;color:var(--gray)">Koh Phangan, Thailand</p>
+          <div class="sig-field">
+            <span class="sig-field-label">Position / Title</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="sig-field">
+            <span class="sig-field-label">Date</span>
+            <div class="sig-field-input"></div>
+          </div>
+          <div class="stamp-area">Company<br>Stamp</div>
         </div>
       </div>
-      <div style="margin-top:16px;padding-top:16px;border-top:1px solid #E2E8F0;display:flex;gap:8px;flex-wrap:wrap">
-        <button onclick="acceptProposal()" style="padding:10px 24px;border-radius:8px;background:var(--gold);color:var(--navy);border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter" data-i18n="acceptBtn">✅ Accept Proposal</button>
-        <button onclick="window.print()" style="padding:10px 24px;border-radius:8px;background:var(--navy);color:white;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter" data-i18n="printBtn">🖨️ Print / Save PDF</button>
+
+      <p class="agreement-consent" id="consentText">By signing above, both parties agree to the terms outlined in this proposal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 12. CTA ═══ -->
+<section class="fade-in">
+  <div class="container">
+    <div class="cta-block">
+      <h2 data-i18n="ctaTitle">Ready to Start Saving?</h2>
+      <p class="cta-sub" data-i18n="ctaDesc">This proposal is valid for 30 days. Let's discuss your preferred option.</p>
+
+      <div class="cta-buttons">
+        <a id="ctaWA" href="#" class="btn-whatsapp" target="_blank">💬 WhatsApp Us Now</a>
+        <a id="ctaPhone" href="tel:+66623480119" class="btn-phone">📞 062-348-0119</a>
       </div>
-      <div id="acceptMsg" style="display:none;margin-top:12px;padding:12px;background:rgba(26,122,90,.1);border-radius:8px;color:var(--green);font-size:13px;font-weight:600"></div>
+
+      <div class="cta-steps">
+        <span><strong>1.</strong> Choose your option</span>
+        <span><strong>2.</strong> <a href="#agreement" style="color:inherit;text-decoration:underline;">Sign agreement</a></span>
+        <span><strong>3.</strong> We start work within 1 week</span>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- CTA -->
-  <div class="cta-section fade-in">
-    <h2 data-i18n="ctaTitle">Ready to Save on Electricity?</h2>
-    <p data-i18n="ctaDesc">Get started with a free consultation — no obligation</p>
-    <div class="cta-btns">
-      <a class="cta-btn primary" id="ctaWA" href="#" target="_blank" data-i18n="ctaWA">💬 WhatsApp Us</a>
-      <a class="cta-btn primary" href="https://line.me/ti/p/~tmenergy" target="_blank" style="background:#06C755;color:white">💚 LINE</a>
-      <a class="cta-btn secondary" href="tel:+66000000000" data-i18n="ctaCall">📞 Call Now</a>
-      <a class="cta-btn secondary" href="mailto:info@tm.energy" data-i18n="ctaEmail">✉️ Email</a>
+<!-- ═══ 13. ABOUT ═══ -->
+<section style="background:#fff;" class="fade-in">
+  <div class="container">
+    <div style="max-width:720px;margin:0 auto;text-align:center;">
+      <div class="section-label" data-i18n="aboutLabel">About Us</div>
+      <h2 class="section-heading" data-i18n="aboutHeading">About TM Energy</h2>
+      <p style="font-size:16px;color:var(--text-secondary);line-height:1.8;margin-top:16px;" data-i18n="aboutText">
+        TM Energy delivers professional solar energy solutions across Koh Phangan and the Gulf of Thailand. We design, install, and maintain high-performance solar systems for residential, commercial, and hospitality projects — with a local team that provides same-day service.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:24px;margin-top:24px;">
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">100+</div>
+          <div style="font-size:12px;color:var(--text-secondary);">Projects Completed</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">10+</div>
+          <div style="font-size:12px;color:var(--text-secondary);">Years on Koh Phangan</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">Tier 1</div>
+          <div style="font-size:12px;color:var(--text-secondary);">Equipment Only</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--navy);">Local</div>
+          <div style="font-size:12px;color:var(--text-secondary);">On-Island Team</div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="footer">
-    <strong>TM Energy</strong> | TM Energy<br>
-    Koh Phangan, Surat Thani, Thailand<br>
-    <span data-i18n="validity">This proposal is valid for 30 days</span> · <span id="propDate"></span>
-  </div>
 </div>
 
+<!-- ═══ 14. FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-logo">
+    <div class="logo-mark">TM</div>
+    <div class="footer-brand">TM ENERGY</div>
+  </div>
+  <div class="footer-tagline">Professional Solar Solutions for Koh Phangan</div>
+  <div class="footer-contacts">
+    <span>📞 062-348-0119</span>
+    <span>💬 WhatsApp: +66 62 348 0119</span>
+    <span>📧 info@tmenergy.asia</span>
+    <span>📍 Koh Phangan, Surat Thani</span>
+  </div>
+  <div class="footer-legal" id="footerLegal">
+    Proposal <span id="footerRef">-</span> · Valid <span id="footerValid">30 days</span> · All prices include VAT<br>
+    © 2026 TM Energy — A TM Developers Company · All rights reserved
+  </div>
+</footer>
+
 <script>
-// i18n translations
+// ═══════════════════════════════════════
+// TM ENERGY — PROPOSAL v2.0 (Dynamic)
+// ═══════════════════════════════════════
+
+// ── i18n TRANSLATIONS ──
 const T={
-  en:{signTitle:'Accept This Proposal',clientSign:'Client Signature',clearSig:'Clear',acceptBtn:'✅ Accept Proposal',printBtn:'🖨️ Print / Save PDF',roofViz:'Your Roof — Panel Layout',roofOutline:'Building Footprint',panelArea:'Solar Panels',usableZone:'Usable Zone (70%)',sysOverview:'System Overview',roofArea:'Roof Area (m²)',usableArea:'Usable Area (m²)',systemSize:'System Size (kWp)',panels:'Solar Panels',annualGen:'Annual Generation (kWh)',co2Saved:'CO₂ Saved/Year (tons)',options:'Your Options',epcTitle:'Option 1: Purchase (EPC)',epcDesc:'Own your solar system outright',ppaTitle:'Option 2: PPA — Zero Investment',ppaDesc:'We install & maintain, you buy cheaper electricity',monthlySave:'Monthly Savings',annualSave:'Annual Savings',payback:'Payback Period',save25:'25-Year Savings',ownership:'Ownership',immediate:'Immediate',upfront:'Upfront Cost',zero:'฿0',ppaRate:'Electricity Rate',discount:'vs PEA Rate (~฿6/kWh)',monthlySavePPA:'Monthly Savings',contract:'Contract Period',afterContract:'After Contract',youOwn:'System is yours',savingsProj:'Savings Projection',cumSave:'Cumulative Savings (EPC)',over25:'Over 25 years',equipment:'Premium Equipment',panelEff:'Efficiency: 22.8%',inverterType:'String Inverter',inverterEff:'Efficiency: 98.6%',mounting:'Mounting System',mountType:'Anodized Aluminum',mountLife:'Lifetime: 25+ years',warranty:'Warranty & Support',panelWarranty:'Panel Performance',productWarranty:'Panel Product',inverterWarranty:'Inverter',installWarranty:'Installation',included:"What's Included",detail:'Details',freeDesign:'Free Site Survey & Design',freeDesignD:'Professional engineers assess your roof',permits:'Permits & Paperwork',permitsD:'PEA application, building permits handled',install:'Full Installation',installD:'Certified team, 3-5 day installation',monitoring:'24/7 Monitoring',monitoringD:'Real-time system monitoring dashboard',maintenance:'Annual Maintenance',maintenanceD:'Panel cleaning, inverter check, report',ctaTitle:'Ready to Save on Electricity?',ctaDesc:'Get started with a free consultation — no obligation',ctaWA:'💬 WhatsApp Us',ctaCall:'📞 Call Now',ctaEmail:'✉️ Email',validity:'This proposal is valid for 30 days',heroTitle:'Solar Energy Proposal',heroSub:'Custom designed for your property'},
-  th:{signTitle:'ยอมรับข้อเสนอนี้',clientSign:'ลายเซ็นลูกค้า',clearSig:'ล้าง',acceptBtn:'✅ ยอมรับข้อเสนอ',printBtn:'🖨️ พิมพ์ / บันทึก PDF',roofViz:'หลังคาของคุณ — แผนผังแผงโซลาร์',roofOutline:'รอยเท้าอาคาร',panelArea:'แผงโซลาร์',usableZone:'พื้นที่ใช้งาน (70%)',sysOverview:'ภาพรวมระบบ',roofArea:'พื้นที่หลังคา (ตร.ม.)',usableArea:'พื้นที่ใช้งาน (ตร.ม.)',systemSize:'ขนาดระบบ (kWp)',panels:'แผงโซลาร์',annualGen:'ผลิตไฟฟ้าต่อปี (kWh)',co2Saved:'ลด CO₂ ต่อปี (ตัน)',options:'ตัวเลือกสำหรับคุณ',epcTitle:'ตัวเลือก 1: ซื้อระบบ (EPC)',epcDesc:'เป็นเจ้าของระบบโซลาร์ทันที',ppaTitle:'ตัวเลือก 2: PPA — ไม่ต้องลงทุน',ppaDesc:'เราติดตั้งและดูแล คุณซื้อไฟฟ้าในราคาถูกลง',monthlySave:'ประหยัดต่อเดือน',annualSave:'ประหยัดต่อปี',payback:'ระยะเวลาคืนทุน',save25:'ประหยัดใน 25 ปี',ownership:'ความเป็นเจ้าของ',immediate:'ทันที',upfront:'ค่าใช้จ่ายเริ่มต้น',zero:'฿0',ppaRate:'อัตราค่าไฟฟ้า',discount:'เทียบกับ กฟภ. (~฿6/kWh)',monthlySavePPA:'ประหยัดต่อเดือน',contract:'ระยะสัญญา',afterContract:'หลังสัญญา',youOwn:'ระบบเป็นของคุณ',savingsProj:'ประมาณการประหยัด',cumSave:'ยอดประหยัดสะสม (EPC)',over25:'ตลอด 25 ปี',equipment:'อุปกรณ์คุณภาพสูง',panelEff:'ประสิทธิภาพ: 22.8%',inverterType:'อินเวอร์เตอร์สตริง',inverterEff:'ประสิทธิภาพ: 98.6%',mounting:'ระบบโครงสร้าง',mountType:'อลูมิเนียมอะโนไดซ์',mountLife:'อายุใช้งาน: 25+ ปี',warranty:'การรับประกันและบริการ',panelWarranty:'ประสิทธิภาพแผง',productWarranty:'ตัวผลิตภัณฑ์',inverterWarranty:'อินเวอร์เตอร์',installWarranty:'การติดตั้ง',included:'สิ่งที่รวมอยู่',detail:'รายละเอียด',freeDesign:'สำรวจและออกแบบฟรี',freeDesignD:'วิศวกรมืออาชีพประเมินหลังคาของคุณ',permits:'ใบอนุญาตและเอกสาร',permitsD:'ยื่นขอ กฟภ. และใบอนุญาตก่อสร้าง',install:'ติดตั้งครบวงจร',installD:'ทีมที่ได้รับการรับรอง 3-5 วัน',monitoring:'ตรวจสอบ 24/7',monitoringD:'แดชบอร์ดตรวจสอบระบบแบบเรียลไทม์',maintenance:'บำรุงรักษาประจำปี',maintenanceD:'ทำความสะอาดแผง ตรวจอินเวอร์เตอร์ รายงาน',ctaTitle:'พร้อมประหยัดค่าไฟฟ้าแล้วหรือยัง?',ctaDesc:'เริ่มต้นด้วยการให้คำปรึกษาฟรี — ไม่มีข้อผูกมัด',ctaWA:'💬 แชทไลน์/WhatsApp',ctaCall:'📞 โทรเลย',ctaEmail:'✉️ อีเมล',validity:'ใบเสนอราคานี้มีผล 30 วัน',heroTitle:'ข้อเสนอพลังงานแสงอาทิตย์',heroSub:'ออกแบบเฉพาะสำหรับอสังหาริมทรัพย์ของคุณ'},
-  he:{signTitle:'אישור הצעת מחיר',clientSign:'חתימת לקוח',clearSig:'נקה',acceptBtn:'✅ אישור הצעה',printBtn:'🖨️ הדפסה / שמירת PDF',roofViz:'הגג שלך — פריסת פאנלים',roofOutline:'מתאר מבנה',panelArea:'פאנלים סולאריים',usableZone:'אזור שמיש (70%)',sysOverview:'סקירת מערכת',roofArea:'שטח גג (מ"ר)',usableArea:'שטח שמיש (מ"ר)',systemSize:'הספק מערכת (kWp)',panels:'פאנלים סולאריים',annualGen:'ייצור שנתי (kWh)',co2Saved:'חיסכון CO₂ שנתי (טון)',options:'האפשרויות שלך',epcTitle:'אפשרות 1: רכישה (EPC)',epcDesc:'מערכת סולארית בבעלותך המלאה',ppaTitle:'אפשרות 2: PPA — אפס השקעה',ppaDesc:'אנחנו מתקינים ומתחזקים, אתה קונה חשמל בזול',monthlySave:'חיסכון חודשי',annualSave:'חיסכון שנתי',payback:'תקופת החזר',save25:'חיסכון ב-25 שנה',ownership:'בעלות',immediate:'מיידית',upfront:'עלות התחלתית',zero:'฿0',ppaRate:'תעריף חשמל',discount:'מול PEA (~฿6/kWh)',monthlySavePPA:'חיסכון חודשי',contract:'תקופת חוזה',afterContract:'אחרי החוזה',youOwn:'המערכת שלך',savingsProj:'תחזית חיסכון',cumSave:'חיסכון מצטבר (EPC)',over25:'לאורך 25 שנה',equipment:'ציוד פרימיום',panelEff:'נצילות: 22.8%',inverterType:'ממיר סטרינג',inverterEff:'נצילות: 98.6%',mounting:'מערכת תילוי',mountType:'אלומיניום אנודייז',mountLife:'אורך חיים: 25+ שנה',warranty:'אחריות ותמיכה',panelWarranty:'ביצועי פאנל',productWarranty:'מוצר פאנל',inverterWarranty:'ממיר',installWarranty:'התקנה',included:'כלול בהצעה',detail:'פרטים',freeDesign:'סקר שטח ועיצוב חינם',freeDesignD:'מהנדסים מקצועיים מעריכים את הגג',permits:'רישיונות ואישורים',permitsD:'הגשה ל-PEA, היתרי בנייה',install:'התקנה מלאה',installD:'צוות מוסמך, 3-5 ימי התקנה',monitoring:'ניטור 24/7',monitoringD:'דשבורד ניטור בזמן אמת',maintenance:'תחזוקה שנתית',maintenanceD:'ניקוי פאנלים, בדיקת ממיר, דוח',ctaTitle:'מוכנים לחסוך בחשמל?',ctaDesc:'התחילו עם ייעוץ חינם — ללא התחייבות',ctaWA:'💬 WhatsApp',ctaCall:'📞 התקשרו',ctaEmail:'✉️ מייל',validity:'הצעה זו תקפה ל-30 יום',heroTitle:'הצעת מחיר — אנרגיה סולארית',heroSub:'מותאמת אישית לנכס שלך'}
+  en:{heroBadge:'SOLAR ENERGY PROPOSAL',heroTitle:'Solar Power for',preparedFor:'Prepared for',proposalDate:'Proposal Date',validUntil:'Valid Until',yourProject:'Your Project',propDetails:'Property Details',owner:'Owner',location:'Location',roofAssess:'Roof Assessment',roofArea:'Roof Area',usableArea:'Usable Area',systemSize:'System Size',panels:'Panels',roofViz:'Your Roof — Panel Layout',roofVizHeading:'Satellite Roof Analysis',roofOutline:'Building Footprint',panelArea:'Solar Panels',usableZone:'Usable Zone (70%)',choosePlan:'Choose Your Plan',threeOptions:'Three Options, One Goal: Lower Bills',optionsDesc:'Pick the plan that fits your budget. All options use the same premium equipment.',epcTitle:'Option A: EPC',epcDesc:'Own your system outright',ppaTitle:'Option B: PPA',ppaDesc:'Zero upfront — we install, you save',epcBatTitle:'Option C: EPC + Battery',epcBatDesc:'Maximum independence',annualSave:'Annual Savings',monthlySave:'Monthly Savings',payback:'Payback',panelWarranty:'Solar Panel Warranty',inverterWarranty:'Inverter Warranty',workmanshipWarranty:'Workmanship Warranty',monitoring:'Remote Monitoring',cleaning:'Panel Cleaning',localTeam:'On-Island Team',compareLabel:'Side-by-Side Comparison',compareHeading:'Compare All Options',upfrontCost:'Upfront Cost',monthlyPayment:'Monthly Payment',paybackPeriod:'Payback Period',blackoutProtect:'Blackout Protection',ownership:'Ownership',immediate:'Immediate',savingsLabel:'Your Savings',savingsHeading:'See How Much You\'ll Save',savingsDesc:'Compare your current electricity costs with solar.',withoutSolar:'Without Solar — Annual Electricity Cost',withSolar:'With Solar (EPC) — Your New Cost',tenYrSav:'10-Year Savings',co2Saved:'CO₂ Saved/Year',specsLabel:'System Details',specsHeading:'Premium Equipment, Built to Last',specsDesc:'Tier 1 solar panels and world-leading inverters.',timelineLabel:'How It Works',timelineHeading:'From Approval to Power in 6–8 Weeks',timelineDesc:'A straightforward process — we handle everything.',tl1Title:'Survey & Design',tl1Desc:'Site measurement, electrical assessment, system design',tl2Title:'Permits & Procurement',tl2Desc:'PEA license, structural approval, equipment order',tl3Title:'Installation',tl3Desc:'Mount panels, install inverters, complete wiring',tl4Title:'Go Live ✓',tl4Desc:'Testing, PEA inspection, grid connection, monitoring setup',warrantyLabel:'Warranties & Support',warrantyHeading:'Protected for Decades',warrantyDesc:'Industry-leading warranties backed by global manufacturers.',batteryLabel:'Battery Add-On',batteryHeading:'Add Energy Storage for Full Independence',batteryDesc:'Store solar energy for nighttime use and blackout protection.',agreementTitle:'Service Agreement',selectedOption:'Selected Option',keyTerms:'Key Terms',termsConditions:'Terms & Conditions',readEpcContract:'📄 Read EPC Contract',readPpaContract:'📄 Read PPA Contract',clientLabel:'Client',clearSig:'Clear',positionTitle:'Position / Title',dateLabel:'Date',ctaTitle:'Ready to Start Saving?',ctaDesc:'This proposal is valid for 30 days. Let\'s discuss your preferred option.',aboutLabel:'About Us',aboutHeading:'About TM Energy',aboutText:'TM Energy delivers professional solar energy solutions across Koh Phangan and the Gulf of Thailand.'},
+  th:{heroBadge:'ข้อเสนอพลังงานแสงอาทิตย์',heroTitle:'พลังงานแสงอาทิตย์สำหรับ',preparedFor:'จัดทำให้',proposalDate:'วันที่เสนอ',validUntil:'มีผลถึง',yourProject:'โปรเจกต์ของคุณ',propDetails:'รายละเอียดโครงการ',owner:'เจ้าของ',location:'ที่ตั้ง',roofAssess:'ประเมินหลังคา',roofArea:'พื้นที่หลังคา',usableArea:'พื้นที่ใช้งาน',systemSize:'ขนาดระบบ',panels:'แผงโซลาร์',roofViz:'หลังคาของคุณ — แผนผังแผงโซลาร์',roofVizHeading:'วิเคราะห์หลังคาจากดาวเทียม',roofOutline:'รอยเท้าอาคาร',panelArea:'แผงโซลาร์',usableZone:'พื้นที่ใช้งาน (70%)',choosePlan:'เลือกแผนของคุณ',threeOptions:'3 ตัวเลือก เป้าหมายเดียว: ลดค่าไฟ',optionsDesc:'เลือกแผนที่เหมาะกับงบประมาณ ทุกตัวเลือกใช้อุปกรณ์พรีเมียมเหมือนกัน',epcTitle:'ตัวเลือก A: EPC',epcDesc:'เป็นเจ้าของระบบ',ppaTitle:'ตัวเลือก B: PPA',ppaDesc:'ไม่ต้องจ่ายล่วงหน้า — เราติดตั้ง คุณประหยัด',epcBatTitle:'ตัวเลือก C: EPC + แบตเตอรี่',epcBatDesc:'พึ่งพาตนเองสูงสุด',annualSave:'ประหยัดต่อปี',monthlySave:'ประหยัดต่อเดือน',payback:'คืนทุน',panelWarranty:'รับประกันแผง',inverterWarranty:'รับประกันอินเวอร์เตอร์',workmanshipWarranty:'รับประกันงานติดตั้ง',monitoring:'ตรวจสอบ 24 ชม.',cleaning:'ทำความสะอาดแผง',localTeam:'ทีมประจำเกาะ',compareLabel:'เปรียบเทียบตัวเลือก',compareHeading:'เปรียบเทียบทุกตัวเลือก',upfrontCost:'ค่าใช้จ่ายล่วงหน้า',monthlyPayment:'ค่าใช้จ่ายรายเดือน',paybackPeriod:'ระยะเวลาคืนทุน',blackoutProtect:'ป้องกันไฟดับ',ownership:'กรรมสิทธิ์',immediate:'ทันที',savingsLabel:'เงินที่คุณประหยัดได้',savingsHeading:'ดูว่าคุณจะประหยัดเท่าไหร่',savingsDesc:'เปรียบเทียบค่าไฟปัจจุบันกับโซลาร์',withoutSolar:'ไม่มีโซลาร์ — ค่าไฟรายปี',withSolar:'กับโซลาร์ (EPC) — ค่าไฟใหม่',tenYrSav:'ประหยัด 10 ปี',co2Saved:'ลด CO₂ ต่อปี',specsLabel:'รายละเอียดระบบ',specsHeading:'อุปกรณ์คุณภาพสูง ทนทาน',specsDesc:'แผงโซลาร์ Tier 1 และอินเวอร์เตอร์ชั้นนำ',timelineLabel:'ขั้นตอนการดำเนินงาน',timelineHeading:'จากอนุมัติถึงเปิดใช้ 6-8 สัปดาห์',timelineDesc:'กระบวนการตรงไปตรงมา เราจัดการทุกอย่าง',tl1Title:'สำรวจและออกแบบ',tl1Desc:'วัดพื้นที่ ประเมินระบบไฟฟ้า ออกแบบ',tl2Title:'ใบอนุญาตและจัดซื้อ',tl2Desc:'ขอ PEA อนุมัติโครงสร้าง สั่งอุปกรณ์',tl3Title:'ติดตั้ง',tl3Desc:'ติดแผง ติดตั้งอินเวอร์เตอร์ เดินสาย',tl4Title:'เปิดใช้ ✓',tl4Desc:'ทดสอบ ตรวจ PEA เชื่อมต่อ เริ่มผลิตไฟ',warrantyLabel:'การรับประกันและบริการ',warrantyHeading:'ปกป้องยาวนานหลายทศวรรษ',warrantyDesc:'รับประกันระดับโลกจากผู้ผลิตชั้นนำ',batteryLabel:'ตัวเลือกแบตเตอรี่',batteryHeading:'เพิ่มแบตเตอรี่สำหรับพึ่งพาตนเอง',batteryDesc:'เก็บพลังงานแสงอาทิตย์ไว้ใช้ตอนกลางคืน',agreementTitle:'สัญญาบริการ',selectedOption:'ตัวเลือกที่เลือก',keyTerms:'เงื่อนไขสำคัญ',termsConditions:'ข้อกำหนดและเงื่อนไข',readEpcContract:'📄 สัญญา EPC',readPpaContract:'📄 สัญญา PPA',clientLabel:'ลูกค้า',clearSig:'ล้าง',positionTitle:'ตำแหน่ง',dateLabel:'วันที่',ctaTitle:'พร้อมเริ่มประหยัดแล้วหรือยัง?',ctaDesc:'ข้อเสนอนี้มีอายุ 30 วัน — ติดต่อเราเลย',aboutLabel:'เกี่ยวกับเรา',aboutHeading:'เกี่ยวกับ TM Energy',aboutText:'TM Energy ให้บริการโซลาร์เซลล์ครบวงจรบนเกาะพะงัน'},
+  he:{heroBadge:'הצעת מחיר — אנרגיה סולארית',heroTitle:'אנרגיה סולארית עבור',preparedFor:'הוכן עבור',proposalDate:'תאריך הצעה',validUntil:'בתוקף עד',yourProject:'הפרויקט שלך',propDetails:'פרטי הנכס',owner:'בעלים',location:'מיקום',roofAssess:'הערכת גג',roofArea:'שטח גג',usableArea:'שטח שמיש',systemSize:'הספק מערכת',panels:'פאנלים',roofViz:'הגג שלך — פריסת פאנלים',roofVizHeading:'ניתוח גג לוויני',roofOutline:'מתאר מבנה',panelArea:'פאנלים סולאריים',usableZone:'אזור שמיש (70%)',choosePlan:'בחר את התוכנית שלך',threeOptions:'שלוש אפשרויות, מטרה אחת: חשבון נמוך יותר',optionsDesc:'בחר את התוכנית שמתאימה לתקציב שלך.',epcTitle:'אפשרות A: EPC',epcDesc:'מערכת בבעלותך המלאה',ppaTitle:'אפשרות B: PPA',ppaDesc:'אפס השקעה — אנחנו מתקינים, אתה חוסך',epcBatTitle:'אפשרות C: EPC + סוללה',epcBatDesc:'עצמאות מקסימלית',annualSave:'חיסכון שנתי',monthlySave:'חיסכון חודשי',payback:'החזר השקעה',panelWarranty:'אחריות פאנלים',inverterWarranty:'אחריות ממיר',workmanshipWarranty:'אחריות התקנה',monitoring:'ניטור 24/7',cleaning:'ניקוי פאנלים',localTeam:'צוות מקומי',compareLabel:'השוואה',compareHeading:'השווה את כל האפשרויות',upfrontCost:'עלות התחלתית',monthlyPayment:'תשלום חודשי',paybackPeriod:'תקופת החזר',blackoutProtect:'הגנה מהפסקות חשמל',ownership:'בעלות',immediate:'מיידי',savingsLabel:'החיסכון שלך',savingsHeading:'ראה כמה תחסוך',savingsDesc:'השווה את עלויות החשמל הנוכחיות עם סולארי.',withoutSolar:'ללא סולארי — עלות חשמל שנתית',withSolar:'עם סולארי (EPC) — העלות החדשה',tenYrSav:'חיסכון 10 שנים',co2Saved:'חיסכון CO₂ שנתי',specsLabel:'פרטי המערכת',specsHeading:'ציוד פרימיום, בנוי להחזיק',specsDesc:'פאנלים Tier 1 וממירים מובילים.',timelineLabel:'איך זה עובד',timelineHeading:'מאישור לייצור ב-6-8 שבועות',timelineDesc:'תהליך פשוט — אנחנו מטפלים בהכל.',tl1Title:'סקר ועיצוב',tl1Desc:'מדידת שטח, הערכה חשמלית, עיצוב מערכת',tl2Title:'רישיונות ורכש',tl2Desc:'רישיון PEA, אישור מבני, הזמנת ציוד',tl3Title:'התקנה',tl3Desc:'הרכבת פאנלים, התקנת ממירים, חיווט',tl4Title:'עלייה לאוויר ✓',tl4Desc:'בדיקות, חיבור לרשת, הפעלת ניטור',warrantyLabel:'אחריות ותמיכה',warrantyHeading:'מוגן לעשרות שנים',warrantyDesc:'אחריות מובילה בתעשייה מיצרנים גלובליים.',batteryLabel:'תוספת סוללה',batteryHeading:'הוסף אחסון אנרגיה לעצמאות מלאה',batteryDesc:'אחסן אנרגיה סולארית לשימוש לילי.',agreementTitle:'הסכם שירות',selectedOption:'אפשרות נבחרת',keyTerms:'תנאים עיקריים',termsConditions:'תנאים והגבלות',readEpcContract:'📄 חוזה EPC',readPpaContract:'📄 חוזה PPA',clientLabel:'לקוח',clearSig:'נקה',positionTitle:'תפקיד',dateLabel:'תאריך',ctaTitle:'מוכנים להתחיל לחסוך?',ctaDesc:'הצעה זו תקפה ל-30 יום.',aboutLabel:'אודותינו',aboutHeading:'אודות TM Energy',aboutText:'TM Energy מספקת פתרונות אנרגיה סולארית מקצועיים בקופנגן ובמפרץ תאילנד.'}
 };
 
+// ── LANGUAGE SWITCH ──
 let curLang='en';
 function setLang(lang){
   curLang=lang;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('on'));
-  document.querySelector(`.lang-btn[onclick*="${lang}"]`).classList.add('on');
   const dir=lang==='he'?'rtl':'ltr';
   document.getElementById('mainContent').setAttribute('dir',dir);
   document.getElementById('mainContent').setAttribute('lang',lang);
-  document.getElementById('heroTitle').textContent=T[lang].heroTitle;
-  document.getElementById('heroSub').textContent=T[lang].heroSub;
+  // Update nav language buttons
+  document.querySelectorAll('.lang-btn-nav').forEach(b=>{
+    b.style.background='rgba(255,255,255,.12)';b.style.color='#fff';
+  });
+  const btnMap={en:0,th:1,he:2};
+  const btns=document.querySelectorAll('.lang-btn-nav');
+  if(btns[btnMap[lang]]){btns[btnMap[lang]].style.background='var(--gold)';btns[btnMap[lang]].style.color='var(--navy)';}
+  // Apply all data-i18n
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key=el.dataset.i18n;
-    if(T[lang][key])el.textContent=T[lang][key];
+    if(T[lang]&&T[lang][key])el.textContent=T[lang][key];
   });
 }
 
-// Parse URL params for building data
+// ── URL PARAMS ──
 const params=new URLSearchParams(window.location.search);
+const n=params.get('n')||'Your Property';
+const a=parseFloat(params.get('a'))||500;
+const u=parseFloat(params.get('u'))||(a*0.7);
+const kw=parseFloat(params.get('kw'))||(u/5.5);
+const p=parseInt(params.get('p'))||Math.floor(u/2.58);
+const kwh=parseInt(params.get('kwh'))||Math.round(kw*4.5*365);
+const epc=parseInt(params.get('epc'))||Math.round(kw*30000);
+const bat=parseInt(params.get('bat'))||0;
+const batkwh=parseInt(params.get('batkwh'))||0;
+const ppa=parseFloat(params.get('ppa'))||4.50;
+const pea=parseFloat(params.get('pea'))||6;
+const img1=params.get('img1');
+const img2=params.get('img2');
+const ph=params.get('ph')||'66623480119';
+const ref=params.get('ref')||'TM-'+new Date().getFullYear()+'-'+String(Math.floor(Math.random()*999)).padStart(3,'0');
+
+// ── CALCULATIONS ──
+const epcAnnual=kwh*pea;
+const epcMonthly=epcAnnual/12;
+const epcPayback=epc/epcAnnual;
+const epc25=epcAnnual*25;
+const co2=kwh*0.0005;
+
+const ppaMonthlyCost=(kwh/12)*ppa;
+const ppaMonthlySav=(kwh/12)*(pea-ppa);
+const ppaDiscount=((pea-ppa)/pea*100);
+
+const epcBatTotal=epc+bat;
+const epcBatExtra=batkwh*365*0.5*pea*0.2;
+const epcBatAnnual=epcAnnual+epcBatExtra;
+const epcBatPaybackVal=epcBatTotal/epcBatAnnual;
+const backupHrs=Math.round(batkwh/3);
+
+const today=new Date();
+const validDate=new Date(today);validDate.setDate(validDate.getDate()+30);
+const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+// ── HELPER ──
+function B(v){return'฿'+Math.round(v).toLocaleString();}
+
+// ── POPULATE DOM ──
 function fillData(){
-  const a=parseFloat(params.get('a'))||500;
-  const u=parseFloat(params.get('u'))||(a*0.7);
-  const kw=parseFloat(params.get('kw'))||(u/5.5);
-  const p=parseInt(params.get('p'))||Math.floor(u/2.58);
-  const kwh=parseInt(params.get('kwh'))||(kw*4.5*365);
-  const epc=parseInt(params.get('epc'))||(kw*30000);
-  const sav=parseInt(params.get('sav'))||Math.round(kwh/12*6);
-  const name=params.get('n')||'Your Property';
-  const phone=params.get('ph')||'';
-  
-  document.getElementById('kRoof').textContent=a.toLocaleString();
-  document.getElementById('kUsable').textContent=u.toLocaleString();
-  document.getElementById('kKwp').textContent=kw.toFixed(1);
-  document.getElementById('kPanels').textContent=p.toLocaleString();
-  document.getElementById('kKwh').textContent=kwh.toLocaleString();
-  document.getElementById('kCO2').textContent=(kwh*0.0005).toFixed(1);
-  document.getElementById('epcPrice').textContent='฿'+epc.toLocaleString();
-  document.getElementById('epcSave').textContent='฿'+sav.toLocaleString();
-  document.getElementById('epcSaveYr').textContent='฿'+(sav*12).toLocaleString();
-  document.getElementById('epcPayback').textContent=(epc/(sav*12)).toFixed(1)+' yrs';
-  document.getElementById('epcSave25').textContent='฿'+(sav*12*25).toLocaleString();
-  document.getElementById('ppaSave').textContent='฿'+Math.round(kwh/12*(6-4.5)).toLocaleString();
-  
-  document.getElementById('heroSub').textContent=T[curLang].heroSub.replace('your property',name);
-  
-  // Savings chart
-  const chart=document.getElementById('savingsChart');
-  chart.innerHTML='';
-  const annual=sav*12;
-  for(let yr=1;yr<=25;yr+=2){
-    const cum=annual*yr;
-    const maxH=180;
-    const h=Math.min((cum/(annual*25))*maxH,maxH);
-    const col=document.createElement('div');col.className='bar-col';
-    col.innerHTML=`<div class="bar-value">฿${(cum/1e6).toFixed(1)}M</div><div class="bar-fill" style="height:${h}px;background:${yr*annual>epc?'var(--green)':'var(--gold)'}"></div><div class="bar-label">Y${yr}</div>`;
-    chart.appendChild(col);
+  // Hero
+  document.getElementById('heroClientName').textContent=n;
+  document.getElementById('heroSubtitle').textContent=kw.toFixed(1)+' kWp rooftop solar system — Koh Phangan';
+  document.getElementById('heroSavings').textContent=B(epcAnnual);
+  document.getElementById('heroPayback').textContent=epcPayback.toFixed(1)+' yrs';
+  document.getElementById('heroKwh').textContent=kwh.toLocaleString();
+  document.getElementById('heroClient').textContent=n;
+  document.getElementById('heroDate').textContent=fmt(today);
+  document.getElementById('heroRef').textContent=ref;
+  document.getElementById('heroValid').textContent=fmt(validDate)+' (30 days)';
+  document.getElementById('navRef').textContent='#'+ref+' · Confidential';
+
+  // Project section (conditional)
+  if(img1||img2){
+    document.getElementById('projectSection').style.display='';
+    const imgDiv=document.getElementById('projectImages');
+    let html='';
+    if(img1)html+=`<div class="img-wrapper"><img src="${img1}" alt="Project photo 1" loading="lazy"><div class="img-caption">${n} — Solar Installation</div></div>`;
+    if(img2)html+=`<div class="img-wrapper"><img src="${img2}" alt="Project photo 2" loading="lazy"><div class="img-caption">Panel Detail</div></div>`;
+    imgDiv.innerHTML=html;
   }
-  
-  // WhatsApp CTA
-  const waMsg=encodeURIComponent(`Hello! I'm interested in the solar proposal for ${name}. Can we schedule a consultation?`);
-  document.getElementById('ctaWA').href=phone?`https://wa.me/${phone.replace(/[^0-9+]/g,'')}?text=${waMsg}`:`https://wa.me/?text=${waMsg}`;
-  
-  document.getElementById('propDate').textContent=new Date().toLocaleDateString('en-GB');
+  document.getElementById('detailOwner').textContent=n;
+  document.getElementById('detailRoof').textContent=a.toLocaleString()+' m²';
+  document.getElementById('detailUsable').textContent=u.toLocaleString()+' m²';
+  document.getElementById('detailKwp').textContent=kw.toFixed(1)+' kWp';
+  document.getElementById('detailPanels').textContent=p+' panels';
+
+  // Options
+  document.getElementById('epcPrice').textContent=B(epc);
+  document.getElementById('epcAnnualSav').textContent=B(epcAnnual);
+  document.getElementById('epcPaybackYrs').textContent=epcPayback.toFixed(1)+' years';
+  document.getElementById('ppaPriceNote').textContent='pay only ฿'+ppa.toFixed(2)+'/kWh ('+ppaDiscount.toFixed(0)+'% less than PEA)';
+  document.getElementById('ppaSave').textContent=B(ppaMonthlySav)+'/mo';
+
+  // Option C (battery)
+  if(bat){
+    document.getElementById('epcBatPrice').textContent=B(epcBatTotal);
+    document.getElementById('epcBatSav').textContent=B(epcBatAnnual);
+    document.getElementById('epcBatPayback').textContent=epcBatPaybackVal.toFixed(1)+' years';
+    document.getElementById('batCapText').textContent='Huawei LUNA2000 = '+batkwh+' kWh storage';
+    document.getElementById('batBackupText').textContent=backupHrs+' hours blackout backup';
+    document.getElementById('batterySection').style.display='';
+  } else {
+    document.getElementById('optionCardC').style.display='none';
+    document.getElementById('agreeOptionC').style.display='none';
+    // Hide battery column in comparison table
+    document.getElementById('compareColC').style.display='none';
+    document.querySelectorAll('#compareTable tbody tr').forEach(tr=>{
+      const cells=tr.querySelectorAll('td');
+      if(cells[3])cells[3].style.display='none';
+    });
+  }
+
+  // Comparison table
+  document.getElementById('cmpEpcUpfront').textContent=B(epc);
+  document.getElementById('cmpPpaMonthly').innerHTML='~'+B(ppaMonthlyCost)+'/mo<br><span style="font-size:11px;color:var(--text-secondary);">฿'+ppa.toFixed(2)+' × kWh used</span>';
+  document.getElementById('cmpEpcAnnual').textContent=B(epcAnnual);
+  document.getElementById('cmpPpaAnnual').textContent=B(ppaMonthlySav*12);
+  document.getElementById('cmpEpcPayback').textContent=epcPayback.toFixed(1)+' years';
+  if(bat){
+    document.getElementById('cmpBatUpfront').textContent=B(epcBatTotal);
+    document.getElementById('cmpBatAnnual').textContent=B(epcBatAnnual);
+    document.getElementById('cmpBatPayback').textContent=epcBatPaybackVal.toFixed(1)+' years';
+    document.getElementById('cmpBatBackup').innerHTML='✅ '+backupHrs+' hours';
+  }
+
+  // Savings section
+  document.getElementById('barPea').textContent=B(epcAnnual)+'+/year to PEA';
+  document.getElementById('saveBadge').textContent='Save '+B(epcAnnual)+'/yr';
+  document.getElementById('savAnnual').textContent=B(epcAnnual);
+  document.getElementById('sav10yr').textContent='฿'+(epcAnnual*10/1e6).toFixed(2)+'M';
+  document.getElementById('savPayback').textContent=epcPayback.toFixed(1);
+  document.getElementById('savCO2').textContent=co2.toFixed(1)+'t';
+
+  // Specs
+  document.getElementById('specPanels').textContent=p+' panels';
+  document.getElementById('specKwp').textContent=kw.toFixed(1)+' kWp';
+
+  // Agreement
+  document.getElementById('agreeEpcPrice').textContent=B(epc);
+  if(bat)document.getElementById('agreeBatPrice').textContent=B(epcBatTotal);
+  document.getElementById('termKwp').textContent=kw.toFixed(1);
+  document.getElementById('consentText').textContent='By signing above, both parties agree to the terms outlined in proposal #'+ref+'.';
+
+  // Footer
+  document.getElementById('footerRef').textContent='#'+ref;
+  document.getElementById('footerValid').textContent='until '+fmt(validDate);
+
+  // WhatsApp links
+  const waMsg=encodeURIComponent('Hi TM Energy, I\'m interested in proposal '+ref+' for '+n);
+  const waUrl='https://wa.me/'+ph+'?text='+waMsg;
+  document.getElementById('navWA').href=waUrl;
+  document.getElementById('ctaWA').href=waUrl;
+  document.getElementById('floatingWA').href=waUrl;
+  document.getElementById('ctaPhone').href='tel:+'+ph;
 }
 
 fillData();
 
-// Signature pad
+// ── SIGNATURE PAD ──
 const canvas=document.getElementById('sigCanvas');
 if(canvas){
   const ctx=canvas.getContext('2d');
   let drawing=false;
   canvas.width=canvas.offsetWidth*2;canvas.height=canvas.offsetHeight*2;
   ctx.scale(2,2);ctx.lineWidth=2;ctx.lineCap='round';ctx.strokeStyle='#0D2137';
-  
   function getPos(e){
     const r=canvas.getBoundingClientRect();
     const t=e.touches?e.touches[0]:e;
@@ -841,93 +1307,91 @@ function clearSig(){
   const c=document.getElementById('sigCanvas');
   const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);
 }
-function acceptProposal(){
-  const name=document.getElementById('sigName').value;
-  const title=document.getElementById('sigTitle').value;
-  const date=document.getElementById('sigDate').value;
-  const msg=document.getElementById('acceptMsg');
-  if(!name){msg.style.display='block';msg.style.background='rgba(232,93,58,.1)';msg.style.color='var(--coral)';msg.textContent='Please enter your name / กรุณากรอกชื่อ / נא להזין שם';return}
-  msg.style.display='block';msg.style.background='rgba(26,122,90,.1)';msg.style.color='var(--green)';
-  msg.textContent=`✅ Proposal accepted by ${name}${title?' ('+title+')':''} on ${date||new Date().toLocaleDateString()}. A copy will be sent to your email.`;
-}
 document.getElementById('sigDate').valueAsDate=new Date();
 
-// Roof Visualization
+// ── AGREEMENT OPTION SELECTION ──
+document.addEventListener('DOMContentLoaded',function(){
+  const radios=document.querySelectorAll('.option-select .option-radio');
+  radios.forEach(function(radio){
+    const input=document.createElement('input');
+    input.type='radio';input.name='selected-option';
+    input.value='option-'+radio.dataset.option;
+    input.style.display='none';
+    radio.prepend(input);
+    radio.addEventListener('click',function(){
+      radios.forEach(function(r){
+        r.style.borderColor='';r.style.background='';r.style.transform='';r.style.boxShadow='';
+        const dot=r.querySelector('.radio-dot');
+        if(dot){dot.style.borderColor='#ccc';dot.innerHTML='';}
+        const inp=r.querySelector('input[type="radio"]');
+        if(inp)inp.checked=false;
+      });
+      this.style.borderColor='var(--gold)';
+      this.style.background='var(--gold-soft)';
+      this.style.transform='scale(1.03)';
+      this.style.boxShadow='0 4px 16px rgba(232,168,32,.2)';
+      const dot=this.querySelector('.radio-dot');
+      if(dot){
+        dot.style.borderColor='var(--gold)';
+        dot.innerHTML='<div style="width:10px;height:10px;background:var(--gold);border-radius:50%;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></div>';
+      }
+      const inp=this.querySelector('input[type="radio"]');
+      if(inp)inp.checked=true;
+    });
+  });
+});
+
+// ── ROOF VISUALIZATION (MapLibre) ──
 function initRoofMap(){
   const polyStr=params.get('poly');
   const lat=parseFloat(params.get('la'));
   const lng=parseFloat(params.get('lo'));
   if(!polyStr||!lat||!lng)return;
-  
   let poly;
   try{poly=JSON.parse(polyStr)}catch(e){return}
   if(!poly||poly.length<3)return;
-  
-  document.getElementById('roofVizSection').style.display='block';
-  
+  document.getElementById('roofVizSection').style.display='';
   const rmap=new maplibregl.Map({
     container:'roofMap',
     style:{version:8,glyphs:'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
       sources:{'sat':{type:'raster',tiles:['https://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}'],tileSize:256,maxzoom:22,attribution:'Google'}},
       layers:[{id:'sat',type:'raster',source:'sat',paint:{'raster-saturation':0.1,'raster-contrast':0.1}}]},
-    center:[lng,lat],zoom:19,pitch:50,bearing:-15,
-    maxZoom:22,fadeDuration:0
+    center:[lng,lat],zoom:19,pitch:50,bearing:-15,maxZoom:22,fadeDuration:0
   });
-  
   rmap.on('load',()=>{
-    const ring=poly.map(c=>[c[0],c[1]]);
-    ring.push(ring[0]); // close
-    
-    // Building outline — outer glow
+    const ring=poly.map(c=>[c[0],c[1]]);ring.push(ring[0]);
     rmap.addSource('building',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[ring]}}});
-    // Glow layers (multiple fills for glow effect)
     rmap.addLayer({id:'bld-glow3',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':12,'line-opacity':0.08,'line-blur':8}});
     rmap.addLayer({id:'bld-glow2',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':6,'line-opacity':0.15,'line-blur':4}});
     rmap.addLayer({id:'bld-fill',type:'fill',source:'building',paint:{'fill-color':'#E8A820','fill-opacity':0.08}});
     rmap.addLayer({id:'bld-line',type:'line',source:'building',paint:{'line-color':'#E8A820','line-width':2.5}});
-    // Corner markers
     const markers=ring.slice(0,-1).map(c=>({type:'Feature',geometry:{type:'Point',coordinates:c}}));
     rmap.addSource('corners',{type:'geojson',data:{type:'FeatureCollection',features:markers}});
     rmap.addLayer({id:'corner-dots',type:'circle',source:'corners',paint:{'circle-radius':4,'circle-color':'#E8A820','circle-stroke-width':2,'circle-stroke-color':'#FFF'}});
-    
-    // Calculate usable area (shrink polygon by ~15% towards center)
     const cx=poly.reduce((s,p)=>s+p[0],0)/poly.length;
     const cy=poly.reduce((s,p)=>s+p[1],0)/poly.length;
     const shrink=0.84;
-    const innerRing=poly.map(p=>[(p[0]-cx)*shrink+cx,(p[1]-cy)*shrink+cy]);
-    innerRing.push(innerRing[0]);
-    
+    const innerRing=poly.map(p=>[(p[0]-cx)*shrink+cx,(p[1]-cy)*shrink+cy]);innerRing.push(innerRing[0]);
     rmap.addSource('usable',{type:'geojson',data:{type:'Feature',geometry:{type:'Polygon',coordinates:[innerRing]}}});
     rmap.addLayer({id:'usable-fill',type:'fill',source:'usable',paint:{'fill-color':'#2ED89A','fill-opacity':0.06}});
     rmap.addLayer({id:'usable-line',type:'line',source:'usable',paint:{'line-color':'#2ED89A','line-width':1.5,'line-dasharray':[3,2]}});
-    
-    // Generate panel rectangles inside usable area
     const panels=generatePanels(innerRing.slice(0,-1),lat);
     if(panels.length>0){
       rmap.addSource('panels',{type:'geojson',data:{type:'FeatureCollection',features:panels}});
-      // Panel shadow
       rmap.addLayer({id:'panel-shadow',type:'fill',source:'panels',paint:{'fill-color':'#000','fill-opacity':0.2,'fill-translate':[1,1]}});
-      // Panel body — dark blue with slight transparency to see roof
       rmap.addLayer({id:'panel-fill',type:'fill',source:'panels',paint:{'fill-color':['interpolate',['linear'],['id'],0,'#1a3a6e',100,'#1E50B4',500,'#2460CC'],'fill-opacity':0.75}});
-      // Panel cell lines (grid pattern)
       rmap.addLayer({id:'panel-line',type:'line',source:'panels',paint:{'line-color':'#4488DD','line-width':0.4,'line-opacity':0.6}});
-      // Panel highlight (top edge = light reflection)
       rmap.addLayer({id:'panel-highlight',type:'line',source:'panels',paint:{'line-color':'#88BBFF','line-width':0.8,'line-opacity':0.3}});
     }
-    
-    // Info chips
     const overlay=document.getElementById('roofOverlay');
     const numP=parseInt(params.get('p'))||panels.length;
-    const kw=parseFloat(params.get('kw'))||0;
+    const kwVal=parseFloat(params.get('kw'))||0;
     overlay.innerHTML=`
       <div class="roof-chip gold">☀️ ${numP} panels</div>
-      <div class="roof-chip green">⚡ ${kw.toFixed(1)} kWp</div>
+      <div class="roof-chip green">⚡ ${kwVal.toFixed(1)} kWp</div>
       <div class="roof-chip blue">📐 ${parseFloat(params.get('a')||0).toLocaleString()} m²</div>
       <div class="roof-chip blue">🔋 ${panels.length} panels rendered</div>`;
-    
-    // Fit bounds with smooth animation
-    const lngs=ring.map(c=>c[0]);
-    const lats=ring.map(c=>c[1]);
+    const lngs=ring.map(c=>c[0]);const lats=ring.map(c=>c[1]);
     setTimeout(()=>{
       rmap.fitBounds([[Math.min(...lngs)-0.0002,Math.min(...lats)-0.0002],[Math.max(...lngs)+0.0002,Math.max(...lats)+0.0002]],{padding:80,pitch:50,bearing:-15,duration:1500,maxZoom:20});
     },500);
@@ -935,29 +1399,17 @@ function initRoofMap(){
 }
 
 function generatePanels(polygon,centerLat){
-  // Panel dimensions: 2.28m x 1.13m (Longi 580W)
-  // Convert to degrees
   const mPerDegLat=111320;
   const mPerDegLng=111320*Math.cos(centerLat*Math.PI/180);
-  const panelW=2.28/mPerDegLng; // width in degrees (lng)
-  const panelH=1.13/mPerDegLat; // height in degrees (lat)
-  const gap=0.15/mPerDegLng; // 15cm gap
-  
-  // Get bounding box of polygon
-  const lngs=polygon.map(p=>p[0]);
-  const lats=polygon.map(p=>p[1]);
-  const minLng=Math.min(...lngs);
-  const maxLng=Math.max(...lngs);
-  const minLat=Math.min(...lats);
-  const maxLat=Math.max(...lats);
-  
-  const features=[];
-  const maxPanels=parseInt(params.get('p'))||500;
-  
-  // Fill with panel rectangles in grid
+  const panelW=2.28/mPerDegLng;
+  const panelH=1.13/mPerDegLat;
+  const gap=0.15/mPerDegLng;
+  const lngs=polygon.map(p=>p[0]);const lats=polygon.map(p=>p[1]);
+  const minLng=Math.min(...lngs);const maxLng=Math.max(...lngs);
+  const minLat=Math.min(...lats);const maxLat=Math.max(...lats);
+  const features=[];const maxPanels=parseInt(params.get('p'))||500;
   for(let lng=minLng+gap;lng<maxLng-panelW;lng+=panelW+gap){
     for(let lat=minLat+gap;lat<maxLat-panelH;lat+=panelH+gap){
-      // Check if all 4 corners are inside polygon
       const corners=[[lng,lat],[lng+panelW,lat],[lng+panelW,lat+panelH],[lng,lat+panelH]];
       const center=[(lng+lng+panelW)/2,(lat+lat+panelH)/2];
       if(pointInPoly(center,polygon)){
@@ -970,8 +1422,7 @@ function generatePanels(polygon,centerLat){
 }
 
 function pointInPoly(point,poly){
-  let inside=false;
-  const x=point[0],y=point[1];
+  let inside=false;const x=point[0],y=point[1];
   for(let i=0,j=poly.length-1;i<poly.length;j=i++){
     const xi=poly[i][0],yi=poly[i][1];
     const xj=poly[j][0],yj=poly[j][1];
@@ -982,7 +1433,7 @@ function pointInPoly(point,poly){
 
 initRoofMap();
 
-// Scroll animations
+// ── SCROLL ANIMATIONS ──
 const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 </script>

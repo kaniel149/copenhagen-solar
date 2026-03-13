@@ -43,83 +43,75 @@ EXISTING_KP_DATA = {
             "name": "33kV West Coast Feeder (Substation → Thongsala → Sri Thanu → Mae Haad → Chaloklum)",
             "voltage": "33000",
             "coordinates": [
-                [99.9948, 9.7066],  # Substation
-                [99.9920, 9.7090],  # Road junction near substation
-                [99.9870, 9.7120],  # Towards Thongsala
-                [99.9850, 9.7135],  # Thongsala center
-                [99.9820, 9.7155],  # Thongsala west
-                [99.9780, 9.7170],  # Past Thongsala
-                [99.9730, 9.7200],  # Wok Tum road
-                [99.9680, 9.7230],  # Between Wok Tum and Hin Kong
-                [99.9620, 9.7260],  # Hin Kong
-                [99.9560, 9.7290],  # Approaching Sri Thanu
-                [99.9480, 9.7310],  # Sri Thanu area
-                [99.9420, 9.7340],  # Past Sri Thanu
-                [99.9370, 9.7380],  # Coast road
-                [99.9320, 9.7420],  # Approaching Mae Haad
-                [99.9280, 9.7460],  # Mae Haad
-                [99.9270, 9.7500],  # North of Mae Haad
-                [99.9280, 9.7550],  # Coastal curve
-                [99.9310, 9.7590],  # Approaching Chaloklum
-                [99.9350, 9.7630],  # Chaloklum south
-                [99.9370, 9.7665],  # Chaloklum center
+                [99.9948, 9.7066],  # Substation (confirmed OSM)
+                [99.9930, 9.7085],  # Junction
+                [99.9914, 9.7113],  # Thongsala center (building cluster avg)
+                [99.9880, 9.7145],  # Thongsala west
+                [99.9840, 9.7180],  # Towards Wok Tum
+                [99.9810, 9.7210],  # Wok Tum area
+                [99.9795, 9.7250],  # Hin Kong
+                [99.9781, 9.7284],  # Sri Thanu (building cluster avg)
+                [99.9760, 9.7340],  # North of Sri Thanu
+                [99.9745, 9.7400],  # Between Sri Thanu and Mae Haad
+                [99.9730, 9.7460],  # Approaching Mae Haad
+                [99.9724, 9.7536],  # Mae Haad (building cluster avg)
+                [99.9710, 9.7580],  # North of Mae Haad
+                [99.9690, 9.7620],  # Coastal road north
+                [99.9670, 9.7660],  # South Chaloklum
+                [99.9651, 9.7700],  # Chaloklum (building cluster avg)
             ],
-            "source": "road-traced (estimated along Route 4169)"
+            "source": "building-cluster-traced (follows actual settlement centers)"
         },
         {
-            "name": "33kV South Feeder (Substation → Ban Tai → Ban Khai → Haad Rin)",
+            "name": "33kV South Feeder (Substation → Ban Khai → Haad Rin)",
             "voltage": "33000",
             "coordinates": [
-                [99.9948, 9.7066],  # Substation
-                [99.9920, 9.7040],  # South from substation
-                [99.9890, 9.7010],  # Junction
-                [99.9850, 9.6985],  # Ban Tai area
-                [99.9800, 9.6960],  # Ban Tai junction
-                [99.9750, 9.6940],  # Along south coast road
-                [99.9700, 9.6920],  # Ban Tai Beach area
-                [99.9900, 9.6960],  # Back to main road east
-                [100.0000, 9.6940],  # East along coast
-                [100.0100, 9.6900],  # Ban Khai area
-                [100.0200, 9.6860],  # Past Ban Khai
-                [100.0310, 9.6820],  # Approaching Leela Beach
-                [100.0420, 9.6790],  # Southeast coast
-                [100.0530, 9.6760],  # Near Haad Rin
-                [100.0600, 9.6730],  # Haad Rin Nok (Sunrise Beach)
-                [100.0650, 9.6710],  # Haad Rin tip
+                [99.9948, 9.7066],  # Substation (confirmed OSM)
+                [99.9960, 9.7030],  # South from substation
+                [99.9980, 9.6990],  # Along coast road
+                [100.0050, 9.6980],  # Heading east
+                [100.0130, 9.6985],  # East of substation
+                [100.0210, 9.6982],  # Approaching Ban Khai
+                [100.0313, 9.6979],  # Ban Khai (building cluster avg)
+                [100.0400, 9.6940],  # Southeast of Ban Khai
+                [100.0470, 9.6890],  # Leela Beach area
+                [100.0530, 9.6850],  # Towards Haad Rin
+                [100.0580, 9.6810],  # Haad Rin approach
+                [100.0620, 9.6790],  # Haad Rin north
+                [100.0642, 9.6769],  # Haad Rin (building cluster avg)
             ],
-            "source": "road-traced (estimated along south coast road)"
+            "source": "building-cluster-traced (follows actual settlement centers)"
         },
         {
-            "name": "33kV Northeast Feeder (Substation → Than Sadet → Thong Nai Pan)",
+            "name": "33kV Northeast Feeder (Substation → East Coast → Thong Nai Pan)",
             "voltage": "33000",
             "coordinates": [
-                [99.9948, 9.7066],  # Substation
-                [99.9980, 9.7100],  # North from substation
-                [100.0020, 9.7140],  # Road to east
-                [100.0060, 9.7180],  # Heading northeast
-                [100.0110, 9.7220],  # Interior road
-                [100.0170, 9.7280],  # Climbing hills
-                [100.0230, 9.7340],  # Than Sadet area
-                [100.0300, 9.7390],  # Northeast coast approach
-                [100.0380, 9.7420],  # Near coast
-                [100.0440, 9.7460],  # Thong Nai Pan Yai road
-                [100.0480, 9.7490],  # Thong Nai Pan
+                [99.9948, 9.7066],  # Substation (confirmed OSM)
+                [99.9970, 9.7100],  # North from substation
+                [100.0010, 9.7150],  # Heading northeast
+                [100.0080, 9.7200],  # Interior road
+                [100.0150, 9.7250],  # East side
+                [100.0220, 9.7290],  # East coast approach
+                [100.0289, 9.7329],  # East coast (building cluster avg)
+                [100.0350, 9.7390],  # North along east coast
+                [100.0420, 9.7460],  # Than Sadet area
+                [100.0480, 9.7530],  # Approaching Thong Nai Pan
+                [100.0520, 9.7580],  # Thong Nai Pan south
+                [100.0549, 9.7630],  # Thong Nai Pan (building cluster avg)
             ],
-            "source": "road-traced (estimated along Route 4170)"
+            "source": "building-cluster-traced (follows actual settlement centers)"
         },
     ],
     "transformers": [
-        {"name": "Ban Tai Junction", "lat": 9.6950, "lng": 99.9800, "voltage": "33000/400"},
-        {"name": "Ban Tai Beach", "lat": 9.7200, "lng": 99.9700, "voltage": "33000/400"},
-        {"name": "Sri Thanu", "lat": 9.7350, "lng": 99.9450, "voltage": "33000/400"},
-        {"name": "Mae Haad", "lat": 9.7500, "lng": 99.9250, "voltage": "33000/400"},
-        {"name": "Chaloklum", "lat": 9.7700, "lng": 99.9300, "voltage": "33000/400"},
-        {"name": "Thongsala Center", "lat": 9.7175, "lng": 99.9860, "voltage": "33000/400"},
-        {"name": "Wok Tum", "lat": 9.7250, "lng": 99.9750, "voltage": "33000/400"},
-        {"name": "Haad Rin Road", "lat": 9.6900, "lng": 100.0100, "voltage": "33000/400"},
-        {"name": "Haad Rin", "lat": 9.6750, "lng": 100.0600, "voltage": "33000/400"},
-        {"name": "Thong Nai Pan", "lat": 9.7450, "lng": 100.0500, "voltage": "33000/400"},
-        {"name": "Bottle Beach Road", "lat": 9.7600, "lng": 100.0200, "voltage": "33000/400"},
+        {"name": "Thongsala Center", "lat": 9.7113, "lng": 99.9914, "voltage": "33000/400"},
+        {"name": "Sri Thanu", "lat": 9.7284, "lng": 99.9781, "voltage": "33000/400"},
+        {"name": "Mae Haad", "lat": 9.7536, "lng": 99.9724, "voltage": "33000/400"},
+        {"name": "Chaloklum", "lat": 9.7700, "lng": 99.9651, "voltage": "33000/400"},
+        {"name": "Ban Khai", "lat": 9.6979, "lng": 100.0313, "voltage": "33000/400"},
+        {"name": "Haad Rin", "lat": 9.6769, "lng": 100.0642, "voltage": "33000/400"},
+        {"name": "East Coast", "lat": 9.7329, "lng": 100.0289, "voltage": "33000/400"},
+        {"name": "Thong Nai Pan", "lat": 9.7630, "lng": 100.0549, "voltage": "33000/400"},
+        {"name": "Wok Tum", "lat": 9.7210, "lng": 99.9810, "voltage": "33000/400"},
     ],
     "pea_offices": [
         {"name": "PEA Koh Phangan Office", "lat": 9.7175, "lng": 99.9860, "phone": "077-377072"},

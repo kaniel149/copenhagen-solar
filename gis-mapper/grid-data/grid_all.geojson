@@ -19747,80 +19747,64 @@
             9.7066
           ],
           [
-            99.992,
-            9.709
+            99.993,
+            9.7085
           ],
           [
-            99.987,
-            9.712
+            99.9914,
+            9.7113
           ],
           [
-            99.985,
-            9.7135
+            99.988,
+            9.7145
           ],
           [
-            99.982,
-            9.7155
+            99.984,
+            9.718
           ],
           [
-            99.978,
-            9.717
+            99.981,
+            9.721
           ],
           [
-            99.973,
-            9.72
+            99.9795,
+            9.725
           ],
           [
-            99.968,
-            9.723
+            99.9781,
+            9.7284
           ],
           [
-            99.962,
-            9.726
-          ],
-          [
-            99.956,
-            9.729
-          ],
-          [
-            99.948,
-            9.731
-          ],
-          [
-            99.942,
+            99.976,
             9.734
           ],
           [
-            99.937,
-            9.738
+            99.9745,
+            9.74
           ],
           [
-            99.932,
-            9.742
-          ],
-          [
-            99.928,
+            99.973,
             9.746
           ],
           [
-            99.927,
-            9.75
+            99.9724,
+            9.7536
           ],
           [
-            99.928,
-            9.755
+            99.971,
+            9.758
           ],
           [
-            99.931,
-            9.759
+            99.969,
+            9.762
           ],
           [
-            99.935,
-            9.763
+            99.967,
+            9.766
           ],
           [
-            99.937,
-            9.7665
+            99.9651,
+            9.77
           ]
         ]
       },
@@ -19830,7 +19814,7 @@
         "name": "33kV West Coast Feeder (Substation \u2192 Thongsala \u2192 Sri Thanu \u2192 Mae Haad \u2192 Chaloklum)",
         "voltage": "33000",
         "region": "koh_phangan",
-        "source": "road-traced (estimated along Route 4169)"
+        "source": "building-cluster-traced (follows actual settlement centers)"
       }
     },
     {
@@ -19843,74 +19827,62 @@
             9.7066
           ],
           [
-            99.992,
-            9.704
+            99.996,
+            9.703
           ],
           [
-            99.989,
-            9.701
+            99.998,
+            9.699
           ],
           [
-            99.985,
+            100.005,
+            9.698
+          ],
+          [
+            100.013,
             9.6985
           ],
           [
-            99.98,
-            9.696
+            100.021,
+            9.6982
           ],
           [
-            99.975,
+            100.0313,
+            9.6979
+          ],
+          [
+            100.04,
             9.694
           ],
           [
-            99.97,
-            9.692
-          ],
-          [
-            99.99,
-            9.696
-          ],
-          [
-            100.0,
-            9.694
-          ],
-          [
-            100.01,
-            9.69
-          ],
-          [
-            100.02,
-            9.686
-          ],
-          [
-            100.031,
-            9.682
-          ],
-          [
-            100.042,
-            9.679
+            100.047,
+            9.689
           ],
           [
             100.053,
-            9.676
+            9.685
           ],
           [
-            100.06,
-            9.673
+            100.058,
+            9.681
           ],
           [
-            100.065,
-            9.671
+            100.062,
+            9.679
+          ],
+          [
+            100.0642,
+            9.6769
           ]
         ]
       },
       "properties": {
-        "id": "kp_dist_33kv_south_feeder_(substation_\u2192_ban_tai_\u2192_ban_khai_\u2192_haad_rin)",
+        "id": "kp_dist_33kv_south_feeder_(substation_\u2192_ban_khai_\u2192_haad_rin)",
         "power_type": "minor_line",
-        "name": "33kV South Feeder (Substation \u2192 Ban Tai \u2192 Ban Khai \u2192 Haad Rin)",
+        "name": "33kV South Feeder (Substation \u2192 Ban Khai \u2192 Haad Rin)",
         "voltage": "33000",
         "region": "koh_phangan",
-        "source": "road-traced (estimated along south coast road)"
+        "source": "building-cluster-traced (follows actual settlement centers)"
       }
     },
     {
@@ -19923,54 +19895,58 @@
             9.7066
           ],
           [
-            99.998,
+            99.997,
             9.71
           ],
           [
-            100.002,
-            9.714
+            100.001,
+            9.715
           ],
           [
-            100.006,
-            9.718
+            100.008,
+            9.72
           ],
           [
-            100.011,
-            9.722
+            100.015,
+            9.725
           ],
           [
-            100.017,
-            9.728
+            100.022,
+            9.729
           ],
           [
-            100.023,
-            9.734
+            100.0289,
+            9.7329
           ],
           [
-            100.03,
+            100.035,
             9.739
           ],
           [
-            100.038,
-            9.742
-          ],
-          [
-            100.044,
+            100.042,
             9.746
           ],
           [
             100.048,
-            9.749
+            9.753
+          ],
+          [
+            100.052,
+            9.758
+          ],
+          [
+            100.0549,
+            9.763
           ]
         ]
       },
       "properties": {
-        "id": "kp_dist_33kv_northeast_feeder_(substation_\u2192_than_sadet_\u2192_thong_nai_pan)",
+        "id": "kp_dist_33kv_northeast_feeder_(substation_\u2192_east_coast_\u2192_thong_nai_pan)",
         "power_type": "minor_line",
-        "name": "33kV Northeast Feeder (Substation \u2192 Than Sadet \u2192 Thong Nai Pan)",
+        "name": "33kV Northeast Feeder (Substation \u2192 East Coast \u2192 Thong Nai Pan)",
         "voltage": "33000",
         "region": "koh_phangan",
-        "source": "road-traced (estimated along Route 4170)"
+        "source": "building-cluster-traced (follows actual settlement centers)"
       }
     },
     {
@@ -60957,102 +60933,12 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          99.98,
-          9.695
+          99.9914,
+          9.7113
         ]
       },
       "properties": {
-        "id": "kp_tx_0_ban_tai_junction",
-        "power_type": "transformer",
-        "name": "Ban Tai Junction",
-        "voltage": "33000/400",
-        "region": "koh_phangan",
-        "source": "power-grid-map.html (estimated)"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          99.97,
-          9.72
-        ]
-      },
-      "properties": {
-        "id": "kp_tx_1_ban_tai_beach",
-        "power_type": "transformer",
-        "name": "Ban Tai Beach",
-        "voltage": "33000/400",
-        "region": "koh_phangan",
-        "source": "power-grid-map.html (estimated)"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          99.945,
-          9.735
-        ]
-      },
-      "properties": {
-        "id": "kp_tx_2_sri_thanu",
-        "power_type": "transformer",
-        "name": "Sri Thanu",
-        "voltage": "33000/400",
-        "region": "koh_phangan",
-        "source": "power-grid-map.html (estimated)"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          99.925,
-          9.75
-        ]
-      },
-      "properties": {
-        "id": "kp_tx_3_mae_haad",
-        "power_type": "transformer",
-        "name": "Mae Haad",
-        "voltage": "33000/400",
-        "region": "koh_phangan",
-        "source": "power-grid-map.html (estimated)"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          99.93,
-          9.77
-        ]
-      },
-      "properties": {
-        "id": "kp_tx_4_chaloklum",
-        "power_type": "transformer",
-        "name": "Chaloklum",
-        "voltage": "33000/400",
-        "region": "koh_phangan",
-        "source": "power-grid-map.html (estimated)"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          99.986,
-          9.7175
-        ]
-      },
-      "properties": {
-        "id": "kp_tx_5_thongsala_center",
+        "id": "kp_tx_0_thongsala_center",
         "power_type": "transformer",
         "name": "Thongsala Center",
         "voltage": "33000/400",
@@ -61065,14 +60951,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          99.975,
-          9.725
+          99.9781,
+          9.7284
         ]
       },
       "properties": {
-        "id": "kp_tx_6_wok_tum",
+        "id": "kp_tx_1_sri_thanu",
         "power_type": "transformer",
-        "name": "Wok Tum",
+        "name": "Sri Thanu",
         "voltage": "33000/400",
         "region": "koh_phangan",
         "source": "power-grid-map.html (estimated)"
@@ -61083,14 +60969,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          100.01,
-          9.69
+          99.9724,
+          9.7536
         ]
       },
       "properties": {
-        "id": "kp_tx_7_haad_rin_road",
+        "id": "kp_tx_2_mae_haad",
         "power_type": "transformer",
-        "name": "Haad Rin Road",
+        "name": "Mae Haad",
         "voltage": "33000/400",
         "region": "koh_phangan",
         "source": "power-grid-map.html (estimated)"
@@ -61101,12 +60987,48 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          100.06,
-          9.675
+          99.9651,
+          9.77
         ]
       },
       "properties": {
-        "id": "kp_tx_8_haad_rin",
+        "id": "kp_tx_3_chaloklum",
+        "power_type": "transformer",
+        "name": "Chaloklum",
+        "voltage": "33000/400",
+        "region": "koh_phangan",
+        "source": "power-grid-map.html (estimated)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.0313,
+          9.6979
+        ]
+      },
+      "properties": {
+        "id": "kp_tx_4_ban_khai",
+        "power_type": "transformer",
+        "name": "Ban Khai",
+        "voltage": "33000/400",
+        "region": "koh_phangan",
+        "source": "power-grid-map.html (estimated)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.0642,
+          9.6769
+        ]
+      },
+      "properties": {
+        "id": "kp_tx_5_haad_rin",
         "power_type": "transformer",
         "name": "Haad Rin",
         "voltage": "33000/400",
@@ -61119,12 +61041,30 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          100.05,
-          9.745
+          100.0289,
+          9.7329
         ]
       },
       "properties": {
-        "id": "kp_tx_9_thong_nai_pan",
+        "id": "kp_tx_6_east_coast",
+        "power_type": "transformer",
+        "name": "East Coast",
+        "voltage": "33000/400",
+        "region": "koh_phangan",
+        "source": "power-grid-map.html (estimated)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.0549,
+          9.763
+        ]
+      },
+      "properties": {
+        "id": "kp_tx_7_thong_nai_pan",
         "power_type": "transformer",
         "name": "Thong Nai Pan",
         "voltage": "33000/400",
@@ -61137,14 +61077,14 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          100.02,
-          9.76
+          99.981,
+          9.721
         ]
       },
       "properties": {
-        "id": "kp_tx_10_bottle_beach_road",
+        "id": "kp_tx_8_wok_tum",
         "power_type": "transformer",
-        "name": "Bottle Beach Road",
+        "name": "Wok Tum",
         "voltage": "33000/400",
         "region": "koh_phangan",
         "source": "power-grid-map.html (estimated)"

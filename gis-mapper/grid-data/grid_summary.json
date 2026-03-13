@@ -38,9 +38,9 @@
     "cables": 5,
     "towers": 1907,
     "poles": 343,
-    "transformers": 14,
+    "transformers": 12,
     "generators": 12,
     "other": 0
   },
-  "total_features": 2344
+  "total_features": 2342
 }

@@ -488,7 +488,7 @@ section { padding: 72px 0; }
   .battery-grid { grid-template-columns: 1fr; }
   .cta-steps { flex-direction: column; gap: 12px; }
   .footer-contacts { flex-direction: column; gap: 8px; }
-  .savings-numbers { grid-template-columns: 1fr; }
+  .savings-numbers { grid-template-columns: 1fr 1fr !important; }
   .option-select { flex-direction: column; }
   .signature-block { grid-template-columns: 1fr !important; }
 }
@@ -763,22 +763,22 @@ section { padding: 72px 0; }
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;">
-      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);" id="savAnnual">-</div>
-        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="annualSave">Annual Savings</div>
+    <div class="savings-numbers" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;">
+      <div class="savings-card">
+        <div class="savings-card-value green" id="savAnnual">-</div>
+        <div class="savings-card-label" data-i18n="annualSave">Annual Savings</div>
       </div>
-      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);" id="sav10yr">-</div>
-        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="tenYrSav">10-Year Savings</div>
+      <div class="savings-card">
+        <div class="savings-card-value green" id="sav10yr">-</div>
+        <div class="savings-card-label" data-i18n="tenYrSav">10-Year Savings</div>
       </div>
-      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold);" id="savPayback">-</div>
-        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="payback">Years to Payback</div>
+      <div class="savings-card">
+        <div class="savings-card-value gold" id="savPayback">-</div>
+        <div class="savings-card-label" data-i18n="payback">Years to Payback</div>
       </div>
-      <div class="savings-card" style="background:#fff;border-radius:16px;padding:24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);">
-        <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--green);" id="savCO2">-</div>
-        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;" data-i18n="co2Saved">CO₂ Saved/Year</div>
+      <div class="savings-card">
+        <div class="savings-card-value green" id="savCO2">-</div>
+        <div class="savings-card-label" data-i18n="co2Saved">CO₂ Saved/Year</div>
       </div>
     </div>
   </div>
@@ -1124,8 +1124,8 @@ let curLang='en';
 function setLang(lang){
   curLang=lang;
   const dir=lang==='he'?'rtl':'ltr';
-  document.getElementById('mainContent').setAttribute('dir',dir);
-  document.getElementById('mainContent').setAttribute('lang',lang);
+  document.documentElement.setAttribute('dir',dir);
+  document.documentElement.setAttribute('lang',lang);
   // Update nav language buttons
   document.querySelectorAll('.lang-btn-nav').forEach(b=>{
     b.style.background='rgba(255,255,255,.12)';b.style.color='#fff';
@@ -1217,6 +1217,7 @@ function fillData(){
   document.getElementById('epcPaybackYrs').textContent=epcPayback.toFixed(1)+' years';
   document.getElementById('ppaPriceNote').textContent='pay only ฿'+ppa.toFixed(2)+'/kWh ('+ppaDiscount.toFixed(0)+'% less than PEA)';
   document.getElementById('ppaSave').textContent=B(ppaMonthlySav)+'/mo';
+  document.getElementById('ppaDiscountText').textContent=ppaDiscount.toFixed(0)+'% cheaper than PEA grid rate';
 
   // Option C (battery)
   if(bat){

@@ -51,8 +51,8 @@ h1{font-size:2.2rem;text-align:center;margin-bottom:8px}
 /* Pipeline */
 .pipeline{display:flex;gap:2px;margin:32px 0;overflow-x:auto}
 .pipe-stage{flex:1;min-width:100px;text-align:center;padding:12px 8px;position:relative}
-.pipe-stage::after{content:'→';position:absolute;left:-8px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.2);font-size:1.2rem}
-.pipe-stage:last-child::after{display:none}
+.pipe-stage::after{content:'←';position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.2);font-size:1.2rem}
+.pipe-stage:first-child::after{display:none}
 .pipe-num{font-size:1.5rem;font-weight:700;color:#E8A820}
 .pipe-label{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px}
 .pipe-bar{height:4px;border-radius:2px;margin-top:8px}
@@ -66,12 +66,16 @@ h1{font-size:2.2rem;text-align:center;margin-bottom:8px}
 .summary-card{text-align:center;padding:20px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(255,255,255,.06)}
 .summary-num{font-size:2rem;font-weight:700;color:#E8A820}
 .summary-label{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:4px}
-@media(max-width:600px){.chain-step{width:calc(50% - 1px);min-width:140px}.summary{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.chain-step{width:calc(50% - 1px);min-width:140px}.summary{grid-template-columns:1fr 1fr}.pipeline{gap:0}.pipe-stage{min-width:70px;padding:8px 4px}.pipe-num{font-size:1.1rem}.pipe-label{font-size:.6rem}h1{font-size:1.5rem}.container{padding:60px 12px 40px}.detail{padding:20px 16px}.db-fields{font-size:.65rem}}
+@media print{body{background:#fff;color:#222}.chain-step,.summary-card,.detail{background:#fff;border:1px solid #ccc;-webkit-print-color-adjust:exact;print-color-adjust:exact}.gold,.chain-num,.pipe-num,.summary-num{color:#B8860B}.chain-desc,.subtitle,.pipe-label,.summary-label{color:#555}.tm-logo-header,.lang-bar{position:static;margin-bottom:12px}.pipeline{page-break-inside:avoid}.detail{page-break-inside:avoid}.chain{page-break-after:always}}
 </style>
 </head>
 <body>
 
-<div class="tm-logo-header"><span class="brand-text">TM ENERGY</span></div>
+<div class="tm-logo-header">
+  <span class="brand-text">TM ENERGY</span>
+  <img src="visuals/tm-energy-logo.png" alt="TM Energy" style="height:32px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))">
+</div>
 <div class="lang-bar">
   <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
   <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
@@ -134,7 +138,7 @@ h1{font-size:2.2rem;text-align:center;margin-bottom:8px}
   <div class="chain-num">5</div>
   <div class="chain-icon">📐</div>
   <div class="chain-title">SLD — PEA</div>
-  <div class="chain-desc">תוכנית חד-קווית — generator + שליחה ל-PEA</div>
+  <div class="chain-desc">תוכנית חד-קווית — יצירה אוטומטית + שליחה ל-PEA</div>
   <div class="chain-model"><span class="m-new">לבנות</span></div>
 </div>
 

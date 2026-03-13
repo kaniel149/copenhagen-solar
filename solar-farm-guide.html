@@ -17,7 +17,8 @@
     body {
       font-family: 'Inter', sans-serif;
       background: #0a1929;
-      color: #c8d6e5
+      color: #c8d6e5;
+      padding-top: 48px
     }
 
     .slide {
@@ -327,6 +328,20 @@
       .stat .num {
         font-size: 28px
       }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch
+      }
+
+      .nav span {
+        font-size: 11px
+      }
+
+      .nav .pg {
+        display: none
+      }
     }
 
     @media print {
@@ -354,12 +369,27 @@
         color: #0D2137 !important
       }
 
+      p,
+      td,
+      .step p,
+      .stat .label {
+        color: #333 !important
+      }
+
+      .stat .num {
+        color: #0D2137 !important
+      }
+
       .card,
       .highlight-box,
       .warn-box,
       .success-box {
         border: 1px solid #ddd;
         background: #f9f9f9
+      }
+
+      table {
+        display: table
       }
     }
   </style>
@@ -647,7 +677,7 @@
       <div class="card">
         <h4>Option A: 33kV Direct</h4>
         <p>• Connect at 33kV to local distribution<br>• Step-up transformer: 0.4kV → 33kV<br>• Shorter distance if near
-          existing line<br>• Cost: ฿200K-500K per km<br>• <span class="accent">Preferred for sites < 2km from
+          existing line<br>• Cost: ฿200K-500K per km<br>• <span class="accent">Preferred for sites &lt; 2km from
               line</span>
         </p>
       </div>
@@ -858,6 +888,8 @@
       </div>
     </div>
 
+    <p style="font-size:11px;color:rgba(255,255,255,.3);">* 25-year totals account for BESS degradation (revenue halved after year 12).</p>
+
     <h3>Why PEA Will Favor Our Project (with BESS)</h3>
     <p>9 MW solar on a 174 MW island grid = 5% of capacity. Without storage, PEA may reject due to intermittency
       concerns. <span class="accent">With BESS, we offer grid stability, peak shaving, and backup — making PEA an ally,
@@ -1032,22 +1064,22 @@
       <tr>
         <td>Peak Shaving</td>
         <td>2,500,000</td>
-        <td>62,500,000</td>
+        <td>46,300,000*</td>
       </tr>
       <tr>
         <td>Arbitrage</td>
         <td>3,300,000</td>
-        <td>82,500,000</td>
+        <td>61,100,000*</td>
       </tr>
       <tr>
         <td>Grid Services</td>
         <td>1,000,000</td>
-        <td>25,000,000</td>
+        <td>18,500,000*</td>
       </tr>
       <tr>
         <td><strong>Total BESS Revenue</strong></td>
         <td><strong>6,800,000</strong></td>
-        <td><strong>170,000,000</strong></td>
+        <td><strong>125,900,000*</strong></td>
       </tr>
     </table>
   </div>

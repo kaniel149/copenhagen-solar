@@ -537,7 +537,6 @@
       position: fixed;
       top: 104px;
       left: 50%;
-      transform: translateX(-50%);
       z-index: 9999;
       background: var(--sun);
       color: #0D2137;
@@ -559,6 +558,11 @@
 
     /* MOBILE */
     @media(max-width:768px) {
+      .top-bar h1 { font-size: 13px; }
+      .top-bar .right { display: none; }
+      .toolbar { padding: 6px 10px; gap: 5px; }
+      .toolbar button, .toolbar select { padding: 5px 8px; font-size: 10px; }
+
       .side-panel {
         width: 100%;
         right: 0;
@@ -576,9 +580,17 @@
         border-radius: 0 0 12px 12px;
       }
 
+      .assumptions-panel {
+        right: 16px;
+        width: calc(100% - 32px);
+      }
+
       .compare-panel {
         width: 95vw;
       }
+
+      .compare-table { font-size: 10px; }
+      .compare-table th, .compare-table td { padding: 6px 4px; }
 
       .legend-bar {
         display: none;
@@ -590,7 +602,9 @@
 
       .toolbar,
       .top-bar,
-      .legend-bar {
+      .legend-bar,
+      .assumptions-panel,
+      .compare-check {
         display: none !important;
       }
 
@@ -605,6 +619,13 @@
         background: #fff;
         color: #333;
       }
+
+      .detail-panel .row .k { color: #666; }
+      .detail-panel .row .v { color: #111; }
+      .detail-panel .row.gold .v { color: #b8860b; }
+      .site-card .name { color: #111; }
+      .site-card .meta { color: #555; }
+      .panel h3 { color: #b8860b; }
 
       #map {
         height: 60vh;
@@ -715,7 +736,8 @@
       <div class="row"><span class="k">Panels (LONGi 580W)</span><span class="v" id="dPanels">—</span></div>
       <div class="row"><span class="k">DC Capacity</span><span class="v" id="dKwp">—</span></div>
       <div class="row"><span class="k">Annual Production</span><span class="v" id="dKwh">—</span></div>
-      <div class="row"><span class="k">Sun Hours</span><span class="v">~1,600 kWh/m²/yr</span></div>
+      <div class="row"><span class="k">GHI (irradiance)</span><span class="v">~1,600 kWh/m²/yr</span></div>
+      <div class="row"><span class="k">Effective Yield</span><span class="v">~1,350 kWh/kWp/yr</span></div>
     </div>
 
     <div class="section">
@@ -1272,7 +1294,7 @@
         card.dataset.id = s.id;
         card.onclick = () => selectSite(s.id);
         card.innerHTML = `
-      <span class="compare-check ${compareSet.has(s.id) ? 'checked' : ''}" onclick="event.stopPropagation();toggleCompareItem(${s.id})">☐</span>
+      <span class="compare-check ${compareSet.has(s.id) ? 'checked' : ''}" onclick="event.stopPropagation();toggleCompareItem(${s.id})">${compareSet.has(s.id) ? '☑' : '☐'}</span>
       <div class="hdr">
         <div class="name">${i + 1}. ${s.name}</div>
         <div class="score-badge" style="background:${color}">${s.score}</div>
@@ -1418,8 +1440,6 @@
 
     function togglePanel(id) {
       const el = document.getElementById(id);
-      const content = el.querySelector('.site-card, .filters, .section, #siteList');
-      // Simple toggle
       if (el.dataset.collapsed === 'true') {
         el.style.maxHeight = ''; el.dataset.collapsed = 'false';
       } else {

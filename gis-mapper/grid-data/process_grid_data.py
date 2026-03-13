@@ -40,57 +40,73 @@ EXISTING_KP_DATA = {
     ],
     "distribution_lines": [
         {
-            "name": "33kV North Coast Feeder",
+            "name": "33kV West Coast Feeder (Substation → Thongsala → Sri Thanu → Mae Haad → Chaloklum)",
             "voltage": "33000",
             "coordinates": [
                 [99.9948, 9.7066],  # Substation
-                [99.9700, 9.7200],  # Ban Tai Beach
-                [99.9450, 9.7350],  # Sri Thanu
-                [99.9250, 9.7500],  # Mae Haad
-                [99.9300, 9.7700],  # Chaloklum
+                [99.9920, 9.7090],  # Road junction near substation
+                [99.9870, 9.7120],  # Towards Thongsala
+                [99.9850, 9.7135],  # Thongsala center
+                [99.9820, 9.7155],  # Thongsala west
+                [99.9780, 9.7170],  # Past Thongsala
+                [99.9730, 9.7200],  # Wok Tum road
+                [99.9680, 9.7230],  # Between Wok Tum and Hin Kong
+                [99.9620, 9.7260],  # Hin Kong
+                [99.9560, 9.7290],  # Approaching Sri Thanu
+                [99.9480, 9.7310],  # Sri Thanu area
+                [99.9420, 9.7340],  # Past Sri Thanu
+                [99.9370, 9.7380],  # Coast road
+                [99.9320, 9.7420],  # Approaching Mae Haad
+                [99.9280, 9.7460],  # Mae Haad
+                [99.9270, 9.7500],  # North of Mae Haad
+                [99.9280, 9.7550],  # Coastal curve
+                [99.9310, 9.7590],  # Approaching Chaloklum
+                [99.9350, 9.7630],  # Chaloklum south
+                [99.9370, 9.7665],  # Chaloklum center
             ],
-            "source": "power-grid-map.html (estimated)"
+            "source": "road-traced (estimated along Route 4169)"
         },
         {
-            "name": "33kV Thongsala Feeder",
+            "name": "33kV South Feeder (Substation → Ban Tai → Ban Khai → Haad Rin)",
             "voltage": "33000",
             "coordinates": [
                 [99.9948, 9.7066],  # Substation
-                [99.9860, 9.7175],  # PEA Office / Thongsala
-                [99.9750, 9.7250],  # Wok Tum
+                [99.9920, 9.7040],  # South from substation
+                [99.9890, 9.7010],  # Junction
+                [99.9850, 9.6985],  # Ban Tai area
+                [99.9800, 9.6960],  # Ban Tai junction
+                [99.9750, 9.6940],  # Along south coast road
+                [99.9700, 9.6920],  # Ban Tai Beach area
+                [99.9900, 9.6960],  # Back to main road east
+                [100.0000, 9.6940],  # East along coast
+                [100.0100, 9.6900],  # Ban Khai area
+                [100.0200, 9.6860],  # Past Ban Khai
+                [100.0310, 9.6820],  # Approaching Leela Beach
+                [100.0420, 9.6790],  # Southeast coast
+                [100.0530, 9.6760],  # Near Haad Rin
+                [100.0600, 9.6730],  # Haad Rin Nok (Sunrise Beach)
+                [100.0650, 9.6710],  # Haad Rin tip
             ],
-            "source": "power-grid-map.html (estimated)"
+            "source": "road-traced (estimated along south coast road)"
         },
         {
-            "name": "33kV South Feeder (Haad Rin)",
+            "name": "33kV Northeast Feeder (Substation → Than Sadet → Thong Nai Pan)",
             "voltage": "33000",
             "coordinates": [
                 [99.9948, 9.7066],  # Substation
-                [100.0100, 9.6900],  # Southeast
-                [100.0600, 9.6750],  # Haad Rin
+                [99.9980, 9.7100],  # North from substation
+                [100.0020, 9.7140],  # Road to east
+                [100.0060, 9.7180],  # Heading northeast
+                [100.0110, 9.7220],  # Interior road
+                [100.0170, 9.7280],  # Climbing hills
+                [100.0230, 9.7340],  # Than Sadet area
+                [100.0300, 9.7390],  # Northeast coast approach
+                [100.0380, 9.7420],  # Near coast
+                [100.0440, 9.7460],  # Thong Nai Pan Yai road
+                [100.0480, 9.7490],  # Thong Nai Pan
             ],
-            "source": "power-grid-map.html (estimated)"
+            "source": "road-traced (estimated along Route 4170)"
         },
-        {
-            "name": "33kV East Coast Feeder",
-            "voltage": "33000",
-            "coordinates": [
-                [99.9948, 9.7066],  # Substation
-                [100.0200, 9.7200],  # East coast
-                [100.0500, 9.7450],  # Thong Nai Pan
-            ],
-            "source": "power-grid-map.html (estimated)"
-        },
-        {
-            "name": "33kV Ban Tai Feeder",
-            "voltage": "33000",
-            "coordinates": [
-                [99.9948, 9.7066],  # Substation
-                [99.9800, 9.6950],  # Ban Tai junction
-                [99.9600, 9.6900],  # Ban Tai Beach south
-            ],
-            "source": "power-grid-map.html (estimated)"
-        }
     ],
     "transformers": [
         {"name": "Ban Tai Junction", "lat": 9.6950, "lng": 99.9800, "voltage": "33000/400"},

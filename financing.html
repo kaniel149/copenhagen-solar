@@ -11,7 +11,7 @@
         body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #0A0A0A; color: var(--white); }
 
         .slide { min-height: 100vh; padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .slide-num { position: absolute; top: 2rem; left: 2rem; font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 0.15em; position: relative; margin-bottom: 1rem; }
+        .slide-num { font-size: 0.75rem; color: rgba(255,255,255,0.3); letter-spacing: 0.15em; position: relative; margin-bottom: 1rem; }
         .container { max-width: 1100px; margin: 0 auto; width: 100%; }
 
         h1 { font-family: 'Instrument Serif', serif; font-size: clamp(2.5rem,6vw,4.5rem); line-height: 1.1; letter-spacing: -0.03em; direction: ltr; text-align: left; }
@@ -57,7 +57,37 @@
         .checklist { list-style: none; line-height: 2.2; }
         .checklist li::before { content: '☐ '; color: var(--sun); }
 
-        @media (max-width: 768px) { .slide { padding: 3rem 1.5rem; } .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .slide { padding: 2.5rem 1.2rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .stat-big { font-size: 2.2rem; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.5rem; }
+            .bank-row { flex-direction: column; text-align: center; gap: 0.8rem; padding: 1rem; }
+            .bank-rate { min-width: auto; }
+            .bank-rank { font-size: 2rem; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 0.5rem 0.6rem; }
+            .tm-logo-header { top: 8px; right: 10px; }
+            .tm-logo-header img { height: 28px; }
+            .img-float { float: none; width: 100%; }
+        }
+        @media print {
+            body { background: #fff; color: #000; }
+            .slide { min-height: auto; padding: 1.5rem 1rem; page-break-inside: avoid; border-bottom: 1px solid #ccc; }
+            .card { background: #f9f9f9; border-color: #ddd; }
+            .card:hover { transform: none; }
+            .stat-big { color: #b8860b; }
+            .accent { color: #b8860b; }
+            .tm-logo-header { position: static; margin-bottom: 1rem; }
+            .highlight-gold, .highlight-green, .highlight-red { border-width: 2px; }
+            th { background: #eee; color: #333; }
+            td { color: #333; }
+            .badge { border: 1px solid currentColor; }
+            .slide-num { color: #999; }
+            .stat-label { color: #666; }
+            .bank-detail, p { color: #444 !important; }
+        }
     
 .slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
 .slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
@@ -96,7 +126,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">01 — FINANCING OVERVIEW</div>
-        <h2 class="he"></h2>
+        <h2 class="he">סקירת מימון</h2>
         <div class="grid-3">
             <div class="card gold">
                 <div class="stat-big" style="font-size:2.5rem;">A</div>
@@ -366,9 +396,9 @@
 <!-- SLIDE 7: TAX BENEFITS -->
 <div class="slide">
     <div class="container">
-        <div class="slide-num">07 — TAX & INCENTIVES</div>
+        <div class="slide-num">06 — TAX & INCENTIVES</div>
 <img src="visuals/finance-07-signing.png" class="slide-img-sm" alt="PPA signing">
-        <h2 class="he"></h2>
+        <h2 class="he">מס ותמריצים</h2>
         <div class="grid-2">
             <div>
                 <h3 class="he accent">תמריצים שלנו (החברה)</h3>
@@ -404,7 +434,7 @@
 <!-- SLIDE 8: ACTION PLAN -->
 <div class="slide">
     <div class="container">
-        <div class="slide-num">08 — ACTION PLAN</div>
+        <div class="slide-num">07 — ACTION PLAN</div>
         <h2 class="he">תוכנית פעולה — השבוע</h2>
         <div class="grid-2">
             <div>
@@ -471,7 +501,7 @@
             </div>
         </div>
         <div style="margin-top:3rem;color:rgba(255,255,255,0.4);font-size:0.85rem;">
-            מקורות: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2023, EXIM Bank Thailand<br>
+            מקורות: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2025, EXIM Bank Thailand<br>
             * מספרים מבוססים על הערכות ותנאי שוק מרץ 2026. ריביות ותנאים בכפוף לאישור בנקאי.
         </div>
     </div>
@@ -492,6 +522,8 @@ window.PAGE_TRANSLATIONS = {
   "איך הלקוחות שלנו ימנו את ההתקנה: הלוואות ירוקות, ESCO, PPA, ליסינג.": {en: "How our customers will finance installation: green loans, ESCO, PPA, leasing.", th: "ลูกค้าของเราจะจัดหาเงินทุนสำหรับการติดตั้งอย่างไร: สินเชื่อสีเขียว, ESCO, PPA, เช่าซื้อ"},
   "תמריצים ממשלתיים": {en: "Government Incentives", th: "สิทธิประโยชน์จากรัฐบาล"},
   "BOI, פטור ממס, FiT, ניכויי מס — מה מגיע וכמה שווה.": {en: "BOI, tax exemption, FiT, tax deductions — what's available and how much it's worth.", th: "BOI, ยกเว้นภาษี, FiT, การหักภาษี — อะไรมีบ้างและมีมูลค่าเท่าไหร่"},
+  "סקירת מימון": {en: "Financing Overview", th: "ภาพรวมการจัดหาเงินทุน"},
+  "מס ותמריצים": {en: "Tax & Incentives", th: "ภาษีและสิทธิประโยชน์"},
   "דירוג בנקים — מי הכי טוב?": {en: "Bank Ranking — Who's Best?", th: "การจัดอันดับธนาคาร — ใครดีที่สุด?"},
   "מומלץ": {en: "Recommended", th: "แนะนำ"},
   "3 מוצרי סולאר ייעודיים: SME Transition Loan, SME Solar Rooftop, SME for PPA. עד 100% מימון, עד 10 שנים. טל: 02-626-2626": {en: "3 dedicated solar products: SME Transition Loan, SME Solar Rooftop, SME for PPA. Up to 100% financing, up to 10 years. Tel: 02-626-2626", th: "3 ผลิตภัณฑ์สินเชื่อพลังงานแสงอาทิตย์เฉพาะ: SME Transition Loan, SME Solar Rooftop, SME for PPA สูงสุด 100% ระยะเวลา 10 ปี โทร: 02-626-2626"},
@@ -625,7 +657,7 @@ window.PAGE_TRANSLATIONS = {
   "רווח חודשי נטו (10 ESCO)": {en: "Monthly net profit (10 ESCO)", th: "กำไรสุทธิรายเดือน (10 ESCO)"},
   "חיסכון מס (BOI 8yr)": {en: "Tax savings (BOI 8yr)", th: "การประหยัดภาษี (BOI 8 ปี)"},
   "החזר השקעה": {en: "Return on Investment", th: "ผลตอบแทนการลงทุน"},
-  "מקורות: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2023, EXIM Bank Thailand": {en: "Sources: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2023, EXIM Bank Thailand", th: "แหล่งข้อมูล: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2023, EXIM Bank Thailand"},
+  "מקורות: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2025, EXIM Bank Thailand": {en: "Sources: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2025, EXIM Bank Thailand", th: "แหล่งข้อมูล: Krungsri.com, SME D Bank, Bangkok Bank, BOI.go.th, PEA Tariff Schedule 2025, EXIM Bank Thailand"},
   "* מספרים מבוססים על הערכות ותנאי שוק מרץ 2026. ריביות ותנאים בכפוף לאישור בנקאי.": {en: "* Numbers based on estimates and market conditions March 2026. Rates and terms subject to bank approval.", th: "* ตัวเลขอ้างอิงจากการประมาณการและสภาพตลาดมีนาคม 2026 อัตราและเงื่อนไขขึ้นอยู่กับการอนุมัติของธนาคาร"},
   "חיסרון:": {en: "Disadvantage:", th: "ข้อเสีย:"},
   "יתרון:": {en: "Advantage:", th: "ข้อดี:"},

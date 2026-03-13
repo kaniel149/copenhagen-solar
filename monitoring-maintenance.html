@@ -48,7 +48,8 @@ tr:hover td{background:rgba(255,255,255,.03)}
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
 .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
-@media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.slide{padding:24px 20px}}
+@media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.slide{padding:24px 20px;padding-bottom:80px}.stat-grid{grid-template-columns:1fr 1fr;gap:12px}.section-num{font-size:40px;left:20px}.toc-panel{width:85vw;max-width:320px}.nav-btn{padding:6px 14px;font-size:13px}table{font-size:12px}th,td{padding:8px 10px}.tm-logo-header{top:10px;right:12px}.tm-logo-header img{height:28px}}
+@media print{body{overflow:visible;height:auto;background:#fff;color:#000}.slide-container{height:auto}.slide{position:relative;opacity:1;transform:none;pointer-events:all;page-break-inside:avoid;page-break-after:always;padding:20px;border-bottom:1px solid #ccc}.slide.exit{opacity:1;transform:none}.nav-bar,.toc-btn,.toc-panel,.progress-bar,.tm-logo-header{display:none}.slide-cover{background:#fff}.slide-dark,.slide-ocean,.slide-reef,.slide-gold{background:#fff}.card{border-color:#ccc}.alert{border-color:#999}.gold,.reef-text{color:#000}.big-num{color:#333}a{color:#333}}
 .slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
 .section-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;color:var(--gold);opacity:.15;position:absolute;top:20px;left:40px}
 .big-num{font-family:'Space Grotesk';font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--gold)}
@@ -249,8 +250,8 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 
 <!-- SLIDE 6: Corrective -->
 <div class="slide slide-ocean" data-title="תחזוקה מתקנת">
-<img src="visuals/monitor-06-thermal.png" class="slide-img-sm" alt="Thermal inspection">
   <span class="section-num">06</span>
+  <img src="visuals/monitor-06-thermal.png" class="slide-img-sm" alt="Thermal inspection">
   <h2>🔧 תחזוקה מתקנת — תקלות נפוצות באי</h2>
   <div class="card-grid">
     <div class="card" style="border-color:var(--coral)">

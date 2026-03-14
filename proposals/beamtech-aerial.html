@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TM Energy — Beamtech Aerial Panel Layout</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1e2e1e; overflow:hidden; max-height:680px; font-family: 'Inter', -apple-system, sans-serif; }
+
+.canvas {
+  position: relative;
+  width: 1400px;
+  height: 680px;
+  margin: 0 auto;
+  /* Satellite-style green/brown ground */
+  background: 
+    radial-gradient(ellipse at 30% 40%, #2d4a2d 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, #3d5a3d 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, #2a3a2a 0%, transparent 70%),
+    #1e2e1e;
+  overflow: hidden;
+}
+
+/* Dirt/construction area */
+.construction-zone {
+  position: absolute;
+  background: 
+    radial-gradient(ellipse, #5a4a3a 0%, #4a3a2a 60%, transparent 100%);
+  border-radius: 30%;
+  opacity: 0.6;
+}
+
+/* Building base (concrete slab) */
+.building-base {
+  position: absolute;
+  background: #555;
+  border-radius: 3px;
+}
+
+/* Roof */
+.roof {
+  position: absolute;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.roof-metal {
+  background: linear-gradient(180deg, #8a9aa8 0%, #95a5b3 20%, #8a9aa8 40%, #95a5b3 60%, #8a9aa8 80%, #95a5b3 100%);
+  background-size: 100% 12px;
+}
+.roof-iscorit {
+  background: linear-gradient(180deg, #b8c4cc 0%, #c2cdd5 15%, #b8c4cc 30%, #c2cdd5 45%, #b8c4cc 60%, #c2cdd5 75%, #b8c4cc 90%);
+  background-size: 100% 16px;
+}
+
+/* Ridge line on roof */
+.roof-ridge {
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(255,255,255,.1), rgba(255,255,255,.4), rgba(255,255,255,.1));
+  z-index: 5;
+}
+
+/* South slope shading (lighter = sun-facing) */
+.slope-south {
+  position: absolute;
+  background: rgba(255,255,200,.06);
+  z-index: 2;
+}
+
+/* Solar panels on roof */
+.panel-grid {
+  position: absolute;
+  display: grid;
+  gap: 1.5px;
+  z-index: 10;
+}
+.pv {
+  background: linear-gradient(145deg, #1a237e 0%, #1565c0 30%, #0d47a1 60%, #1a237e 100%);
+  border: 0.5px solid rgba(100,150,255,.3);
+  border-radius: 0.5px;
+  position: relative;
+}
+/* Cell lines */
+.pv::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: 
+    repeating-linear-gradient(0deg, transparent 0 4px, rgba(0,0,0,.15) 4px 4.5px),
+    repeating-linear-gradient(90deg, transparent 0 4px, rgba(0,0,0,.1) 4px 4.5px);
+}
+/* Glare/reflection */
+.pv::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 60%; height: 40%;
+  background: linear-gradient(135deg, rgba(255,255,255,.12) 0%, transparent 100%);
+  border-radius: 0.5px;
+}
+
+/* DC cable runs */
+.dc-cable {
+  position: absolute;
+  z-index: 15;
+}
+
+/* Cable tray / conduit on ground */
+.conduit {
+  position: absolute;
+  background: #444;
+  z-index: 12;
+  border-radius: 2px;
+}
+
+/* Inverter station */
+.inverter-station {
+  position: absolute;
+  z-index: 20;
+}
+.inverter-pad {
+  width: 80px;
+  height: 50px;
+  background: #666;
+  border-radius: 4px;
+  border: 2px solid #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inverter-unit {
+  width: 50px;
+  height: 36px;
+  background: linear-gradient(180deg, #e0e0e0, #bbb);
+  border: 1px solid #999;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6px;
+  font-weight: 800;
+  color: #333;
+  text-align: center;
+  line-height: 1.1;
+}
+
+/* Labels */
+.bldg-label {
+  position: absolute;
+  z-index: 25;
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+  border: 1px solid rgba(255,255,255,.15);
+}
+.bldg-label .sub {
+  font-size: 9px;
+  font-weight: 400;
+  color: rgba(255,255,255,.5);
+  display: block;
+}
+
+/* Title overlay */
+.title-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 16px 24px;
+  background: linear-gradient(180deg, rgba(0,0,0,.7) 0%, transparent 100%);
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.title-bar h1 {
+  font-size: 20px;
+  font-weight: 900;
+  color: #fff;
+}
+.title-bar .stats {
+  display: flex;
+  gap: 16px;
+}
+.title-bar .stat {
+  text-align: center;
+}
+.title-bar .stat-v {
+  font-size: 16px;
+  font-weight: 800;
+  color: #E8A820;
+}
+.title-bar .stat-l {
+  font-size: 8px;
+  color: rgba(255,255,255,.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Bottom legend */
+.bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 12px 24px;
+  background: linear-gradient(0deg, rgba(0,0,0,.7) 0%, transparent 100%);
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: rgba(255,255,255,.6);
+}
+.leg-sw {
+  width: 16px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* Shadows */
+.building-shadow {
+  position: absolute;
+  background: rgba(0,0,0,.25);
+  border-radius: 3px;
+  filter: blur(6px);
+  z-index: 1;
+}
+
+/* North arrow */
+.north {
+  position: absolute;
+  right: 30px;
+  bottom: 60px;
+  z-index: 30;
+  text-align: center;
+  color: rgba(255,255,255,.6);
+  font-size: 12px;
+  font-weight: 700;
+}
+.north-arrow {
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 20px solid rgba(255,255,255,.5);
+  margin: 0 auto 4px;
+}
+
+/* Scale */
+.scale-bar {
+  position: absolute;
+  left: 30px;
+  bottom: 60px;
+  z-index: 30;
+}
+.scale-line {
+  width: 120px;
+  height: 3px;
+  background: rgba(255,255,255,.5);
+  position: relative;
+}
+.scale-line::before, .scale-line::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 10px;
+  background: rgba(255,255,255,.5);
+  top: -3px;
+}
+.scale-line::before { left: 0; }
+.scale-line::after { right: 0; }
+.scale-text {
+  font-size: 9px;
+  color: rgba(255,255,255,.5);
+  text-align: center;
+  margin-top: 4px;
+}
+
+/* SVG overlay for cables */
+svg.cable-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 14;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<div class="canvas">
+  <!-- Construction zone (dirt area) -->
+  <div class="construction-zone" style="left:20px; top:50px; width:900px; height:700px;"></div>
+  <div class="construction-zone" style="left:600px; top:100px; width:700px; height:550px; opacity:.4;"></div>
+
+  <!-- ═══════ SHADOWS ═══════ -->
+  <div class="building-shadow" style="left:82px; top:128px; width:278px; height:148px;"></div>
+  <div class="building-shadow" style="left:382px; top:128px; width:278px; height:148px;"></div>
+  <div class="building-shadow" style="left:192px; top:380px; width:298px; height:178px;"></div>
+  <div class="building-shadow" style="left:732px; top:188px; width:578px; height:378px;"></div>
+
+  <!-- ═══════ BUILDING A ═══════ -->
+  <div class="roof roof-metal" style="left:70px; top:110px; width:280px; height:150px;">
+    <div class="roof-ridge" style="top:50%;"></div>
+    <div class="slope-south" style="top:50%; left:0; right:0; bottom:0;"></div>
+  </div>
+  <!-- Panels A: 2r × 14c portrait on south slope -->
+  <div class="panel-grid" style="left:78px; top:190px; grid-template-columns:repeat(14,18px); grid-template-rows:repeat(2,28px);">
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+  </div>
+  <div class="bldg-label" style="left:140px; top:135px;">
+    A · 28 panels<span class="sub">16.2 kWp · 15.9×8.5m</span>
+  </div>
+
+  <!-- ═══════ BUILDING B ═══════ -->
+  <div class="roof roof-metal" style="left:370px; top:110px; width:280px; height:150px;">
+    <div class="roof-ridge" style="top:50%;"></div>
+    <div class="slope-south" style="top:50%; left:0; right:0; bottom:0;"></div>
+  </div>
+  <div class="panel-grid" style="left:378px; top:190px; grid-template-columns:repeat(14,18px); grid-template-rows:repeat(2,28px);">
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+  </div>
+  <div class="bldg-label" style="left:440px; top:135px;">
+    B · 28 panels<span class="sub">16.2 kWp · 15.9×8.5m</span>
+  </div>
+
+  <!-- ═══════ BUILDING C ═══════ -->
+  <div class="roof roof-metal" style="left:180px; top:360px; width:300px; height:180px; border:2px solid rgba(76,175,80,.3);">
+    <div class="roof-ridge" style="top:45%;"></div>
+    <div class="slope-south" style="top:45%; left:0; right:0; bottom:0;"></div>
+  </div>
+  <div class="panel-grid" style="left:192px; top:432px; grid-template-columns:repeat(7,38px); grid-template-rows:repeat(5,17px);">
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+  </div>
+  <div class="bldg-label" style="left:248px; top:375px; border-color:rgba(76,175,80,.3);">
+    C · 35 panels<span class="sub">20.3 kWp · 17.3×10.5m</span>
+  </div>
+
+  <!-- ═══════ ISCORIT BUILDING ═══════ -->
+  <div class="roof roof-iscorit" style="left:720px; top:170px; width:580px; height:380px; border:2px solid rgba(232,168,32,.2);">
+    <div class="roof-ridge" style="top:47%;"></div>
+    <div class="slope-south" style="top:47%; left:0; right:0; bottom:0;"></div>
+  </div>
+  <div class="panel-grid" style="left:732px; top:360px; grid-template-columns:repeat(25,22px); grid-template-rows:repeat(4,36px);">
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+    <div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div><div class="pv"></div>
+  </div>
+  <div class="bldg-label" style="left:920px; top:195px; border-color:rgba(232,168,32,.3);">
+    Iscorit · 100 panels<span class="sub">58.0 kWp · ~29×17m</span>
+  </div>
+
+  <!-- ═══════ INVERTER STATION ═══════ -->
+  <div class="inverter-station" style="left:590px; top:420px;">
+    <div class="inverter-pad">
+      <div class="inverter-unit">SUN2000<br>100KTL</div>
+    </div>
+  </div>
+  <div class="bldg-label" style="left:570px; top:476px; background:rgba(232,168,32,.9); color:#0D2137; border-color:#E8A820;">
+    Central Inverter<span class="sub" style="color:rgba(0,0,0,.6);">100 kW · 6 MPPT · AC→Grid</span>
+  </div>
+
+  <!-- ═══════ CABLE SVG ═══════ -->
+  <svg class="cable-svg" viewBox="0 0 1400 1000">
+    <!-- DC from A to inverter -->
+    <path d="M 340 255 L 340 310 L 610 310 L 610 420" stroke="#c62828" stroke-width="2.5" fill="none" stroke-dasharray="8,4" opacity="0.85"/>
+    <path d="M 330 255 L 330 320 L 600 320 L 600 420" stroke="#1565c0" stroke-width="2" fill="none" stroke-dasharray="8,4" opacity="0.6"/>
+    <circle cx="340" cy="255" r="3.5" fill="#c62828"/>
+    <text x="355" y="308" fill="#c62828" font-size="9" font-weight="700" font-family="Inter,sans-serif">DC A+</text>
+
+    <!-- DC from B to inverter -->
+    <path d="M 630 255 L 630 350 L 625 420" stroke="#c62828" stroke-width="2.5" fill="none" stroke-dasharray="8,4" opacity="0.85"/>
+    <path d="M 620 255 L 620 360 L 615 420" stroke="#1565c0" stroke-width="2" fill="none" stroke-dasharray="8,4" opacity="0.6"/>
+    <circle cx="630" cy="255" r="3.5" fill="#c62828"/>
+    <text x="636" y="308" fill="#c62828" font-size="9" font-weight="700" font-family="Inter,sans-serif">DC B+</text>
+
+    <!-- DC from C to inverter -->
+    <path d="M 480 520 L 570 520 L 610 470" stroke="#c62828" stroke-width="2.5" fill="none" stroke-dasharray="8,4" opacity="0.85"/>
+    <path d="M 480 530 L 560 530 L 600 470" stroke="#1565c0" stroke-width="2" fill="none" stroke-dasharray="8,4" opacity="0.6"/>
+    <circle cx="480" cy="520" r="3.5" fill="#c62828"/>
+    <text x="500" y="515" fill="#c62828" font-size="9" font-weight="700" font-family="Inter,sans-serif">DC C+</text>
+
+    <!-- DC from Iscorit to inverter (4 strings) -->
+    <path d="M 732 440 L 670 440" stroke="#c62828" stroke-width="3" fill="none" stroke-dasharray="8,4" opacity="0.85"/>
+    <path d="M 732 448 L 670 448" stroke="#c62828" stroke-width="2" fill="none" stroke-dasharray="8,4" opacity="0.7"/>
+    <path d="M 732 456 L 670 456" stroke="#1565c0" stroke-width="2" fill="none" stroke-dasharray="8,4" opacity="0.6"/>
+    <path d="M 732 464 L 670 464" stroke="#1565c0" stroke-width="2" fill="none" stroke-dasharray="8,4" opacity="0.5"/>
+    <circle cx="732" cy="440" r="3.5" fill="#c62828"/>
+    <text x="685" y="436" fill="#E8A820" font-size="9" font-weight="700" font-family="Inter,sans-serif">DC Iscorit ×4</text>
+
+    <!-- AC Output -->
+    <path d="M 630 470 L 630 510 L 720 510" stroke="#2e7d32" stroke-width="3.5" fill="none" opacity="0.9"/>
+    <rect x="720" y="498" width="60" height="24" rx="4" fill="none" stroke="#2e7d32" stroke-width="2.5"/>
+    <text x="731" y="514" fill="#2e7d32" font-size="10" font-weight="800" font-family="Inter,sans-serif">METER</text>
+    <path d="M 780 510 L 860 510" stroke="#2e7d32" stroke-width="3.5" fill="none" marker-end="url(#arrowG)"/>
+    <text x="800" y="500" fill="#2e7d32" font-size="9" font-weight="700" font-family="Inter,sans-serif">AC → PEA Grid</text>
+
+    <defs>
+      <marker id="arrowG" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="10" markerHeight="10" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#2e7d32"/>
+      </marker>
+    </defs>
+  </svg>
+
+  <!-- ═══════ TITLE BAR ═══════ -->
+  <div class="title-bar">
+    <div>
+      <h1>☀️ Beamtech Solar — Aerial Panel Layout</h1>
+      <div style="font-size:11px; color:rgba(255,255,255,.4); margin-top:2px;">TM-2026-002 · Koh Phangan · South-facing slope installation</div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="stat-v">191</div><div class="stat-l">Panels</div></div>
+      <div class="stat"><div class="stat-v">110.8</div><div class="stat-l">kWp</div></div>
+      <div class="stat"><div class="stat-v">139K</div><div class="stat-l">kWh/yr</div></div>
+      <div class="stat"><div class="stat-v">฿836K</div><div class="stat-l">Savings/yr</div></div>
+    </div>
+  </div>
+
+  <!-- North arrow -->
+  <div class="north">
+    <div class="north-arrow"></div>
+    N
+  </div>
+
+  <!-- Scale bar -->
+  <div class="scale-bar">
+    <div class="scale-line"></div>
+    <div class="scale-text">~15 meters</div>
+  </div>
+
+  <!-- Bottom legend -->
+  <div class="bottom-bar">
+    <div class="legend-item"><div class="leg-sw" style="background:linear-gradient(145deg,#1a237e,#1565c0);"></div> LONGi 580W Panel</div>
+    <div class="legend-item"><div class="leg-sw" style="background:#8a9aa8;"></div> Metal Sheet Roof</div>
+    <div class="legend-item"><div class="leg-sw" style="background:#E8A820; height:3px;"></div> Ridge Line</div>
+    <div class="legend-item"><div class="leg-sw" style="background:#c62828; height:3px;"></div> DC+ Cable</div>
+    <div class="legend-item"><div class="leg-sw" style="background:#1565c0; height:3px;"></div> DC- Cable</div>
+    <div class="legend-item"><div class="leg-sw" style="background:#2e7d32; height:4px;"></div> AC Output</div>
+    <div class="legend-item"><div class="leg-sw" style="background:linear-gradient(180deg,#e0e0e0,#bbb); border:1px solid #999;"></div> Inverter</div>
+  </div>
+</div>
+
+</body>
+</html>

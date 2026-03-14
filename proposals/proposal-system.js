@@ -10,7 +10,7 @@
     supabaseUrl: 'https://ygoiaabzkuvdsyyduvhv.supabase.co',
     supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlnb2lhYWJ6a3V2ZHN5eWR1dmh2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzMzI3NjAsImV4cCI6MjA4NjkwODc2MH0.xnrTLVrCn1uB62HEBN9JiwiZp09oGUSmOOsejmz_BXY',
     appsScriptUrl: 'https://script.google.com/macros/s/AKfycbwT-cIxzaLNGYRNB4J3bCztMuSza2RkIXf_-5PinMsNS52yi1jw_xLppd0G3Y4fNCUk/exec',
-    whatsappNumber: '66623480119',
+    whatsappNumber: '66997044944',
     expiryDays: 30,
     ownerName: 'Kaniel Tordjman'
   };

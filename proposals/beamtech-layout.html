@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TM Energy — Beamtech Solar Layout Plan</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #0D2137; font-family: 'Inter', -apple-system, sans-serif; color: #fff; }
+.page { width: 1400px; margin: 0 auto; padding: 40px; }
+h1 { font-size: 28px; font-weight: 900; text-align: center; margin-bottom: 4px; }
+.subtitle { text-align: center; color: rgba(255,255,255,.5); font-size: 14px; margin-bottom: 30px; }
+.site-plan { position: relative; width: 1320px; height: 800px; background: #132D4A; border-radius: 16px; border: 1px solid rgba(255,255,255,.1); overflow: hidden; }
+
+/* Grid */
+.site-plan::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.02) 0 1px, transparent 1px 40px),
+              repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 40px);
+}
+
+/* Buildings */
+.building {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,.3);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.building .label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  margin-bottom: 4px;
+}
+.building .info {
+  font-size: 10px;
+  color: rgba(255,255,255,.4);
+}
+
+/* Panel grid overlay */
+.panels {
+  position: absolute;
+  display: grid;
+  gap: 1px;
+}
+.panel {
+  background: linear-gradient(135deg, #1565C0, #0D47A1);
+  border: 0.5px solid rgba(255,255,255,.15);
+  border-radius: 1px;
+  min-width: 4px;
+  min-height: 4px;
+}
+.panel:hover { background: #42A5F5; }
+
+/* Ridge line */
+.ridge {
+  position: absolute;
+  background: rgba(232,168,32,.6);
+  z-index: 5;
+}
+
+/* DC cables */
+.cable-dc {
+  position: absolute;
+  border: none;
+  z-index: 10;
+}
+.cable-dc-line {
+  position: absolute;
+  background: #E53935;
+  z-index: 10;
+}
+.cable-dc-line.negative {
+  background: #1E88E5;
+}
+
+/* Cable path lines using SVG */
+svg.cables {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Inverter */
+.inverter {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  background: linear-gradient(135deg, #E8A820, #D4961C);
+  border: 2px solid #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 800;
+  color: #0D2137;
+  z-index: 20;
+  box-shadow: 0 4px 20px rgba(232,168,32,.4);
+}
+
+/* Dimension lines */
+.dim {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,.6);
+  z-index: 15;
+}
+.dim::before, .dim::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,.3);
+}
+.dim span { padding: 0 6px; white-space: nowrap; }
+
+/* Legend */
+.legend {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,.7);
+}
+.legend-swatch {
+  width: 20px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* Stats bar */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+.stat-card {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+  padding: 14px;
+  text-align: center;
+}
+.stat-value { font-size: 22px; font-weight: 800; color: #E8A820; }
+.stat-label { font-size: 10px; color: rgba(255,255,255,.5); margin-top: 4px; }
+
+/* Per-building stats */
+.building-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.bstat {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+.bstat-name { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+.bstat-row { display: flex; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,.6); margin: 2px 0; }
+.bstat-row strong { color: #fff; }
+
+.note { text-align: center; font-size: 11px; color: rgba(255,255,255,.3); margin-top: 16px; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>☀️ Beamtech Solar — System Layout Plan</h1>
+  <p class="subtitle">TM-2026-002 · 191 Panels · 110.8 kWp · 4 Buildings · 1 Central Inverter</p>
+
+  <div class="site-plan">
+    <!-- ═══ BUILDING A ═══ -->
+    <div class="building" style="left:40px; top:60px; width:240px; height:130px; background:rgba(21,101,192,.08);">
+      <div class="label">Building A</div>
+      <div class="info">15.9m × 8.5m · 28 panels · 16.2 kWp</div>
+    </div>
+    <!-- Panels A: 2 rows × 14 cols on south slope -->
+    <div class="panels" style="left:44px; top:96px; grid-template-columns:repeat(14, 16px); grid-template-rows:repeat(2, 30px);">
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+    </div>
+    <!-- Ridge A -->
+    <div class="ridge" style="left:44px; top:94px; width:236px; height:2px;"></div>
+
+    <!-- ═══ BUILDING B ═══ -->
+    <div class="building" style="left:300px; top:60px; width:240px; height:130px; background:rgba(21,101,192,.08);">
+      <div class="label">Building B</div>
+      <div class="info">15.9m × 8.5m · 28 panels · 16.2 kWp</div>
+    </div>
+    <!-- Panels B: 2 rows × 14 cols -->
+    <div class="panels" style="left:304px; top:96px; grid-template-columns:repeat(14, 16px); grid-template-rows:repeat(2, 30px);">
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+    </div>
+    <!-- Ridge B -->
+    <div class="ridge" style="left:304px; top:94px; width:236px; height:2px;"></div>
+
+    <!-- ═══ BUILDING C ═══ -->
+    <div class="building" style="left:120px; top:280px; width:260px; height:160px; background:rgba(76,175,80,.08); border-color:rgba(76,175,80,.4);">
+      <div class="label" style="color:rgba(76,175,80,.8);">Building C</div>
+      <div class="info">17.3m × 10.5m · 35 panels · 20.3 kWp</div>
+    </div>
+    <!-- Panels C: 5 rows × 7 cols landscape -->
+    <div class="panels" style="left:128px; top:310px; grid-template-columns:repeat(7, 34px); grid-template-rows:repeat(5, 18px);">
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+    </div>
+    <!-- Ridge C -->
+    <div class="ridge" style="left:128px; top:308px; width:252px; height:2px;"></div>
+
+    <!-- ═══ ISCORIT BUILDING ═══ -->
+    <div class="building" style="left:680px; top:120px; width:580px; height:360px; background:rgba(232,168,32,.05); border-color:rgba(232,168,32,.4);">
+      <div class="label" style="color:rgba(232,168,32,.8); font-size:13px;">Iscorit Building</div>
+      <div class="info">~29m × 17m · 100 panels · 58.0 kWp</div>
+    </div>
+    <!-- Panels Iscorit: 4 rows × 25 cols portrait -->
+    <div class="panels" style="left:690px; top:158px; grid-template-columns:repeat(25, 22px); grid-template-rows:repeat(4, 42px);">
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+      <div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div><div class="panel"></div>
+    </div>
+    <!-- Ridge Iscorit -->
+    <div class="ridge" style="left:690px; top:155px; width:556px; height:2px;"></div>
+
+    <!-- ═══ CENTRAL INVERTER ═══ -->
+    <div class="inverter" style="left:550px; top:340px; width:80px; height:50px; font-size:10px;">
+      SUN2000<br>100KTL
+    </div>
+
+    <!-- ═══ DC CABLE ROUTES (SVG) ═══ -->
+    <svg class="cables" viewBox="0 0 1320 800">
+      <!-- String A → Inverter (DC+) -->
+      <path d="M 280 160 L 280 250 L 560 250 L 560 340" stroke="#E53935" stroke-width="2.5" fill="none" stroke-dasharray="6,3" opacity="0.8"/>
+      <circle cx="280" cy="160" r="4" fill="#E53935"/>
+      <text x="295" y="246" fill="#E53935" font-size="9" font-weight="700">String A (DC+)</text>
+      <!-- String A DC- -->
+      <path d="M 260 160 L 260 260 L 550 260 L 550 340" stroke="#1E88E5" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.6"/>
+
+      <!-- String B → Inverter -->
+      <path d="M 540 160 L 540 230 L 570 230 L 570 340" stroke="#E53935" stroke-width="2.5" fill="none" stroke-dasharray="6,3" opacity="0.8"/>
+      <circle cx="540" cy="160" r="4" fill="#E53935"/>
+      <text x="485" y="226" fill="#E53935" font-size="9" font-weight="700">String B (DC+)</text>
+      <!-- String B DC- -->
+      <path d="M 520 160 L 520 240 L 580 240 L 580 340" stroke="#1E88E5" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.6"/>
+
+      <!-- String C → Inverter -->
+      <path d="M 380 410 L 500 410 L 560 390" stroke="#E53935" stroke-width="2.5" fill="none" stroke-dasharray="6,3" opacity="0.8"/>
+      <circle cx="380" cy="410" r="4" fill="#E53935"/>
+      <text x="420" y="426" fill="#E53935" font-size="9" font-weight="700">String C (DC+)</text>
+      <!-- String C DC- -->
+      <path d="M 380 420 L 510 420 L 570 395" stroke="#1E88E5" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.6"/>
+
+      <!-- String Iscorit → Inverter (4 MPPT strings) -->
+      <path d="M 690 370 L 630 370" stroke="#E53935" stroke-width="2.5" fill="none" stroke-dasharray="6,3" opacity="0.8"/>
+      <circle cx="690" cy="370" r="4" fill="#E53935"/>
+      <text x="635" y="365" fill="#E53935" font-size="9" font-weight="700">Iscorit S1</text>
+
+      <path d="M 690 380 L 630 380" stroke="#E53935" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.7"/>
+      <text x="635" y="395" fill="#E53935" font-size="8" font-weight="600">S2, S3, S4</text>
+      <path d="M 690 388 L 630 388" stroke="#1E88E5" stroke-width="2" fill="none" stroke-dasharray="6,3" opacity="0.5"/>
+
+      <!-- AC Output from inverter -->
+      <path d="M 590 395 L 590 520 L 660 520" stroke="#4CAF50" stroke-width="3" fill="none" opacity="0.8"/>
+      <text x="600" y="516" fill="#4CAF50" font-size="10" font-weight="700">AC Output → Grid</text>
+      <rect x="660" y="508" width="50" height="24" rx="4" fill="none" stroke="#4CAF50" stroke-width="2"/>
+      <text x="668" y="524" fill="#4CAF50" font-size="9" font-weight="700">METER</text>
+
+      <!-- AC to PEA grid -->
+      <path d="M 710 520 L 780 520" stroke="#4CAF50" stroke-width="3" fill="none" opacity="0.8" marker-end="url(#arrow)"/>
+      <text x="730" y="540" fill="#4CAF50" font-size="9" font-weight="600">→ PEA Grid</text>
+
+      <!-- Arrow marker -->
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#4CAF50"/>
+        </marker>
+      </defs>
+
+      <!-- MPPT labels on inverter side -->
+      <text x="590" y="330" fill="rgba(232,168,32,.8)" font-size="8" font-weight="700">MPPT 1-2</text>
+      <text x="555" y="405" fill="rgba(232,168,32,.8)" font-size="8" font-weight="700">MPPT 3</text>
+      <text x="635" y="410" fill="rgba(232,168,32,.8)" font-size="8" font-weight="700">MPPT 4-6</text>
+
+      <!-- North arrow -->
+      <polygon points="80,720 90,680 100,720 90,710" fill="rgba(255,255,255,.4)"/>
+      <text x="82" y="740" fill="rgba(255,255,255,.5)" font-size="11" font-weight="700">N</text>
+
+      <!-- Scale bar -->
+      <line x1="200" y1="740" x2="400" y2="740" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+      <line x1="200" y1="735" x2="200" y2="745" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+      <line x1="400" y1="735" x2="400" y2="745" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+      <text x="270" y="758" fill="rgba(255,255,255,.4)" font-size="10">~20 meters</text>
+
+      <!-- Distance labels -->
+      <text x="40" y="55" fill="rgba(255,255,255,.4)" font-size="10" font-weight="600">← South Slope (Solar Side) →</text>
+    </svg>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(135deg,#1565C0,#0D47A1);"></div> Solar Panel (LONGi 580W)</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#E8A820;"></div> Ridge Line</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#E53935;"></div> DC+ Cable</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#1E88E5;"></div> DC- Cable</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#4CAF50;"></div> AC Output</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:linear-gradient(135deg,#E8A820,#D4961C); border:2px solid #fff;"></div> Central Inverter</div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-value">191</div>
+      <div class="stat-label">Total Panels</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">110.8 kWp</div>
+      <div class="stat-label">System Capacity</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">139,257</div>
+      <div class="stat-label">kWh/Year</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">฿835K</div>
+      <div class="stat-label">Annual Savings</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">1 × 100kW</div>
+      <div class="stat-label">Huawei Inverter</div>
+    </div>
+  </div>
+
+  <!-- Per building -->
+  <div class="building-stats">
+    <div class="bstat">
+      <div class="bstat-name">🏗️ Building A</div>
+      <div class="bstat-row"><span>Panels</span><strong>28 (2×14 portrait)</strong></div>
+      <div class="bstat-row"><span>Capacity</span><strong>16.2 kWp</strong></div>
+      <div class="bstat-row"><span>Strings</span><strong>2 × MPPT 1</strong></div>
+      <div class="bstat-row"><span>DC Cable</span><strong>~25m to inverter</strong></div>
+    </div>
+    <div class="bstat">
+      <div class="bstat-name">🏗️ Building B</div>
+      <div class="bstat-row"><span>Panels</span><strong>28 (2×14 portrait)</strong></div>
+      <div class="bstat-row"><span>Capacity</span><strong>16.2 kWp</strong></div>
+      <div class="bstat-row"><span>Strings</span><strong>2 × MPPT 2</strong></div>
+      <div class="bstat-row"><span>DC Cable</span><strong>~15m to inverter</strong></div>
+    </div>
+    <div class="bstat" style="border-color:rgba(76,175,80,.3);">
+      <div class="bstat-name" style="color:#4CAF50;">🏗️ Building C</div>
+      <div class="bstat-row"><span>Panels</span><strong>35 (5×7 landscape)</strong></div>
+      <div class="bstat-row"><span>Capacity</span><strong>20.3 kWp</strong></div>
+      <div class="bstat-row"><span>Strings</span><strong>2 × MPPT 3</strong></div>
+      <div class="bstat-row"><span>DC Cable</span><strong>~20m to inverter</strong></div>
+    </div>
+    <div class="bstat" style="border-color:rgba(232,168,32,.3);">
+      <div class="bstat-name" style="color:#E8A820;">🏭 Iscorit Building</div>
+      <div class="bstat-row"><span>Panels</span><strong>100 (4×25 portrait)</strong></div>
+      <div class="bstat-row"><span>Capacity</span><strong>58.0 kWp</strong></div>
+      <div class="bstat-row"><span>Strings</span><strong>4 × MPPT 4-6</strong></div>
+      <div class="bstat-row"><span>DC Cable</span><strong>~12m to inverter</strong></div>
+    </div>
+  </div>
+
+  <p class="note">TM Energy · TM-2026-002 · Layout Plan v1.0 · All measurements approximate — final design after site survey<br>
+  Inverter location: central point between all 4 buildings to minimize DC cable runs · Max DC cable length: ~25m</p>
+</div>
+</body>
+</html>

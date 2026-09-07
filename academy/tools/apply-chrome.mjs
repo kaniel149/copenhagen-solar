@@ -8,7 +8,7 @@ const ROOT = path.resolve(new URL('.', import.meta.url).pathname, '..');
 const DIR = path.join(ROOT, 'courses');
 const NAV = '<div id="site-nav" data-page="academy"></div>';
 const FOOT = '<div id="site-footer"></div>';
-const VERSION = 'academy-20260907';
+const VERSION = 'paths-20260907';
 const SCRIPT = `<script src="../../assets/site.js?v=${VERSION}" data-root="../../" defer></script>`;
 const BRAND_CSS = `<link rel="stylesheet" href="../assets/academy-brand.css?v=${VERSION}">`;
 const LESSON_CSS = `<link rel="stylesheet" href="../assets/lesson-tools.css?v=${VERSION}">`;
@@ -34,7 +34,7 @@ for (const f of fs.readdirSync(DIR).filter((f) => /^[a-z-]+-\d{2}\.html$/.test(f
   }
   const track = f.replace(/-\d{2}\.html$/, '');
   s = s.replace(/(<div class="breadcrumb">)([\s\S]*?)(<\/div>)/, (_, start, inner, end) =>
-    start + inner.replace(`href="${track}-01.html"`, `href="../index.html#track-${track}"`) + end);
+    start + inner.replace(`href="${track}-01.html"`, `href="../library.html#track-${track}"`) + end);
   // Some source lessons placed CSS near the footer. Normalize it into the head.
   const headEnd = s.indexOf('</head>');
   const lateStyles = [...s.matchAll(/<style>[\s\S]*?<\/style>/g)].filter((m) => m.index > headEnd);

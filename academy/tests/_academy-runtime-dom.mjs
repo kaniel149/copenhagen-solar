@@ -45,6 +45,7 @@ class TestElement extends EventTarget {
     if (name.startsWith('data-')) return this.dataset[name.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase())] ?? null;
     return this.attributes.get(name) ?? null;
   }
+  hasAttribute(name) { return this.getAttribute(name) !== null; }
   removeAttribute(name) {
     if (name.startsWith('data-')) delete this.dataset[name.slice(5).replace(/-([a-z])/g, (_, c) => c.toUpperCase())];
     else this.attributes.delete(name);
@@ -103,6 +104,7 @@ class TestDocument extends EventTarget {
 
 export function createRuntime({ values = {}, denyRead = false, denyWrite = false, denyStorageAccess = false, search = '' } = {}) {
   const disk = new Map(Object.entries(values));
+  const windowEvents = new EventTarget();
   const document = new TestDocument();
   for (const [tag, id] of [['div', 'quiz-container'], ['div', 'quiz-result'], ['button', 'complete-btn']]) {
     const el = document.createElement(tag); el.id = id; document.body.appendChild(el);
@@ -113,6 +115,9 @@ export function createRuntime({ values = {}, denyRead = false, denyWrite = false
   const sandbox = {
     document, URLSearchParams, CustomEvent: TestCustomEvent,
     location: { search }, console,
+    addEventListener: (...args) => windowEvents.addEventListener(...args),
+    removeEventListener: (...args) => windowEvents.removeEventListener(...args),
+    dispatchEvent: event => windowEvents.dispatchEvent(event),
     localStorage: {
       getItem(key) { if (denyRead) throw new Error('Storage read denied'); return disk.get(key) ?? null; },
       setItem(key, value) { if (denyWrite) throw new Error('Storage write denied'); disk.set(key, value); }

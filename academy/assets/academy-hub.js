@@ -34,7 +34,7 @@
     const text = values => values[lang()] || values.en;
     const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const complete = (track, num) => isLessonComplete(track, num);
-    const href = lesson => `${lesson.file}?v=academy-20260907&lang=${lang()}`;
+    const href = lesson => `${lesson.file}?v=paths-20260907&lang=${lang()}`;
     const wording = {
       allTracks: { en: 'All tracks', he: 'כל המסלולים', th: 'ทุกเส้นทาง' },
       allLessons: { en: 'All lessons', he: 'כל השיעורים', th: 'ทุกบทเรียน' },

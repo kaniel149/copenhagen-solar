@@ -17,7 +17,7 @@ for (const l of L) {
   if (next && nextHref !== `${next.slug}.html`) fail(`${l.slug}: next=${nextHref}, expected ${next.slug}.html`);
   if (!html.includes(`initCompleteButton('${l.track}', ${l.num})`)) fail(`${l.slug}: initCompleteButton id mismatch`);
 }
-const hub = read('academy/index.html');
+const hub = read('academy/library.html');
 if (!hub.includes('assets/lessons.js')) fail('hub does not load assets/lessons.js');
 for (const t of Object.keys(T)) if (!hub.includes(`href="#track-${t}"`)) fail(`hub track card for ${t} does not link #track-${t}`);
 console.log(`lessons-chain: ${L.length} lessons, prev/next consistent`);

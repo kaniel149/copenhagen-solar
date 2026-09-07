@@ -1,0 +1,3361 @@
+{
+  "tracks": [
+    {
+      "id": "foundation",
+      "title": {
+        "en": "Shared foundation",
+        "he": "בסיס משותף",
+        "th": "พื้นฐานร่วม"
+      },
+      "audience": {
+        "en": "Everyone joining the Bustan team",
+        "he": "לכל מי שמצטרף לצוות בוסתן",
+        "th": "สำหรับทุกคนที่ร่วมทีม Bustan"
+      },
+      "summary": {
+        "en": "Eight lessons build one shared language for energy, site evidence, safe decisions and project handovers before specialization.",
+        "he": "שמונה שיעורים בונים שפה משותפת לאנרגיה, ראיות אתר, החלטות בטוחות והעברת פרויקט לפני ההתמחות.",
+        "th": "แปดบทสร้างภาษาร่วมเรื่องพลังงาน หลักฐานไซต์ การตัดสินใจปลอดภัย และส่งโครงการก่อนเฉพาะทาง"
+      },
+      "outcome": {
+        "en": "Understand a solar-plus-storage proposal, identify missing evidence and hand a clear question to the right specialist.",
+        "he": "להבין הצעת סולאר ואגירה, לזהות ראיות חסרות ולהעביר שאלה ברורה לאיש המקצוע הנכון.",
+        "th": "เข้าใจข้อเสนอโซลาร์และกักเก็บ ระบุหลักฐานขาด และส่งคำถามชัดให้ผู้เชี่ยวชาญถูกคน"
+      },
+      "capstone": {
+        "title": {
+          "en": "A defensible property decision memo",
+          "he": "מזכר החלטה לנכס שאפשר להצדיק",
+          "th": "บันทึกตัดสินใจทรัพย์สินที่อธิบายได้"
+        },
+        "brief": {
+          "en": "Use lesson 8’s fictional property case to produce a short handover that every role can understand. Show arithmetic, assumptions, unresolved risks and named next actions.",
+          "he": "השתמשו בתיק הנכס הבדיוני בשיעור 8 כדי ליצור מסירה קצרה שכל תפקיד מבין. הציגו חישובים, הנחות, סיכונים פתוחים ופעולות המשך עם אחראים.",
+          "th": "ใช้กรณีทรัพย์สินสมมติบท 8 ทำส่งมอบสั้นที่ทุกบทบาทเข้าใจ แสดงเลข สมมติฐาน ความเสี่ยงค้าง และงานถัดไปพร้อมเจ้าของ"
+        },
+        "deliverables": [
+          {
+            "en": "Energy balance and backup calculation with units.",
+            "he": "מאזן אנרגיה וחישוב גיבוי עם יחידות.",
+            "th": "สมดุลพลังงานและคำนวณสำรองพร้อมหน่วย"
+          },
+          {
+            "en": "A facts/assumptions/open-decisions register.",
+            "he": "רשימת עובדות, הנחות והחלטות פתוחות.",
+            "th": "ทะเบียนข้อเท็จจริง สมมติฐาน และข้อค้าง"
+          },
+          {
+            "en": "A safe, conditional next-step recommendation and chosen role path.",
+            "he": "המלצת המשך בטוחה ומותנית ובחירת מסלול תפקיד.",
+            "th": "ข้อเสนอขั้นต่อปลอดภัยมีเงื่อนไขและเส้นทางบทบาทที่เลือก"
+          }
+        ],
+        "rubric": [
+          {
+            "en": "Arithmetic reconciles and no energy is counted twice.",
+            "he": "החישובים מתאימים ואנרגיה אינה נספרת פעמיים.",
+            "th": "เลขกระทบยอดและไม่นับพลังงานซ้ำ"
+          },
+          {
+            "en": "Unverified roof, power and approval claims remain explicitly open.",
+            "he": "טענות גג, הספק ואישור שלא נבדקו נשארות פתוחות במפורש.",
+            "th": "ข้ออ้างหลังคา กำลัง และอนุมัติไม่ตรวจยังเปิดชัด"
+          },
+          {
+            "en": "Another team can act on each assigned question without guessing.",
+            "he": "צוות אחר יכול לפעול בכל שאלה שהוקצתה בלי לנחש.",
+            "th": "ทีมอื่นดำเนินแต่ละคำถามที่มอบได้โดยไม่เดา"
+          }
+        ],
+        "supervised": false
+      },
+      "lessons": [
+        {
+          "num": 1,
+          "title": {
+            "en": "Follow the energy: modules, inverter, battery and grid",
+            "he": "עוקבים אחרי האנרגיה: פאנלים, ממיר, סוללה ורשת",
+            "th": "ติดตามพลังงาน: แผง อินเวอร์เตอร์ แบตเตอรี่ และกริด"
+          },
+          "summary": {
+            "en": "Build a system map and distinguish what each component actually does.",
+            "he": "בונים מפת מערכת ומבינים מה כל רכיב עושה בפועל.",
+            "th": "สร้างแผนผังระบบและแยกหน้าที่จริงของแต่ละอุปกรณ์"
+          },
+          "minutes": 35,
+          "objectives": [
+            {
+              "en": "Draw the energy path from sunlight to an appliance.",
+              "he": "לצייר את מסלול האנרגיה מהשמש למכשיר.",
+              "th": "วาดเส้นทางพลังงานจากแสงแดดถึงเครื่องใช้"
+            },
+            {
+              "en": "Separate generation, conversion, storage and protection.",
+              "he": "להפריד בין ייצור, המרה, אגירה והגנה.",
+              "th": "แยกการผลิต การแปลง การกักเก็บ และการป้องกัน"
+            },
+            {
+              "en": "Ask for evidence before promising backup or output.",
+              "he": "לבקש ראיות לפני הבטחת גיבוי או תפוקה.",
+              "th": "ขอหลักฐานก่อนรับปากเรื่องไฟสำรองหรือผลผลิต"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "From a cell to a complete system",
+                "he": "מתא בודד למערכת שלמה",
+                "th": "จากเซลล์สู่ระบบครบชุด"
+              },
+              "paragraphs": [
+                {
+                  "en": "A photovoltaic cell converts incoming light into electrical energy. Cells form a module; modules form an array. The array is one part of a working installation, alongside mounting, cables, switching, protection, an inverter and metering. A sales label such as “10 kW solar” does not tell you which of those items are included.",
+                  "he": "תא פוטו־וולטאי ממיר אור שמגיע אליו לאנרגיה חשמלית. תאים מרכיבים פאנל ופאנלים מרכיבים מערך. המערך הוא רק חלק מהתקנה מתפקדת, לצד קונסטרוקציה, כבלים, מיתוג, הגנות, ממיר ומדידה. כותרת בהצעה כמו ״סולאר 10 קילוואט״ אינה מספרת אילו מהרכיבים כלולים.",
+                  "th": "เซลล์แสงอาทิตย์แปลงแสงที่รับเป็นพลังงานไฟฟ้า เซลล์รวมเป็นแผงและแผงรวมเป็นอาร์เรย์ ระบบใช้งานจริงยังมีโครงยึด สายไฟ สวิตช์ อุปกรณ์ป้องกัน อินเวอร์เตอร์ และมิเตอร์ คำเสนอขายว่า “โซลาร์ 10 kW” ไม่ได้บอกว่ารวมอุปกรณ์ใดบ้าง"
+                },
+                {
+                  "en": "Start every discussion with a boundary drawing. Mark the property meter, customer loads and every source of energy. Include an existing generator or battery, not only the proposed panels. This makes hidden interfaces visible: a pool pump belongs on the load side, while the utility connection is a two-way interface only where the approved configuration permits it.",
+                  "he": "התחילו כל דיון בשרטוט גבולות. סמנו את מונה הנכס, הצרכנים וכל מקור אנרגיה. כללו גנרטור או סוללה קיימים, ולא רק את הפאנלים המוצעים. כך מתגלים ממשקים חבויים: משאבת בריכה היא צרכן, והחיבור לרשת הוא ממשק דו־כיווני רק במקום שהתצורה המאושרת מאפשרת זאת.",
+                  "th": "เริ่มด้วยแผนผังขอบเขต ระบุมิเตอร์ โหลด และแหล่งพลังงานทุกแหล่ง รวมเครื่องกำเนิดไฟหรือแบตเตอรี่เดิมด้วย ไม่ใช่เฉพาะแผงใหม่ วิธีนี้ทำให้เห็นจุดเชื่อมต่อที่ซ่อนอยู่ ปั๊มสระเป็นโหลด ส่วนจุดเชื่อมกริดจะเป็นสองทิศทางได้เฉพาะเมื่อรูปแบบที่อนุมัติอนุญาต"
+                }
+              ],
+              "sourceIds": [
+                "base-pv"
+              ]
+            },
+            {
+              "title": {
+                "en": "Conversion is not generation",
+                "he": "המרה אינה ייצור",
+                "th": "การแปลงไม่ใช่การผลิต"
+              },
+              "paragraphs": [
+                {
+                  "en": "PV modules supply direct current (DC); most property loads use alternating current (AC). The inverter is the controlled interface between them. It cannot create energy that the modules or battery have not supplied. Its AC power rating is a separate specification from the array’s DC nameplate capacity, and conversion produces losses.",
+                  "he": "פאנלים מספקים זרם ישר, DC; רוב צרכני הנכס משתמשים בזרם חילופין, AC. הממיר הוא הממשק המבוקר ביניהם. הוא אינו יכול ליצור אנרגיה שהפאנלים או הסוללה לא סיפקו. דירוג הספק ה־AC שלו הוא נתון נפרד מהספק ה־DC הנקוב של המערך, ובהמרה יש הפסדים.",
+                  "th": "แผง PV จ่ายกระแสตรง DC ส่วนโหลดส่วนใหญ่ใช้กระแสสลับ AC อินเวอร์เตอร์เป็นตัวเชื่อมที่ควบคุมระหว่างสองฝั่ง ไม่สามารถสร้างพลังงานที่แผงหรือแบตเตอรี่ไม่ได้จ่าย พิกัดกำลัง AC เป็นคนละค่ากับกำลัง DC ป้ายแผง และการแปลงมีการสูญเสีย"
+                },
+                {
+                  "en": "A system drawing should therefore label both sides of an inverter. Record the product model, its intended operating mode and the approved settings document. Do not infer compatibility from connector shape or brand name. A battery interface, communication protocol and grid setting must each be checked against the relevant product and project documentation.",
+                  "he": "לכן מסמנים בשרטוט את שני צדי הממיר. מתעדים דגם, מצב פעולה מתוכנן ומסמך הגדרות מאושר. אין להסיק תאימות מצורת מחבר או משם מותג. ממשק סוללה, פרוטוקול תקשורת והגדרת רשת נבדקים כל אחד מול מסמכי המוצר והפרויקט הרלוונטיים.",
+                  "th": "แผนผังจึงควรระบุทั้งสองด้านของอินเวอร์เตอร์ บันทึกรุ่น โหมดใช้งานที่ตั้งใจ และเอกสารค่าตั้งที่อนุมัติ อย่าสรุปความเข้ากันได้จากรูปร่างขั้วต่อหรือชื่อยี่ห้อ ต้องตรวจจุดต่อแบตเตอรี่ โปรโตคอลสื่อสาร และค่ากริดกับเอกสารผลิตภัณฑ์และโครงการ"
+                }
+              ],
+              "sourceIds": [
+                "base-inverter"
+              ]
+            },
+            {
+              "title": {
+                "en": "Storage moves energy through time",
+                "he": "אגירה מעבירה אנרגיה בזמן",
+                "th": "การกักเก็บย้ายเวลาใช้พลังงาน"
+              },
+              "paragraphs": [
+                {
+                  "en": "A battery stores energy for later use; it is not an additional generator. Follow charging and discharging as separate arrows in the diagram. Every conversion has a cost in energy. When a customer asks for “more backup,” find out whether they need more hours of operation, a larger simultaneous load, or both. Those requests require different checks.",
+                  "he": "סוללה אוגרת אנרגיה לשימוש מאוחר יותר; היא אינה יצרן נוסף. סמנו טעינה ופריקה בחצים נפרדים בתרשים. לכל המרה יש מחיר באנרגיה. כשלקוח מבקש ״יותר גיבוי״, בדקו אם הוא צריך יותר שעות פעילות, עומס בו־זמני גדול יותר, או את שניהם. אלה דורשים בדיקות שונות.",
+                  "th": "แบตเตอรี่เก็บพลังงานไว้ใช้ภายหลัง ไม่ใช่เครื่องผลิตเพิ่มเติม แยกลูกศรการชาร์จและคายประจุ การแปลงแต่ละครั้งสูญเสียพลังงาน เมื่อลูกค้าขอ “สำรองมากขึ้น” ต้องถามว่าต้องการหลายชั่วโมงขึ้น โหลดพร้อมกันมากขึ้น หรือทั้งคู่ เพราะต้องตรวจคนละประเด็น"
+                },
+                {
+                  "en": "Reserve capacity, temperature limits and battery management can restrict available energy or power. Record the defined backup loads separately from the rest of the property. A refrigerator and communications circuit may be selected while an EV charger is excluded. The chosen separation must be designed and verified; a marketing word such as “hybrid” does not establish it.",
+                  "he": "עתודה, מגבלות טמפרטורה וניהול הסוללה עלולים להגביל אנרגיה או הספק זמינים. מתעדים את עומסי הגיבוי שהוגדרו בנפרד משאר הנכס. למשל בוחרים מקרר ומעגל תקשורת ומשאירים מטען רכב בחוץ. ההפרדה צריכה להיות מתוכננת ונבדקת; מילה שיווקית כמו ״היברידי״ אינה מוכיחה אותה.",
+                  "th": "ค่าพลังงานสำรอง ขีดจำกัดอุณหภูมิ และระบบจัดการแบตเตอรี่อาจจำกัดพลังงานหรือกำลังที่ใช้ได้ แยกโหลดสำรองออกจากโหลดทั้งหมด เช่น เลือกตู้เย็นและระบบสื่อสารแต่ไม่รวมเครื่องชาร์จรถ การแยกนี้ต้องออกแบบและตรวจยืนยัน คำว่า “ไฮบริด” เพียงอย่างเดียวไม่ได้ยืนยันการสำรอง"
+                }
+              ],
+              "sourceIds": [
+                "base-storage"
+              ]
+            },
+            {
+              "title": {
+                "en": "The meter tells one part of the story",
+                "he": "המונה מספר חלק מהסיפור",
+                "th": "มิเตอร์บอกเรื่องราวเพียงส่วนหนึ่ง"
+              },
+              "paragraphs": [
+                {
+                  "en": "The utility meter and the inverter monitor different boundaries. A lower utility import reading does not equal total solar production, because some generation may go directly to loads and some may be curtailed, stored or exported where permitted. Ask which instrument produced each number, what period it covers and whether it measures AC or DC.",
+                  "he": "מונה חברת החשמל והממיר מודדים גבולות שונים. קריאת יבוא נמוכה יותר במונה אינה שווה לכל הייצור הסולארי, כי חלק נצרך ישירות, חלק מוגבל, נאגר או מוזרם במקום שמותר. שאלו איזה מכשיר הפיק כל מספר, לאיזו תקופה הוא מתייחס והאם הוא מודד AC או DC.",
+                  "th": "มิเตอร์การไฟฟ้าและอินเวอร์เตอร์วัดคนละขอบเขต ค่าไฟนำเข้าที่ลดลงไม่เท่ากับการผลิตโซลาร์ทั้งหมด เพราะบางส่วนใช้ตรง บางส่วนถูกจำกัด เก็บ หรือส่งออกเมื่อได้รับอนุญาต ถามว่าเครื่องใดวัด ตัวเลขครอบคลุมช่วงใด และวัดฝั่ง AC หรือ DC"
+                },
+                {
+                  "en": "For handover, label the approved one-line diagram, equipment schedule and meter direction convention. Someone from another department should be able to trace one unit of energy without guessing. If sales, finance and engineering use different boundaries, the proposal can count the same benefit twice even when each individual calculation looks plausible.",
+                  "he": "במסירה מצרפים תרשים חד־קווי מאושר, רשימת ציוד והגדרת כיוון המדידה. אדם ממחלקה אחרת צריך לעקוב אחרי יחידת אנרגיה בלי לנחש. אם מכירות, פיננסים והנדסה משתמשים בגבולות שונים, ההצעה עלולה לספור את אותה תועלת פעמיים גם כשכל חישוב בפני עצמו נראה סביר.",
+                  "th": "ตอนส่งมอบให้ระบุแบบเส้นเดียวที่อนุมัติ ตารางอุปกรณ์ และนิยามทิศการวัด คนจากอีกฝ่ายควรติดตามพลังงานหนึ่งหน่วยได้โดยไม่เดา หากฝ่ายขาย การเงิน และวิศวกรรมใช้ขอบเขตต่างกัน ข้อเสนออาจนับประโยชน์ซ้ำแม้แต่ละการคำนวณดูสมเหตุผล"
+                }
+              ],
+              "sourceIds": [
+                "base-units"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "A villa at noon",
+              "he": "וילה בצהריים",
+              "th": "วิลล่าตอนเที่ยง"
+            },
+            "scenario": {
+              "en": "Training assumptions: available solar power before curtailment is 6 kW on an AC-equivalent basis. The villa load is 4 kW and battery charging draws 1 kW at the same AC boundary, including conversion losses. Export is not approved.",
+              "he": "הנחות תרגול: ההספק הסולארי הזמין לפני הגבלה הוא 6 קילוואט במונחי AC. עומס הווילה 4 קילוואט וטעינת הסוללה צורכת 1 קילוואט באותו גבול AC, כולל הפסדי ההמרה. הזרמה אינה מאושרת.",
+              "th": "สมมติฐานฝึก: กำลังโซลาร์ที่มีได้ก่อนจำกัดเทียบที่ฝั่ง AC คือ 6 kW โหลดวิลล่า 4 kW และการชาร์จแบตเตอรี่ใช้ 1 kW ณ ขอบเขต AC เดียวกันรวมการสูญเสียแปลงพลังงาน ยังไม่อนุมัติส่งออก"
+            },
+            "steps": [
+              {
+                "en": "Allocate 4 kW directly to the loads.",
+                "he": "מקצים 4 קילוואט ישירות לצרכנים.",
+                "th": "จัด 4 kW ให้โหลดโดยตรง"
+              },
+              {
+                "en": "Allocate 1 kW to charging, subject to actual battery limits.",
+                "he": "מקצים 1 קילוואט לטעינה בכפוף למגבלות הסוללה.",
+                "th": "จัด 1 kW ชาร์จโดยขึ้นกับขีดจำกัดแบตเตอรี่จริง"
+              },
+              {
+                "en": "The remaining potential 1 kW must be curtailed under the approved no-export control, not counted as sold energy.",
+                "he": "את 1 הקילוואט הפוטנציאלי שנותר יש להגביל לפי בקרת מניעת ההזרמה המאושרת, ולא לספור כאנרגיה שנמכרה.",
+                "th": "กำลังที่เหลือ 1 kW ต้องจำกัดตามระบบควบคุมไม่ส่งออกที่อนุมัติ ห้ามนับเป็นพลังงานขาย"
+              }
+            ],
+            "result": {
+              "en": "The balance is a snapshot of power. Only a time interval turns it into energy. No export revenue is assumed.",
+              "he": "זהו מאזן הספק ברגע מסוים. רק פרק זמן הופך אותו לאנרגיה. אין הנחת הכנסה מהזרמה.",
+              "th": "นี่คือสมดุลกำลัง ณ ช่วงหนึ่ง ต้องมีช่วงเวลาจึงแปลงเป็นพลังงาน ไม่สมมติรายได้จากส่งออก"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Draw an evening energy map",
+              "he": "ציירו מפת אנרגיה לערב",
+              "th": "วาดแผนผังพลังงานตอนเย็น"
+            },
+            "brief": {
+              "en": "At sunset solar output is zero. The villa needs 3 kW, the approved battery mode supplies 2 kW, and the grid is available. Draw and label the sources, load and meter boundary.",
+              "he": "בשקיעה התפוקה הסולארית אפס. הווילה צריכה 3 קילוואט, מצב הסוללה המאושר מספק 2 והרשת זמינה. שרטטו וסמנו מקורות, עומס וגבול מונה.",
+              "th": "ตอนพระอาทิตย์ตกโซลาร์เป็นศูนย์ วิลล่าต้องการ 3 kW โหมดแบตเตอรี่ที่อนุมัติจ่าย 2 kW และกริดพร้อมใช้ วาดแหล่งจ่าย โหลด และขอบเขตมิเตอร์"
+            },
+            "deliverables": [
+              {
+                "en": "A labeled energy-flow diagram.",
+                "he": "תרשים זרימת אנרגיה עם תוויות.",
+                "th": "แผนผังการไหลพลังงานพร้อมป้าย"
+              },
+              {
+                "en": "One compatibility question for the designer.",
+                "he": "שאלת תאימות אחת למתכנן.",
+                "th": "คำถามความเข้ากันได้หนึ่งข้อสำหรับผู้ออกแบบ"
+              }
+            ],
+            "solution": {
+              "en": "The battery supplies 2 kW and the grid supplies the remaining 1 kW. No solar contribution exists in this snapshot. Ask whether the specific battery/inverter supports the defined mode and selected circuits. Do not infer blackout performance from grid-connected operation.",
+              "he": "הסוללה מספקת 2 קילוואט והרשת את הקילוואט החסר. אין תרומה סולארית בתמונת הרגע. שאלו אם צמד הסוללה והממיר תומך במצב ובמעגלים שהוגדרו. אין להסיק תפקוד בהפסקת חשמל מתוך פעולה כשהרשת זמינה.",
+              "th": "แบตเตอรี่จ่าย 2 kW และกริดจ่ายที่เหลือ 1 kW ภาพขณะนี้ไม่มีพลังงานโซลาร์ ถามว่าแบตเตอรี่และอินเวอร์เตอร์รุ่นนั้นรองรับโหมดและวงจรที่กำหนดหรือไม่ อย่าอนุมานการทำงานตอนไฟดับจากการทำงานที่ต่อกริด"
+            }
+          },
+          "checklist": [
+            {
+              "en": "Every energy source and load boundary is shown.",
+              "he": "כל מקור אנרגיה וגבול צריכה מסומנים.",
+              "th": "แสดงแหล่งพลังงานและขอบเขตโหลดทุกจุด"
+            },
+            {
+              "en": "DC, AC and battery interfaces are distinguished.",
+              "he": "ממשקי DC, AC וסוללה מופרדים.",
+              "th": "แยกจุดต่อ DC, AC และแบตเตอรี่"
+            },
+            {
+              "en": "Backup and export claims have a defined approved configuration.",
+              "he": "לטענות גיבוי והזרמה יש תצורה מאושרת מוגדרת.",
+              "th": "ข้อกล่าวอ้างสำรองไฟและส่งออกมีรูปแบบอนุมัติชัดเจน"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "Which component primarily converts PV DC to property AC?",
+                "he": "איזה רכיב ממיר בעיקר DC מהפאנלים ל־AC בנכס?",
+                "th": "อุปกรณ์ใดแปลง DC จาก PV เป็น AC ให้ทรัพย์สินเป็นหลัก?"
+              },
+              "options": [
+                {
+                  "en": "Mounting rail",
+                  "he": "מסילת קונסטרוקציה",
+                  "th": "รางยึด"
+                },
+                {
+                  "en": "Inverter",
+                  "he": "ממיר",
+                  "th": "อินเวอร์เตอร์"
+                },
+                {
+                  "en": "Utility bill",
+                  "he": "חשבון חשמל",
+                  "th": "บิลค่าไฟ"
+                },
+                {
+                  "en": "Battery enclosure",
+                  "he": "ארון סוללה",
+                  "th": "ตู้แบตเตอรี่"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "The inverter performs the controlled conversion; its rating differs from PV module capacity.",
+                "he": "הממיר מבצע את ההמרה המבוקרת; הדירוג שלו שונה מקיבולת מערך הפאנלים.",
+                "th": "อินเวอร์เตอร์แปลงอย่างควบคุม พิกัดของมันต่างจากกำลังแผง"
+              }
+            },
+            {
+              "question": {
+                "en": "Available solar power is 6 kW before curtailment. Load is 4 kW and charging draws 1 kW, all at the same AC boundary. No export is approved. What happens to the remaining potential power?",
+                "he": "ההספק הסולארי הזמין לפני הגבלה הוא 6 קילוואט. העומס 4 והטעינה צורכת 1, באותו גבול AC. אין אישור הזרמה. מה לגבי ההספק הפוטנציאלי שנותר?",
+                "th": "กำลังโซลาร์ที่มีได้ก่อนจำกัดคือ 6 kW โหลด 4 และชาร์จใช้ 1 ที่ขอบเขต AC เดียวกัน ยังไม่อนุมัติส่งออก กำลังศักยภาพที่เหลือควรเป็นอย่างไร?"
+              },
+              "options": [
+                {
+                  "en": "Automatically earns revenue",
+                  "he": "מייצר הכנסה אוטומטית",
+                  "th": "ได้รายได้อัตโนมัติ"
+                },
+                {
+                  "en": "Disappears from the design",
+                  "he": "נעלם מהתכנון",
+                  "th": "หายจากแบบ"
+                },
+                {
+                  "en": "Must be curtailed by the approved control",
+                  "he": "חייב להיות מוגבל בבקרה המאושרת",
+                  "th": "ต้องจำกัดด้วยระบบควบคุมที่อนุมัติ"
+                },
+                {
+                  "en": "Requires bypassing the meter",
+                  "he": "מחייב עקיפת המונה",
+                  "th": "ต้องข้ามมิเตอร์"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "An unapproved export cannot be treated as a destination or a sale.",
+                "he": "הזרמה לא מאושרת אינה יעד מותר או מכירה.",
+                "th": "การส่งออกที่ไม่อนุมัติไม่ใช่ปลายทางหรือการขายที่นับได้"
+              }
+            },
+            {
+              "question": {
+                "en": "What does a battery primarily add?",
+                "he": "מה הסוללה מוסיפה בעיקר?",
+                "th": "แบตเตอรี่เพิ่มอะไรเป็นหลัก?"
+              },
+              "options": [
+                {
+                  "en": "A way to use stored energy later",
+                  "he": "אפשרות להשתמש באנרגיה שנאגרה מאוחר יותר",
+                  "th": "วิธีใช้พลังงานที่เก็บไว้ภายหลัง"
+                },
+                {
+                  "en": "Unlimited new generation",
+                  "he": "ייצור חדש ללא הגבלה",
+                  "th": "การผลิตใหม่ไม่จำกัด"
+                },
+                {
+                  "en": "Automatic export permission",
+                  "he": "אישור הזרמה אוטומטי",
+                  "th": "อนุญาตส่งออกอัตโนมัติ"
+                },
+                {
+                  "en": "No conversion losses",
+                  "he": "אפס הפסדי המרה",
+                  "th": "ไม่มีการสูญเสียแปลง"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "Storage shifts timing and is limited by energy, power and operating conditions.",
+                "he": "אגירה משנה עיתוי ומוגבלת באנרגיה, בהספק ובתנאי הפעלה.",
+                "th": "การเก็บย้ายเวลาและถูกจำกัดด้วยพลังงาน กำลัง และสภาพใช้งาน"
+              }
+            },
+            {
+              "question": {
+                "en": "Which evidence establishes actual backup capability?",
+                "he": "איזו ראיה מוכיחה יכולת גיבוי בפועל?",
+                "th": "หลักฐานใดยืนยันความสามารถสำรองไฟจริง?"
+              },
+              "options": [
+                {
+                  "en": "A large roof",
+                  "he": "גג גדול",
+                  "th": "หลังคาใหญ่"
+                },
+                {
+                  "en": "The word hybrid alone",
+                  "he": "המילה היברידי בלבד",
+                  "th": "คำว่าไฮบริดอย่างเดียว"
+                },
+                {
+                  "en": "The logo on the battery",
+                  "he": "לוגו הסוללה",
+                  "th": "โลโก้แบตเตอรี่"
+                },
+                {
+                  "en": "Documented compatible equipment, circuit design and verified settings",
+                  "he": "ציוד תואם מתועד, תכנון מעגלים והגדרות שנבדקו",
+                  "th": "อุปกรณ์เข้ากันได้ที่บันทึกไว้ แบบวงจร และค่าตั้งที่ตรวจแล้ว"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "Capabilities belong to the whole configured system, not to a marketing label.",
+                "he": "היכולת שייכת למערכת המוגדרת כולה, ולא לתווית שיווקית.",
+                "th": "ความสามารถเป็นของระบบที่ตั้งค่าครบ ไม่ใช่ป้ายการตลาด"
+              }
+            },
+            {
+              "question": {
+                "en": "Why can inverter production differ from utility import reduction?",
+                "he": "למה ייצור הממיר עשוי להיות שונה מירידת היבוא במונה?",
+                "th": "ทำไมการผลิตของอินเวอร์เตอร์จึงต่างจากการลดไฟนำเข้า?"
+              },
+              "options": [
+                {
+                  "en": "All meters use the same boundary",
+                  "he": "כל המונים מודדים אותו גבול",
+                  "th": "มิเตอร์ทุกตัววัดขอบเขตเดียวกัน"
+                },
+                {
+                  "en": "They measure different energy boundaries and flows",
+                  "he": "הם מודדים גבולות וזרימות אנרגיה שונים",
+                  "th": "วัดคนละขอบเขตและกระแสพลังงาน"
+                },
+                {
+                  "en": "Solar output is always export",
+                  "he": "ייצור סולארי הוא תמיד הזרמה",
+                  "th": "โซลาร์ทั้งหมดคือส่งออก"
+                },
+                {
+                  "en": "Storage has no effect",
+                  "he": "לאגירה אין השפעה",
+                  "th": "การเก็บไม่มีผล"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "Direct use, charging, curtailment and permitted export must be reconciled separately.",
+                "he": "צריך להתאים בנפרד צריכה ישירה, טעינה, הגבלה והזרמה מותרת.",
+                "th": "ต้องกระทบยอดการใช้ตรง การชาร์จ การจำกัด และส่งออกที่อนุญาตแยกกัน"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-pv",
+            "base-inverter",
+            "base-storage",
+            "base-units"
+          ]
+        },
+        {
+          "num": 2,
+          "title": {
+            "en": "Read the numbers: kW, kWh, demand and the bill",
+            "he": "קוראים את המספרים: קילוואט, קוט״ש, ביקוש והחשבון",
+            "th": "อ่านตัวเลข: kW, kWh, ความต้องการกำลัง และบิล"
+          },
+          "summary": {
+            "en": "Use units correctly before sizing equipment or estimating savings.",
+            "he": "משתמשים נכון ביחידות לפני שבוחרים ציוד או מעריכים חיסכון.",
+            "th": "ใช้หน่วยให้ถูกก่อนเลือกขนาดอุปกรณ์หรือประมาณการประหยัด"
+          },
+          "minutes": 40,
+          "objectives": [
+            {
+              "en": "Convert appliance power and operating time into energy.",
+              "he": "להמיר הספק מכשיר וזמן פעולה לאנרגיה.",
+              "th": "แปลงกำลังเครื่องใช้และเวลาทำงานเป็นพลังงาน"
+            },
+            {
+              "en": "Distinguish an energy bill from a peak-power requirement.",
+              "he": "להבחין בין חשבון אנרגיה לדרישת הספק שיא.",
+              "th": "แยกบิลพลังงานออกจากความต้องการกำลังสูงสุด"
+            },
+            {
+              "en": "Document the tariff class, period and missing evidence.",
+              "he": "לתעד סוג תעריף, תקופה ומידע חסר.",
+              "th": "บันทึกประเภทอัตรา ช่วงเวลา และหลักฐานที่ขาด"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "A rate and an accumulated quantity",
+                "he": "קצב וכמות מצטברת",
+                "th": "อัตราและปริมาณสะสม"
+              },
+              "paragraphs": [
+                {
+                  "en": "Power tells you how quickly energy is being used or supplied. Energy tells you how much accumulated over time. For a constant load, energy in kWh equals power in kW multiplied by hours. Write the units beside every input and result; this simple habit catches many proposal and sizing errors before they reach a customer.",
+                  "he": "הספק אומר באיזה קצב משתמשים באנרגיה או מספקים אותה. אנרגיה אומרת כמה הצטבר לאורך זמן. בעומס קבוע, אנרגיה בקוט״ש שווה להספק בקילוואט כפול שעות. כתבו את היחידות ליד כל קלט ותוצאה; ההרגל הפשוט הזה תופס שגיאות רבות בהצעות ובתכנון עוד לפני שהן מגיעות ללקוח.",
+                  "th": "กำลังบอกอัตราที่ใช้หรือจ่ายพลังงาน ส่วนพลังงานบอกปริมาณสะสมตามเวลา สำหรับโหลดคงที่ kWh เท่ากับ kW คูณชั่วโมง เขียนหน่วยข้างข้อมูลเข้าและผลทุกครั้ง นิสัยนี้ช่วยจับข้อผิดพลาดในการเสนอราคาและกำหนดขนาดก่อนถึงลูกค้า"
+                },
+                {
+                  "en": "A 2 kW device running continuously for three hours consumes 6 kWh. The word continuously matters: an air-conditioner may cycle or modulate. Its label may state rated input rather than measured average use. For a real assessment, distinguish a measured interval, a nameplate maximum and an assumed duty cycle in separate columns.",
+                  "he": "מכשיר של 2 קילוואט שפועל ברציפות שלוש שעות צורך 6 קוט״ש. המילה ברציפות חשובה: מזגן עשוי לעבוד במחזורים או לווסת הספק. על התווית עשוי להופיע הספק כניסה נקוב ולא צריכה ממוצעת מדודה. בסקר אמיתי מפרידים לעמודות שונות מדידה בפרק זמן, ערך מרבי נקוב ומחזור עבודה משוער.",
+                  "th": "อุปกรณ์ 2 kW ทำงานต่อเนื่องสามชั่วโมงใช้ 6 kWh คำว่าต่อเนื่องสำคัญ เพราะเครื่องปรับอากาศอาจตัดต่อหรือปรับกำลัง ป้ายอาจบอกกำลังพิกัดไม่ใช่ค่าเฉลี่ยที่วัดจริง งานสำรวจต้องแยกค่าช่วงวัด ค่าสูงสุดจากป้าย และสัดส่วนเวลาทำงานที่สมมติไว้"
+                }
+              ],
+              "sourceIds": [
+                "base-units"
+              ]
+            },
+            {
+              "title": {
+                "en": "Peak power is not monthly consumption",
+                "he": "הספק שיא אינו צריכה חודשית",
+                "th": "กำลังสูงสุดไม่ใช่พลังงานรายเดือน"
+              },
+              "paragraphs": [
+                {
+                  "en": "Two villas can each consume 900 kWh per month and have very different electrical requirements. One may spread loads through the day; the other may start several large appliances together at dinner. Monthly energy alone cannot determine inverter output, phase balance, service capacity or the battery’s ability to support a simultaneous load.",
+                  "he": "שתי וילות יכולות לצרוך כל אחת 900 קוט״ש בחודש ולהציג צרכים חשמליים שונים מאוד. אחת מפזרת עומסים לאורך היום; השנייה מפעילה יחד כמה מכשירים גדולים בזמן ארוחת הערב. אנרגיה חודשית לבדה אינה קובעת הספק ממיר, איזון פאזות, קיבולת חיבור או יכולת סוללה לתמוך בעומס בו־זמני.",
+                  "th": "วิลล่าสองหลังอาจใช้ 900 kWh ต่อเดือนเท่ากันแต่ต้องการระบบไฟต่างกันมาก หลังหนึ่งกระจายโหลดทั้งวัน อีกหลังเปิดเครื่องขนาดใหญ่พร้อมกันตอนอาหารเย็น พลังงานรายเดือนอย่างเดียวระบุกำลังอินเวอร์เตอร์ สมดุลเฟส ขนาดระบบจ่าย หรือกำลังแบตเตอรี่ที่รองรับโหลดพร้อมกันไม่ได้"
+                },
+                {
+                  "en": "Record coincident loads and motor starting behavior for the technical team rather than guessing a universal multiplier. Likewise, a demand charge only belongs in the financial model when the customer’s actual tariff includes it. Saving energy during one hour does not prove that the billed demand peak has been reduced. The finance path develops that interval-based test.",
+                  "he": "תעדו עומסים חופפים והתנהגות התנעת מנועים עבור הצוות הטכני, במקום לנחש מקדם אוניברסלי. בדומה לכך, חיוב ביקוש נכנס למודל הפיננסי רק כשהתעריף האמיתי של הלקוח כולל אותו. חיסכון באנרגיה בשעה אחת אינו מוכיח שהופחת שיא הביקוש לחיוב. במסלול הפיננסים נלמד את הבדיקה לפי פרקי זמן.",
+                  "th": "บันทึกโหลดที่เกิดพร้อมกันและพฤติกรรมเริ่มมอเตอร์ให้ทีมเทคนิค แทนการเดาตัวคูณเดียว ส่วนค่าความต้องการพลังไฟฟ้าให้ใส่ในแบบจำลองเฉพาะเมื่ออัตราลูกค้ามีจริง การประหยัดพลังงานบางชั่วโมงไม่ได้พิสูจน์ว่าลดยอดกำลังสูงสุดที่ถูกเรียกเก็บ เส้นทางการเงินจะฝึกตรวจด้วยข้อมูลช่วงเวลา"
+                }
+              ],
+              "sourceIds": [
+                "base-battery"
+              ]
+            },
+            {
+              "title": {
+                "en": "Build a bill evidence sheet",
+                "he": "בונים גיליון ראיות מהחשבון",
+                "th": "สร้างแผ่นหลักฐานจากบิล"
+              },
+              "paragraphs": [
+                {
+                  "en": "For each bill, record account and meter identity, billing dates, tariff category, measured import energy and the individual charge lines. Keep the original bill with the calculation. Check whether a month is estimated, unusually long, or affected by low occupancy. Comparing unequal periods without adjustment can create a fictitious improvement.",
+                  "he": "לכל חשבון מתעדים זהות חשבון ומונה, תאריכי חיוב, קבוצת תעריף, אנרגיית יבוא מדודה ושורות חיוב נפרדות. שומרים את החשבון המקורי עם החישוב. בודקים אם החודש מוערך, ארוך מהרגיל או הושפע מתפוסה נמוכה. השוואת תקופות לא שוות בלי התאמה עלולה ליצור שיפור מדומה.",
+                  "th": "แต่ละบิลให้บันทึกบัญชีและมิเตอร์ วันที่เรียกเก็บ ประเภทอัตรา พลังงานนำเข้าที่วัด และรายการค่าใช้จ่ายแยกกัน เก็บบิลต้นฉบับคู่การคำนวณ ตรวจว่าเป็นยอดประมาณ รอบยาวผิดปกติ หรือมีผู้พักน้อยหรือไม่ การเทียบรอบไม่เท่ากันโดยไม่ปรับอาจสร้างภาพการประหยัดที่ไม่มีจริง"
+                },
+                {
+                  "en": "Do not convert the full bill into a single permanent price per kWh and multiply that by all future solar generation. Fixed charges may remain, energy bands or time periods may differ, and exported energy may have no approved sale value. Current PEA documents and the customer’s applicable tariff must determine which avoided charges belong in a proposal.",
+                  "he": "אל תהפכו את החשבון כולו למחיר קבוע יחיד לקוט״ש ותכפילו בו את כל הייצור הסולארי העתידי. חיובים קבועים עשויים להישאר, מדרגות או שעות עשויות להשתנות ולאנרגיה מוזרמת ייתכן שאין ערך מכירה מאושר. מסמכי PEA העדכניים והתעריף החל על הלקוח קובעים אילו חיובים שנחסכים שייכים להצעה.",
+                  "th": "อย่านำทั้งบิลหารเป็นราคาคงที่ต่อ kWh แล้วคูณโซลาร์ทั้งหมดในอนาคต ค่าคงที่อาจยังอยู่ ขั้นหรือช่วงเวลาค่าไฟอาจต่างกัน และพลังงานส่งออกอาจไม่มีมูลค่าขายที่อนุมัติ ต้องใช้เอกสาร PEA ปัจจุบันและอัตราที่ใช้กับลูกค้ากำหนดว่าหลีกเลี่ยงค่าใดได้จริง"
+                }
+              ],
+              "sourceIds": [
+                "base-pea"
+              ]
+            },
+            {
+              "title": {
+                "en": "Use a disciplined calculation trail",
+                "he": "משאירים מסלול חישוב ברור",
+                "th": "เก็บร่องรอยการคำนวณอย่างมีวินัย"
+              },
+              "paragraphs": [
+                {
+                  "en": "Separate measured facts, assumptions and calculated outputs. A useful row reads: “Pool pump: measured average 0.8 kW; proposed six-hour schedule; estimated 4.8 kWh/day.” The schedule is a proposal until the operator confirms water-treatment requirements. The computed energy is only as reliable as the power and timing assumptions behind it.",
+                  "he": "הפרידו בין עובדות מדודות, הנחות ותוצאות מחושבות. שורה טובה היא: ״משאבת בריכה: ממוצע מדוד 0.8 קילוואט; לוח מוצע של שש שעות; אומדן 4.8 קוט״ש ביום״. לוח הפעולה הוא הצעה עד שהמפעיל מאשר את צורכי טיפול המים. האנרגיה המחושבת אמינה רק כמו הנחות ההספק והתזמון שמאחוריה.",
+                  "th": "แยกข้อเท็จจริงที่วัด สมมติฐาน และผลคำนวณ ตัวอย่างแถวที่ดีคือ “ปั๊มสระ: ค่าเฉลี่ยวัด 0.8 kW เสนอทำงานหกชั่วโมง ประมาณ 4.8 kWh/วัน” ตารางยังเป็นข้อเสนอจนผู้ดูแลยืนยันความต้องการบำบัดน้ำ พลังงานที่คำนวณเชื่อถือได้เท่ากับสมมติฐานกำลังและเวลา"
+                },
+                {
+                  "en": "Finally, perform a units check and a reasonableness check. Multiply kW by hours, not by a currency figure, to obtain kWh. Then apply only a justified energy price to the correct quantity. If a calculation claims more avoided import than the property imported in the relevant intervals, stop and reconcile the boundaries before presenting it.",
+                  "he": "בסוף מבצעים בדיקת יחידות ובדיקת סבירות. מכפילים קילוואט בשעות, ולא במחיר, כדי לקבל קוט״ש. אחר כך מחילים רק מחיר אנרגיה מוצדק על הכמות הנכונה. אם חישוב טוען שנחסך יותר יבוא ממה שהנכס ייבא בפרקי הזמן הרלוונטיים, עוצרים ומתאימים את גבולות המדידה לפני הצגתו.",
+                  "th": "สุดท้ายตรวจหน่วยและความสมเหตุผล คูณ kW ด้วยชั่วโมง ไม่ใช่ด้วยเงิน เพื่อให้ได้ kWh แล้วใช้ราคาพลังงานที่มีเหตุผลกับปริมาณถูกต้อง หากอ้างว่าหลีกเลี่ยงไฟนำเข้ามากกว่าที่นำเข้าจริงในช่วงนั้น ให้หยุดกระทบยอดขอบเขตก่อนนำเสนอ"
+                }
+              ],
+              "sourceIds": [
+                "base-units"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "A pump schedule, not a savings promise",
+              "he": "לוח משאבה, ולא הבטחת חיסכון",
+              "th": "ตารางปั๊ม ไม่ใช่คำรับประกันประหยัด"
+            },
+            "scenario": {
+              "en": "Training assumptions: a pump draws a constant 1.2 kW for 5 hours/day over 30 days. An illustrative avoided energy price is THB 4/kWh; this is not a current PEA tariff.",
+              "he": "הנחות תרגול: משאבה צורכת 1.2 קילוואט קבוע במשך 5 שעות ביום, לאורך 30 יום. מחיר אנרגיה שנחסכת להמחשה הוא 4 באט לקוט״ש; זה אינו תעריף PEA עדכני.",
+              "th": "สมมติฐานฝึก: ปั๊มดึงคงที่ 1.2 kW วันละ 5 ชั่วโมง เป็นเวลา 30 วัน ราคาพลังงานที่หลีกเลี่ยงสมมติ 4 บาท/kWh ไม่ใช่อัตรา PEA ปัจจุบัน"
+            },
+            "steps": [
+              {
+                "en": "Daily energy = 1.2 × 5 = 6 kWh.",
+                "he": "אנרגיה יומית = 1.2 × 5 = 6 קוט״ש.",
+                "th": "พลังงานรายวัน = 1.2 × 5 = 6 kWh"
+              },
+              {
+                "en": "Monthly energy = 6 × 30 = 180 kWh.",
+                "he": "אנרגיה חודשית = 6 × 30 = 180 קוט״ש.",
+                "th": "พลังงานรายเดือน = 6 × 30 = 180 kWh"
+              },
+              {
+                "en": "If all 180 kWh genuinely displace purchased energy at the assumed price, the variable-energy benefit is 180 × 4 = THB 720.",
+                "he": "אם כל 180 הקוט״ש אכן מחליפים קנייה במחיר שהונח, התועלת בחיוב האנרגיה המשתנה היא 180 × 4 = 720 באט.",
+                "th": "หาก 180 kWh ทั้งหมดแทนไฟที่ซื้อในราคาสมมติจริง ประโยชน์ส่วนพลังงานแปรผันคือ 180 × 4 = 720 บาท"
+              }
+            ],
+            "result": {
+              "en": "The arithmetic is correct under its assumptions. It does not establish actual solar overlap, tariff applicability or fixed-charge savings.",
+              "he": "החשבון נכון תחת ההנחות. הוא אינו מוכיח חפיפה לייצור סולארי, תחולת תעריף או חיסכון בחיובים קבועים.",
+              "th": "เลขคำนวณถูกภายใต้สมมติฐาน แต่ไม่ได้ยืนยันการทับซ้อนโซลาร์ อัตราที่ใช้ หรือการประหยัดค่าคงที่"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Compare two appliance schedules",
+              "he": "השוו שני לוחות הפעלה",
+              "th": "เปรียบเทียบตารางเครื่องใช้สองแบบ"
+            },
+            "brief": {
+              "en": "Training assumptions: device A draws 3 kW for 2 hours; device B draws 1 kW for 6 hours. Compare daily energy and simultaneous power if both operate together. Identify the extra data needed for a real inverter decision.",
+              "he": "הנחות תרגול: מכשיר א׳ צורך 3 קילוואט לשעתיים; מכשיר ב׳ צורך 1 קילוואט לשש שעות. השוו אנרגיה יומית והספק בו־זמני אם שניהם פועלים יחד. ציינו מידע נוסף לבחירת ממיר אמיתית.",
+              "th": "สมมติฐานฝึก: A ใช้ 3 kW สองชั่วโมง B ใช้ 1 kW หกชั่วโมง เปรียบเทียบพลังงานต่อวันและกำลังเมื่อเปิดพร้อมกัน ระบุข้อมูลเพิ่มเพื่อเลือกอินเวอร์เตอร์จริง"
+            },
+            "deliverables": [
+              {
+                "en": "Two energy calculations with units.",
+                "he": "שני חישובי אנרגיה עם יחידות.",
+                "th": "การคำนวณพลังงานสองรายการพร้อมหน่วย"
+              },
+              {
+                "en": "A peak-load statement and three missing technical inputs.",
+                "he": "קביעת עומס שיא ושלושה נתונים טכניים חסרים.",
+                "th": "ข้อความกำลังสูงสุดและข้อมูลเทคนิคที่ขาดสามรายการ"
+              }
+            ],
+            "solution": {
+              "en": "Each consumes 6 kWh, for 12 kWh combined. Coincident steady power is 4 kW, not 12 kW. A real decision also needs starting behavior, other coincident loads, phase arrangement and the equipment’s operating limits. Equal energy does not mean equal electrical capacity requirements.",
+              "he": "כל מכשיר צורך 6 קוט״ש, יחד 12 קוט״ש. ההספק הקבוע החופף הוא 4 קילוואט, לא 12. החלטה אמיתית דורשת גם התנהגות התנעה, עומסים חופפים אחרים, סידור פאזות ומגבלות הציוד. אנרגיה שווה אינה אומרת דרישת קיבולת חשמלית שווה.",
+              "th": "แต่ละตัวใช้ 6 kWh รวม 12 kWh กำลังคงที่พร้อมกันคือ 4 kW ไม่ใช่ 12 ต้องทราบการเริ่มทำงาน โหลดร่วมอื่น การจัดเฟส และขีดจำกัดอุปกรณ์ด้วย พลังงานเท่ากันไม่ได้หมายถึงความต้องการกำลังระบบเท่ากัน"
+            }
+          },
+          "checklist": [
+            {
+              "en": "Every number has a unit, period and source or assumption label.",
+              "he": "לכל מספר יש יחידה, תקופה ומקור או סימון כהנחה.",
+              "th": "ทุกตัวเลขมีหน่วย ช่วงเวลา และแหล่งหรือป้ายสมมติฐาน"
+            },
+            {
+              "en": "Energy and coincident power are calculated separately.",
+              "he": "אנרגיה והספק חופף מחושבים בנפרד.",
+              "th": "คำนวณพลังงานและกำลังพร้อมกันแยกกัน"
+            },
+            {
+              "en": "Tariff classification and avoidable charge lines are verified before quoting.",
+              "he": "סיווג התעריף ושורות החיוב שנחסכות נבדקים לפני הצעה.",
+              "th": "ตรวจประเภทอัตราและรายการที่หลีกเลี่ยงได้ก่อนเสนอ"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "What is the energy of a constant 2 kW load for 4 hours?",
+                "he": "מה האנרגיה של עומס קבוע 2 קילוואט במשך 4 שעות?",
+                "th": "โหลดคงที่ 2 kW สี่ชั่วโมงใช้พลังงานเท่าใด?"
+              },
+              "options": [
+                {
+                  "en": "0.5 kWh",
+                  "he": "0.5 קוט״ש",
+                  "th": "0.5 kWh"
+                },
+                {
+                  "en": "6 kW",
+                  "he": "6 קילוואט",
+                  "th": "6 kW"
+                },
+                {
+                  "en": "8 kWh",
+                  "he": "8 קוט״ש",
+                  "th": "8 kWh"
+                },
+                {
+                  "en": "8 kW",
+                  "he": "8 קילוואט",
+                  "th": "8 kW"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Energy = power × time; the result is kWh.",
+                "he": "אנרגיה = הספק × זמן; התוצאה בקוט״ש.",
+                "th": "พลังงาน = กำลัง × เวลา ผลคือ kWh"
+              }
+            },
+            {
+              "question": {
+                "en": "What does equal monthly kWh establish about two villas?",
+                "he": "מה צריכת קוט״ש חודשית שווה מוכיחה לגבי שתי וילות?",
+                "th": "kWh รายเดือนเท่ากันบอกอะไรเกี่ยวกับวิลล่าสองหลัง?"
+              },
+              "options": [
+                {
+                  "en": "Equal energy over that period only",
+                  "he": "רק אנרגיה שווה בתקופה הזאת",
+                  "th": "เพียงพลังงานเท่ากันในช่วงนั้น"
+                },
+                {
+                  "en": "Equal peak demand",
+                  "he": "ביקוש שיא שווה",
+                  "th": "กำลังสูงสุดเท่ากัน"
+                },
+                {
+                  "en": "Identical phase balance",
+                  "he": "איזון פאזות זהה",
+                  "th": "สมดุลเฟสเหมือนกัน"
+                },
+                {
+                  "en": "Identical battery size",
+                  "he": "גודל סוללה זהה",
+                  "th": "ขนาดแบตเตอรี่เหมือนกัน"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "Timing, coincidence and starting loads still need evidence.",
+                "he": "עדיין צריך מידע על תזמון, חפיפה ועומסי התנעה.",
+                "th": "ยังต้องมีข้อมูลเวลา การพร้อมกัน และโหลดเริ่มต้น"
+              }
+            },
+            {
+              "question": {
+                "en": "Which item is an assumption until confirmed by the pool operator?",
+                "he": "איזה נתון הוא הנחה עד לאישור מפעיל הבריכה?",
+                "th": "ข้อมูลใดยังเป็นสมมติฐานจนผู้ดูแลสระยืนยัน?"
+              },
+              "options": [
+                {
+                  "en": "A meter serial number",
+                  "he": "מספר סידורי של מונה",
+                  "th": "หมายเลขมิเตอร์"
+                },
+                {
+                  "en": "An actual billing period",
+                  "he": "תקופת חיוב בפועל",
+                  "th": "รอบบิลจริง"
+                },
+                {
+                  "en": "A measured reading",
+                  "he": "קריאה מדודה",
+                  "th": "ค่าที่วัด"
+                },
+                {
+                  "en": "A proposed pump operating schedule",
+                  "he": "לוח פעולה מוצע למשאבה",
+                  "th": "ตารางปั๊มที่เสนอ"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "Operational requirements determine whether the new schedule is feasible.",
+                "he": "דרישות התפעול קובעות אם הלוח החדש אפשרי.",
+                "th": "ความต้องการใช้งานกำหนดว่าตารางใหม่ทำได้หรือไม่"
+              }
+            },
+            {
+              "question": {
+                "en": "Why not multiply all solar kWh by total bill divided by kWh?",
+                "he": "למה לא מכפילים את כל הייצור בחשבון הכולל חלקי קוט״ש?",
+                "th": "ทำไมไม่คูณโซลาร์ทุก kWh ด้วยยอดบิลหาร kWh?"
+              },
+              "options": [
+                {
+                  "en": "Power has no units",
+                  "he": "להספק אין יחידות",
+                  "th": "กำลังไม่มีหน่วย"
+                },
+                {
+                  "en": "That average may include charges not avoided by solar",
+                  "he": "הממוצע עשוי לכלול חיובים שסולאר אינו חוסך",
+                  "th": "ค่าเฉลี่ยอาจรวมรายการที่โซลาร์ไม่ได้ลด"
+                },
+                {
+                  "en": "Solar has no value",
+                  "he": "לסולאר אין ערך",
+                  "th": "โซลาร์ไม่มีมูลค่า"
+                },
+                {
+                  "en": "Every export earns retail price",
+                  "he": "כל הזרמה מזכה במחיר קמעונאי",
+                  "th": "ส่งออกทุกหน่วยได้ราคาขายปลีก"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "Use actual tariff rules and the correctly displaced import energy.",
+                "he": "משתמשים בכללי התעריף האמיתיים ובאנרגיית היבוא שהוחלפה בפועל.",
+                "th": "ใช้กฎอัตราจริงและพลังงานนำเข้าที่แทนได้จริง"
+              }
+            },
+            {
+              "question": {
+                "en": "A 3 kW load and a 1 kW load run together steadily. What is their combined power?",
+                "he": "עומס 3 קילוואט ועומס 1 קילוואט פועלים יחד באופן קבוע. מה ההספק הכולל?",
+                "th": "โหลด 3 kW และ 1 kW ทำงานคงที่พร้อมกัน กำลังรวมเท่าใด?"
+              },
+              "options": [
+                {
+                  "en": "3 kWh",
+                  "he": "3 קוט״ש",
+                  "th": "3 kWh"
+                },
+                {
+                  "en": "2 kW",
+                  "he": "2 קילוואט",
+                  "th": "2 kW"
+                },
+                {
+                  "en": "4 kW",
+                  "he": "4 קילוואט",
+                  "th": "4 kW"
+                },
+                {
+                  "en": "4 kWh regardless of duration",
+                  "he": "4 קוט״ש בלי קשר למשך",
+                  "th": "4 kWh ไม่ขึ้นกับเวลา"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Add simultaneous power; duration is needed to calculate energy.",
+                "he": "מחברים הספקים בו־זמניים; לחישוב אנרגיה דרוש גם משך.",
+                "th": "บวกกำลังพร้อมกัน ต้องทราบเวลาจึงคำนวณพลังงาน"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-units",
+            "base-battery",
+            "base-pea"
+          ]
+        },
+        {
+          "num": 3,
+          "title": {
+            "en": "Match production to the property’s load",
+            "he": "מתאימים את הייצור לעומס של הנכס",
+            "th": "จับคู่การผลิตกับโหลดของทรัพย์สิน"
+          },
+          "summary": {
+            "en": "Build a time-based energy balance and distinguish self-consumption from self-sufficiency.",
+            "he": "בונים מאזן אנרגיה לפי זמן ומפרידים צריכה עצמית מעצמאות אנרגטית.",
+            "th": "สร้างสมดุลพลังงานตามเวลาและแยกการใช้เองออกจากการพึ่งตนเอง"
+          },
+          "minutes": 40,
+          "objectives": [
+            {
+              "en": "Build a load profile from evidence, not just a monthly total.",
+              "he": "לבנות פרופיל עומס מתוך ראיות ולא רק מסכום חודשי.",
+              "th": "สร้างโปรไฟล์โหลดจากหลักฐาน ไม่ใช่แค่ยอดรายเดือน"
+            },
+            {
+              "en": "Calculate direct use, import and surplus for an interval.",
+              "he": "לחשב שימוש ישיר, יבוא ועודף בפרק זמן.",
+              "th": "คำนวณใช้ตรง นำเข้า และส่วนเกินในช่วงเวลา"
+            },
+            {
+              "en": "Explain how timing changes the value of the same solar output.",
+              "he": "להסביר איך התזמון משנה את ערך אותה תפוקה סולארית.",
+              "th": "อธิบายว่าเวลาเปลี่ยนมูลค่าผลผลิตโซลาร์เท่ากันได้อย่างไร"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "A property has a rhythm",
+                "he": "לנכס יש קצב חיים",
+                "th": "ทรัพย์สินมีจังหวะการใช้พลังงาน"
+              },
+              "paragraphs": [
+                {
+                  "en": "A villa occupied at night, a daytime restaurant kitchen and a resort laundry can have equal monthly energy use but different opportunities for direct solar use. Interview the operator about occupancy, air-conditioning, pumps, refrigeration, kitchens and future EV charging. Record actual operating hours and distinguish essential services from flexible tasks.",
+                  "he": "וילה שמאוישת בלילה, מטבח מסעדה שפעיל ביום ומכבסת ריזורט יכולים לצרוך אנרגיה חודשית זהה, אך עם הזדמנויות שונות לשימוש ישיר בסולאר. ראיינו את המפעיל על תפוסה, מיזוג, משאבות, קירור, מטבחים וטעינת רכב עתידית. תעדו שעות פעולה בפועל והפרידו שירותים חיוניים ממשימות גמישות.",
+                  "th": "วิลล่าที่มีคนกลางคืน ครัวร้านอาหารกลางวัน และซักรีดรีสอร์ตอาจใช้พลังงานรายเดือนเท่ากันแต่ใช้โซลาร์ตรงได้ต่างกัน สัมภาษณ์ผู้ดูแลเรื่องผู้เข้าพัก แอร์ ปั๊ม ตู้เย็น ครัว และแผนชาร์จรถ บันทึกเวลาทำงานจริงและแยกบริการจำเป็นจากงานที่เลื่อนเวลาได้"
+                },
+                {
+                  "en": "Use interval-meter data when available and reconcile it to the billing period. Where it is missing, label a constructed schedule as an estimate and arrange measurement by the responsible technical team. One busy afternoon is not a representative year. Record seasonal occupancy and planned changes separately instead of hiding them inside a single average.",
+                  "he": "השתמשו בנתוני מונה לפי פרקי זמן כאשר הם זמינים והתאימו אותם לתקופת החשבון. כשאין נתונים, סמנו לוח שבניתם כאומדן ותאמו מדידה עם הצוות הטכני האחראי. אחר צהריים עמוס אחד אינו שנה מייצגת. תעדו תפוסה עונתית ושינויים מתוכננים בנפרד במקום להסתיר אותם בממוצע אחד.",
+                  "th": "ใช้ข้อมูลมิเตอร์ช่วงเวลาถ้ามีและกระทบยอดกับรอบบิล หากไม่มีให้ระบุตารางที่สร้างว่าเป็นประมาณการแล้วให้ทีมเทคนิคที่รับผิดชอบจัดวัด ช่วงบ่ายที่ยุ่งครั้งเดียวไม่แทนทั้งปี บันทึกฤดูกาลผู้เข้าพักและการเปลี่ยนแปลงแยกจากค่าเฉลี่ย"
+                }
+              ],
+              "sourceIds": [
+                "base-units",
+                "base-design"
+              ]
+            },
+            {
+              "title": {
+                "en": "Reconcile each time interval",
+                "he": "מתאימים כל פרק זמן",
+                "th": "กระทบยอดทุกช่วงเวลา"
+              },
+              "paragraphs": [
+                {
+                  "en": "For an interval without storage, direct solar use is the smaller of available AC generation and load energy in that same interval. Remaining load is supplied by grid import or another approved source. Remaining generation is surplus; its destination depends on the approved export, curtailment or storage configuration. This is an accounting model, not a control instruction.",
+                  "he": "בפרק זמן ללא אגירה, השימוש הישיר בסולאר הוא הקטן מבין ייצור AC זמין ואנרגיית העומס באותו פרק זמן. יתרת העומס מסופקת ביבוא מהרשת או ממקור מאושר אחר. יתרת הייצור היא עודף; היעד שלה תלוי בתצורת הזרמה, הגבלה או אגירה מאושרת. זהו מודל חשבונאי ולא הוראת בקרה.",
+                  "th": "ในช่วงที่ไม่มีการกักเก็บ การใช้โซลาร์ตรงเท่ากับค่าที่น้อยกว่าระหว่างพลังงาน AC ที่ผลิตได้กับโหลดในช่วงเดียวกัน โหลดที่เหลือใช้กริดหรือแหล่งที่อนุมัติ ผลผลิตที่เหลือเป็นส่วนเกิน จะส่งออก จำกัด หรือเก็บขึ้นกับรูปแบบอนุมัติ นี่คือแบบจำลองบัญชี ไม่ใช่คำสั่งควบคุม"
+                },
+                {
+                  "en": "Adding daily generation and daily consumption before comparing them can exaggerate overlap. A villa may export or curtail at noon and import at night even when the two daily totals are equal. Use sufficiently fine intervals for the decision and keep the same timestamps, time zone and missing-data treatment for generation and load.",
+                  "he": "חיבור הייצור היומי והצריכה היומית לפני השוואתם עלול להפריז בחפיפה. וילה עשויה להזרים או להגביל בצהריים ולייבא בלילה, גם כששני הסכומים היומיים שווים. השתמשו בפרקי זמן מתאימים להחלטה ושמרו על חותמות זמן, אזור זמן וטיפול זהה בחוסרי נתונים עבור הייצור והעומס.",
+                  "th": "การรวมผลิตและใช้ทั้งวันก่อนเทียบอาจทำให้ประเมินการทับซ้อนสูงเกิน วิลล่าอาจส่งออกหรือจำกัดตอนเที่ยงแล้วนำเข้ากลางคืน แม้ยอดรายวันเท่ากัน ใช้ช่วงเวลาละเอียดพอสำหรับการตัดสินใจและให้เวลา เขตเวลา และวิธีจัดข้อมูลหายตรงกันทั้งผลิตและโหลด"
+                }
+              ],
+              "sourceIds": [
+                "base-model"
+              ]
+            },
+            {
+              "title": {
+                "en": "Two useful ratios, two different questions",
+                "he": "שני יחסים שימושיים, שתי שאלות שונות",
+                "th": "สองอัตราส่วน สองคำถาม"
+              },
+              "paragraphs": [
+                {
+                  "en": "For this lesson’s solar-only balance, self-consumption is direct solar energy used on site divided by total solar generation. Self-sufficiency is that direct solar energy divided by total property consumption. The first asks how much production was useful locally; the second asks how much of the property’s need was covered. Always state the denominator.",
+                  "he": "במאזן ללא סוללה של שיעור זה, שיעור הצריכה העצמית הוא אנרגיה סולארית שנצרכה ישירות באתר חלקי כלל הייצור הסולארי. שיעור העצמאות האנרגטית הוא אותה אנרגיה חלקי כלל צריכת הנכס. הראשון שואל כמה מהייצור שימש מקומית; השני כמה מצורך הנכס כוסה. תמיד מציינים את המכנה.",
+                  "th": "สำหรับสมดุลโซลาร์อย่างเดียวในบทนี้ อัตราใช้เองคือโซลาร์ที่ใช้ตรงในพื้นที่หารผลผลิตโซลาร์ทั้งหมด อัตราพึ่งตนเองคือพลังงานเดียวกันหารการใช้ทั้งหมดของทรัพย์สิน คำถามแรกคือใช้ผลผลิตในพื้นที่ได้เท่าไร คำถามที่สองคือครอบคลุมความต้องการเท่าไร ต้องระบุตัวหารเสมอ"
+                },
+                {
+                  "en": "With batteries, define whether the reported value includes storage losses and how solar-origin energy is tracked. Do not add battery charge to direct use and then add its later discharge again as fresh solar production. A transparent ledger labels charge, losses and useful discharge separately so that one unit of generation is not credited twice.",
+                  "he": "עם סוללות, מגדירים אם הערך המדווח כולל הפסדי אגירה ואיך עוקבים אחר מקור האנרגיה. אין להוסיף טעינת סוללה לצריכה ישירה ואז להוסיף שוב את הפריקה שלה כייצור סולארי חדש. רישום שקוף מפריד טעינה, הפסדים ופריקה שימושית כדי לא לזכות אותה יחידת ייצור פעמיים.",
+                  "th": "เมื่อมีแบตเตอรี่ต้องนิยามว่ารวมการสูญเสียหรือไม่และติดตามพลังงานจากโซลาร์อย่างไร อย่ารวมชาร์จแบตเตอรี่กับใช้ตรงแล้วนับการคายภายหลังเป็นการผลิตโซลาร์ใหม่อีก บัญชีที่โปร่งใสแยกชาร์จ สูญเสีย และคายที่ใช้ได้เพื่อไม่ให้พลังงานหน่วยเดียวได้รับเครดิตสองครั้ง"
+                }
+              ],
+              "sourceIds": [
+                "base-battery",
+                "base-storage"
+              ]
+            },
+            {
+              "title": {
+                "en": "Improve timing before assuming more hardware",
+                "he": "משפרים תזמון לפני שמניחים עוד ציוד",
+                "th": "ปรับเวลาก่อนสมมติว่าต้องเพิ่มอุปกรณ์"
+              },
+              "paragraphs": [
+                {
+                  "en": "A flexible load may be moved into daylight if the operator confirms that service quality, safety and equipment requirements remain satisfied. Examples for discussion include laundry or pool pumping, but their real schedules are operational decisions. Compare the original and proposed interval profiles while keeping daily energy visible; shifting consumption is not automatically reducing it.",
+                  "he": "אפשר להעביר עומס גמיש לשעות אור אם המפעיל מאשר שאיכות השירות, הבטיחות ודרישות הציוד נשמרות. כביסה או שאיבת בריכה הן דוגמאות לדיון, אך לוחות ההפעלה האמיתיים הם החלטות תפעוליות. השוו פרופילים לפני ואחרי והשאירו את האנרגיה היומית גלויה; הזזת צריכה אינה בהכרח הפחתתה.",
+                  "th": "อาจย้ายโหลดที่ยืดหยุ่นไปกลางวันได้หากผู้ดูแลยืนยันว่าคุณภาพบริการ ความปลอดภัย และข้อกำหนดเครื่องยังครบ ซักผ้าหรือปั๊มสระเป็นตัวอย่างเพื่อหารือ แต่ตารางจริงเป็นการตัดสินใจปฏิบัติการ เทียบโปรไฟล์ก่อนหลังโดยแสดงพลังงานรายวัน การย้ายเวลาไม่จำเป็นต้องลดการใช้"
+                },
+                {
+                  "en": "Present at least a measured/base scenario and a clearly labeled alternative. State who must confirm each proposed change and what evidence would reject it. The next department should receive the profile, assumptions and unresolved questions, not only a recommended system size. This allows finance and design to test the same case.",
+                  "he": "הציגו לפחות תרחיש מדוד או בסיסי וחלופה מסומנת בבירור. ציינו מי מאשר כל שינוי מוצע ואילו ראיות יפסלו אותו. המחלקה הבאה צריכה לקבל את הפרופיל, ההנחות והשאלות הפתוחות, ולא רק גודל מערכת מומלץ. כך פיננסים ותכנון יכולים לבדוק את אותו מקרה.",
+                  "th": "เสนออย่างน้อยกรณีวัดหรือฐานและทางเลือกที่ติดป้ายชัด ระบุผู้ยืนยันการเปลี่ยนแปลงและหลักฐานที่ทำให้ปฏิเสธ ฝ่ายถัดไปควรได้โปรไฟล์ สมมติฐาน และคำถามค้าง ไม่ใช่เพียงขนาดระบบแนะนำ เพื่อให้การเงินและออกแบบทดสอบกรณีเดียวกัน"
+                }
+              ],
+              "sourceIds": [
+                "base-design"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "Three one-hour intervals",
+              "he": "שלושה פרקי זמן של שעה",
+              "th": "สามช่วง ช่วงละหนึ่งชั่วโมง"
+            },
+            "scenario": {
+              "en": "Training assumptions, no battery: PV/load energy pairs in kWh are (2,3), (5,3), (1,2). Values are matched within each hour.",
+              "he": "הנחות תרגול, ללא סוללה: זוגות ייצור/עומס בקוט״ש הם (2,3), (5,3), (1,2). הנתונים מתייחסים לאותה שעה בכל זוג.",
+              "th": "สมมติฐานฝึก ไม่มีแบตเตอรี่: คู่ผลิต/โหลดเป็น kWh คือ (2,3), (5,3), (1,2) แต่ละคู่ตรงกันในชั่วโมงเดียว"
+            },
+            "steps": [
+              {
+                "en": "Direct use is 2 + 3 + 1 = 6 kWh.",
+                "he": "שימוש ישיר הוא 2 + 3 + 1 = 6 קוט״ש.",
+                "th": "ใช้ตรง = 2 + 3 + 1 = 6 kWh"
+              },
+              {
+                "en": "Total generation and total load are each 8 kWh. Grid import is 1 + 0 + 1 = 2 kWh; surplus is 0 + 2 + 0 = 2 kWh.",
+                "he": "סך הייצור וסך העומס הם 8 קוט״ש כל אחד. היבוא הוא 1 + 0 + 1 = 2 קוט״ש; העודף הוא 0 + 2 + 0 = 2 קוט״ש.",
+                "th": "ผลิตรวมและโหลดรวมเท่ากับ 8 kWh ทั้งคู่ นำเข้า = 1 + 0 + 1 = 2 kWh ส่วนเกิน = 0 + 2 + 0 = 2 kWh"
+              },
+              {
+                "en": "Both ratios happen to be 6/8 = 75%; that equality is specific to this example.",
+                "he": "במקרה זה שני היחסים הם 6/8 = 75%; השוויון ייחודי לדוגמה.",
+                "th": "ทั้งสองอัตราบังเอิญเป็น 6/8 = 75% ความเท่ากันเฉพาะตัวอย่างนี้"
+              }
+            ],
+            "result": {
+              "en": "Equal aggregate generation and consumption do not mean zero imports. Surplus has no assumed export revenue.",
+              "he": "ייצור וצריכה מצטברים שווים אינם אומרים אפס יבוא. לעודף לא מונחת הכנסה מהזרמה.",
+              "th": "ผลิตและใช้รวมเท่ากันไม่ได้แปลว่านำเข้าเป็นศูนย์ ไม่สมมติรายได้ส่งออกสำหรับส่วนเกิน"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Explain two different percentages",
+              "he": "הסבירו שני אחוזים שונים",
+              "th": "อธิบายเปอร์เซ็นต์ที่ต่างกัน"
+            },
+            "brief": {
+              "en": "A checked interval ledger totals 10 kWh PV generation, 14 kWh load and 8 kWh direct solar use. Calculate both ratios, import and surplus. Explain why a single “80% solar” claim is incomplete.",
+              "he": "רישום שנבדק לפי פרקי זמן מסתכם ב־10 קוט״ש ייצור, 14 קוט״ש עומס ו־8 קוט״ש שימוש סולארי ישיר. חשבו את שני היחסים, היבוא והעודף. הסבירו למה אמירה ״80% סולאר״ אינה מלאה.",
+              "th": "บัญชีช่วงเวลาที่ตรวจแล้วมีผลิต PV 10 kWh โหลด 14 kWh และใช้โซลาร์ตรง 8 kWh คำนวณสองอัตรา นำเข้า และส่วนเกิน อธิบายว่าคำว่า “โซลาร์ 80%” ขาดอะไร"
+            },
+            "deliverables": [
+              {
+                "en": "An energy balance with both denominators.",
+                "he": "מאזן אנרגיה עם שני המכנים.",
+                "th": "สมดุลพลังงานพร้อมตัวหารทั้งสอง"
+              },
+              {
+                "en": "A customer explanation in two sentences.",
+                "he": "הסבר ללקוח בשני משפטים.",
+                "th": "คำอธิบายลูกค้าสองประโยค"
+              }
+            ],
+            "solution": {
+              "en": "Self-consumption is 8/10 = 80%; self-sufficiency is 8/14 ≈ 57.1%. Import is 6 kWh and surplus 2 kWh, before any storage. Say: “80% of the solar generation is used directly here; it covers about 57% of the property’s energy in the checked periods.”",
+              "he": "צריכה עצמית היא 8/10 = 80%; עצמאות אנרגטית היא 8/14 ≈ 57.1%. יבוא הוא 6 קוט״ש ועודף 2 קוט״ש, לפני אגירה. אמרו: ״80% מהייצור הסולארי נצרך ישירות כאן; הוא מכסה כ־57% מאנרגיית הנכס בתקופות שנבדקו״.",
+              "th": "ใช้เอง = 8/10 = 80% พึ่งตนเอง = 8/14 ≈ 57.1% นำเข้า 6 kWh ส่วนเกิน 2 kWh ก่อนการเก็บ อธิบายว่า “ผลผลิตโซลาร์ 80% ใช้ตรงที่นี่ และครอบคลุมพลังงานทรัพย์สินประมาณ 57% ในช่วงที่ตรวจ”"
+            }
+          },
+          "checklist": [
+            {
+              "en": "Generation and load have aligned timestamps.",
+              "he": "לייצור ולעומס חותמות זמן תואמות.",
+              "th": "เวลาผลิตและโหลดตรงกัน"
+            },
+            {
+              "en": "Surplus, import and losses are not double-counted.",
+              "he": "עודף, יבוא והפסדים אינם נספרים פעמיים.",
+              "th": "ไม่นับส่วนเกิน นำเข้า หรือสูญเสียซ้ำ"
+            },
+            {
+              "en": "Every proposed schedule change has an operational owner.",
+              "he": "לכל שינוי תזמון מוצע יש אחראי תפעולי.",
+              "th": "การเปลี่ยนตารางทุกข้อมีผู้รับผิดชอบปฏิบัติการ"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "Without storage, PV is 4 kWh and load 7 kWh in the same interval. Direct use is?",
+                "he": "ללא אגירה, ייצור 4 קוט״ש ועומס 7 קוט״ש באותו פרק זמן. מה השימוש הישיר?",
+                "th": "ไม่มีการเก็บ ผลิต 4 kWh โหลด 7 kWh ในช่วงเดียวกัน ใช้ตรงเท่าใด?"
+              },
+              "options": [
+                {
+                  "en": "11 kWh",
+                  "he": "11 קוט״ש",
+                  "th": "11 kWh"
+                },
+                {
+                  "en": "4 kWh",
+                  "he": "4 קוט״ש",
+                  "th": "4 kWh"
+                },
+                {
+                  "en": "7 kWh",
+                  "he": "7 קוט״ש",
+                  "th": "7 kWh"
+                },
+                {
+                  "en": "3 kWh",
+                  "he": "3 קוט״ש",
+                  "th": "3 kWh"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "Direct use is bounded by both generation and concurrent load.",
+                "he": "השימוש הישיר מוגבל גם בייצור וגם בעומס החופף.",
+                "th": "ใช้ตรงถูกจำกัดด้วยทั้งผลผลิตและโหลดพร้อมกัน"
+              }
+            },
+            {
+              "question": {
+                "en": "Which denominator belongs to self-sufficiency?",
+                "he": "איזה מכנה שייך לעצמאות אנרגטית?",
+                "th": "ตัวหารของอัตราพึ่งตนเองคืออะไร?"
+              },
+              "options": [
+                {
+                  "en": "Roof area",
+                  "he": "שטח גג",
+                  "th": "พื้นที่หลังคา"
+                },
+                {
+                  "en": "Array nameplate power",
+                  "he": "הספק נקוב של מערך",
+                  "th": "กำลังป้ายแผง"
+                },
+                {
+                  "en": "Solar generation",
+                  "he": "ייצור סולארי",
+                  "th": "ผลิตโซลาร์"
+                },
+                {
+                  "en": "Total property consumption",
+                  "he": "צריכת הנכס הכוללת",
+                  "th": "การใช้ทั้งหมดของทรัพย์สิน"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "It asks what share of the property’s need is covered.",
+                "he": "השאלה היא איזה חלק מצורך הנכס כוסה.",
+                "th": "ถามว่าครอบคลุมความต้องการทรัพย์สินส่วนใด"
+              }
+            },
+            {
+              "question": {
+                "en": "Can equal daily generation and consumption still include grid imports?",
+                "he": "האם ייצור וצריכה יומיים שווים עדיין יכולים לכלול יבוא מהרשת?",
+                "th": "ผลิตและใช้รายวันเท่ากันยังนำเข้ากริดได้หรือไม่?"
+              },
+              "options": [
+                {
+                  "en": "Yes, if timing does not match",
+                  "he": "כן, אם התזמון אינו חופף",
+                  "th": "ได้ หากเวลาไม่ตรงกัน"
+                },
+                {
+                  "en": "No, totals prove full overlap",
+                  "he": "לא, הסכומים מוכיחים חפיפה מלאה",
+                  "th": "ไม่ได้ ยอดรวมพิสูจน์ว่าทับซ้อนเต็ม"
+                },
+                {
+                  "en": "Only if there is no meter",
+                  "he": "רק כשאין מונה",
+                  "th": "เฉพาะไม่มีมิเตอร์"
+                },
+                {
+                  "en": "Only with EV charging",
+                  "he": "רק עם טעינת רכב",
+                  "th": "เฉพาะมีชาร์จรถ"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "Midday surplus cannot directly serve a night load without a suitable intervening source or storage.",
+                "he": "עודף בצהריים אינו משרת ישירות עומס לילה בלי אגירה או מקור מתאים ביניהם.",
+                "th": "ส่วนเกินเที่ยงไม่จ่ายโหลดกลางคืนตรงได้หากไม่มีการเก็บหรือแหล่งที่เหมาะสม"
+              }
+            },
+            {
+              "question": {
+                "en": "What should happen before moving pool pumping to noon?",
+                "he": "מה צריך לקרות לפני העברת משאבת הבריכה לצהריים?",
+                "th": "ควรทำอะไรก่อนย้ายปั๊มสระไปเที่ยง?"
+              },
+              "options": [
+                {
+                  "en": "Assume identical service quality",
+                  "he": "להניח איכות שירות זהה",
+                  "th": "สมมติคุณภาพเท่าเดิม"
+                },
+                {
+                  "en": "Remove all night operation unconditionally",
+                  "he": "לבטל את כל פעולת הלילה ללא תנאי",
+                  "th": "ยกเลิกกลางคืนทั้งหมดโดยไม่มีเงื่อนไข"
+                },
+                {
+                  "en": "Confirm operating and safety requirements with the responsible operator",
+                  "he": "לאמת דרישות תפעול ובטיחות עם המפעיל האחראי",
+                  "th": "ยืนยันความต้องการใช้งานและความปลอดภัยกับผู้ดูแล"
+                },
+                {
+                  "en": "Guarantee a percentage saving",
+                  "he": "להבטיח אחוז חיסכון",
+                  "th": "รับประกันเปอร์เซ็นต์ประหยัด"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Load shifting must remain compatible with the service being delivered.",
+                "he": "הזזת עומס צריכה לשמור על התאמה לשירות שניתן.",
+                "th": "ย้ายโหลดต้องยังเหมาะกับบริการที่ให้"
+              }
+            },
+            {
+              "question": {
+                "en": "Which ledger treatment double-counts energy?",
+                "he": "איזה רישום סופר אנרגיה פעמיים?",
+                "th": "การบันทึกแบบใดนับพลังงานซ้ำ?"
+              },
+              "options": [
+                {
+                  "en": "Showing storage losses separately",
+                  "he": "הצגת הפסדי אגירה בנפרד",
+                  "th": "แสดงสูญเสียเก็บแยก"
+                },
+                {
+                  "en": "Counting charging as use and later discharge as new generation",
+                  "he": "ספירת טעינה כשימוש ופריקה מאוחרת כייצור חדש",
+                  "th": "นับชาร์จเป็นใช้แล้วนับคายเป็นผลิตใหม่"
+                },
+                {
+                  "en": "Labeling curtailment",
+                  "he": "סימון הגבלת ייצור",
+                  "th": "ระบุการจำกัดผลิต"
+                },
+                {
+                  "en": "Aligning timestamps",
+                  "he": "התאמת חותמות זמן",
+                  "th": "จัดเวลาให้ตรง"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "Battery discharge is previously stored energy, not newly generated PV energy.",
+                "he": "פריקת סוללה היא אנרגיה שנאגרה קודם ולא ייצור PV חדש.",
+                "th": "การคายคือพลังงานที่เก็บก่อนหน้า ไม่ใช่ PV ผลิตใหม่"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-units",
+            "base-design",
+            "base-model",
+            "base-battery",
+            "base-storage"
+          ]
+        },
+        {
+          "num": 4,
+          "title": {
+            "en": "Choose the operating mode: self-use, backup and storage",
+            "he": "בוחרים מצב פעולה: צריכה עצמית, גיבוי ואגירה",
+            "th": "เลือกโหมดทำงาน: ใช้เอง สำรองไฟ และกักเก็บ"
+          },
+          "summary": {
+            "en": "Translate a customer’s continuity requirement into explicit energy and power boundaries.",
+            "he": "מתרגמים דרישת רציפות של לקוח לגבולות אנרגיה והספק מפורשים.",
+            "th": "แปลงความต้องการไฟต่อเนื่องของลูกค้าเป็นขอบเขตพลังงานและกำลังที่ชัด"
+          },
+          "minutes": 40,
+          "objectives": [
+            {
+              "en": "Separate ordinary grid-connected solar from designed backup.",
+              "he": "להבדיל סולאר רגיל המחובר לרשת מגיבוי מתוכנן.",
+              "th": "แยกโซลาร์ต่อกริดทั่วไปออกจากระบบสำรองที่ออกแบบ"
+            },
+            {
+              "en": "Estimate a stated critical-load runtime under explicit assumptions.",
+              "he": "להעריך זמן גיבוי לעומס חיוני תחת הנחות מפורשות.",
+              "th": "ประมาณเวลาสำรองโหลดสำคัญภายใต้สมมติฐานชัดเจน"
+            },
+            {
+              "en": "Identify compatibility and approval questions for the designer.",
+              "he": "לזהות שאלות תאימות ואישור למתכנן.",
+              "th": "ระบุคำถามความเข้ากันได้และอนุมัติให้ผู้ออกแบบ"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "Normal operation and an outage are different states",
+                "he": "פעולה רגילה והפסקת חשמל הן מצבים שונים",
+                "th": "การทำงานปกติกับไฟดับคือคนละสถานะ"
+              },
+              "paragraphs": [
+                {
+                  "en": "An ordinary grid-following solar inverter relies on the grid reference and protection settings. Installing panels does not by itself create a source that can power the property during an outage. Backup requires a system designed for the intended isolated operation, with the necessary separation, controls and supported loads. Ask for the design, not a verbal assurance.",
+                  "he": "ממיר סולארי רגיל שעוקב אחר הרשת מסתמך על ייחוס הרשת ועל הגדרות הגנה. התקנת פאנלים כשלעצמה אינה יוצרת מקור שמזין את הנכס בהפסקת חשמל. גיבוי דורש מערכת שתוכננה לפעולה המבודדת המתוכננת, עם הפרדה, בקרה ועומסים נתמכים. בקשו תכנון ולא הבטחה בעל פה.",
+                  "th": "อินเวอร์เตอร์โซลาร์แบบตามกริดทั่วไปอาศัยสัญญาณอ้างอิงกริดและค่าป้องกัน การติดแผงอย่างเดียวไม่ได้ทำให้จ่ายไฟให้ทรัพย์สินตอนไฟดับ ระบบสำรองต้องออกแบบให้ทำงานแยกตามต้องการ มีการแยกวงจร การควบคุม และโหลดที่รองรับ ขอแบบ ไม่ใช่คำยืนยันด้วยวาจา"
+                },
+                {
+                  "en": "A battery, generator or grid-forming device can change the architecture, but compatibility remains product- and project-specific. Do not bypass anti-islanding or other protection to make an unsupported mode work. A proper commissioning plan demonstrates each approved state and its transition, under the control of the responsible qualified team.",
+                  "he": "סוללה, גנרטור או התקן יוצר־רשת יכולים לשנות את הארכיטקטורה, אך התאימות עדיין תלויה במוצר ובפרויקט. אין לעקוף מניעת אי־חשמלי או הגנה אחרת כדי להפעיל מצב שאינו נתמך. תוכנית מסירה תקינה מדגימה כל מצב מאושר ואת המעבר אליו בשליטת הצוות המוסמך והאחראי.",
+                  "th": "แบตเตอรี่ เครื่องกำเนิด หรืออุปกรณ์สร้างกริดอาจเปลี่ยนสถาปัตยกรรม แต่ความเข้ากันได้ขึ้นกับผลิตภัณฑ์และโครงการ ห้ามข้ามการป้องกัน anti-islanding หรือการป้องกันอื่นเพื่อบังคับโหมดที่ไม่รองรับ แผนทดสอบเดินระบบที่ถูกต้องแสดงสถานะอนุมัติและการเปลี่ยนผ่านโดยทีมที่มีคุณสมบัติรับผิดชอบ"
+                }
+              ],
+              "sourceIds": [
+                "base-inverter",
+                "base-battery"
+              ]
+            },
+            {
+              "title": {
+                "en": "Define the service that must continue",
+                "he": "מגדירים את השירות שחייב להימשך",
+                "th": "กำหนดบริการที่ต้องดำเนินต่อ"
+              },
+              "paragraphs": [
+                {
+                  "en": "“Back up the villa” is not a usable specification. List the essential circuits, steady loads, starting loads, required hours and acceptable interruption. The customer may care most about refrigeration, internet and water pressure, while air-conditioning and EV charging are optional. Obtain agreement about what is excluded before pricing equipment.",
+                  "he": "״לגבות את הווילה״ אינו מפרט שאפשר לעבוד איתו. רשמו מעגלים חיוניים, עומסים קבועים, עומסי התנעה, שעות נדרשות והפסקה מותרת. ללקוח אולי חשובים בעיקר קירור, אינטרנט ולחץ מים, בעוד מיזוג וטעינת רכב הם אפשרויות נוספות. קבלו הסכמה על מה שלא נכלל לפני תמחור ציוד.",
+                  "th": "“สำรองไฟทั้งวิลล่า” ยังไม่ใช่สเปกที่ใช้ทำงานได้ ระบุวงจรจำเป็น โหลดคงที่ โหลดเริ่มต้น ชั่วโมงที่ต้องการ และช่วงสะดุดที่ยอมรับ ลูกค้าอาจให้ความสำคัญตู้เย็น อินเทอร์เน็ต และแรงดันน้ำ ส่วนแอร์กับชาร์จรถเป็นทางเลือก ตกลงรายการไม่รวมก่อนคิดราคาอุปกรณ์"
+                },
+                {
+                  "en": "Separate comfort goals from safety-critical services. A medical, fire or other critical system may require specialist design and its own applicable rules; do not assume a general property backup covers it. Document who owns each continuity requirement and how its performance will be checked at handover. This turns a vague promise into a testable scope.",
+                  "he": "הפרידו יעדי נוחות משירותים קריטיים לבטיחות. מערכת רפואית, כיבוי אש או מערכת קריטית אחרת עשויה לדרוש תכנון מומחה וכללים ייחודיים; אין להניח שגיבוי כללי לנכס מכסה אותה. תעדו מי אחראי לכל דרישת רציפות ואיך ייבדק הביצוע במסירה. כך הבטחה עמומה הופכת להיקף שניתן לבדוק.",
+                  "th": "แยกเป้าหมายความสะดวกจากบริการวิกฤตต่อความปลอดภัย ระบบแพทย์ อัคคีภัย หรือระบบวิกฤตอื่นอาจต้องออกแบบเฉพาะและมีกฎของตน อย่าสมมติว่าสำรองทั่วไปครอบคลุม ระบุเจ้าของข้อกำหนดความต่อเนื่องและวิธีตรวจรับ ทำให้คำรับปากกว้างกลายเป็นขอบเขตที่ทดสอบได้"
+                }
+              ],
+              "sourceIds": [
+                "base-design"
+              ]
+            },
+            {
+              "title": {
+                "en": "Check energy and power separately",
+                "he": "בודקים אנרגיה והספק בנפרד",
+                "th": "ตรวจพลังงานกับกำลังแยกกัน"
+              },
+              "paragraphs": [
+                {
+                  "en": "For a simplified constant load, runtime equals usable AC energy divided by the supported load power. Begin with the energy actually available at the intended starting state, after reserve and applicable losses. A nominal battery label is not necessarily usable AC energy. State temperature, age and operating assumptions instead of silently treating them as perfect.",
+                  "he": "בעומס קבוע מפושט, זמן גיבוי שווה לאנרגיית AC שימושית חלקי הספק העומס הנתמך. מתחילים באנרגיה שבאמת זמינה במצב ההתחלתי המתוכנן, לאחר עתודה והפסדים רלוונטיים. נתון נומינלי על הסוללה אינו בהכרח אנרגיית AC שימושית. ציינו הנחות טמפרטורה, גיל ותפעול במקום להניח בשקט מצב מושלם.",
+                  "th": "สำหรับโหลดคงที่แบบง่าย เวลาสำรองเท่ากับพลังงาน AC ใช้ได้หารกำลังโหลดที่รองรับ เริ่มจากพลังงานที่มีจริง ณ สถานะเริ่มหลังสำรองและสูญเสียที่เกี่ยวข้อง ค่าป้ายแบตเตอรี่ไม่จำเป็นเท่ากับพลังงาน AC ใช้ได้ ระบุอุณหภูมิ อายุ และสมมติฐานใช้งาน ไม่แอบสมมติว่าสมบูรณ์แบบ"
+                },
+                {
+                  "en": "The power limit is a second independent check. A battery may contain enough energy for several hours yet be unable to support the requested simultaneous load or motor start. Verify continuous and transient capability, phase arrangement and approved equipment combinations. Increasing energy capacity does not automatically remove an inverter or wiring constraint.",
+                  "he": "מגבלת ההספק היא בדיקה עצמאית שנייה. סוללה יכולה להכיל מספיק אנרגיה למספר שעות, אך לא לתמוך בעומס בו־זמני או בהתנעת מנוע. מאמתים יכולת רציפה ורגעית, סידור פאזות ושילובי ציוד מאושרים. הגדלת קיבולת האנרגיה אינה מסירה אוטומטית מגבלה של ממיר או חיווט.",
+                  "th": "ขีดจำกัดกำลังเป็นอีกการตรวจที่อิสระ แบตเตอรี่อาจมีพลังงานพอหลายชั่วโมงแต่รับโหลดพร้อมกันหรือเริ่มมอเตอร์ไม่ได้ ตรวจความสามารถต่อเนื่องและชั่วขณะ การจัดเฟส และชุดอุปกรณ์ที่อนุมัติ เพิ่มความจุพลังงานไม่ได้ลบข้อจำกัดอินเวอร์เตอร์หรือสายไฟอัตโนมัติ"
+                }
+              ],
+              "sourceIds": [
+                "base-storage",
+                "base-battery"
+              ]
+            },
+            {
+              "title": {
+                "en": "Define the normal control objective",
+                "he": "מגדירים את מטרת הבקרה הרגילה",
+                "th": "กำหนดเป้าหมายควบคุมปกติ"
+              },
+              "paragraphs": [
+                {
+                  "en": "A battery reserved for outages may offer less daily energy for bill reduction. A system optimized for daily self-consumption may begin an unexpected outage partly discharged. Both are reasonable objectives, but they are not the same promise. Agree a priority order and have the designer translate it into supported settings and a user explanation.",
+                  "he": "סוללה ששומרת עתודה להפסקות חשמל עשויה להציע פחות אנרגיה יומית להפחתת החשבון. מערכת שמכוונת לצריכה עצמית יומית עשויה להתחיל הפסקה לא צפויה כשהיא טעונה חלקית. שתי המטרות סבירות, אך אינן אותה הבטחה. מסכימים על סדר עדיפויות והמתכנן מתרגם אותו להגדרות נתמכות ולהסבר למשתמש.",
+                  "th": "แบตเตอรี่ที่สำรองไว้ตอนไฟดับอาจเหลือพลังงานลดบิลรายวันน้อยลง ระบบที่เน้นใช้เองรายวันอาจเริ่มเหตุไฟดับกะทันหันด้วยประจุบางส่วน ทั้งสองเป้าหมายสมเหตุผลแต่ไม่ใช่คำรับปากเดียวกัน ตกลงลำดับความสำคัญแล้วให้ผู้ออกแบบแปลงเป็นค่าตั้งที่รองรับและคำอธิบายผู้ใช้"
+                },
+                {
+                  "en": "Export permission, import limits and EV load management are additional constraints, not features that can be assumed from capacity alone. Keep a one-page operating-mode table: normal grid, outage, low battery, communication failure and restoration. For each state, list supported loads, system response, evidence required and the person authorized to approve it.",
+                  "he": "אישור הזרמה, מגבלות יבוא וניהול עומס EV הם אילוצים נוספים, ולא תכונות שמסיקים מקיבולת בלבד. הכינו טבלת מצבי פעולה בת עמוד: רשת רגילה, הפסקה, סוללה חלשה, כשל תקשורת וחזרת רשת. לכל מצב רשמו עומסים נתמכים, תגובת מערכת, ראיות נדרשות ומי מוסמך לאשר.",
+                  "th": "อนุญาตส่งออก ขีดจำกัดนำเข้า และจัดการโหลด EV เป็นข้อจำกัดเพิ่ม ไม่ใช่คุณสมบัติที่อนุมานจากความจุ ทำตารางโหมดหนึ่งหน้า: กริดปกติ ไฟดับ แบตเตอรี่ต่ำ สื่อสารล้มเหลว และกริดกลับ แต่ละโหมดระบุโหลดที่รองรับ การตอบสนอง หลักฐาน และผู้มีอำนาจอนุมัติ"
+                }
+              ],
+              "sourceIds": [
+                "base-pea"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "A defined three-hour backup case",
+              "he": "מקרה גיבוי מוגדר לשלוש שעות",
+              "th": "กรณีสำรองสามชั่วโมงที่กำหนดชัด"
+            },
+            "scenario": {
+              "en": "Training assumptions: 10 kWh of DC energy is available at the start BEFORE the stated 20% operational reserve. DC-to-AC efficiency is 90% and the critical load is a constant 2.4 kW. The reserve has not already been deducted from the 10 kWh; separate manufacturer power limits are satisfied in this exercise.",
+              "he": "הנחות תרגול: בתחילת האירוע זמינים 10 קוט״ש אנרגיית DC, לפני הפחתת העתודה התפעולית הנתונה של 20%. נצילות DC ל־AC היא 90% והעומס החיוני קבוע, 2.4 קילוואט. העתודה טרם הופחתה מה־10 קוט״ש; בתרגיל זה מגבלות ההספק הנפרדות של היצרן מתקיימות.",
+              "th": "สมมติฐานฝึก: เริ่มต้นมีพลังงาน DC 10 kWh ก่อนหักสำรองการทำงาน 20% ที่ระบุ ประสิทธิภาพ DC เป็น AC 90% และโหลดจำเป็นคงที่ 2.4 kW ค่า 10 kWh ยังไม่ได้หักสำรอง และสมมติว่าผ่านขีดจำกัดกำลังของผู้ผลิตแล้ว"
+            },
+            "steps": [
+              {
+                "en": "Discharge energy before conversion = 10 × 0.8 = 8 kWh DC.",
+                "he": "אנרגיה לפריקה לפני המרה = 10 × 0.8 = 8 קוט״ש DC.",
+                "th": "พลังงานคายก่อนแปลง = 10 × 0.8 = 8 kWh DC"
+              },
+              {
+                "en": "Available AC energy = 8 × 0.9 = 7.2 kWh.",
+                "he": "אנרגיית AC זמינה = 8 × 0.9 = 7.2 קוט״ש.",
+                "th": "AC ใช้ได้ = 8 × 0.9 = 7.2 kWh"
+              },
+              {
+                "en": "Simplified runtime = 7.2 ÷ 2.4 = 3 hours.",
+                "he": "זמן מפושט = 7.2 ÷ 2.4 = 3 שעות.",
+                "th": "เวลาประมาณง่าย = 7.2 ÷ 2.4 = 3 ชั่วโมง"
+              }
+            ],
+            "result": {
+              "en": "Three hours follows from the stated starting charge, load and efficiency. It is not a universal guarantee for a nominal 10 kWh battery.",
+              "he": "שלוש שעות נובעות מהטעינה ההתחלתית, העומס והנצילות שהוגדרו. זו אינה הבטחה כללית לסוללה נומינלית של 10 קוט״ש.",
+              "th": "สามชั่วโมงมาจากประจุเริ่ม โหลด และประสิทธิภาพที่ระบุ ไม่ใช่รับประกันทั่วไปของแบตเตอรี่ป้าย 10 kWh"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Spot the power bottleneck",
+              "he": "זהו את צוואר הבקבוק בהספק",
+              "th": "หาคอขวดด้านกำลัง"
+            },
+            "brief": {
+              "en": "Training assumptions: 8 kWh usable AC energy and 3 kW approved continuous backup output. A customer requests a constant 4 kW load for one hour. Explain why the energy calculation alone is insufficient and propose the next design question.",
+              "he": "הנחות תרגול: 8 קוט״ש AC שימושיים והספק גיבוי רציף מאושר 3 קילוואט. לקוח מבקש עומס קבוע 4 קילוואט לשעה. הסבירו מדוע חישוב האנרגיה לבדו אינו מספיק והציעו שאלת תכנון הבאה.",
+              "th": "สมมติฐานฝึก: AC ใช้ได้ 8 kWh กำลังสำรองต่อเนื่องอนุมัติ 3 kW ลูกค้าขอโหลดคงที่ 4 kW หนึ่งชั่วโมง อธิบายว่าทำไมคำนวณพลังงานอย่างเดียวไม่พอและเสนอคำถามออกแบบถัดไป"
+            },
+            "deliverables": [
+              {
+                "en": "Separate energy and power checks.",
+                "he": "בדיקות אנרגיה והספק נפרדות.",
+                "th": "ตรวจพลังงานและกำลังแยกกัน"
+              },
+              {
+                "en": "A customer-safe scope statement.",
+                "he": "ניסוח היקף אחראי ללקוח.",
+                "th": "ข้อความขอบเขตที่รับผิดชอบต่อลูกค้า"
+              }
+            ],
+            "solution": {
+              "en": "The requested energy is 4 kWh, below 8 kWh, but 4 kW exceeds the approved 3 kW output. The stated configuration cannot meet the request. Ask the designer about reducing simultaneous critical loads or a supported redesigned system; do not bypass protection or promise that adding battery energy alone solves it.",
+              "he": "האנרגיה המבוקשת 4 קוט״ש, פחות מ־8, אך 4 קילוואט עולים על ההספק המאושר 3. התצורה הנתונה אינה עומדת בבקשה. שאלו את המתכנן על צמצום עומסים חיוניים בו־זמניים או תכנון נתמך מחדש; לא עוקפים הגנה ולא מבטיחים שתוספת אנרגיית סוללה בלבד תפתור זאת.",
+              "th": "ต้องการพลังงาน 4 kWh ต่ำกว่า 8 แต่ 4 kW เกินกำลังอนุมัติ 3 kW รูปแบบนี้ทำตามคำขอไม่ได้ ถามผู้ออกแบบเรื่องลดโหลดสำคัญพร้อมกันหรือออกแบบชุดที่รองรับใหม่ ห้ามข้ามการป้องกันหรือรับปากว่าเพิ่มพลังงานแบตเตอรี่อย่างเดียวจะแก้ได้"
+            }
+          },
+          "checklist": [
+            {
+              "en": "Critical circuits and exclusions are agreed.",
+              "he": "מעגלים חיוניים והחרגות מוסכמים.",
+              "th": "ตกลงวงจรสำคัญและรายการไม่รวม"
+            },
+            {
+              "en": "Both usable energy and supported power are checked.",
+              "he": "גם אנרגיה שימושית וגם הספק נתמך נבדקו.",
+              "th": "ตรวจทั้งพลังงานใช้ได้และกำลังรองรับ"
+            },
+            {
+              "en": "Outage and restoration behavior have an approved test plan.",
+              "he": "לתפקוד בהפסקה ובחזרת רשת יש תוכנית בדיקה מאושרת.",
+              "th": "พฤติกรรมไฟดับและกลับมีแผนทดสอบอนุมัติ"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "Does installing ordinary grid-following PV alone guarantee outage power?",
+                "he": "האם התקנת PV רגיל העוקב אחר הרשת לבדו מבטיחה חשמל בהפסקה?",
+                "th": "ติด PV ตามกริดทั่วไปอย่างเดียวรับประกันไฟตอนไฟดับหรือไม่?"
+              },
+              "options": [
+                {
+                  "en": "No; backup requires the supported designed architecture",
+                  "he": "לא; גיבוי דורש ארכיטקטורה מתוכננת ונתמכת",
+                  "th": "ไม่ ต้องมีสถาปัตยกรรมสำรองที่ออกแบบและรองรับ"
+                },
+                {
+                  "en": "Yes, whenever it is sunny",
+                  "he": "כן, בכל פעם שיש שמש",
+                  "th": "ใช่ เมื่อมีแดด"
+                },
+                {
+                  "en": "Yes, above any 5 kW size",
+                  "he": "כן, מעל כל גודל 5 קילוואט",
+                  "th": "ใช่ เมื่อเกิน 5 kW"
+                },
+                {
+                  "en": "Yes, if the bill is high",
+                  "he": "כן, אם החשבון גבוה",
+                  "th": "ใช่ ถ้าบิลสูง"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "Grid connection and supported isolated operation are different states.",
+                "he": "חיבור לרשת ופעולה מבודדת נתמכת הם מצבים שונים.",
+                "th": "ต่อกริดกับทำงานแยกที่รองรับเป็นคนละสถานะ"
+              }
+            },
+            {
+              "question": {
+                "en": "7.2 kWh usable AC supports a constant 2.4 kW load for approximately?",
+                "he": "7.2 קוט״ש AC שימושיים תומכים בעומס קבוע 2.4 קילוואט למשך כמה זמן בקירוב?",
+                "th": "AC ใช้ได้ 7.2 kWh รองรับ 2.4 kW คงที่ได้นานประมาณเท่าไร?"
+              },
+              "options": [
+                {
+                  "en": "0.33 hours",
+                  "he": "0.33 שעות",
+                  "th": "0.33 ชั่วโมง"
+                },
+                {
+                  "en": "9.6 hours",
+                  "he": "9.6 שעות",
+                  "th": "9.6 ชั่วโมง"
+                },
+                {
+                  "en": "3 hours",
+                  "he": "3 שעות",
+                  "th": "3 ชั่วโมง"
+                },
+                {
+                  "en": "17.28 hours",
+                  "he": "17.28 שעות",
+                  "th": "17.28 ชั่วโมง"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Runtime equals usable AC energy divided by constant power under the stated assumptions.",
+                "he": "זמן שווה לאנרגיית AC שימושית חלקי הספק קבוע תחת ההנחות.",
+                "th": "เวลาเท่ากับ AC ใช้ได้หารกำลังคงที่ภายใต้สมมติฐาน"
+              }
+            },
+            {
+              "question": {
+                "en": "Why can an 8 kWh battery system fail to support a 4 kW load?",
+                "he": "למה מערכת סוללה של 8 קוט״ש עשויה לא לתמוך בעומס 4 קילוואט?",
+                "th": "ทำไมระบบแบตเตอรี่ 8 kWh อาจรับโหลด 4 kW ไม่ได้?"
+              },
+              "options": [
+                {
+                  "en": "Energy and power are identical",
+                  "he": "אנרגיה והספק זהים",
+                  "th": "พลังงานและกำลังเหมือนกัน"
+                },
+                {
+                  "en": "Eight is always less than four",
+                  "he": "שמונה תמיד קטן מארבע",
+                  "th": "แปดน้อยกว่าสี่เสมอ"
+                },
+                {
+                  "en": "It has no logo",
+                  "he": "אין לה לוגו",
+                  "th": "ไม่มีโลโก้"
+                },
+                {
+                  "en": "Its approved output power may be below 4 kW",
+                  "he": "הספק היציאה המאושר עשוי להיות מתחת ל־4 קילוואט",
+                  "th": "กำลังจ่ายอนุมัติอาจต่ำกว่า 4 kW"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "Energy capacity and output capability are independent limits.",
+                "he": "קיבולת אנרגיה ויכולת יציאה הן מגבלות עצמאיות.",
+                "th": "ความจุพลังงานและกำลังจ่ายคือขีดจำกัดอิสระ"
+              }
+            },
+            {
+              "question": {
+                "en": "Which detail makes a backup scope testable?",
+                "he": "איזה פרט הופך היקף גיבוי לניתן לבדיקה?",
+                "th": "รายละเอียดใดทำให้ขอบเขตสำรองทดสอบได้?"
+              },
+              "options": [
+                {
+                  "en": "“Whole villa, no worries”",
+                  "he": "״כל הווילה, בלי דאגות״",
+                  "th": "“ทั้งวิลล่า ไม่ต้องห่วง”"
+                },
+                {
+                  "en": "Named circuits, hours, load limits and acceptable interruption",
+                  "he": "מעגלים מוגדרים, שעות, מגבלות עומס והפסקה מותרת",
+                  "th": "วงจร ชั่วโมง ขีดจำกัดโหลด และช่วงสะดุดที่ยอมรับชัดเจน"
+                },
+                {
+                  "en": "A battery color choice",
+                  "he": "בחירת צבע לסוללה",
+                  "th": "เลือกสีแบตเตอรี่"
+                },
+                {
+                  "en": "An unspecified hybrid label",
+                  "he": "תווית היברידית לא מוגדרת",
+                  "th": "ป้ายไฮบริดไม่ระบุรายละเอียด"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "A named service and acceptance conditions can be demonstrated.",
+                "he": "שירות מוגדר ותנאי קבלה ניתנים להדגמה.",
+                "th": "บริการและเงื่อนไขรับตรวจที่ระบุสามารถสาธิตได้"
+              }
+            },
+            {
+              "question": {
+                "en": "What can a larger outage reserve reduce?",
+                "he": "מה עתודת גיבוי גדולה יותר יכולה לצמצם?",
+                "th": "การเก็บสำรองตอนไฟดับมากขึ้นอาจลดอะไร?"
+              },
+              "options": [
+                {
+                  "en": "Energy available for routine daily bill reduction",
+                  "he": "אנרגיה זמינה להפחתת חשבון יומי שוטפת",
+                  "th": "พลังงานที่ใช้ลดบิลประจำวัน"
+                },
+                {
+                  "en": "The need for any design",
+                  "he": "את הצורך בכל תכנון",
+                  "th": "ความจำเป็นออกแบบทั้งหมด"
+                },
+                {
+                  "en": "All safety duties",
+                  "he": "את כל חובות הבטיחות",
+                  "th": "หน้าที่ความปลอดภัยทั้งหมด"
+                },
+                {
+                  "en": "Every grid limit",
+                  "he": "כל מגבלת רשת",
+                  "th": "ข้อจำกัดกริดทุกข้อ"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "One stored-energy budget is shared between competing objectives.",
+                "he": "תקציב אנרגיה אגורה אחד מתחלק בין מטרות מתחרות.",
+                "th": "งบพลังงานเก็บเดียวกันแบ่งให้เป้าหมายที่แข่งขันกัน"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-inverter",
+            "base-battery",
+            "base-storage",
+            "base-design",
+            "base-pea"
+          ]
+        },
+        {
+          "num": 5,
+          "title": {
+            "en": "Survey the site and read a production estimate",
+            "he": "סוקרים את האתר וקוראים אומדן תפוקה",
+            "th": "สำรวจสถานที่และอ่านประมาณการผลิต"
+          },
+          "summary": {
+            "en": "Turn a roof photo into a list of verified facts, unknowns and design inputs.",
+            "he": "הופכים צילום גג לרשימת עובדות בדוקות, שאלות פתוחות ונתוני תכנון.",
+            "th": "เปลี่ยนภาพหลังคาเป็นรายการข้อเท็จจริงที่ตรวจแล้ว สิ่งไม่ทราบ และข้อมูลออกแบบ"
+          },
+          "minutes": 40,
+          "objectives": [
+            {
+              "en": "Separate visible site observations from engineering approval.",
+              "he": "להפריד תצפיות גלויות באתר מאישור הנדסי.",
+              "th": "แยกสิ่งที่เห็นจากการรับรองวิศวกรรม"
+            },
+            {
+              "en": "Identify shade, access, climate and routing constraints.",
+              "he": "לזהות אילוצי הצללה, גישה, אקלים ותוואי.",
+              "th": "ระบุข้อจำกัดเงา ทางเข้าถึง ภูมิอากาศ และแนวเดิน"
+            },
+            {
+              "en": "Explain model assumptions and uncertainty in a production estimate.",
+              "he": "להסביר הנחות מודל ואי־ודאות באומדן תפוקה.",
+              "th": "อธิบายสมมติฐานและความไม่แน่นอนของประมาณการผลิต"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "Evidence before dimensions",
+                "he": "ראיות לפני מידות",
+                "th": "หลักฐานก่อนขนาด"
+              },
+              "paragraphs": [
+                {
+                  "en": "Begin with a site record: address, meter identity, permission to survey, roof zones, safe observation points and the people who can answer property questions. A drone image is useful context, but it cannot prove structural capacity, hidden roof damage, ownership rights or the suitability of electrical equipment. Mark each unverified item as an open question.",
+                  "he": "התחילו בתיק אתר: כתובת, זהות מונה, רשות לסקור, אזורי גג, נקודות תצפית בטוחות ואנשים שיכולים לענות על שאלות הנכס. צילום רחפן נותן הקשר, אך אינו מוכיח כושר נשיאה, נזק נסתר בגג, זכויות בעלות או התאמת ציוד חשמלי. סמנו כל פרט שלא אומת כשאלה פתוחה.",
+                  "th": "เริ่มแฟ้มสถานที่ด้วยที่อยู่ มิเตอร์ สิทธิสำรวจ โซนหลังคา จุดสังเกตที่ปลอดภัย และผู้ตอบคำถามทรัพย์สิน ภาพโดรนช่วยให้เห็นบริบทแต่พิสูจน์กำลังรับน้ำหนัก ความเสียหายซ่อน สิทธิในทรัพย์สิน หรือความเหมาะสมอุปกรณ์ไฟไม่ได้ ระบุสิ่งที่ยังไม่ตรวจเป็นคำถามเปิด"
+                },
+                {
+                  "en": "Use consistent photo labels and a marked plan so that observations can be located later. Distinguish a measured distance from an approximate image measurement. Record who measured it and when. The next designer should not have to guess which roof face a number describes or whether a proposed cable route has been physically inspected.",
+                  "he": "השתמשו בתוויות צילום עקביות ובתוכנית מסומנת כדי לאתר תצפיות בהמשך. הפרידו מרחק מדוד מהערכה מתוך תמונה. תעדו מי מדד ומתי. המתכנן הבא לא צריך לנחש לאיזה שיפוע גג מתייחס מספר או אם תוואי כבלים מוצע נבדק פיזית.",
+                  "th": "ติดป้ายภาพสม่ำเสมอและทำแผนผังระบุจุดเพื่อกลับหาได้ แยกระยะวัดจริงจากประมาณผ่านภาพ บันทึกผู้วัดและเวลา ผู้ออกแบบถัดไปไม่ควรต้องเดาว่าตัวเลขหมายถึงหลังคาด้านไหนหรือสำรวจแนวสายที่เสนอจริงแล้วหรือยัง"
+                }
+              ],
+              "sourceIds": [
+                "base-design"
+              ]
+            },
+            {
+              "title": {
+                "en": "A roof area is not a buildable layout",
+                "he": "שטח גג אינו פריסה שאפשר לבנות",
+                "th": "พื้นที่หลังคาไม่ใช่ผังที่สร้างได้ทันที"
+              },
+              "paragraphs": [
+                {
+                  "en": "Usable module area depends on structural review, roof geometry, obstructions, required access, drainage, maintenance and applicable project rules. Coconut trees and adjacent buildings can cast changing shadows. A photograph at noon misses morning or seasonal shading. Preserve the observation time and request the shading analysis appropriate to the design decision.",
+                  "he": "שטח מתאים לפאנלים תלוי בבדיקה מבנית, גאומטריית גג, מכשולים, גישה נדרשת, ניקוז, תחזוקה וכללים החלים על הפרויקט. עצי קוקוס ומבנים סמוכים עשויים להטיל צל משתנה. צילום בצהריים מפספס הצללת בוקר או עונה. שמרו את זמן התצפית ובקשו ניתוח הצללה שמתאים להחלטת התכנון.",
+                  "th": "พื้นที่วางแผงขึ้นกับตรวจโครงสร้าง รูปร่างหลังคา สิ่งกีดขวาง ทางเข้าถึง ระบายน้ำ บำรุงรักษา และกฎโครงการ ต้นมะพร้าวกับอาคารข้างเคียงให้เงาที่เปลี่ยนไป ภาพเที่ยงพลาดเงาเช้าหรือตามฤดู บันทึกเวลาสังเกตและขอวิเคราะห์เงาที่เหมาะกับการตัดสินใจ"
+                },
+                {
+                  "en": "Do not solve a space conflict by silently removing access or a structural requirement. Compare alternatives and escalate the constraint. A smaller defensible layout may be preferable to a larger one that depends on unresolved roof work. The commercial and planning teams need the same marked exclusions so that quoted capacity matches the design basis.",
+                  "he": "אל תפתרו חוסר מקום באמצעות ביטול שקט של גישה או דרישה מבנית. השוו חלופות והציפו את האילוץ. פריסה קטנה שאפשר להצדיק עשויה להיות עדיפה על גדולה שתלויה בעבודות גג לא פתורות. מכירות ותכנון צריכים אותן החרגות מסומנות כדי שההספק בהצעה יתאים לבסיס התכנון.",
+                  "th": "อย่าแก้พื้นที่ไม่พอด้วยการตัดทางเข้าหรือข้อกำหนดโครงสร้างเงียบ ๆ เปรียบเทียบทางเลือกและส่งต่อข้อจำกัด ผังเล็กที่ยืนยันได้อาจดีกว่าผังใหญ่ที่อาศัยงานหลังคาค้าง ฝ่ายขายและออกแบบต้องเห็นพื้นที่ยกเว้นเดียวกันเพื่อให้กำลังในข้อเสนอตรงฐานแบบ"
+                }
+              ],
+              "sourceIds": [
+                "base-design"
+              ]
+            },
+            {
+              "title": {
+                "en": "The island environment affects the whole lifecycle",
+                "he": "סביבת האי משפיעה לאורך כל חיי המערכת",
+                "th": "สภาพเกาะมีผลตลอดอายุระบบ"
+              },
+              "paragraphs": [
+                {
+                  "en": "Heat, humidity, salt exposure, rain and severe weather are design and maintenance inputs, not decorative context. Identify the exposure of mounting materials, enclosures, cable supports and service access. Ask for product suitability and the applicable installation manual. An enclosure rating or a generic “coastal” label alone does not settle every corrosion or placement question.",
+                  "he": "חום, לחות, חשיפה למלח, גשם ומזג אוויר קיצוני הם נתוני תכנון ותחזוקה ולא רק רקע. מזהים את החשיפה של חומרי הקונסטרוקציה, ארונות, תומכי כבלים ודרכי שירות. מבקשים התאמת מוצר ומדריך התקנה חל. דירוג אטימות או תווית כללית ״חופי״ אינם פותרים כל שאלת קורוזיה או מיקום.",
+                  "th": "ความร้อน ความชื้น เกลือ ฝน และอากาศรุนแรงเป็นข้อมูลออกแบบและบำรุง ไม่ใช่ฉากหลัง ระบุการสัมผัสของวัสดุโครง ตู้ อุปกรณ์รองสาย และทางบริการ ขอหลักฐานความเหมาะสมผลิตภัณฑ์กับคู่มือติดตั้ง พิกัดตู้หรือคำว่า “ใช้ชายฝั่ง” อย่างเดียวไม่ได้ตอบทุกเรื่องกัดกร่อนและตำแหน่ง"
+                },
+                {
+                  "en": "Site planning also includes delivery and future replacement. A battery that can reach the property only through a narrow stair needs a handling plan before purchase. An inverter that cannot be accessed safely for maintenance creates a lifecycle problem. Record these constraints early, with photographs and an owner for the proposed resolution.",
+                  "he": "תכנון האתר כולל גם הובלה והחלפה עתידית. סוללה שיכולה להגיע לנכס רק דרך מדרגות צרות דורשת תוכנית שינוע לפני רכישה. ממיר שאין אליו גישה בטוחה לתחזוקה יוצר בעיה לאורך חיי המערכת. תעדו אילוצים מוקדם, עם תמונות ואחראי לפתרון המוצע.",
+                  "th": "แผนสถานที่รวมขนส่งและเปลี่ยนในอนาคต แบตเตอรี่ที่เข้าได้เฉพาะบันไดแคบต้องมีแผนเคลื่อนย้ายก่อนซื้อ อินเวอร์เตอร์ที่เข้าบำรุงไม่ปลอดภัยสร้างปัญหาตลอดอายุ บันทึกข้อจำกัดแต่ต้นพร้อมภาพและเจ้าของแนวแก้"
+                }
+              ],
+              "sourceIds": [
+                "base-climate"
+              ]
+            },
+            {
+              "title": {
+                "en": "A model is a traceable estimate",
+                "he": "מודל הוא אומדן שניתן לעקוב אחריו",
+                "th": "แบบจำลองคือประมาณการที่ตรวจย้อนกลับได้"
+              },
+              "paragraphs": [
+                {
+                  "en": "A production model combines weather data and system assumptions. Record the location and weather dataset, array orientation and tilt, DC capacity, inverter assumptions, shading and other losses. PVWatts V8 is a documented estimation tool; it does not replace a site survey, detailed design or a contractual performance test. A default input is still an assumption.",
+                  "he": "מודל תפוקה משלב נתוני מזג אוויר והנחות מערכת. מתעדים מיקום ומאגר אקלים, אזימוט ושיפוע, הספק DC, הנחות ממיר, הצללה והפסדים נוספים. PVWatts V8 הוא כלי אומדן מתועד; הוא אינו מחליף סקר, תכנון מפורט או בדיקת ביצועים חוזית. קלט ברירת מחדל הוא עדיין הנחה.",
+                  "th": "แบบจำลองผลิตรวมข้อมูลอากาศกับสมมติฐานระบบ บันทึกตำแหน่งและชุดอากาศ ทิศและมุม กำลัง DC สมมติฐานอินเวอร์เตอร์ เงา และสูญเสียอื่น PVWatts V8 เป็นเครื่องมือประมาณที่มีเอกสาร ไม่แทนสำรวจ แบบละเอียด หรือทดสอบประสิทธิภาพตามสัญญา ค่าเริ่มต้นก็ยังเป็นสมมติฐาน"
+                },
+                {
+                  "en": "Compare a central case with a justified downside case and explain what changes between them. Do not silently subtract the same loss twice if it is already included in the model. Keep annual energy separate from instantaneous peak power and from the portion used on site. Finance should receive the model file and assumptions, not just one attractive annual number.",
+                  "he": "השוו תרחיש מרכזי לתרחיש חסר מוצדק והסבירו מה משתנה. אל תפחיתו בשקט אותו הפסד פעמיים אם הוא כבר כלול במודל. הפרידו אנרגיה שנתית מהספק שיא רגעי ומהחלק שנצרך באתר. פיננסים צריכים לקבל את קובץ המודל וההנחות, ולא רק מספר שנתי מרשים.",
+                  "th": "เทียบกรณีกลางกับกรณีต่ำที่มีเหตุผลและอธิบายว่าต่างกันตรงไหน อย่าหักสูญเสียเดิมสองครั้งถ้าแบบจำลองรวมแล้ว แยกพลังงานปีออกจากกำลังสูงสุดขณะหนึ่งและส่วนใช้เอง ฝ่ายการเงินควรได้ไฟล์แบบจำลองกับสมมติฐาน ไม่ใช่แค่ยอดปีสวย ๆ"
+                }
+              ],
+              "sourceIds": [
+                "base-model",
+                "base-efficiency"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "A capacity estimate with an explicit boundary",
+              "he": "אומדן הספק עם גבול מפורש",
+              "th": "ประมาณกำลังพร้อมขอบเขตชัด"
+            },
+            "scenario": {
+              "en": "Training assumptions only: 20 selected modules rated 500 W each; modeled specific annual yield 1,300 kWh per installed kW after all modeled losses. This is not a Koh Phangan site forecast.",
+              "he": "הנחות תרגול בלבד: 20 פאנלים נבחרים, 500 ואט כל אחד; תפוקה שנתית סגולית במודל 1,300 קוט״ש לכל קילוואט מותקן אחרי כל ההפסדים שנכללו. זו אינה תחזית לאתר בקופנגן.",
+              "th": "สมมติฐานฝึกเท่านั้น: เลือก 20 แผง แผงละ 500 W ผลผลิตจำเพาะแบบจำลอง 1,300 kWh ต่อ kW ติดตั้งต่อปีหลังสูญเสียที่รวมแล้ว ไม่ใช่พยากรณ์สถานที่บนเกาะพะงัน"
+            },
+            "steps": [
+              {
+                "en": "DC nameplate capacity = 20 × 500 W = 10,000 W = 10 kW.",
+                "he": "הספק DC נקוב = 20 × 500 ואט = 10,000 ואט = 10 קילוואט.",
+                "th": "กำลังป้าย DC = 20 × 500 W = 10,000 W = 10 kW"
+              },
+              {
+                "en": "Modeled annual energy = 10 × 1,300 = 13,000 kWh.",
+                "he": "אנרגיה שנתית במודל = 10 × 1,300 = 13,000 קוט״ש.",
+                "th": "พลังงานปีแบบจำลอง = 10 × 1,300 = 13,000 kWh"
+              },
+              {
+                "en": "Do not subtract the modeled losses again or assume all 13,000 kWh avoid imports.",
+                "he": "אין להפחית שוב הפסדים שכבר נכללו או להניח שכל 13,000 הקוט״ש מחליפים יבוא.",
+                "th": "ห้ามหักสูญเสียที่รวมอีกหรือสมมติว่า 13,000 kWh ทั้งหมดแทนนำเข้า"
+              }
+            ],
+            "result": {
+              "en": "Capacity and energy are different outputs. The proposed layout still needs site and engineering validation.",
+              "he": "הספק ואנרגיה הם תוצרים שונים. הפריסה המוצעת עדיין דורשת אימות אתר והנדסה.",
+              "th": "กำลังและพลังงานเป็นผลคนละอย่าง ผังเสนอยังต้องตรวจสถานที่และวิศวกรรม"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Review an overconfident survey note",
+              "he": "בדקו הערת סקר בטוחה מדי",
+              "th": "ตรวจบันทึกสำรวจที่มั่นใจเกิน"
+            },
+            "brief": {
+              "en": "A note says: “Drone photo shows space for 30 panels; therefore roof capacity, access and zero shading are confirmed.” List the unsupported conclusions and the evidence each needs.",
+              "he": "בהערה כתוב: ״צילום רחפן מראה מקום ל־30 פאנלים; לכן כושר נשיאה, גישה ואפס הצללה מאושרים״. רשמו מסקנות לא מבוססות ומה הראיה שכל אחת דורשת.",
+              "th": "บันทึกว่า “ภาพโดรนมีที่สำหรับ 30 แผง จึงยืนยันรับน้ำหนัก ทางเข้าถึง และไม่มีเงา” ระบุข้อสรุปที่ไม่มีหลักฐานและสิ่งที่ต้องตรวจ"
+            },
+            "deliverables": [
+              {
+                "en": "An observations-versus-approvals table.",
+                "he": "טבלת תצפיות מול אישורים.",
+                "th": "ตารางสิ่งสังเกตเทียบการอนุมัติ"
+              },
+              {
+                "en": "Three assigned follow-up actions.",
+                "he": "שלוש פעולות המשך עם אחראים.",
+                "th": "งานติดตามสามข้อพร้อมผู้รับผิดชอบ"
+              }
+            ],
+            "solution": {
+              "en": "The photo supports a preliminary area observation only. Structural suitability requires the responsible engineering review; safe access needs a site-specific plan; shading needs time-aware assessment of obstructions and seasons. Panel count also depends on actual dimensions, exclusions and an approved layout. Keep the count provisional.",
+              "he": "התמונה תומכת רק בתצפית שטח ראשונית. התאמה מבנית דורשת בדיקת ההנדסה האחראית; גישה בטוחה דורשת תוכנית לאתר; הצללה דורשת בחינה לפי זמן של מכשולים ועונות. מספר פאנלים תלוי גם במידות, החרגות ופריסה מאושרת. השאירו את המספר זמני.",
+              "th": "ภาพรองรับเพียงการสังเกตพื้นที่เบื้องต้น ความเหมาะสมโครงสร้างต้องให้วิศวกรรับผิดชอบตรวจ ทางเข้าปลอดภัยต้องมีแผนเฉพาะ เงาต้องประเมินสิ่งกีดขวางและฤดูกาลตามเวลา จำนวนแผงยังขึ้นกับขนาดจริง พื้นที่ยกเว้น และผังอนุมัติ จึงเก็บเป็นจำนวนชั่วคราว"
+            }
+          },
+          "checklist": [
+            {
+              "en": "Measurements, photos and unknowns are traceable.",
+              "he": "מדידות, תמונות ופרטים לא ידועים מתועדים.",
+              "th": "วัด ภาพ และสิ่งไม่ทราบตรวจย้อนกลับได้"
+            },
+            {
+              "en": "Structural and access decisions have the correct reviewer.",
+              "he": "להחלטות מבנה וגישה יש בודק מתאים.",
+              "th": "มีผู้ตรวจเหมาะสมสำหรับโครงสร้างและทางเข้าถึง"
+            },
+            {
+              "en": "Production assumptions and loss boundaries travel with the estimate.",
+              "he": "הנחות התפוקה וגבולות ההפסדים מצורפים לאומדן.",
+              "th": "แนบสมมติฐานผลิตและขอบเขตสูญเสียกับประมาณการ"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "What can a drone image alone establish?",
+                "he": "מה צילום רחפן לבדו יכול לבסס?",
+                "th": "ภาพโดรนอย่างเดียวรองรับอะไรได้?"
+              },
+              "options": [
+                {
+                  "en": "Structural approval",
+                  "he": "אישור מבני",
+                  "th": "อนุมัติโครงสร้าง"
+                },
+                {
+                  "en": "All seasonal shading",
+                  "he": "כל ההצללה העונתית",
+                  "th": "เงาทุกฤดู"
+                },
+                {
+                  "en": "Electrical compliance",
+                  "he": "עמידה חשמלית",
+                  "th": "ความสอดคล้องไฟฟ้า"
+                },
+                {
+                  "en": "A preliminary visual observation",
+                  "he": "תצפית חזותית ראשונית",
+                  "th": "การสังเกตภาพเบื้องต้น"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "Hidden conditions and professional approvals require additional evidence.",
+                "he": "תנאים נסתרים ואישורים מקצועיים דורשים ראיות נוספות.",
+                "th": "สภาพซ่อนและการอนุมัติมืออาชีพต้องมีหลักฐานเพิ่ม"
+              }
+            },
+            {
+              "question": {
+                "en": "20 modules × 500 W equals?",
+                "he": "20 פאנלים × 500 ואט שווים?",
+                "th": "20 แผง × 500 W เท่ากับ?"
+              },
+              "options": [
+                {
+                  "en": "10 kW DC nameplate",
+                  "he": "10 קילוואט DC נקוב",
+                  "th": "กำลังป้าย DC 10 kW"
+                },
+                {
+                  "en": "10 kWh daily automatically",
+                  "he": "10 קוט״ש יומי אוטומטית",
+                  "th": "10 kWh ทุกวันอัตโนมัติ"
+                },
+                {
+                  "en": "100 kW",
+                  "he": "100 קילוואט",
+                  "th": "100 kW"
+                },
+                {
+                  "en": "1 kW",
+                  "he": "1 קילוואט",
+                  "th": "1 kW"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "10,000 W equals 10 kW; it is a power rating, not daily energy.",
+                "he": "10,000 ואט שווים 10 קילוואט; זה דירוג הספק ולא אנרגיה יומית.",
+                "th": "10,000 W คือ 10 kW เป็นพิกัดกำลังไม่ใช่พลังงานวัน"
+              }
+            },
+            {
+              "question": {
+                "en": "What should accompany a production estimate?",
+                "he": "מה צריך לצרף לאומדן תפוקה?",
+                "th": "ควรแนบอะไรกับประมาณการผลิต?"
+              },
+              "options": [
+                {
+                  "en": "Only its highest annual number",
+                  "he": "רק המספר השנתי הגבוה ביותר",
+                  "th": "เพียงยอดปีสูงสุด"
+                },
+                {
+                  "en": "Only a sales logo",
+                  "he": "רק לוגו מכירות",
+                  "th": "เพียงโลโก้ขาย"
+                },
+                {
+                  "en": "Weather, geometry, equipment and loss assumptions",
+                  "he": "הנחות אקלים, גאומטריה, ציוד והפסדים",
+                  "th": "สมมติฐานอากาศ รูปทรง อุปกรณ์ และสูญเสีย"
+                },
+                {
+                  "en": "An unconditional guarantee",
+                  "he": "הבטחה ללא תנאי",
+                  "th": "รับประกันไร้เงื่อนไข"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "The estimate is reviewable only when its inputs and boundaries are known.",
+                "he": "האומדן ניתן לבדיקה רק כשידועים הקלטים והגבולות שלו.",
+                "th": "ตรวจประมาณได้เมื่อรู้ข้อมูลเข้าและขอบเขต"
+              }
+            },
+            {
+              "question": {
+                "en": "Why plan a battery’s delivery route before ordering?",
+                "he": "למה מתכננים תוואי הובלת סוללה לפני הזמנה?",
+                "th": "ทำไมวางเส้นทางขนแบตเตอรี่ก่อนสั่ง?"
+              },
+              "options": [
+                {
+                  "en": "It changes sunlight",
+                  "he": "זה משנה אור שמש",
+                  "th": "เปลี่ยนแสงแดด"
+                },
+                {
+                  "en": "Access and handling can make the proposed location impractical",
+                  "he": "גישה ושינוע עלולים להפוך מיקום מוצע ללא מעשי",
+                  "th": "ทางเข้าและการเคลื่อนย้ายอาจทำให้ตำแหน่งใช้ไม่ได้"
+                },
+                {
+                  "en": "All batteries have identical dimensions",
+                  "he": "לכל הסוללות מידות זהות",
+                  "th": "แบตเตอรี่ทุกตัวขนาดเท่ากัน"
+                },
+                {
+                  "en": "It removes the need for a manual",
+                  "he": "זה מבטל צורך במדריך",
+                  "th": "ไม่ต้องมีคู่มือ"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "Installation and replacement access are lifecycle design constraints.",
+                "he": "גישה להתקנה ולהחלפה היא אילוץ תכנון לאורך חיי המערכת.",
+                "th": "ทางเข้าติดตั้งและเปลี่ยนเป็นข้อจำกัดออกแบบตลอดอายุ"
+              }
+            },
+            {
+              "question": {
+                "en": "A modeled yield already includes a shading loss. What should the reviewer avoid?",
+                "he": "תפוקה ממודל כבר כוללת הפסד הצללה. ממה הבודק צריך להימנע?",
+                "th": "ผลผลิตแบบจำลองรวมเงาสูญเสียแล้ว ผู้ตรวจควรเลี่ยงอะไร?"
+              },
+              "options": [
+                {
+                  "en": "Recording the model version",
+                  "he": "תיעוד גרסת מודל",
+                  "th": "บันทึกรุ่นแบบจำลอง"
+                },
+                {
+                  "en": "Checking the shade assumption",
+                  "he": "בדיקת הנחת הצללה",
+                  "th": "ตรวจสมมติเงา"
+                },
+                {
+                  "en": "Comparing scenarios",
+                  "he": "השוואת תרחישים",
+                  "th": "เทียบกรณี"
+                },
+                {
+                  "en": "Subtracting that same loss a second time",
+                  "he": "הפחתת אותו הפסד בפעם השנייה",
+                  "th": "หักสูญเสียเดิมครั้งที่สอง"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "Losses must be counted once at the stated model boundary.",
+                "he": "סופרים הפסדים פעם אחת בגבול המודל שהוגדר.",
+                "th": "นับสูญเสียครั้งเดียวที่ขอบเขตแบบจำลองระบุ"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-design",
+            "base-climate",
+            "base-model",
+            "base-efficiency"
+          ]
+        },
+        {
+          "num": 6,
+          "title": {
+            "en": "Work safely: recognize hazards and stop at the right boundary",
+            "he": "עובדים בבטיחות: מזהים סיכונים ויודעים מתי לעצור",
+            "th": "ทำงานปลอดภัย: รู้จักอันตรายและขอบเขตที่ต้องหยุด"
+          },
+          "summary": {
+            "en": "Give every role a shared language for safe access, multiple energy sources and escalation.",
+            "he": "נותנים לכל התפקידים שפה משותפת לגישה בטוחה, מקורות אנרגיה מרובים והסלמה.",
+            "th": "ให้ทุกบทบาทมีภาษาร่วมเรื่องทางเข้าปลอดภัย หลายแหล่งพลังงาน และการส่งต่อ"
+          },
+          "minutes": 40,
+          "objectives": [
+            {
+              "en": "Identify hazards before accepting or starting a site task.",
+              "he": "לזהות סיכונים לפני קבלת משימה באתר או תחילתה.",
+              "th": "ระบุอันตรายก่อนรับหรือเริ่มงานหน้างาน"
+            },
+            {
+              "en": "Distinguish hazard removal from relying only on PPE.",
+              "he": "להבחין בין סילוק סיכון להסתמכות רק על ציוד מגן.",
+              "th": "แยกการกำจัดอันตรายออกจากพึ่ง PPE อย่างเดียว"
+            },
+            {
+              "en": "Write a stop-work and escalation decision with evidence.",
+              "he": "לכתוב החלטת עצירת עבודה והעברה לאחראי עם ראיות.",
+              "th": "เขียนการหยุดงานและส่งต่อพร้อมหลักฐาน"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "Competence is task-specific",
+                "he": "כשירות תלויה במשימה",
+                "th": "ความสามารถขึ้นกับงานเฉพาะ"
+              },
+              "paragraphs": [
+                {
+                  "en": "Recognizing a component is not the same as being authorized to install, test or repair it. This foundation teaches decisions and communication. Actual roof work, electrical testing, battery handling and energization require the responsible qualified people, task-specific planning and applicable local requirements. A completed online quiz does not grant those permissions.",
+                  "he": "זיהוי רכיב אינו הרשאה להתקין, לבדוק או לתקן אותו. הבסיס הזה מלמד החלטות ותקשורת. עבודת גג, בדיקות חשמל, טיפול בסוללות והפעלה דורשים אנשי מקצוע אחראים ומוסמכים, תכנון למשימה ועמידה בדרישות המקומיות. חידון מקוון שהושלם אינו מעניק הרשאות אלה.",
+                  "th": "รู้จักอุปกรณ์ไม่เท่ากับได้รับอนุญาตให้ติดตั้ง ทดสอบ หรือซ่อม พื้นฐานนี้สอนการตัดสินใจและสื่อสาร งานหลังคา ทดสอบไฟ จัดการแบตเตอรี่ และจ่ายไฟต้องมีผู้มีคุณสมบัติรับผิดชอบ แผนเฉพาะงาน และข้อกำหนดท้องถิ่น การผ่านแบบทดสอบออนไลน์ไม่ให้สิทธิเหล่านั้น"
+                },
+                {
+                  "en": "Before assigning a task, state its boundary: observation from a safe location, document review, supervised practice or authorized field work. Name the supervisor and escalation route. If a worker cannot explain the boundary or the plan has changed, pause for review. Schedule pressure does not fill a gap in competence or approval.",
+                  "he": "לפני הקצאת משימה מגדירים את גבולה: תצפית ממקום בטוח, סקירת מסמכים, תרגול בהנחיה או עבודת שטח מורשית. מציינים מפקח ונתיב הסלמה. אם עובד אינו יודע להסביר את הגבול או שהתוכנית השתנתה, עוצרים לבדיקה. לחץ בלוח זמנים אינו משלים פער בכשירות או באישור.",
+                  "th": "ก่อนมอบงานระบุขอบเขต: สังเกตจากจุดปลอดภัย ทบทวนเอกสาร ฝึกภายใต้กำกับ หรืองานภาคสนามที่อนุญาต ระบุผู้กำกับและทางส่งต่อ หากคนอธิบายขอบเขตไม่ได้หรือแผนเปลี่ยน ให้พักตรวจ ความกดดันเวลาไม่เติมช่องว่างความสามารถหรืออนุมัติ"
+                }
+              ],
+              "sourceIds": [
+                "base-roof-safety"
+              ]
+            },
+            {
+              "title": {
+                "en": "Look for more than electrical hazards",
+                "he": "מחפשים גם סיכונים שאינם חשמליים",
+                "th": "มองหาอันตรายมากกว่าไฟฟ้า"
+              },
+              "paragraphs": [
+                {
+                  "en": "A solar site combines height, fragile surfaces, falling objects, manual handling, heat, weather and electrical risks. Guests or staff may pass below the work area. A ladder, skylight or wet walkway can matter as much as the equipment being installed. Start with the actual property conditions rather than copying yesterday’s risk sheet.",
+                  "he": "אתר סולארי משלב גובה, משטחים שבירים, נפילת חפצים, שינוע ידני, חום, מזג אוויר וחשמל. אורחים או עובדים עשויים לעבור מתחת לאזור העבודה. סולם, פתח גג או מעבר רטוב יכולים להיות חשובים כמו הציוד שמתקינים. מתחילים בתנאי הנכס בפועל ולא בהעתקת טופס הסיכון מאתמול.",
+                  "th": "สถานที่โซลาร์รวมความสูง พื้นเปราะ วัตถุตก การยกด้วยแรงคน ความร้อน อากาศ และไฟฟ้า แขกหรือพนักงานอาจผ่านด้านล่าง บันได ช่องแสง หรือทางเปียกอาจสำคัญเท่าอุปกรณ์ที่ติด เริ่มจากสภาพทรัพย์สินจริงไม่ใช่คัดลอกใบความเสี่ยงเมื่อวาน"
+                },
+                {
+                  "en": "Plan access, material movement, exclusion of uninvolved people and emergency response before mobilization. An island site may have restricted roads or delayed external assistance. The responsible team must define how help reaches the site and how workers are accounted for. Reassess when weather, personnel, equipment or the work method changes.",
+                  "he": "מתכננים גישה, העברת חומרים, מניעת כניסה של מי שאינו מעורב ותגובה לחירום לפני התארגנות. באתר באי ייתכנו דרכים מוגבלות או עיכוב בסיוע חיצוני. הצוות האחראי צריך להגדיר איך עזרה מגיעה ואיך יודעים היכן העובדים. מעריכים מחדש כשמזג אוויר, צוות, ציוד או שיטת העבודה משתנים.",
+                  "th": "วางแผนเข้าออก เคลื่อนวัสดุ กันคนไม่เกี่ยว และตอบสนองฉุกเฉินก่อนเริ่มขนทีม สถานที่บนเกาะอาจมีถนนจำกัดหรือความช่วยเหลือช้า ทีมรับผิดชอบต้องกำหนดว่าช่วยเหลือเข้าถึงอย่างไรและนับคนอย่างไร ประเมินใหม่เมื่ออากาศ คน อุปกรณ์ หรือวิธีงานเปลี่ยน"
+                }
+              ],
+              "sourceIds": [
+                "base-falls",
+                "base-roof-safety"
+              ]
+            },
+            {
+              "title": {
+                "en": "Do not assume “off” means de-energized",
+                "he": "לא מניחים ש״כבוי״ פירושו ללא מתח",
+                "th": "อย่าคิดว่า “ปิด” คือปลอดพลังงาน"
+              },
+              "paragraphs": [
+                {
+                  "en": "A property may contain grid supply, illuminated PV strings, stored battery energy and a generator. Switching off a main supply does not by itself establish that all equipment is safe. Isolation and verification belong to the qualified team’s approved procedure, including the exact product instructions. Nontechnical staff should never improvise electrical checks to make a schedule work.",
+                  "he": "בנכס עשויים להיות הזנת רשת, סטרינגים מוארים, אנרגיה אגורה בסוללה וגנרטור. כיבוי אספקה ראשית אינו מוכיח לבדו שכל הציוד בטוח. בידוד ואימות שייכים לנוהל מאושר של הצוות המוסמך, כולל הוראות המוצר המדויק. צוות לא טכני אינו מאלתר בדיקות חשמל כדי לעמוד בלוח זמנים.",
+                  "th": "ทรัพย์สินอาจมีกริด สตริง PV ที่รับแสง พลังงานแบตเตอรี่ และเครื่องกำเนิด ปิดไฟหลักอย่างเดียวไม่ยืนยันว่าอุปกรณ์ทั้งหมดปลอดภัย การแยกและตรวจยืนยันต้องตามขั้นตอนอนุมัติของทีมมีคุณสมบัติ รวมคู่มือรุ่นจริง คนไม่เทคนิคห้ามคิดวิธีตรวจไฟเองเพื่อให้ทันเวลา"
+                },
+                {
+                  "en": "Damage, unusual heat, odor, smoke, water ingress or exposed conductors require a protective response, not a quick reset. Keep people away, use the site’s emergency and escalation plan and let the responsible specialist determine the next action. Do not touch damaged equipment or approach a suspected battery incident to collect a better photograph.",
+                  "he": "נזק, חום חריג, ריח, עשן, חדירת מים או מוליכים חשופים דורשים תגובה מגינה ולא איפוס מהיר. מרחיקים אנשים, פועלים לפי תוכנית החירום וההסלמה של האתר ומשאירים למומחה האחראי לקבוע את הצעד הבא. לא נוגעים בציוד פגום ולא מתקרבים לאירוע סוללה חשוד כדי לצלם טוב יותר.",
+                  "th": "ความเสียหาย ความร้อนผิดปกติ กลิ่น ควัน น้ำเข้า หรือสายเปลือยต้องตอบสนองเพื่อป้องกัน ไม่ใช่รีเซ็ตเร็ว กันคนออก ใช้แผนฉุกเฉินและส่งต่อของไซต์ แล้วให้ผู้เชี่ยวชาญรับผิดชอบกำหนดต่อไป ห้ามแตะอุปกรณ์เสียหรือเข้าใกล้เหตุแบตเตอรี่สงสัยเพียงเพื่อถ่ายภาพชัดขึ้น"
+                }
+              ],
+              "sourceIds": [
+                "base-maintain",
+                "base-roof-safety"
+              ]
+            },
+            {
+              "title": {
+                "en": "Choose stronger controls and record the decision",
+                "he": "בוחרים בקרות חזקות ומתעדים את ההחלטה",
+                "th": "เลือกมาตรการที่เข้มแข็งและบันทึกการตัดสินใจ"
+              },
+              "paragraphs": [
+                {
+                  "en": "The control hierarchy starts by asking whether a hazard can be removed or substituted. Engineering measures generally reduce dependence on perfect individual behavior; administrative measures and PPE support the plan but are not automatic substitutes for safer design. Use this as a general prevention framework, not as a claim that US or Australian legislation is Thai law.",
+                  "he": "מדרג הבקרות מתחיל בשאלה אם אפשר לסלק סיכון או להחליפו. אמצעים הנדסיים בדרך כלל מצמצמים תלות בהתנהגות מושלמת של אדם; נהלים וציוד מגן תומכים בתוכנית, אך אינם תחליף אוטומטי לתכנון בטוח יותר. זו מסגרת מניעה כללית, ולא טענה שחקיקה אמריקאית או אוסטרלית היא הדין בתאילנד.",
+                  "th": "ลำดับควบคุมเริ่มด้วยถามว่ากำจัดหรือทดแทนอันตรายได้ไหม มาตรการวิศวกรรมมักลดการพึ่งพาคนทำถูกสมบูรณ์แบบ ขั้นตอนและ PPE สนับสนุนแผนแต่ไม่แทนการออกแบบปลอดภัยกว่าอัตโนมัติ ใช้เป็นกรอบป้องกันทั่วไป ไม่อ้างว่ากฎหมายสหรัฐหรือออสเตรเลียเป็นกฎหมายไทย"
+                },
+                {
+                  "en": "A useful stop-work record states the observed condition, affected area, immediate protective action, responsible reviewer and evidence required before restart. It avoids blame and vague phrases such as “be careful.” For example, an unprotected public walkway beneath lifting is a specific unresolved exposure; the resolution must be verified before work resumes.",
+                  "he": "רישום עצירת עבודה מועיל מציין מצב שנצפה, אזור מושפע, פעולה מגינה מיידית, בודק אחראי וראיה נדרשת לפני חידוש. הוא נמנע מהאשמה וממשפטים עמומים כמו ״להיזהר״. למשל מעבר ציבורי לא מוגן מתחת להרמה הוא חשיפה מסוימת שלא נפתרה; צריך לאמת את הפתרון לפני המשך.",
+                  "th": "บันทึกหยุดงานที่ดีระบุสิ่งพบ พื้นที่กระทบ การป้องกันทันที ผู้ตรวจรับผิดชอบ และหลักฐานก่อนเริ่มใหม่ เลี่ยงโทษคนหรือคำกว้าง “ระวัง” เช่น ทางสาธารณะใต้จุดยกที่ไม่ป้องกันคือความเสี่ยงเฉพาะที่ค้าง ต้องตรวจยืนยันแก้ก่อนกลับทำ"
+                }
+              ],
+              "sourceIds": [
+                "base-controls"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "A changed roof-access condition",
+              "he": "תנאי גישה לגג שהשתנה",
+              "th": "สภาพทางเข้าหลังคาเปลี่ยน"
+            },
+            "scenario": {
+              "en": "Training scenario: rain starts, the planned access walkway becomes slippery, and guests are passing beneath a material-handling area. The installation slot is about to close.",
+              "he": "תרחיש תרגול: מתחיל גשם, מעבר הגישה המתוכנן מחליק ואורחים עוברים מתחת לאזור שינוע חומרים. חלון ההתקנה עומד להסתיים.",
+              "th": "สถานการณ์ฝึก: ฝนเริ่ม ทางเข้าที่วางแผนลื่น และแขกเดินใต้เขตเคลื่อนวัสดุ เวลาติดตั้งกำลังหมด"
+            },
+            "steps": [
+              {
+                "en": "Pause the affected activity and keep uninvolved people out of the exposed area using the established safe plan.",
+                "he": "עוצרים את הפעילות המושפעת ומונעים חשיפת אנשים לא מעורבים לפי התוכנית הבטוחה שנקבעה.",
+                "th": "พักกิจกรรมที่กระทบและกันคนไม่เกี่ยวออกจากพื้นที่เสี่ยงตามแผนปลอดภัยที่กำหนด"
+              },
+              {
+                "en": "Notify the supervisor of both changed conditions, not only the rain.",
+                "he": "מודיעים למפקח על שני השינויים, ולא רק על הגשם.",
+                "th": "แจ้งผู้กำกับทั้งสองสภาพที่เปลี่ยน ไม่ใช่เฉพาะฝน"
+              },
+              {
+                "en": "Reassess access, public separation and weather controls; restart only after the responsible review accepts the revised plan.",
+                "he": "בודקים מחדש גישה, הפרדה מציבור ובקרות מזג אוויר; חוזרים רק לאחר קבלת התוכנית המתוקנת בבדיקה האחראית.",
+                "th": "ประเมินทางเข้า การแยกประชาชน และควบคุมอากาศใหม่ เริ่มต่อเมื่อผู้รับผิดชอบยอมรับแผนแก้"
+              }
+            ],
+            "result": {
+              "en": "The schedule becomes a management issue. It does not justify continuing with controls that no longer match the site.",
+              "he": "לוח הזמנים הופך לנושא ניהולי. הוא אינו מצדיק המשך עם בקרות שכבר אינן מתאימות לאתר.",
+              "th": "เวลาเป็นเรื่องให้ฝ่ายจัดการแก้ ไม่ใช่เหตุทำต่อด้วยมาตรการที่ไม่ตรงสภาพ"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Write a stop-work record",
+              "he": "כתבו רישום עצירת עבודה",
+              "th": "เขียนบันทึกหยุดงาน"
+            },
+            "brief": {
+              "en": "A sales visitor sees a damaged battery enclosure and an unusual odor. They are asked to reset the system so the demonstration can continue. Write a safe response without diagnosing or touching equipment.",
+              "he": "מבקר מצוות מכירות רואה ארון סוללה פגום ומזהה ריח חריג. מבקשים ממנו לאפס את המערכת כדי להמשיך הדגמה. כתבו תגובה בטוחה בלי לאבחן או לגעת בציוד.",
+              "th": "พนักงานขายพบตู้แบตเตอรี่เสียและกลิ่นผิดปกติ ถูกขอให้รีเซ็ตเพื่อสาธิตต่อ เขียนการตอบสนองปลอดภัยโดยไม่วินิจฉัยหรือแตะอุปกรณ์"
+            },
+            "deliverables": [
+              {
+                "en": "A short record of observation, protective action and escalation.",
+                "he": "רישום קצר של תצפית, פעולה מגינה והעברה לאחראי.",
+                "th": "บันทึกสั้นสิ่งพบ การป้องกัน และการส่งต่อ"
+              },
+              {
+                "en": "The condition required before any demonstration resumes.",
+                "he": "התנאי הנדרש לפני חידוש ההדגמה.",
+                "th": "เงื่อนไขก่อนกลับสาธิต"
+              }
+            ],
+            "solution": {
+              "en": "Stop the demonstration, keep people away and invoke the site emergency/escalation plan. Report the observed damage and odor from a safe location; do not reset, open or approach the battery. The responsible qualified team determines emergency action and whether the system may be returned to service. A visitor’s reassurance is not clearance.",
+              "he": "עוצרים הדגמה, מרחיקים אנשים ומפעילים את תוכנית החירום וההסלמה. מדווחים ממקום בטוח על הנזק והריח שנצפו; לא מאפסים, פותחים או מתקרבים לסוללה. הצוות המוסמך קובע פעולת חירום ואם אפשר להחזיר לשירות. הרגעה של מבקר אינה אישור.",
+              "th": "หยุดสาธิต กันคนออก และใช้แผนฉุกเฉิน/ส่งต่อ รายงานความเสียหายและกลิ่นจากที่ปลอดภัย ห้ามรีเซ็ต เปิด หรือเข้าใกล้แบตเตอรี่ ทีมมีคุณสมบัติรับผิดชอบตัดสินการฉุกเฉินและกลับใช้ได้หรือไม่ คำปลอบของผู้เยี่ยมไม่ใช่อนุมัติ"
+            }
+          },
+          "checklist": [
+            {
+              "en": "Task, competence and supervision boundaries are clear.",
+              "he": "גבולות משימה, כשירות ופיקוח ברורים.",
+              "th": "ขอบเขตงาน ความสามารถ และกำกับชัด"
+            },
+            {
+              "en": "Changed site conditions trigger a fresh review.",
+              "he": "שינוי תנאי אתר מוביל לבדיקה חדשה.",
+              "th": "สภาพไซต์เปลี่ยนต้องทบทวนใหม่"
+            },
+            {
+              "en": "Restart depends on verified controls, not deadline pressure.",
+              "he": "חידוש תלוי בבקרות שנבדקו ולא בלחץ מועד.",
+              "th": "เริ่มใหม่ขึ้นกับมาตรการที่ตรวจ ไม่ใช่แรงกดดันกำหนดเวลา"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "What does passing this foundation quiz authorize?",
+                "he": "מה מעבר חידון הבסיס הזה מאשר?",
+                "th": "ผ่านแบบทดสอบพื้นฐานนี้อนุญาตอะไร?"
+              },
+              "options": [
+                {
+                  "en": "Independent electrical work",
+                  "he": "עבודת חשמל עצמאית",
+                  "th": "ทำไฟอิสระ"
+                },
+                {
+                  "en": "All roof work",
+                  "he": "כל עבודת גג",
+                  "th": "งานหลังคาทั้งหมด"
+                },
+                {
+                  "en": "A learning checkpoint, not professional work authorization",
+                  "he": "נקודת בדיקה בלמידה, ולא הרשאת עבודה מקצועית",
+                  "th": "จุดตรวจการเรียน ไม่ใช่สิทธิทำงานวิชาชีพ"
+                },
+                {
+                  "en": "Bypassing site procedures",
+                  "he": "עקיפת נהלי אתר",
+                  "th": "ข้ามขั้นตอนไซต์"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Field competence and authorization are assessed separately for the task.",
+                "he": "כשירות והרשאת שטח נבדקות בנפרד לפי המשימה.",
+                "th": "ความสามารถและสิทธิภาคสนามประเมินแยกตามงาน"
+              }
+            },
+            {
+              "question": {
+                "en": "Does switching off the main supply prove a PV/battery system is safe to touch?",
+                "he": "האם כיבוי אספקה ראשית מוכיח שמערכת PV וסוללה בטוחה למגע?",
+                "th": "ปิดไฟหลักพิสูจน์ว่าแตะ PV/แบตเตอรี่ปลอดภัยหรือไม่?"
+              },
+              "options": [
+                {
+                  "en": "No; multiple sources and stored energy require qualified isolation and verification",
+                  "he": "לא; מקורות מרובים ואנרגיה אגורה דורשים בידוד ואימות מוסמכים",
+                  "th": "ไม่ หลายแหล่งและพลังงานเก็บต้องให้ผู้มีคุณสมบัติแยกและตรวจ"
+                },
+                {
+                  "en": "Yes, always",
+                  "he": "כן, תמיד",
+                  "th": "ใช่เสมอ"
+                },
+                {
+                  "en": "Yes, if the app is offline",
+                  "he": "כן, אם האפליקציה לא מקוונת",
+                  "th": "ใช่ถ้าแอปออฟไลน์"
+                },
+                {
+                  "en": "Yes, with a small battery",
+                  "he": "כן, עם סוללה קטנה",
+                  "th": "ใช่ถ้าแบตเตอรี่เล็ก"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "The approved qualified procedure establishes the safe state, not an assumption.",
+                "he": "הנוהל המוסמך המאושר קובע מצב בטוח, ולא הנחה.",
+                "th": "สถานะปลอดภัยมาจากขั้นตอนอนุมัติของผู้มีคุณสมบัติ ไม่ใช่สมมติ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is the better response to a new unprotected public exposure?",
+                "he": "מה תגובה טובה יותר לחשיפה חדשה ולא מוגנת של ציבור?",
+                "th": "ตอบสนองต่อประชาชนเสี่ยงใหม่ที่ไม่ป้องกันอย่างไรดีกว่า?"
+              },
+              "options": [
+                {
+                  "en": "Work faster",
+                  "he": "לעבוד מהר יותר",
+                  "th": "ทำเร็วขึ้น"
+                },
+                {
+                  "en": "Ask guests to be careful only",
+                  "he": "רק לבקש מאורחים להיזהר",
+                  "th": "เพียงขอแขกระวัง"
+                },
+                {
+                  "en": "Ignore it until tomorrow",
+                  "he": "להתעלם עד מחר",
+                  "th": "เมินจนพรุ่งนี้"
+                },
+                {
+                  "en": "Pause, protect and reassess with the supervisor",
+                  "he": "לעצור, להגן ולבדוק מחדש עם המפקח",
+                  "th": "หยุด ป้องกัน และประเมินใหม่กับผู้กำกับ"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "Controls must match the actual changed condition before restart.",
+                "he": "הבקרות חייבות להתאים לתנאי שהשתנה לפני חידוש.",
+                "th": "มาตรการต้องตรงสภาพที่เปลี่ยนก่อนเริ่มใหม่"
+              }
+            },
+            {
+              "question": {
+                "en": "Which control approach is strongest to consider first?",
+                "he": "איזו גישת בקרה חזקה ביותר בוחנים תחילה?",
+                "th": "ควรพิจารณาวิธีควบคุมที่เข้มแข็งใดก่อน?"
+              },
+              "options": [
+                {
+                  "en": "A reminder poster only",
+                  "he": "רק כרזת תזכורת",
+                  "th": "เพียงป้ายเตือน"
+                },
+                {
+                  "en": "Remove or substitute the hazard where feasible",
+                  "he": "לסלק או להחליף את הסיכון כשאפשר",
+                  "th": "กำจัดหรือทดแทนอันตรายเมื่อทำได้"
+                },
+                {
+                  "en": "PPE instead of all planning",
+                  "he": "ציוד מגן במקום כל תכנון",
+                  "th": "PPE แทนแผนทั้งหมด"
+                },
+                {
+                  "en": "A faster schedule",
+                  "he": "לוח זמנים מהיר יותר",
+                  "th": "ตารางเร็วกว่า"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "The hierarchy prioritizes reducing the hazard itself before relying on individual behavior.",
+                "he": "המדרג מעדיף לצמצם את הסיכון עצמו לפני הסתמכות על התנהגות אדם.",
+                "th": "ลำดับให้ลดตัวอันตรายก่อนพึ่งพฤติกรรมบุคคล"
+              }
+            },
+            {
+              "question": {
+                "en": "A battery has unusual odor and visible damage. A nontechnical visitor should:",
+                "he": "לסוללה ריח חריג ונזק גלוי. מבקר לא טכני צריך:",
+                "th": "แบตเตอรี่มีกลิ่นผิดปกติและเสียหายเห็นชัด ผู้เยี่ยมไม่เทคนิคควร:"
+              },
+              "options": [
+                {
+                  "en": "Open it to identify the cell",
+                  "he": "לפתוח כדי לזהות תא",
+                  "th": "เปิดหาว่าเซลล์ใด"
+                },
+                {
+                  "en": "Reset repeatedly",
+                  "he": "לאפס שוב ושוב",
+                  "th": "รีเซ็ตซ้ำ"
+                },
+                {
+                  "en": "Keep away, stop the demonstration and activate the site response plan",
+                  "he": "להתרחק, לעצור הדגמה ולהפעיל את תוכנית התגובה באתר",
+                  "th": "อยู่ห่าง หยุดสาธิต และใช้แผนตอบสนองไซต์"
+                },
+                {
+                  "en": "Photograph it from very close",
+                  "he": "לצלם מקרוב מאוד",
+                  "th": "ถ่ายใกล้มาก"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Observation from safety and escalation are appropriate; intervention is not.",
+                "he": "תצפית ממקום בטוח והסלמה מתאימות; התערבות אינה מתאימה.",
+                "th": "สังเกตจากปลอดภัยและส่งต่อเหมาะสม ไม่ใช่เข้าแทรกแซง"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-roof-safety",
+            "base-falls",
+            "base-maintain",
+            "base-controls"
+          ]
+        },
+        {
+          "num": 7,
+          "title": {
+            "en": "Move a project between roles without losing control",
+            "he": "מעבירים פרויקט בין תפקידים בלי לאבד שליטה",
+            "th": "ส่งโครงการระหว่างบทบาทโดยไม่เสียการควบคุม"
+          },
+          "summary": {
+            "en": "Use a common project file, separate approvals and evidence-based handovers.",
+            "he": "משתמשים בתיק פרויקט משותף, אישורים נפרדים והעברות מבוססות ראיות.",
+            "th": "ใช้แฟ้มโครงการร่วม แยกการอนุมัติ และส่งมอบตามหลักฐาน"
+          },
+          "minutes": 40,
+          "objectives": [
+            {
+              "en": "Assign an owner and evidence to each project decision.",
+              "he": "להקצות אחראי וראיה לכל החלטה בפרויקט.",
+              "th": "กำหนดเจ้าของและหลักฐานให้ทุกการตัดสินใจ"
+            },
+            {
+              "en": "Distinguish connection, export, design and operational acceptance.",
+              "he": "להבחין בין חיבור, הזרמה, תכנון וקבלה תפעולית.",
+              "th": "แยกเชื่อมต่อ ส่งออก แบบ และรับมอบใช้งาน"
+            },
+            {
+              "en": "Maintain one traceable revision from proposal to service.",
+              "he": "לשמור גרסה ניתנת למעקב מהצעה עד שירות.",
+              "th": "รักษารุ่นที่ตรวจย้อนกลับได้ตั้งแต่เสนอจนบริการ"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "Six roles, shared facts",
+                "he": "שישה תפקידים, עובדות משותפות",
+                "th": "หกบทบาท ข้อเท็จจริงร่วม"
+              },
+              "paragraphs": [
+                {
+                  "en": "The training workflow assigns different questions to different teams. Sales establishes the customer’s need and agreed scope. Finance checks the money and assumptions. Planning and permitting convert evidence into an approvable design and document route. Installers build from released instructions; service verifies, diagnoses and maintains; management controls ownership, resources and unresolved decisions.",
+                  "he": "בשיטת העבודה הלימודית מקצים שאלות שונות לצוותים שונים. מכירות מגדירים צורך והיקף מוסכם. פיננסים בודקים כסף והנחות. תכנון ורישוי הופכים ראיות לתכנון שניתן לאשר ולנתיב מסמכים. מתקינים בונים מהוראות ששוחררו; שירות בודק, מאבחן ומתחזק; ניהול שולט באחריות, משאבים והחלטות פתוחות.",
+                  "th": "กระบวนการฝึกให้แต่ละทีมตอบคนละคำถาม ฝ่ายขายระบุความต้องการและขอบเขตที่ตกลง การเงินตรวจเงินและสมมติฐาน ออกแบบและอนุญาตแปลงหลักฐานเป็นแบบที่อนุมัติได้กับเส้นทางเอกสาร ผู้ติดตั้งทำตามคำสั่งปล่อยใช้ บริการตรวจ วินิจฉัย และบำรุง ฝ่ายจัดการควบคุมเจ้าของ ทรัพยากร และข้อค้าง"
+                },
+                {
+                  "en": "Those boundaries are not walls. A finance uncertainty can change design; a roof finding can change the proposal; a service access problem can change installation. Record the shared fact once and link its consequences. Avoid six disconnected spreadsheets that silently describe six different systems to the same customer.",
+                  "he": "הגבולות האלה אינם חומות. אי־ודאות פיננסית יכולה לשנות תכנון; ממצא גג יכול לשנות הצעה; בעיית גישת שירות יכולה לשנות התקנה. מתעדים עובדה משותפת פעם אחת ומקשרים את השלכותיה. נמנעים משישה גיליונות מנותקים שמתארים בשקט שש מערכות שונות לאותו לקוח.",
+                  "th": "ขอบเขตเหล่านี้ไม่ใช่กำแพง ความไม่แน่นอนเงินอาจเปลี่ยนแบบ ข้อมูลหลังคาอาจเปลี่ยนข้อเสนอ ปัญหาทางบริการอาจเปลี่ยนติดตั้ง บันทึกข้อเท็จจริงร่วมครั้งเดียวแล้วเชื่อมผลกระทบ อย่าให้หกชีตขาดกันอธิบายหกระบบต่างกันแก่ลูกค้าคนเดียว"
+                }
+              ],
+              "sourceIds": [
+                "base-design",
+                "base-lifecycle"
+              ]
+            },
+            {
+              "title": {
+                "en": "An approval is specific to a decision",
+                "he": "אישור שייך להחלטה מסוימת",
+                "th": "อนุมัติผูกกับการตัดสินใจเฉพาะ"
+              },
+              "paragraphs": [
+                {
+                  "en": "Treat network connection, the right to sell exported energy, energy-sector licensing or exemption, building/structural requirements, professional sign-off and operational acceptance as separate questions. Not every project follows the same route. The planning and permitting path teaches the current official sources and the information required to determine applicability. A generic “approved” checkbox is not enough.",
+                  "he": "התייחסו לחיבור לרשת, זכות למכור עודפים, רישוי או פטור בתחום האנרגיה, דרישות מבנה, חתימה מקצועית וקבלה תפעולית כשאלות נפרדות. לא כל פרויקט עובר אותו מסלול. מסלול תכנון ורישוי מלמד מקורות רשמיים עדכניים ומידע שנדרש לקביעת תחולה. תיבת סימון כללית ״מאושר״ אינה מספיקה.",
+                  "th": "แยกคำถามเชื่อมกริด สิทธิขายส่วนเกิน ใบอนุญาตหรือยกเว้นพลังงาน ข้อกำหนดอาคาร/โครงสร้าง ผู้ประกอบวิชาชีพลงนาม และรับใช้งาน ไม่ใช่ทุกโครงการมีเส้นทางเหมือนกัน เส้นทางออกแบบและอนุญาตสอนแหล่งทางการปัจจุบันกับข้อมูลหาข้อที่ใช้ ช่อง “อนุมัติ” ทั่วไปไม่พอ"
+                },
+                {
+                  "en": "A document register should name the authority or reviewer, project identity, revision, scope, conditions, issue date and open items. Distinguish submitted, received, under review and accepted. An application receipt is evidence of submission, not automatically permission to energize or collect export revenue. Verify conditions with the responsible authority before the dependent action.",
+                  "he": "ברשימת המסמכים מציינים רשות או בודק, זהות פרויקט, גרסה, היקף, תנאים, תאריך ופרטים פתוחים. מבחינים בין הוגש, התקבל, בבדיקה ואושר. אישור קליטת בקשה מוכיח הגשה, ולא בהכרח רשות להפעלה או לקבלת הכנסה מהזרמה. מאמתים תנאים עם הרשות האחראית לפני פעולה התלויה בהם.",
+                  "th": "ทะเบียนเอกสารระบุหน่วยงานหรือผู้ตรวจ โครงการ รุ่น ขอบเขต เงื่อนไข วันออก และข้อค้าง แยกยื่น รับ อยู่ระหว่างตรวจ และยอมรับ ใบรับคำขอพิสูจน์การยื่น ไม่ใช่อนุญาตจ่ายไฟหรือรับรายได้ส่งออกอัตโนมัติ ยืนยันเงื่อนไขกับผู้รับผิดชอบก่อนทำสิ่งที่พึ่งอนุมัตินั้น"
+                }
+              ],
+              "sourceIds": [
+                "base-pea"
+              ]
+            },
+            {
+              "title": {
+                "en": "Revision control protects the physical work",
+                "he": "שליטה בגרסאות מגינה על העבודה הפיזית",
+                "th": "ควบคุมรุ่นปกป้องงานจริง"
+              },
+              "paragraphs": [
+                {
+                  "en": "Give the project a stable identifier and each released drawing or schedule a revision and status. A change in module, inverter, battery, layout or settings can affect multiple disciplines. Do not let an installer choose between an old printout and a newer chat image. The authorized release must be clear and the superseded version removed from active use.",
+                  "he": "נותנים לפרויקט מזהה קבוע ולכל תוכנית או רשימה ששוחררו גרסה וסטטוס. שינוי בפאנל, ממיר, סוללה, פריסה או הגדרות יכול להשפיע על כמה תחומים. לא משאירים למתקין לבחור בין הדפסה ישנה לתמונה חדשה בצ׳אט. השחרור המורשה חייב להיות ברור והגרסה הישנה מוסרת משימוש פעיל.",
+                  "th": "ให้โครงการมีรหัสคงที่ แบบหรือตารางที่ปล่อยใช้มีรุ่นและสถานะ เปลี่ยนแผง อินเวอร์เตอร์ แบตเตอรี่ ผัง หรือค่าตั้งอาจกระทบหลายฝ่าย อย่าให้ผู้ติดตั้งเลือกเองระหว่างกระดาษเก่ากับภาพแชตใหม่ ต้องชัดว่าฉบับใดปล่อยอย่างมีอำนาจและเอารุ่นเก่าออกจากใช้งาน"
+                },
+                {
+                  "en": "The training change log uses five fields: requested change, reason, technical impact, commercial/schedule impact and approval. Link the revised evidence before releasing work. If the question is unresolved, the status remains open. Recording uncertainty honestly is more useful than silently making an assumption on behalf of another specialist.",
+                  "he": "ביומן השינויים הלימודי משתמשים בחמישה שדות: שינוי מבוקש, סיבה, השפעה טכנית, השפעה מסחרית או בלוח הזמנים, ואישור. מקשרים ראיה מעודכנת לפני שחרור עבודה. אם השאלה לא נפתרה, הסטטוס נשאר פתוח. תיעוד כן של אי־ודאות מועיל יותר מהנחה שקטה בשם מומחה אחר.",
+                  "th": "บันทึกเปลี่ยนแปลงในการฝึกมีห้าช่อง: สิ่งขอเปลี่ยน เหตุผล ผลเทคนิค ผลการค้า/เวลา และอนุมัติ เชื่อมหลักฐานแก้ก่อนปล่อยงาน หากยังไม่ตอบให้คงสถานะเปิด บันทึกความไม่แน่นอนตรงไปตรงมาดีกว่าแอบสมมติแทนผู้เชี่ยวชาญอีกคน"
+                }
+              ],
+              "sourceIds": [
+                "base-design",
+                "base-controls"
+              ]
+            },
+            {
+              "title": {
+                "en": "Handover continues into service",
+                "he": "המסירה ממשיכה לתוך השירות",
+                "th": "การส่งมอบต่อเนื่องไปสู่บริการ"
+              },
+              "paragraphs": [
+                {
+                  "en": "A finished installation is not a finished project file. Collect as-built drawings, equipment identities, relevant approved settings, inspection and commissioning records, operating instructions, warranty boundaries and service contacts. The operator needs to understand normal behavior, selected backup loads and how to report a fault safely, not merely receive a password.",
+                  "he": "התקנה שהסתיימה אינה תיק פרויקט שהושלם. אוספים תוכניות כפי שבוצע, זהויות ציוד, הגדרות מאושרות רלוונטיות, דוחות בדיקה ומסירה, הוראות שימוש, גבולות אחריות ופרטי שירות. המפעיל צריך להבין התנהגות רגילה, עומסי גיבוי נבחרים ואיך לדווח על תקלה בבטחה, ולא רק לקבל סיסמה.",
+                  "th": "ติดตั้งเสร็จไม่ได้หมายถึงแฟ้มโครงการครบ รวบรวมแบบ as-built ตัวตนอุปกรณ์ ค่าตั้งอนุมัติที่เกี่ยว รายงานตรวจ/เดินระบบ วิธีใช้ ขอบเขตประกัน และติดต่อบริการ ผู้ดูแลต้องเข้าใจพฤติกรรมปกติ โหลดสำรองที่เลือก และรายงานขัดข้องปลอดภัย ไม่ใช่แค่ได้รหัสผ่าน"
+                },
+                {
+                  "en": "Define a baseline for future monitoring and an owner for unresolved defects. Separate customer acceptance, technical acceptance and payment milestones according to the actual contract and required approvals. A photo of operating panels does not replace a measured test record. The management and service paths develop these handover gates and the response to later performance changes.",
+                  "he": "מגדירים קו בסיס לניטור עתידי ואחראי לליקויים פתוחים. מפרידים קבלת לקוח, קבלה טכנית ואבני דרך לתשלום לפי החוזה והאישורים האמיתיים. צילום של פאנלים עובדים אינו מחליף דוח בדיקה מדוד. מסלולי הניהול והשירות מרחיבים שערי מסירה ותגובה לשינויים מאוחרים בביצועים.",
+                  "th": "กำหนดฐานติดตามอนาคตและเจ้าของข้อบกพร่องค้าง แยกรับลูกค้า รับเทคนิค และงวดจ่ายตามสัญญาจริงกับอนุมัติจำเป็น ภาพแผงทำงานไม่แทนบันทึกทดสอบวัด เส้นทางจัดการและบริการจะขยายด่านรับมอบและตอบการเปลี่ยนประสิทธิภาพภายหลัง"
+                }
+              ],
+              "sourceIds": [
+                "base-lifecycle"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "An inverter substitution request",
+              "he": "בקשה להחלפת דגם ממיר",
+              "th": "คำขอเปลี่ยนรุ่นอินเวอร์เตอร์"
+            },
+            "scenario": {
+              "en": "Training scenario: the specified inverter is delayed. Procurement offers another model with the same advertised kW rating, while installers are scheduled for tomorrow.",
+              "he": "תרחיש תרגול: הממיר במפרט מתעכב. רכש מציע דגם אחר עם אותו הספק קילוואט מפורסם, והמתקינים מתוכננים למחר.",
+              "th": "สถานการณ์ฝึก: อินเวอร์เตอร์ตามสเปกล่าช้า จัดซื้อเสนอรุ่นอื่นที่โฆษณา kW เท่ากัน แต่ทีมติดตั้งนัดพรุ่งนี้"
+            },
+            "steps": [
+              {
+                "en": "Record the change request and keep the substitute unapproved until reviewed.",
+                "he": "מתעדים בקשת שינוי ומשאירים את החלופה לא מאושרת עד לבדיקה.",
+                "th": "บันทึกคำขอและคงรุ่นทดแทนว่าไม่อนุมัติจนตรวจ"
+              },
+              {
+                "en": "Planning checks electrical, battery, protection, monitoring and applicable connection-document impacts; finance checks cost and warranty exposure.",
+                "he": "תכנון בודק השפעות חשמל, סוללה, הגנות, ניטור ומסמכי חיבור; פיננסים בודקים עלות וחשיפת אחריות.",
+                "th": "ออกแบบตรวจผลต่อไฟ แบตเตอรี่ ป้องกัน เฝ้าติดตาม และเอกสารเชื่อม การเงินตรวจต้นทุนและความเสี่ยงประกัน"
+              },
+              {
+                "en": "Management updates the schedule and releases a revised package only after the necessary approvals.",
+                "he": "ניהול מעדכן לוח זמנים ומשחרר חבילה מתוקנת רק אחרי האישורים הנדרשים.",
+                "th": "จัดการแก้ตารางและปล่อยชุดเอกสารใหม่หลังอนุมัติที่จำเป็น"
+              }
+            ],
+            "result": {
+              "en": "Matching kW is insufficient evidence of interchangeability. The schedule follows the reviewed configuration.",
+              "he": "הספק קילוואט שווה אינו ראיה מספקת להחלפה. לוח הזמנים הולך לפי התצורה שנבדקה.",
+              "th": "kW เท่ากันไม่พอพิสูจน์ว่าแทนกันได้ ตารางต้องตามรูปแบบที่ตรวจแล้ว"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Fix an ambiguous approval register",
+              "he": "תקנו רשימת אישורים עמומה",
+              "th": "แก้ทะเบียนอนุมัติที่กำกวม"
+            },
+            "brief": {
+              "en": "A project register has one row: “Solar approved — email received.” Redesign it so an installer and finance analyst can see what is actually permitted and what remains open.",
+              "he": "ברשימת פרויקט יש שורה אחת: ״סולאר מאושר — התקבל מייל״. תכננו אותה מחדש כך שמתקין ואנליסט פיננסי יראו מה מותר בפועל ומה נותר פתוח.",
+              "th": "ทะเบียนมีบรรทัดเดียว “โซลาร์อนุมัติ — ได้อีเมล” ออกแบบใหม่ให้ผู้ติดตั้งและนักการเงินเห็นว่าอนุญาตอะไรจริงและอะไรค้าง"
+            },
+            "deliverables": [
+              {
+                "en": "Separate decision rows and status definitions.",
+                "he": "שורות החלטה נפרדות והגדרות סטטוס.",
+                "th": "แถวการตัดสินใจแยกและนิยามสถานะ"
+              },
+              {
+                "en": "A list of evidence needed before energization or export-revenue assumptions.",
+                "he": "רשימת ראיות לפני הפעלה או הנחות הכנסה מהזרמה.",
+                "th": "หลักฐานก่อนจ่ายไฟหรือสมมติรายได้ส่งออก"
+              }
+            ],
+            "solution": {
+              "en": "Separate connection, export sale, applicable licensing/exemption, building/structural and professional acceptance questions. Add authority/reviewer, project ID, revision, conditions, dates and status. Read the email and attachment to establish what was accepted; do not infer all permissions from receipt. Assign unresolved items to the planning lead.",
+              "he": "הפרידו שאלות חיבור, מכירת עודפים, רישוי או פטור רלוונטיים, מבנה וקבלה מקצועית. הוסיפו רשות או בודק, מזהה, גרסה, תנאים, תאריכים וסטטוס. קראו מייל ונספח כדי לקבוע מה אושר; אין להסיק את כל ההרשאות מעצם הקבלה. הקצו פתוחים למוביל התכנון.",
+              "th": "แยกเชื่อมต่อ ขายส่วนเกิน ใบอนุญาต/ยกเว้นที่ใช้ อาคาร/โครงสร้าง และรับวิชาชีพ เพิ่มหน่วยงาน/ผู้ตรวจ รหัส รุ่น เงื่อนไข วัน และสถานะ อ่านอีเมลและแนบเพื่อรู้ว่ายอมรับอะไร ห้ามอนุมติทุกสิทธิจากรับเอกสาร มอบข้อค้างให้หัวหน้าออกแบบ"
+            }
+          },
+          "checklist": [
+            {
+              "en": "Each open decision has an owner and evidence requirement.",
+              "he": "לכל החלטה פתוחה יש אחראי ודרישת ראיה.",
+              "th": "การตัดสินใจค้างทุกข้อมีเจ้าของและหลักฐานต้องการ"
+            },
+            {
+              "en": "The approved revision matches the proposed physical equipment.",
+              "he": "הגרסה המאושרת תואמת לציוד הפיזי המוצע.",
+              "th": "รุ่นอนุมัติตรงอุปกรณ์จริงที่เสนอ"
+            },
+            {
+              "en": "The operator and service team receive the same final package.",
+              "he": "המפעיל וצוות השירות מקבלים אותה חבילה סופית.",
+              "th": "ผู้ดูแลและบริการได้ชุดสุดท้ายเดียวกัน"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "Who should establish whether a design substitution affects connection documents?",
+                "he": "מי צריך לקבוע אם החלפת דגם משפיעה על מסמכי חיבור?",
+                "th": "ใครควรกำหนดว่ารุ่นทดแทนกระทบเอกสารเชื่อมหรือไม่?"
+              },
+              "options": [
+                {
+                  "en": "Only the delivery driver",
+                  "he": "רק נהג המשלוח",
+                  "th": "เฉพาะคนขับส่ง"
+                },
+                {
+                  "en": "The responsible planning/technical reviewer, with the applicable authority route",
+                  "he": "בודק התכנון והטכני האחראי, לפי נתיב הרשות החל",
+                  "th": "ผู้ตรวจออกแบบ/เทคนิครับผิดชอบตามขั้นตอนหน่วยงานที่ใช้"
+                },
+                {
+                  "en": "Any customer visitor",
+                  "he": "כל מבקר לקוח",
+                  "th": "ผู้เยี่ยมลูกค้าคนใดก็ได้"
+                },
+                {
+                  "en": "No one if kW matches",
+                  "he": "אף אחד אם הקילוואט שווה",
+                  "th": "ไม่มี ถ้า kW เท่ากัน"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "A matching rating does not resolve compatibility or approval scope.",
+                "he": "דירוג שווה אינו פותר תאימות או היקף אישור.",
+                "th": "พิกัดเท่ากันไม่ตอบความเข้ากันได้หรือขอบเขตอนุมัติ"
+              }
+            },
+            {
+              "question": {
+                "en": "What does an application receipt establish by itself?",
+                "he": "מה אישור קליטת בקשה מוכיח בפני עצמו?",
+                "th": "ใบรับคำขอเพียงอย่างเดียวพิสูจน์อะไร?"
+              },
+              "options": [
+                {
+                  "en": "Export income eligibility",
+                  "he": "זכאות להכנסת הזרמה",
+                  "th": "สิทธิรายได้ส่งออก"
+                },
+                {
+                  "en": "All structural approval",
+                  "he": "כל האישור המבני",
+                  "th": "อนุมัติโครงสร้างทั้งหมด"
+                },
+                {
+                  "en": "Final energization clearance",
+                  "he": "אישור הפעלה סופי",
+                  "th": "อนุญาตจ่ายไฟสุดท้าย"
+                },
+                {
+                  "en": "That the application was received",
+                  "he": "שהבקשה התקבלה",
+                  "th": "ว่ารับคำขอแล้ว"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "The actual scope, status and conditions must be read separately.",
+                "he": "את ההיקף, הסטטוס והתנאים בפועל קוראים בנפרד.",
+                "th": "ต้องอ่านขอบเขต สถานะ และเงื่อนไขจริงแยก"
+              }
+            },
+            {
+              "question": {
+                "en": "Which handover item supports future fault diagnosis?",
+                "he": "איזה פריט מסירה תומך באבחון תקלות בעתיד?",
+                "th": "รายการส่งมอบใดช่วยวินิจฉัยขัดข้องอนาคต?"
+              },
+              "options": [
+                {
+                  "en": "As-built drawings and commissioning records",
+                  "he": "תוכניות כפי שבוצע ודוחות בדיקה",
+                  "th": "แบบ as-built และบันทึกเดินระบบ"
+                },
+                {
+                  "en": "Only a marketing photo",
+                  "he": "רק תמונת שיווק",
+                  "th": "เพียงภาพการตลาด"
+                },
+                {
+                  "en": "An old superseded drawing",
+                  "he": "תוכנית ישנה שהוחלפה",
+                  "th": "แบบเก่าถูกแทนแล้ว"
+                },
+                {
+                  "en": "A verbal “all done”",
+                  "he": "״הכול גמור״ בעל פה",
+                  "th": "พูดว่าเสร็จหมด"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "Service needs the actual configuration and verified baseline.",
+                "he": "שירות צריך תצורה בפועל וקו בסיס שנבדק.",
+                "th": "บริการต้องรู้รูปแบบจริงและฐานที่ตรวจ"
+              }
+            },
+            {
+              "question": {
+                "en": "What is a useful response to an unresolved interface question?",
+                "he": "מה תגובה מועילה לשאלת ממשק לא פתורה?",
+                "th": "ตอบคำถามจุดเชื่อมที่ยังไม่ตกลงอย่างไรจึงมีประโยชน์?"
+              },
+              "options": [
+                {
+                  "en": "Hide it in the price",
+                  "he": "להסתיר אותה במחיר",
+                  "th": "ซ่อนในราคา"
+                },
+                {
+                  "en": "Assume another team approved it",
+                  "he": "להניח שצוות אחר אישר",
+                  "th": "คิดว่าทีมอื่นอนุมัติแล้ว"
+                },
+                {
+                  "en": "Keep it open with an owner, evidence and dependency",
+                  "he": "להשאיר פתוח עם אחראי, ראיה ותלות",
+                  "th": "คงเปิดพร้อมเจ้าของ หลักฐาน และสิ่งที่พึ่งพา"
+                },
+                {
+                  "en": "Build first and document later",
+                  "he": "לבנות קודם ולתעד אחר כך",
+                  "th": "ทำก่อนบันทึกทีหลัง"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Explicit ownership prevents silent assumptions from becoming physical work.",
+                "he": "אחריות מפורשת מונעת מהנחות שקטות להפוך לעבודה פיזית.",
+                "th": "เจ้าของชัดป้องกันสมมติเงียบกลายเป็นงานจริง"
+              }
+            },
+            {
+              "question": {
+                "en": "Which statement about approvals is correct?",
+                "he": "איזו אמירה על אישורים נכונה?",
+                "th": "ข้อความใดเรื่องอนุมัติถูกต้อง?"
+              },
+              "options": [
+                {
+                  "en": "One “solar approved” label covers every permission",
+                  "he": "תווית ״סולאר מאושר״ מכסה כל הרשאה",
+                  "th": "ป้ายโซลาร์อนุมัติครอบคลุมทุกสิทธิ"
+                },
+                {
+                  "en": "Connection and export-sale questions must be distinguished",
+                  "he": "צריך להפריד שאלות חיבור ומכירת עודפים",
+                  "th": "ต้องแยกคำถามเชื่อมและขายส่วนเกิน"
+                },
+                {
+                  "en": "Payment proves technical acceptance",
+                  "he": "תשלום מוכיח קבלה טכנית",
+                  "th": "จ่ายเงินพิสูจน์รับเทคนิค"
+                },
+                {
+                  "en": "All projects follow one identical route",
+                  "he": "כל הפרויקטים עוברים מסלול זהה",
+                  "th": "ทุกโครงการใช้ขั้นตอนเดียวกัน"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "Each decision has its own scope, conditions and evidence.",
+                "he": "לכל החלטה היקף, תנאים וראיות משלה.",
+                "th": "แต่ละการตัดสินใจมีขอบเขต เงื่อนไข และหลักฐานของตน"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-design",
+            "base-lifecycle",
+            "base-pea",
+            "base-controls"
+          ]
+        },
+        {
+          "num": 8,
+          "title": {
+            "en": "Foundation capstone: review an island property case",
+            "he": "משימת בסיס: בודקים תיק נכס באי",
+            "th": "ภารกิจพื้นฐาน: ตรวจกรณีทรัพย์สินบนเกาะ"
+          },
+          "summary": {
+            "en": "Combine energy, backup, site evidence, safety and approvals into one defensible handover.",
+            "he": "מחברים אנרגיה, גיבוי, ראיות אתר, בטיחות ואישורים למסירה שאפשר להצדיק.",
+            "th": "รวมพลังงาน สำรอง หลักฐานไซต์ ความปลอดภัย และอนุมัติเป็นชุดส่งมอบที่อธิบายได้"
+          },
+          "minutes": 50,
+          "objectives": [
+            {
+              "en": "Find inconsistent promises in a mixed technical and commercial brief.",
+              "he": "לזהות הבטחות לא עקביות בתדריך טכני ומסחרי משולב.",
+              "th": "หาคำรับปากไม่สอดคล้องในสรุปเทคนิคและการค้า"
+            },
+            {
+              "en": "Produce a short evidence-based decision memo.",
+              "he": "להפיק מזכר החלטה קצר שמבוסס על ראיות.",
+              "th": "ทำบันทึกตัดสินใจสั้นตามหลักฐาน"
+            },
+            {
+              "en": "Choose the specialist path and know what to hand to other roles.",
+              "he": "לבחור התמחות ולדעת מה להעביר לתפקידים האחרים.",
+              "th": "เลือกเส้นทางเฉพาะและรู้ว่าต้องส่งอะไรให้บทบาทอื่น"
+            }
+          ],
+          "sections": [
+            {
+              "title": {
+                "en": "Read the brief as a set of claims",
+                "he": "קוראים את התדריך כאוסף טענות",
+                "th": "อ่านสรุปเป็นชุดข้อกล่าวอ้าง"
+              },
+              "paragraphs": [
+                {
+                  "en": "For this training case, a villa operator wants lower daytime imports and four hours of backup for selected loads. A draft proposes 16 modules at 500 W, a battery and “full energy independence.” Roof suitability is unconfirmed and no export-sale evidence is attached. Your first task is to separate the stated needs from the unsupported promises.",
+                  "he": "במקרה הלימודי הזה מפעיל וילה רוצה פחות יבוא ביום וארבע שעות גיבוי לעומסים נבחרים. טיוטה מציעה 16 פאנלים של 500 ואט, סוללה ו״עצמאות אנרגטית מלאה״. התאמת הגג לא אושרה ולא מצורפת ראיית מכירת עודפים. המשימה הראשונה היא להפריד צרכים שנאמרו מהבטחות ללא ביסוס.",
+                  "th": "กรณีฝึกนี้ผู้ดูแลวิลล่าต้องการลดไฟนำเข้ากลางวันและสำรองโหลดที่เลือกสี่ชั่วโมง ร่างเสนอ 16 แผง 500 W พร้อมแบตเตอรี่และ “อิสระพลังงานเต็มรูปแบบ” ยังไม่ยืนยันหลังคาและไม่มีหลักฐานขายส่วนเกิน งานแรกคือแยกความต้องการจริงจากคำรับปากไม่มีหลักฐาน"
+                },
+                {
+                  "en": "Create three columns: verified fact, training assumption and open decision. The module arithmetic is a calculation from a stated assumption, not proof that the roof can hold the array. A battery label is not a backup acceptance test. An email subject line is not proof of every approval. This classification is the foundation of a useful review.",
+                  "he": "צרו שלוש עמודות: עובדה בדוקה, הנחת תרגול והחלטה פתוחה. חישוב הפאנלים נובע מהנחה מוצהרת, ואינו הוכחה שהגג יכול לשאת מערך. תווית סוללה אינה בדיקת קבלת גיבוי. נושא מייל אינו הוכחה לכל אישור. הסיווג הזה הוא הבסיס לבדיקה מועילה.",
+                  "th": "ทำสามคอลัมน์: ข้อเท็จจริงตรวจแล้ว สมมติฐานฝึก และการตัดสินใจค้าง เลขแผงคำนวณจากสมมติฐานที่ระบุ ไม่ใช่พิสูจน์หลังคารับได้ ป้ายแบตเตอรี่ไม่ใช่ทดสอบรับสำรอง หัวอีเมลไม่ใช่หลักฐานทุกอนุมัติ การแยกนี้คือฐานตรวจที่มีประโยชน์"
+                }
+              ],
+              "sourceIds": [
+                "base-design"
+              ]
+            },
+            {
+              "title": {
+                "en": "Reconcile the energy before discussing money",
+                "he": "מתאימים אנרגיה לפני שמדברים על כסף",
+                "th": "กระทบยอดพลังงานก่อนคุยเงิน"
+              },
+              "paragraphs": [
+                {
+                  "en": "Use the provided interval ledger before applying any financial value. Keep production, direct use, import and surplus separate. A four-hour sample can demonstrate the accounting method; it cannot represent a year without a justified sampling and modeling process. Do not multiply a short sunny observation into an annual savings guarantee.",
+                  "he": "השתמשו ברישום לפי פרקי זמן לפני שנותנים ערך כספי. הפרידו ייצור, שימוש ישיר, יבוא ועודף. מדגם של ארבע שעות יכול להדגים את שיטת החשבון; הוא אינו מייצג שנה ללא דגימה ומידול מוצדקים. אין להכפיל תצפית קצרה בשמש להבטחת חיסכון שנתית.",
+                  "th": "ใช้บัญชีช่วงเวลาก่อนให้มูลค่าเงิน แยกผลิต ใช้ตรง นำเข้า และส่วนเกิน ตัวอย่างสี่ชั่วโมงสาธิตวิธีบัญชีได้ แต่แทนปีไม่ได้หากไม่มีกระบวนการสุ่มและแบบจำลองที่มีเหตุผล ห้ามขยายการสังเกตแดดสั้นเป็นรับประกันประหยัดปี"
+                },
+                {
+                  "en": "For a quote, finance needs the applicable tariff class and dated charge rules, while design needs a production estimate tied to the actual site. If export eligibility is unresolved, keep any export income out of the base decision or show it separately as a conditional scenario. A model assumption of zero export revenue does not decide the legal route.",
+                  "he": "להצעה, פיננסים צריכים קבוצת תעריף וכללי חיוב מתוארכים, ותכנון צריך אומדן תפוקה שקשור לאתר. אם זכאות להזרמה לא הוכרעה, משאירים הכנסה מהזרמה מחוץ להחלטת הבסיס או מציגים בנפרד תרחיש מותנה. הנחת מודל של אפס הכנסה מהזרמה אינה קובעת את נתיב הדין.",
+                  "th": "การเสนอราคาต้องให้การเงินมีประเภทอัตราและกฎคิดเงินมีวันที่ ส่วนออกแบบมีประมาณผลิตตามไซต์จริง หากสิทธิขายยังค้าง อย่ารวมรายได้ส่งออกในฐานตัดสินหรือแสดงแยกเป็นกรณีมีเงื่อนไข สมมติรายได้ส่งออกศูนย์ในแบบจำลองไม่ได้ตัดสินขั้นตอนกฎหมาย"
+                }
+              ],
+              "sourceIds": [
+                "base-model",
+                "base-pea"
+              ]
+            },
+            {
+              "title": {
+                "en": "Test continuity and buildability independently",
+                "he": "בודקים רציפות וישימות בנפרד",
+                "th": "ตรวจความต่อเนื่องกับสร้างได้แยกกัน"
+              },
+              "paragraphs": [
+                {
+                  "en": "The backup claim needs its own load list, starting state, usable energy, power limits and accepted interruption. A favorable solar annual forecast does not answer any of those outage questions. Likewise, enough roof area does not establish structural suitability, safe access or a compliant cable and equipment arrangement. Treat each as an independent acceptance boundary.",
+                  "he": "טענת הגיבוי צריכה רשימת עומסים, מצב התחלתי, אנרגיה שימושית, מגבלות הספק והפסקה מותרת משלה. תחזית שנתית סולארית טובה אינה עונה על שאלות ההפסקה האלה. בדומה, שטח גג מספיק אינו קובע התאמה מבנית, גישה בטוחה או סידור כבלים וציוד תקין. כל אחד הוא גבול קבלה עצמאי.",
+                  "th": "คำกล่าวอ้างสำรองต้องมีรายการโหลด สถานะเริ่ม พลังงานใช้ได้ ขีดจำกัดกำลัง และช่วงสะดุดของตน ผลคาดโซลาร์รายปีดีไม่ตอบคำถามตอนไฟดับเหล่านี้ พื้นที่หลังคาพอก็ไม่ได้ยืนยันโครงสร้าง ทางเข้าปลอดภัย หรือจัดสายและอุปกรณ์ตามข้อกำหนด ให้แต่ละข้อเป็นขอบเขตรับตรวจอิสระ"
+                },
+                {
+                  "en": "Write a decision that can remain useful when one input changes. “Proceed to detailed review if roof and approval checks pass” is different from “ready to install.” Identify work that can safely continue, such as document collection, and work that depends on unresolved technical or authority review. This avoids both reckless release and unnecessary paralysis.",
+                  "he": "כתבו החלטה שנשארת שימושית כשקלט משתנה. ״להתקדם לבדיקה מפורטת אם בדיקות גג ואישורים עוברות״ שונה מ״מוכן להתקנה״. זהו מה אפשר להמשיך בבטחה, כגון איסוף מסמכים, ומה תלוי בבדיקה טכנית או ברשות שטרם הושלמה. כך נמנעים גם משחרור פזיז וגם משיתוק מיותר.",
+                  "th": "เขียนการตัดสินใจที่ยังใช้ได้เมื่อข้อมูลหนึ่งเปลี่ยน “เดินหน้าตรวจละเอียดหากผ่านหลังคาและอนุมัติ” ต่างจาก “พร้อมติดตั้ง” ระบุงานที่ทำต่อปลอดภัยได้ เช่น เก็บเอกสาร และงานที่พึ่งตรวจเทคนิคหรือหน่วยงานค้าง เพื่อไม่ปล่อยเสี่ยงหรือหยุดทุกอย่างเกินจำเป็น"
+                }
+              ],
+              "sourceIds": [
+                "base-battery",
+                "base-roof-safety"
+              ]
+            },
+            {
+              "title": {
+                "en": "Make the handover useful to the next role",
+                "he": "הופכים את המסירה לשימושית לתפקיד הבא",
+                "th": "ทำให้ส่งมอบมีประโยชน์ต่อบทบาทถัดไป"
+              },
+              "paragraphs": [
+                {
+                  "en": "Your final memo should fit on a short, readable page with attachments. Include the customer’s priorities, the reconciled energy example, backup shortfalls, missing site evidence, approval questions and named owners. Every conclusion should point to a fact or an assumption. A confident sentence without a traceable basis is not stronger than an honestly unresolved question.",
+                  "he": "מזכר הסיום צריך להתאים לעמוד קצר וקריא עם נספחים. כללו סדרי עדיפויות של הלקוח, דוגמת אנרגיה מותאמת, פערי גיבוי, ראיות אתר חסרות, שאלות אישור ואחראים. כל מסקנה מפנה לעובדה או להנחה. משפט בטוח ללא בסיס מתועד אינו חזק יותר משאלה שלא נפתרה בכנות.",
+                  "th": "บันทึกสุดท้ายควรสั้นอ่านง่ายพร้อมแนบ รวมลำดับลูกค้า ตัวอย่างพลังงานที่กระทบยอด ช่องว่างสำรอง หลักฐานไซต์ขาด คำถามอนุมัติ และเจ้าของ ทุกข้อสรุปชี้ข้อเท็จจริงหรือสมมติฐาน ประโยคมั่นใจไร้ฐานตรวจไม่แข็งแรงกว่าคำถามค้างที่ตรงไปตรงมา"
+                },
+                {
+                  "en": "Then continue into the role you will perform: installation, technical service, sales, finance, management or planning and permitting. The foundation is shared and counts once across paths. Specialist lessons deepen the relevant decisions and end with an evidence package for a human trainer to assess. Completing reading and quizzes is preparation, not a substitute for supervised practical competence.",
+                  "he": "אחר כך ממשיכים לתפקיד שתבצעו: התקנה, שירות טכני, מכירות, פיננסים, ניהול או תכנון ורישוי. הבסיס משותף ונספר פעם אחת בכל המסלולים. השיעורים הייעודיים מעמיקים בהחלטות הרלוונטיות ומסתיימים בתיק ראיות שאחראי אנושי בודק. קריאה וחידונים הם הכנה ולא תחליף לכשירות מעשית בהנחיה.",
+                  "th": "จากนั้นไปบทบาทที่จะทำ: ติดตั้ง บริการเทคนิค ขาย การเงิน จัดการ หรือออกแบบและอนุญาต พื้นฐานใช้ร่วมและนับครั้งเดียวในทุกเส้นทาง บทเฉพาะลงลึกการตัดสินใจและจบด้วยชุดหลักฐานให้ผู้ฝึกสอนประเมิน การอ่านและแบบทดสอบคือเตรียม ไม่แทนความสามารถปฏิบัติภายใต้กำกับ"
+                }
+              ],
+              "sourceIds": [
+                "base-lifecycle",
+                "base-controls"
+              ]
+            }
+          ],
+          "workedExample": {
+            "title": {
+              "en": "An equal-total trap",
+              "he": "מלכודת הסכומים השווים",
+              "th": "กับดักยอดรวมเท่ากัน"
+            },
+            "scenario": {
+              "en": "Training assumptions: four one-hour PV/load pairs in kWh are (1,2), (4,3), (6,4), (3,5), with no battery in this balance. A draft says equal totals mean no grid imports.",
+              "he": "הנחות תרגול: ארבעה זוגות ייצור/עומס לשעה בקוט״ש הם (1,2), (4,3), (6,4), (3,5), ללא סוללה במאזן. בטיוטה נטען שסכומים שווים אומרים אפס יבוא.",
+              "th": "สมมติฐานฝึก: คู่ผลิต/โหลดสี่ช่วง ช่วงละชั่วโมง เป็น kWh คือ (1,2), (4,3), (6,4), (3,5) ไม่มีแบตเตอรี่ในบัญชี ร่างอ้างว่ายอดเท่าหมายถึงไม่นำเข้า"
+            },
+            "steps": [
+              {
+                "en": "PV total = 14 kWh; load total = 14 kWh.",
+                "he": "סך ייצור = 14 קוט״ש; סך עומס = 14 קוט״ש.",
+                "th": "ผลิตรวม = 14 kWh โหลดรวม = 14 kWh"
+              },
+              {
+                "en": "Direct use = 1 + 3 + 4 + 3 = 11 kWh.",
+                "he": "שימוש ישיר = 1 + 3 + 4 + 3 = 11 קוט״ש.",
+                "th": "ใช้ตรง = 1 + 3 + 4 + 3 = 11 kWh"
+              },
+              {
+                "en": "Import = 1 + 0 + 0 + 2 = 3 kWh; surplus = 0 + 1 + 2 + 0 = 3 kWh.",
+                "he": "יבוא = 1 + 0 + 0 + 2 = 3 קוט״ש; עודף = 0 + 1 + 2 + 0 = 3 קוט״ש.",
+                "th": "นำเข้า = 1 + 0 + 0 + 2 = 3 kWh ส่วนเกิน = 0 + 1 + 2 + 0 = 3 kWh"
+              }
+            ],
+            "result": {
+              "en": "The draft claim is false. Both ratios are 11/14 ≈ 78.6% for this sample, which is not an annual forecast.",
+              "he": "טענת הטיוטה שגויה. שני היחסים הם 11/14 ≈ 78.6% במדגם הזה, שאינו תחזית שנתית.",
+              "th": "คำอ้างในร่างผิด ทั้งสองอัตรา = 11/14 ≈ 78.6% สำหรับตัวอย่างนี้ ไม่ใช่พยากรณ์ทั้งปี"
+            }
+          },
+          "exercise": {
+            "title": {
+              "en": "Prepare your foundation decision memo",
+              "he": "הכינו מזכר החלטה לסיום הבסיס",
+              "th": "จัดบันทึกตัดสินใจจบพื้นฐาน"
+            },
+            "brief": {
+              "en": "Use the four-hour ledger above. Also assume a candidate battery starts with 12 kWh of DC energy BEFORE the stated 20% operational reserve, has 90% conversion efficiency and must support 2.4 kW for 4 hours. The reserve has not already been deducted from 12 kWh. Continuous power compatibility is still unverified. Roof and export documentation remain open.",
+              "he": "השתמשו במאזן ארבע השעות לעיל. הניחו שסוללה מוצעת מתחילה עם 12 קוט״ש אנרגיית DC לפני הפחתת העתודה התפעולית הנתונה של 20%, נצילות ההמרה 90%, והיא נדרשת לספק 2.4 קילוואט במשך 4 שעות. העתודה טרם הופחתה מה־12 קוט״ש. התאמה להספק הרציף עדיין לא אומתה. מסמכי הגג וההזרמה עדיין פתוחים.",
+              "th": "ใช้บัญชีพลังงานสี่ชั่วโมงข้างต้น และสมมติว่าแบตเตอรี่ที่พิจารณาเริ่มด้วยพลังงาน DC 12 kWh ก่อนหักสำรองการทำงาน 20% ที่ระบุ ประสิทธิภาพแปลง 90% และต้องจ่าย 2.4 kW นาน 4 ชั่วโมง ค่า 12 kWh ยังไม่ได้หักสำรอง ยังไม่ยืนยันความเข้ากันได้ด้านกำลังต่อเนื่อง และเอกสารหลังคากับการส่งออกยังไม่ครบ"
+            },
+            "deliverables": [
+              {
+                "en": "A one-page memo with energy balance, backup arithmetic and a conditional next step.",
+                "he": "מזכר עמוד עם מאזן אנרגיה, חישוב גיבוי וצעד המשך מותנה.",
+                "th": "บันทึกหนึ่งหน้าพร้อมสมดุลพลังงาน เลขสำรอง และขั้นต่อมีเงื่อนไข"
+              },
+              {
+                "en": "An owner/evidence table for roof, power compatibility, tariff and export questions.",
+                "he": "טבלת אחראי וראיה לשאלות גג, תאימות הספק, תעריף והזרמה.",
+                "th": "ตารางเจ้าของ/หลักฐานเรื่องหลังคา กำลัง อัตรา และส่งออก"
+              }
+            ],
+            "solution": {
+              "en": "The sample imports 3 kWh. Battery AC energy = 12 × 0.8 × 0.9 = 8.64 kWh, giving 3.6 hours at 2.4 kW; the four-hour requirement needs 9.6 kWh AC. The candidate fails the stated energy target even before checking power. Request revised backup design, roof review and the applicable tariff/approval evidence. Continue document collection; do not release installation or promise independence.",
+              "he": "המדגם מייבא 3 קוט״ש. אנרגיית AC מהסוללה = 12 × 0.8 × 0.9 = 8.64 קוט״ש, כלומר 3.6 שעות בעומס 2.4 קילוואט; ארבע שעות דורשות 9.6 קוט״ש AC. החלופה נכשלת ביעד האנרגיה עוד לפני בדיקת הספק. מבקשים תכנון גיבוי מתוקן, בדיקת גג וראיות תעריף ואישורים. ממשיכים איסוף מסמכים; לא משחררים התקנה ולא מבטיחים עצמאות.",
+              "th": "ตัวอย่างนำเข้า 3 kWh แบตเตอรี่ AC = 12 × 0.8 × 0.9 = 8.64 kWh ให้ 3.6 ชั่วโมงที่ 2.4 kW ข้อกำหนดสี่ชั่วโมงต้อง 9.6 kWh AC ตัวเลือกไม่ผ่านพลังงานก่อนตรวจด้านกำลังด้วยซ้ำ ขอแก้แบบสำรอง ตรวจหลังคา และหลักฐานอัตรา/อนุมัติที่ใช้ เก็บเอกสารต่อได้ แต่ไม่ปล่อยติดตั้งหรือสัญญาอิสระ"
+            }
+          },
+          "checklist": [
+            {
+              "en": "The memo separates measured facts, assumptions and unresolved decisions.",
+              "he": "המזכר מפריד עובדות מדודות, הנחות והחלטות פתוחות.",
+              "th": "บันทึกแยกสิ่งวัด สมมติฐาน และการตัดสินใจค้าง"
+            },
+            {
+              "en": "Both energy and power boundaries are explicit.",
+              "he": "גבולות אנרגיה והספק מפורשים.",
+              "th": "ขอบเขตพลังงานและกำลังชัด"
+            },
+            {
+              "en": "Each next action has an owner and acceptance evidence.",
+              "he": "לכל פעולה הבאה יש אחראי וראיית קבלה.",
+              "th": "ทุกงานถัดไปมีเจ้าของและหลักฐานรับตรวจ"
+            }
+          ],
+          "quiz": [
+            {
+              "question": {
+                "en": "The four-hour sample has 14 kWh PV, 14 kWh load and 11 kWh direct use. Import is?",
+                "he": "במדגם ארבע השעות יש 14 קוט״ש ייצור, 14 עומס ו־11 שימוש ישיר. מה היבוא?",
+                "th": "ตัวอย่างสี่ชั่วโมงผลิต 14 kWh โหลด 14 ใช้ตรง 11 นำเข้าเท่าใด?"
+              },
+              "options": [
+                {
+                  "en": "0 kWh",
+                  "he": "0 קוט״ש",
+                  "th": "0 kWh"
+                },
+                {
+                  "en": "14 kWh",
+                  "he": "14 קוט״ש",
+                  "th": "14 kWh"
+                },
+                {
+                  "en": "3 kWh",
+                  "he": "3 קוט״ש",
+                  "th": "3 kWh"
+                },
+                {
+                  "en": "28 kWh",
+                  "he": "28 קוט״ש",
+                  "th": "28 kWh"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Import equals the unmatched load: 14 − 11 = 3 kWh.",
+                "he": "יבוא שווה לעומס שלא כוסה: 14 − 11 = 3 קוט״ש.",
+                "th": "นำเข้าคือโหลดที่ไม่ครอบคลุม 14 − 11 = 3 kWh"
+              }
+            },
+            {
+              "question": {
+                "en": "12 kWh DC with 20% reserve and 90% conversion gives what usable AC energy?",
+                "he": "12 קוט״ש DC עם עתודה 20% והמרה 90% נותנים כמה אנרגיית AC שימושית?",
+                "th": "12 kWh DC เก็บสำรอง 20% แปลง 90% ให้ AC ใช้ได้เท่าไร?"
+              },
+              "options": [
+                {
+                  "en": "8.64 kWh",
+                  "he": "8.64 קוט״ש",
+                  "th": "8.64 kWh"
+                },
+                {
+                  "en": "12 kWh",
+                  "he": "12 קוט״ש",
+                  "th": "12 kWh"
+                },
+                {
+                  "en": "10.8 kWh ignoring reserve",
+                  "he": "10.8 קוט״ש תוך התעלמות מעתודה",
+                  "th": "10.8 kWh โดยเมินสำรอง"
+                },
+                {
+                  "en": "14.4 kWh",
+                  "he": "14.4 קוט״ש",
+                  "th": "14.4 kWh"
+                }
+              ],
+              "correct": 0,
+              "explanation": {
+                "en": "Apply reserve and conversion once: 12 × 0.8 × 0.9.",
+                "he": "מחילים עתודה והמרה פעם אחת: 12 × 0.8 × 0.9.",
+                "th": "ใช้สำรองและแปลงครั้งเดียว 12 × 0.8 × 0.9"
+              }
+            },
+            {
+              "question": {
+                "en": "What does the four-hour energy sample establish about annual savings?",
+                "he": "מה מדגם ארבע שעות מוכיח על חיסכון שנתי?",
+                "th": "ตัวอย่างพลังงานสี่ชั่วโมงยืนยันอะไรเรื่องประหยัดทั้งปี?"
+              },
+              "options": [
+                {
+                  "en": "A guaranteed annual value",
+                  "he": "ערך שנתי מובטח",
+                  "th": "มูลค่าปีรับประกัน"
+                },
+                {
+                  "en": "Complete seasonal behavior",
+                  "he": "התנהגות עונתית מלאה",
+                  "th": "พฤติกรรมทุกฤดู"
+                },
+                {
+                  "en": "Automatic tariff eligibility",
+                  "he": "זכאות תעריף אוטומטית",
+                  "th": "สิทธิอัตราอัตโนมัติ"
+                },
+                {
+                  "en": "Only the sample balance; annual modeling needs further evidence",
+                  "he": "רק את מאזן המדגם; מידול שנתי צריך ראיות נוספות",
+                  "th": "เพียงสมดุลตัวอย่าง แบบจำลองปีต้องหลักฐานเพิ่ม"
+                }
+              ],
+              "correct": 3,
+              "explanation": {
+                "en": "A short sample cannot silently become a representative year.",
+                "he": "מדגם קצר אינו הופך בשקט לשנה מייצגת.",
+                "th": "ตัวอย่างสั้นไม่กลายเป็นปีตัวแทนโดยเงียบ"
+              }
+            },
+            {
+              "question": {
+                "en": "Which action can continue while roof suitability remains unapproved?",
+                "he": "איזו פעולה יכולה להימשך כשהתאמת הגג טרם אושרה?",
+                "th": "อะไรทำต่อได้ขณะยังไม่อนุมัติความเหมาะสมหลังคา?"
+              },
+              "options": [
+                {
+                  "en": "Install based on the drone image",
+                  "he": "להתקין לפי צילום רחפן",
+                  "th": "ติดตั้งตามภาพโดรน"
+                },
+                {
+                  "en": "Collect documents and request responsible engineering review",
+                  "he": "לאסוף מסמכים ולבקש בדיקת הנדסה אחראית",
+                  "th": "เก็บเอกสารและขอวิศวกรรับผิดชอบตรวจ"
+                },
+                {
+                  "en": "Declare structural approval",
+                  "he": "להכריז על אישור מבני",
+                  "th": "ประกาศอนุมัติโครงสร้าง"
+                },
+                {
+                  "en": "Ignore the roof question",
+                  "he": "להתעלם משאלת הגג",
+                  "th": "เมินคำถามหลังคา"
+                }
+              ],
+              "correct": 1,
+              "explanation": {
+                "en": "Useful preparation can continue without releasing dependent physical work.",
+                "he": "הכנה מועילה יכולה להמשיך בלי לשחרר עבודה פיזית שתלויה באישור.",
+                "th": "เตรียมที่มีประโยชน์ต่อได้โดยไม่ปล่อยงานจริงที่พึ่งอนุมัติ"
+              }
+            },
+            {
+              "question": {
+                "en": "After the foundation, how are practical specialist skills assessed?",
+                "he": "אחרי הבסיס, איך בודקים מיומנויות מעשיות ייעודיות?",
+                "th": "หลังพื้นฐาน ทักษะเฉพาะภาคปฏิบัติประเมินอย่างไร?"
+              },
+              "options": [
+                {
+                  "en": "Only by opening all pages",
+                  "he": "רק בפתיחת כל העמודים",
+                  "th": "เพียงเปิดทุกหน้า"
+                },
+                {
+                  "en": "By a logo on a certificate",
+                  "he": "בלוגו על תעודה",
+                  "th": "โลโก้บนใบรับรอง"
+                },
+                {
+                  "en": "Through role exercises and evidence reviewed by a responsible trainer",
+                  "he": "בתרגילי תפקיד וראיות שבודק אחראי ההדרכה",
+                  "th": "ผ่านแบบฝึกบทบาทและหลักฐานที่ผู้ฝึกสอนรับผิดชอบตรวจ"
+                },
+                {
+                  "en": "Automatically from the monthly bill",
+                  "he": "אוטומטית מהחשבון החודשי",
+                  "th": "อัตโนมัติจากบิลเดือน"
+                }
+              ],
+              "correct": 2,
+              "explanation": {
+                "en": "Learning checkpoints and supervised practical assessment serve different purposes.",
+                "he": "נקודות בדיקה בלמידה והערכה מעשית בהנחיה משרתות מטרות שונות.",
+                "th": "จุดตรวจการเรียนกับประเมินปฏิบัติภายใต้กำกับมีเป้าหมายต่างกัน"
+              }
+            }
+          ],
+          "sourceIds": [
+            "base-design",
+            "base-model",
+            "base-pea",
+            "base-battery",
+            "base-roof-safety",
+            "base-lifecycle",
+            "base-controls"
+          ]
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "base-pv",
+      "title": "Solar Photovoltaic Cell Basics",
+      "publisher": "US Department of Energy",
+      "url": "https://www.energy.gov/cmei/systems/solar-photovoltaic-cell-basics",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "PV conversion and cell technologies; a technical explanation, not Thai installation rules.",
+        "he": "המרה פוטו־וולטאית וטכנולוגיות תאים; הסבר טכני ולא כללי התקנה בתאילנד.",
+        "th": "อธิบายการแปลงพลังงานของเซลล์ PV ไม่ใช่กฎติดตั้งของไทย"
+      }
+    },
+    {
+      "id": "base-inverter",
+      "title": "Solar Integration: Inverters and Grid Services Basics",
+      "publisher": "US Department of Energy",
+      "url": "https://www.energy.gov/cmei/systems/solar-integration-inverters-and-grid-services-basics",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "DC/AC conversion and grid-following versus grid-forming functions. Actual capabilities require the product manual.",
+        "he": "המרת DC/AC והבדל בין עקיבה אחר הרשת ליצירת רשת. יכולות בפועל נבדקות במדריך המוצר.",
+        "th": "การแปลง DC/AC และความแตกต่างระหว่างตามกริดกับสร้างกริด ต้องตรวจความสามารถจริงจากคู่มือผลิตภัณฑ์"
+      }
+    },
+    {
+      "id": "base-efficiency",
+      "title": "Solar Photovoltaic Performance and Efficiency Basics",
+      "publisher": "US Department of Energy",
+      "url": "https://www.energy.gov/cmei/systems/solar-photovoltaic-performance-and-efficiency-basics",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Efficiency, temperature and optical losses; does not predict a specific property.",
+        "he": "נצילות, טמפרטורה והפסדים אופטיים; אינו תחזית לנכס מסוים.",
+        "th": "ประสิทธิภาพ อุณหภูมิ และการสูญเสียทางแสง ไม่ใช่คำพยากรณ์สำหรับทรัพย์สินเฉพาะ"
+      }
+    },
+    {
+      "id": "base-units",
+      "title": "Measuring electricity",
+      "publisher": "US Energy Information Administration",
+      "url": "https://www.eia.gov/energyexplained/electricity/measuring-electricity.php",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Power, energy and meter concepts; no Thai tariff information.",
+        "he": "מושגי הספק, אנרגיה ומדידה; ללא מידע על תעריפים בתאילנד.",
+        "th": "แนวคิดกำลัง พลังงาน และมิเตอร์ ไม่มีข้อมูลอัตราค่าไฟไทย"
+      }
+    },
+    {
+      "id": "base-storage",
+      "title": "Solar Integration: Solar Energy and Storage Basics",
+      "publisher": "US Department of Energy",
+      "url": "https://www.energy.gov/cmei/systems/solar-integration-solar-energy-and-storage-basics",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Energy storage power, energy capacity and conversion losses; examples here are original training assumptions.",
+        "he": "הספק אגירה, קיבולת אנרגיה והפסדי המרה; הדוגמאות בשיעורים הן הנחות לימודיות מקוריות.",
+        "th": "กำลังและความจุพลังงานของระบบกักเก็บ รวมการสูญเสีย ตัวอย่างในบทเป็นสมมติฐานฝึกที่แต่งขึ้น"
+      }
+    },
+    {
+      "id": "base-battery",
+      "title": "Batteries — Solar Consumer Guide",
+      "publisher": "Australian Government",
+      "url": "https://www.energy.gov.au/solar/get-know-solar-technology/batteries",
+      "published": "Undated; includes 2025 program information",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Backup configuration, usable energy and power distinctions only. Australian subsidies, accreditation and rules are not applied to Thailand.",
+        "he": "רק תצורת גיבוי והבדל בין אנרגיה שימושית להספק. סבסוד, הסמכות וכללים אוסטרליים אינם מוחלים על תאילנד.",
+        "th": "ใช้เฉพาะแนวคิดการสำรองไฟ พลังงานใช้ได้ และกำลัง ไม่ใช้เงินอุดหนุน การรับรอง หรือกฎออสเตรเลียกับไทย"
+      }
+    },
+    {
+      "id": "base-model",
+      "title": "PVWatts V8 API",
+      "publisher": "National Laboratory of the Rockies (NLR)",
+      "url": "https://developer.nlr.gov/docs/solar/pvwatts/v8/",
+      "published": "Version 8",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Model inputs and estimated output; input assumptions and local shading still require review.",
+        "he": "קלטים למודל ותפוקה משוערת; ההנחות והצללה מקומית עדיין דורשות בדיקה.",
+        "th": "ข้อมูลเข้าและผลผลิตประมาณของแบบจำลอง ยังต้องตรวจสมมติฐานและเงาในพื้นที่"
+      }
+    },
+    {
+      "id": "base-design",
+      "title": "Design considerations — Solar Consumer Guide",
+      "publisher": "Australian Government",
+      "url": "https://www.energy.gov.au/solar/solar-system-design/design-considerations",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "General shade, roof and design considerations; network rules remain jurisdiction-specific.",
+        "he": "שיקולי הצללה, גג ותכנון כלליים; כללי רשת תלויים ברשות המקומית.",
+        "th": "ข้อพิจารณาทั่วไปด้านเงา หลังคา และการออกแบบ กฎโครงข่ายขึ้นกับเขตอำนาจ"
+      }
+    },
+    {
+      "id": "base-climate",
+      "title": "Fact Sheet: Optimisation of Photovoltaic Systems for Different Climates",
+      "publisher": "IEA PVPS Task 13",
+      "url": "https://iea-pvps.org/fact-sheets/fs-t13-optimisation-climates-2025/",
+      "published": "August 2025",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Climate-related design and reliability stressors, not a certified site-specific design.",
+        "he": "השפעות אקלים על תכנון ואמינות, ולא תכנון מאושר לאתר מסוים.",
+        "th": "ปัจจัยภูมิอากาศต่อการออกแบบและความเชื่อถือได้ ไม่ใช่แบบที่รับรองสำหรับสถานที่เฉพาะ"
+      }
+    },
+    {
+      "id": "base-controls",
+      "title": "Hierarchy of Controls",
+      "publisher": "CDC / NIOSH",
+      "url": "https://www.cdc.gov/niosh/hierarchy-of-controls/index.html",
+      "published": "10 April 2024",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "General prevention framework; not a statement of Thai legal duties or training authorization.",
+        "he": "מסגרת כללית למניעה; אינה הגדרת חובות הדין התאילנדי או אישור לעבודה.",
+        "th": "กรอบป้องกันทั่วไป ไม่ใช่การระบุหน้าที่ตามกฎหมายไทยหรืออนุญาตให้ทำงาน"
+      }
+    },
+    {
+      "id": "base-falls",
+      "title": "Green Job Hazards — Solar Energy: Falls",
+      "publisher": "US OSHA",
+      "url": "https://www.osha.gov/green-jobs/solar/falls",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Recognition of roof, ladder and skylight hazards. US height thresholds are not imported into Thai practice.",
+        "he": "זיהוי סיכוני גג, סולם ופתחים. ספי גובה אמריקאיים אינם מיובאים לעבודה בתאילנד.",
+        "th": "การรู้จักอันตรายจากหลังคา บันได และช่องแสง ไม่ใช้เกณฑ์ความสูงสหรัฐเป็นข้อกำหนดไทย"
+      }
+    },
+    {
+      "id": "base-pea",
+      "title": "ประกาศและข้อกำหนดต่าง ๆ เกี่ยวกับการเชื่อมต่อระบบโครงข่ายไฟฟ้า",
+      "publisher": "Provincial Electricity Authority (PEA)",
+      "url": "https://www.pea.co.th/business-partner/regulation",
+      "published": "Index includes 30 June 2026 notice",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Official interconnection-document index, with separate generation and EV topics. Confirm the applicable document and project route with PEA.",
+        "he": "אינדקס רשמי למסמכי חיבור, עם נושאי ייצור ו־EV נפרדים. מאמתים מול PEA את המסמך ואת מסלול הפרויקט החלים.",
+        "th": "ดัชนีเอกสารเชื่อมต่ออย่างเป็นทางการ แยกหัวข้อผลิตไฟและ EV ต้องยืนยันเอกสารและขั้นตอนที่ใช้กับ PEA"
+      }
+    },
+    {
+      "id": "base-maintain",
+      "title": "Look after your solar system",
+      "publisher": "Australian Government",
+      "url": "https://www.energy.gov.au/solar/use-your-solar-system/look-after-your-solar-system",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "Hazard awareness and the need for qualified maintenance. Australian accreditation and suggested intervals are not Thai requirements.",
+        "he": "מודעות לסיכונים והצורך בתחזוקה מוסמכת. הסמכה אוסטרלית ומרווחים מוצעים אינם דרישות תאילנדיות.",
+        "th": "การรู้จักอันตรายและความจำเป็นของผู้มีคุณสมบัติบำรุง การรับรองและช่วงเวลาที่แนะนำของออสเตรเลียไม่ใช่ข้อกำหนดไทย"
+      }
+    },
+    {
+      "id": "base-roof-safety",
+      "title": "Guide to managing the risks of rooftop solar installation work",
+      "publisher": "Safe Work Australia",
+      "url": "https://www.safeworkaustralia.gov.au/doc/guide-managing-risks-rooftop-solar-installation-work",
+      "published": "September 2025; revision 1.1",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "General roof, electrical, battery, heat and emergency-planning guidance. Australian legal provisions do not establish Thai work authorization.",
+        "he": "הנחיה כללית לגגות, חשמל, סוללות, חום ותכנון חירום. הוראות הדין האוסטרלי אינן קובעות הרשאת עבודה בתאילנד.",
+        "th": "แนวทางทั่วไปเรื่องหลังคา ไฟฟ้า แบตเตอรี่ ความร้อน และแผนฉุกเฉิน กฎหมายออสเตรเลียไม่ได้กำหนดสิทธิทำงานในไทย"
+      }
+    },
+    {
+      "id": "base-lifecycle",
+      "title": "Life Cycle of Photovoltaic Systems: Operate and Maintain an Existing Photovoltaic System",
+      "publisher": "US Department of Energy / FEMP",
+      "url": "https://www.energy.gov/cmei/femp/life-cycle-photovoltaic-systems-operate-and-maintain-existing-photovoltaic-system",
+      "published": "Undated",
+      "accessed": "2026-09-07",
+      "scope": {
+        "en": "O&M planning, monitoring and weather-response concepts, not Thai contract or electrical law.",
+        "he": "מושגי תכנון תחזוקה, ניטור ותגובה למזג אוויר, ולא דיני חוזים או חשמל בתאילנד.",
+        "th": "แนวคิดแผนบำรุง เฝ้าติดตาม และตอบสนองอากาศ ไม่ใช่กฎหมายสัญญาหรือไฟฟ้าไทย"
+      }
+    }
+  ]
+}

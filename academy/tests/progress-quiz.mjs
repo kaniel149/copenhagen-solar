@@ -239,3 +239,65 @@ test('re-initializing quiz and completion button does not duplicate score/comple
   assert.equal(events, 2);
   assert.equal(api.getCompletedCount('technical'), 1);
 });
+
+test('new role lessons require 80% and preserve the existing lesson library', () => {
+  const original = { technical: track([2], { 2: { score: 2, total: 3, ts: 4 } }) };
+  const { api, disk } = createRuntime({ values: { [KEY]: JSON.stringify(original) } });
+  for (const id of ['foundation','installers','service','sales','finance','leadership','design-permitting']) {
+    assert.equal(api.saveQuizScore(id, 1, 3, 5), true);
+    assert.equal(api.hasPassedQuiz(id, 1), false);
+    assert.equal(api.markLessonComplete(id, 1), false);
+    assert.equal(api.saveQuizScore(id, 1, 4, 5), true);
+    assert.equal(api.markLessonComplete(id, 1), true);
+    assert.equal(api.isLessonComplete(id, 1), true);
+  }
+  assert.equal(api.isLessonComplete('technical',2),true);
+  assert.equal(api.getProgress().technical.quizScores[2].score,2);
+  const reload = createRuntime({ values: { [KEY]: disk.get(KEY) } });
+  assert.equal(reload.api.isLessonComplete('foundation',1),true);
+  assert.equal(reload.api.isLessonComplete('installers',1),true);
+  assert.equal(reload.api.isLessonComplete('service',1),true);
+  assert.equal(reload.api.isLessonComplete('technical',2),true);
+  assert.equal(reload.api.saveQuizScore('foundation',9,5,5),false);
+  assert.equal(reload.api.saveQuizScore('finance',10,5,5),false);
+});
+
+test('role quiz result uses the 80% threshold and explains answers in the active language', () => {
+  const { api, document } = createRuntime({ search:'?lang=he' });
+  api.initLanguage();
+  const questions = sampleQuestions(5).map(q => ({ ...q, explanation: { en:'Why this answer fits.', he:'הסבר לתשובה הזאת.', th:'เหตุผลของคำตอบนี้' } }));
+  api.initQuiz('finance',1,questions);
+  answerQuiz(document,3);
+  assert.equal(document.querySelector('#quiz-result').classList.contains('fail'),true);
+  assert.ok(document.querySelector('.quiz-answer-feedback').textContent.includes('הסבר לתשובה הזאת.'));
+  api.setLanguage('th');
+  assert.ok(document.querySelector('.quiz-answer-feedback').textContent.includes('เหตุผลของคำตอบนี้'));
+  document.querySelector('#quiz-retry-btn').click();
+  answerQuiz(document,4);
+  assert.equal(document.querySelector('#quiz-result').classList.contains('pass'),true);
+});
+
+test('cross-tab progress and back/forward restore refresh completion controls without writing', () => {
+  const { api, document, disk } = createRuntime();
+  api.initCompleteButton('finance', 1);
+  const button = document.getElementById('complete-btn');
+  assert.equal(button.disabled, true);
+  let writes = 0;
+  const write = api.localStorage.setItem;
+  api.localStorage.setItem = (...args) => { writes++; return write(...args); };
+  disk.set(KEY, JSON.stringify({ finance: track([], { 1: { score: 4, total: 5, ts: 1 } }) }));
+  const changed = new Event('storage'); Object.defineProperty(changed, 'key', { value: KEY });
+  api.dispatchEvent(changed);
+  assert.equal(button.disabled, false);
+  assert.equal(button.dataset.state, 'ready');
+  disk.set(KEY, JSON.stringify({ finance: track([1], { 1: { score: 4, total: 5, ts: 1 } }) }));
+  api.dispatchEvent(new Event('pageshow'));
+  assert.equal(button.dataset.state, 'completed');
+  assert.equal(writes, 0, 'refresh must not write progress or bounce storage events between tabs');
+  disk.delete(KEY);
+  const cleared = new Event('storage'); Object.defineProperty(cleared, 'key', { value: null });
+  api.dispatchEvent(cleared);
+  assert.equal(button.dataset.state, 'locked');
+  assert.equal(button.disabled, true);
+  assert.equal(writes, 0);
+});

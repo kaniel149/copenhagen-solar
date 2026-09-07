@@ -9,8 +9,12 @@ const LEGACY_KEYS = ['tm_academy_progress'];
 const LANGUAGE_KEY = 'bustan_academy_lang';
 const LAST_LESSON_KEY = 'bustan_academy_last_lesson';
 const ACADEMY_TRACK_TOTALS = Object.freeze({
-  'solar-fundamentals': 8, technical: 3, 'sales-bd': 4, 'ev-storage': 3, management: 6
+  'solar-fundamentals': 8, technical: 3, 'sales-bd': 4, 'ev-storage': 3, management: 6,
+  foundation: 8, installers: 9, service: 9, sales: 9, finance: 9,
+  leadership: 9, 'design-permitting': 9
 });
+const ROLE_TRACKS = new Set(['foundation', 'installers', 'service', 'sales', 'finance', 'leadership', 'design-permitting']);
+function academyPassRate(courseId) { return ROLE_TRACKS.has(courseId) ? 0.8 : 0.6; }
 const academyMemoryStorage = new Map();
 const academyPendingStorage = new Set();
 const academyQuizStates = new WeakMap();
@@ -43,6 +47,14 @@ function writeAcademyStorage(key, value) {
     academyPendingStorage.add(key);
     return false;
   }
+}
+
+// A notebook storage event carries the other tab's committed snapshot. Its UI
+// keeps any conflicting draft separately before adopting this shared baseline.
+function adoptAcademyStorageSnapshot(key, value) {
+  academyPendingStorage.delete(key);
+  if (value === null) academyMemoryStorage.delete(key);
+  else academyMemoryStorage.set(key, value);
 }
 
 function academyRecord(value) {
@@ -115,6 +127,17 @@ function saveProgress(data) {
   return progress;
 }
 
+// Other tabs and back/forward restoration can change persisted progress while
+// these controls remain mounted. Notify readers without writing the data again.
+function refreshAcademyProgress() {
+  document.dispatchEvent(new CustomEvent('academy:progress', { detail: { progress: getProgress() } }));
+}
+
+window.addEventListener('storage', event => {
+  if (event.key === null || event.key === STORAGE_KEY || LEGACY_KEYS.includes(event.key)) refreshAcademyProgress();
+});
+window.addEventListener('pageshow', refreshAcademyProgress);
+
 function checkAuth() { getProgress(); }
 
 function getLastLesson() {
@@ -147,7 +170,7 @@ function hasPassedQuiz(courseId, lessonNum) {
   const num = academyLessonNumber(courseId, lessonNum);
   if (num === null) return false;
   const score = getProgress()[courseId]?.quizScores[num];
-  return Boolean(score && score.score >= Math.ceil(score.total * 0.6));
+  return Boolean(score && score.score >= Math.ceil(score.total * academyPassRate(courseId)));
 }
 
 function markLessonComplete(courseId, lessonNum) {
@@ -264,7 +287,8 @@ function initQuiz(courseId, lessonNum, questions) {
         he: passed ? 'תשובה נכונה.' : `התשובה הנכונה: ${label} — ${answer}`,
         th: passed ? 'ถูกต้อง' : `คำตอบที่ถูกต้อง: ${label} — ${answer}`
       };
-      feedback.textContent = messages[lang];
+      const explanation = question.explanation?.[lang] || question.explanation?.en || '';
+      feedback.textContent = messages[lang] + (explanation ? ` ${explanation}` : '');
     });
     updateResultText();
     const retry = document.getElementById('quiz-retry-btn');
@@ -363,10 +387,11 @@ function showQuizResult(score, total, courseId, lessonNum) {
   if (!saveQuizScore(courseId, lessonNum, score, total)) return;
   const result = document.getElementById('quiz-result');
   if (!result) return;
-  const pass = score >= Math.ceil(total * 0.6);
+  const pass = score >= Math.ceil(total * academyPassRate(courseId));
   result.className = `quiz-result show ${pass ? 'pass' : 'fail'}`;
   result.dataset.score = score;
   result.dataset.total = total;
+  result.dataset.passRate = academyPassRate(courseId);
   updateResultText();
 }
 
@@ -375,7 +400,7 @@ function updateResultText() {
   if (!result || result.dataset.score === undefined || result.dataset.total === undefined) return;
   const score = Number(result.dataset.score);
   const total = Number(result.dataset.total);
-  const pass = score >= Math.ceil(total * 0.6);
+  const pass = score >= Math.ceil(total * (Number(result.dataset.passRate) || 0.6));
   const messages = {
     en: pass ? `Great job! ${score}/${total} correct!` : `${score}/${total} — Review the material and try again.`,
     he: pass ? `כל הכבוד! ${score}/${total} תשובות נכונות!` : `${score}/${total} — חזור על החומר ונסה שוב.`,

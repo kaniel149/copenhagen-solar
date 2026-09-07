@@ -1,30 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bustan-academy">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="Lesson 4: Bustan Energy Economic Model — Bustan Energy Academy" data-he="שיעור 4: מודל כלכלי של Bustan Energy — Bustan Energy Academy" data-th="บทเรียนที่ 4: แบบจำลองเศรษฐกิจของ Bustan Energy — Bustan Energy Academy">Lesson 4: Bustan Energy Economic Model — Bustan Energy Academy</title>
-  <link rel="stylesheet" href="../assets/academy.css">
-  <script src="../assets/academy.js" defer></script>
+  <link rel="stylesheet" href="../assets/academy.css?v=academy-20260907">
+  <script src="../assets/academy.js?v=academy-20260907" defer></script>
   <style>
     .lesson-image { width: 100%; max-width: 700px; border-radius: 12px; margin: 20px auto; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-    .flow-diagram { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 24px 0; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
-    .flow-step { background: rgba(0,214,143,0.1); border: 1px solid rgba(0,214,143,0.3); border-radius: 8px; padding: 10px 16px; font-size: 0.95em; text-align: center; }
-    .flow-arrow { font-size: 1.3em; color: #00D68F; }
-    .model-card { margin: 20px 0; padding: 24px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
-    .model-card h3 { color: #00D68F; margin-bottom: 12px; }
+    .flow-diagram { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 24px 0; padding: 20px; background: rgba(39,52,47,0.03); border-radius: 12px; border: 1px solid rgba(39,52,47,0.08); }
+    .flow-step { background: rgba(0,111,107,0.1); border: 1px solid rgba(0,111,107,0.3); border-radius: 8px; padding: 10px 16px; font-size: 0.95em; text-align: center; }
+    .flow-arrow { font-size: 1.3em; color: #006F6B; }
+    .model-card { margin: 20px 0; padding: 24px; background: rgba(39,52,47,0.03); border-radius: 12px; border: 1px solid rgba(39,52,47,0.08); }
+    .model-card h3 { color: #006F6B; margin-bottom: 12px; }
     .model-card .model-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: 600; margin-bottom: 12px; }
-    .badge-epc { background: rgba(0,214,143,0.2); color: #00D68F; }
-    .badge-ppa { background: rgba(100,149,237,0.2); color: #6495ED; }
-    .badge-lease { background: rgba(255,165,0,0.2); color: #FFA500; }
+    .badge-epc { background: rgba(0,111,107,0.2); color: #006F6B; }
+    .badge-ppa { background: rgba(100,149,237,0.2); color: #006F6B; }
+    .badge-lease { background: rgba(255,165,0,0.2); color: #8B5D13; }
     .calc-steps { counter-reset: calc-step; list-style: none; padding: 0; }
-    .calc-steps li { counter-increment: calc-step; padding: 12px 16px 12px 48px; position: relative; margin-bottom: 8px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 3px solid rgba(0,214,143,0.3); }
-    .calc-steps li::before { content: counter(calc-step); position: absolute; left: 12px; top: 12px; width: 24px; height: 24px; background: rgba(0,214,143,0.15); color: #00D68F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; }
-    .faq-item { margin: 16px 0; padding: 16px 20px; background: rgba(255,255,255,0.02); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
-    .faq-item .faq-q { font-weight: 600; color: #fff; margin-bottom: 8px; }
-    .faq-item .faq-a { color: rgba(255,255,255,0.75); }
-    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,214,143,0.08); border-left: 4px solid #00D68F; border-radius: 0 8px 8px 0; }
+    .calc-steps li { counter-increment: calc-step; padding: 12px 16px 12px 48px; position: relative; margin-bottom: 8px; background: rgba(39,52,47,0.02); border-radius: 8px; border-left: 3px solid rgba(0,111,107,0.3); }
+    .calc-steps li::before { content: counter(calc-step); position: absolute; left: 12px; top: 12px; width: 24px; height: 24px; background: rgba(0,111,107,0.15); color: #006F6B; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; }
+    .faq-item { margin: 16px 0; padding: 16px 20px; background: rgba(39,52,47,0.02); border-radius: 10px; border: 1px solid rgba(39,52,47,0.06); }
+    .faq-item .faq-q { font-weight: 600; color: #27342F; margin-bottom: 8px; }
+    .faq-item .faq-a { color: rgba(39,52,47,0.75); }
+    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,111,107,0.08); border-left: 4px solid #006F6B; border-radius: 0 8px 8px 0; }
   </style>
+  <link rel="icon" type="image/png" href="../../assets/bustan-energy-logo.png">
+  <link rel="stylesheet" href="../assets/academy-brand.css?v=academy-20260907">
+  <link rel="stylesheet" href="../assets/lesson-tools.css?v=academy-20260907">
+  <script src="../assets/lesson-tools.js?v=academy-20260907" defer></script>
 </head>
 <body data-lang="en">
 
@@ -36,7 +40,7 @@
   <div class="breadcrumb">
     <a href="../index.html"><span data-en>Academy</span><span data-he>אקדמיה</span><span data-th>Academy</span></a>
     <span>›</span>
-    <a href="sales-bd-01.html"><span data-en>Sales & Business Development</span><span data-he>מכירות ופיתוח עסקי</span><span data-th>การขายและพัฒนาธุรกิจ</span></a>
+    <a href="../index.html#track-sales-bd"><span data-en>Sales & Business Development</span><span data-he>מכירות ופיתוח עסקי</span><span data-th>การขายและพัฒนาธุรกิจ</span></a>
     <span>›</span>
     <span data-en>Lesson 4</span><span data-he>שיעור 4</span><span data-th>บทที่ 4</span>
   </div>
@@ -132,7 +136,7 @@
             <td>~฿2.00/kWh</td>
             <td><span data-en>Variable surcharge — changes every 4 months based on fuel costs</span><span data-he>תוספת משתנה — משתנה כל 4 חודשים לפי עלויות דלק</span><span data-th>ค่าธรรมเนียมแปรผัน — เปลี่ยนทุก 4 เดือนตามต้นทุนเชื้อเพลิง</span></td>
           </tr>
-          <tr style="font-weight:700; color:#00D68F;">
+          <tr style="font-weight:700; color:#006F6B;">
             <td><span data-en>Total Effective Rate</span><span data-he>תעריף אפקטיבי כולל</span><span data-th>อัตรารวมที่ใช้จริง</span></td>
             <td>~฿6.00/kWh</td>
             <td><span data-en>What the customer actually pays per unit of electricity</span><span data-he>מה שהלקוח בפועל משלם ליחידת חשמל</span><span data-th>ค่าไฟจริงที่ลูกค้าจ่ายต่อหน่วย</span></td>
@@ -162,7 +166,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr style="color:#00D68F;">
+          <tr style="color:#006F6B;">
             <td><span data-en>Self-consumption (used on-site)</span><span data-he>צריכה עצמית (שימוש באתר)</span><span data-th>ใช้เอง (ใช้ในอาคาร)</span></td>
             <td><strong>฿6.00/kWh</strong></td>
             <td><span data-en>Full retail rate avoided — you don't pay PEA for that electricity</span><span data-he>נמנע מתעריף הקמעונאי המלא — לא משלמים ל-PEA על החשמל הזה</span><span data-th>หลีกเลี่ยงอัตราค่าไฟเต็ม — ไม่ต้องจ่าย PEA สำหรับไฟฟ้านั้น</span></td>
@@ -336,7 +340,7 @@
           <tr><td><span data-en>Monthly Production</span><span data-he>ייצור חודשי</span><span data-th>การผลิตรายเดือน</span></td><td>~15,000 kWh</td></tr>
           <tr><td><span data-en>Monthly Savings</span><span data-he>חיסכון חודשי</span><span data-th>ประหยัดรายเดือน</span></td><td>~฿90,000</td></tr>
           <tr><td><span data-en>Annual Savings</span><span data-he>חיסכון שנתי</span><span data-th>ประหยัดรายปี</span></td><td>~฿1.08M</td></tr>
-          <tr style="color:#00D68F; font-weight:700;"><td><span data-en>Payback Period</span><span data-he>תקופת החזר</span><span data-th>ระยะคืนทุน</span></td><td><span data-en>~3 years</span><span data-he>~3 שנים</span><span data-th>~3 ปี</span></td></tr>
+          <tr style="color:#006F6B; font-weight:700;"><td><span data-en>Payback Period</span><span data-he>תקופת החזר</span><span data-th>ระยะคืนทุน</span></td><td><span data-en>~3 years</span><span data-he>~3 שנים</span><span data-th>~3 ปี</span></td></tr>
           <tr><td><span data-en>25-Year Total Savings</span><span data-he>חיסכון כולל ב-25 שנה</span><span data-th>ประหยัดรวม 25 ปี</span></td><td>~฿27M</td></tr>
         </tbody>
       </table>
@@ -369,7 +373,7 @@
             <td><span data-en>Export Revenue</span><span data-he>הכנסות ייצוא</span><span data-th>รายได้จากการส่งออก</span></td>
             <td><span data-en>916 kWh × ฿2.70 = <strong>฿2,473</strong></span><span data-he>916 kWh × ฿2.70 = <strong>฿2,473</strong></span><span data-th>916 kWh × ฿2.70 = <strong>฿2,473</strong></span></td>
           </tr>
-          <tr style="color:#00D68F; font-weight:700;">
+          <tr style="color:#006F6B; font-weight:700;">
             <td><span data-en>Total Monthly Benefit</span><span data-he>תועלת חודשית כוללת</span><span data-th>ผลประโยชน์รายเดือนรวม</span></td>
             <td>฿14,473</td>
           </tr>
@@ -422,7 +426,7 @@
             <td><span data-en>4.6 years</span><span data-he>4.6 שנים</span><span data-th>4.6 ปี</span></td>
             <td><span data-en>Immediate (Day 1)</span><span data-he>מיידי (יום 1)</span><span data-th>ทันที (วันที่ 1)</span></td>
           </tr>
-          <tr style="color:#00D68F; font-weight:700;">
+          <tr style="color:#006F6B; font-weight:700;">
             <td><span data-en>25-Year Total</span><span data-he>סה״כ 25 שנה</span><span data-th>รวม 25 ปี</span></td>
             <td>฿8,100,000</td>
             <td><span data-en>฿2,700,000 saved</span><span data-he>฿2,700,000 נחסכים</span><span data-th>ประหยัด ฿2,700,000</span></td>
@@ -822,6 +826,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="../../assets/site.js" data-root="../../" defer></script>
+<script src="../../assets/site.js?v=academy-20260907" data-root="../../" defer></script>
 </body>
 </html>

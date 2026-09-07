@@ -1,11 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bustan-academy">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="Lesson 8: Thailand Solar Landscape — Bustan Energy Academy" data-he="שיעור 8: נוף האנרגיה הסולארית בתאילנד — Bustan Energy Academy" data-th="บทเรียนที่ 8: ภาพรวมตลาดโซลาร์ในประเทศไทย — Bustan Energy Academy">Lesson 8: Thailand Solar Landscape — Bustan Energy Academy</title>
-  <link rel="stylesheet" href="../assets/academy.css">
-  <script src="../assets/academy.js" defer></script>
+  <link rel="stylesheet" href="../assets/academy.css?v=academy-20260907">
+  <script src="../assets/academy.js?v=academy-20260907" defer></script>
+  <link rel="icon" type="image/png" href="../../assets/bustan-energy-logo.png">
+<style>
+.video-section { margin: 30px 0; padding: 20px; background: rgba(39,52,47,0.03); border-radius: 12px; border: 1px solid rgba(39,52,47,0.08); }
+.video-section h3 { margin-bottom: 15px; color: #006F6B; }
+.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
+.video-caption { margin-top: 10px; font-size: 0.9em; opacity: 0.7; }
+.lesson-image {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.comparison-table {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+.compare-item {
+  background: rgba(39,52,47,0.03);
+  border: 1px solid rgba(39,52,47,0.08);
+  border-radius: 12px;
+  padding: 20px;
+}
+.compare-item h3 {
+  color: #006F6B;
+  margin-bottom: 12px;
+  font-size: 1.1em;
+}
+.compare-item ul {
+  list-style: none;
+  padding: 0;
+}
+.compare-item li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(39,52,47,0.05);
+  font-size: 0.95em;
+}
+.compare-item li:last-child {
+  border-bottom: none;
+  color: #8B5D13;
+  font-weight: 600;
+}
+.info-box {
+  background: rgba(0,111,107,0.08);
+  border: 1px solid rgba(0,111,107,0.2);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,111,107,0.3);
+}
+</style>
+  <link rel="stylesheet" href="../assets/academy-brand.css?v=academy-20260907">
+  <link rel="stylesheet" href="../assets/lesson-tools.css?v=academy-20260907">
+  <script src="../assets/lesson-tools.js?v=academy-20260907" defer></script>
 </head>
 <body data-lang="en">
 
@@ -17,7 +78,7 @@
   <div class="breadcrumb">
     <a href="../index.html"><span data-en>Academy</span><span data-he>אקדמיה</span><span data-th>Academy</span></a>
     <span>›</span>
-    <a href="solar-fundamentals-01.html"><span data-en>Solar Fundamentals</span><span data-he>מבוא לסולאר</span><span data-th>พื้นฐานพลังงานแสงอาทิตย์</span></a>
+    <a href="../index.html#track-solar-fundamentals"><span data-en>Solar Fundamentals</span><span data-he>מבוא לסולאר</span><span data-th>พื้นฐานพลังงานแสงอาทิตย์</span></a>
     <span>›</span>
     <span data-en>Lesson 8</span><span data-he>שיעור 8</span><span data-th>บทที่ 8</span>
   </div>
@@ -424,9 +485,9 @@
   <!-- Course Completion -->
   <section class="lesson-section fade-up" style="text-align: center; padding: 40px 20px;">
     <div style="font-size: 4em; margin-bottom: 20px;">🎓</div>
-    <h2 data-en style="color: #00D68F;">Course Complete!</h2>
-    <h2 data-he style="color: #00D68F;">הקורס הושלם!</h2>
-    <h2 data-th style="color: #00D68F;">จบหลักสูตรแล้ว!</h2>
+    <h2 data-en style="color: #006F6B;">Course Complete!</h2>
+    <h2 data-he style="color: #006F6B;">הקורס הושלם!</h2>
+    <h2 data-th style="color: #006F6B;">จบหลักสูตรแล้ว!</h2>
 
     <p data-en style="font-size: 1.2em; margin: 20px 0;">Congratulations! You've completed the Solar Fundamentals course. You now understand the basics of solar energy, panel technology, inverters, system types, site assessment, system sizing, energy economics, and the Thai solar market.</p>
     <p data-he style="font-size: 1.2em; margin: 20px 0;">מזל טוב! סיימת את קורס יסודות הסולאר. עכשיו אתה מבין את יסודות האנרגיה הסולארית, טכנולוגיית פאנלים, ממירים, סוגי מערכות, הערכת אתר, תכנון מערכת, כלכלת אנרגיה ושוק הסולאר התאילנדי.</p>
@@ -439,7 +500,7 @@
     </div>
 
     <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 20px 0;">
-      <a href="../index.html" class="btn-primary" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; background: #00D68F; color: #0A1628; font-weight: 600;">
+      <a href="../index.html" class="btn-primary" style="text-decoration: none; padding: 12px 24px; border-radius: 8px; background: #006F6B; color: #FFF4E2; font-weight: 600;">
         <span data-en>Back to Academy</span><span data-he>חזרה לאקדמיה</span><span data-th>กลับสู่ Academy</span>
       </a>
     </div>
@@ -476,63 +537,7 @@
 </div>
 </main>
 
-<style>
-.video-section { margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
-.video-section h3 { margin-bottom: 15px; color: #00D68F; }
-.video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
-.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
-.video-caption { margin-top: 10px; font-size: 0.9em; opacity: 0.7; }
-.lesson-image {
-  width: 100%;
-  max-width: 700px;
-  border-radius: 12px;
-  margin: 20px auto;
-  display: block;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.comparison-table {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin: 20px 0;
-}
-.compare-item {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 12px;
-  padding: 20px;
-}
-.compare-item h3 {
-  color: #00D68F;
-  margin-bottom: 12px;
-  font-size: 1.1em;
-}
-.compare-item ul {
-  list-style: none;
-  padding: 0;
-}
-.compare-item li {
-  padding: 6px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  font-size: 0.95em;
-}
-.compare-item li:last-child {
-  border-bottom: none;
-  color: #FFB800;
-  font-weight: 600;
-}
-.info-box {
-  background: rgba(0,214,143,0.08);
-  border: 1px solid rgba(0,214,143,0.2);
-  border-radius: 10px;
-  padding: 16px 20px;
-  margin: 16px 0;
-}
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0,214,143,0.3);
-}
-</style>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -595,10 +600,11 @@ document.addEventListener('DOMContentLoaded', () => {
       correct: 1
     }
   ]);
+});
 </script>
 
 <div id="site-footer"></div>
 
-<script src="../../assets/site.js" data-root="../../" defer></script>
+<script src="../../assets/site.js?v=academy-20260907" data-root="../../" defer></script>
 </body>
 </html>

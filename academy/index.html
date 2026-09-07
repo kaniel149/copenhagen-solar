@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bustan-academy">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="Bustan Energy Academy" data-he="אקדמיית Bustan Energy" data-th="Bustan Energy Academy">Bustan Energy Academy</title>
   <meta name="description" content="Master solar energy, sales, installation, EV charging, and management. Professional training in English, Hebrew, and Thai by Bustan Energy.">
-  <link rel="icon" type="image/png" href="../assets/bustan-energy.svg">
+  <link rel="icon" type="image/png" href="../assets/bustan-energy-logo.png">
   <link rel="canonical" href="https://index.bustan-energy.com/academy/">
 
   <meta property="og:title" content="Bustan Energy Academy — Solar Training Platform">
@@ -14,10 +14,10 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://index.bustan-energy.com/academy/">
 
-  <link rel="stylesheet" href="assets/academy.css">
+  <link rel="stylesheet" href="assets/academy.css?v=academy-20260907">
   <script>document.documentElement.classList.add('js')</script>
-  <script src="assets/lessons.js"></script>
-  <script src="assets/academy.js" defer></script>
+  <script src="assets/lessons.js?v=academy-20260907"></script>
+  <script src="assets/academy.js?v=academy-20260907" defer></script>
 
   <style>
     .hero-media img { object-position: center 45%; }
@@ -60,8 +60,11 @@
     }
     @media (max-width: 734px) { .track-row .track-card { padding: 24px; } .difficulty-badge { top: 24px; inset-inline-end: 24px; } }
   </style>
+  <link rel="stylesheet" href="assets/academy-brand.css?v=academy-20260907">
+  <link rel="stylesheet" href="assets/academy-hub.css?v=academy-20260907">
+  <meta name="theme-color" content="#24463e">
 </head>
-<body data-lang="en">
+<body data-lang="en" class="academy-home">
 <div id="site-nav" data-page="academy"></div>
 
 <main class="main">
@@ -84,15 +87,29 @@
         <span data-th>ยี่สิบสี่บทเรียนในห้าเส้นทาง — พื้นฐาน เทคนิค การขาย EV และการกักเก็บ การจัดการ ทุกบทมีแบบทดสอบ อังกฤษ ฮีบรู และไทย</span>
       </p>
       <div class="hero-actions reveal reveal-d3">
-        <a class="btn btn-primary" href="courses/solar-fundamentals-01.html"><span data-en>Start with lesson 1</span><span data-he>להתחיל בשיעור 1</span><span data-th>เริ่มบทที่ 1</span><svg class="i i-flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-primary" id="hero-resume-link" href="courses/solar-fundamentals-01.html"><span data-en>Start with lesson 1</span><span data-he>להתחיל בשיעור 1</span><span data-th>เริ่มบทที่ 1</span><svg class="i i-flip" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn" href="#tracks-section"><span data-en>All tracks</span><span data-he>כל המסלולים</span><span data-th>ทุกเส้นทาง</span></a>
       </div>
       <div class="overall reveal reveal-d4">
         <span><span data-en>Your progress</span><span data-he>ההתקדמות שלך</span><span data-th>ความคืบหน้าของคุณ</span></span>
-        <div class="bar"><i id="overall-fill"></i></div>
-        <b id="overall-text" dir="ltr" style="color:var(--text);font-weight:600">0 / 24</b>
+        <div class="bar" role="progressbar" id="overall-progress" aria-label="Learning progress" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0"><i id="overall-fill"></i></div>
+        <b id="overall-text" dir="ltr" style="font-weight:600">0 / 24</b>
       </div>
     </div></div>
+  </section>
+
+  <section class="learning-next section-tight" aria-labelledby="resume-heading">
+    <div class="wrap-wide">
+      <div class="resume-card">
+        <div>
+          <p class="eyebrow" id="resume-eyebrow"><span data-en>Your next step</span><span data-he>הצעד הבא שלך</span><span data-th>ขั้นตอนถัดไปของคุณ</span></p>
+          <h2 class="h3" id="resume-heading"></h2>
+          <p id="resume-meta" class="muted"></p>
+          <p class="save-note"><span data-en>Your progress is saved in this browser.</span><span data-he>ההתקדמות נשמרת בדפדפן הזה.</span><span data-th>ความคืบหน้าบันทึกไว้ในเบราว์เซอร์นี้</span></p>
+        </div>
+        <a class="btn btn-primary" id="resume-lesson-link" href="courses/solar-fundamentals-01.html"><span data-en>Start learning</span><span data-he>להתחיל ללמוד</span><span data-th>เริ่มเรียน</span></a>
+      </div>
+    </div>
   </section>
 
   <!-- Recommended order -->
@@ -115,6 +132,27 @@
     <div class="wrap-wide">
       <p class="section-label fade-up"><span data-en>Learning tracks</span><span data-he>מסלולי למידה</span><span data-th>เส้นทางการเรียนรู้</span></p>
       <h2 class="section-title fade-up"><span data-en>All 24 lessons.</span><span data-he>כל 24 השיעורים.</span><span data-th>บทเรียนทั้ง 24 บท</span></h2>
+      <form class="academy-filters" id="lesson-filters" role="search">
+        <label class="academy-search" for="lesson-search">
+          <span><span data-en>Find a lesson</span><span data-he>חיפוש שיעור</span><span data-th>ค้นหาบทเรียน</span></span>
+          <input id="lesson-search" type="search" autocomplete="off" spellcheck="false">
+        </label>
+        <label for="track-filter">
+          <span><span data-en>Track</span><span data-he>מסלול</span><span data-th>เส้นทาง</span></span>
+          <select id="track-filter"><option value="">All tracks</option></select>
+        </label>
+        <label for="status-filter">
+          <span><span data-en>Progress</span><span data-he>התקדמות</span><span data-th>ความคืบหน้า</span></span>
+          <select id="status-filter"><option value="">All lessons</option></select>
+        </label>
+        <button type="button" class="btn btn-sm" id="clear-filters" hidden></button>
+      </form>
+      <p id="lesson-results" class="lesson-results" role="status" aria-live="polite"></p>
+      <div id="lesson-empty" class="learning-empty" hidden>
+        <h3 class="h3"><span data-en>No lessons match yet.</span><span data-he>לא נמצאו שיעורים מתאימים.</span><span data-th>ไม่พบบทเรียนที่ตรงกัน</span></h3>
+        <p><span data-en>Try another topic or clear the filters.</span><span data-he>נסו נושא אחר או נקו את הסינון.</span><span data-th>ลองหัวข้ออื่นหรือล้างตัวกรอง</span></p>
+        <button type="button" class="btn" id="empty-clear"><span data-en>Show all lessons</span><span data-he>הצגת כל השיעורים</span><span data-th>แสดงทุกบทเรียน</span></button>
+      </div>
       <div class="tracks" id="tracks-grid">
 
         <div class="track-row" id="track-solar-fundamentals">
@@ -129,7 +167,6 @@
             <div class="track-title-sub" data-th>ทุกอย่างที่คุณต้องรู้เกี่ยวกับพลังงานแสงอาทิตย์</div>
             <div class="track-meta">
               <span><span data-en>8 lessons</span><span data-he>8 שיעורים</span><span data-th>8 บทเรียน</span></span>
-              <span><span data-en>~4 hours</span><span data-he>~4 שעות</span><span data-th>~4 ชั่วโมง</span></span>
             </div>
             <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div>
             <div class="progress-label"><span class="progress-text">0/8</span><span class="progress-pct">0%</span></div>
@@ -149,7 +186,6 @@
             <div class="track-title-sub" data-th>การติดตั้งและเดินสายไฟ</div>
             <div class="track-meta">
               <span><span data-en>3 lessons</span><span data-he>3 שיעורים</span><span data-th>3 บทเรียน</span></span>
-              <span><span data-en>~2 hours</span><span data-he>~2 שעות</span><span data-th>~2 ชั่วโมง</span></span>
             </div>
             <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div>
             <div class="progress-label"><span class="progress-text">0/3</span><span class="progress-pct">0%</span></div>
@@ -169,7 +205,6 @@
             <div class="track-title-sub" data-th>ชนะลูกค้าและปิดดีล</div>
             <div class="track-meta">
               <span><span data-en>4 lessons</span><span data-he>4 שיעורים</span><span data-th>4 บทเรียน</span></span>
-              <span><span data-en>~3 hours</span><span data-he>~3 שעות</span><span data-th>~3 ชั่วโมง</span></span>
             </div>
             <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div>
             <div class="progress-label"><span class="progress-text">0/4</span><span class="progress-pct">0%</span></div>
@@ -189,7 +224,6 @@
             <div class="track-title-sub" data-th>โครงสร้างพื้นฐานการชาร์จและแบตเตอรี่</div>
             <div class="track-meta">
               <span><span data-en>3 lessons</span><span data-he>3 שיעורים</span><span data-th>3 บทเรียน</span></span>
-              <span><span data-en>~4 hours</span><span data-he>~4 שעות</span><span data-th>~4 ชั่วโมง</span></span>
             </div>
             <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div>
             <div class="progress-label"><span class="progress-text">0/3</span><span class="progress-pct">0%</span></div>
@@ -209,7 +243,6 @@
             <div class="track-title-sub" data-th>จัดการโครงการ ทีม และการเงิน</div>
             <div class="track-meta">
               <span><span data-en>6 lessons</span><span data-he>6 שיעורים</span><span data-th>6 บทเรียน</span></span>
-              <span><span data-en>~3 hours</span><span data-he>~3 שעות</span><span data-th>~3 ชั่วโมง</span></span>
             </div>
             <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:0%"></div></div>
             <div class="progress-label"><span class="progress-text">0/6</span><span class="progress-pct">0%</span></div>
@@ -226,11 +259,11 @@
     <div class="wrap-wide">
       <div class="cert fade-up">
         <div>
-          <h2 class="h3"><span data-en>Finish a track, earn the Bustan Energy certificate.</span><span data-he>סיימו מסלול וקבלו תעודת Bustan Energy.</span><span data-th>เรียนจบเส้นทาง รับใบรับรอง Bustan Energy</span></h2>
+          <h2 class="h3"><span data-en>Learn it. Check it. Apply it.</span><span data-he>לומדים. בודקים. מיישמים בשטח.</span><span data-th>เรียนรู้ ทดสอบ และนำไปใช้จริง</span></h2>
           <p class="muted" style="margin:10px 0 0;max-width:60ch">
-            <span data-en>Complete every lesson and quiz in a track. Progress is saved in this browser.</span>
-            <span data-he>השלימו את כל השיעורים והחידונים במסלול. ההתקדמות נשמרת בדפדפן הזה.</span>
-            <span data-th>เรียนทุกบทและทำแบบทดสอบให้ครบในเส้นทาง ความคืบหน้าถูกบันทึกในเบราว์เซอร์นี้</span>
+            <span data-en>Pass the lesson quiz with at least 60% correct, then mark the lesson complete. Your progress stays saved in this browser.</span>
+            <span data-he>עברו את החידון עם לפחות 60% תשובות נכונות, ואז סמנו את השיעור כהושלם. ההתקדמות נשמרת בדפדפן הזה.</span>
+            <span data-th>ทำแบบทดสอบให้ถูกอย่างน้อย 60% แล้วทำเครื่องหมายว่าเรียนจบ ความคืบหน้าบันทึกไว้ในเบราว์เซอร์นี้</span>
           </p>
         </div>
         <svg class="i i-l" aria-hidden="true" style="width:40px;height:40px"><use href="#i-cert"/></svg>
@@ -241,7 +274,7 @@
   <section class="stats-section">
     <div class="stats-grid">
       <div class="glass-card stat-card fade-up"><div class="stat-number">24</div><div class="stat-label"><span data-en>Lessons</span><span data-he>שיעורים</span><span data-th>บทเรียน</span></div></div>
-      <div class="glass-card stat-card fade-up"><div class="stat-number">~13h</div><div class="stat-label"><span data-en>Of training</span><span data-he>שעות הדרכה</span><span data-th>ชั่วโมงการฝึกอบรม</span></div></div>
+      <div class="glass-card stat-card fade-up"><div class="stat-number">60%</div><div class="stat-label"><span data-en>Quiz pass score</span><span data-he>ציון מעבר בחידון</span><span data-th>คะแนนผ่านแบบทดสอบ</span></div></div>
       <div class="glass-card stat-card fade-up"><div class="stat-number">3</div><div class="stat-label"><span data-en>Languages</span><span data-he>שפות</span><span data-th>ภาษา</span></div></div>
       <div class="glass-card stat-card fade-up"><div class="stat-number">5</div><div class="stat-label"><span data-en>Tracks</span><span data-he>מסלולים</span><span data-th>เส้นทาง</span></div></div>
     </div>
@@ -250,33 +283,8 @@
 </main>
 
 <div id="site-footer"></div>
-<script src="../assets/site.js" data-root="../" defer></script>
+<script src="../assets/site.js?v=academy-20260907" data-root="../" defer></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const T = window.ACADEMY_TRACKS || {}, L = window.ACADEMY_LESSONS || [];
-  const lang = () => document.body.getAttribute('data-lang') || 'en';
-  const arrow = '<svg class="i arrow" aria-hidden="true"><use href="#i-arrow"/></svg>';
-
-  // Lesson lists per track (from assets/lessons.js) + overall progress
-  function renderLessons() {
-    document.querySelectorAll('[data-track-lessons]').forEach((ul) => {
-      const track = ul.dataset.trackLessons;
-      const rows = L.filter((l) => l.track === track);
-      ul.innerHTML = rows.map((l) => {
-        const done = isLessonComplete(track, l.num);
-        return `<li><a class="lesson-row${done ? ' done' : ''}" href="${l.file}"><span class="n">${done ? '✓' : l.num}</span><span class="t">${l.title[lang()]}</span>${arrow}</a></li>`;
-      }).join('');
-    });
-    const done = L.filter((l) => isLessonComplete(l.track, l.num)).length;
-    const fill = document.getElementById('overall-fill'), txt = document.getElementById('overall-text');
-    if (fill) fill.style.width = (L.length ? Math.round(done / L.length * 100) : 0) + '%';
-    if (txt) txt.textContent = `${done} / ${L.length}`;
-  }
-  renderLessons();
-  document.addEventListener('academy:lang', () => { renderLessons(); updateProgressBars(); });
-  updateProgressBars();
-});
-</script>
+<script src="assets/academy-hub.js?v=academy-20260907" defer></script>
 </body>
 </html>

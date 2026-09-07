@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bustan-academy">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="Lesson 5: Safety Management — JSA &amp; Risk Assessment — Bustan Energy Academy" data-he="שיעור 5: ניהול בטיחות — JSA והערכת סיכונים — Bustan Energy Academy" data-th="บทเรียนที่ 5: การจัดการความปลอดภัย — JSA และการประเมินความเสี่ยง — Bustan Energy Academy">Lesson 5: Safety Management — JSA & Risk Assessment — Bustan Energy Academy</title>
-  <link rel="stylesheet" href="../assets/academy.css">
-  <script src="../assets/academy.js" defer></script>
+  <link rel="stylesheet" href="../assets/academy.css?v=academy-20260907">
+  <script src="../assets/academy.js?v=academy-20260907" defer></script>
   <style>
     .lesson-image { width: 100%; max-width: 700px; border-radius: 12px; margin: 20px auto; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
     .risk-matrix { width: 100%; border-collapse: collapse; margin: 20px 0; }
-    .risk-matrix th, .risk-matrix td { padding: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.1); font-size: 0.9em; }
-    .risk-low { background: rgba(0,214,143,0.15); color: #00D68F; }
-    .risk-med { background: rgba(255,165,0,0.15); color: #FFA500; }
-    .risk-high { background: rgba(255,69,0,0.15); color: #FF4500; }
-    .risk-extreme { background: rgba(220,20,60,0.2); color: #DC143C; }
-    .safety-card { margin: 20px 0; padding: 24px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
-    .safety-card h3 { color: #00D68F; margin-bottom: 12px; }
-    .warning-box { margin: 20px 0; padding: 16px 20px; background: rgba(255,69,0,0.08); border-left: 4px solid #FF4500; border-radius: 0 8px 8px 0; }
-    .warning-box strong { color: #FF4500; }
-    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,214,143,0.08); border-left: 4px solid #00D68F; border-radius: 0 8px 8px 0; }
+    .risk-matrix th, .risk-matrix td { padding: 12px; text-align: center; border: 1px solid rgba(39,52,47,0.1); font-size: 0.9em; }
+    .risk-low { background: rgba(0,111,107,0.15); color: #006F6B; }
+    .risk-med { background: rgba(255,165,0,0.15); color: #8B5D13; }
+    .risk-high { background: rgba(255,69,0,0.15); color: #B94436; }
+    .risk-extreme { background: rgba(220,20,60,0.2); color: #982C35; }
+    .safety-card { margin: 20px 0; padding: 24px; background: rgba(39,52,47,0.03); border-radius: 12px; border: 1px solid rgba(39,52,47,0.08); }
+    .safety-card h3 { color: #006F6B; margin-bottom: 12px; }
+    .warning-box { margin: 20px 0; padding: 16px 20px; background: rgba(255,69,0,0.08); border-left: 4px solid #B94436; border-radius: 0 8px 8px 0; }
+    .warning-box strong { color: #B94436; }
+    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,111,107,0.08); border-left: 4px solid #006F6B; border-radius: 0 8px 8px 0; }
     .jsa-steps { counter-reset: jsa-step; list-style: none; padding: 0; }
-    .jsa-steps li { counter-increment: jsa-step; padding: 12px 16px 12px 48px; position: relative; margin-bottom: 8px; background: rgba(255,255,255,0.02); border-radius: 8px; border-left: 3px solid rgba(0,214,143,0.3); }
-    .jsa-steps li::before { content: counter(jsa-step); position: absolute; left: 12px; top: 12px; width: 24px; height: 24px; background: rgba(0,214,143,0.15); color: #00D68F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; }
+    .jsa-steps li { counter-increment: jsa-step; padding: 12px 16px 12px 48px; position: relative; margin-bottom: 8px; background: rgba(39,52,47,0.02); border-radius: 8px; border-left: 3px solid rgba(0,111,107,0.3); }
+    .jsa-steps li::before { content: counter(jsa-step); position: absolute; left: 12px; top: 12px; width: 24px; height: 24px; background: rgba(0,111,107,0.15); color: #006F6B; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85em; }
     .ppe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; margin: 20px 0; }
-    .ppe-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px; text-align: center; }
+    .ppe-item { background: rgba(39,52,47,0.03); border: 1px solid rgba(39,52,47,0.08); border-radius: 10px; padding: 16px; text-align: center; }
     .ppe-item .ppe-icon { font-size: 2em; margin-bottom: 8px; }
-    .ppe-item .ppe-name { font-weight: 600; color: #fff; margin-bottom: 4px; }
-    .ppe-item .ppe-desc { font-size: 0.85em; color: rgba(255,255,255,0.6); }
+    .ppe-item .ppe-name { font-weight: 600; color: #27342F; margin-bottom: 4px; }
+    .ppe-item .ppe-desc { font-size: 0.85em; color: rgba(39,52,47,0.6); }
   </style>
+  <link rel="icon" type="image/png" href="../../assets/bustan-energy-logo.png">
+  <link rel="stylesheet" href="../assets/academy-brand.css?v=academy-20260907">
+  <link rel="stylesheet" href="../assets/lesson-tools.css?v=academy-20260907">
+  <script src="../assets/lesson-tools.js?v=academy-20260907" defer></script>
 </head>
 <body data-lang="en">
 
@@ -39,7 +43,7 @@
   <div class="breadcrumb">
     <a href="../index.html"><span data-en>Academy</span><span data-he>אקדמיה</span><span data-th>Academy</span></a>
     <span>›</span>
-    <a href="management-01.html"><span data-en>Management & Operations</span><span data-he>ניהול ותפעול</span><span data-th>การจัดการและปฏิบัติการ</span></a>
+    <a href="../index.html#track-management"><span data-en>Management & Operations</span><span data-he>ניהול ותפעול</span><span data-th>การจัดการและปฏิบัติการ</span></a>
     <span>›</span>
     <span data-en>Lesson 5</span><span data-he>שיעור 5</span><span data-th>บทที่ 5</span>
   </div>
@@ -411,7 +415,7 @@
             <td><span data-en>Nausea, dizziness, weak pulse, pale skin</span><span data-he>בחילה, סחרחורת, דופק חלש, עור חיוור</span><span data-th>คลื่นไส้ เวียนศีรษะ ชีพจรอ่อน ผิวซีด</span></td>
             <td><span data-en>Move to shade, loosen clothing, cool with water, seek medical help</span><span data-he>העבירו לצל, שחררו בגדים, קררו עם מים, חפשו עזרה רפואית</span><span data-th>ย้ายเข้าร่ม คลายเสื้อผ้า ลดอุณหภูมิด้วยน้ำ พบแพทย์</span></td>
           </tr>
-          <tr style="color: #FF4500;">
+          <tr style="color: #B94436;">
             <td><span data-en>Heat Stroke ⚠️</span><span data-he>מכת חום ⚠️</span><span data-th>ฮีทสโตรก ⚠️</span></td>
             <td><span data-en>Confusion, no sweating, hot skin, seizures, unconsciousness</span><span data-he>בלבול, ללא הזעה, עור חם, פרכוסים, אובדן הכרה</span><span data-th>สับสน ไม่มีเหงื่อ ผิวร้อน ชัก หมดสติ</span></td>
             <td><span data-en><strong>CALL EMERGENCY (1669 Thailand)</strong>. Cool body with ice/water immediately. This is life-threatening.</span><span data-he><strong>התקשרו לחירום (1669 תאילנד)</strong>. קררו גוף עם קרח/מים מיידית. זה מסכן חיים.</span><span data-th><strong>โทร 1669 ทันที</strong> ลดอุณหภูมิร่างกายด้วยน้ำแข็ง/น้ำ ทันที อันตรายถึงชีวิต</span></td>
@@ -717,6 +721,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="../../assets/site.js" data-root="../../" defer></script>
+<script src="../../assets/site.js?v=academy-20260907" data-root="../../" defer></script>
 </body>
 </html>

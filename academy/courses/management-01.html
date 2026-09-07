@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bustan-academy">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="Lesson 1: Project Management for Solar — Bustan Energy Academy" data-he="שיעור 1: ניהול פרויקטים סולאריים — Bustan Energy Academy" data-th="บทเรียนที่ 1: การบริหารจัดการโครงการพลังงานแสงอาทิตย์ — Bustan Energy Academy">Lesson 1: Project Management for Solar — Bustan Energy Academy</title>
-  <link rel="stylesheet" href="../assets/academy.css">
-  <script src="../assets/academy.js" defer></script>
+  <link rel="stylesheet" href="../assets/academy.css?v=academy-20260907">
+  <script src="../assets/academy.js?v=academy-20260907" defer></script>
   <style>
     .lesson-image { width: 100%; max-width: 700px; border-radius: 12px; margin: 20px auto; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-    .lifecycle-step { display: flex; gap: 16px; margin-bottom: 20px; padding: 16px 20px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); position: relative; }
-    .lifecycle-step .step-number { flex-shrink: 0; width: 36px; height: 36px; background: rgba(0,214,143,0.15); color: #00D68F; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+    .lifecycle-step { display: flex; gap: 16px; margin-bottom: 20px; padding: 16px 20px; background: rgba(39,52,47,0.03); border-radius: 12px; border: 1px solid rgba(39,52,47,0.08); position: relative; }
+    .lifecycle-step .step-number { flex-shrink: 0; width: 36px; height: 36px; background: rgba(0,111,107,0.15); color: #006F6B; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
     .lifecycle-step .step-content { flex: 1; }
-    .lifecycle-step .step-content h4 { color: #fff; margin: 0 0 4px 0; font-size: 1em; }
-    .lifecycle-step .step-content p { color: rgba(255,255,255,0.7); margin: 0; font-size: 0.92em; }
-    .lifecycle-step .step-timeline { color: #00D68F; font-size: 0.8em; font-weight: 600; margin-top: 4px; }
-    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,214,143,0.08); border-left: 4px solid #00D68F; border-radius: 0 8px 8px 0; }
-    .warning-box { margin: 20px 0; padding: 16px 20px; background: rgba(255,165,0,0.08); border-left: 4px solid #FFA500; border-radius: 0 8px 8px 0; }
-    .checklist-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .lifecycle-step .step-content h4 { color: #27342F; margin: 0 0 4px 0; font-size: 1em; }
+    .lifecycle-step .step-content p { color: rgba(39,52,47,0.7); margin: 0; font-size: 0.92em; }
+    .lifecycle-step .step-timeline { color: #006F6B; font-size: 0.8em; font-weight: 600; margin-top: 4px; }
+    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,111,107,0.08); border-left: 4px solid #006F6B; border-radius: 0 8px 8px 0; }
+    .warning-box { margin: 20px 0; padding: 16px 20px; background: rgba(255,165,0,0.08); border-left: 4px solid #8B5D13; border-radius: 0 8px 8px 0; }
+    .checklist-item { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(39,52,47,0.05); }
     .checklist-item:last-child { border-bottom: none; }
-    .checklist-check { color: #00D68F; font-weight: 700; }
+    .checklist-check { color: #006F6B; font-weight: 700; }
   </style>
+  <link rel="icon" type="image/png" href="../../assets/bustan-energy-logo.png">
+  <link rel="stylesheet" href="../assets/academy-brand.css?v=academy-20260907">
+  <link rel="stylesheet" href="../assets/lesson-tools.css?v=academy-20260907">
+  <script src="../assets/lesson-tools.js?v=academy-20260907" defer></script>
 </head>
 <body data-lang="en">
 
@@ -31,7 +35,7 @@
   <div class="breadcrumb">
     <a href="../index.html"><span data-en>Academy</span><span data-he>אקדמיה</span><span data-th>Academy</span></a>
     <span>›</span>
-    <a href="management-01.html"><span data-en>Management & Operations</span><span data-he>ניהול ותפעול</span><span data-th>การจัดการและการดำเนินงาน</span></a>
+    <a href="../index.html#track-management"><span data-en>Management & Operations</span><span data-he>ניהול ותפעול</span><span data-th>การจัดการและการดำเนินงาน</span></a>
     <span>›</span>
     <span data-en>Lesson 1</span><span data-he>שיעור 1</span><span data-th>บทที่ 1</span>
   </div>
@@ -306,7 +310,7 @@
       <span data-th>ติดตามจุดสำคัญเหล่านี้เพื่อให้โครงการตรงเวลา แต่ละจุดควรมีวันที่เป้าหมายและผู้รับผิดชอบ:</span>
     </p>
 
-    <div style="background: rgba(255,255,255,0.03); border-radius: 12px; padding: 16px 20px; border: 1px solid rgba(255,255,255,0.08);">
+    <div style="background: rgba(39,52,47,0.03); border-radius: 12px; padding: 16px 20px; border: 1px solid rgba(39,52,47,0.08);">
       <div class="checklist-item"><span class="checklist-check">☐</span> <span data-en>Company registered at DBD</span><span data-he>חברה נרשמה ב-DBD</span><span data-th>จดทะเบียนบริษัทที่ DBD</span></div>
       <div class="checklist-item"><span class="checklist-check">☐</span> <span data-en>Land rights secured (Chanote/lease)</span><span data-he>זכויות קרקע מובטחות (Chanote/חכירה)</span><span data-th>ได้สิทธิ์ที่ดิน (โฉนด/เช่า)</span></div>
       <div class="checklist-item"><span class="checklist-check">☐</span> <span data-en>Community approval obtained (LAO)</span><span data-he>אישור קהילתי התקבל (LAO)</span><span data-th>ได้รับอนุมัติชุมชน (อบต.)</span></div>
@@ -491,6 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="../../assets/site.js" data-root="../../" defer></script>
+<script src="../../assets/site.js?v=academy-20260907" data-root="../../" defer></script>
 </body>
 </html>

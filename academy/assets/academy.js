@@ -1,194 +1,368 @@
 /* ============================================
    Bustan Energy Academy — Shared JavaScript
+   Progress stays in this browser; no account is required.
    ============================================ */
 
-// ---- Auth (disabled 2026-09-03) ----
-// The Supabase project that backed academy_users/academy_progress no longer exists.
-// Progress is stored per browser in localStorage. admin.html + migrations/ are kept for a future re-enable.
 const STORAGE_KEY = 'bustan_academy_progress';
+// Read-only compatibility keys preserve progress from before the rebrand.
 const LEGACY_KEYS = ['tm_academy_progress'];
+const LANGUAGE_KEY = 'bustan_academy_lang';
+const LAST_LESSON_KEY = 'bustan_academy_last_lesson';
+const ACADEMY_TRACK_TOTALS = Object.freeze({
+  'solar-fundamentals': 8, technical: 3, 'sales-bd': 4, 'ev-storage': 3, management: 6
+});
+const academyMemoryStorage = new Map();
+const academyPendingStorage = new Set();
+const academyQuizStates = new WeakMap();
+const academyCompleteButtons = new WeakMap();
+
 function getCurrentUser() { return null; }
-function checkAuth() { // only job left: one-time migration of pre-rebrand progress
-  if (!localStorage.getItem(STORAGE_KEY)) {
-    for (const k of LEGACY_KEYS) { const v = localStorage.getItem(k); if (v) { localStorage.setItem(STORAGE_KEY, v); break; } }
+function getProgressKey() { return STORAGE_KEY; }
+
+// A denied read/write must never interrupt a lesson. Keep successful reads and
+// unsaved writes in memory; a failed write takes precedence over stale disk data.
+function readAcademyStorage(key) {
+  if (academyPendingStorage.has(key)) return academyMemoryStorage.get(key) ?? null;
+  try {
+    const value = localStorage.getItem(key);
+    if (value === null) academyMemoryStorage.delete(key);
+    else academyMemoryStorage.set(key, value);
+    return value;
+  } catch {
+    return academyMemoryStorage.get(key) ?? null;
   }
 }
 
-// ---- Progress Store (localStorage) ----
+function writeAcademyStorage(key, value) {
+  academyMemoryStorage.set(key, value);
+  try {
+    localStorage.setItem(key, value);
+    academyPendingStorage.delete(key);
+    return true;
+  } catch {
+    academyPendingStorage.add(key);
+    return false;
+  }
+}
 
-function getProgressKey() {
-  return STORAGE_KEY;
+function academyRecord(value) {
+  return value !== null && typeof value === 'object' && !Array.isArray(value);
+}
+
+function parseAcademyRecord(raw) {
+  if (typeof raw !== 'string') return null;
+  try {
+    const value = JSON.parse(raw);
+    return academyRecord(value) ? value : null;
+  } catch { return null; }
+}
+
+function getTrackTotal(courseId) {
+  return Object.prototype.hasOwnProperty.call(ACADEMY_TRACK_TOTALS, courseId)
+    ? ACADEMY_TRACK_TOTALS[courseId] : 0;
+}
+
+function academyLessonNumber(courseId, value) {
+  if (typeof value !== 'number' && !(typeof value === 'string' && /^\d+$/.test(value))) return null;
+  const num = Number(value);
+  return Number.isSafeInteger(num) && num >= 1 && num <= getTrackTotal(courseId) ? num : null;
+}
+
+function validAcademyScore(value) {
+  return academyRecord(value) && Number.isSafeInteger(value.score) && value.score >= 0
+    && Number.isSafeInteger(value.total) && value.total > 0 && value.score <= value.total;
+}
+
+function normalizeAcademyProgress(data) {
+  const progress = {};
+  if (!academyRecord(data)) return progress;
+  for (const courseId of Object.keys(ACADEMY_TRACK_TOTALS)) {
+    if (!Object.prototype.hasOwnProperty.call(data, courseId) || !academyRecord(data[courseId])) continue;
+    const source = data[courseId];
+    const completed = Array.isArray(source.completed)
+      ? [...new Set(source.completed.map(value => academyLessonNumber(courseId, value)).filter(value => value !== null))].sort((a, b) => a - b)
+      : [];
+    const quizScores = {};
+    if (academyRecord(source.quizScores)) {
+      for (const [key, value] of Object.entries(source.quizScores)) {
+        const lessonNum = academyLessonNumber(courseId, key);
+        if (lessonNum === null || !validAcademyScore(value)) continue;
+        quizScores[lessonNum] = {
+          score: value.score, total: value.total,
+          ts: Number.isFinite(value.ts) && value.ts >= 0 ? value.ts : 0
+        };
+      }
+    }
+    progress[courseId] = { completed, quizScores };
+  }
+  return progress;
 }
 
 function getProgress() {
-  try {
-    return JSON.parse(localStorage.getItem(getProgressKey())) || {};
-  } catch { return {}; }
+  const current = parseAcademyRecord(readAcademyStorage(STORAGE_KEY));
+  if (current) return normalizeAcademyProgress(current);
+  for (const key of LEGACY_KEYS) {
+    const legacy = parseAcademyRecord(readAcademyStorage(key));
+    if (legacy) return saveProgress(legacy);
+  }
+  return {};
 }
 
 function saveProgress(data) {
-  localStorage.setItem(getProgressKey(), JSON.stringify(data));
+  const progress = normalizeAcademyProgress(data);
+  writeAcademyStorage(STORAGE_KEY, JSON.stringify(progress));
+  document.dispatchEvent(new CustomEvent('academy:progress', { detail: { progress } }));
+  return progress;
+}
+
+function checkAuth() { getProgress(); }
+
+function getLastLesson() {
+  const value = parseAcademyRecord(readAcademyStorage(LAST_LESSON_KEY));
+  if (!value) return null;
+  const lessonNum = academyLessonNumber(value.courseId, value.lessonNum);
+  if (lessonNum === null || !Number.isFinite(value.ts) || value.ts < 0) return null;
+  return { courseId: value.courseId, lessonNum, ts: value.ts };
+}
+
+function recordLastLesson(courseId, lessonNum) {
+  const num = academyLessonNumber(courseId, lessonNum);
+  if (num === null) return null;
+  const lesson = { courseId, lessonNum: num, ts: Date.now() };
+  writeAcademyStorage(LAST_LESSON_KEY, JSON.stringify(lesson));
+  return lesson;
+}
+
+function getCompletedCount(courseId) {
+  const total = getTrackTotal(courseId);
+  return total ? Math.min(getProgress()[courseId]?.completed.length || 0, total) : 0;
+}
+
+function isLessonComplete(courseId, lessonNum) {
+  const num = academyLessonNumber(courseId, lessonNum);
+  return num !== null && (getProgress()[courseId]?.completed.includes(num) || false);
+}
+
+function hasPassedQuiz(courseId, lessonNum) {
+  const num = academyLessonNumber(courseId, lessonNum);
+  if (num === null) return false;
+  const score = getProgress()[courseId]?.quizScores[num];
+  return Boolean(score && score.score >= Math.ceil(score.total * 0.6));
+}
+
+function markLessonComplete(courseId, lessonNum) {
+  const num = academyLessonNumber(courseId, lessonNum);
+  if (num === null) return false;
+  // Earlier completions remain valid even if they predate the quiz requirement.
+  if (isLessonComplete(courseId, num)) return true;
+  if (!hasPassedQuiz(courseId, num)) return false;
+  const progress = getProgress();
+  progress[courseId].completed.push(num);
+  saveProgress(progress);
+  return true;
+}
+
+function saveQuizScore(courseId, lessonNum, score, total) {
+  const num = academyLessonNumber(courseId, lessonNum);
+  if (num === null || !validAcademyScore({ score, total })) return false;
+  const progress = getProgress();
+  if (!progress[courseId]) progress[courseId] = { completed: [], quizScores: {} };
+  progress[courseId].quizScores[num] = { score, total, ts: Date.now() };
+  saveProgress(progress);
+  return true;
 }
 
 function updateProgressBars() {
-  const cards = document.querySelectorAll('.track-card[data-track]');
-  cards.forEach(card => {
-    const track = card.dataset.track;
-    const total = parseInt(card.dataset.total);
-    const completed = getCompletedCount(track);
-    const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
-
+  document.querySelectorAll('.track-card[data-track]').forEach(card => {
+    const total = getTrackTotal(card.dataset.track);
+    const completed = Math.min(getCompletedCount(card.dataset.track), total);
+    const pct = total > 0 ? Math.min(100, Math.round((completed / total) * 100)) : 0;
     const fill = card.querySelector('.progress-bar-fill');
     const text = card.querySelector('.progress-text');
     const pctEl = card.querySelector('.progress-pct');
-
     if (fill) fill.style.width = pct + '%';
     if (text && !text.querySelector('[data-en]')) text.textContent = `${completed}/${total}`;
     if (pctEl && pctEl.textContent !== '') pctEl.textContent = pct + '%';
   });
 }
 
-function markLessonComplete(courseId, lessonNum) {
-  const p = getProgress();
-  if (!p[courseId]) p[courseId] = { completed: [], quizScores: {} };
-  if (!p[courseId].completed.includes(lessonNum)) {
-    p[courseId].completed.push(lessonNum);
-  }
-  saveProgress(p);
-}
-
-function isLessonComplete(courseId, lessonNum) {
-  const p = getProgress();
-  return p[courseId]?.completed?.includes(lessonNum) || false;
-}
-
-function getCompletedCount(courseId) {
-  const p = getProgress();
-  return p[courseId]?.completed?.length || 0;
-}
-
-function saveQuizScore(courseId, lessonNum, score, total) {
-  const p = getProgress();
-  if (!p[courseId]) p[courseId] = { completed: [], quizScores: {} };
-  p[courseId].quizScores[lessonNum] = { score, total, ts: Date.now() };
-  saveProgress(p);
-
-}
-
 // ---- Language Toggle ----
+function validAcademyLanguage(lang) { return ['en', 'he', 'th'].includes(lang); }
+
 function initLanguage() {
-  const saved = localStorage.getItem('bustan_academy_lang') || localStorage.getItem('tm_academy_lang') || 'en';
-  setLanguage(saved);
+  const requested = new URLSearchParams(window.location.search).get('lang');
+  const saved = readAcademyStorage(LANGUAGE_KEY);
+  const legacy = readAcademyStorage('tm_academy_lang');
+  setLanguage([requested, saved, legacy].find(validAcademyLanguage) || 'en');
 }
 
 function setLanguage(lang) {
+  if (!validAcademyLanguage(lang)) lang = 'en';
   document.body.setAttribute('data-lang', lang);
   document.documentElement.lang = lang;
   document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-  localStorage.setItem('bustan_academy_lang', lang);
-  const t = document.querySelector('title');
-  if (t) { if (!t.dataset.en) t.dataset.en = t.textContent; document.title = t.dataset[lang] || t.dataset.en; }
+  writeAcademyStorage(LANGUAGE_KEY, lang);
+  const title = document.querySelector('title');
+  if (title) {
+    if (!title.dataset.en) title.dataset.en = title.textContent;
+    document.title = title.dataset[lang] || title.dataset.en;
+  }
   document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
   document.dispatchEvent(new CustomEvent('academy:lang', { detail: lang }));
 }
 
 // ---- Scroll Animations ----
 function initScrollAnimations() {
-  const observer = new IntersectionObserver((entries) => {
+  if (typeof IntersectionObserver !== 'function') {
+    document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 }
 
 // ---- Quiz Engine ----
+function academyQuizLanguage() { return document.body.getAttribute('data-lang') || 'en'; }
+
+function appendAcademyTranslations(parent, translations, prefix = '') {
+  for (const lang of ['en', 'he', 'th']) {
+    const span = document.createElement('span');
+    span.setAttribute(`data-${lang}`, '');
+    span.textContent = prefix + (translations[lang] || translations.en || '');
+    parent.appendChild(span);
+  }
+}
+
 function initQuiz(courseId, lessonNum, questions) {
   const container = document.getElementById('quiz-container');
-  if (!container) return;
-
-  const lang = () => document.body.getAttribute('data-lang') || 'en';
+  if (!container || !Array.isArray(questions) || questions.length === 0) return;
+  academyQuizStates.get(container)?.dispose();
+  const result = document.getElementById('quiz-result');
   let answered = 0;
   let correct = 0;
+  let answers = [];
 
-  questions.forEach((q, qi) => {
-    const qDiv = document.createElement('div');
-    qDiv.className = 'quiz-question';
-
-    const qText = document.createElement('p');
-    qText.innerHTML = `<span data-en>${qi+1}. ${q.question.en}</span><span data-he>${qi+1}. ${q.question.he}</span><span data-th>${qi+1}. ${q.question.th}</span>`;
-    qDiv.appendChild(qText);
-
-    const updateQVis = () => {
-      qText.querySelectorAll('span').forEach(s => {
-        s.style.display = s.dataset[lang()] !== undefined ? 'inline' : 'none';
-      });
-    };
-
-    const optContainer = document.createElement('div');
-    optContainer.className = 'quiz-options';
-
-    q.options.forEach((opt, oi) => {
-      const optEl = document.createElement('div');
-      optEl.className = 'quiz-option';
-      optEl.innerHTML = `<span class="marker">${String.fromCharCode(65+oi)}</span><span class="opt-en" data-en>${opt.en}</span><span class="opt-he" data-he>${opt.he}</span><span class="opt-th" data-th>${opt.th}</span>`;
-
-      const updateOptVis = () => {
-        optEl.querySelectorAll('[data-en],[data-he],[data-th]').forEach(s => {
-          s.style.display = s.dataset[lang()] !== undefined ? 'inline' : 'none';
-        });
-      };
-
-      optEl.addEventListener('click', () => {
-        if (qDiv.classList.contains('answered')) return;
-        qDiv.classList.add('answered');
-        answered++;
-
-        const isCorrect = oi === q.correct;
-        if (isCorrect) correct++;
-
-        optEl.classList.add(isCorrect ? 'correct' : 'incorrect');
-        if (!isCorrect) {
-          optContainer.children[q.correct].classList.add('correct');
-        }
-        Array.from(optContainer.children).forEach(o => o.classList.add('disabled'));
-
-        if (answered === questions.length) {
-          showQuizResult(correct, questions.length, courseId, lessonNum);
-        }
-      });
-
-      optEl._updateVis = updateOptVis;
-      optContainer.appendChild(optEl);
+  const updateLanguage = () => {
+    const lang = academyQuizLanguage();
+    container.querySelectorAll('[data-en],[data-he],[data-th]').forEach(span => {
+      const visible = span.dataset[lang] !== undefined;
+      span.hidden = !visible;
+      span.style.display = visible ? 'inline' : 'none';
     });
-
-    qDiv.appendChild(optContainer);
-    container.appendChild(qDiv);
-
-    qText._updateVis = updateQVis;
-    qDiv._updateAll = () => {
-      updateQVis();
-      Array.from(optContainer.children).forEach(o => o._updateVis?.());
-    };
-    qDiv._updateAll();
-  });
-
-  const origSetLang = window.setLanguage;
-  window.setLanguage = (lang) => {
-    origSetLang(lang);
-    container.querySelectorAll('.quiz-question').forEach(q => q._updateAll?.());
+    answers.forEach(({ feedback, question, passed }) => {
+      const answer = question.options[question.correct][lang] || question.options[question.correct].en;
+      const label = String.fromCharCode(65 + question.correct);
+      const messages = {
+        en: passed ? 'Correct.' : `Correct answer: ${label} — ${answer}`,
+        he: passed ? 'תשובה נכונה.' : `התשובה הנכונה: ${label} — ${answer}`,
+        th: passed ? 'ถูกต้อง' : `คำตอบที่ถูกต้อง: ${label} — ${answer}`
+      };
+      feedback.textContent = messages[lang];
+    });
     updateResultText();
+    const retry = document.getElementById('quiz-retry-btn');
+    if (retry) retry.textContent = { en: 'Try the quiz again', he: 'נסה שוב את הבוחן', th: 'ลองทำแบบทดสอบอีกครั้ง' }[lang];
   };
+
+  const render = () => {
+    answered = 0;
+    correct = 0;
+    answers = [];
+    container.replaceChildren();
+    if (result) {
+      result.className = 'quiz-result';
+      result.removeAttribute('data-score');
+      result.removeAttribute('data-total');
+      result.replaceChildren();
+      const message = document.createElement('p');
+      message.className = 'quiz-result-message';
+      message.setAttribute('role', 'status');
+      message.setAttribute('aria-live', 'polite');
+      result.appendChild(message);
+      const retry = document.createElement('button');
+      retry.id = 'quiz-retry-btn';
+      retry.className = 'quiz-retry-btn';
+      retry.type = 'button';
+      retry.addEventListener('click', () => {
+        render();
+        container.querySelector('button.quiz-option')?.focus();
+      });
+      result.appendChild(retry);
+    }
+
+    questions.forEach((question, qi) => {
+      const qDiv = document.createElement('div');
+      qDiv.className = 'quiz-question';
+      const qText = document.createElement('p');
+      qText.id = `quiz-question-${qi + 1}`;
+      appendAcademyTranslations(qText, question.question, `${qi + 1}. `);
+      qDiv.appendChild(qText);
+      const options = document.createElement('div');
+      options.className = 'quiz-options';
+      options.setAttribute('role', 'group');
+      options.setAttribute('aria-labelledby', qText.id);
+      const feedback = document.createElement('p');
+      feedback.className = 'quiz-answer-feedback';
+      feedback.setAttribute('role', 'status');
+      feedback.setAttribute('aria-live', 'polite');
+      feedback.hidden = true;
+
+      question.options.forEach((option, oi) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'quiz-option';
+        button.setAttribute('aria-pressed', 'false');
+        const marker = document.createElement('span');
+        marker.className = 'marker';
+        marker.setAttribute('aria-hidden', 'true');
+        marker.textContent = String.fromCharCode(65 + oi);
+        button.appendChild(marker);
+        appendAcademyTranslations(button, option);
+        button.addEventListener('click', () => {
+          if (qDiv.classList.contains('answered')) return;
+          qDiv.classList.add('answered');
+          answered++;
+          const passed = oi === question.correct;
+          if (passed) correct++;
+          button.setAttribute('aria-pressed', 'true');
+          button.classList.add(passed ? 'correct' : 'incorrect');
+          options.children[question.correct].classList.add('correct');
+          Array.from(options.children).forEach(opt => {
+            opt.disabled = true;
+            opt.classList.add('disabled');
+          });
+          feedback.hidden = false;
+          answers.push({ feedback, question, passed });
+          updateLanguage();
+          if (answered === questions.length) showQuizResult(correct, questions.length, courseId, lessonNum);
+        });
+        options.appendChild(button);
+      });
+      qDiv.appendChild(options);
+      qDiv.appendChild(feedback);
+      container.appendChild(qDiv);
+    });
+    updateLanguage();
+  };
+
+  document.addEventListener('academy:lang', updateLanguage);
+  academyQuizStates.set(container, {
+    dispose() { document.removeEventListener('academy:lang', updateLanguage); }
+  });
+  render();
 }
 
 function showQuizResult(score, total, courseId, lessonNum) {
-  saveQuizScore(courseId, lessonNum, score, total);
+  if (!saveQuizScore(courseId, lessonNum, score, total)) return;
   const result = document.getElementById('quiz-result');
   if (!result) return;
-
   const pass = score >= Math.ceil(total * 0.6);
   result.className = `quiz-result show ${pass ? 'pass' : 'fail'}`;
   result.dataset.score = score;
@@ -198,52 +372,60 @@ function showQuizResult(score, total, courseId, lessonNum) {
 
 function updateResultText() {
   const result = document.getElementById('quiz-result');
-  if (!result || !result.dataset.score) return;
-  const score = result.dataset.score;
-  const total = result.dataset.total;
-  const lang = document.body.getAttribute('data-lang') || 'en';
+  if (!result || result.dataset.score === undefined || result.dataset.total === undefined) return;
+  const score = Number(result.dataset.score);
+  const total = Number(result.dataset.total);
   const pass = score >= Math.ceil(total * 0.6);
-
-  const msgs = {
+  const messages = {
     en: pass ? `Great job! ${score}/${total} correct!` : `${score}/${total} — Review the material and try again.`,
     he: pass ? `כל הכבוד! ${score}/${total} תשובות נכונות!` : `${score}/${total} — חזור על החומר ונסה שוב.`,
     th: pass ? `เยี่ยมมาก! ${score}/${total} ข้อถูก!` : `${score}/${total} — ทบทวนเนื้อหาแล้วลองอีกครั้ง`
   };
-  result.textContent = msgs[lang] || msgs.en;
+  let message = result.querySelector('.quiz-result-message');
+  if (!message) {
+    message = document.createElement('p');
+    message.className = 'quiz-result-message';
+    message.setAttribute('role', 'status');
+    message.setAttribute('aria-live', 'polite');
+    result.prepend(message);
+  }
+  message.textContent = messages[academyQuizLanguage()] || messages.en;
 }
 
 // ---- Complete Lesson Button ----
 function initCompleteButton(courseId, lessonNum) {
+  recordLastLesson(courseId, lessonNum);
   const btn = document.getElementById('complete-btn');
   if (!btn) return;
-
+  academyCompleteButtons.get(btn)?.();
   const updateBtn = () => {
-    const lang = document.body.getAttribute('data-lang') || 'en';
-    if (isLessonComplete(courseId, lessonNum)) {
-      btn.classList.add('completed');
-      const texts = { en: '✓ Lesson Completed', he: '✓ השיעור הושלם', th: '✓ เรียนจบแล้ว' };
-      btn.textContent = texts[lang] || texts.en;
-    } else {
-      btn.classList.remove('completed');
-      const texts = { en: 'Mark as Complete', he: 'סמן כהושלם', th: 'ทำเครื่องหมายว่าเรียนจบ' };
-      btn.textContent = texts[lang] || texts.en;
-    }
+    const lang = academyQuizLanguage();
+    const completed = isLessonComplete(courseId, lessonNum);
+    const passed = hasPassedQuiz(courseId, lessonNum);
+    const labels = completed
+      ? { en: '✓ Lesson Completed', he: '✓ השיעור הושלם', th: '✓ เรียนจบแล้ว' }
+      : passed
+        ? { en: 'Mark as Complete', he: 'סמן כהושלם', th: 'ทำเครื่องหมายว่าเรียนจบ' }
+        : { en: 'Pass the quiz to complete this lesson', he: 'עבור את הבוחן כדי להשלים את השיעור', th: 'ผ่านแบบทดสอบเพื่อเรียนจบบทเรียนนี้' };
+    btn.classList.toggle('completed', completed);
+    btn.disabled = completed || !passed;
+    btn.setAttribute('aria-disabled', String(btn.disabled));
+    btn.dataset.state = completed ? 'completed' : passed ? 'ready' : 'locked';
+    btn.textContent = labels[lang] || labels.en;
   };
-
-  btn.addEventListener('click', () => {
-    if (!isLessonComplete(courseId, lessonNum)) {
-      markLessonComplete(courseId, lessonNum);
-      updateBtn();
-    }
-  });
-
-  updateBtn();
-
-  const origSetLang2 = window.setLanguage;
-  window.setLanguage = (lang) => {
-    origSetLang2(lang);
+  const onClick = () => {
+    markLessonComplete(courseId, lessonNum);
     updateBtn();
   };
+  btn.addEventListener('click', onClick);
+  document.addEventListener('academy:lang', updateBtn);
+  document.addEventListener('academy:progress', updateBtn);
+  academyCompleteButtons.set(btn, () => {
+    btn.removeEventListener('click', onClick);
+    document.removeEventListener('academy:lang', updateBtn);
+    document.removeEventListener('academy:progress', updateBtn);
+  });
+  updateBtn();
 }
 
 // ---- Init ----
@@ -251,7 +433,6 @@ document.addEventListener('DOMContentLoaded', () => {
   checkAuth();
   initLanguage();
   initScrollAnimations();
-
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
   });

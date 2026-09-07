@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bustan-academy">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -435,22 +435,21 @@
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,.2); }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <link rel="icon" type="image/png" href="../assets/bustan-energy-logo.png">
+  <link rel="stylesheet" href="assets/academy-brand.css?v=academy-20260907">
 </head>
 <body>
 
-<!-- PIN SCREEN -->
-<div id="pin-screen">
-  <div class="pin-logo">TM <span>Energy</span></div>
-  <div class="pin-subtitle">Academy Admin Panel</div>
-  <div class="pin-input-group">
-    <input class="pin-digit" type="password" maxlength="1" inputmode="numeric" autofocus>
-    <input class="pin-digit" type="password" maxlength="1" inputmode="numeric">
-    <input class="pin-digit" type="password" maxlength="1" inputmode="numeric">
-    <input class="pin-digit" type="password" maxlength="1" inputmode="numeric">
-  </div>
-  <div class="pin-error" id="pin-error"></div>
-</div>
+<!-- Retired admin: historical implementation below is intentionally inert. -->
+<main class="academy-retired" aria-labelledby="retired-title">
+  <img src="../assets/bustan-energy-logo.png" alt="Bustan Energy" width="240" height="107">
+  <p class="retired-kicker">BUSTAN ENERGY ACADEMY</p>
+  <h1 id="retired-title">This admin panel is retired.</h1>
+  <p>No backend is connected to this archived panel. Employee management and reporting are unavailable here.</p>
+  <p>The Academy remains available for lessons, quizzes and progress saved on this device.</p>
+  <a href="index.html">Return to the Academy →</a>
+</main>
 
 <!-- TOAST CONTAINER -->
 <div class="toast-container" id="toast-container"></div>
@@ -464,7 +463,7 @@
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <div class="sidebar-brand">TM <span>Energy</span></div>
+      <div class="sidebar-brand"><img src="../assets/bustan-energy-logo.png" alt="Bustan Energy" width="180"></div>
       <div class="sidebar-sub">Academy Admin</div>
     </div>
     <nav class="sidebar-nav">
@@ -947,7 +946,7 @@
 <!-- Hidden file input -->
 <input type="file" id="file-import" accept=".json" style="display:none">
 
-<script>
+<script type="application/x-bustan-archive">
 // ============================================================
 // DATA & CONSTANTS
 // ============================================================
@@ -998,11 +997,11 @@ let currentEmpRole = 'all';
 // STORAGE
 // ============================================================
 function getData() {
-  const raw = localStorage.getItem('tm-academy-admin');
+  const raw = localStorage.getItem('bustan-academy-admin');
   if (!raw) return { employees: [], settings: { companyName: 'Bustan Energy', ceoName: 'Kaniel Tordjman' }, activities: [] };
   try { return JSON.parse(raw); } catch { return { employees: [], settings: { companyName: 'Bustan Energy', ceoName: 'Kaniel Tordjman' }, activities: [] }; }
 }
-function saveData(data) { localStorage.setItem('tm-academy-admin', JSON.stringify(data)); }
+function saveData(data) { localStorage.setItem('bustan-academy-admin', JSON.stringify(data)); }
 
 async function sha256(value) {
   const data = new TextEncoder().encode(value);
@@ -1737,7 +1736,7 @@ function exportData() {
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = url; a.download = 'tm-academy-data-' + new Date().toISOString().split('T')[0] + '.json';
+  a.href = url; a.download = 'bustan-academy-data-' + new Date().toISOString().split('T')[0] + '.json';
   a.click(); URL.revokeObjectURL(url);
   toast('Data exported');
 }
@@ -1771,7 +1770,7 @@ document.getElementById('btn-reset-data').addEventListener('click', () => {
   btn.textContent = 'Reset Everything';
   btn.className = 'btn btn-danger';
   btn.onclick = () => {
-    localStorage.removeItem('tm-academy-admin');
+    localStorage.removeItem('bustan-academy-admin');
     closeModal('modal-confirm');
     renderAll();
     toast('All data has been reset');

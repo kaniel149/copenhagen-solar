@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bustan-academy">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="Lesson 2: Financial Modeling — IRR, Payback, LCOE — Bustan Energy Academy" data-he="שיעור 2: מודלים פיננסיים — IRR, Payback, LCOE — Bustan Energy Academy" data-th="บทเรียนที่ 2: การสร้างแบบจำลองทางการเงิน — IRR, Payback, LCOE — Bustan Energy Academy">Lesson 2: Financial Modeling — IRR, Payback, LCOE — Bustan Energy Academy</title>
-  <link rel="stylesheet" href="../assets/academy.css">
-  <script src="../assets/academy.js" defer></script>
+  <link rel="stylesheet" href="../assets/academy.css?v=academy-20260907">
+  <script src="../assets/academy.js?v=academy-20260907" defer></script>
   <style>
     .lesson-image { width: 100%; max-width: 700px; border-radius: 12px; margin: 20px auto; display: block; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-    .metric-card { margin: 16px 0; padding: 16px 20px; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid rgba(255,255,255,0.06); }
-    .metric-card h4 { color: #00D68F; margin: 0 0 6px 0; }
-    .metric-card p { color: rgba(255,255,255,0.75); margin: 0; font-size: 0.92em; }
-    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,214,143,0.08); border-left: 4px solid #00D68F; border-radius: 0 8px 8px 0; }
-    .warning-box { margin: 20px 0; padding: 16px 20px; background: rgba(255,165,0,0.08); border-left: 4px solid #FFA500; border-radius: 0 8px 8px 0; }
-    .case-study-box { margin: 20px 0; padding: 20px; background: rgba(100,149,237,0.08); border-left: 4px solid #6495ED; border-radius: 0 8px 8px 0; }
-    .case-study-box h4 { color: #6495ED; margin: 0 0 12px 0; }
+    .metric-card { margin: 16px 0; padding: 16px 20px; background: rgba(39,52,47,0.03); border-radius: 10px; border: 1px solid rgba(39,52,47,0.06); }
+    .metric-card h4 { color: #006F6B; margin: 0 0 6px 0; }
+    .metric-card p { color: rgba(39,52,47,0.75); margin: 0; font-size: 0.92em; }
+    .highlight-box { margin: 20px 0; padding: 16px 20px; background: rgba(0,111,107,0.08); border-left: 4px solid #006F6B; border-radius: 0 8px 8px 0; }
+    .warning-box { margin: 20px 0; padding: 16px 20px; background: rgba(255,165,0,0.08); border-left: 4px solid #8B5D13; border-radius: 0 8px 8px 0; }
+    .case-study-box { margin: 20px 0; padding: 20px; background: rgba(100,149,237,0.08); border-left: 4px solid #006F6B; border-radius: 0 8px 8px 0; }
+    .case-study-box h4 { color: #006F6B; margin: 0 0 12px 0; }
   </style>
+  <link rel="icon" type="image/png" href="../../assets/bustan-energy-logo.png">
+  <link rel="stylesheet" href="../assets/academy-brand.css?v=academy-20260907">
+  <link rel="stylesheet" href="../assets/lesson-tools.css?v=academy-20260907">
+  <script src="../assets/lesson-tools.js?v=academy-20260907" defer></script>
 </head>
 <body data-lang="en">
 
@@ -27,7 +31,7 @@
   <div class="breadcrumb">
     <a href="../index.html"><span data-en>Academy</span><span data-he>אקדמיה</span><span data-th>Academy</span></a>
     <span>›</span>
-    <a href="management-01.html"><span data-en>Management & Operations</span><span data-he>ניהול ותפעול</span><span data-th>การจัดการและการดำเนินงาน</span></a>
+    <a href="../index.html#track-management"><span data-en>Management & Operations</span><span data-he>ניהול ותפעול</span><span data-th>การจัดการและการดำเนินงาน</span></a>
     <span>›</span>
     <span data-en>Lesson 2</span><span data-he>שיעור 2</span><span data-th>บทที่ 2</span>
   </div>
@@ -114,22 +118,22 @@
         <tbody>
           <tr>
             <td><span data-en>FiT — Community Solar</span><span data-he>FiT — סולארי קהילתי</span><span data-th>FiT — โซลาร์ชุมชน</span></td>
-            <td style="color:#00D68F;"><strong>฿2.25</strong></td>
+            <td style="color:#006F6B;"><strong>฿2.25</strong></td>
             <td><span data-en>Fixed 20–25 year contract with PEA</span><span data-he>חוזה קבוע 20–25 שנים עם PEA</span><span data-th>สัญญาคงที่ 20–25 ปีกับ กฟภ.</span></td>
           </tr>
           <tr>
             <td><span data-en>FiT — Hybrid (Solar+BESS)</span><span data-he>FiT — היברידי (סולארי+סוללה)</span><span data-th>FiT — ไฮบริด (โซลาร์+แบตเตอรี่)</span></td>
-            <td style="color:#00D68F;"><strong>฿2.83</strong></td>
+            <td style="color:#006F6B;"><strong>฿2.83</strong></td>
             <td><span data-en>Premium for battery storage integration</span><span data-he>פרמיה לשילוב אגירת סוללה</span><span data-th>เบี้ยเพิ่มสำหรับการรวมแบตเตอรี่</span></td>
           </tr>
           <tr>
             <td><span data-en>PPA — Private Offtaker</span><span data-he>PPA — רוכש פרטי</span><span data-th>PPA — ผู้ซื้อเอกชน</span></td>
-            <td style="color:#00D68F;"><strong>฿3.00–3.80</strong></td>
+            <td style="color:#006F6B;"><strong>฿3.00–3.80</strong></td>
             <td><span data-en>Direct sale to factory/commercial buyer, negotiated rate</span><span data-he>מכירה ישירה למפעל/רוכש מסחרי, תעריף מוסכם</span><span data-th>ขายตรงให้โรงงาน/ผู้ซื้อเชิงพาณิชย์ อัตราเจรจา</span></td>
           </tr>
           <tr>
             <td><span data-en>Self-Consumption (avoided cost)</span><span data-he>צריכה עצמית (עלות נמנעת)</span><span data-th>ใช้เอง (ต้นทุนที่หลีกเลี่ยง)</span></td>
-            <td style="color:#00D68F;"><strong>฿4.15+</strong></td>
+            <td style="color:#006F6B;"><strong>฿4.15+</strong></td>
             <td><span data-en>Highest value — displaces grid electricity purchase</span><span data-he>ערך הגבוה ביותר — מחליף רכישת חשמל מהרשת</span><span data-th>มูลค่าสูงสุด — แทนที่การซื้อไฟฟ้าจากกริด</span></td>
           </tr>
         </tbody>
@@ -201,7 +205,7 @@
             <td>฿2–4M</td>
             <td>8–12%</td>
           </tr>
-          <tr style="color:#00D68F; font-weight: 700;">
+          <tr style="color:#006F6B; font-weight: 700;">
             <td><span data-en>Total CapEx</span><span data-he>סה"כ CapEx</span><span data-th>รวม CapEx</span></td>
             <td>฿26–37M/MW</td>
             <td>100%</td>
@@ -241,7 +245,7 @@
             <td><span data-en>Inverter Reserve / Replacement</span><span data-he>עתודת ממירים / החלפה</span><span data-th>สำรองอินเวอร์เตอร์ / เปลี่ยน</span></td>
             <td>฿50–100K</td>
           </tr>
-          <tr style="color:#00D68F; font-weight: 700;">
+          <tr style="color:#006F6B; font-weight: 700;">
             <td><span data-en>Total OpEx</span><span data-he>סה"כ OpEx</span><span data-th>รวม OpEx</span></td>
             <td>฿500K–900K/MW/yr</td>
           </tr>
@@ -365,27 +369,27 @@
           <tbody>
             <tr>
               <td><span data-en>Project IRR</span><span data-he>IRR פרויקט</span><span data-th>IRR โครงการ</span></td>
-              <td style="color:#00D68F;"><strong>8–11%</strong></td>
+              <td style="color:#006F6B;"><strong>8–11%</strong></td>
             </tr>
             <tr>
               <td><span data-en>Equity IRR</span><span data-he>IRR הוני</span><span data-th>IRR ส่วนทุน</span></td>
-              <td style="color:#00D68F;"><strong>12–16%</strong></td>
+              <td style="color:#006F6B;"><strong>12–16%</strong></td>
             </tr>
             <tr>
               <td><span data-en>Payback Period</span><span data-he>תקופת החזר</span><span data-th>ระยะเวลาคืนทุน</span></td>
-              <td style="color:#00D68F;"><span data-en><strong>8–12 years</strong></span><span data-he><strong>8–12 שנים</strong></span><span data-th><strong>8–12 ปี</strong></span></td>
+              <td style="color:#006F6B;"><span data-en><strong>8–12 years</strong></span><span data-he><strong>8–12 שנים</strong></span><span data-th><strong>8–12 ปี</strong></span></td>
             </tr>
             <tr>
               <td><span data-en>LCOE</span><span data-he>LCOE</span><span data-th>LCOE</span></td>
-              <td style="color:#00D68F;"><strong>฿1.80–2.20/kWh</strong></td>
+              <td style="color:#006F6B;"><strong>฿1.80–2.20/kWh</strong></td>
             </tr>
             <tr>
               <td><span data-en>DSCR (average)</span><span data-he>DSCR (ממוצע)</span><span data-th>DSCR (เฉลี่ย)</span></td>
-              <td style="color:#00D68F;"><strong>1.3–1.5x</strong></td>
+              <td style="color:#006F6B;"><strong>1.3–1.5x</strong></td>
             </tr>
             <tr>
               <td><span data-en>25-Year NPV (8% discount)</span><span data-he>NPV ל-25 שנה (היוון 8%)</span><span data-th>NPV 25 ปี (คิดลด 8%)</span></td>
-              <td style="color:#00D68F;"><strong>฿50–120M</strong></td>
+              <td style="color:#006F6B;"><strong>฿50–120M</strong></td>
             </tr>
           </tbody>
         </table>
@@ -512,6 +516,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="../../assets/site.js" data-root="../../" defer></script>
+<script src="../../assets/site.js?v=academy-20260907" data-root="../../" defer></script>
 </body>
 </html>

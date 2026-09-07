@@ -1,0 +1,10 @@
+.bustan-academy .lesson-outline { margin: 0 0 42px; border: 1px solid rgba(39,52,47,.2); border-inline-start: 3px solid #f2b84b; background: #fff4e2; border-radius: 3px; }
+.bustan-academy .lesson-outline summary { padding: 18px 22px; cursor: pointer; font-size: 15px; font-weight: 600; color: #24463e; }
+.bustan-academy .lesson-outline ol { margin: 0; padding: 0 48px 20px; color: #536256; font-size: 14px; }
+.bustan-academy .lesson-outline li { padding: 8px 0; border-top: 1px solid rgba(39,52,47,.1); }
+.bustan-academy .lesson-outline a { display: block; color: #006f6b; line-height: 1.55; }
+.bustan-academy .lesson-outline a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.bustan-academy .lesson-reading-progress { position: fixed; inset-inline: 0; top: var(--nav-h,76px); height: 3px; background: rgba(39,52,47,.12); z-index: 99; pointer-events: none; }
+.bustan-academy .lesson-reading-progress i { display: block; width: 0; height: 100%; background: #008f8a; }
+.bustan-academy .lesson-section { scroll-margin-top: calc(var(--nav-h,76px) + 24px); }
+@media print { .bustan-academy .lesson-reading-progress, .bustan-academy .lesson-outline { display: none; } }

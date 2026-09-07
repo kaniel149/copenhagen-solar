@@ -1,130 +1,104 @@
-> **Status 2026-09-03:** superseded by the live curriculum — 24 lessons in 5 tracks, listed in `assets/lessons.js` (regenerate with `node tools/build-lessons-index.mjs`). Kept for history; lesson counts below are outdated.
+# תוכנית שיפור לאקדמיית בוסתן אנרג׳י — 30 יום
 
-# Bustan Energy Academy — Improvement Plan
+עודכן: 7 בספטמבר 2026. מסמך זה מחליף את תוכנית השיפור ההיסטורית.
 
-## Current Status
-- **17 lessons** across 4 tracks (720KB total)
-- **Average quality score: ~58%** (target: 85%+)
-- **Main gaps:** Missing navigation, no images/videos in some lessons, inconsistent structure
+המסמך להצגה ולהורדה: [תוכנית השיפור בעברית](improvement-plan-he.html).
 
----
+## נקודת מוצא
 
-## Phase 1: Structural Consistency ⚠️ CRITICAL
-**Goal:** Every lesson has the same HTML structure and navigation
+האקדמיה כוללת 24 שיעורים בחמישה מסלולים, עם כותרות ותוכן באנגלית, בעברית ובתאילנדית. ההתקדמות נשמרת בדפדפן המקומי; אין כיום שירות פעיל לאימות משתמשים ולסנכרון התקדמות. שירות האימות הקודם אינו פעיל. אין לשנות את ההתקדמות הקיימת או את תהליך העברתה מהאחסון הישן.
 
-| # | Task | Files Affected | Est. Time |
-|---|------|---------------|-----------|
-| 1 | Add `<section class="lesson-section fade-up">` wrappers | 14 lessons | 30 min |
-| 2 | Add prev/next navigation buttons | 14 lessons | 20 min |
-| 3 | Fix "Lesson X of 10" → "of 3" counters | sales-01, sales-02 | 5 min |
-| 4 | Verify/add footer to all lessons | All 17 | 10 min |
-| 5 | Ensure all lessons use `<link rel="stylesheet" href="../assets/academy.css">` consistently | All 17 | 5 min |
+מטרת התוכנית: לחבר את חומר הלימוד לעבודה של אנשי מכירות, הצוות הטכני והניהול בקופנגן, עם תוצרים ניתנים לבדיקה ואחריות ברורה לתוכן.
 
-**Expected score improvement: +10-15 pts average**
+## שלב 0 — כלול בעדכון הנוכחי
 
----
+העדכון הנוכחי בוצע ונבדק. הסעיפים הבאים נכללים בו ואינם בקשות לפיתוח נוסף.
 
-## Phase 2: Missing Media 🟡 HIGH
-**Goal:** Every lesson has ≥1 image and ≥1 video
+- **שפה חזותית אחידה:** הלוגו הרשמי של בוסתן, צבעי Grove/Paper ונראות עקבית בין האקדמיה לשיעורים.
+- **קריאה ברורה בשיעור:** ריווח, כותרות ותוכן שמותאמים לקריאה במחשב ובנייד, כולל עברית מימין לשמאל, תוכן עניינים לניווט בתוך השיעור ומד התקדמות בקריאה.
+- **חיפוש והמשך למידה:** חיפוש בכותרות בשלוש השפות, סינון לפי מסלול ומצב, וחזרה לשיעור הבא.
+- **התקדמות וחידונים:** שמירה מקומית עמידה יותר, תשובות נגישות למקלדת וניסיון חוזר. השלמה חדשה מחייבת מעבר חידון; התקדמות קיימת נשמרת.
+- **ציפיות מדויקות:** ניסוח ברור על השלמה ושמירה בדפדפן. אישור סיום פנימי מופיע בתוכנית ההמשך רק לאחר הגדרת הערכה.
 
-### Missing Images (4 lessons with 0 images):
-| Lesson | Needs | Source |
-|--------|-------|--------|
-| sf-06 (System Sizing) | Sizing formula diagram | Gemini generate |
-| sf-07 (Energy Economics) | ROI chart / payback graph | Gemini generate |
-| sales-01 (Solar Customer) | Customer persona infographic | Gemini generate |
-| sales-02 (Sales Process) | Sales funnel diagram | Gemini generate |
+## חמש המלצות להמשך, לפי סדר עדיפות
 
-### Missing Videos (8 lessons with 0 videos):
-| Lesson | Topic to Search | Channel Suggestions |
-|--------|----------------|-------------------|
-| sf-06 | Solar system sizing tutorial | The Solar Lab, Will Prowse |
-| sf-07 | Solar ROI / payback period explained | Solar Saving, EcoFlow |
-| sf-08 | Solar panel cleaning & maintenance | eFIXX, Jasonoid |
-| sales-03 | Solar sales closing techniques | Solar Academy, Solar Pros |
-| tech-03 | Huawei SUN2000 installation | Huawei FusionSolar |
-| ev-01 | Home battery storage explained | The Solar Lab |
-| ev-02 | EV charger installation guide | Fully Charged |
-| ev-03 | Solar + EV integration | EcoFlow, Fully Charged |
+P1 = תשתית הדרכה ותוכן שיש להקדים. P2 = הרחבה שתלויה בהחלטות ובתוצרים הקודמים. כל הזמנים להלן הם אומדני תכנון, לא התחייבות לביצוע או מחיר.
 
-**Expected score improvement: +15-20 pts for affected lessons**
+### 01 · שלושה מסלולים שמתחילים מהעבודה עצמה.
 
----
+**עדיפות:** P1 | **מועד מוצע:** ימים 1–5 | **אומדן מאמץ:** 2–3 ימי־אדם
 
-## Phase 3: Interactive Enhancements 🟡 HIGH
-**Goal:** Rich interactive elements in every lesson
+- **למה:** אנשי מכירות, מתקינים ומנהלים צריכים סדר לימוד שונה. מסלול ברור מחבר כל שיעור להחלטה או למשימה שהאדם עומד לבצע.
+- **מה עושים:** למפות את 24 השיעורים הקיימים לשלושה מסלולי תפקיד: מכירות, טכני וניהול. להגדיר בכל מסלול שיעורי חובה, העשרה, משימת פתיחה ונקודת בדיקה.
+- **אחריות:** מוביל ההדרכה + אחראי מכל תפקיד
+- **תלויות:** אישור תפקידי היעד ומטרות הלמידה; שימוש בקטלוג הקיים.
+- **מדד הצלחה מוצע:** 3 מסלולים מתועדים. בפיילוט מוצע של 6 אנשים, שניים מכל תפקיד, כל משתתף מוצא את הצעד הבא בתוך 30 שניות.
+- **תוצר למסירה:** מפת שיעורים לפי תפקיד + כללי חובה והעשרה.
 
-| # | Task | Details |
-|---|------|---------|
-| 1 | Add spec-tables to data-heavy lessons | ~13 lessons need tables |
-| 2 | Add key-concept boxes | ~14 lessons missing |
-| 3 | ROI Calculator (JS) | Add to sales-03: input kWp → output payback, savings |
-| 4 | String Sizing Calculator (JS) | Add to tech-02: input panels, Voc → string config |
-| 5 | Battery Sizing Calculator (JS) | Add to ev-01: input consumption → battery kWh |
-| 6 | Progress bar in academy.js | localStorage: lesson completion, quiz scores |
+### 02 · לסיים עם תוצר שאפשר לבדוק.
 
-**Expected score improvement: +10 pts average**
+**עדיפות:** P1 | **מועד מוצע:** ימים 4–12 | **אומדן מאמץ:** 4–6 ימי־אדם
 
----
+- **למה:** חידון בודק הבנה. תיק עבודה קצר מראה אם המשתתף יודע להשתמש בחומר מול נכס, לקוח או צוות באי.
+- **מה עושים:** לבנות שלוש משימות פיילוט על תיק נכס לדוגמה: הכנה לשיחת לקוח, הכנה לסקר, והעברת פרויקט לתפעול. לכל משימה לצרף רשימת מסמכים או ציוד, שדות לתיעוד ודוגמת תשובה.
+- **אחריות:** אחראי תפקיד + בודק מטעם התפעול
+- **תלויות:** מסלולי התפקיד; תיק דוגמה מאושר; הגדרת מי בודק את העבודה.
+- **מדד הצלחה מוצע:** 3 משימות עם מחוון ברור וראיות נדרשות. כל אחד מ־6 משתתפי הפיילוט מגיש משימה אחת ומקבל משוב מתועד.
+- **תוצר למסירה:** שלוש ערכות משימה + צ׳קליסט + מחוון בדיקה.
 
-## Phase 4: Content Quality 🔵 MEDIUM
-**Goal:** Accurate, professional, locally relevant content
+### 03 · בעלים, מקור ותאריך בדיקה לכל שיעור.
 
-| # | Task |
-|---|------|
-| 1 | Thai translations review by native speaker |
-| 2 | Update PEA/ERC regulatory data to 2026 |
-| 3 | Replace Gemini images with real Bustan Energy photos where available |
-| 4 | Review all 68 quiz questions for accuracy and difficulty |
-| 5 | Add Huawei SUN2000 real datasheet specs |
-| 6 | Cross-reference electrician training with PEA/MEA guidelines |
+**עדיפות:** P1 | **מועד מוצע:** ימים 1–20 | **אומדן מאמץ:** 5–8 ימי־אדם
 
----
+- **למה:** תוכן מקצועי צריך להיות מובן בשלוש שפות ולהישאר מעודכן. בלי אחראי ומועד בדיקה, קשה לדעת מה כבר נבדק ומה דורש תיקון.
+- **מה עושים:** להקים רשימת בקרה לכל 24 השיעורים: בעל תוכן, שפות שנבדקו, מקורות ותאריך סקירה. להתחיל בשלושה שיעורי פיילוט מייצגים; להעביר את העברית והתאילנדית לבודקים דוברי שפת אם, ואת הטענות הטכניות והרגולטוריות לבדיקת מקורות רשמיים ראשוניים. לבדוק גם את דיוק התרשימים והכיתוב שבתמונות; לשמור את הקבצים הקיימים עד לאישור חלופה בדוקה.
+- **אחריות:** עורך תוכן + בודקי שפה + בודק מקצועי
+- **תלויות:** זמינות בודקים; מסמך מקורות; החלטה אילו תכנים דורשים אישור לפני פרסום.
+- **מדד הצלחה מוצע:** 24 שיעורים מופיעים ברשימת הבקרה. 3 שיעורי הפיילוט עברו בדיקת עברית ותאילנדית; כל טענה שהוגדרה קריטית בהם קיבלה מקור רשמי ואישור לפני פרסום. לכל תרשים בשיעורי הפיילוט יש סטטוס בדיקה מתועד.
+- **תוצר למסירה:** רשימת בעלות ותאריכי סקירה + שלושה שיעורים בדוקים + תור תיקונים.
 
-## Phase 5: UX & Design 🔵 MEDIUM
+### 04 · חשבון עובד ורצף למידה, כשיש תשתית אמיתית.
 
-| # | Feature | Impact |
-|---|---------|--------|
-| 1 | Reading time estimate per lesson | Low effort, nice UX |
-| 2 | Print/PDF export button | Useful for offline study |
-| 3 | Mobile responsiveness audit (375px) | Critical for field use |
-| 4 | Scroll progress indicator | Visual engagement |
-| 5 | IntersectionObserver fade-in animations | Polish |
-| 6 | Dark/light mode toggle | Accessibility |
+**עדיפות:** P2 | **מועד מוצע:** ימים 15–26 | **אומדן מאמץ:** 5–8 ימי־אדם
 
----
+- **למה:** ההתקדמות נשמרת כיום בדפדפן המקומי. כדי לעבור בין טלפון למחשב ולתת למנהל תמונת מצב, צריך שירות פעיל עם משתמשים, הרשאות ונתונים.
+- **מה עושים:** להגדיר זהות משתמש, תפקידי גישה ומידע שמנהל באמת צריך. לאחר אישור ההיקף, לבחור ולהקים תשתית פעילה, לחבר שמירה וסנכרון ולתכנן העברה של ההתקדמות המקומית הקיימת.
+- **אחריות:** אחראי מוצר + מפתח + מנהל התפעול
+- **תלויות:** שירות פעיל שהוקם בפועל; החלטת הרשאות; תקציב ועלויות שירות; כללי העברת נתונים מקומיים.
+- **מדד הצלחה מוצע:** משתמש פיילוט ממשיך מאותו מצב בשני מכשירים. בדיקת הרשאות מונעת גישה להתקדמות של אדם אחר. בדיקת מעבר מאשרת שההתקדמות המקומית שנבחרה לייבוא נשמרת.
+- **תוצר למסירה:** כניסה וסנכרון עובדים + תצוגת מנהל מצומצמת + בדיקות מעבר והרשאות.
 
-## Phase 6: Advanced Features 🟢 FUTURE
+### 05 · אישור השלמה רק אחרי הערכה מוגדרת.
 
-| # | Feature | Complexity |
-|---|---------|-----------|
-| 1 | Management course (Track 5, 3 lessons) | Medium |
-| 2 | Employee progress dashboard (Supabase) | High |
-| 3 | Certificate PDF generation on completion | Medium |
-| 4 | Final exam mode (timed, 80% pass) | Medium |
-| 5 | academy.bustan-energy.com subdomain | Low |
-| 6 | Full-text search across all content | Medium |
+**עדיפות:** P2 | **מועד מוצע:** ימים 25–30 | **אומדן מאמץ:** 2–3 ימי־אדם
 
----
+- **למה:** אישור פנימי מועיל כשברור מה נבדק ומי אישר אותו. הוא צריך לשקף השלמה של המסלול והתרגול שנקבעו.
+- **מה עושים:** להגדיר שיעורי חובה, רף מעבר לחידונים, ראיות מהמשימה המעשית ואישור בודק. רק אז ליצור אישור השלמה פנימי של בוסתן עם שם המסלול, גרסת הקריטריונים ותאריך.
+- **אחריות:** מוביל ההדרכה + בודקי התפקידים
+- **תלויות:** מסלולים ומחוונים מאושרים; רישום תוצאות אמין. אם שלב הסנכרון מתעכב, האישור ייבדק ויירשם ידנית בידי האחראי.
+- **מדד הצלחה מוצע:** כללי הזכאות כתובים לפני ההנפקה הראשונה. בדיקות עם חידון חסר, משימה חסרה או אישור חסר מונעות הנפקה; רק תיק פיילוט מלא מקבל אישור.
+- **תוצר למסירה:** מדיניות זכאות + אישור פנימי + רישום אישור הבודק.
 
-## Execution Order
-1. **Phase 1** → Script to fix all 14 lessons in one pass (~30 min)
-2. **Phase 2** → Generate 4 images + find 8 YouTube videos (~1 hour)
-3. **Phase 3** → Add tables, key concepts, calculators (~1 hour)
-4. **Phase 4-5** → Content review + UX polish (ongoing)
-5. **Phase 6** → After core quality reaches 85%+
+## תוכנית עבודה ל־30 יום
 
-## Quality Scoring
-| Component | Max Points |
-|-----------|-----------|
-| Content size (>25KB) | 10 |
-| Quiz (4 questions) | 15 |
-| Did-you-know box | 5 |
-| Key-concept box | 5 |
-| Section wrappers | 5 |
-| Images (≥2) | 15 |
-| Videos (≥2) | 15 |
-| Navigation buttons | 10 |
-| Tables (≥2) | 10 |
-| Trilingual | 10 |
-| **Total** | **100** |
+יום 1 הוא יום תחילת העבודה לאחר אישור ההיקף ומינוי האחראים. החלונות חופפים בכוונה כדי לאפשר עבודת תוכן ופיתוח במקביל.
+
+| ימים | מיקוד | עבודה | נקודת החלטה |
+|---|---|---|---|
+| 01–05 | מגדירים את המסלול | מובילי התפקידים ממפים את הלמידה. פותחים רשימת בקרה לתוכן ובוחרים תיק נכס ושלושה שיעורי פיילוט. | נקודת החלטה: מסלולים ובעלי אחריות מאושרים. |
+| 06–12 | לומדים ומגישים תוצר | בונים את שלוש משימות השטח ומריצים פיילוט מוצע עם שישה משתתפים. אוספים תוצרים ומשוב על הצעד הבא. | נקודת החלטה: המשימות ניתנות לביצוע ולבדיקה. |
+| 13–21 | בודקים תוכן ומכינים סנכרון | משלימים את בדיקת שיעורי הפיילוט. מגדירים הרשאות ומקימים תשתית פעילה לסנכרון, בכפוף לתקציב ולהיקף שאושרו. | נקודת החלטה: תוכן מאושר ושירות פעיל לחיבור. |
+| 22–30 | בודקים רצף וסגירה | בודקים שני מכשירים, מעבר נתונים והרשאות. מפעילים את כללי ההערכה ואת אישור ההשלמה הפנימי. | נקודת החלטה: פתיחת המחזור הבא עם בעלות ותור תיקונים. |
+
+## מאמץ, תלות ומדידה
+
+- **אומדן כולל לתוכנית ההמשך:** 18–28 ימי־אדם. זהו סכום המאמץ, לא משך קלנדרי. הוא אינו כולל את העדכון הנוכחי ואינו כולל זמני המתנה או עלויות שירות חיצוני.
+- **תנאי ללוח של 30 יום:** עבודת פיתוח ותוכן במקביל, זמינות אחראי הדרכה, מובילי התפקידים ובודקי שפה ותוכן. זמינות שירותים ובודקים עשויה להזיז את מועדי השלבים התלויים בהם.
+- **אם צריך לצמצם:** להשלים תחילה את המלצות 1–3 — מסלולים, משימות ובקרת תוכן. אפשר להמשיך ללמוד עם שמירה מקומית בזמן שמגדירים תשתית לסנכרון.
+- **אין כאן נתוני שיפור שנמדדו:** מדדי ההצלחה במסמך הם יעדי קבלה מוצעים. הפיילוט ישמש לאיסוף תמונת המצב הראשונה ולעדכון סדר העדיפויות.
+- **מקורות ותוכן:** בדיקה טכנית ורגולטורית תתבצע מול מסמכי מקור רשמיים ועדכניים ותיעוד יצרן ראשוני, עם קישור ותאריך בדיקה. מסמך זה אינו מאמת טענות מקצועיות בשיעורים.
+- **אישור השלמה:** אישור פנימי של בוסתן בלבד, המבוסס על קריטריונים מוגדרים; אין במסמך הבטחה לרישוי או להסמכה מקצועית.
+
+## בסיס האבחון
+
+המלצות התוכנית נשענות על בדיקת `academy/index.html`, `academy/assets/academy.js`, `academy/assets/academy.css`, `academy/assets/lessons.js` ומבנה השיעורים. הן אינן מבוססות על נתוני שימוש או מדידת ביצועי לומדים. האבחון זיהה פערים בחזרה ללמידה, עדכון התקדמות, נגישות חידונים, ניסיון חוזר ואחידות טיפוגרפית.

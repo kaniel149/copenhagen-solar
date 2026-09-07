@@ -1,0 +1,44 @@
+/* Lesson discovery for Bustan Academy. */
+.academy-home [hidden] { display: none !important; }
+.academy-home .hero .overall { color: #fff4e2; }
+.academy-home .overall .bar { background: rgba(255,244,226,.2); height: 5px; }
+.academy-home .overall .bar i { background: #f2b84b; }
+.academy-home .learning-next { padding: 32px 0 0; }
+.academy-home .resume-card { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 28px 32px; background: #fff4e2; border: 1px solid rgba(39,52,47,.2); border-inline-start: 4px solid #f2b84b; }
+.academy-home .resume-card .eyebrow { margin-bottom: 10px; color: #006f6b; }
+.academy-home #resume-meta { margin: 12px 0 0; font-size: 14px; }
+.academy-home .save-note { font-size: 12px; color: #657452; margin: 5px 0 0; }
+.academy-home .academy-filters { display: grid; grid-template-columns: minmax(240px, 2fr) minmax(180px, 1fr) minmax(160px, .8fr) auto; gap: 16px; align-items: end; padding: 22px 0; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); margin-bottom: 16px; }
+.academy-home .academy-filters label { display: grid; gap: 8px; min-width: 0; font-size: 13px; font-weight: 500; }
+.academy-home .academy-filters input,
+.academy-home .academy-filters select { width: 100%; min-height: 46px; min-width: 0; border: 1px solid rgba(39,52,47,.3); border-radius: 3px; background: #fff4e2; color: #27342f; font: inherit; padding: 10px 12px; }
+.academy-home .academy-filters input::placeholder { color: #657452; opacity: 1; }
+.academy-home .academy-filters button { min-height: 46px; }
+.academy-home .lesson-results { font-size: 13px; color: #536256; margin-bottom: 24px; font-variant-numeric: tabular-nums; }
+.academy-home .learning-empty { padding: 40px; border: 1px dashed #657452; background: #fff4e2; }
+.academy-home .learning-empty p { margin: 14px 0 20px; }
+.academy-home .lesson-row { border-radius: 3px; min-height: 52px; }
+.academy-home .lesson-row:hover { background: #f4ead8; }
+.academy-home .lesson-row:last-child { border-bottom: 1px solid var(--hair); }
+.academy-home .track-lessons li:last-child .lesson-row { border-bottom: 0; }
+.academy-home .lesson-row .n { border-radius: 3px; }
+.academy-home .lesson-done-label { display: block; color: #006f6b; font-size: 11px; margin-top: 4px; font-weight: 400; }
+.academy-home .track-card .difficulty-badge { position: static; display: inline-block; margin-bottom: 20px; }
+.academy-home .track-row .track-num { margin-bottom: 12px; }
+.academy-home .track-meta { margin-top: 20px; }
+.academy-home .stats-section { padding-inline: 22px; }
+@media (max-width: 900px) {
+  .academy-home .academy-filters { grid-template-columns: 1fr 1fr; }
+  .academy-home .academy-search { grid-column: 1 / -1; }
+  .academy-home #clear-filters { grid-column: 1 / -1; justify-self: start; }
+}
+@media (max-width: 600px) {
+  .academy-home .resume-card { flex-direction: column; align-items: stretch; gap: 22px; padding: 24px; }
+  .academy-home .resume-card .btn { align-self: flex-start; }
+  .academy-home .academy-filters { gap: 12px; }
+  .academy-home .academy-filters select { font-size: 12px; padding: 10px 6px; }
+  .academy-home .track-row .track-card { padding: 24px; }
+  .academy-home .track-lessons { padding: 10px 14px; }
+  .academy-home .learning-empty { padding: 24px; }
+  .academy-home .overall { gap: 10px; }
+}

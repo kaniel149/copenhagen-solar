@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05",
+ "generated": "2026-09-07",
  "count": 205,
  "entries": [
   {
@@ -24,10 +24,10 @@
     "he"
    ],
    "audience": "internal",
-   "updated": "2026-09-04",
-   "size": 62989,
+   "updated": "2026-09-07",
+   "size": 62512,
    "alt": "Community-solar models and their fit for Thailand",
-   "thumb": "assets/thumbs/presentations-community-solar-research.webp"
+   "cover": "drone-imagery/DJI_20260327112800_0013_D.webp"
   },
   {
    "title": "Company presentation 2026",
@@ -38,10 +38,10 @@
     "en"
    ],
    "audience": "client",
-   "updated": "2026-09-04",
-   "size": 30441,
+   "updated": "2026-09-07",
+   "size": 29586,
    "alt": "Who we are, what we do on Koh Phangan, team and track record",
-   "thumb": "assets/thumbs/presentations-bustan-energy-company-2026.webp"
+   "cover": "drone-imagery/DJI_20260327112800_0013_D.webp"
   },
   {
    "title": "EV charging network — Koh Phangan",
@@ -53,15 +53,15 @@
     "th"
    ],
    "audience": "investor",
-   "updated": "2026-09-04",
-   "size": 74155,
+   "updated": "2026-09-07",
+   "size": 73866,
    "alt": "Charging-station opportunity, sites, unit economics",
-   "thumb": "assets/thumbs/presentations-ev-charging-koh-phangan.webp"
+   "cover": "drone-imagery/DJI_20260327112800_0013_D.webp"
   },
   {
    "title": "מימון — בנקים, תנאים, מספרים אמיתיים",
-   "alt": "Financing deck (bustan-energy.com)",
-   "path": "https://bustan-energy.com/bustan-financing-deck.html",
+   "alt": "Bustan Energy — financing",
+   "path": "presentations/bustan-financing.html",
    "kind": "deck",
    "group": "presentations",
    "audience": "investor",
@@ -70,9 +70,10 @@
     "en",
     "th"
    ],
-   "thumb": "assets/thumbs/ext-financing-deck.webp",
+   "cover": "drone-imagery/DJI_20260327112800_0013_D.webp",
+   "updated": "2026-09-07",
    "note": "numbers pending validation",
-   "external": true
+   "size": 46590
   },
   {
    "title": "רשת טעינה לרכב חשמלי — קופנגן",
@@ -83,10 +84,10 @@
     "he"
    ],
    "audience": "investor",
-   "updated": "2026-09-04",
-   "size": 69774,
+   "updated": "2026-09-07",
+   "size": 69485,
    "alt": "EV charging network (Hebrew twin)",
-   "thumb": "assets/thumbs/presentations-ev-charging-koh-phangan-he.webp"
+   "cover": "drone-imagery/DJI_20260327112800_0013_D.webp"
   },
   {
    "title": "Academy welcome email (Erez)",
@@ -351,11 +352,11 @@
     "he"
    ],
    "audience": "client",
-   "updated": "2026-09-04",
-   "size": 78417,
+   "updated": "2026-09-07",
+   "size": 78644,
    "alt": "Legal, contracts & agreements",
    "playbook": true,
-   "thumb": "assets/thumbs/legal-contracts.webp"
+   "cover": "drone-imagery/DJI_20260327112912_0020_D.webp"
   },
   {
    "title": "Solar farm development guide — Koh Phangan (up to 9 MW)",
@@ -366,10 +367,10 @@
     "en"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 41868,
+   "updated": "2026-09-07",
+   "size": 42158,
    "playbook": true,
-   "thumb": "assets/thumbs/solar-farm-guide.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "Thailand solar farm masterclass",
@@ -380,10 +381,10 @@
     "en"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 177199,
+   "updated": "2026-09-07",
+   "size": 177626,
    "playbook": true,
-   "thumb": "assets/thumbs/thailand-solar-farm-masterclass.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "מדריך סריקת גגות ברחפן",
@@ -394,11 +395,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 44393,
+   "updated": "2026-09-07",
+   "size": 44608,
    "alt": "Drone roof-scanning guide",
    "playbook": true,
-   "thumb": "assets/thumbs/drone-guide.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "ניטור ותחזוקה",
@@ -409,11 +410,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 62835,
+   "updated": "2026-09-07",
+   "size": 63062,
    "alt": "Monitoring & maintenance",
    "playbook": true,
-   "thumb": "assets/thumbs/monitoring-maintenance.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "רישוי ורגולציה",
@@ -424,11 +425,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 117406,
+   "updated": "2026-09-07",
+   "size": 119084,
    "alt": "Licensing solar systems in Thailand",
    "playbook": true,
-   "thumb": "assets/thumbs/licensing.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "רכש והנדסה",
@@ -439,11 +440,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 63098,
+   "updated": "2026-09-07",
+   "size": 63318,
    "alt": "Procurement & engineering",
    "playbook": true,
-   "thumb": "assets/thumbs/procurement-engineering.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "רשימת ציוד וכלי עבודה",
@@ -454,11 +455,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 78417,
+   "updated": "2026-09-07",
+   "size": 78644,
    "alt": "Equipment & tools list",
    "playbook": true,
-   "thumb": "assets/thumbs/equipment-list.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "תהליך הקמה",
@@ -469,11 +470,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 91432,
+   "updated": "2026-09-07",
+   "size": 91675,
    "alt": "Installation process",
    "playbook": true,
-   "thumb": "assets/thumbs/installation.webp"
+   "cover": "drone-imagery/DJI_20260327110028_0002_D.webp"
   },
   {
    "title": "Drive — project folder",
@@ -618,11 +619,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 68897,
+   "updated": "2026-09-07",
+   "size": 69134,
    "alt": "15 slides",
    "playbook": true,
-   "thumb": "assets/thumbs/crm-value-chain.webp"
+   "cover": "drone-imagery/DJI_20260327110222_0003_D.webp"
   },
   {
    "title": "אווטרי לקוחות",
@@ -633,11 +634,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 53266,
+   "updated": "2026-09-07",
+   "size": 55328,
    "alt": "Customer avatars",
    "playbook": true,
-   "thumb": "assets/thumbs/customer-avatars.webp"
+   "cover": "drone-imagery/DJI_20260327110222_0003_D.webp"
   },
   {
    "title": "ארכיטקטורת Value Chain",
@@ -648,11 +649,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 47061,
+   "updated": "2026-09-07",
+   "size": 47356,
    "alt": "Value-chain architecture (CRM)",
    "playbook": true,
-   "thumb": "assets/thumbs/value-chain.webp"
+   "cover": "drone-imagery/DJI_20260327110222_0003_D.webp"
   },
   {
    "title": "שיווק ומכירות",
@@ -663,11 +664,11 @@
     "he"
    ],
    "audience": "team",
-   "updated": "2026-09-04",
-   "size": 102312,
+   "updated": "2026-09-07",
+   "size": 102555,
    "alt": "Sales & marketing playbook",
    "playbook": true,
-   "thumb": "assets/thumbs/sales-marketing.webp"
+   "cover": "drone-imagery/DJI_20260327110222_0003_D.webp"
   },
   {
    "title": "Business plan workbook",
@@ -691,11 +692,11 @@
     "he"
    ],
    "audience": "internal",
-   "updated": "2026-09-04",
-   "size": 79678,
+   "updated": "2026-09-07",
+   "size": 79927,
    "alt": "Strategy deck",
    "playbook": true,
-   "thumb": "assets/thumbs/strategy.webp"
+   "cover": "drone-imagery/DJI_20260327112929_0021_D.webp"
   },
   {
    "title": "דשבורד פיננסי",
@@ -706,11 +707,11 @@
     "he"
    ],
    "audience": "internal",
-   "updated": "2026-09-04",
-   "size": 69971,
+   "updated": "2026-09-07",
+   "size": 70219,
    "alt": "Financial dashboard",
    "playbook": true,
-   "thumb": "assets/thumbs/financial-dashboard.webp"
+   "cover": "drone-imagery/DJI_20260327112929_0021_D.webp"
   },
   {
    "title": "מימון ובנקים",
@@ -721,11 +722,11 @@
     "he"
    ],
    "audience": "internal",
-   "updated": "2026-09-04",
-   "size": 56693,
+   "updated": "2026-09-07",
+   "size": 56916,
    "alt": "Financing deep dive — banks, terms, PPA/ESCO math",
    "playbook": true,
-   "thumb": "assets/thumbs/financing.webp"
+   "cover": "drone-imagery/DJI_20260327112929_0021_D.webp"
   },
   {
    "title": "פיננסים — P&L ותוכנית הקמה מלאה",
@@ -736,11 +737,11 @@
     "he"
    ],
    "audience": "internal",
-   "updated": "2026-09-05",
-   "size": 111768,
+   "updated": "2026-09-07",
+   "size": 112001,
    "alt": "P&L + full build-out plan",
    "playbook": true,
-   "thumb": "assets/thumbs/pnl-plan.webp"
+   "cover": "drone-imagery/DJI_20260327112929_0021_D.webp"
   },
   {
    "title": "תוכנית עסקית שנה 1",
@@ -751,11 +752,11 @@
     "he"
    ],
    "audience": "internal",
-   "updated": "2026-09-04",
-   "size": 98387,
+   "updated": "2026-09-07",
+   "size": 98622,
    "alt": "Business plan — year 1",
    "playbook": true,
-   "thumb": "assets/thumbs/business-plan.webp"
+   "cover": "drone-imagery/DJI_20260327112929_0021_D.webp"
   },
   {
    "title": "Academy hub",

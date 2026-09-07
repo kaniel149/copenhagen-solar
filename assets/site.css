@@ -306,3 +306,13 @@ html[lang="en"] button[data-en], html[lang="he"] button[data-he], html[lang="th"
 .list-lines { list-style: none; margin: 0; padding: 0; }
 .list-lines li { border-top: 1px solid var(--hair); }
 .list-lines li:last-child { border-bottom: 1px solid var(--hair); }
+
+/* Official Bustan artwork, shared by the navigation and catalog covers. */
+.nav-logo img { width: 86px; height: 38px; object-fit: contain; }
+.bustan-cover { position: relative; height: 100%; width: 100%; background: #24463e; overflow: hidden; direction: ltr; }
+.deck-thumb .bustan-cover-photo { position: absolute; inset: 0 0 0 auto; width: 62%; height: 100%; object-fit: cover; }
+.bustan-cover-panel { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; height: 100%; width: 45%; padding: 20px 18px; background: #24463e; color: #fff4e2; border-inline-end: 3px solid #f2b84b; }
+.deck-thumb .bustan-cover-logo { width: 100%; height: auto; max-height: 64px; object-fit: contain; margin-bottom: auto; transform: none; }
+.bustan-cover-label { color: #f2b84b; text-transform: uppercase; font: 500 11px/1.2 "Heebo",sans-serif; letter-spacing: .09em; margin-top: 14px; }
+.bustan-cover-place { font: 400 9px/1.5 "Heebo",sans-serif; letter-spacing: .15em; margin-top: 7px; opacity: .85; }
+.deck-card:hover .bustan-cover-logo { transform: none; }

@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="content-updated" content="2026-09-04">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bustan Energy — Bustan Energy — רשימת ציוד וכלי עבודה</title>
+<title>Bustan Energy — רשימת ציוד וכלי עבודה</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
+:root{--ocean:#24463E;--gold:#F2B84B;--reef:#008F8A;--coral:#FF6B4A;--night:#27342F;--white:#FFF}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
 .slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
@@ -15,62 +15,61 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
 .slide.active{opacity:1;transform:translateX(0);pointer-events:all}.slide.exit{opacity:0;transform:translateX(-100px)}
 .slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
 .slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
-.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
-.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:10px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.slide-reef{background:linear-gradient(135deg,#24463E,var(--night))}.slide-gold{background:linear-gradient(135deg,#4A4633,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:10px 30px;background:rgba(39,52,47,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(242,184,75,.2);z-index:100}
 .nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:7px 22px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:13px;font-weight:500;transition:all .3s}
 .nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}
-.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:13px}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,244,226,.5);font-size:13px}
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
-.toc-btn{position:fixed;top:16px;left:16px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:102}
+.toc-btn{position:fixed;top:16px;left:16px;background:rgba(242,184,75,.15);border:1px solid rgba(242,184,75,.3);color:var(--gold);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;z-index:102}
 .toc-btn:hover{background:var(--gold);color:var(--night)}
-.toc-panel{position:fixed;top:0;left:-340px;width:340px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s;padding:50px 24px 24px;overflow-y:auto}
+.toc-panel{position:fixed;top:0;left:-340px;width:340px;height:100vh;background:rgba(39,52,47,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(242,184,75,.2);z-index:103;transition:left .4s;padding:50px 24px 24px;overflow-y:auto}
 .toc-panel.open{left:0}
-.toc-item{padding:8px 14px;margin:3px 0;border-radius:8px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:8px}
-.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-item{padding:8px 14px;margin:3px 0;border-radius:8px;cursor:pointer;font-size:13px;color:rgba(255,244,226,.7);transition:all .2s;display:flex;align-items:center;gap:8px}
+.toc-item:hover{background:rgba(242,184,75,.1);color:var(--white)}.toc-item.active{background:rgba(242,184,75,.2);color:var(--gold)}
 .toc-num{font-family:'Space Grotesk';font-weight:700;font-size:11px;color:var(--gold);min-width:22px}
 h1{font-size:clamp(28px,4.5vw,48px);font-weight:900;line-height:1.1;margin-bottom:12px}
 h2{font-size:clamp(18px,2.5vw,28px);font-weight:700;margin-bottom:16px}
 h3{font-size:14px;font-weight:700;color:var(--gold);margin-bottom:8px;margin-top:12px}
-.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}.blue-text{color:#6496FF}
-.section-num{font-family:'Space Grotesk';font-size:60px;font-weight:700;color:rgba(232,168,32,.08);position:absolute;top:10px;right:30px}
-.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,255,255,.08);margin-bottom:10px}
+.gold{color:var(--gold)}.reef-text{color:#79CCB7}.coral-text{color:var(--coral)}.blue-text{color:#80C7C3}
+.section-num{font-family:'Space Grotesk';font-size:60px;font-weight:700;color:rgba(242,184,75,.08);position:absolute;top:10px;right:30px}
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid rgba(255,244,226,.08);margin-bottom:10px}
 table{width:100%;border-collapse:collapse;font-size:12px}
-th{background:rgba(232,168,32,.12);color:var(--gold);padding:8px 12px;text-align:right;font-weight:600;white-space:nowrap}
-td{padding:7px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
-tr:hover{background:rgba(255,255,255,.02)}
+th{background:rgba(242,184,75,.12);color:var(--gold);padding:8px 12px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:7px 12px;border-bottom:1px solid rgba(255,244,226,.05)}
+tr:hover{background:rgba(255,244,226,.02)}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:12px}
 .big-num{font-family:'Space Grotesk';font-size:clamp(20px,2.8vw,32px);font-weight:700;color:var(--gold)}
-.stat-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px}
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px}
+.stat-label{font-size:11px;color:rgba(255,244,226,.5);margin-top:2px}
+.card{background:rgba(255,244,226,.03);border:1px solid rgba(255,244,226,.08);border-radius:12px;padding:16px}
 .alert{padding:12px 16px;border-radius:8px;font-size:12px;line-height:1.6}
-.alert-info{background:rgba(100,150,255,.08);border:1px solid rgba(100,150,255,.2)}
-.alert-success{background:rgba(46,216,154,.08);border:1px solid rgba(46,216,154,.2)}
-.alert-warn{background:rgba(232,168,32,.08);border:1px solid rgba(232,168,32,.2)}
-.lazada-link{display:inline-block;background:rgba(232,93,58,.12);border:1px solid rgba(232,93,58,.25);color:var(--coral);padding:3px 10px;border-radius:4px;font-size:11px;text-decoration:none;transition:all .2s;margin-top:4px}
+.alert-info{background:rgba(128,199,195,.08);border:1px solid rgba(128,199,195,.2)}
+.alert-success{background:rgba(121,204,183,.08);border:1px solid rgba(121,204,183,.2)}
+.alert-warn{background:rgba(242,184,75,.08);border:1px solid rgba(242,184,75,.2)}
+.lazada-link{display:inline-block;background:rgba(255,107,74,.12);border:1px solid rgba(255,107,74,.25);color:var(--coral);padding:3px 10px;border-radius:4px;font-size:11px;text-decoration:none;transition:all .2s;margin-top:4px}
 .lazada-link:hover{background:var(--coral);color:var(--white)}
-.qty-badge{display:inline-block;background:rgba(232,168,32,.15);color:var(--gold);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.qty-badge{display:inline-block;background:rgba(242,184,75,.15);color:var(--gold);padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
 .priority-high{border-right:3px solid var(--coral)}
 .priority-med{border-right:3px solid var(--gold)}
-.priority-low{border-right:3px solid #2ED89A}
+.priority-low{border-right:3px solid #79CCB7}
 @media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.stat-grid{grid-template-columns:repeat(2,1fr)}}
 
 
 
 /* Bustan Energy Branding */
-.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
-.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.bustan-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.bustan-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.bustan-logo-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 </style>
     <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 <script src="auth.js"></script>
-<div class="tm-logo-header">
-  <span class="brand-text">BUSTAN ENERGY</span>
-  <img src="assets/bustan-energy.svg" alt="Bustan Energy">
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 
 
 
@@ -83,10 +82,10 @@ tr:hover{background:rgba(255,255,255,.02)}
 <!-- SLIDE 1: Cover -->
 <div class="slide slide-cover" data-title="שער">
   <h1>🛠️ רשימת ציוד וכלי עבודה</h1>
-  <p style="font-size:18px;color:rgba(255,255,255,.7);max-width:600px">Bustan Energy Division — Shopping List</p>
+  <p style="font-size:18px;color:rgba(255,244,226,.7);max-width:600px">Bustan Energy Division — Shopping List</p>
   <div style="margin-top:24px;font-size:14px;color:var(--gold)">
     <strong>הון ראשוני נדרש: ~฿942K (~$26K)</strong><br>
-    <span style="color:rgba(255,255,255,.5)">כלי עבודה + מדידה + פריפריה IT בלבד | רכבים על Bustan Energy | BYOL</span>
+    <span style="color:rgba(255,244,226,.5)">כלי עבודה + מדידה + פריפריה IT בלבד | רכבים על Bustan Energy | BYOL</span>
   </div>
   <div class="stat-grid" style="max-width:700px;margin-top:24px">
     <div><div class="big-num">3</div><div class="stat-label">צוותי התקנה</div></div>
@@ -103,14 +102,14 @@ tr:hover{background:rgba(255,255,255,.02)}
   <div class="table-wrap">
     <table>
       <tr><th>קטגוריה</th><th>תקציב</th><th>% מסה"כ</th><th>הערה</th></tr>
-      <tr class="priority-low"><td><strong>רכבים</strong></td><td style="opacity:.5">על Bustan Energy</td><td>—</td><td style="color:#2ED89A">מתחילים עם רכבי Bustan Energy, נוסיף לפי צורך</td></tr>
+      <tr class="priority-low"><td><strong>רכבים</strong></td><td style="opacity:.5">על Bustan Energy</td><td>—</td><td style="color:#79CCB7">מתחילים עם רכבי Bustan Energy, נוסיף לפי צורך</td></tr>
       <tr class="priority-high"><td><strong>כלי עבודה חשמליים</strong></td><td><strong>฿390K</strong></td><td>41.4%</td><td style="color:var(--coral)">קריטי</td></tr>
-      <tr class="priority-low"><td><strong>ציוד בטיחות (בסיסי)</strong></td><td><strong>฿30K</strong></td><td>3.2%</td><td style="color:#2ED89A">לפי מה שצריך באי, לא over-engineer</td></tr>
+      <tr class="priority-low"><td><strong>ציוד בטיחות (בסיסי)</strong></td><td><strong>฿30K</strong></td><td>3.2%</td><td style="color:#79CCB7">לפי מה שצריך באי, לא over-engineer</td></tr>
       <tr class="priority-med"><td><strong>מכשירי מדידה + QA</strong></td><td><strong>฿180K</strong></td><td>19.1%</td><td style="color:var(--gold)">גבוה</td></tr>
       <tr class="priority-med"><td><strong>רחפנים + תוכנה</strong></td><td><strong>฿102K</strong></td><td>10.8%</td><td style="color:var(--gold)">גבוה</td></tr>
-      <tr class="priority-low"><td><strong>מחסן + לוגיסטיקה</strong></td><td><strong>฿180K</strong></td><td>19.1%</td><td style="color:#2ED89A">בינוני</td></tr>
-      <tr class="priority-low"><td><strong>פריפריה IT (BYOL)</strong></td><td><strong>฿60K</strong></td><td>6.4%</td><td style="color:#2ED89A">מסכים, זרועות, docking, עכבר, מקלדת</td></tr>
-      <tr style="background:rgba(232,168,32,.12)"><td><strong class="gold">סה"כ</strong></td><td><strong class="gold">~฿942K</strong></td><td><strong>100%</strong></td><td><strong>~$26K</strong></td></tr>
+      <tr class="priority-low"><td><strong>מחסן + לוגיסטיקה</strong></td><td><strong>฿180K</strong></td><td>19.1%</td><td style="color:#79CCB7">בינוני</td></tr>
+      <tr class="priority-low"><td><strong>פריפריה IT (BYOL)</strong></td><td><strong>฿60K</strong></td><td>6.4%</td><td style="color:#79CCB7">מסכים, זרועות, docking, עכבר, מקלדת</td></tr>
+      <tr style="background:rgba(242,184,75,.12)"><td><strong class="gold">סה"כ</strong></td><td><strong class="gold">~฿942K</strong></td><td><strong>100%</strong></td><td><strong>~$26K</strong></td></tr>
     </table>
   </div>
   <div class="alert alert-warn">
@@ -155,7 +154,7 @@ tr:hover{background:rgba(255,255,255,.02)}
         <a href="https://www.lazada.co.th/tag/car-accessories-toyota-hilux/" target="_blank" class="lazada-link">Lazada — Hilux Accessories</a>
       </div>
       <div style="margin-top:12px;text-align:center">
-        <div class="big-num" style="color:#2ED89A">฿0</div>
+        <div class="big-num" style="color:#79CCB7">฿0</div>
         <div class="stat-label">עלות רכבים בהון ראשוני</div>
       </div>
     </div>
@@ -169,15 +168,15 @@ tr:hover{background:rgba(255,255,255,.02)}
   <div class="table-wrap">
     <table>
       <tr><th>פריט</th><th>כמות</th><th>מחיר/יח׳</th><th>סה"כ</th><th>לינק Lazada</th></tr>
-      <tr><td><strong>Makita 18V Impact Driver + Drill Combo Kit</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">DTD172 + DDF487, 2 סוללות, מטען</span></td><td>3</td><td>฿12K</td><td>฿36K</td><td><a href="https://www.lazada.co.th/tag/makita-cordless-impact-drill/" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>Bosch Angle Grinder GWS 900-100S (4")</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">900W, חיתוך rails + conduit</span></td><td>3</td><td>฿2.5K</td><td>฿7.5K</td><td><a href="https://www.lazada.co.th/tag/bosch-angle-grinder/" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>MC4 Crimping Tool Kit (מקצועי)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">crimper + stripper + spanner wrench</span></td><td>6</td><td>฿1.5K</td><td>฿9K</td><td><a href="https://www.lazada.co.th/products/mc4-tool-mc4-crimping-tool-mc4-connector-i597120586.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Makita 18V Impact Driver + Drill Combo Kit</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">DTD172 + DDF487, 2 סוללות, מטען</span></td><td>3</td><td>฿12K</td><td>฿36K</td><td><a href="https://www.lazada.co.th/tag/makita-cordless-impact-drill/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Bosch Angle Grinder GWS 900-100S (4")</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">900W, חיתוך rails + conduit</span></td><td>3</td><td>฿2.5K</td><td>฿7.5K</td><td><a href="https://www.lazada.co.th/tag/bosch-angle-grinder/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>MC4 Crimping Tool Kit (מקצועי)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">crimper + stripper + spanner wrench</span></td><td>6</td><td>฿1.5K</td><td>฿9K</td><td><a href="https://www.lazada.co.th/products/mc4-tool-mc4-crimping-tool-mc4-connector-i597120586.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
       <tr><td><strong>Cable Cutter (גדול, עד 240mm²)</strong></td><td>3</td><td>฿2K</td><td>฿6K</td><td><a href="https://www.lazada.co.th/tag/steel-cable-cutter/" target="_blank" class="lazada-link">Lazada</a></td></tr>
       <tr><td><strong>Wire Stripper אוטומטי</strong></td><td>6</td><td>฿800</td><td>฿4.8K</td><td><a href="https://www.lazada.co.th/tag/wire-stripper/" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>Hilti / Bosch Rotary Hammer (SDS+)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">לקידוח בטון גגות</span></td><td>3</td><td>฿8K</td><td>฿24K</td><td><a href="https://www.lazada.co.th/shop-hand-tools-&-accessories/hilti/" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>Torque Wrench Set</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">להידוק clamps לפי מפרט</span></td><td>3</td><td>฿3K</td><td>฿9K</td><td><a href="https://www.lazada.co.th/tag/angle-grinder-set/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Hilti / Bosch Rotary Hammer (SDS+)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">לקידוח בטון גגות</span></td><td>3</td><td>฿8K</td><td>฿24K</td><td><a href="https://www.lazada.co.th/shop-hand-tools-&-accessories/hilti/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Torque Wrench Set</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">להידוק clamps לפי מפרט</span></td><td>3</td><td>฿3K</td><td>฿9K</td><td><a href="https://www.lazada.co.th/tag/angle-grinder-set/" target="_blank" class="lazada-link">Lazada</a></td></tr>
       <tr><td><strong>Socket Set + Allen Key Set</strong></td><td>3</td><td>฿2K</td><td>฿6K</td><td></td></tr>
-      <tr><td><strong>Rivnut Gun (M6/M8)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">לחיבורי קונסטרוקציה</span></td><td>3</td><td>฿3K</td><td>฿9K</td><td></td></tr>
+      <tr><td><strong>Rivnut Gun (M6/M8)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">לחיבורי קונסטרוקציה</span></td><td>3</td><td>฿3K</td><td>฿9K</td><td></td></tr>
       <tr><td><strong>Silicon Gun + Sealant Kit</strong></td><td>6</td><td>฿500</td><td>฿3K</td><td></td></tr>
       <tr><td><strong>Extension Cord Industrial (30m)</strong></td><td>6</td><td>฿1.5K</td><td>฿9K</td><td></td></tr>
       <tr><td><strong>Cable Tie Gun + אזיקונים (bulk)</strong></td><td>3</td><td>฿1K</td><td>฿3K</td><td></td></tr>
@@ -186,7 +185,7 @@ tr:hover{background:rgba(255,255,255,.02)}
       <tr><td><strong>ארגז כלים מקצועי (נייד)</strong></td><td>6</td><td>฿2.5K</td><td>฿15K</td><td></td></tr>
       <tr><td><strong>סט מפתחות ברגים + שקעים</strong></td><td>3</td><td>฿3K</td><td>฿9K</td><td></td></tr>
       <tr><td><strong>כלים שונים (פלסים, סרטי מידה, סכינים)</strong></td><td>—</td><td>—</td><td>฿8K</td><td></td></tr>
-      <tr style="background:rgba(232,168,32,.08)"><td colspan="3"><strong>סה"כ כלי עבודה</strong></td><td colspan="2"><strong class="gold">~฿390K</strong></td></tr>
+      <tr style="background:rgba(242,184,75,.08)"><td colspan="3"><strong>סה"כ כלי עבודה</strong></td><td colspan="2"><strong class="gold">~฿390K</strong></td></tr>
     </table>
   </div>
 </div>
@@ -213,7 +212,7 @@ tr:hover{background:rgba(255,255,255,.02)}
           <tr><td><strong>Lockout/Tagout Kit</strong></td><td>2</td><td>฿4K</td><td></td></tr>
           <tr><td><strong>מכשיר קשר (Walkie-Talkie)</strong></td><td>4</td><td>฿4K</td><td></td></tr>
           <tr><td><strong>קרם הגנה + מים</strong></td><td>—</td><td>฿2K</td><td></td></tr>
-          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ בטיחות</strong></td><td colspan="2"><strong class="gold">~฿30K</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.08)"><td colspan="2"><strong>סה"כ בטיחות</strong></td><td colspan="2"><strong class="gold">~฿30K</strong></td></tr>
         </table>
       </div>
     </div>
@@ -229,7 +228,7 @@ tr:hover{background:rgba(255,255,255,.02)}
         <strong>הגישה:</strong> באי — העבודה שונה מפרויקט תעשייתי. הגגות בדרך כלל נמוכים, האקלים חם, הצוות קטן. קונים בסיס, משלימים תוך כדי.
       </div>
       <div style="margin-top:12px;text-align:center">
-        <div class="big-num" style="color:#2ED89A">฿30K</div>
+        <div class="big-num" style="color:#79CCB7">฿30K</div>
         <div class="stat-label">במקום ฿120K — חיסכון של 75%</div>
       </div>
     </div>
@@ -243,18 +242,18 @@ tr:hover{background:rgba(255,255,255,.02)}
   <div class="table-wrap">
     <table>
       <tr><th>פריט</th><th>כמות</th><th>מחיר/יח׳</th><th>סה"כ</th><th>שימוש</th><th>לינק Lazada</th></tr>
-      <tr><td><strong>FLIR TG165-X Thermal Camera</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">80×60 IR, -25°C to 380°C</span></td><td>1</td><td>฿35K</td><td>฿35K</td><td>זיהוי hot spots בפאנלים</td><td><a href="https://www.lazada.co.th/products/flir-tg165-x-thermal-imaging-camera-with-bullseye-laser-commercial-grade-infrared-camera-for-building-inspection-hvac-and-electrical-i5179567217.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>Fluke 1587 FC Insulation Multimeter</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">2-in-1: מגר + מולטימטר</span></td><td>2</td><td>฿18K</td><td>฿36K</td><td>בדיקת בידוד + מתח DC/AC</td><td><a href="https://www.lazada.co.th/products/fluke-1587-fc2-in-1-insulation-multimeter-i2475185822.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>Fluke 101 Digital Multimeter</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">AC/DC 600V, compact</span></td><td>4</td><td>฿2.5K</td><td>฿10K</td><td>מדידה יומית בשטח</td><td><a href="https://www.lazada.co.th/products/fluke-101-kit-esp-digital-multimeter-acdc-voltage-600v-and-ac-600mv-i5896922885.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>Solar IV Curve Tracer</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">PV200/PV210 או מקביל</span></td><td>1</td><td>฿25K</td><td>฿25K</td><td>אישור ביצועי string</td><td></td></tr>
-      <tr><td><strong>Earth Ground Resistance Tester</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">DY4100 או Fluke 1625-2</span></td><td>2</td><td>฿4K</td><td>฿8K</td><td>בדיקת הארקה</td><td><a href="https://www.lazada.co.th/tag/earth-ground-tester/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>FLIR TG165-X Thermal Camera</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">80×60 IR, -25°C to 380°C</span></td><td>1</td><td>฿35K</td><td>฿35K</td><td>זיהוי hot spots בפאנלים</td><td><a href="https://www.lazada.co.th/products/flir-tg165-x-thermal-imaging-camera-with-bullseye-laser-commercial-grade-infrared-camera-for-building-inspection-hvac-and-electrical-i5179567217.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Fluke 1587 FC Insulation Multimeter</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">2-in-1: מגר + מולטימטר</span></td><td>2</td><td>฿18K</td><td>฿36K</td><td>בדיקת בידוד + מתח DC/AC</td><td><a href="https://www.lazada.co.th/products/fluke-1587-fc2-in-1-insulation-multimeter-i2475185822.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Fluke 101 Digital Multimeter</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">AC/DC 600V, compact</span></td><td>4</td><td>฿2.5K</td><td>฿10K</td><td>מדידה יומית בשטח</td><td><a href="https://www.lazada.co.th/products/fluke-101-kit-esp-digital-multimeter-acdc-voltage-600v-and-ac-600mv-i5896922885.html" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Solar IV Curve Tracer</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">PV200/PV210 או מקביל</span></td><td>1</td><td>฿25K</td><td>฿25K</td><td>אישור ביצועי string</td><td></td></tr>
+      <tr><td><strong>Earth Ground Resistance Tester</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">DY4100 או Fluke 1625-2</span></td><td>2</td><td>฿4K</td><td>฿8K</td><td>בדיקת הארקה</td><td><a href="https://www.lazada.co.th/tag/earth-ground-tester/" target="_blank" class="lazada-link">Lazada</a></td></tr>
       <tr><td><strong>Clamp Meter (AC/DC 1000A)</strong></td><td>3</td><td>฿3K</td><td>฿9K</td><td>מדידת זרם ללא ניתוק</td><td><a href="https://www.lazada.co.th/tag/fluke-multimeter/" target="_blank" class="lazada-link">Lazada</a></td></tr>
-      <tr><td><strong>Irradiance Meter (Solar)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">TES-1333R או מקביל</span></td><td>2</td><td>฿5K</td><td>฿10K</td><td>מדידת קרינה לבדיקת ביצועים</td><td><a href="https://www.lazada.co.th/tag/solar-panel-multimeter/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+      <tr><td><strong>Irradiance Meter (Solar)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">TES-1333R או מקביל</span></td><td>2</td><td>฿5K</td><td>฿10K</td><td>מדידת קרינה לבדיקת ביצועים</td><td><a href="https://www.lazada.co.th/tag/solar-panel-multimeter/" target="_blank" class="lazada-link">Lazada</a></td></tr>
       <tr><td><strong>Laser Distance Meter (100m)</strong></td><td>3</td><td>฿2.5K</td><td>฿7.5K</td><td>מדידות גג מהירות</td><td></td></tr>
       <tr><td><strong>Inclinometer / Tilt Meter</strong></td><td>3</td><td>฿1K</td><td>฿3K</td><td>זווית גג + פאנלים</td><td></td></tr>
       <tr><td><strong>Compass + Roof Pitch Tool</strong></td><td>3</td><td>฿500</td><td>฿1.5K</td><td>כיוון + שיפוע</td><td></td></tr>
       <tr><td><strong>Label Printer (P-Touch)</strong></td><td>2</td><td>฿3K</td><td>฿6K</td><td>תיוג כבלים + לוחות</td><td></td></tr>
-      <tr style="background:rgba(232,168,32,.08)"><td colspan="3"><strong>סה"כ מכשירי מדידה</strong></td><td colspan="3"><strong class="gold">~฿180K</strong></td></tr>
+      <tr style="background:rgba(242,184,75,.08)"><td colspan="3"><strong>סה"כ מכשירי מדידה</strong></td><td colspan="3"><strong class="gold">~฿180K</strong></td></tr>
     </table>
   </div>
 </div>
@@ -269,11 +268,11 @@ tr:hover{background:rgba(255,255,255,.02)}
       <div class="table-wrap">
         <table>
           <tr><th>פריט</th><th>כמות</th><th>מחיר</th><th>לינק</th></tr>
-          <tr><td><strong>DJI Mini 4 Pro (RC 2)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">4K/60fps, 249g, obstacle sensing<br>סקרי גג + צילום case studies</span></td><td>2</td><td>฿35K × 2 = ฿70K</td><td><a href="https://www.lazada.co.th/products/dji-mini-4-pro-drone-i5083121168.html" target="_blank" class="lazada-link">Lazada — DJI Mini 4 Pro</a></td></tr>
+          <tr><td><strong>DJI Mini 4 Pro (RC 2)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">4K/60fps, 249g, obstacle sensing<br>סקרי גג + צילום case studies</span></td><td>2</td><td>฿35K × 2 = ฿70K</td><td><a href="https://www.lazada.co.th/products/dji-mini-4-pro-drone-i5083121168.html" target="_blank" class="lazada-link">Lazada — DJI Mini 4 Pro</a></td></tr>
           <tr><td>סוללות נוספות (DJI Mini 4)</td><td>4</td><td>฿8K</td><td><a href="https://www.lazada.co.th/tag/dji-mini-4/" target="_blank" class="lazada-link">Lazada</a></td></tr>
           <tr><td>ND Filter Set</td><td>2</td><td>฿2K</td><td></td></tr>
           <tr><td>Landing Pad מתקפל</td><td>2</td><td>฿1K</td><td></td></tr>
-          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ רחפנים</strong></td><td colspan="2"><strong>฿81K</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.08)"><td colspan="2"><strong>סה"כ רחפנים</strong></td><td colspan="2"><strong>฿81K</strong></td></tr>
         </table>
       </div>
       <div class="alert alert-info" style="margin-top:8px">
@@ -289,11 +288,11 @@ tr:hover{background:rgba(255,255,255,.02)}
       <div class="table-wrap">
         <table>
           <tr><th>תוכנה</th><th>כמות</th><th>מחיר שנתי</th><th>הערה</th></tr>
-          <tr><td><strong>PVsyst 8 (Premium)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">סימולציית ייצור + shading</span></td><td>2 רישיונות</td><td>฿32K<br><span style="font-size:10px">(CHF 450 × 2)</span></td><td><a href="https://www.lazada.co.th/tag/pvsyst/" target="_blank" class="lazada-link">Lazada</a></td></tr>
-          <tr><td><strong>AutoCAD LT</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">שרטוטי SLD + layout</span></td><td>1</td><td>฿15K/שנה</td><td>או SketchUp Pro</td></tr>
+          <tr><td><strong>PVsyst 8 (Premium)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">סימולציית ייצור + shading</span></td><td>2 רישיונות</td><td>฿32K<br><span style="font-size:10px">(CHF 450 × 2)</span></td><td><a href="https://www.lazada.co.th/tag/pvsyst/" target="_blank" class="lazada-link">Lazada</a></td></tr>
+          <tr><td><strong>AutoCAD LT</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">שרטוטי SLD + layout</span></td><td>1</td><td>฿15K/שנה</td><td>או SketchUp Pro</td></tr>
           <tr><td><strong>DJI FlightHub 2</strong></td><td>1</td><td>฿5K/שנה</td><td>ניהול טיסות</td></tr>
           <tr><td><strong>Google Workspace Business</strong></td><td>5 users</td><td>฿12K/שנה</td><td>דוא"ל + Drive + Sheets</td></tr>
-          <tr style="background:rgba(232,168,32,.08)"><td colspan="2"><strong>סה"כ תוכנה (שנתי)</strong></td><td colspan="2"><strong>~฿64K/שנה</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.08)"><td colspan="2"><strong>סה"כ תוכנה (שנתי)</strong></td><td colspan="2"><strong>~฿64K/שנה</strong></td></tr>
         </table>
       </div>
       <div class="alert alert-warn" style="margin-top:8px">
@@ -380,14 +379,14 @@ tr:hover{background:rgba(255,255,255,.02)}
       <div class="table-wrap">
         <table>
           <tr><th>פריט</th><th>כמות</th><th>מחיר/יח׳</th><th>סה"כ</th></tr>
-          <tr><td><strong>מסך 27" IPS (Dell/LG)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">QHD 2560×1440, USB-C</span></td><td>4</td><td>฿5K</td><td>฿20K</td></tr>
-          <tr><td><strong>זרוע למסך (Monitor Arm)</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">gas spring, clamp mount</span></td><td>4</td><td>฿1.5K</td><td>฿6K</td></tr>
-          <tr><td><strong>USB-C Docking Station</strong><br><span style="font-size:10px;color:rgba(255,255,255,.5)">HDMI + USB×3 + Ethernet + PD 100W</span></td><td>4</td><td>฿2.5K</td><td>฿10K</td></tr>
+          <tr><td><strong>מסך 27" IPS (Dell/LG)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">QHD 2560×1440, USB-C</span></td><td>4</td><td>฿5K</td><td>฿20K</td></tr>
+          <tr><td><strong>זרוע למסך (Monitor Arm)</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">gas spring, clamp mount</span></td><td>4</td><td>฿1.5K</td><td>฿6K</td></tr>
+          <tr><td><strong>USB-C Docking Station</strong><br><span style="font-size:10px;color:rgba(255,244,226,.5)">HDMI + USB×3 + Ethernet + PD 100W</span></td><td>4</td><td>฿2.5K</td><td>฿10K</td></tr>
           <tr><td><strong>Logitech MX Master 3S (עכבר)</strong></td><td>4</td><td>฿2.5K</td><td>฿10K</td></tr>
           <tr><td><strong>Logitech MX Keys Mini (מקלדת)</strong></td><td>4</td><td>฿2K</td><td>฿8K</td></tr>
           <tr><td><strong>Router WiFi 6 + UPS</strong></td><td>1</td><td>—</td><td>฿3K</td></tr>
           <tr><td><strong>מדפסת A3 צבעונית</strong></td><td>1</td><td>—</td><td>฿3K</td></tr>
-          <tr style="background:rgba(232,168,32,.08)"><td colspan="3"><strong>סה"כ פריפריה IT</strong></td><td><strong class="gold">~฿60K</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.08)"><td colspan="3"><strong>סה"כ פריפריה IT</strong></td><td><strong class="gold">~฿60K</strong></td></tr>
         </table>
       </div>
     </div>
@@ -422,7 +421,7 @@ tr:hover{background:rgba(255,255,255,.02)}
   <div class="table-wrap">
     <table>
       <tr><th>חודש</th><th>רכישות</th><th>תקציב</th><th>אבן דרך</th></tr>
-      <tr style="background:rgba(232,93,58,.08)"><td><strong>חודש 1</strong><br><span class="qty-badge">דחוף</span></td><td>
+      <tr style="background:rgba(255,107,74,.08)"><td><strong>חודש 1</strong><br><span class="qty-badge">דחוף</span></td><td>
         • פריפריה IT: מסכים, זרועות, docking, Logitech<br>
         • תוכנה: PVsyst × 2, Google Workspace<br>
         • כלי עבודה: סט ראשון (drill, crimper, multimeter)<br>
@@ -433,7 +432,7 @@ tr:hover{background:rgba(255,255,255,.02)}
         • DJI Mini 4 Pro × 2<br>
         • מכשירי מדידה (FLIR, Fluke)
       </td><td>฿450K</td><td>3 צוותים מצוידים + מוכנים לשטח</td></tr>
-      <tr style="background:rgba(232,168,32,.08)"><td><strong>חודש 3</strong></td><td>
+      <tr style="background:rgba(242,184,75,.08)"><td><strong>חודש 3</strong></td><td>
         • ציוד מחסן (מדפים, pallet jack)<br>
         • ציוד QA (IV curve, earth tester)<br>
         • השלמות לפי צורך
@@ -443,7 +442,7 @@ tr:hover{background:rgba(255,255,255,.02)}
         • רכב נוסף אם צריך<br>
         • ציוד בטיחות נוסף לפי הצורך
       </td><td>לפי צורך</td><td>תפעול שוטף</td></tr>
-      <tr style="background:rgba(232,168,32,.12)"><td colspan="2"><strong class="gold">סה"כ הון ראשוני</strong></td><td><strong class="gold">~฿942K</strong></td><td><strong>~$26K</strong></td></tr>
+      <tr style="background:rgba(242,184,75,.12)"><td colspan="2"><strong class="gold">סה"כ הון ראשוני</strong></td><td><strong class="gold">~฿942K</strong></td><td><strong>~$26K</strong></td></tr>
     </table>
   </div>
   <div class="stat-grid" style="margin-top:12px">
@@ -789,7 +788,7 @@ window.PAGE_TRANSLATIONS = {
   "מאובזר": {en: "equipped", th: "พร้อมอุปกรณ์"},
 };
 </script>
-<script src="tm-translations.js"></script>
-<script src="tm-lang.js"></script>
+<script src="bustan-translations.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>

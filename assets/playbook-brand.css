@@ -1,0 +1,72 @@
+/* Bustan Energy playbooks: Island fieldcraft. */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap');
+
+.bustan-playbook {
+  --grove: #24463e;
+  --paper: #f4ead8;
+  --shell: #fff4e2;
+  --ink: #27342f;
+  --lagoon: #008f8a;
+  font-family: 'Heebo', sans-serif;
+}
+.bustan-playbook .bustan-logo-header {
+  position: fixed;
+  top: 12px;
+  right: 20px;
+  z-index: 200;
+  display: block;
+  line-height: 0;
+}
+.bustan-playbook .bustan-playbook-logo {
+  display: block;
+  width: 128px;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  filter: none;
+  box-shadow: none;
+}
+.bustan-playbook header > .bustan-playbook-logo {
+  width: 210px;
+  margin: 0 auto 24px;
+}
+.bustan-playbook .bustan-nav-logo,
+.bustan-playbook .bustan-footer-logo {
+  display: block;
+  flex-shrink: 0;
+  line-height: 0;
+}
+.bustan-playbook .bustan-nav-logo .bustan-playbook-logo {
+  width: 116px;
+}
+.bustan-playbook .bustan-footer-logo .bustan-playbook-logo {
+  width: 210px;
+  margin: 0 auto 24px;
+}
+.bustan-playbook .slide-container > .slide { padding-top: 88px; }
+.bustan-playbook .slide-container > .slide-cover { padding-top: 80px; }
+.bustan-playbook .tag,
+.bustan-playbook .badge,
+.bustan-playbook .model-badge,
+.bustan-playbook .screen-tag { border-radius: 3px; }
+.bustan-playbook .nav-bar,
+.bustan-playbook .toc-panel { background: rgba(36, 70, 62, .97); }
+.bustan-playbook .card,
+.bustan-playbook .section,
+.bustan-playbook .avatar-card,
+.bustan-playbook .detail { border-radius: 6px; }
+.bustan-playbook .lang-bar { background: rgba(39, 52, 47, .94); }
+.bustan-playbook .lang-btn { font-family: 'Heebo', sans-serif; }
+
+@media (max-width: 768px) {
+  .bustan-playbook .bustan-logo-header { top: 10px; right: 12px; }
+  .bustan-playbook .bustan-logo-header .bustan-playbook-logo { width: 96px; }
+  .bustan-playbook .slide-container > .slide { padding-top: 86px; }
+  .bustan-playbook .bustan-nav-logo .bustan-playbook-logo { width: 96px; }
+}
+@media print {
+  .bustan-playbook .bustan-logo-header { display: none; }
+  .bustan-playbook .slide-container > .slide { padding-top: 20px; }
+}

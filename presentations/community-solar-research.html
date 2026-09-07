@@ -9,19 +9,19 @@
   @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
 
   :root {
-    --navy: #0A1628;
-    --navy-light: #0F1F38;
-    --navy-mid: #132744;
-    --green: #00D68F;
-    --green-dark: #00B377;
-    --orange: #F27A1A;
-    --orange-light: #FF9B4A;
-    --white: #FFFFFF;
-    --gray-100: #F0F2F5;
-    --gray-200: #D1D5DB;
-    --gray-300: #9CA3AF;
-    --gray-400: #6B7280;
-    --gray-500: #4B5563;
+    --navy: #24463E;
+    --navy-light: #2D5147;
+    --navy-mid: #355D51;
+    --green: #9CD5C7;
+    --green-dark: #80BBAC;
+    --orange: #FF967E;
+    --orange-light: #FFB29B;
+    --white: #FFF4E2;
+    --gray-100: #FFF4E2;
+    --gray-200: #F4EAD8;
+    --gray-300: #D5D4BF;
+    --gray-400: #B5C0AE;
+    --gray-500: #B5C0AE;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -149,7 +149,7 @@
 
   .card {
     background: var(--navy-light);
-    border: 1px solid rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,244,226,0.06);
     border-radius: 12px;
     padding: 20px;
     transition: border-color 0.3s;
@@ -217,7 +217,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,244,226,0.05);
     font-size: 0.9rem;
   }
 
@@ -253,13 +253,13 @@
     margin-left: 6px;
   }
 
-  .tag-green { background: rgba(0,214,143,0.15); color: var(--green); }
-  .tag-orange { background: rgba(242,122,26,0.15); color: var(--orange); }
-  .tag-red { background: rgba(239,68,68,0.15); color: #EF4444; }
+  .tag-green { background: rgba(0,143,138,0.15); color: var(--green); }
+  .tag-orange { background: rgba(255,107,74,0.15); color: var(--orange); }
+  .tag-red { background: rgba(255,107,74,0.15); color: #FF967E; }
 
   .divider {
     height: 1px;
-    background: linear-gradient(to left, transparent, rgba(255,255,255,0.1), transparent);
+    background: linear-gradient(to left, transparent, rgba(255,244,226,0.1), transparent);
     margin: 20px 0;
   }
 
@@ -320,8 +320,8 @@
 
   /* Bottom line box */
   .bottom-line {
-    background: linear-gradient(135deg, rgba(0,214,143,0.1), rgba(242,122,26,0.1));
-    border: 1px solid rgba(0,214,143,0.3);
+    background: linear-gradient(135deg, rgba(0,143,138,0.1), rgba(255,107,74,0.1));
+    border: 1px solid rgba(0,143,138,0.3);
     border-radius: 12px;
     padding: 20px;
     margin-top: 16px;
@@ -404,9 +404,9 @@
     flex-shrink: 0;
   }
 
-  .risk-icon.high { background: rgba(239,68,68,0.15); }
-  .risk-icon.med { background: rgba(242,122,26,0.15); }
-  .risk-icon.low { background: rgba(0,214,143,0.15); }
+  .risk-icon.high { background: rgba(255,107,74,0.15); }
+  .risk-icon.med { background: rgba(255,107,74,0.15); }
+  .risk-icon.low { background: rgba(0,143,138,0.15); }
 
   .risk-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 3px; }
   .risk-desc { font-size: 0.8rem; color: var(--gray-300); }
@@ -485,7 +485,7 @@
     font-size: 0.8rem;
     color: var(--gray-200);
     font-style: italic;
-    border-top: 1px solid rgba(255,255,255,0.05);
+    border-top: 1px solid rgba(255,244,226,0.05);
     padding-top: 8px;
     margin-top: 4px;
   }
@@ -532,7 +532,7 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,244,226,0.15);
     background: var(--navy-light);
     color: var(--white);
     cursor: pointer;
@@ -557,7 +557,7 @@
   .nav-btn:disabled:hover {
     background: var(--navy-light);
     color: var(--white);
-    border-color: rgba(255,255,255,0.15);
+    border-color: rgba(255,244,226,0.15);
   }
 
   .slide-counter {
@@ -615,21 +615,6 @@
     margin-bottom: 16px;
   }
 
-  .title-logo {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, var(--green), var(--green-dark));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 30px;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--navy);
-    font-family: 'Inter', sans-serif;
-  }
-
   .title-badge {
     display: inline-block;
     padding: 6px 20px;
@@ -667,8 +652,8 @@
   .case-logo.orange { color: var(--orange); }
 
   .key-insight {
-    background: linear-gradient(135deg, rgba(0,214,143,0.08), rgba(0,214,143,0.02));
-    border: 1px solid rgba(0,214,143,0.2);
+    background: linear-gradient(135deg, rgba(0,143,138,0.08), rgba(0,143,138,0.02));
+    border: 1px solid rgba(0,143,138,0.2);
     border-radius: 10px;
     padding: 14px;
     margin-top: 14px;
@@ -678,8 +663,8 @@
 
   .key-insight strong { color: var(--green); }
   .key-insight.orange-insight {
-    background: linear-gradient(135deg, rgba(242,122,26,0.08), rgba(242,122,26,0.02));
-    border-color: rgba(242,122,26,0.2);
+    background: linear-gradient(135deg, rgba(255,107,74,0.08), rgba(255,107,74,0.02));
+    border-color: rgba(255,107,74,0.2);
   }
   .key-insight.orange-insight strong { color: var(--orange); }
 
@@ -720,7 +705,7 @@
     display: flex;
     justify-content: space-between;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,244,226,0.04);
     font-size: 0.88rem;
   }
 
@@ -762,8 +747,10 @@
     .title-slide h1 { font-size: 1.8rem; }
   }
 </style>
+<link rel="icon" type="image/png" href="../assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="../assets/deck-brand.css">
 </head>
-<body>
+<body class="bustan-deck">
 
 <div class="progress-bar" id="progressBar"></div>
 
@@ -771,7 +758,7 @@
 
   <!-- SLIDE 1: Title -->
   <div class="slide title-slide active" data-slide="1">
-    <div class="title-logo">B</div>
+    <img class="bustan-deck-logo" src="../assets/bustan-energy-logo.png" alt="Bustan Energy" width="1876" height="838">
     <h1>Community Solar בתאילנד</h1>
     <h1 style="font-size:2.2rem;margin-top:-8px;">מחקר מעמיק</h1>
     <p class="subtitle">אסטרטגיית צמיחה ל-Bustan Energy</p>
@@ -1291,7 +1278,7 @@
         <div class="label">מלונות/ריזורטים</div>
       </div>
       <div class="island-stat">
-        <div class="big-number" style="color:#EF4444">0</div>
+        <div class="big-number" style="color:#FF967E">0</div>
         <div class="label">מתחרים סולאריים</div>
       </div>
     </div>
@@ -1777,7 +1764,7 @@
 </script>
 
 <!-- Bustan index chip (hidden in fullscreen) -->
-<a class="bustan-home" href="index.html" aria-label="Bustan Energy — Presentations">Bustan Energy&nbsp;·&nbsp;Presentations</a>
-<style>.bustan-home{position:fixed;top:14px;left:16px;z-index:9999;font:500 12px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#8a8a8e;text-decoration:none;letter-spacing:.01em;direction:ltr}.bustan-home:hover{color:#f5f5f7}:fullscreen .bustan-home,:-webkit-full-screen .bustan-home{display:none}@media print{.bustan-home{display:none}}</style>
+<a class="bustan-home" href="index.html" aria-label="Bustan Energy — Presentations"><span>←</span> Bustan Energy&nbsp;·&nbsp;Presentations</a>
+
 </body>
 </html>

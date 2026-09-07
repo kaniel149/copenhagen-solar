@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="content-updated" content="2026-09-04">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bustan Energy — Bustan Energy — רכש והנדסה</title>
+<title>Bustan Energy — רכש והנדסה</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
+:root{--ocean:#24463E;--gold:#F2B84B;--reef:#008F8A;--coral:#FF6B4A;--night:#27342F;--white:#FFF}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
 .slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
@@ -15,42 +15,42 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
 .slide.active{opacity:1;transform:translateX(0);pointer-events:all}.slide.exit{opacity:0;transform:translateX(-100px)}
 .slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
 .slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
-.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
-.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.slide-reef{background:linear-gradient(135deg,#24463E,var(--night))}.slide-gold{background:linear-gradient(135deg,#4A4633,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(39,52,47,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(242,184,75,.2);z-index:100}
 .nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 24px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:14px;font-weight:500;transition:all .3s}
 .nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}
-.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:14px}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,244,226,.5);font-size:14px}
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
-.toc-btn{position:fixed;top:20px;left:20px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102}
+.toc-btn{position:fixed;top:20px;left:20px;background:rgba(242,184,75,.15);border:1px solid rgba(242,184,75,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102}
 .toc-btn:hover{background:var(--gold);color:var(--night)}
-.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s;padding:60px 30px 30px;overflow-y:auto}
+.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(39,52,47,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(242,184,75,.2);z-index:103;transition:left .4s;padding:60px 30px 30px;overflow-y:auto}
 .toc-panel.open{left:0}
-.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
-.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,244,226,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
+.toc-item:hover{background:rgba(242,184,75,.1);color:var(--white)}.toc-item.active{background:rgba(242,184,75,.2);color:var(--gold)}
 .toc-num{font-family:'Space Grotesk';font-weight:700;font-size:12px;color:var(--gold);min-width:24px}
 h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:16px}
 h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;line-height:1.2;margin-bottom:12px}
 h3{font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:8px}
 .subtitle{font-size:clamp(16px,2vw,22px);font-weight:300;opacity:.8;margin-bottom:24px}
-.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}
+.gold{color:var(--gold)}.reef-text{color:#79CCB7}.coral-text{color:var(--coral)}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
-.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;transition:all .3s}
+.card{background:rgba(255,244,226,.05);border:1px solid rgba(255,244,226,.1);border-radius:12px;padding:20px;transition:all .3s}
 .card:hover{border-color:var(--gold);transform:translateY(-2px)}
 .card-icon{font-size:28px;margin-bottom:10px}.card h3{font-size:16px;margin-bottom:6px}.card p{font-size:13px;opacity:.7;line-height:1.5}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,244,226,.1)}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:rgba(232,168,32,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
-td{padding:10px 14px;border-top:1px solid rgba(255,255,255,.06)}
-tr:hover td{background:rgba(255,255,255,.03)}
+th{background:rgba(242,184,75,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:10px 14px;border-top:1px solid rgba(255,244,226,.06)}
+tr:hover td{background:rgba(255,244,226,.03)}
 .alert{padding:16px 20px;border-radius:10px;margin:12px 0;font-size:14px;line-height:1.6}
-.alert-warn{background:rgba(232,93,58,.15);border-right:3px solid var(--coral)}
-.alert-info{background:rgba(232,168,32,.1);border-right:3px solid var(--gold)}
-.alert-success{background:rgba(46,216,154,.1);border-right:3px solid #2ED89A}
+.alert-warn{background:rgba(255,107,74,.15);border-right:3px solid var(--coral)}
+.alert-info{background:rgba(242,184,75,.1);border-right:3px solid var(--gold)}
+.alert-success{background:rgba(121,204,183,.1);border-right:3px solid #79CCB7}
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
 .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
 @media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.slide{padding:24px 20px}}
-.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
+.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(242,184,75,.3);border-radius:2px}
 .section-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;color:var(--gold);opacity:.15;position:absolute;top:20px;left:40px}
 .big-num{font-family:'Space Grotesk';font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--gold)}
 .stat-label{font-size:14px;opacity:.6;margin-top:4px}
@@ -58,29 +58,28 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .bar-chart{margin:16px 0}
 .bar-row{display:flex;align-items:center;gap:12px;margin:6px 0}
 .bar-label{font-size:13px;min-width:100px;text-align:left}
-.bar-wrap{flex:1;height:28px;background:rgba(255,255,255,.05);border-radius:14px;overflow:hidden}
+.bar-wrap{flex:1;height:28px;background:rgba(255,244,226,.05);border-radius:14px;overflow:hidden}
 .bar-fill{height:100%;border-radius:14px;display:flex;align-items:center;padding:0 12px;font-size:11px;font-weight:600;font-family:'Space Grotesk'}
 
-.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
-.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
-.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(242,184,75,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,244,226,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(242,184,75,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,244,226,.1)}
 
 
 
 
 /* Bustan Energy Branding */
-.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
-.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.bustan-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.bustan-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.bustan-logo-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 </style>
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 <script src="auth.js"></script>
-<div class="tm-logo-header">
-  <span class="brand-text">BUSTAN ENERGY</span>
-  <img src="assets/bustan-energy.svg" alt="Bustan Energy">
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 
 
 
@@ -123,7 +122,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
           <tr><td>מכס + שחרור</td><td>3-5 ימי עבודה</td></tr>
           <tr><td>BKK → Surat Thani (משאית)</td><td>8 שעות</td></tr>
           <tr><td>Surat → Koh Phangan (ferry)</td><td>2.5 שעות</td></tr>
-          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ (חדש)</strong></td><td><strong>3-5 שבועות</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.1)"><td><strong>סה"כ (חדש)</strong></td><td><strong>3-5 שבועות</strong></td></tr>
           <tr><td><strong>מלאי במפיץ</strong></td><td><strong>3-5 ימים</strong></td></tr>
         </table>
       </div>
@@ -252,7 +251,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
           <tr><td>Bolts, nuts, washers</td><td>SS 316</td><td>฿150</td></tr>
           <tr><td>Earthing bonding</td><td>Copper tinned</td><td>฿100</td></tr>
           <tr><td>Sealant</td><td>UV + salt resistant</td><td>฿100</td></tr>
-          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ</strong></td><td></td><td><strong>฿1,550/kWp</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.1)"><td><strong>סה"כ</strong></td><td></td><td><strong>฿1,550/kWp</strong></td></tr>
         </table>
       </div>
     </div>
@@ -470,8 +469,8 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
   </div>
   <div class="bar-chart" style="margin-top:16px">
     <div class="bar-row"><div class="bar-label">פאנלים JA/Jinko</div><div class="bar-wrap"><div class="bar-fill" style="width:38%;background:var(--gold)">฿3,500</div></div></div>
-    <div class="bar-row"><div class="bar-label">אינוורטר Huawei</div><div class="bar-wrap"><div class="bar-fill" style="width:21%;background:#6496FF">฿2,000</div></div></div>
-    <div class="bar-row"><div class="bar-label">קונסטרוקציה</div><div class="bar-wrap"><div class="bar-fill" style="width:16%;background:#2ED89A">฿1,550</div></div></div>
+    <div class="bar-row"><div class="bar-label">אינוורטר Huawei</div><div class="bar-wrap"><div class="bar-fill" style="width:21%;background:#80C7C3">฿2,000</div></div></div>
+    <div class="bar-row"><div class="bar-label">קונסטרוקציה</div><div class="bar-wrap"><div class="bar-fill" style="width:16%;background:#79CCB7">฿1,550</div></div></div>
     <div class="bar-row"><div class="bar-label">BOS</div><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:var(--coral)">฿750</div></div></div>
   </div>
   <div class="alert alert-success" style="margin-top:16px">
@@ -494,7 +493,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
           <tr><td>Mounting system set</td><td>20kWp</td><td>฿31K</td></tr>
           <tr><td>BOS (cables, MC4, etc.)</td><td>20kWp</td><td>฿20K</td></tr>
           <tr><td>Spare parts</td><td>misc</td><td>฿30K</td></tr>
-          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ</strong></td><td></td><td><strong>฿421K</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.1)"><td><strong>סה"כ</strong></td><td></td><td><strong>฿421K</strong></td></tr>
         </table>
       </div>
     </div>
@@ -739,6 +738,6 @@ window.PAGE_TRANSLATIONS = {
   "VAT (על הכל)": {en: "VAT (on everything)", th: "VAT (ทั้งหมด)"},
 };
 </script>
-<script src="tm-lang.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>

@@ -26,6 +26,8 @@ const CURATED = {
   'presentations/community-solar-research.html': { title: 'Community Solar בתאילנד — מחקר מעמיק', alt: 'Community-solar models and their fit for Thailand', kind: 'deck', group: 'presentations', audience: 'internal', lang: ['he'] },
   'presentations/VALIDATION.md': { title: 'Presentations — number validation', alt: 'Financing deck vs business-plan workbook, cell by cell', kind: 'doc', group: 'presentations', audience: 'internal', lang: ['en'] },
 
+  'presentations/bustan-financing.html': { title: 'מימון — בנקים, תנאים, מספרים אמיתיים', alt: 'Bustan Energy — financing', kind: 'deck', group: 'presentations', audience: 'investor', lang: ['he', 'en', 'th'], note: 'numbers pending validation' },
+
   // ── Playbooks (long-form strategy & ops docs) ──
   'business-plan.html': { title: 'תוכנית עסקית שנה 1', alt: 'Business plan — year 1', kind: 'doc', group: 'strategy', audience: 'internal', lang: ['he'], playbook: true },
   'pnl-plan.html': { title: 'פיננסים — P&L ותוכנית הקמה מלאה', alt: 'P&L + full build-out plan', kind: 'doc', group: 'strategy', audience: 'internal', lang: ['he'], playbook: true },
@@ -158,7 +160,6 @@ const EXTERNAL = [
   { title: 'New proposal (v2)', path: 'https://bustan-energy.com/admin/proposals/new', kind: 'tool', group: 'proposals', audience: 'internal', lang: ['he', 'en'] },
   { title: 'CRM', path: 'https://bustan-energy.com/crm', kind: 'tool', group: 'crm', audience: 'team', lang: ['en'] },
   { title: 'Client proposal portal (example)', path: 'https://bustan-energy.com/p/', kind: 'proposal', group: 'proposals', audience: 'client', lang: ['en'] },
-  { title: 'מימון — בנקים, תנאים, מספרים אמיתיים', alt: 'Financing deck (bustan-energy.com)', path: 'https://bustan-energy.com/bustan-financing-deck.html', kind: 'deck', group: 'presentations', audience: 'investor', lang: ['he', 'en', 'th'], thumb: 'assets/thumbs/ext-financing-deck.webp', note: 'numbers pending validation' },
   { title: 'Competitor research (full, internal)', alt: 'Koh Phangan / Surat Thani installer landscape, 2026-05-31', path: 'https://bustan-energy.com/bustan-competitor-research-full-internal-2026-05-31.html', kind: 'research', group: 'strategy', audience: 'internal', lang: ['en'], thumb: 'assets/thumbs/ext-competitor-research.webp' },
   { title: 'Drive — project folder', path: 'https://drive.google.com/drive/folders/12hdMH7wDmO3KgEytFPCKR7FoQasSEBNg', kind: 'doc', group: 'plans', audience: 'internal', lang: ['en'] },
   { title: 'GitHub — copenhagen-solar', path: 'https://github.com/kaniel149/copenhagen-solar', kind: 'tool', group: 'tools', audience: 'internal', lang: ['en'] },
@@ -252,6 +253,7 @@ const thumbFor = (rel) => {
   return fs.existsSync(path.join(ROOT, p)) ? p : undefined;
 };
 
+const coverPhotos = {"strategy": "drone-imagery/DJI_20260327112929_0021_D.webp", "ops": "drone-imagery/DJI_20260327110028_0002_D.webp", "sales": "drone-imagery/DJI_20260327110222_0003_D.webp", "legal": "drone-imagery/DJI_20260327112912_0020_D.webp", "presentations": "drone-imagery/DJI_20260327112800_0013_D.webp"};
 const entries = [];
 for (const rel of walk(ROOT).sort()) {
   const d = defaults(rel), c = CURATED[rel] || {};
@@ -265,7 +267,9 @@ for (const rel of walk(ROOT).sort()) {
   if (c.alt || d.alt) e.alt = c.alt || d.alt;
   if (c.hub) e.hub = true;
   if (c.playbook) e.playbook = true;
-  const th = c.thumb || thumbFor(rel); if (th) e.thumb = th;
+  if ((e.kind === 'deck' && !e.hub) || e.playbook) e.cover = coverPhotos[e.group] || coverPhotos.presentations;
+  else { const th = c.thumb || thumbFor(rel); if (th) e.thumb = th; }
+  if (c.note) e.note = c.note;
   if (rel.startsWith('academy/courses/')) {
     const m = rel.match(/courses\/([a-z-]+?)-(\d{2})\.html$/);
     e.track = m[1]; e.num = Number(m[2]); e.title = title.replace(/^Lesson \d+: /, '');
@@ -296,7 +300,7 @@ const row = (e) => {
   const audio = e.kind === 'podcast' && !e.external ? `<div class="row-audio"><audio controls preload="none" src="${esc(e.path)}"></audio></div>` : '';
   return `<a class="row" href="${esc(hrefFor(e))}"${ext ? ' target="_blank" rel="noopener"' : ''}>${ic(e.kind === 'podcast' ? 'podcast' : /\.(pdf|xlsx|csv)$/i.test(e.path) ? 'file' : e.hub ? 'globe' : KIND_ICON[e.kind])}<div><div class="row-title"${dirAttr(e.title)}>${esc(e.title)}</div>${e.alt ? `<div class="row-sub"${dirAttr(e.alt)}>${esc(e.alt)}</div>` : ''}</div>${tags(e)}<div class="row-date">${e.updated || ''}</div>${ic(ext ? 'ext' : 'arrow')}${audio}</a>`;
 };
-const deck = (e) => `<div class="card deck-card"><a class="deck-thumb" href="${esc(hrefFor(e))}"${e.external ? ' target="_blank" rel="noopener"' : ''} aria-label="${esc(e.title)}">${e.thumb ? `<img src="${esc(e.thumb)}" alt="" loading="lazy" width="640" height="360">` : ''}</a><div class="deck-body"><h3 class="card-title"${dirAttr(e.title)}>${esc(e.title)}</h3>${e.alt ? `<p class="card-sub"${dirAttr(e.alt)}>${esc(e.alt)}</p>` : ''}<div class="tags" style="margin-top:14px">${e.lang.map((l) => `<span class="tag tag-lang">${l}</span>`).join('')}<span class="tag">${AUD_LABEL[e.audience]}</span>${e.note ? `<span class="tag tag-warn">${esc(e.note)}</span>` : ''}</div><div class="deck-actions"><a class="btn btn-sm" href="${esc(hrefFor(e))}"${e.external ? ' target="_blank" rel="noopener"' : ''}>${ic(e.external ? 'ext' : 'arrow')}<span>Open</span></a></div></div></div>`;
+const deck = (e) => `<div class="card deck-card"><a class="deck-thumb" href="${esc(hrefFor(e))}"${e.external ? ' target="_blank" rel="noopener"' : ''} aria-label="${esc(e.title)}">${e.cover ? `<img src="${esc(e.cover)}" alt="" loading="lazy" width="640" height="360">` : e.thumb ? `<img src="${esc(e.thumb)}" alt="" loading="lazy" width="640" height="360">` : ''}</a><div class="deck-body"><h3 class="card-title"${dirAttr(e.title)}>${esc(e.title)}</h3>${e.alt ? `<p class="card-sub"${dirAttr(e.alt)}>${esc(e.alt)}</p>` : ''}<div class="tags" style="margin-top:14px">${e.lang.map((l) => `<span class="tag tag-lang">${l}</span>`).join('')}<span class="tag">${AUD_LABEL[e.audience]}</span>${e.note ? `<span class="tag tag-warn">${esc(e.note)}</span>` : ''}</div><div class="deck-actions"><a class="btn btn-sm" href="${esc(hrefFor(e))}"${e.external ? ' target="_blank" rel="noopener"' : ''}>${ic(e.external ? 'ext' : 'arrow')}<span>Open</span></a></div></div></div>`;
 const staticHTML = KIND_ORDER.map((k) => {
   const items = entries.filter((e) => e.kind === k);
   if (!items.length) return '';

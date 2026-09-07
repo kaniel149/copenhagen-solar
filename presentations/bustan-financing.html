@@ -2,14 +2,14 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-<meta name="content-updated" content="2026-09-04">
+    <meta name="content-updated" content="2026-09-04">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bustan Energy — Financing Deep Dive</title>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --sun: #F2B84B; --ocean: #24463E; --ocean-deep: #24463E; --green: #43A047; --red: #E53935; --white: #FFF4E2; }
+        :root { --sun: #F2B84B; --ocean: #24463E; --ocean-deep: #27342F; --green: #9CD5C7; --red: #FF967E; --white: #FFF4E2; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #27342F; color: var(--white); }
+        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #24463E; color: var(--white); }
 
         .slide { min-height: 100vh; padding: 4rem 3rem; display: flex; flex-direction: column; justify-content: center; border-bottom: 1px solid rgba(255,244,226,0.05); }
         .slide-num { position: absolute; top: 2rem; left: 2rem; font-size: 0.75rem; color: rgba(255,244,226,0.3); letter-spacing: 0.15em; position: relative; margin-bottom: 1rem; }
@@ -27,7 +27,7 @@
         .card { background: rgba(255,244,226,0.04); border: 1px solid rgba(255,244,226,0.08); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
         .card:hover { background: rgba(255,244,226,0.07); transform: translateY(-4px); }
         .card.gold { border-color: var(--sun); background: rgba(242,184,75,0.06); }
-        .card.green { border-color: var(--green); background: rgba(67,160,71,0.06); }
+        .card.green { border-color: var(--green); background: rgba(0,143,138,0.06); }
 
         .stat-big { font-family: 'Instrument Serif', serif; font-size: 3rem; color: var(--sun); line-height: 1; }
         .stat-label { font-size: 0.85rem; color: rgba(255,244,226,0.5); margin-top: 0.3rem; }
@@ -39,13 +39,13 @@
 
         .badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
         .badge-gold { background: rgba(242,184,75,0.15); color: var(--sun); }
-        .badge-green { background: rgba(67,160,71,0.15); color: var(--green); }
-        .badge-red { background: rgba(229,57,53,0.15); color: var(--red); }
+        .badge-green { background: rgba(0,143,138,0.15); color: var(--green); }
+        .badge-red { background: rgba(255,107,74,0.15); color: var(--red); }
 
         .highlight-box { padding: 1.5rem; border-radius: 12px; margin: 1rem 0; }
         .highlight-gold { background: rgba(242,184,75,0.08); border: 1px solid rgba(242,184,75,0.2); }
-        .highlight-green { background: rgba(67,160,71,0.08); border: 1px solid rgba(67,160,71,0.2); }
-        .highlight-red { background: rgba(229,57,53,0.08); border: 1px solid rgba(229,57,53,0.15); }
+        .highlight-green { background: rgba(0,143,138,0.08); border: 1px solid rgba(0,143,138,0.2); }
+        .highlight-red { background: rgba(255,107,74,0.08); border: 1px solid rgba(255,107,74,0.15); }
 
         .bank-row { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; border-bottom: 1px solid rgba(255,244,226,0.05); }
         .bank-rank { font-family: 'Instrument Serif', serif; font-size: 2.5rem; color: var(--sun); min-width: 50px; text-align: center; }
@@ -73,18 +73,19 @@
 .brand-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
 .brand-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 </style>
-    <meta name="robots" content="noindex, nofollow">
-<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
-<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
+<link rel="icon" type="image/png" href="../assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="../assets/deck-brand.css">
 </head>
-<body class="bustan-playbook">
-<script src="auth.js"></script>
-<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
+<body class="bustan-deck bustan-financing">
+
+<div class="brand-header">
+  <img src="../assets/bustan-energy-logo.png" alt="Bustan Energy" width="1876" height="838">
+</div>
 
 
 
 <!-- SLIDE 0: COVER -->
-<div class="slide" style="background:linear-gradient(160deg,var(--ocean-deep),#27342F 60%);">
+<div class="slide bustan-financing-cover">
     <div class="container">
         <span class="badge badge-gold" style="margin-bottom:1.5rem;">FINANCING DEEP DIVE</span>
         <h1>Ko Phangan <span class="accent">Solar</span></h1>
@@ -128,7 +129,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">02 — BANK RANKING</div>
-<img src="visuals/finance-02-bank.png" class="slide-img-sm" alt="Bank">
+<img src="https://bustan-energy.com/assets/images/finance-02-bank.png" class="slide-img-sm" alt="Bank">
         <h2 class="he">דירוג בנקים — מי הכי טוב?</h2>
         
         <div class="bank-row" style="background:rgba(242,184,75,0.05);border-radius:16px 16px 0 0;">
@@ -253,7 +254,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">04 — CUSTOMER FINANCING MODELS</div>
-<img src="visuals/finance-07-signing.png" class="slide-img" alt="Solar project agreement">
+<img src="https://bustan-energy.com/assets/images/finance-04-roi.png" class="slide-img" alt="ROI timeline">
         <h2 class="he">איך הלקוחות שלנו משלמים</h2>
         <div class="grid-2">
             <div>
@@ -371,7 +372,7 @@
 <div class="slide">
     <div class="container">
         <div class="slide-num">07 — TAX & INCENTIVES</div>
-<img src="visuals/finance-07-signing.png" class="slide-img-sm" alt="PPA signing">
+<img src="https://bustan-energy.com/assets/images/finance-07-signing.png" class="slide-img-sm" alt="PPA signing">
         <h2 class="he"></h2>
         <div class="grid-2">
             <div>
@@ -443,7 +444,7 @@
 </div>
 
 <!-- SLIDE 9: SUMMARY -->
-<div class="slide" style="background:linear-gradient(160deg,var(--ocean-deep),#27342F 60%);">
+<div class="slide bustan-financing-cover">
     <div class="container" style="text-align:center;">
         <h2 class="he" style="margin-bottom:2rem;">סיכום מימון</h2>
         <div class="grid-3" style="max-width:800px;margin:0 auto;">
@@ -595,57 +596,9 @@ window.PAGE_TRANSLATIONS = {
   "ניכוי מס ללקוח ביתי": {en: "tax deduction, home customer", th: "ลดหย่อนภาษีลูกค้าบ้าน"},
   "החזר מערכת ESCO": {en: "ESCO system payback", th: "คืนทุนระบบ ESCO"},
   "החזר ללקוח (וילה 10kW, ~4.0 עם הניכוי)": {en: "customer payback (10kW villa, ~4.0 with deduction)", th: "คืนทุนลูกค้า (วิลล่า 10kW, ~4.0 ปีเมื่อหักภาษี)"},
-  // --- Added 2026-09-05: EN/TH restored after Sep 2026 Hebrew content refresh ---
-  "3.50% שנתיים (3.25% עם בטוחה)": {en: "3.50% for 2 years (3.25% with collateral)", th: "3.50% สองปีแรก (3.25% หากมีหลักประกัน)"},
-  "אחרי": {en: "After", th: "หลังจากนั้น"},
-  "5.00% שנים 3–5, אח\"כ MRR (6.045%)": {en: "5.00% years 3–5, then MRR (6.045%)", th: "5.00% ปีที่ 3–5 จากนั้น MRR (6.045%)"},
-  "עד 7 שנים": {en: "Up to 7 years", th: "สูงสุด 7 ปี"},
-  "סכום": {en: "Amount", th: "วงเงิน"},
-  "עד ฿500K ללא בטוחה / ฿1M עם": {en: "Up to ฿500K unsecured / ฿1M secured", th: "สูงสุด ฿500K ไม่มีหลักประกัน / ฿1M มีหลักประกัน"},
-  "גג סולארי לבית או לעסק קטן": {en: "Solar roof for a home or small business", th: "หลังคาโซลาร์สำหรับบ้านหรือธุรกิจขนาดเล็ก"},
-  "הגשה": {en: "Application", th: "ยื่นขอ"},
-  "עד 31.3.2027": {en: "Until 31.3.2027", th: "ถึง 31.3.2027"},
-  "3.5% שנתיים, אח\"כ MLR-based": {en: "3.5% for 2 years, then MLR-based", th: "3.5% สองปีแรก จากนั้นอิง MLR"},
-  "עד 7 שנים ללא בטוחה / 8 עם": {en: "Up to 7 years unsecured / 8 secured", th: "สูงสุด 7 ปีไม่มีหลักประกัน / 8 ปีมีหลักประกัน"},
-  "עסקים — גם פורטפוליו ESCO/PPA שלנו": {en: "Businesses — including our ESCO/PPA portfolio", th: "ธุรกิจ — รวมถึงพอร์ต ESCO/PPA ของเรา"},
-  "מימון מלא = אין הון עצמי גדול": {en: "Full financing = no large equity needed", th: "เงินทุน 100% = ไม่ต้องใช้ทุนตัวเองก้อนใหญ่"},
-  "4.99% שנה 1, אח\"כ 5.98–8.90%": {en: "4.99% year 1, then 5.98–8.90%", th: "4.99% ปีแรก จากนั้น 5.98–8.90%"},
-  "עד 30 שנה": {en: "Up to 30 years", th: "สูงสุด 30 ปี"},
-  "מינימום ฿500K, עד 85% LTV": {en: "Minimum ฿500K, up to 85% LTV", th: "ขั้นต่ำ ฿500K สูงสุด 85% LTV"},
-  "משכנתא על הנכס": {en: "Mortgage on the property", th: "จำนองอสังหาริมทรัพย์"},
-  "מתאים לוילות יקרות; לא 3.5%/10 שנים": {en: "Suits high-end villas; not 3.5%/10 years", th: "เหมาะกับวิลล่าราคาสูง ไม่ใช่ 3.5%/10 ปี"},
-  "~40% (וילה) / ~35% (ריזורט)": {en: "~40% (villa) / ~35% (resort)", th: "~40% (วิลล่า) / ~35% (รีสอร์ท)"},
-  "15-20% מיום 1": {en: "15-20% from day 1", th: "15-20% ตั้งแต่วันแรก"},
-  "80-85% מעלות החשמל שהמערכת מחליפה": {en: "80-85% of the electricity cost the system replaces", th: "80-85% ของค่าไฟที่ระบบทดแทน"},
-  "฿4.52 בית / ฿4.58 עסק קטן (לפני מע\"מ; 4.84/4.90 כולל)": {en: "฿4.52 home / ฿4.58 small business (ex-VAT; 4.84/4.90 incl.)", th: "฿4.52 บ้าน / ฿4.58 ธุรกิจขนาดเล็ก (ไม่รวม VAT; รวม VAT 4.84/4.90)"},
-  "฿3.80/kWh (טווח 3.60–3.90), הצמדה 0–1.5%/שנה": {en: "฿3.80/kWh (range 3.60–3.90), escalation 0–1.5%/year", th: "฿3.80/kWh (ช่วง 3.60–3.90) ปรับขึ้น 0–1.5%/ปี"},
-  "฿4,700/חודש (17% הנחה)": {en: "฿4,700/month (17% discount)", th: "฿4,700/เดือน (ส่วนลด 17%)"},
-  "3.2 שנים": {en: "3.2 years", th: "3.2 ปี"},
-  "סולארי לצריכה עצמית": {en: "Self-consumption solar", th: "โซลาร์เพื่อใช้เอง"},
-  "הוסר": {en: "removed", th: "ถูกถอดออก"},
-  "מהטבות BOI ב-1.7.2025; נשאר רק ייצור למכירה (קטגוריה 7.1)": {en: "from BOI incentives on 1.7.2025; only generation for sale remains (Category 7.1)", th: "จากสิทธิประโยชน์ BOI เมื่อ 1.7.2025 เหลือเฉพาะผลิตเพื่อขาย (หมวด 7.1)"},
-  "מכס על ציוד": {en: "Import duty on equipment", th: "ภาษีนำเข้าอุปกรณ์"},
-  "פאנלים ~0%; אינוורטרים וסוללות 0% עם Form E (ACFTA) + מע\"מ 7%": {en: "Panels ~0%; inverters and batteries 0% with Form E (ACFTA) + 7% VAT", th: "แผง ~0%; อินเวอร์เตอร์และแบตเตอรี่ 0% ด้วย Form E (ACFTA) + VAT 7%"},
-  "לעסקים על ציוד חיסכון אנרגיה 5 כוכבים (צו 805/2569) — ייתכן שחל": {en: "for businesses on 5-star energy-saving equipment (Decree 805/2569) — may apply", th: "สำหรับธุรกิจ บนอุปกรณ์ประหยัดพลังงานเบอร์ 5 (พ.ร.ฎ. 805/2569) — อาจใช้ได้"},
-  "רק במכרזי VSPP/SPP: ฿2.17 סולארי / ฿2.83 סולארי+BESS. אין \"בונוס דרום\" לסורת תאני": {en: "Only in VSPP/SPP tenders: ฿2.17 solar / ฿2.83 solar+BESS. No \"southern bonus\" for Surat Thani", th: "เฉพาะการประมูล VSPP/SPP: ฿2.17 โซลาร์ / ฿2.83 โซลาร์+BESS ไม่มี \"โบนัสภาคใต้\" สำหรับสุราษฎร์ธานี"},
-  "חובה חדשה 2026: פאנלים 61730-2, אינוורטר 2603-2, סוללות 63056 — לוודא לפני רכש": {en: "New 2026 requirement: panels 61730-2, inverter 2603-2, batteries 63056 — verify before purchase", th: "ข้อบังคับใหม่ 2026: แผง 61730-2, อินเวอร์เตอร์ 2603-2, แบตเตอรี่ 63056 — ตรวจสอบก่อนจัดซื้อ"},
-  "עד ฿200,000 (צו מלכותי 805, 3.3.2026–31.12.2028): בעל המונה, ≤10 kWp, e-Tax Invoice ממתקין רשום מע\"מ, נתבע בשנת החיבור. לא ב-PPA": {en: "Up to ฿200,000 (Royal Decree 805, 3.3.2026–31.12.2028): meter owner, ≤10 kWp, e-Tax Invoice from a VAT-registered installer, claimed in the year of connection. Not for PPA", th: "สูงสุด ฿200,000 (พ.ร.ฎ. 805, 3.3.2026–31.12.2028): เจ้าของมิเตอร์, ≤10 kWp, e-Tax Invoice จากผู้ติดตั้งที่จด VAT, ใช้สิทธิ์ในปีที่เชื่อมต่อ ไม่ใช้กับ PPA"},
-  "לעסקים על ציוד 5 כוכבים": {en: "for businesses on 5-star equipment", th: "สำหรับธุรกิจ บนอุปกรณ์เบอร์ 5"},
-  "בתים: ฿2.20/kWh על ייצוא, עד 5 kW, 10 שנים, הגשה ב-PEA PPIM 1.7.2026–30.11.2027. עסקים: ฿0 → zero-export": {en: "Homes: ฿2.20/kWh on export, up to 5 kW, 10 years, apply via PEA PPIM 1.7.2026–30.11.2027. Businesses: ฿0 → zero-export", th: "บ้าน: ฿2.20/kWh สำหรับไฟส่งออก สูงสุด 5 kW 10 ปี ยื่นผ่าน PEA PPIM 1.7.2026–30.11.2027 ธุรกิจ: ฿0 → zero-export"},
-  "לא רלוונטי לגגות פרטיים": {en: "Not relevant for private rooftops", th: "ไม่เกี่ยวกับหลังคาส่วนตัว"},
-  "Or.1 לא נדרש עד 20 ק\"ג/מ\"ר (מ-19.11.2025) · אין רישיון מפעל לגגות (מ-28.12.2024) · <1,000 kVA רק הודעת פטור ERC · PEA: יעד 7/30 יום, בפועל 15–30 ימי עבודה": {en: "Or.1 not required up to 20 kg/m² (from 19.11.2025) · no factory licence for rooftops (from 28.12.2024) · <1,000 kVA only an ERC exemption notice · PEA: target 7/30 days, in practice 15–30 working days", th: "ไม่ต้องขอ อ.1 ถึง 20 กก./ตร.ม. (ตั้งแต่ 19.11.2025) · ไม่ต้องมีใบอนุญาตโรงงานสำหรับหลังคา (ตั้งแต่ 28.12.2024) · <1,000 kVA แค่แจ้งยกเว้นต่อ กกพ. · PEA: เป้า 7/30 วัน จริง 15–30 วันทำการ"},
-  "— 1115 → Solar for Life (הסכם הפניה למתקין)": {en: "— 1115 → Solar for Life (installer referral agreement)", th: "— 1115 → Solar for Life (ข้อตกลงแนะนำผู้ติดตั้ง)"},
-  "— סניף תונג סאלא → K-Energy Saving": {en: "— Thong Sala branch → K-Energy Saving", th: "— สาขาท้องศาลา → K-Energy Saving"},
-  "— רישום מתקין וציוד במאגר הארצי": {en: "— register installer and equipment in the national database", th: "— ลงทะเบียนผู้ติดตั้งและอุปกรณ์ในฐานข้อมูลระดับประเทศ"},
-  "עד 30.9.2026": {en: "By 30.9.2026", th: "ภายใน 30.9.2026"},
-  "רו\"ח": {en: "Accountant", th: "นักบัญชี"},
-  "— e-Tax Invoice (תנאי לניכוי ฿200K של הלקוח)": {en: "— e-Tax Invoice (condition for the customer's ฿200K deduction)", th: "— e-Tax Invoice (เงื่อนไขการลดหย่อน ฿200K ของลูกค้า)"},
-  "ספקים": {en: "Suppliers", th: "ซัพพลายเออร์"},
-  "— אישורי TIS לאינוורטר/סוללה לפני רכש Q4": {en: "— TIS certificates for inverter/battery before Q4 purchasing", th: "— ใบรับรอง มอก. สำหรับอินเวอร์เตอร์/แบตเตอรี่ก่อนจัดซื้อ Q4"},
-  // --- Restored 2026-09-05 verbatim from 00ae48f1^ (keys unchanged by the Sep-4 refresh) ---
-  "O&M/חודש": {en: "O&M/month", th: "O&M/เดือน"},
 };
 </script>
-<script src="bustan-lang.js"></script>
+
+<a class="bustan-home" href="index.html" aria-label="Bustan Energy — Presentations"><span>←</span> Bustan Energy&nbsp;·&nbsp;Presentations</a>
 </body>
 </html>

@@ -9,46 +9,46 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Space Grotesk',sans-serif;background:#0A1929;color:#E8E8E8;direction:rtl;line-height:1.6}
-.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
-.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+body{font-family:'Space Grotesk',sans-serif;background:#27342F;color:#F4EAD8;direction:rtl;line-height:1.6}
+.bustan-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.bustan-logo-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 .lang-bar{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:200;display:flex;gap:4px;background:rgba(0,0,0,.4);backdrop-filter:blur(10px);border-radius:20px;padding:3px}
-.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,255,255,.5);transition:all .2s}
-.lang-btn.active{background:rgba(232,168,32,.2);color:#E8A820}
+.lang-btn{padding:4px 12px;border-radius:16px;border:none;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;background:transparent;color:rgba(255,244,226,.5);transition:all .2s}
+.lang-btn.active{background:rgba(242,184,75,.2);color:#F2B84B}
 .container{max-width:1200px;margin:0 auto;padding:80px 24px 40px}
 h1{font-size:2.5rem;text-align:center;margin-bottom:8px;color:#fff}
-.subtitle{text-align:center;color:rgba(255,255,255,.5);margin-bottom:48px;font-size:1.1rem}
+.subtitle{text-align:center;color:rgba(255,244,226,.5);margin-bottom:48px;font-size:1.1rem}
 .avatar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:24px;margin-bottom:48px}
-.avatar-card{background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;transition:transform .2s}
+.avatar-card{background:linear-gradient(135deg,rgba(255,244,226,.04),rgba(255,244,226,.01));border:1px solid rgba(255,244,226,.08);border-radius:16px;padding:28px;transition:transform .2s}
 .avatar-card:hover{transform:translateY(-2px)}
 .avatar-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
 .avatar-emoji{font-size:3rem;width:64px;height:64px;display:flex;align-items:center;justify-content:center;border-radius:50%;flex-shrink:0}
 .avatar-name{font-size:1.3rem;font-weight:700;color:#fff}
-.avatar-title{font-size:.85rem;color:#E8A820}
+.avatar-title{font-size:.85rem;color:#F2B84B}
 .avatar-stats{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
-.stat{background:rgba(232,168,32,.1);border:1px solid rgba(232,168,32,.2);border-radius:8px;padding:4px 10px;font-size:.75rem;color:#E8A820}
-.section-title{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px}
+.stat{background:rgba(242,184,75,.1);border:1px solid rgba(242,184,75,.2);border-radius:8px;padding:4px 10px;font-size:.75rem;color:#F2B84B}
+.section-title{font-size:.85rem;font-weight:700;color:rgba(255,244,226,.4);text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px}
 .pain-list,.objection-list,.onboard-list{list-style:none;padding:0}
-.pain-list li,.objection-list li,.onboard-list li{padding:6px 0;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.pain-list li,.objection-list li,.onboard-list li{padding:6px 0;font-size:.9rem;border-bottom:1px solid rgba(255,244,226,.04)}
 .pain-list li:last-child,.objection-list li:last-child,.onboard-list li:last-child{border:none}
 .pain-list li::before{content:'🔥 ';margin-left:4px}
 .objection-list li::before{content:'🛡️ ';margin-left:4px}
-.objection-list .response{color:rgba(255,255,255,.5);font-size:.8rem;margin-top:2px;padding-right:24px}
+.objection-list .response{color:rgba(255,244,226,.5);font-size:.8rem;margin-top:2px;padding-right:24px}
 .model-badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:.85rem;font-weight:700;margin:8px 4px 0}
 .ppa{background:rgba(22,163,74,.15);border:1px solid rgba(22,163,74,.3);color:#22C55E}
 .epc{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#3B82F6}
-.both{background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:#E8A820}
-.model-reason{font-size:.8rem;color:rgba(255,255,255,.4);margin-top:4px}
+.both{background:rgba(242,184,75,.15);border:1px solid rgba(242,184,75,.3);color:#F2B84B}
+.model-reason{font-size:.8rem;color:rgba(255,244,226,.4);margin-top:4px}
 .onboard-list li{position:relative;padding-right:32px}
-.onboard-list li .step-num{position:absolute;right:0;top:6px;width:22px;height:22px;border-radius:50%;background:rgba(232,168,32,.15);color:#E8A820;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center}
-.deal-size{font-size:1.1rem;font-weight:700;color:#E8A820;text-align:center;margin-top:16px;padding:12px;background:rgba(232,168,32,.05);border-radius:8px}
+.onboard-list li .step-num{position:absolute;right:0;top:6px;width:22px;height:22px;border-radius:50%;background:rgba(242,184,75,.15);color:#F2B84B;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.deal-size{font-size:1.1rem;font-weight:700;color:#F2B84B;text-align:center;margin-top:16px;padding:12px;background:rgba(242,184,75,.05);border-radius:8px}
 .funnel-section{margin-top:64px}
 .funnel-section h2{font-size:1.8rem;color:#fff;text-align:center;margin-bottom:32px}
 .funnel{display:flex;flex-direction:column;gap:16px;max-width:800px;margin:0 auto}
-.funnel-step{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.03);border-radius:12px;padding:16px 20px}
-.funnel-num{width:40px;height:40px;border-radius:50%;background:rgba(232,168,32,.15);color:#E8A820;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.funnel-step{display:flex;align-items:center;gap:16px;background:rgba(255,244,226,.03);border-radius:12px;padding:16px 20px}
+.funnel-num{width:40px;height:40px;border-radius:50%;background:rgba(242,184,75,.15);color:#F2B84B;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .funnel-content h3{font-size:1rem;color:#fff;margin-bottom:2px}
-.funnel-content p{font-size:.85rem;color:rgba(255,255,255,.5)}
+.funnel-content p{font-size:.85rem;color:rgba(255,244,226,.5)}
 .split-section{margin-top:64px}
 .split-section h2{font-size:1.8rem;color:#fff;text-align:center;margin-bottom:32px}
 .split-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;margin:0 auto}
@@ -64,12 +64,12 @@ h1{font-size:2.5rem;text-align:center;margin-bottom:8px;color:#fff}
   h1{font-size:1.8rem}
 }
 </style>
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 
-<div class="tm-logo-header">
-  <span class="brand-text">BUSTAN ENERGY</span>
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 <div class="lang-bar">
   <button class="lang-btn active" onclick="setLang('he')" data-l="he">עב</button>
   <button class="lang-btn" onclick="setLang('en')" data-l="en">EN</button>
@@ -86,7 +86,7 @@ h1{font-size:2.5rem;text-align:center;margin-bottom:8px;color:#fff}
 <!-- AVATAR 1: Resort Owner -->
 <div class="avatar-card">
   <div class="avatar-header">
-    <div class="avatar-emoji" style="background:rgba(232,168,32,.1)">🏨</div>
+    <div class="avatar-emoji" style="background:rgba(242,184,75,.1)">🏨</div>
     <div>
       <div class="avatar-name">סוֹמְצ'אי — בעל ריזורט</div>
       <div class="avatar-title">Luxury Resort, 40-80 חדרים, Thong Nai Pan / Haad Yao</div>
@@ -568,6 +568,6 @@ window.PAGE_TRANSLATIONS = {
   "צוות Bustan Energy + חשמלאי מוסמך. 3-7 ימי התקנה. חיבור PEA + מונה דו-כיווני.": {en: "Bustan Energy crew + licensed electrician. 3-7 installation days. PEA connection + bidirectional meter.", th: "ทีม Bustan Energy + ช่างไฟฟ้าที่มีใบอนุญาต ติดตั้ง 3-7 วัน เชื่อมต่อ กฟภ. + มิเตอร์สองทาง"},
 };
 </script>
-<script src="tm-lang.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>

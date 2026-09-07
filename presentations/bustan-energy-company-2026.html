@@ -8,16 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --navy: #0D2137;
-  --navy-light: #142d4a;
-  --gold: #E8A820;
-  --green: #1A7A5A;
-  --green-light: #22996f;
-  --white: #FFFFFF;
-  --gray-100: #F7F8FA;
-  --gray-200: #E8ECF1;
-  --gray-400: #9AA5B4;
-  --gray-600: #5A6778;
+  --navy: #24463E;
+  --navy-light: #2D5147;
+  --gold: #F2B84B;
+  --green: #9CD5C7;
+  --green-light: #9CD5C7;
+  --white: #FFF4E2;
+  --gray-100: #FFF4E2;
+  --gray-200: #F4EAD8;
+  --gray-400: #D5D4BF;
+  --gray-600: #B5C0AE;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -125,7 +125,7 @@ p, li {
 
 .card {
   background: var(--navy-light);
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,244,226,0.06);
   border-radius: 14px;
   padding: 28px 24px;
 }
@@ -141,9 +141,9 @@ p, li {
   margin-bottom: 16px;
 }
 
-.card-icon.gold { background: rgba(232,168,32,0.15); color: var(--gold); }
-.card-icon.green { background: rgba(26,122,90,0.15); color: var(--green-light); }
-.card-icon.navy { background: rgba(255,255,255,0.08); color: var(--white); }
+.card-icon.gold { background: rgba(242,184,75,0.15); color: var(--gold); }
+.card-icon.green { background: rgba(0,143,138,0.15); color: var(--green-light); }
+.card-icon.navy { background: rgba(255,244,226,0.08); color: var(--white); }
 
 .card h3 { margin-bottom: 8px; }
 .card p { font-size: 14px; color: var(--gray-400); }
@@ -211,7 +211,7 @@ ul.clean li::before {
 
 .flow-step {
   background: var(--navy-light);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,244,226,0.08);
   border-radius: 8px;
   padding: 10px 18px;
   font-size: 14px;
@@ -232,8 +232,8 @@ ul.clean li::before {
 }
 
 .price-pill {
-  background: rgba(232,168,32,0.1);
-  border: 1px solid rgba(232,168,32,0.25);
+  background: rgba(242,184,75,0.1);
+  border: 1px solid rgba(242,184,75,0.25);
   border-radius: 10px;
   padding: 16px 24px;
   text-align: center;
@@ -316,45 +316,13 @@ ul.clean li::before {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(232,168,32,0.12);
+  background: rgba(242,184,75,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   color: var(--gold);
   flex-shrink: 0;
-}
-
-/* Logo */
-.tm-logo {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 32px;
-}
-
-.tm-logo-circle {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: 3px solid var(--gold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--gold);
-}
-
-.tm-logo-text {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--white);
-}
-
-.tm-logo-text span {
-  color: var(--gold);
 }
 
 /* Green highlight */
@@ -385,9 +353,9 @@ ul.clean li::before {
   align-items: center;
   gap: 16px;
   z-index: 100;
-  background: rgba(13,33,55,0.85);
+  background: rgba(36,70,62,0.85);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,244,226,0.08);
   border-radius: 12px;
   padding: 10px 20px;
 }
@@ -408,7 +376,7 @@ ul.clean li::before {
 
 .controls button:hover {
   color: var(--white);
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,244,226,0.08);
 }
 
 .slide-counter {
@@ -439,9 +407,9 @@ ul.clean li::before {
 }
 
 .fullscreen-btn button {
-  background: rgba(13,33,55,0.7);
+  background: rgba(36,70,62,0.7);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,244,226,0.08);
   border-radius: 8px;
   color: var(--gray-400);
   cursor: pointer;
@@ -452,7 +420,7 @@ ul.clean li::before {
 
 .fullscreen-btn button:hover {
   color: var(--white);
-  background: rgba(13,33,55,0.9);
+  background: rgba(36,70,62,0.9);
 }
 
 /* Title slide special */
@@ -472,8 +440,8 @@ ul.clean li::before {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(26,122,90,0.15);
-  border: 1px solid rgba(26,122,90,0.3);
+  background: rgba(0,143,138,0.15);
+  border: 1px solid rgba(0,143,138,0.3);
   border-radius: 20px;
   padding: 8px 20px;
   font-size: 14px;
@@ -491,8 +459,6 @@ ul.clean li::before {
   .flow { gap: 6px; }
   .flow-step { padding: 8px 12px; font-size: 12px; }
   .pricing-row { flex-direction: column; }
-  .tm-logo-circle { width: 44px; height: 44px; font-size: 18px; }
-  .tm-logo-text { font-size: 22px; }
 }
 
 @media (max-width: 480px) {
@@ -516,8 +482,10 @@ ul.clean li::before {
   body { overflow: visible; }
 }
 </style>
+<link rel="icon" type="image/png" href="../assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="../assets/deck-brand.css">
 </head>
-<body>
+<body class="bustan-deck">
 
 <div class="progress" id="progress"></div>
 
@@ -532,10 +500,7 @@ ul.clean li::before {
   <!-- Slide 1: Title -->
   <div class="slide active" data-slide="0">
     <div class="slide-inner slide-title">
-      <div class="tm-logo" style="justify-content:center">
-        <div class="tm-logo-circle">B</div>
-        <div class="tm-logo-text"><span>BUSTAN</span> ENERGY</div>
-      </div>
+      <div class="bustan-deck-wordmark"><img class="bustan-deck-logo" src="../assets/bustan-energy-logo.png" alt="Bustan Energy" width="1876" height="838"></div>
       <h1>Solar & EV Solutions<br>for Island Communities</h1>
       <p class="subtitle">Powering sustainable growth across Thailand's islands</p>
       <div class="location-badge">
@@ -893,10 +858,7 @@ ul.clean li::before {
   <!-- Slide 12: Contact -->
   <div class="slide" data-slide="11">
     <div class="slide-inner" style="text-align:center">
-      <div class="tm-logo" style="justify-content:center;margin-bottom:24px">
-        <div class="tm-logo-circle">B</div>
-        <div class="tm-logo-text"><span>BUSTAN</span> ENERGY</div>
-      </div>
+      <div class="bustan-deck-wordmark"><img class="bustan-deck-logo" src="../assets/bustan-energy-logo.png" alt="Bustan Energy" width="1876" height="838"></div>
       <h2>Let's Talk Solar</h2>
       <div class="divider" style="margin:20px auto"></div>
       <div class="contact-info" style="display:inline-block;text-align:left">
@@ -1013,7 +975,7 @@ function toggleFullscreen() {
 document.getElementById('progress').style.width = (1 / total * 100) + '%';
 </script>
 <!-- Bustan index chip (hidden in fullscreen) -->
-<a class="bustan-home" href="index.html" aria-label="Bustan Energy — Presentations">Bustan Energy&nbsp;·&nbsp;Presentations</a>
-<style>.bustan-home{position:fixed;top:14px;left:16px;z-index:9999;font:500 12px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#8a8a8e;text-decoration:none;letter-spacing:.01em;direction:ltr}.bustan-home:hover{color:#f5f5f7}:fullscreen .bustan-home,:-webkit-full-screen .bustan-home{display:none}@media print{.bustan-home{display:none}}</style>
+<a class="bustan-home" href="index.html" aria-label="Bustan Energy — Presentations"><span>←</span> Bustan Energy&nbsp;·&nbsp;Presentations</a>
+
 </body>
 </html>

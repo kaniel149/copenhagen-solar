@@ -8,7 +8,7 @@
 <style>
 /* ============================================================
    BUSTAN ENERGY — EV CHARGING & FLEET PRESENTATION
-   Brand: Navy #0A1628 | Green #00D68F | Gold #FFB800
+   Brand: Grove #24463E | Paper #F4EAD8 | Shell #FFF4E2 | Island Ink #27342F
    Bilingual: EN + TH
    ============================================================ */
 
@@ -17,20 +17,20 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --navy: #0A1628;
-  --navy-light: #121E33;
-  --navy-mid: #1A2940;
-  --green: #00D68F;
-  --green-dim: #00B377;
-  --green-glow: rgba(0, 214, 143, 0.15);
-  --gold: #FFB800;
-  --gold-dim: #E5A600;
-  --white: #FFFFFF;
-  --gray: #8892A4;
-  --gray-light: #B0B8C8;
-  --red: #FF4757;
-  --orange: #FF8C42;
-  --blue: #3B82F6;
+  --navy: #24463E;
+  --navy-light: #2D5147;
+  --navy-mid: #355D51;
+  --green: #9CD5C7;
+  --green-dim: #80BBAC;
+  --green-glow: rgba(0,143,138,0.15);
+  --gold: #F2B84B;
+  --gold-dim: #D8A33F;
+  --white: #FFF4E2;
+  --gray: #B5C0AE;
+  --gray-light: #D5D4BF;
+  --red: #FF967E;
+  --orange: #FF967E;
+  --blue: #9CD5C7;
   --slide-w: 100vw;
   --slide-h: 100vh;
 }
@@ -76,8 +76,8 @@ html, body {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background:
-    radial-gradient(ellipse at 80% 20%, rgba(0,214,143,0.04) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 80%, rgba(255,184,0,0.03) 0%, transparent 50%);
+    radial-gradient(ellipse at 80% 20%, rgba(0,143,138,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(242,184,75,0.03) 0%, transparent 50%);
   pointer-events: none; z-index: 0;
 }
 .slide > * { position: relative; z-index: 1; }
@@ -86,8 +86,8 @@ html, body {
 .grid-bg {
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    linear-gradient(rgba(255,244,226,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,244,226,0.02) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -110,7 +110,7 @@ html, body {
 /* ── Fullscreen Button ── */
 #fs-btn {
   position: fixed; bottom: 24px; left: 40px; z-index: 100;
-  background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1);
+  background: var(--navy-mid); border: 1px solid rgba(255,244,226,0.1);
   color: var(--gray-light); padding: 8px 14px; border-radius: 6px;
   cursor: pointer; font-size: 12px; letter-spacing: 0.5px;
   transition: all 0.2s;
@@ -121,7 +121,7 @@ html, body {
 .nav-arrow {
   position: fixed; top: 50%; z-index: 100;
   width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,244,226,0.05); border: 1px solid rgba(255,244,226,0.1);
   color: var(--gray-light); font-size: 18px;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: all 0.2s; transform: translateY(-50%);
@@ -150,19 +150,19 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 .card-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
 
 .card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,244,226,0.03);
+  border: 1px solid rgba(255,244,226,0.06);
   border-radius: 12px; padding: 20px;
   transition: all 0.3s;
 }
-.card:hover { border-color: var(--green); background: rgba(0,214,143,0.04); }
+.card:hover { border-color: var(--green); background: rgba(0,143,138,0.04); }
 .card.highlight { border-color: var(--green); background: var(--green-glow); }
 
 /* ── Data Bars ── */
 .bar-chart { display: flex; flex-direction: column; gap: 12px; }
 .bar-row { display: flex; align-items: center; gap: 12px; }
 .bar-label { width: 120px; font-size: 13px; color: var(--gray-light); text-align: right; flex-shrink: 0; }
-.bar-track { flex: 1; height: 32px; background: rgba(255,255,255,0.04); border-radius: 6px; overflow: hidden; position: relative; }
+.bar-track { flex: 1; height: 32px; background: rgba(255,244,226,0.04); border-radius: 6px; overflow: hidden; position: relative; }
 .bar-fill {
   height: 100%; border-radius: 6px;
   background: linear-gradient(90deg, var(--green), var(--green-dim));
@@ -189,12 +189,12 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 .data-table th {
   text-align: left; padding: 8px 12px; font-weight: 700; font-size: 11px;
   text-transform: uppercase; letter-spacing: 1px; color: var(--green);
-  border-bottom: 2px solid rgba(0,214,143,0.3);
+  border-bottom: 2px solid rgba(0,143,138,0.3);
 }
 .data-table td {
-  padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 8px 12px; border-bottom: 1px solid rgba(255,244,226,0.05);
 }
-.data-table tr:hover td { background: rgba(255,255,255,0.02); }
+.data-table tr:hover td { background: rgba(255,244,226,0.02); }
 
 /* ── Timeline ── */
 .timeline { display: flex; align-items: flex-start; gap: 0; position: relative; margin-top: 20px; }
@@ -224,23 +224,23 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 }
 .risk-high { background: rgba(255,71,87,0.2); color: var(--red); border: 1px solid rgba(255,71,87,0.3); }
 .risk-med { background: rgba(255,140,66,0.2); color: var(--orange); border: 1px solid rgba(255,140,66,0.3); }
-.risk-low { background: rgba(0,214,143,0.2); color: var(--green); border: 1px solid rgba(0,214,143,0.3); }
+.risk-low { background: rgba(0,143,138,0.2); color: var(--green); border: 1px solid rgba(0,143,138,0.3); }
 .risk-text { font-size: 13px; }
 .risk-mitigation { font-size: 11px; color: var(--gray); margin-top: 2px; }
 
 /* ── Flow Diagram ── */
 .flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; justify-content: center; margin: 20px 0; }
 .flow-node {
-  background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1);
+  background: var(--navy-mid); border: 1px solid rgba(255,244,226,0.1);
   padding: 12px 18px; border-radius: 10px; text-align: center; font-size: 13px; font-weight: 600;
   min-width: 110px;
 }
 .flow-node.green-node { border-color: var(--green); background: var(--green-glow); }
-.flow-node.gold-node { border-color: var(--gold); background: rgba(255,184,0,0.1); }
+.flow-node.gold-node { border-color: var(--gold); background: rgba(242,184,75,0.1); }
 .flow-arrow { font-size: 20px; color: var(--green); padding: 0 8px; }
 
 /* ── Cover Slide Special ── */
-.cover-logo { height: 65px; margin-bottom: 20px; filter: brightness(1.1); }
+.cover-logo { height: 65px; margin-bottom: 20px;  }
 .cover-line { width: 80px; height: 3px; background: var(--green); margin: 16px 0; }
 .cover-meta { font-size: 13px; color: var(--gray); margin-top: 20px; }
 
@@ -258,10 +258,10 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   padding: 16px 20px; border-radius: 12px; text-align: center;
   font-size: 13px; font-weight: 600; min-width: 120px;
 }
-.ef-solar { background: linear-gradient(135deg, var(--gold), #E5A600); color: var(--navy); }
+.ef-solar { background: linear-gradient(135deg, var(--gold), #D8A33F); color: var(--navy); }
 .ef-battery { background: linear-gradient(135deg, var(--blue), #2563EB); color: #fff; }
 .ef-charger { background: linear-gradient(135deg, var(--green), var(--green-dim)); color: var(--navy); }
-.ef-grid { background: var(--navy-mid); border: 1px solid rgba(255,255,255,0.1); }
+.ef-grid { background: var(--navy-mid); border: 1px solid rgba(255,244,226,0.1); }
 .ef-arrow { font-size: 24px; color: var(--gold); }
 
 /* ── Animations ── */
@@ -299,10 +299,10 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 .fleet-table th {
   text-align: left; padding: 10px 14px; font-weight: 700; font-size: 11px;
   text-transform: uppercase; letter-spacing: 1px; color: var(--green);
-  border-bottom: 2px solid rgba(0,214,143,0.3);
+  border-bottom: 2px solid rgba(0,143,138,0.3);
 }
-.fleet-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 13px; }
-.fleet-table tr:hover td { background: rgba(255,255,255,0.02); }
+.fleet-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,244,226,0.05); font-size: 13px; }
+.fleet-table tr:hover td { background: rgba(255,244,226,0.02); }
 .fleet-table .seg-economy { color: var(--green); }
 .fleet-table .seg-mid { color: var(--blue); }
 .fleet-table .seg-suv { color: var(--gold); }
@@ -321,7 +321,7 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   #progress, #counter, #fs-btn, .nav-arrow, .grid-bg { display: none; }
   .card { border-color: #ddd; }
   .accent, .stat-num { color: #00A06B; }
-  h1, h2, h3 { color: #0A1628; }
+  h1, h2, h3 { color: #24463E; }
   .subtitle, .stat-desc, .bar-label { color: #555; }
 }
 
@@ -336,8 +336,10 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
   .tl-item { flex: 0 0 33%; }
 }
 </style>
+<link rel="icon" type="image/png" href="../assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="../assets/deck-brand.css">
 </head>
-<body>
+<body class="bustan-deck">
 
 <div id="progress" style="width:0%"></div>
 <div id="counter">1 / 15</div>
@@ -353,7 +355,7 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
 <div class="slide active" id="s1">
   <div class="grid-bg"></div>
   <div>
-    <img src="../assets/bustan-energy.svg" alt="Bustan Energy" class="cover-logo anim d1" onerror="this.style.display='none'">
+    <img src="../assets/bustan-energy-logo.png" alt="Bustan Energy" class="cover-logo anim d1">
     <div class="slide-label anim d2">EV Charging & Fleet Strategy <span class="thai">· กลยุทธ์สถานีชาร์จและฝูงรถ</span></div>
     <h1 class="anim d3">Bustan Energy<br><span class="accent">EV Charging Network</span></h1>
     <div class="thai anim d3" style="font-size:22px;color:var(--gray-light);margin-top:-8px;margin-bottom:8px">เครือข่ายสถานีชาร์จรถยนต์ไฟฟ้า</div>
@@ -874,7 +876,7 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
         <div>Shipping: <strong>4–6 weeks</strong></div>
         <div>Customs & inspection: <strong>2–3 weeks</strong></div>
         <div>Registration: <strong>1–2 weeks</strong></div>
-        <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:5px;color:var(--green)"><strong>Total: 10–15 weeks <span class="thai">รวม: 10–15 สัปดาห์</span></strong></div>
+        <div style="border-top:1px solid rgba(255,244,226,0.1);padding-top:5px;color:var(--green)"><strong>Total: 10–15 weeks <span class="thai">รวม: 10–15 สัปดาห์</span></strong></div>
       </div>
     </div>
     <div class="card">
@@ -884,7 +886,7 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
         <div>Excise tax: <strong>2% (vs 30% ICE)</strong></div>
         <div>Subsidy: <strong>฿70,000–150,000/car</strong></div>
         <div>Road tax: <strong>Reduced</strong></div>
-        <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:5px;color:var(--gold)"><strong>Save ~35% vs ICE import<br><span class="thai">ประหยัด ~35% เทียบกับรถน้ำมัน</span></strong></div>
+        <div style="border-top:1px solid rgba(255,244,226,0.1);padding-top:5px;color:var(--gold)"><strong>Save ~35% vs ICE import<br><span class="thai">ประหยัด ~35% เทียบกับรถน้ำมัน</span></strong></div>
       </div>
     </div>
   </div>
@@ -923,7 +925,7 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
     </div>
   </div>
 
-  <div class="card anim d4" style="border-color:var(--gold);background:rgba(255,184,0,0.06)">
+  <div class="card anim d4" style="border-color:var(--gold);background:rgba(242,184,75,0.06)">
     <div style="display:flex;align-items:center;gap:16px">
       <div style="font-size:24px">💡</div>
       <div style="font-size:13px">
@@ -1151,8 +1153,8 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
     </div>
   </div>
 
-  <div class="card anim d5" style="margin-top:16px;background:linear-gradient(135deg, rgba(0,214,143,0.08), rgba(255,184,0,0.08));border-color:var(--green);text-align:center;padding:24px">
-    <img src="../assets/bustan-energy.svg" alt="Bustan Energy" style="height:40px;margin-bottom:10px;filter:brightness(1.1)" onerror="this.style.display='none'">
+  <div class="card anim d5" style="margin-top:16px;background:linear-gradient(135deg, rgba(0,143,138,0.08), rgba(242,184,75,0.08));border-color:var(--green);text-align:center;padding:24px">
+    <img src="../assets/bustan-energy-logo.png" alt="Bustan Energy" style="height:40px;margin-bottom:10px;">
     <div style="font-size:20px;font-weight:800;margin-bottom:4px">Bustan Energy</div>
     <div style="font-size:13px;color:var(--gray-light);margin-bottom:12px">Powering the future of island mobility<br><span class="thai">ขับเคลื่อนอนาคตการเดินทางบนเกาะ</span></div>
     <div style="display:flex;justify-content:center;gap:28px;font-size:13px;flex-wrap:wrap">
@@ -1231,7 +1233,7 @@ document.getElementById('progress').style.width = '0%';
 </script>
 
 <!-- Bustan index chip (hidden in fullscreen) -->
-<a class="bustan-home" href="index.html" aria-label="Bustan Energy — Presentations">Bustan Energy&nbsp;·&nbsp;Presentations</a>
-<style>.bustan-home{position:fixed;top:14px;left:16px;z-index:9999;font:500 12px/1 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#8a8a8e;text-decoration:none;letter-spacing:.01em;direction:ltr}.bustan-home:hover{color:#f5f5f7}:fullscreen .bustan-home,:-webkit-full-screen .bustan-home{display:none}@media print{.bustan-home{display:none}}</style>
+<a class="bustan-home" href="index.html" aria-label="Bustan Energy — Presentations"><span>←</span> Bustan Energy&nbsp;·&nbsp;Presentations</a>
+
 </body>
 </html>

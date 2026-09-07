@@ -8,14 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sun: #E8A820;
+            --sun: #F2B84B;
             --sun-light: #F5D76E;
-            --ocean: #0A3D5C;
-            --ocean-deep: #062A40;
+            --ocean: #24463E;
+            --ocean-deep: #24463E;
             --palm: #1B5E20;
-            --sand: #FFF8E7;
-            --white: #FFFFFF;
-            --text: #1A1A1A;
+            --sand: #F4EAD8;
+            --white: #FFF4E2;
+            --text: #27342F;
             --text-light: #5A5A5A;
             --red: #E53935;
             --green: #43A047;
@@ -23,7 +23,7 @@
             --purple: #7B1FA2;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #0A0A0A; color: var(--white); overflow-x: hidden; }
+        body { font-family: 'Heebo', 'DM Sans', sans-serif; background: #27342F; color: var(--white); overflow-x: hidden; }
         body[data-lang="en"] { direction: ltr; }
         body[data-lang="th"] { direction: ltr; }
 
@@ -34,14 +34,14 @@
             flex-direction: column;
             justify-content: center;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,244,226,0.05);
         }
         .slide-num {
             position: absolute;
             top: 2rem;
             left: 2rem;
             font-size: 0.75rem;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255,244,226,0.3);
             letter-spacing: 0.15em;
         }
         .container { max-width: 1100px; margin: 0 auto; width: 100%; }
@@ -50,30 +50,30 @@
         h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem,4vw,3rem); line-height: 1.2; margin-bottom: 2rem; }
         h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; }
         .accent { color: var(--sun); }
-        .subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 700px; margin-top: 1.5rem; }
+        .subtitle { font-size: 1.2rem; color: rgba(255,244,226,0.6); line-height: 1.6; max-width: 700px; margin-top: 1.5rem; }
 
-        .cover { background: linear-gradient(160deg, var(--ocean-deep), #0A0A0A 60%); }
+        .cover { background: linear-gradient(160deg, var(--ocean-deep), #27342F 60%); }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 
         .card {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,244,226,0.04);
+            border: 1px solid rgba(255,244,226,0.08);
             border-radius: 16px;
             padding: 2rem;
             transition: all 0.3s;
         }
-        .card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); }
+        .card:hover { background: rgba(255,244,226,0.07); transform: translateY(-4px); }
         .card-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-        .card p { color: rgba(255,255,255,0.6); line-height: 1.6; font-size: 0.95rem; }
+        .card p { color: rgba(255,244,226,0.6); line-height: 1.6; font-size: 0.95rem; }
 
         .stat-big { font-family: 'Instrument Serif', serif; font-size: 3rem; color: var(--sun); line-height: 1; }
-        .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+        .stat-label { font-size: 0.85rem; color: rgba(255,244,226,0.5); margin-top: 0.3rem; }
 
         .badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
         .badge-green { background: rgba(67,160,71,0.15); color: var(--green); }
-        .badge-gold { background: rgba(232,168,32,0.15); color: var(--sun); }
+        .badge-gold { background: rgba(242,184,75,0.15); color: var(--sun); }
         .badge-blue { background: rgba(30,136,229,0.15); color: var(--blue); }
         .badge-purple { background: rgba(123,31,162,0.15); color: var(--purple); }
 
@@ -94,7 +94,7 @@
         .pipe-circle {
             width: 48px; height: 48px;
             border-radius: 50%;
-            background: rgba(232,168,32,0.15);
+            background: rgba(242,184,75,0.15);
             border: 2px solid var(--sun);
             display: flex;
             align-items: center;
@@ -104,13 +104,13 @@
         }
         .pipe-step.active .pipe-circle { background: var(--sun); }
         .pipe-step.active .pipe-circle span { filter: none; }
-        .pipe-label { font-size: 0.7rem; color: rgba(255,255,255,0.6); line-height: 1.3; }
+        .pipe-label { font-size: 0.7rem; color: rgba(255,244,226,0.6); line-height: 1.3; }
         .pipe-step::after {
             content: '→';
             position: absolute;
             left: -8px;
             top: 1.4rem;
-            color: rgba(255,255,255,0.2);
+            color: rgba(255,244,226,0.2);
             font-size: 1rem;
         }
         .pipe-step:first-child::after { display: none; }
@@ -122,9 +122,9 @@
         }
         .feat-list li {
             padding: 0.6rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,244,226,0.05);
             font-size: 0.95rem;
-            color: rgba(255,255,255,0.75);
+            color: rgba(255,244,226,0.75);
             display: flex;
             align-items: flex-start;
             gap: 0.6rem;
@@ -138,8 +138,8 @@
 
         /* Module card */
         .module-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,244,226,0.03);
+            border: 1px solid rgba(255,244,226,0.08);
             border-radius: 16px;
             padding: 2rem;
             margin-bottom: 1.5rem;
@@ -154,7 +154,7 @@
             width: 40px; height: 40px;
             border-radius: 50%;
             background: var(--sun);
-            color: #0A0A0A;
+            color: #27342F;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -163,17 +163,17 @@
             flex-shrink: 0;
         }
         .module-title { font-size: 1.3rem; font-weight: 700; }
-        .module-subtitle { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+        .module-subtitle { font-size: 0.85rem; color: rgba(255,244,226,0.5); }
 
         /* Screenshot mockup */
         .mockup {
             background: #111827;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,244,226,0.1);
             border-radius: 12px;
             overflow: hidden;
         }
         .mockup-bar {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255,244,226,0.05);
             padding: 0.5rem 1rem;
             display: flex;
             align-items: center;
@@ -199,37 +199,37 @@
         .kanban-header {
             font-size: 0.7rem;
             font-weight: 700;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,244,226,0.5);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
             padding-bottom: 0.3rem;
-            border-bottom: 2px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid rgba(255,244,226,0.1);
         }
         .kanban-card {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,244,226,0.06);
+            border: 1px solid rgba(255,244,226,0.08);
             border-radius: 8px;
             padding: 0.5rem;
             margin-bottom: 0.4rem;
             font-size: 0.65rem;
         }
         .kanban-card .name { font-weight: 600; color: var(--white); }
-        .kanban-card .meta { color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+        .kanban-card .meta { color: rgba(255,244,226,0.4); margin-top: 0.2rem; }
 
         /* SLD diagram */
         .sld-box {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,244,226,0.04);
+            border: 1px solid rgba(255,244,226,0.12);
             border-radius: 8px;
             padding: 0.8rem;
             text-align: center;
             font-size: 0.75rem;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,244,226,0.8);
         }
         .sld-wire {
             text-align: center;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255,244,226,0.3);
             font-size: 0.7rem;
             padding: 0.3rem 0;
         }
@@ -237,7 +237,7 @@
         /* Progress bar */
         .progress-bar {
             height: 8px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,244,226,0.1);
             border-radius: 4px;
             overflow: hidden;
             margin: 0.5rem 0;
@@ -260,14 +260,14 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,244,226,0.7);
         }
         .check-done { color: var(--green); }
         .check-progress { color: var(--sun); }
-        .check-pending { color: rgba(255,255,255,0.3); }
+        .check-pending { color: rgba(255,244,226,0.3); }
 
         /* Bustan Energy logo */
-        .tm-logo-header {
+        .bustan-logo-header {
             position: fixed;
             top: 1.2rem;
             right: 1.2rem;
@@ -276,8 +276,8 @@
             align-items: center;
             gap: 0.5rem;
         }
-        .tm-logo-header img { height: 36px; border-radius: 50%; }
-        .tm-logo-header span { font-weight: 700; font-size: 0.85rem; color: var(--sun); }
+        .bustan-logo-header img { height: 36px; border-radius: 50%; }
+        .bustan-logo-header span { font-weight: 700; font-size: 0.85rem; color: var(--sun); }
 
         /* Language bar */
         .lang-bar {
@@ -292,7 +292,7 @@
             backdrop-filter: blur(8px);
             padding: 0.3rem;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,244,226,0.1);
         }
         .lang-btn {
             padding: 0.3rem 0.8rem;
@@ -302,10 +302,10 @@
             font-weight: 600;
             cursor: pointer;
             background: transparent;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,244,226,0.5);
             transition: all 0.2s;
         }
-        .lang-btn.active { background: var(--sun); color: #0A0A0A; }
+        .lang-btn.active { background: var(--sun); color: #27342F; }
 
         .tri-text .lang-he, .tri-text .lang-en, .tri-text .lang-th { display: none; }
         body[data-lang="he"] .tri-text .lang-he { display: inline; }
@@ -321,7 +321,7 @@
             width: 280px;
             background: rgba(10,10,10,0.95);
             backdrop-filter: blur(12px);
-            border-right: 1px solid rgba(255,255,255,0.08);
+            border-right: 1px solid rgba(255,244,226,0.08);
             z-index: 300;
             transform: translateX(-100%);
             transition: transform 0.3s;
@@ -337,7 +337,7 @@
             width: 40px; height: 40px;
             border-radius: 50%;
             background: var(--sun);
-            color: #0A0A0A;
+            color: #27342F;
             border: none;
             cursor: pointer;
             font-size: 1.2rem;
@@ -348,11 +348,11 @@
         .toc-link {
             display: block;
             padding: 0.5rem 0;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,244,226,0.5);
             text-decoration: none;
             font-size: 0.85rem;
             transition: color 0.2s;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,244,226,0.05);
         }
         .toc-link:hover { color: var(--sun); }
 
@@ -363,14 +363,13 @@
             .pipe-step::after { display: none; }
         }
     </style>
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body data-lang="he">
+<body data-lang="he" class="bustan-playbook">
 
 <!-- Logo -->
-<div class="tm-logo-header">
-    <img src="assets/bustan-energy.svg" alt="Bustan Energy">
-    <span>Bustan Energy</span>
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 
 <!-- Language bar -->
 <div class="lang-bar">
@@ -454,7 +453,7 @@
                 </div>
                 <div class="badge badge-green" style="margin-top:0.5rem;">✓ LIVE</div>
             </div>
-            <div class="card" style="border-color:rgba(232,168,32,0.3);">
+            <div class="card" style="border-color:rgba(242,184,75,0.3);">
                 <div style="font-size:0.75rem;color:var(--sun);font-weight:700;">PHASE 2 — DESIGN</div>
                 <div style="font-size:0.85rem;margin-top:0.3rem;" class="tri-text">
                     <span class="lang-he">עיצוב מערכת · SLD · PEA</span>
@@ -500,7 +499,7 @@
         <div class="mockup" style="margin-top:2rem;">
             <div class="mockup-bar">
                 <div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div>
-                <span style="margin-right:auto;font-size:0.7rem;color:rgba(255,255,255,0.4);">index.bustan-energy.com/admin/pipeline</span>
+                <span style="margin-right:auto;font-size:0.7rem;color:rgba(255,244,226,0.4);">index.bustan-energy.com/admin/pipeline</span>
             </div>
             <div class="mockup-body">
                 <div class="kanban">
@@ -512,19 +511,19 @@
                     </div>
                     <div class="kanban-col">
                         <div class="kanban-header" style="border-color:var(--sun);">Survey <span style="color:var(--sun)">0</span></div>
-                        <div style="font-size:0.6rem;color:rgba(255,255,255,0.3);text-align:center;padding:1rem;">Drag leads here</div>
+                        <div style="font-size:0.6rem;color:rgba(255,244,226,0.3);text-align:center;padding:1rem;">Drag leads here</div>
                     </div>
                     <div class="kanban-col">
                         <div class="kanban-header" style="border-color:var(--purple);">Design <span style="color:var(--purple)">0</span></div>
                     </div>
                     <div class="kanban-col">
-                        <div class="kanban-header" style="border-color:rgba(255,255,255,0.3);">Proposal <span>0</span></div>
+                        <div class="kanban-header" style="border-color:rgba(255,244,226,0.3);">Proposal <span>0</span></div>
                     </div>
                     <div class="kanban-col">
-                        <div class="kanban-header" style="border-color:rgba(255,255,255,0.3);">Contract <span>0</span></div>
+                        <div class="kanban-header" style="border-color:rgba(255,244,226,0.3);">Contract <span>0</span></div>
                     </div>
                     <div class="kanban-col">
-                        <div class="kanban-header" style="border-color:rgba(255,255,255,0.3);">Install <span>0</span></div>
+                        <div class="kanban-header" style="border-color:rgba(255,244,226,0.3);">Install <span>0</span></div>
                     </div>
                     <div class="kanban-col">
                         <div class="kanban-header" style="border-color:var(--green);">Live <span style="color:var(--green)">0</span></div>
@@ -571,28 +570,28 @@
                     <div class="mockup-bar"><div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div></div>
                     <div class="mockup-body" style="font-size:0.75rem;">
                         <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
-                            <div style="background:rgba(255,255,255,0.05);padding:0.5rem;border-radius:6px;">
-                                <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;">Roof Type</div>
+                            <div style="background:rgba(255,244,226,0.05);padding:0.5rem;border-radius:6px;">
+                                <div style="color:rgba(255,244,226,0.4);font-size:0.6rem;">Roof Type</div>
                                 <div style="color:var(--sun);font-weight:700;">Metal Sheet</div>
                             </div>
-                            <div style="background:rgba(255,255,255,0.05);padding:0.5rem;border-radius:6px;">
-                                <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;">Total Area</div>
+                            <div style="background:rgba(255,244,226,0.05);padding:0.5rem;border-radius:6px;">
+                                <div style="color:rgba(255,244,226,0.4);font-size:0.6rem;">Total Area</div>
                                 <div style="color:var(--sun);font-weight:700;">450 m²</div>
                             </div>
-                            <div style="background:rgba(255,255,255,0.05);padding:0.5rem;border-radius:6px;">
-                                <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;">Usable (70%)</div>
+                            <div style="background:rgba(255,244,226,0.05);padding:0.5rem;border-radius:6px;">
+                                <div style="color:rgba(255,244,226,0.4);font-size:0.6rem;">Usable (70%)</div>
                                 <div style="color:var(--green);font-weight:700;">315 m²</div>
                             </div>
-                            <div style="background:rgba(255,255,255,0.05);padding:0.5rem;border-radius:6px;">
-                                <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;">Max kWp</div>
+                            <div style="background:rgba(255,244,226,0.05);padding:0.5rem;border-radius:6px;">
+                                <div style="color:rgba(255,244,226,0.4);font-size:0.6rem;">Max kWp</div>
                                 <div style="color:var(--green);font-weight:700;">57.3 kWp</div>
                             </div>
-                            <div style="background:rgba(255,255,255,0.05);padding:0.5rem;border-radius:6px;">
-                                <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;">Angle</div>
+                            <div style="background:rgba(255,244,226,0.05);padding:0.5rem;border-radius:6px;">
+                                <div style="color:rgba(255,244,226,0.4);font-size:0.6rem;">Angle</div>
                                 <div>15°</div>
                             </div>
-                            <div style="background:rgba(255,255,255,0.05);padding:0.5rem;border-radius:6px;">
-                                <div style="color:rgba(255,255,255,0.4);font-size:0.6rem;">Direction</div>
+                            <div style="background:rgba(255,244,226,0.05);padding:0.5rem;border-radius:6px;">
+                                <div style="color:rgba(255,244,226,0.4);font-size:0.6rem;">Direction</div>
                                 <div>South ☀️</div>
                             </div>
                         </div>
@@ -655,7 +654,7 @@
 </section>
 
 <!-- SLIDE 6: PHASE 2 — DESIGN -->
-<section class="slide" id="phase2" style="background: linear-gradient(135deg, rgba(232,168,32,0.08), transparent);">
+<section class="slide" id="phase2" style="background: linear-gradient(135deg, rgba(242,184,75,0.08), transparent);">
     <span class="slide-num">06</span>
     <div class="container">
         <h2><span class="accent">Phase 2</span> — <span class="tri-text"><span class="lang-he">תכנון</span><span class="lang-en">Design</span><span class="lang-th">การออกแบบ</span></span></h2>
@@ -706,8 +705,8 @@
                     <div class="card" style="text-align:center;"><div class="stat-big">50,600</div><div class="stat-label">kWh/year</div></div>
                     <div class="card" style="text-align:center;"><div class="stat-big">1,390</div><div class="stat-label">kWh/kWp</div></div>
                 </div>
-                <div style="margin-top:1rem;background:rgba(255,255,255,0.04);border-radius:8px;padding:1rem;">
-                    <div style="font-size:0.75rem;color:rgba(255,255,255,0.5);">Equipment</div>
+                <div style="margin-top:1rem;background:rgba(255,244,226,0.04);border-radius:8px;padding:1rem;">
+                    <div style="font-size:0.75rem;color:rgba(255,244,226,0.5);">Equipment</div>
                     <div style="font-size:0.85rem;margin-top:0.3rem;">☀️ 58× JA TOPCon 580W</div>
                     <div style="font-size:0.85rem;">⚡ 1× Huawei SUN2000-30KTL-M3</div>
                     <div style="font-size:0.85rem;">🔋 2× Huawei LUNA2000-10kWh</div>
@@ -766,7 +765,7 @@
                         <div class="sld-box" style="border-color:rgba(6,182,212,0.3);">📊 Bi-Directional Meter (PEA)</div>
                         <div class="sld-wire">│</div>
                         <div class="sld-box" style="border-color:rgba(239,68,68,0.3);">🔌 Grid — 230/400V 50Hz</div>
-                        <div style="text-align:center;color:rgba(255,255,255,0.3);margin-top:0.3rem;">⏚ Earth Rod</div>
+                        <div style="text-align:center;color:rgba(255,244,226,0.3);margin-top:0.3rem;">⏚ Earth Rod</div>
                     </div>
                 </div>
             </div>
@@ -818,19 +817,19 @@
                         </div>
                         <div style="color:var(--sun);font-weight:700;font-size:1.1rem;">฿1,495,000</div>
                     </div>
-                    <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">✍️ Signed: 2026-03-15 · 🛡 5yr warranty · 💳 30/40/30</div>
+                    <div style="font-size:0.75rem;color:rgba(255,244,226,0.4);">✍️ Signed: 2026-03-15 · 🛡 5yr warranty · 💳 30/40/30</div>
                     <div style="margin-top:0.8rem;space-y:0.4rem;">
-                        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:0.4rem 0.6rem;border-radius:6px;margin-bottom:0.3rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,244,226,0.04);padding:0.4rem 0.6rem;border-radius:6px;margin-bottom:0.3rem;">
                             <span style="font-size:0.8rem;">✅ Advance Payment (30%)</span>
                             <span style="color:var(--green);font-size:0.85rem;font-weight:700;">฿448,500 PAID</span>
                         </div>
-                        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:0.4rem 0.6rem;border-radius:6px;margin-bottom:0.3rem;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,244,226,0.04);padding:0.4rem 0.6rem;border-radius:6px;margin-bottom:0.3rem;">
                             <span style="font-size:0.8rem;">⏳ Equipment Delivered (40%)</span>
                             <span style="color:var(--sun);font-size:0.85rem;font-weight:700;">฿598,000 INVOICED</span>
                         </div>
-                        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.04);padding:0.4rem 0.6rem;border-radius:6px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,244,226,0.04);padding:0.4rem 0.6rem;border-radius:6px;">
                             <span style="font-size:0.8rem;">⏳ Installation Complete (30%)</span>
-                            <span style="color:rgba(255,255,255,0.4);font-size:0.85rem;">฿448,500 PENDING</span>
+                            <span style="color:rgba(255,244,226,0.4);font-size:0.85rem;">฿448,500 PENDING</span>
                         </div>
                     </div>
                 </div>
@@ -924,7 +923,7 @@
                         <span style="font-size:1.3rem;font-weight:900;color:var(--sun);">5/12</span>
                     </div>
                     <div class="progress-bar" style="height:12px;"><div class="progress-fill" style="width:42%"></div></div>
-                    <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);margin-top:0.5rem;">Started: 2026-03-10 · Est. completion: 2026-03-12</div>
+                    <div style="font-size:0.75rem;color:rgba(255,244,226,0.4);margin-top:0.5rem;">Started: 2026-03-10 · Est. completion: 2026-03-12</div>
                 </div>
                 <div style="margin-top:1rem;">
                     <h3 class="tri-text" style="font-size:1rem;">
@@ -970,19 +969,19 @@
         </div>
         <div class="grid-4" style="margin-bottom:2rem;">
             <div class="card" style="text-align:center;">
-                <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Active Contracts</div>
+                <div style="font-size:0.75rem;color:rgba(255,244,226,0.4);">Active Contracts</div>
                 <div class="stat-big">12</div>
             </div>
             <div class="card" style="text-align:center;">
-                <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Monthly Revenue</div>
+                <div style="font-size:0.75rem;color:rgba(255,244,226,0.4);">Monthly Revenue</div>
                 <div class="stat-big">฿180K</div>
             </div>
             <div class="card" style="text-align:center;">
-                <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Open Tickets</div>
+                <div style="font-size:0.75rem;color:rgba(255,244,226,0.4);">Open Tickets</div>
                 <div class="stat-big" style="color:var(--red);">3</div>
             </div>
             <div class="card" style="text-align:center;">
-                <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">Overdue Tasks</div>
+                <div style="font-size:0.75rem;color:rgba(255,244,226,0.4);">Overdue Tasks</div>
                 <div class="stat-big" style="color:var(--green);">0</div>
             </div>
         </div>
@@ -1016,7 +1015,7 @@
 </section>
 
 <!-- SLIDE 15: SUMMARY -->
-<section class="slide" id="summary" style="background: linear-gradient(160deg, var(--ocean-deep), #0A0A0A 60%);">
+<section class="slide" id="summary" style="background: linear-gradient(160deg, var(--ocean-deep), #27342F 60%);">
     <span class="slide-num">15</span>
     <div class="container" style="text-align:center;">
         <h2 class="tri-text">
@@ -1041,13 +1040,13 @@
         </div>
 
         <div style="margin-top:3rem;">
-            <a href="https://index.bustan-energy.com/admin" target="_blank" style="display:inline-block;padding:1rem 2.5rem;background:var(--sun);color:#0A0A0A;text-decoration:none;border-radius:12px;font-weight:900;font-size:1.1rem;">
+            <a href="https://index.bustan-energy.com/admin" target="_blank" style="display:inline-block;padding:1rem 2.5rem;background:var(--sun);color:#27342F;text-decoration:none;border-radius:12px;font-weight:900;font-size:1.1rem;">
                 🚀 Open CRM →
             </a>
         </div>
 
-        <div style="margin-top:2rem;font-size:0.85rem;color:rgba(255,255,255,0.4);">
-            Bustan Energy — Bustan Energy — Value Chain CRM<br>
+        <div style="margin-top:2rem;font-size:0.85rem;color:rgba(255,244,226,0.4);">
+            Bustan Energy — Value Chain CRM<br>
             <span class="tri-text">
                 <span class="lang-he">מערכת CRM מלאה לניהול מחזור חיי ההתקנה הסולארית</span>
                 <span class="lang-en">Complete CRM for managing the solar installation lifecycle</span>
@@ -1062,10 +1061,10 @@ function setLang(lang) {
     document.body.setAttribute('data-lang', lang);
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
-    localStorage.setItem('tm-lang', lang);
+    localStorage.setItem('bustan-lang', lang);
 }
 // Restore
-const saved = localStorage.getItem('tm-lang');
+const saved = localStorage.getItem('bustan-lang');
 if (saved) {
     document.body.setAttribute('data-lang', saved);
     document.querySelectorAll('.lang-btn').forEach(b => {

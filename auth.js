@@ -6,6 +6,7 @@
     '3cb25825a619415e255ae83eb0cd9c26684de310fb3c377ac289362e043affe7': { name: 'Omer', he: 'עומר' },
     '2725d2bcfac13cc02f042a2cdec42759659c6ec2ab7877065b82a9ebf813cb85': { name: 'Yoni', he: 'יוני' },
   };
+  const BRAND_LOGO = new URL('assets/bustan-energy-logo.png', document.currentScript.src).href;
   const SESSION_DAYS = 7;
   const STORAGE_KEY = 'bustan_static_access';
 
@@ -43,7 +44,7 @@
           border: 1px solid rgba(245,184,75,.35); border-radius: 10px;
           box-shadow: 0 22px 70px rgba(19,35,30,.28);
         }
-        .gate-logo { font-size: 30px; font-weight: 900; letter-spacing: -.02em; margin-bottom: 6px; }
+        .gate-logo { display: block; width: 220px; max-width: 100%; height: auto; margin: 0 auto 18px; }
         .gate-sub { color: rgba(39,52,47,.62); font-size: 13px; margin-bottom: 26px; }
         .gate-input {
           width: 100%; padding: 15px; font-size: 22px; text-align: center; letter-spacing: 10px;
@@ -63,7 +64,7 @@
         .gate-welcome { color: #006F6B; font-size: 17px; font-weight: 800; margin-top: 12px; }
       </style>
       <div class="gate-box">
-        <div class="gate-logo">Bustan Energy</div>
+        <img class="gate-logo" src="${BRAND_LOGO}" alt="Bustan Energy">
         <div class="gate-sub">Internal static archive</div>
         <input class="gate-input" id="gate-pin" type="password" inputmode="numeric"
                pattern="[0-9]*" maxlength="4" placeholder="PIN" autofocus>

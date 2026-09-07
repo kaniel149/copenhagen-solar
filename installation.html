@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="content-updated" content="2026-09-04">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bustan Energy — Bustan Energy — תהליך הקמה</title>
+<title>Bustan Energy — תהליך הקמה</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
+:root{--ocean:#24463E;--gold:#F2B84B;--reef:#008F8A;--coral:#FF6B4A;--night:#27342F;--white:#FFF}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
 .slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
@@ -15,43 +15,43 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
 .slide.active{opacity:1;transform:translateX(0);pointer-events:all}.slide.exit{opacity:0;transform:translateX(-100px)}
 .slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
 .slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
-.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
-.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.slide-reef{background:linear-gradient(135deg,#24463E,var(--night))}.slide-gold{background:linear-gradient(135deg,#4A4633,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(39,52,47,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(242,184,75,.2);z-index:100}
 .nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 24px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:14px;font-weight:500;transition:all .3s}
 .nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}
-.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:14px}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,244,226,.5);font-size:14px}
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
-.toc-btn{position:fixed;top:20px;left:20px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102}
+.toc-btn{position:fixed;top:20px;left:20px;background:rgba(242,184,75,.15);border:1px solid rgba(242,184,75,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102}
 .toc-btn:hover{background:var(--gold);color:var(--night)}
-.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s;padding:60px 30px 30px;overflow-y:auto}
+.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(39,52,47,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(242,184,75,.2);z-index:103;transition:left .4s;padding:60px 30px 30px;overflow-y:auto}
 .toc-panel.open{left:0}
-.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
-.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,244,226,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
+.toc-item:hover{background:rgba(242,184,75,.1);color:var(--white)}.toc-item.active{background:rgba(242,184,75,.2);color:var(--gold)}
 .toc-num{font-family:'Space Grotesk';font-weight:700;font-size:12px;color:var(--gold);min-width:24px}
 h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:16px}
 h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;line-height:1.2;margin-bottom:12px}
 h3{font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:8px}
 .subtitle{font-size:clamp(16px,2vw,22px);font-weight:300;opacity:.8;margin-bottom:24px}
-.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}
+.gold{color:var(--gold)}.reef-text{color:#79CCB7}.coral-text{color:var(--coral)}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
-.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;transition:all .3s}
+.card{background:rgba(255,244,226,.05);border:1px solid rgba(255,244,226,.1);border-radius:12px;padding:20px;transition:all .3s}
 .card:hover{border-color:var(--gold);transform:translateY(-2px)}
 .card-icon{font-size:28px;margin-bottom:10px}.card h3{font-size:16px;margin-bottom:6px}.card p{font-size:13px;opacity:.7;line-height:1.5}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,244,226,.1)}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:rgba(232,168,32,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
-td{padding:10px 14px;border-top:1px solid rgba(255,255,255,.06)}
-tr:hover td{background:rgba(255,255,255,.03)}
+th{background:rgba(242,184,75,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:10px 14px;border-top:1px solid rgba(255,244,226,.06)}
+tr:hover td{background:rgba(255,244,226,.03)}
 .alert{padding:16px 20px;border-radius:10px;margin:12px 0;font-size:14px;line-height:1.6}
-.alert-warn{background:rgba(232,93,58,.15);border-right:3px solid var(--coral)}
-.alert-info{background:rgba(232,168,32,.1);border-right:3px solid var(--gold)}
-.alert-success{background:rgba(46,216,154,.1);border-right:3px solid #2ED89A}
+.alert-warn{background:rgba(255,107,74,.15);border-right:3px solid var(--coral)}
+.alert-info{background:rgba(242,184,75,.1);border-right:3px solid var(--gold)}
+.alert-success{background:rgba(121,204,183,.1);border-right:3px solid #79CCB7}
 .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
 .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
 @media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.slide{padding:24px 20px}}
-.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
+.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(242,184,75,.3);border-radius:2px}
 .section-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;color:var(--gold);opacity:.15;position:absolute;top:20px;left:40px}
 .big-num{font-family:'Space Grotesk';font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--gold)}
 .stat-label{font-size:14px;opacity:.6;margin-top:4px}
@@ -62,28 +62,27 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .flow-arrow{font-size:24px;color:var(--gold);margin-top:16px;padding:0 4px}
 .flow-label{font-size:12px;font-weight:600}.flow-sub{font-size:10px;opacity:.5;margin-top:2px}
 
-.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
-.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
-.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(242,184,75,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,244,226,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(242,184,75,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,244,226,.1)}
 
 
 
 
 /* Bustan Energy Branding */
-.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
-.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.bustan-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.bustan-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.bustan-logo-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 body.lang-en body.lang-th
 </style>
     <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 <script src="auth.js"></script>
-<div class="tm-logo-header">
-  <span class="brand-text">BUSTAN ENERGY</span>
-  <img src="assets/bustan-energy.svg" alt="Bustan Energy">
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 
 
 
@@ -110,19 +109,19 @@ body.lang-en body.lang-th
   <h2>Process</h2>
   <p class="subtitle">מהפנייה הראשונה ועד חשמל סולארי על הגג</p>
   <div class="flow-steps">
-    <div class="flow-step"><div class="flow-icon" style="background:rgba(100,150,255,.2);color:#6496FF">📸</div><div class="flow-label">סקר גג</div><div class="flow-sub">יום 1</div></div>
+    <div class="flow-step"><div class="flow-icon" style="background:rgba(128,199,195,.2);color:#80C7C3">📸</div><div class="flow-label">סקר גג</div><div class="flow-sub">יום 1</div></div>
     <div class="flow-arrow">←</div>
-    <div class="flow-step"><div class="flow-icon" style="background:rgba(232,168,32,.2);color:var(--gold)">📐</div><div class="flow-label">תכנון</div><div class="flow-sub">ימים 2-4</div></div>
+    <div class="flow-step"><div class="flow-icon" style="background:rgba(242,184,75,.2);color:var(--gold)">📐</div><div class="flow-label">תכנון</div><div class="flow-sub">ימים 2-4</div></div>
     <div class="flow-arrow">←</div>
-    <div class="flow-step"><div class="flow-icon" style="background:rgba(46,216,154,.2);color:#2ED89A">📦</div><div class="flow-label">הזמנת ציוד</div><div class="flow-sub">ימים 5-14</div></div>
+    <div class="flow-step"><div class="flow-icon" style="background:rgba(121,204,183,.2);color:#79CCB7">📦</div><div class="flow-label">הזמנת ציוד</div><div class="flow-sub">ימים 5-14</div></div>
     <div class="flow-arrow">←</div>
-    <div class="flow-step"><div class="flow-icon" style="background:rgba(232,93,58,.2);color:var(--coral)">🏗️</div><div class="flow-label">קונסטרוקציה</div><div class="flow-sub">ימים 15-17</div></div>
+    <div class="flow-step"><div class="flow-icon" style="background:rgba(255,107,74,.2);color:var(--coral)">🏗️</div><div class="flow-label">קונסטרוקציה</div><div class="flow-sub">ימים 15-17</div></div>
     <div class="flow-arrow">←</div>
-    <div class="flow-step"><div class="flow-icon" style="background:rgba(100,150,255,.2);color:#6496FF">⚡</div><div class="flow-label">DC חשמל</div><div class="flow-sub">ימים 18-19</div></div>
+    <div class="flow-step"><div class="flow-icon" style="background:rgba(128,199,195,.2);color:#80C7C3">⚡</div><div class="flow-label">DC חשמל</div><div class="flow-sub">ימים 18-19</div></div>
     <div class="flow-arrow">←</div>
-    <div class="flow-step"><div class="flow-icon" style="background:rgba(232,168,32,.2);color:var(--gold)">🔌</div><div class="flow-label">AC חשמל</div><div class="flow-sub">יום 20</div></div>
+    <div class="flow-step"><div class="flow-icon" style="background:rgba(242,184,75,.2);color:var(--gold)">🔌</div><div class="flow-label">AC חשמל</div><div class="flow-sub">יום 20</div></div>
     <div class="flow-arrow">←</div>
-    <div class="flow-step"><div class="flow-icon" style="background:rgba(46,216,154,.2);color:#2ED89A">✅</div><div class="flow-label">חיבור PEA</div><div class="flow-sub">ימים 21-28</div></div>
+    <div class="flow-step"><div class="flow-icon" style="background:rgba(121,204,183,.2);color:#79CCB7">✅</div><div class="flow-label">חיבור PEA</div><div class="flow-sub">ימים 21-28</div></div>
   </div>
 
   <div class="alert alert-info" style="margin-top:16px">
@@ -139,7 +138,7 @@ body.lang-en body.lang-th
 
 <!-- SLIDE 2: Roof Survey -->
 <div class="slide slide-dark" data-title="סקר גג">
-<img src="visuals/install-01-tools.png" class="slide-img" alt="Survey tools">
+<img src="visuals/install-09-safety.png" class="slide-img" alt="Solar installation fieldwork">
   <span class="section-num">02</span>
   <h2>📸 שלב 1: סקר גג — לפני הכל</h2>
   <p class="subtitle">צילום, מדידות, הערכה מבנית</p>
@@ -217,8 +216,8 @@ body.lang-en body.lang-th
   <!-- SVG: 3 Roof Types Side by Side -->
   <div style="display:flex;gap:16px;justify-content:center;margin:16px 0;flex-wrap:wrap">
     <!-- Tile Roof -->
-    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(232,168,32,.2)">
-      <text x="130" y="16" text-anchor="middle" fill="#E8A820" font-size="11" font-weight="700" font-family="Heebo">גג רעפים — Tile Hook</text>
+    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,244,226,.03);border-radius:12px;border:1px solid rgba(242,184,75,.2)">
+      <text x="130" y="16" text-anchor="middle" fill="#F2B84B" font-size="11" font-weight="700" font-family="Heebo">גג רעפים — Tile Hook</text>
       <!-- Roof slope -->
       <polygon points="20,140 130,50 240,140" fill="none" stroke="#555" stroke-width="2"/>
       <!-- Tiles -->
@@ -226,49 +225,49 @@ body.lang-en body.lang-th
       <path d="M50,120 Q65,112 80,120 Q95,112 110,120 Q125,112 140,120 Q155,112 170,120 Q185,112 200,120" fill="none" stroke="#8B6914" stroke-width="2.5"/>
       <path d="M60,110 Q75,102 90,110 Q105,102 120,110 Q135,102 150,110 Q165,102 180,110" fill="none" stroke="#8B6914" stroke-width="2.5"/>
       <!-- Hook under tile -->
-      <rect x="95" y="105" width="4" height="20" fill="#E8A820" rx="1"/>
-      <rect x="155" y="95" width="4" height="20" fill="#E8A820" rx="1"/>
+      <rect x="95" y="105" width="4" height="20" fill="#F2B84B" rx="1"/>
+      <rect x="155" y="95" width="4" height="20" fill="#F2B84B" rx="1"/>
       <!-- Rail -->
       <rect x="80" y="90" width="95" height="5" fill="#AAA" rx="2"/>
       <!-- Panel -->
-      <rect x="82" y="70" width="40" height="18" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
-      <rect x="128" y="63" width="40" height="18" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
+      <rect x="82" y="70" width="40" height="18" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="1"/>
+      <rect x="128" y="63" width="40" height="18" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="1"/>
       <!-- Clamps -->
-      <rect x="80" y="87" width="6" height="6" fill="#E8A820" rx="1"/>
-      <rect x="120" y="87" width="6" height="6" fill="#E8A820" rx="1"/>
-      <rect x="166" y="87" width="6" height="6" fill="#E8A820" rx="1"/>
+      <rect x="80" y="87" width="6" height="6" fill="#F2B84B" rx="1"/>
+      <rect x="120" y="87" width="6" height="6" fill="#F2B84B" rx="1"/>
+      <rect x="166" y="87" width="6" height="6" fill="#F2B84B" rx="1"/>
       <!-- Labels -->
-      <text x="97" y="165" text-anchor="middle" fill="#E8A820" font-size="8" font-family="Space Grotesk">Hook</text>
-      <line x1="97" y1="157" x2="97" y2="125" stroke="#E8A820" stroke-width="0.5" stroke-dasharray="2"/>
+      <text x="97" y="165" text-anchor="middle" fill="#F2B84B" font-size="8" font-family="Space Grotesk">Hook</text>
+      <line x1="97" y1="157" x2="97" y2="125" stroke="#F2B84B" stroke-width="0.5" stroke-dasharray="2"/>
       <text x="128" y="165" text-anchor="middle" fill="#AAA" font-size="8" font-family="Space Grotesk">Rail</text>
-      <text x="165" y="165" text-anchor="middle" fill="#6496FF" font-size="8" font-family="Space Grotesk">Clamp</text>
+      <text x="165" y="165" text-anchor="middle" fill="#80C7C3" font-size="8" font-family="Space Grotesk">Clamp</text>
     </svg>
     <!-- Metal Roof -->
-    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(46,216,154,.2)">
-      <text x="130" y="16" text-anchor="middle" fill="#2ED89A" font-size="11" font-weight="700" font-family="Heebo">גג מתכת — Standing Seam</text>
+    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,244,226,.03);border-radius:12px;border:1px solid rgba(121,204,183,.2)">
+      <text x="130" y="16" text-anchor="middle" fill="#79CCB7" font-size="11" font-weight="700" font-family="Heebo">גג מתכת — Standing Seam</text>
       <!-- Metal roof -->
       <rect x="20" y="100" width="220" height="40" fill="#3a3a3a" rx="2"/>
       <!-- Seams -->
       <rect x="60" y="95" width="4" height="50" fill="#555" rx="1"/><rect x="120" y="95" width="4" height="50" fill="#555" rx="1"/><rect x="180" y="95" width="4" height="50" fill="#555" rx="1"/>
       <!-- Seam clamps -->
-      <rect x="56" y="88" width="12" height="8" fill="#2ED89A" rx="2"/><rect x="116" y="88" width="12" height="8" fill="#2ED89A" rx="2"/><rect x="176" y="88" width="12" height="8" fill="#2ED89A" rx="2"/>
+      <rect x="56" y="88" width="12" height="8" fill="#79CCB7" rx="2"/><rect x="116" y="88" width="12" height="8" fill="#79CCB7" rx="2"/><rect x="176" y="88" width="12" height="8" fill="#79CCB7" rx="2"/>
       <!-- Rails -->
       <rect x="45" y="82" width="170" height="5" fill="#AAA" rx="2"/>
       <!-- Panels -->
-      <rect x="48" y="55" width="50" height="25" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
-      <rect x="104" y="55" width="50" height="25" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
-      <rect x="160" y="55" width="50" height="25" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1"/>
+      <rect x="48" y="55" width="50" height="25" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="1"/>
+      <rect x="104" y="55" width="50" height="25" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="1"/>
+      <rect x="160" y="55" width="50" height="25" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="1"/>
       <!-- Panel grid lines -->
-      <line x1="73" y1="55" x2="73" y2="80" stroke="#2a6ab0" stroke-width="0.3"/>
-      <line x1="129" y1="55" x2="129" y2="80" stroke="#2a6ab0" stroke-width="0.3"/>
-      <line x1="185" y1="55" x2="185" y2="80" stroke="#2a6ab0" stroke-width="0.3"/>
+      <line x1="73" y1="55" x2="73" y2="80" stroke="#008F8A" stroke-width="0.3"/>
+      <line x1="129" y1="55" x2="129" y2="80" stroke="#008F8A" stroke-width="0.3"/>
+      <line x1="185" y1="55" x2="185" y2="80" stroke="#008F8A" stroke-width="0.3"/>
       <!-- Labels -->
-      <text x="62" y="165" text-anchor="middle" fill="#2ED89A" font-size="8" font-family="Space Grotesk">Seam Clamp</text>
+      <text x="62" y="165" text-anchor="middle" fill="#79CCB7" font-size="8" font-family="Space Grotesk">Seam Clamp</text>
       <text x="185" y="165" text-anchor="middle" fill="#AAA" font-size="8" font-family="Space Grotesk">No Drilling!</text>
     </svg>
     <!-- Flat Roof Tilt -->
-    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(100,150,255,.2)">
-      <text x="130" y="16" text-anchor="middle" fill="#6496FF" font-size="11" font-weight="700" font-family="Heebo">גג שטוח — Tilt Frame</text>
+    <svg viewBox="0 0 260 180" style="width:250px;background:rgba(255,244,226,.03);border-radius:12px;border:1px solid rgba(128,199,195,.2)">
+      <text x="130" y="16" text-anchor="middle" fill="#80C7C3" font-size="11" font-weight="700" font-family="Heebo">גג שטוח — Tilt Frame</text>
       <!-- Flat roof -->
       <rect x="20" y="130" width="220" height="15" fill="#3a3a3a" rx="2"/>
       <!-- Tilt frames (triangles) -->
@@ -280,13 +279,13 @@ body.lang-en body.lang-th
       <!-- Rails on angle -->
       <line x1="45" y1="93" x2="200" y2="93" stroke="#AAA" stroke-width="3"/>
       <!-- Panels tilted -->
-      <rect x="48" y="62" width="55" height="28" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1" transform="rotate(-10 75 76)"/>
-      <rect x="118" y="62" width="55" height="28" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="1" transform="rotate(-10 145 76)"/>
+      <rect x="48" y="62" width="55" height="28" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="1" transform="rotate(-10 75 76)"/>
+      <rect x="118" y="62" width="55" height="28" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="1" transform="rotate(-10 145 76)"/>
       <!-- Angle annotation -->
-      <path d="M80,130 L80,120" stroke="#E8A820" stroke-width="0.5"/>
-      <text x="92" y="118" fill="#E8A820" font-size="9" font-family="Space Grotesk">10-15°</text>
+      <path d="M80,130 L80,120" stroke="#F2B84B" stroke-width="0.5"/>
+      <text x="92" y="118" fill="#F2B84B" font-size="9" font-family="Space Grotesk">10-15°</text>
       <!-- Labels -->
-      <text x="70" y="165" text-anchor="middle" fill="#6496FF" font-size="8" font-family="Space Grotesk">Tilt Frame</text>
+      <text x="70" y="165" text-anchor="middle" fill="#80C7C3" font-size="8" font-family="Space Grotesk">Tilt Frame</text>
       <text x="180" y="165" text-anchor="middle" fill="#AAA" font-size="8" font-family="Space Grotesk">Ballast / Anchor</text>
     </svg>
   </div>
@@ -294,17 +293,17 @@ body.lang-en body.lang-th
   <div class="two-col">
     <div>
       <h3>לפי סוג גג</h3>
-      <div class="card" style="margin:8px 0;border-color:rgba(232,168,32,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(242,184,75,.3)">
         <h3>גג רעפים (Tile Roof)</h3>
         <p>הוקים ייעודיים (tile hooks) מתחת לרעף. <strong>לא קודחים דרך הרעף!</strong> הוק → rail → clamp → panel.</p>
         <p style="margin-top:8px;font-size:12px;opacity:.6">נפוץ ברזורטים ווילות סגנון תאילנדי.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(46,216,154,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(121,204,183,.3)">
         <h3>גג מתכת (Metal Roof)</h3>
         <p>קלאמפים על ה-standing seam או L-feet + bolts. <strong>איטום סביב חורים חובה</strong> (butyl tape + sealant).</p>
         <p style="margin-top:8px;font-size:12px;opacity:.6">נפוץ במבני תעשייה ומחסנים.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(100,150,255,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(128,199,195,.3)">
         <h3>גג שטוח (Flat Roof)</h3>
         <p>שתי אפשרויות: Ballast (משקולות, בלי קדיחה) או Tilt frame (שלד בזווית 10-15°). <strong>ב-Koh Phangan: tilt frame עדיף</strong> — ניקוז גשם.</p>
       </div>
@@ -323,7 +322,7 @@ body.lang-en body.lang-th
           <tr><td>Bolts, nuts, washers</td><td>SS 316</td><td>฿150</td></tr>
           <tr><td>Sealant / butyl</td><td>UV-resistant</td><td>฿100</td></tr>
           <tr><td>Earthing strap</td><td>Copper tinned</td><td>฿100</td></tr>
-          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ</strong></td><td></td><td><strong>฿1,550</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.1)"><td><strong>סה"כ</strong></td><td></td><td><strong>฿1,550</strong></td></tr>
         </table>
       </div>
     </div>
@@ -340,66 +339,66 @@ body.lang-en body.lang-th
   <!-- SVG: MC4 Connector + String Wiring -->
   <div style="display:flex;gap:16px;justify-content:center;margin:12px 0;flex-wrap:wrap">
     <!-- MC4 Connector Diagram -->
-    <svg viewBox="0 0 300 140" style="width:290px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(232,168,32,.2);padding:4px">
-      <text x="150" y="16" text-anchor="middle" fill="#E8A820" font-size="11" font-weight="700" font-family="Heebo">חיבור MC4 — Male ↔ Female</text>
+    <svg viewBox="0 0 300 140" style="width:290px;background:rgba(255,244,226,.03);border-radius:12px;border:1px solid rgba(242,184,75,.2);padding:4px">
+      <text x="150" y="16" text-anchor="middle" fill="#F2B84B" font-size="11" font-weight="700" font-family="Heebo">חיבור MC4 — Male ↔ Female</text>
       <!-- Male connector -->
       <rect x="20" y="50" width="80" height="30" fill="#222" stroke="#555" stroke-width="1.5" rx="4"/>
       <rect x="100" y="57" width="20" height="16" fill="#333" stroke="#555" stroke-width="1" rx="2"/>
-      <circle cx="115" cy="65" r="4" fill="#E8A820"/>
-      <text x="60" y="42" text-anchor="middle" fill="#E8A820" font-size="9" font-family="Space Grotesk">Male (+)</text>
+      <circle cx="115" cy="65" r="4" fill="#F2B84B"/>
+      <text x="60" y="42" text-anchor="middle" fill="#F2B84B" font-size="9" font-family="Space Grotesk">Male (+)</text>
       <!-- Cable from male -->
-      <path d="M20,65 L5,65 Q0,65 0,70 L0,100" stroke="#E85D3A" stroke-width="3" fill="none"/>
-      <text x="8" y="115" fill="#E85D3A" font-size="8" font-family="Space Grotesk">DC+</text>
+      <path d="M20,65 L5,65 Q0,65 0,70 L0,100" stroke="#FF6B4A" stroke-width="3" fill="none"/>
+      <text x="8" y="115" fill="#FF6B4A" font-size="8" font-family="Space Grotesk">DC+</text>
       <!-- Female connector -->
       <rect x="200" y="50" width="80" height="30" fill="#222" stroke="#555" stroke-width="1.5" rx="4"/>
       <rect x="180" y="57" width="20" height="16" fill="#333" stroke="#555" stroke-width="1" rx="2"/>
-      <circle cx="190" cy="65" r="6" fill="none" stroke="#6496FF" stroke-width="2"/>
-      <text x="240" y="42" text-anchor="middle" fill="#6496FF" font-size="9" font-family="Space Grotesk">Female (-)</text>
+      <circle cx="190" cy="65" r="6" fill="none" stroke="#80C7C3" stroke-width="2"/>
+      <text x="240" y="42" text-anchor="middle" fill="#80C7C3" font-size="9" font-family="Space Grotesk">Female (-)</text>
       <!-- Cable from female -->
-      <path d="M280,65 L295,65 Q300,65 300,70 L300,100" stroke="#6496FF" stroke-width="3" fill="none"/>
-      <text x="288" y="115" fill="#6496FF" font-size="8" font-family="Space Grotesk">DC-</text>
+      <path d="M280,65 L295,65 Q300,65 300,70 L300,100" stroke="#80C7C3" stroke-width="3" fill="none"/>
+      <text x="288" y="115" fill="#80C7C3" font-size="8" font-family="Space Grotesk">DC-</text>
       <!-- Click arrow -->
-      <text x="150" y="70" text-anchor="middle" fill="#2ED89A" font-size="16" font-family="Space Grotesk">⟷</text>
-      <text x="150" y="95" text-anchor="middle" fill="#2ED89A" font-size="9" font-family="Space Grotesk">Click!</text>
+      <text x="150" y="70" text-anchor="middle" fill="#79CCB7" font-size="16" font-family="Space Grotesk">⟷</text>
+      <text x="150" y="95" text-anchor="middle" fill="#79CCB7" font-size="9" font-family="Space Grotesk">Click!</text>
       <!-- Specs -->
-      <text x="150" y="130" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="8" font-family="Space Grotesk">IP67 | 1000V DC | 30A | Stäubli/Amphenol</text>
+      <text x="150" y="130" text-anchor="middle" fill="rgba(255,244,226,.4)" font-size="8" font-family="Space Grotesk">IP67 | 1000V DC | 30A | Stäubli/Amphenol</text>
     </svg>
     <!-- String Wiring Diagram -->
-    <svg viewBox="0 0 380 140" style="width:370px;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(46,216,154,.2);padding:4px">
-      <text x="190" y="16" text-anchor="middle" fill="#2ED89A" font-size="11" font-weight="700" font-family="Heebo">שרשור סטרינג — 12 פאנלים</text>
+    <svg viewBox="0 0 380 140" style="width:370px;background:rgba(255,244,226,.03);border-radius:12px;border:1px solid rgba(121,204,183,.2);padding:4px">
+      <text x="190" y="16" text-anchor="middle" fill="#79CCB7" font-size="11" font-weight="700" font-family="Heebo">שרשור סטרינג — 12 פאנלים</text>
       <!-- Panels in series -->
       <g transform="translate(10,30)">
-        <rect x="0" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="14" y="25" text-anchor="middle" fill="#fff" font-size="7">P1</text>
-        <rect x="32" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="46" y="25" text-anchor="middle" fill="#fff" font-size="7">P2</text>
-        <rect x="64" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="78" y="25" text-anchor="middle" fill="#fff" font-size="7">P3</text>
-        <rect x="96" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="110" y="25" text-anchor="middle" fill="#fff" font-size="7">P4</text>
-        <text x="135" y="25" fill="#E8A820" font-size="14">...</text>
-        <rect x="150" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="164" y="25" text-anchor="middle" fill="#fff" font-size="7">P11</text>
-        <rect x="182" y="0" width="28" height="45" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1" rx="2"/><text x="196" y="25" text-anchor="middle" fill="#fff" font-size="7">P12</text>
+        <rect x="0" y="0" width="28" height="45" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="2"/><text x="14" y="25" text-anchor="middle" fill="#fff" font-size="7">P1</text>
+        <rect x="32" y="0" width="28" height="45" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="2"/><text x="46" y="25" text-anchor="middle" fill="#fff" font-size="7">P2</text>
+        <rect x="64" y="0" width="28" height="45" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="2"/><text x="78" y="25" text-anchor="middle" fill="#fff" font-size="7">P3</text>
+        <rect x="96" y="0" width="28" height="45" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="2"/><text x="110" y="25" text-anchor="middle" fill="#fff" font-size="7">P4</text>
+        <text x="135" y="25" fill="#F2B84B" font-size="14">...</text>
+        <rect x="150" y="0" width="28" height="45" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="2"/><text x="164" y="25" text-anchor="middle" fill="#fff" font-size="7">P11</text>
+        <rect x="182" y="0" width="28" height="45" fill="#33574D" stroke="#008F8A" stroke-width="1" rx="2"/><text x="196" y="25" text-anchor="middle" fill="#fff" font-size="7">P12</text>
         <!-- MC4 connections between panels -->
-        <line x1="28" y1="22" x2="32" y2="22" stroke="#E8A820" stroke-width="2"/>
-        <line x1="60" y1="22" x2="64" y2="22" stroke="#E8A820" stroke-width="2"/>
-        <line x1="92" y1="22" x2="96" y2="22" stroke="#E8A820" stroke-width="2"/>
-        <line x1="178" y1="22" x2="182" y2="22" stroke="#E8A820" stroke-width="2"/>
+        <line x1="28" y1="22" x2="32" y2="22" stroke="#F2B84B" stroke-width="2"/>
+        <line x1="60" y1="22" x2="64" y2="22" stroke="#F2B84B" stroke-width="2"/>
+        <line x1="92" y1="22" x2="96" y2="22" stroke="#F2B84B" stroke-width="2"/>
+        <line x1="178" y1="22" x2="182" y2="22" stroke="#F2B84B" stroke-width="2"/>
       </g>
       <!-- DC cables to isolator -->
-      <line x1="10" y1="75" x2="10" y2="100" stroke="#E85D3A" stroke-width="2.5"/>
-      <line x1="220" y1="75" x2="220" y2="100" stroke="#6496FF" stroke-width="2.5"/>
-      <text x="10" y="112" text-anchor="middle" fill="#E85D3A" font-size="7" font-family="Space Grotesk">DC+</text>
-      <text x="220" y="112" text-anchor="middle" fill="#6496FF" font-size="7" font-family="Space Grotesk">DC-</text>
+      <line x1="10" y1="75" x2="10" y2="100" stroke="#FF6B4A" stroke-width="2.5"/>
+      <line x1="220" y1="75" x2="220" y2="100" stroke="#80C7C3" stroke-width="2.5"/>
+      <text x="10" y="112" text-anchor="middle" fill="#FF6B4A" font-size="7" font-family="Space Grotesk">DC+</text>
+      <text x="220" y="112" text-anchor="middle" fill="#80C7C3" font-size="7" font-family="Space Grotesk">DC-</text>
       <!-- DC Isolator -->
-      <rect x="250" y="55" width="50" height="30" fill="#333" stroke="#E8A820" stroke-width="1.5" rx="4"/>
-      <text x="275" y="74" text-anchor="middle" fill="#E8A820" font-size="8" font-weight="700">DC ISO</text>
+      <rect x="250" y="55" width="50" height="30" fill="#333" stroke="#F2B84B" stroke-width="1.5" rx="4"/>
+      <text x="275" y="74" text-anchor="middle" fill="#F2B84B" font-size="8" font-weight="700">DC ISO</text>
       <!-- Cable from panels to isolator -->
-      <path d="M10,100 L10,110 L245,110 L245,70 L250,70" stroke="#E85D3A" stroke-width="1.5" fill="none"/>
-      <path d="M220,100 L220,120 L240,120 L240,70 L250,70" stroke="#6496FF" stroke-width="1.5" fill="none" stroke-dasharray="3"/>
+      <path d="M10,100 L10,110 L245,110 L245,70 L250,70" stroke="#FF6B4A" stroke-width="1.5" fill="none"/>
+      <path d="M220,100 L220,120 L240,120 L240,70 L250,70" stroke="#80C7C3" stroke-width="1.5" fill="none" stroke-dasharray="3"/>
       <!-- To inverter -->
-      <line x1="300" y1="70" x2="340" y2="70" stroke="#E8A820" stroke-width="2"/>
-      <rect x="340" y="45" width="30" height="50" fill="#1A7A5A" stroke="#2ED89A" stroke-width="1.5" rx="4"/>
+      <line x1="300" y1="70" x2="340" y2="70" stroke="#F2B84B" stroke-width="2"/>
+      <rect x="340" y="45" width="30" height="50" fill="#008F8A" stroke="#79CCB7" stroke-width="1.5" rx="4"/>
       <text x="355" y="68" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">INV</text>
       <text x="355" y="78" text-anchor="middle" fill="#fff" font-size="6">MPPT</text>
       <!-- Voltage annotation -->
-      <text x="115" y="130" text-anchor="middle" fill="rgba(255,255,255,.4)" font-size="8" font-family="Space Grotesk">12 × 49.85V = 598V Voc | 12 × 41.9V = 503V Vmp</text>
+      <text x="115" y="130" text-anchor="middle" fill="rgba(255,244,226,.4)" font-size="8" font-family="Space Grotesk">12 × 49.85V = 598V Voc | 12 × 41.9V = 503V Vmp</text>
     </svg>
   </div>
 
@@ -447,70 +446,70 @@ body.lang-en body.lang-th
   <p class="subtitle">מהאינוורטר ועד הלוח הראשי</p>
 
   <!-- SVG: Single Line Diagram -->
-  <svg viewBox="0 0 800 120" style="width:100%;max-width:780px;margin:8px auto;display:block;background:rgba(255,255,255,.03);border-radius:12px;border:1px solid rgba(232,168,32,.2);padding:8px">
-    <text x="400" y="14" text-anchor="middle" fill="#E8A820" font-size="10" font-weight="700" font-family="Heebo">SLD — Single Line Diagram (תרשים חד-קווי)</text>
+  <svg viewBox="0 0 800 120" style="width:100%;max-width:780px;margin:8px auto;display:block;background:rgba(255,244,226,.03);border-radius:12px;border:1px solid rgba(242,184,75,.2);padding:8px">
+    <text x="400" y="14" text-anchor="middle" fill="#F2B84B" font-size="10" font-weight="700" font-family="Heebo">SLD — Single Line Diagram (תרשים חד-קווי)</text>
     <!-- Panels -->
-    <rect x="10" y="35" width="60" height="50" fill="#1a4a7a" stroke="#2a6ab0" stroke-width="1.5" rx="4"/>
+    <rect x="10" y="35" width="60" height="50" fill="#33574D" stroke="#008F8A" stroke-width="1.5" rx="4"/>
     <text x="40" y="55" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">PV Array</text>
     <text x="40" y="68" text-anchor="middle" fill="#aaa" font-size="7">30kWp</text>
     <!-- DC Cable -->
-    <line x1="70" y1="60" x2="110" y2="60" stroke="#E85D3A" stroke-width="2"/>
-    <text x="90" y="50" text-anchor="middle" fill="#E85D3A" font-size="7">DC</text>
+    <line x1="70" y1="60" x2="110" y2="60" stroke="#FF6B4A" stroke-width="2"/>
+    <text x="90" y="50" text-anchor="middle" fill="#FF6B4A" font-size="7">DC</text>
     <!-- DC SPD -->
-    <rect x="110" y="45" width="40" height="30" fill="#333" stroke="#E8A820" stroke-width="1" rx="3"/>
-    <text x="130" y="60" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="600">SPD</text>
+    <rect x="110" y="45" width="40" height="30" fill="#333" stroke="#F2B84B" stroke-width="1" rx="3"/>
+    <text x="130" y="60" text-anchor="middle" fill="#F2B84B" font-size="7" font-weight="600">SPD</text>
     <text x="130" y="70" text-anchor="middle" fill="#aaa" font-size="6">DC T.II</text>
     <!-- DC Isolator -->
-    <line x1="150" y1="60" x2="175" y2="60" stroke="#E85D3A" stroke-width="2"/>
-    <rect x="175" y="45" width="40" height="30" fill="#333" stroke="#E8A820" stroke-width="1" rx="3"/>
-    <text x="195" y="60" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="600">DC</text>
+    <line x1="150" y1="60" x2="175" y2="60" stroke="#FF6B4A" stroke-width="2"/>
+    <rect x="175" y="45" width="40" height="30" fill="#333" stroke="#F2B84B" stroke-width="1" rx="3"/>
+    <text x="195" y="60" text-anchor="middle" fill="#F2B84B" font-size="7" font-weight="600">DC</text>
     <text x="195" y="70" text-anchor="middle" fill="#aaa" font-size="6">ISO</text>
     <!-- Inverter -->
-    <line x1="215" y1="60" x2="250" y2="60" stroke="#E85D3A" stroke-width="2"/>
-    <rect x="250" y="30" width="65" height="60" fill="#1A7A5A" stroke="#2ED89A" stroke-width="2" rx="6"/>
+    <line x1="215" y1="60" x2="250" y2="60" stroke="#FF6B4A" stroke-width="2"/>
+    <rect x="250" y="30" width="65" height="60" fill="#008F8A" stroke="#79CCB7" stroke-width="2" rx="6"/>
     <text x="282" y="55" text-anchor="middle" fill="#fff" font-size="9" font-weight="700">Huawei</text>
     <text x="282" y="68" text-anchor="middle" fill="#ddd" font-size="7">SUN2000</text>
-    <text x="282" y="80" text-anchor="middle" fill="#2ED89A" font-size="7">DC→AC</text>
+    <text x="282" y="80" text-anchor="middle" fill="#79CCB7" font-size="7">DC→AC</text>
     <!-- AC Cable -->
-    <line x1="315" y1="60" x2="355" y2="60" stroke="#6496FF" stroke-width="2"/>
-    <text x="335" y="50" text-anchor="middle" fill="#6496FF" font-size="7">AC</text>
+    <line x1="315" y1="60" x2="355" y2="60" stroke="#80C7C3" stroke-width="2"/>
+    <text x="335" y="50" text-anchor="middle" fill="#80C7C3" font-size="7">AC</text>
     <!-- AC Isolator -->
-    <rect x="355" y="45" width="40" height="30" fill="#333" stroke="#6496FF" stroke-width="1" rx="3"/>
-    <text x="375" y="60" text-anchor="middle" fill="#6496FF" font-size="7" font-weight="600">AC</text>
+    <rect x="355" y="45" width="40" height="30" fill="#333" stroke="#80C7C3" stroke-width="1" rx="3"/>
+    <text x="375" y="60" text-anchor="middle" fill="#80C7C3" font-size="7" font-weight="600">AC</text>
     <text x="375" y="70" text-anchor="middle" fill="#aaa" font-size="6">ISO</text>
     <!-- AC SPD -->
-    <line x1="395" y1="60" x2="420" y2="60" stroke="#6496FF" stroke-width="2"/>
-    <rect x="420" y="45" width="40" height="30" fill="#333" stroke="#E8A820" stroke-width="1" rx="3"/>
-    <text x="440" y="60" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="600">SPD</text>
+    <line x1="395" y1="60" x2="420" y2="60" stroke="#80C7C3" stroke-width="2"/>
+    <rect x="420" y="45" width="40" height="30" fill="#333" stroke="#F2B84B" stroke-width="1" rx="3"/>
+    <text x="440" y="60" text-anchor="middle" fill="#F2B84B" font-size="7" font-weight="600">SPD</text>
     <text x="440" y="70" text-anchor="middle" fill="#aaa" font-size="6">AC T.I+II</text>
     <!-- Solar Breaker -->
-    <line x1="460" y1="60" x2="490" y2="60" stroke="#6496FF" stroke-width="2"/>
+    <line x1="460" y1="60" x2="490" y2="60" stroke="#80C7C3" stroke-width="2"/>
     <rect x="490" y="45" width="40" height="30" fill="#333" stroke="#fff" stroke-width="1" rx="3"/>
     <text x="510" y="58" text-anchor="middle" fill="#fff" font-size="7" font-weight="600">MCB</text>
     <text x="510" y="70" text-anchor="middle" fill="#aaa" font-size="6">Solar</text>
     <!-- Main Panel -->
     <line x1="530" y1="60" x2="565" y2="60" stroke="#fff" stroke-width="2"/>
-    <rect x="565" y="28" width="55" height="65" fill="#444" stroke="#E8A820" stroke-width="2" rx="4"/>
-    <text x="592" y="50" text-anchor="middle" fill="#E8A820" font-size="8" font-weight="700">MDB</text>
+    <rect x="565" y="28" width="55" height="65" fill="#444" stroke="#F2B84B" stroke-width="2" rx="4"/>
+    <text x="592" y="50" text-anchor="middle" fill="#F2B84B" font-size="8" font-weight="700">MDB</text>
     <text x="592" y="62" text-anchor="middle" fill="#aaa" font-size="6">Main</text>
     <text x="592" y="72" text-anchor="middle" fill="#aaa" font-size="6">Panel</text>
     <text x="592" y="84" text-anchor="middle" fill="#aaa" font-size="6">3-Phase</text>
     <!-- Meter -->
     <line x1="620" y1="60" x2="655" y2="60" stroke="#fff" stroke-width="2"/>
-    <circle cx="672" cy="60" r="17" fill="none" stroke="#E8A820" stroke-width="2"/>
-    <text x="672" y="58" text-anchor="middle" fill="#E8A820" font-size="7" font-weight="700">kWh</text>
+    <circle cx="672" cy="60" r="17" fill="none" stroke="#F2B84B" stroke-width="2"/>
+    <text x="672" y="58" text-anchor="middle" fill="#F2B84B" font-size="7" font-weight="700">kWh</text>
     <text x="672" y="68" text-anchor="middle" fill="#aaa" font-size="6">Bi-Dir</text>
     <!-- Grid -->
     <line x1="689" y1="60" x2="720" y2="60" stroke="#fff" stroke-width="2"/>
-    <rect x="720" y="40" width="55" height="40" fill="#0A3D5C" stroke="#E8A820" stroke-width="2" rx="4"/>
-    <text x="747" y="58" text-anchor="middle" fill="#E8A820" font-size="9" font-weight="700">PEA</text>
+    <rect x="720" y="40" width="55" height="40" fill="#24463E" stroke="#F2B84B" stroke-width="2" rx="4"/>
+    <text x="747" y="58" text-anchor="middle" fill="#F2B84B" font-size="9" font-weight="700">PEA</text>
     <text x="747" y="70" text-anchor="middle" fill="#aaa" font-size="7">Grid</text>
     <!-- Earth -->
-    <line x1="282" y1="90" x2="282" y2="108" stroke="#2ED89A" stroke-width="1.5"/>
-    <line x1="272" y1="108" x2="292" y2="108" stroke="#2ED89A" stroke-width="2"/>
-    <line x1="275" y1="112" x2="289" y2="112" stroke="#2ED89A" stroke-width="1.5"/>
-    <line x1="278" y1="116" x2="286" y2="116" stroke="#2ED89A" stroke-width="1"/>
-    <text x="282" y="98" text-anchor="middle" fill="#2ED89A" font-size="6">PE</text>
+    <line x1="282" y1="90" x2="282" y2="108" stroke="#79CCB7" stroke-width="1.5"/>
+    <line x1="272" y1="108" x2="292" y2="108" stroke="#79CCB7" stroke-width="2"/>
+    <line x1="275" y1="112" x2="289" y2="112" stroke="#79CCB7" stroke-width="1.5"/>
+    <line x1="278" y1="116" x2="286" y2="116" stroke="#79CCB7" stroke-width="1"/>
+    <text x="282" y="98" text-anchor="middle" fill="#79CCB7" font-size="6">PE</text>
   </svg>
 
   <div class="two-col">
@@ -529,11 +528,11 @@ body.lang-en body.lang-th
     </div>
     <div>
       <h3>חיבור פאזות</h3>
-      <div class="card" style="margin:8px 0;border-color:rgba(100,150,255,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(128,199,195,.3)">
         <h3>חד-פאזי (< 5kW)</h3>
         <p>וילות קטנות. L + N + PE. Breaker 32A.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(232,168,32,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(242,184,75,.3)">
         <h3>תלת-פאזי (5-100kW)</h3>
         <p>רזורטים ועסקים. 3L + N + PE. Balance בין פאזות. <strong>רוב ההתקנות שלנו.</strong></p>
       </div>
@@ -672,7 +671,7 @@ body.lang-en body.lang-th
           <tr><td>מנהל פרויקט</td><td>1</td><td>฿3,000</td></tr>
           <tr><td>חשמלאי מוסמך</td><td>1</td><td>฿2,500</td></tr>
           <tr><td>מתקינים</td><td>2</td><td>฿1,500 × 2</td></tr>
-          <tr style="background:rgba(232,168,32,.1)"><td><strong>סה"כ/יום</strong></td><td><strong>4</strong></td><td><strong>฿8,500</strong></td></tr>
+          <tr style="background:rgba(242,184,75,.1)"><td><strong>סה"כ/יום</strong></td><td><strong>4</strong></td><td><strong>฿8,500</strong></td></tr>
         </table>
       </div>
       <div class="alert alert-info">
@@ -713,8 +712,8 @@ body.lang-en body.lang-th
       <div class="bar-chart">
         <h3>פירוט עלויות (฿/kWp)</h3>
         <div class="bar-row"><div class="bar-label">פאנלים</div><div class="bar-wrap"><div class="bar-fill" style="width:38%;background:var(--gold)">฿3,500</div></div></div>
-        <div class="bar-row"><div class="bar-label">אינוורטר</div><div class="bar-wrap"><div class="bar-fill" style="width:21%;background:#6496FF">฿2,000</div></div></div>
-        <div class="bar-row"><div class="bar-label">קונסטרוקציה</div><div class="bar-wrap"><div class="bar-fill" style="width:16%;background:#2ED89A">฿1,550</div></div></div>
+        <div class="bar-row"><div class="bar-label">אינוורטר</div><div class="bar-wrap"><div class="bar-fill" style="width:21%;background:#80C7C3">฿2,000</div></div></div>
+        <div class="bar-row"><div class="bar-label">קונסטרוקציה</div><div class="bar-wrap"><div class="bar-fill" style="width:16%;background:#79CCB7">฿1,550</div></div></div>
         <div class="bar-row"><div class="bar-label">BOS + כבלים</div><div class="bar-wrap"><div class="bar-fill" style="width:8%;background:var(--coral)">฿750</div></div></div>
       </div>
     </div>
@@ -722,8 +721,8 @@ body.lang-en body.lang-th
       <div class="bar-chart">
         <h3>פירוט תפעול (฿/kWp)</h3>
         <div class="bar-row"><div class="bar-label">עבודה</div><div class="bar-wrap"><div class="bar-fill" style="width:48%;background:var(--gold)">฿5,000</div></div></div>
-        <div class="bar-row"><div class="bar-label">לוגיסטיקה</div><div class="bar-wrap"><div class="bar-fill" style="width:29%;background:#6496FF">฿3,000</div></div></div>
-        <div class="bar-row"><div class="bar-label">הנדסה</div><div class="bar-wrap"><div class="bar-fill" style="width:19%;background:#2ED89A">฿2,000</div></div></div>
+        <div class="bar-row"><div class="bar-label">לוגיסטיקה</div><div class="bar-wrap"><div class="bar-fill" style="width:29%;background:#80C7C3">฿3,000</div></div></div>
+        <div class="bar-row"><div class="bar-label">הנדסה</div><div class="bar-wrap"><div class="bar-fill" style="width:19%;background:#79CCB7">฿2,000</div></div></div>
         <div class="bar-row"><div class="bar-label">Overhead</div><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:var(--coral)">฿11,000</div></div></div>
       </div>
     </div>
@@ -1022,6 +1021,6 @@ window.PAGE_TRANSLATIONS = {
   "ROI ללקוח": {en: "client ROI", th: "ROI ของลูกค้า"},
 };
 </script>
-<script src="tm-lang.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>

@@ -5,22 +5,22 @@
 <meta name="content-updated" content="2026-09-04">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Bustan Energy — Premium solar solutions for Koh Phangan. Strategy deck by Bustan Energy, September 2026.">
-    <title>Bustan Energy — Bustan Energy — Strategy Deck</title>
+    <title>Bustan Energy — Strategy Deck</title>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sun: #E8A820;
+            --sun: #F2B84B;
             --sun-light: #F5D76E;
-            --ocean: #0D2137;
+            --ocean: #27342F;
             --ocean-deep: #091520;
-            --navy: #0D2137;
-            --palm: #1A7A5A;
-            --sand: #FFF8E7;
-            --white: #FFFFFF;
-            --text: #1A1A1A;
+            --navy: #27342F;
+            --palm: #008F8A;
+            --sand: #F4EAD8;
+            --white: #FFF4E2;
+            --text: #27342F;
             --text-light: #5A5A5A;
             --red: #E53935;
-            --green: #1A7A5A;
+            --green: #008F8A;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Heebo', 'DM Sans', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
@@ -33,7 +33,7 @@
             flex-direction: column;
             justify-content: center;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            border-bottom: 1px solid rgba(255,244,226,0.04);
         }
         .slide:nth-child(even) { background: rgba(0,0,0,0.12); }
         .slide-num {
@@ -41,7 +41,7 @@
             top: 2rem;
             left: 2rem;
             font-size: 0.7rem;
-            color: rgba(232,168,32,0.4);
+            color: rgba(242,184,75,0.4);
             letter-spacing: 0.2em;
             font-weight: 600;
             text-transform: uppercase;
@@ -53,14 +53,14 @@
         h2 { font-family: 'Instrument Serif', serif; font-size: clamp(1.8rem,4vw,3rem); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 2rem; }
         h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; }
         .accent { color: var(--sun); }
-        .subtitle { font-size: 1.2rem; color: rgba(255,255,255,0.6); line-height: 1.6; max-width: 700px; margin-top: 1.5rem; }
+        .subtitle { font-size: 1.2rem; color: rgba(255,244,226,0.6); line-height: 1.6; max-width: 700px; margin-top: 1.5rem; }
         .he { direction: rtl; text-align: right; font-family: 'Heebo', sans-serif; }
         .en { direction: ltr; text-align: left; }
 
         /* COVER */
         .cover { background: linear-gradient(160deg, var(--ocean-deep), var(--navy) 60%); }
         .cover h1 { margin-bottom: 1rem; }
-        .cover-meta { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-top: 2rem; }
+        .cover-meta { font-size: 0.9rem; color: rgba(255,244,226,0.4); margin-top: 2rem; }
 
         /* GRID */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
@@ -69,42 +69,42 @@
 
         /* CARDS */
         .card {
-            background: rgba(255,255,255,0.035);
-            border: 1px solid rgba(255,255,255,0.07);
+            background: rgba(255,244,226,0.035);
+            border: 1px solid rgba(255,244,226,0.07);
             border-radius: 16px;
             padding: 2rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
-        .card:hover { background: rgba(255,255,255,0.07); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+        .card:hover { background: rgba(255,244,226,0.07); transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
         .card-icon { font-size: 2rem; margin-bottom: 1rem; }
-        .card p { color: rgba(255,255,255,0.6); line-height: 1.6; font-size: 0.95rem; }
+        .card p { color: rgba(255,244,226,0.6); line-height: 1.6; font-size: 0.95rem; }
 
         /* STAT */
-        .stat-big { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--sun); line-height: 1; text-shadow: 0 2px 12px rgba(232,168,32,0.15); }
-        .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); margin-top: 0.3rem; }
+        .stat-big { font-family: 'Instrument Serif', serif; font-size: 3.5rem; color: var(--sun); line-height: 1; text-shadow: 0 2px 12px rgba(242,184,75,0.15); }
+        .stat-label { font-size: 0.85rem; color: rgba(255,244,226,0.5); margin-top: 0.3rem; }
 
         /* TABLE */
         table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-        th { text-align: right; padding: 0.8rem 1rem; background: rgba(232,168,32,0.06); color: var(--sun); font-weight: 600; border-bottom: 2px solid rgba(232,168,32,0.2); }
-        td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
-        tr:hover td { background: rgba(232,168,32,0.04); }
+        th { text-align: right; padding: 0.8rem 1rem; background: rgba(242,184,75,0.06); color: var(--sun); font-weight: 600; border-bottom: 2px solid rgba(242,184,75,0.2); }
+        td { padding: 0.8rem 1rem; border-bottom: 1px solid rgba(255,244,226,0.05); color: rgba(255,244,226,0.8); }
+        tr:hover td { background: rgba(242,184,75,0.04); }
 
         /* TIMELINE */
         .timeline { position: relative; padding-right: 3rem; }
-        .timeline::before { content: ''; position: absolute; right: 0.6rem; top: 0; bottom: 0; width: 2px; background: rgba(255,255,255,0.1); }
+        .timeline::before { content: ''; position: absolute; right: 0.6rem; top: 0; bottom: 0; width: 2px; background: rgba(255,244,226,0.1); }
         .tl-item { position: relative; margin-bottom: 2.5rem; }
         .tl-item::before { content: ''; position: absolute; right: -2.65rem; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: var(--sun); border: 3px solid var(--navy); }
         .tl-date { font-size: 0.8rem; color: var(--sun); font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
         .tl-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; }
-        .tl-desc { font-size: 0.9rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+        .tl-desc { font-size: 0.9rem; color: rgba(255,244,226,0.5); line-height: 1.5; }
 
         /* BADGE */
         .badge { display: inline-block; padding: 0.3rem 0.8rem; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
-        .badge-green { background: rgba(26,122,90,0.15); color: var(--green); }
+        .badge-green { background: rgba(0,143,138,0.15); color: var(--green); }
         .badge-red { background: rgba(229,57,53,0.15); color: var(--red); }
-        .badge-gold { background: rgba(232,168,32,0.15); color: var(--sun); }
+        .badge-gold { background: rgba(242,184,75,0.15); color: var(--sun); }
 
         /* COMPETITOR */
         .vs-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2rem; align-items: start; }
@@ -124,7 +124,7 @@
         .nav-dot {
             width: 8px; height: 8px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,244,226,0.2);
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -144,12 +144,12 @@
         .sources {
             margin-top: 2rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(255,244,226,0.08);
             font-size: 0.75rem;
-            color: rgba(255,255,255,0.35);
+            color: rgba(255,244,226,0.35);
             line-height: 1.8;
         }
-        .sources a { color: rgba(232,168,32,0.6); text-decoration: none; }
+        .sources a { color: rgba(242,184,75,0.6); text-decoration: none; }
         .sources a:hover { color: var(--sun); }
         .src-num { color: var(--sun); font-weight: 600; margin-left: 0.3rem; }
 
@@ -177,9 +177,9 @@
             table { font-size: 0.8rem; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
             th, td { padding: 0.6rem 0.7rem; white-space: nowrap; }
             .img-float { float: none; width: 100%; margin: 0 0 12px 0; }
-            .tm-logo-header { top: 10px; right: 12px; }
-            .tm-logo-header img { height: 28px; }
-            .tm-logo-header .brand-text { font-size: 9px; }
+            .bustan-logo-header { top: 10px; right: 12px; }
+            .bustan-logo-header img { height: 28px; }
+            .bustan-logo-header .brand-text { font-size: 9px; }
             .sources { font-size: 0.75rem; }
         }
 
@@ -192,44 +192,43 @@
 
         /* PRINT */
         @media print {
-            body { background: #fff; color: #1A1A1A; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body { background: #fff; color: #27342F; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             .slide { min-height: auto; padding: 2rem 1rem; page-break-inside: avoid; break-inside: avoid; border-bottom: 1px solid #ddd; }
             .cover { background: #fff !important; }
-            .nav-dots, .tm-logo-header { display: none; }
+            .nav-dots, .bustan-logo-header { display: none; }
             h1, h2 { color: var(--navy); }
             .accent { color: #C48A10; }
             .stat-big { color: #C48A10; text-shadow: none; }
             .card { background: #f7f7f7; border: 1px solid #ddd; backdrop-filter: none; box-shadow: none; }
             .card p, td, .tl-desc, .subtitle, .he { color: #333; }
-            .badge-green { background: #e8f5e9; color: #1A7A5A; }
+            .badge-green { background: #e8f5e9; color: #008F8A; }
             .badge-gold { background: #fff8e1; color: #C48A10; }
             .badge-red { background: #fce4ec; color: #c62828; }
             th { background: #f0f0f0; color: #333; border-bottom-color: #bbb; }
-            a { color: #0D2137; }
+            a { color: #27342F; }
             .slide-img, .slide-img-sm { max-height: 180px; }
             .grid-2, .grid-3, .grid-4 { gap: 1rem; }
         }
 
-.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
-.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
-.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(242,184,75,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,244,226,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(242,184,75,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,244,226,.1)}
 
 
 
 
 /* Bustan Energy Branding */
-.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
-.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.bustan-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.bustan-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.bustan-logo-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 </style>
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 <script src="auth.js"></script>
-<div class="tm-logo-header">
-  <span class="brand-text">BUSTAN ENERGY</span>
-  <img src="assets/bustan-energy.svg" alt="Bustan Energy">
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 
 
 
@@ -237,7 +236,7 @@
 <div class="nav-dots" id="navDots"></div>
 
 <!-- SLIDE 0: COVER -->
-<div class="slide cover" data-title="Cover" style="background:linear-gradient(rgba(13,33,55,.55),rgba(13,33,55,.75)),url(visuals/strategy-01-aerial.png) center/cover">
+<div class="slide cover" data-title="Cover" style="background:linear-gradient(rgba(39,52,47,.55),rgba(39,52,47,.75)),url(visuals/strategy-01-aerial.png) center/cover">
     <div class="container">
         <span class="badge badge-gold" style="margin-bottom:1.5rem;">CONFIDENTIAL — Bustan Energy</span>
         <h1>Ko Phangan <span class="accent">Solar</span></h1>
@@ -298,7 +297,7 @@
 <!-- SLIDE 2: MARKET SIZE -->
 <div class="slide" data-title="גודל שוק">
     <div class="slide-num">02 — MARKET SIZE</div>
-<img src="visuals/strategy-02-map.png" class="slide-img" alt="Koh Phangan map">
+<img src="visuals/strategy-03-resort.png" class="slide-img" alt="Solar-ready island property">
     <div class="container">
         <h2 class="he">גודל השוק</h2>
         <div class="grid-2">
@@ -316,7 +315,7 @@
                 </table>
             </div>
             <div>
-                <div class="card" style="background:rgba(232,168,32,0.08);border-color:rgba(232,168,32,0.2);">
+                <div class="card" style="background:rgba(242,184,75,0.08);border-color:rgba(242,184,75,0.2);">
                     <h3 class="he accent">TAM שנתי</h3>
                     <div style="margin:1.5rem 0;">
                         <div class="he" style="margin-bottom:1rem;">
@@ -330,7 +329,7 @@
                             <div class="stat-label">200 התקנות × 500K ממוצע</div>
                         </div>
                     </div>
-                    <p class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">+ הכנסה חוזרת מ-O&M: ฿2-5K/חודש למערכת</p>
+                    <p class="he" style="font-size:0.85rem;color:rgba(255,244,226,0.5);">+ הכנסה חוזרת מ-O&M: ฿2-5K/חודש למערכת</p>
                 </div>
             </div>
         </div>
@@ -381,7 +380,7 @@
                 <td>חדשים, אין track record מקומי</td>
             </tr>
         </table>
-        <div class="he" style="margin-top:2rem;padding:1.5rem;background:rgba(26,122,90,0.08);border-radius:12px;border:1px solid rgba(26,122,90,0.2);">
+        <div class="he" style="margin-top:2rem;padding:1.5rem;background:rgba(0,143,138,0.08);border-radius:12px;border:1px solid rgba(0,143,138,0.2);">
             <strong>הזדמנות:</strong> אף מתחרה לא מציע ESCO/PPA, מערכת monitoring, branding ללקוחות, או שיווק דיגיטלי רציני. השוק פתוח לשחקן פרימיום.
         </div>
     </div>
@@ -398,7 +397,7 @@
                 <h3 class="he" style="margin-top:1rem;">EPC — התקנה</h3>
                 <p class="he">מכירה + התקנה + הפעלה. תמחור: ฿22-30K/kWp לפי גודל (לפני מע"מ). מרווח גולמי: 40-45%.</p>
                 <div style="margin-top:1rem;">
-                    <div class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                    <div class="he" style="font-size:0.85rem;color:rgba(255,244,226,0.5);">
                         וילה 10kW = ฿300K<br>
                         Resort 50kW = ฿1.2M<br>
                         Commercial 100kW = ฿2.2M
@@ -410,7 +409,7 @@
                 <h3 class="he" style="margin-top:1rem;">ESCO / PPA</h3>
                 <p class="he">אנחנו מממנים + מתקינים + מתחזקים. הלקוח משלם לפי צריכה — בלי upfront. חוזה 15-25 שנה.</p>
                 <div style="margin-top:1rem;">
-                    <div class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                    <div class="he" style="font-size:0.85rem;color:rgba(255,244,226,0.5);">
                         הלקוח חוסך 20-30% מיום 1<br>
                         אנחנו מקבלים 70-80% מהחשבון<br>
                         Recurring revenue לטווח ארוך
@@ -422,7 +421,7 @@
                 <h3 class="he" style="margin-top:1rem;">O&M — תחזוקה</h3>
                 <p class="he">ניטור 24/7, ניקוי, תיקונים. ฿2-5K/חודש למערכת. Recurring מכל התקנה.</p>
                 <div style="margin-top:1rem;">
-                    <div class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.5);">
+                    <div class="he" style="font-size:0.85rem;color:rgba(255,244,226,0.5);">
                         50 מערכות × ฿3K = ฿150K/חודש<br>
                         100 מערכות × ฿2.5K (50 kWp × ฿600/kWp/שנה) = ฿250K/חודש<br>
                         = ฿1.8-3.6M/שנה
@@ -456,7 +455,7 @@
             </div>
             <div>
                 <h3 class="he accent">מודל עסקי</h3>
-                <div class="card" style="background:rgba(232,168,32,0.06);">
+                <div class="card" style="background:rgba(242,184,75,0.06);">
                     <p class="he" style="line-height:1.8;">
                         <strong>מסלולי הכנסה:</strong><br>
                         🔧 EPC — התקנה + מכירה (מרווח 40-45%)<br>
@@ -485,7 +484,7 @@
                     <tr><td>סוללות</td><td>Huawei LUNA / LFP (TIS 63056)</td><td>72-110K THB (5kWh) <span class="fn" title="Huawei LUNA distributor pricing in Thailand">[10]</span></td></tr>
                     <tr><td>מרכבים</td><td>CMM / RRacks (מקומי)</td><td>5-10K THB/kW <span class="fn" title="CMM Thai manufacturer + QES Energy estimates">[11]</span></td></tr>
                 </table>
-                <div class="he" style="margin-top:1.5rem;font-size:0.9rem;color:rgba(255,255,255,0.5);">
+                <div class="he" style="margin-top:1.5rem;font-size:0.9rem;color:rgba(255,244,226,0.5);">
                     <strong>מכסים:</strong> פאנלים 0%, ממירים 0-5% (0% עם FTA), סוללות 0-10%, + 7% VAT <span class="fn" title="Thai Customs tariff + China-ASEAN FTA Form E provisions">[13]</span>
                 </div>
             </div>
@@ -498,7 +497,7 @@
                         ⛴ מעבורת Raja Ferry לקו פנגן (~2.5 שעות)<br>
                         🏗 מחסן באי + צוות מקומי<br><br>
                         <strong>מחיר מתחרים באי: ฿30-35K/kWp (קמעונאי). עלות ישירה שלנו: ฿14.5-17K/kWp</strong><span class="fn" title="Benchmark: Green Global Tech 105K/3kW=35K/kWp + Phangan.Solar pricing tiers + island logistics premium estimate">[12]</span><br>
-                        <span style="font-size:0.85rem;color:rgba(255,255,255,0.5);">(כולל premium לוגיסטיקת אי)</span>
+                        <span style="font-size:0.85rem;color:rgba(255,244,226,0.5);">(כולל premium לוגיסטיקת אי)</span>
                     </p>
                 </div>
             </div>
@@ -544,7 +543,7 @@
                 <p class="he">LINE הוא המסנג'ר #1 בתאילנד. WhatsApp לexpats. שני הערוצים פתוחים. Templates מוכנים.</p>
             </div>
         </div>
-        <div style="margin-top:2rem;padding:1.5rem;background:rgba(232,168,32,0.08);border-radius:12px;text-align:center;">
+        <div style="margin-top:2rem;padding:1.5rem;background:rgba(242,184,75,0.08);border-radius:12px;text-align:center;">
             <span class="he" style="font-size:1.1rem;">תקציב שיווק 90 יום: <strong class="accent">฿157,000-311,000 (~$4,500-8,900)</strong></span>
         </div>
     </div>
@@ -558,7 +557,7 @@
         <div class="grid-3">
             <div class="card" style="border-top:3px solid var(--sun);">
                 <h3 class="en accent">Days 1-30: Foundation</h3>
-                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,244,226,0.7);">
                     <li>→ הקמת מבנה עסקי + רישיונות</li>
                     <li>→ Landing page + SEO live</li>
                     <li>→ חשבונות Social (FB, IG, LINE)</li>
@@ -571,7 +570,7 @@
             </div>
             <div class="card" style="border-top:3px solid var(--palm);">
                 <h3 class="en" style="color:var(--palm);">Days 31-60: Traction</h3>
-                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,244,226,0.7);">
                     <li>→ Lighthouse install + case study</li>
                     <li>→ FB/IG ad campaigns live</li>
                     <li>→ Facebook group outreach (value-first)</li>
@@ -584,7 +583,7 @@
             </div>
             <div class="card" style="border-top:3px solid #2196F3;">
                 <h3 class="en" style="color:#2196F3;">Days 61-90: Scale</h3>
-                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,255,255,0.7);">
+                <ul class="he" style="list-style:none;line-height:2;font-size:0.9rem;color:rgba(255,244,226,0.7);">
                     <li>→ 2-3 installations completed</li>
                     <li>→ ESCO contracts signed</li>
                     <li>→ Google Ads live</li>
@@ -609,7 +608,7 @@
                 <span class="badge badge-gold">VILLA</span>
                 <h3 class="en" style="margin-top:1rem;">Island Home</h3>
                 <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--sun);margin:1rem 0;">฿250,000+</div>
-                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,255,255,0.6);">
+                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,244,226,0.6);">
                     <li>5-10 kW</li>
                     <li>JA/Jinko TOPCon Tier-1</li>
                     <li>Huawei Hybrid Inverter</li>
@@ -618,11 +617,11 @@
                     <li>אחריות 5 שנים</li>
                 </ul>
             </div>
-            <div class="card" style="border-color:var(--sun);background:rgba(232,168,32,0.05);">
+            <div class="card" style="border-color:var(--sun);background:rgba(242,184,75,0.05);">
                 <span class="badge badge-green">MOST POPULAR</span>
                 <h3 class="en" style="margin-top:1rem;">Resort Power</h3>
                 <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--sun);margin:1rem 0;">Custom Quote</div>
-                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,255,255,0.6);">
+                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,244,226,0.6);">
                     <li>20-50 kW</li>
                     <li>Premium panels + microinverters</li>
                     <li>Battery backup</li>
@@ -635,7 +634,7 @@
                 <span class="badge badge-gold">ENTERPRISE</span>
                 <h3 class="en" style="margin-top:1rem;">Island Scale</h3>
                 <div style="font-family:'Instrument Serif',serif;font-size:2rem;color:var(--sun);margin:1rem 0;">Custom Quote</div>
-                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,255,255,0.6);">
+                <ul class="he" style="list-style:none;line-height:1.8;font-size:0.9rem;color:rgba(255,244,226,0.6);">
                     <li>50-500 kW</li>
                     <li>Engineering + Procurement</li>
                     <li>סוללה + EMS</li>
@@ -696,7 +695,7 @@
                     <span class="badge badge-gold">בתהליך</span> <strong>Vercel Deploy</strong> — domain + hosting
                 </div>
                 <h3 class="he accent" style="margin:2rem 0 1rem;">צעדים הבאים</h3>
-                <div class="he" style="line-height:2;font-size:0.95rem;color:rgba(255,255,255,0.7);">
+                <div class="he" style="line-height:2;font-size:0.95rem;color:rgba(255,244,226,0.7);">
                     1. בחירת domain (bustan-energy.com?)<br>
                     2. Deploy ל-Vercel<br>
                     3. הקמת חשבונות Social<br>
@@ -745,7 +744,7 @@
                 </div>
                 <div style="margin-top:2rem;padding:1.2rem;background:rgba(229,57,53,0.08);border-radius:12px;border:1px solid rgba(229,57,53,0.15);">
                     <h3 class="he" style="color:var(--red);font-size:1rem;">הערות זהירות</h3>
-                    <p class="he" style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.7;">
+                    <p class="he" style="font-size:0.85rem;color:rgba(255,244,226,0.6);line-height:1.7;">
                         • TAM (10-100M) = הערכה גסה, לא מחקר שוק מעמיק<br>
                         • חשבונות חשמל מלונות = הערכה לפי חדרים, לא נתונים אמיתיים<br>
                         • מחירי ספקים מ-2024-2025, עשויים להשתנות<br>
@@ -971,6 +970,6 @@ window.PAGE_TRANSLATIONS = {
   "BOI — רק לחוות למכירה (גגות הוסרו 7/2025)": {en: "BOI — only for farms selling power (rooftops removed 7/2025)", th: "BOI — เฉพาะฟาร์มเพื่อขายไฟ (หลังคาถูกถอด 7/2025)"},
 };
 </script>
-<script src="tm-lang.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>

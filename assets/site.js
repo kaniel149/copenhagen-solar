@@ -6,6 +6,7 @@
 (() => {
   const SCRIPT = document.currentScript || document.querySelector('script[src$="site.js"]');
   const ROOT = (SCRIPT && SCRIPT.dataset.root) || '';
+  const BRAND_VERSION = 'bustan-20260907';
   const GH = 'https://github.com/kaniel149/bustan-index/blob/main/';
   const LANGS = ['en', 'he', 'th'];
   document.documentElement.classList.add('js');
@@ -108,7 +109,7 @@
   const page = (navHost && navHost.dataset.page) || '';
   const spans = (k) => LANGS.map((l) => `<span data-${l}>${esc(T[k][l])}</span>`).join('');
   const navHTML = `<header class="nav" id="nav"><div class="nav-inner">
-    <a class="nav-logo" href="${ROOT}index.html" aria-label="Bustan Energy">${icon('mark')}<span>Bustan Energy</span></a>
+    <a class="nav-logo" href="${ROOT}index.html" aria-label="Bustan Energy"><img src="${ROOT}assets/bustan-energy-logo.png" alt="Bustan Energy" width="188" height="84"></a>
     <nav class="nav-links" aria-label="Site">${NAV_LINKS.map(([k, href, id]) => `<a href="${href}"${id === page ? ' aria-current="page"' : ''}${href.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${spans(k)}</a>`).join('')}</nav>
     <div class="nav-lang" role="group" aria-label="Language">${LANGS.map((l) => `<button type="button" data-set-lang="${l}" aria-pressed="false">${LANG_LABEL[l]}</button>`).join('')}</div>
     <button class="nav-menu" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menu">${icon('menu')}</button>
@@ -124,7 +125,7 @@
 
   const footHost = document.getElementById('site-footer');
   if (footHost) {
-    const li = (href, k, ext) => `<li><a href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}>${typeof k === 'string' ? esc(k) : spans(k)}</a></li>`;
+    const li = (href, k, ext) => `<li><a href="${href}"${ext ? ' target="_blank" rel="noopener"' : ''}>${T[k] ? spans(k) : esc(k)}</a></li>`;
     footHost.outerHTML = `<footer class="footer"><div class="footer-inner">
       <div class="footer-cols">
         <div><h4>${spans('index')}</h4><ul>${li(ROOT + 'index.html#catalog', 'catalog')}${li(ROOT + 'presentations/index.html', 'presentations')}${li(ROOT + 'academy/index.html', 'academy')}${li(ROOT + 'blog/index.html', 'blog')}</ul></div>
@@ -205,7 +206,7 @@
   if (catalogHost) initCatalog(catalogHost);
   let catalogPromise = null;
   function loadCatalog(src) {
-    if (!catalogPromise) catalogPromise = fetch(src || (ROOT + 'catalog.json')).then((r) => r.json());
+    if (!catalogPromise) catalogPromise = fetch(src || (ROOT + 'catalog.json?v=' + BRAND_VERSION)).then((r) => r.json());
     return catalogPromise;
   }
   const lists = document.querySelectorAll('[data-list]');
@@ -213,7 +214,7 @@
 
   // <div data-list="decks|playbooks|kind:xxx" data-cols="3"> — rendered from catalog.json
   async function initLists(hosts) {
-    let data; try { data = await loadCatalog(); } catch { return; }
+    let data; try { data = await loadCatalog(); } catch { hosts.forEach((host) => { host.innerHTML = `<p>${esc(t(T.empty))}</p>`; }); return; }
     const render = () => hosts.forEach((host) => {
       const spec = host.dataset.list;
       let items = data.entries.filter((e) => spec === 'decks' ? e.kind === 'deck' && !e.hub : spec === 'playbooks' ? e.playbook : spec.startsWith('kind:') ? e.kind === spec.slice(5) : false);
@@ -229,7 +230,7 @@
   function hrefFor(e) {
     if (e.external) return e.path;
     if (/\.md$/i.test(e.path)) return GH + e.path;
-    return ROOT + e.path;
+    return ROOT + e.path + ((e.kind === 'deck' || e.playbook) ? '?v=' + BRAND_VERSION : '');
   }
   function fmtDate(d) { return d || ''; }
   const tagsFor = (e) => `<div class="tags">${e.lang.map((l) => `<span class="tag tag-lang">${l}</span>`).join('')}<span class="tag">${esc(t(AUD[e.audience]))}</span>${e.group && e.group !== e.kind ? `<span class="tag">${esc(e.group)}</span>` : ''}${e.note ? `<span class="tag tag-warn">${esc(e.note)}</span>` : ''}</div>`;
@@ -251,7 +252,8 @@
   function deckHTML(e, compact) { return cardHTML(e, compact); }
   function cardHTML(e, compact) {
     const href = hrefFor(e);
-    const thumb = e.thumb ? `<img src="${esc(ROOT + e.thumb)}" alt="" loading="lazy" width="640" height="360">` : '';
+    const cover = e.cover ? `<div class="bustan-cover" aria-hidden="true"><img class="bustan-cover-photo" src="${esc(ROOT + e.cover)}" alt="" loading="lazy" width="640" height="360"><div class="bustan-cover-panel"><img class="bustan-cover-logo" src="${ROOT}assets/bustan-energy-logo.png" alt="" width="188" height="84"><span class="bustan-cover-label">${esc(e.kind === 'deck' ? t(T.presentations) : e.group)}</span><span class="bustan-cover-place">KOH PHANGAN<br>THAILAND</span></div></div>` : '';
+    const thumb = cover || (e.thumb ? `<img src="${esc(ROOT + e.thumb)}" alt="" loading="lazy" width="640" height="360">` : '');
     return `<div class="card deck-card">
       <a class="deck-thumb" href="${esc(href)}"${e.external ? ' target="_blank" rel="noopener"' : ''} aria-label="${esc(e.title)}">${thumb}</a>
       <div class="deck-body">
@@ -268,7 +270,7 @@
 
 
   async function initCatalog(host) {
-    const src = host.dataset.src || (ROOT + 'catalog.json');
+    const src = host.dataset.src || (ROOT + 'catalog.json?v=' + BRAND_VERSION);
     let data;
     try { data = await (await fetch(src)).json(); }
     catch { host.innerHTML = `<p class="empty">catalog.json could not be loaded.</p>`; return; }

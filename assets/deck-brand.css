@@ -1,0 +1,104 @@
+/* Bustan Energy / Island fieldcraft. Shared presentation branding. */
+:root {
+  --bustan-grove: #24463E;
+  --bustan-paper: #F4EAD8;
+  --bustan-shell: #FFF4E2;
+  --bustan-ink: #27342F;
+  --bustan-lagoon: #008F8A;
+  --bustan-sun: #F2B84B;
+  --bustan-papaya: #FF6B4A;
+  --sun: var(--bustan-sun);
+}
+
+html, body.bustan-deck {
+  background: var(--bustan-grove);
+  color: var(--bustan-shell);
+}
+
+.bustan-deck .slide::before { background: none; }
+.bustan-deck .grid-bg { display: none; }
+.bustan-deck .presentation { overflow: hidden; }
+.bustan-deck .slide:first-child {
+  background-image: linear-gradient(100deg, rgba(36,70,62,.98) 12%, rgba(36,70,62,.85) 57%, rgba(36,70,62,.68)), url('../drone-imagery/DJI_20260327112929_0021_D.webp');
+  background-position: center;
+  background-size: cover;
+}
+
+.bustan-deck-wordmark { margin: 0 0 24px; text-align: center; }
+.bustan-deck-logo {
+  display: block;
+  width: 240px;
+  max-width: 58vw;
+  height: auto;
+  margin: 0 auto 26px;
+  object-fit: contain;
+}
+.bustan-deck-wordmark .bustan-deck-logo { margin-bottom: 0; }
+.bustan-deck .cover-logo { display: block; width: 220px; height: auto; max-width: 52vw; margin-bottom: 24px; filter: none; }
+.bustan-deck img[src$="bustan-energy-logo.png"] { object-fit: contain; filter: none; }
+
+.bustan-deck :is(.card, .stat-box, .highlight-box, .comparison-card, .key-insight, .econ-card, .reg-col, .risk-item) {
+  border-radius: 4px;
+  box-shadow: none;
+}
+.bustan-deck :is(.badge, .tag, .title-badge, .location-badge) { border-radius: 2px; }
+.bustan-deck :is(.slide-label, .slide-number-label, .slide-num) { letter-spacing: .13em; }
+.bustan-deck :is(.progress, .progress-bar, #progress) {
+  background: linear-gradient(90deg, var(--bustan-sun) 0 38%, var(--bustan-lagoon) 38% 76%, var(--bustan-papaya) 76%);
+  box-shadow: none;
+}
+.bustan-deck .cover-line { background: var(--bustan-sun); box-shadow: none; }
+.bustan-deck :is(.nav-arrow, .nav-btn, #fs-btn, .fullscreen-btn button) { border-radius: 3px; }
+
+.bustan-home {
+  position: fixed;
+  top: 14px;
+  left: 16px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border: 1px solid rgba(244,234,216,.32);
+  border-radius: 2px;
+  background: var(--bustan-paper);
+  color: var(--bustan-ink);
+  font: 600 11px/1.2 'Inter', 'Heebo', sans-serif;
+  text-decoration: none;
+  direction: ltr;
+  transition: background .18s ease;
+}
+.bustan-home:hover, .bustan-home:focus-visible { background: var(--bustan-shell); color: var(--bustan-grove); }
+.bustan-home:focus-visible { outline: 2px solid var(--bustan-sun); outline-offset: 3px; }
+:fullscreen .bustan-home, :-webkit-full-screen .bustan-home { display: none; }
+
+.bustan-financing .brand-header { top: 12px; right: 18px; }
+.bustan-financing .brand-header img { display: block; width: 130px; height: auto; filter: none; }
+.bustan-financing .bustan-financing-cover {
+  background: linear-gradient(100deg, rgba(36,70,62,.98) 12%, rgba(36,70,62,.85) 57%, rgba(36,70,62,.68)), url('../drone-imagery/DJI_20260327112929_0021_D.webp') center/cover !important;
+}
+.bustan-financing .slide { border-bottom: 1px solid rgba(244,234,216,.15); }
+.bustan-financing .card { border-color: rgba(244,234,216,.18); background: rgba(244,234,216,.05); }
+.bustan-financing .card.gold { border-color: rgba(242,184,75,.5); }
+.bustan-financing .card.green { border-color: rgba(156,213,199,.45); }
+.bustan-financing .badge { border-radius: 2px; }
+.bustan-financing :is(.slide-img, .slide-img-sm, .img-float, .img-row img) { border-radius: 3px; box-shadow: none; }
+
+@media (max-width: 600px) {
+  .bustan-home { top: 10px; left: 10px; padding: 8px; font-size: 10px; }
+  .bustan-deck .slide { padding-top: max(60px, env(safe-area-inset-top)); }
+  .bustan-deck-logo { width: 190px; margin-bottom: 18px; }
+  .bustan-deck .cover-logo { width: 175px; margin-bottom: 18px; }
+  .bustan-financing .brand-header { top: 8px; right: 10px; }
+  .bustan-financing .brand-header img { width: 84px; }
+  .bustan-financing .slide { padding-top: 80px; }
+  .bustan-financing .bank-row { flex-wrap: wrap; gap: 12px; padding: 18px 0; }
+  .bustan-financing .bank-info { min-width: 180px; }
+  .bustan-financing table { font-size: .75rem; }
+  .bustan-financing th, .bustan-financing td { padding: .65rem .45rem; }
+}
+
+@media print {
+  .bustan-home, .bustan-financing .brand-header { display: none; }
+  .bustan-deck .slide { background-image: none; }
+}

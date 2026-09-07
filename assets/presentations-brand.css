@@ -1,0 +1,80 @@
+/* Bustan Energy — Island fieldcraft presentation library. */
+html.bustan-library {
+  --bg: #f4ead8;
+  --bg-alt: #e9dfcd;
+  --surface: #fff4e2;
+  --surface-2: #f9efde;
+  --text: #27342f;
+  --text-2: #536256;
+  --text-3: #657452;
+  --hair: rgba(39, 52, 47, .16);
+  --hair-2: rgba(39, 52, 47, .32);
+  --accent: #006f6b;
+  --accent-ink: #fff4e2;
+  --nav-h: 76px;
+  --radius: 4px;
+  --radius-s: 3px;
+  --font: "Heebo", "Sarabun", sans-serif;
+  color-scheme: light;
+}
+.presentations-library .nav { background: rgba(244, 234, 216, .97); }
+.presentations-library .nav-inner { width: min(var(--w-wide), 100% - 44px); }
+.presentations-library .nav-logo img { width: 134px; height: 60px; }
+.presentations-library .nav-links a { color: #536256; }
+.presentations-library .nav-links a:hover,
+.presentations-library .nav-links a[aria-current="page"] { color: #24463e; }
+.presentations-library .nav-links a[aria-current="page"] { text-decoration: underline; text-decoration-color: #f2b84b; text-decoration-thickness: 3px; text-underline-offset: 9px; }
+.presentations-library .nav-lang button[aria-pressed="true"] { background: #24463e; color: #fff4e2; border-radius: 2px; }
+.presentations-library .hero { background: #24463e; color: #fff4e2; min-height: 570px; }
+.presentations-library .hero-media { inset-inline-start: 38%; }
+.presentations-library .hero-media img { opacity: .95; }
+.presentations-library .hero-media::after { background: linear-gradient(90deg, #24463e 0%, rgba(36,70,62,.36) 48%, rgba(36,70,62,.1) 100%); }
+html[dir="rtl"] .presentations-library .hero-media::after { background: linear-gradient(270deg, #24463e 0%, rgba(36,70,62,.36) 48%, rgba(36,70,62,.1) 100%); }
+.presentations-library .hero-compact .hero-body { padding: 160px 0 64px; }
+.presentations-library .hero-body > .wrap { width: min(var(--w-wide), 100% - 44px); }
+.presentations-library .display { font-weight: 500; font-size: clamp(42px, 5.3vw, 72px); max-width: 16ch; line-height: 1.08; }
+.presentations-library .hero .lead { max-width: 43ch; color: #fff4e2; font-size: 18px; line-height: 1.7; }
+.presentations-library .hero .eyebrow { color: #f2b84b; display: flex; align-items: center; gap: 12px; }
+.presentations-library .hero .eyebrow::before { content: ""; width: 36px; height: 3px; background: #f2b84b; }
+.presentations-library .btn { border-radius: 3px; }
+.presentations-library .btn:hover { background: #e9dfcd; border-color: #657452; }
+.presentations-library .btn-primary { background: #f2b84b; border-color: #f2b84b; color: #27342f; }
+.presentations-library .btn-primary:hover { background: #ffd078; border-color: #ffd078; }
+.presentations-library .hero .btn:not(.btn-primary) { color: #fff4e2; border-color: rgba(255,244,226,.5); }
+.presentations-library .hero .btn:not(.btn-primary):hover { background: #36594d; }
+.presentations-library .section-head { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--hair); }
+.presentations-library .h2 { font-size: clamp(28px, 3vw, 40px); }
+.presentations-library .grid { gap: 24px; }
+.presentations-library .deck-card { display: flex; flex-direction: column; box-shadow: 0 8px 24px rgba(39,52,47,.04); }
+.presentations-library .deck-card:hover { transform: translateY(-3px); }
+.presentations-library .deck-body { display: flex; flex-direction: column; flex: 1; }
+.presentations-library .deck-actions { margin-top: auto; padding-top: 22px; }
+.presentations-library .tag { border-radius: 2px; padding: 3px 7px; }
+.presentations-library .tag-warn { color: #835b16; border-color: #ba924c; }
+.presentations-library .footer { padding-top: 48px; }
+.presentations-library .theater { background: #24463e; }
+.presentations-library .theater-bar { color: #fff4e2; }
+.presentations-library .theater-bar b { color: #fff4e2; }
+.presentations-library .theater-bar .btn { color: #fff4e2; border-color: rgba(255,244,226,.4); }
+@media (max-width: 1000px) and (min-width: 735px) {
+  .presentations-library .nav-inner { gap: 14px; }
+  .presentations-library .nav-links { gap: 14px; }
+}
+@media (max-width: 734px) {
+  .presentations-library .nav-inner { width: calc(100% - 32px); }
+  .presentations-library .nav-links { background: #f4ead8; }
+  .presentations-library .nav-lang { margin-inline-start: auto; }
+  .presentations-library .nav-menu { margin-inline-start: 0; }
+  .presentations-library .hero { min-height: 610px; }
+  .presentations-library .hero-media { inset-inline-start: 0; }
+  .presentations-library .hero-media::after,
+  html[dir="rtl"] .presentations-library .hero-media::after { background: linear-gradient(0deg, #24463e 2%, rgba(36,70,62,.86) 52%, rgba(36,70,62,.12) 100%); }
+  .presentations-library .hero-compact .hero-body { padding: 240px 0 40px; }
+  .presentations-library .hero-body > .wrap { width: calc(100% - 32px); }
+  .presentations-library .hero .lead { font-size: 17px; }
+  .presentations-library .hero-actions { margin-top: 24px; }
+  .presentations-library .section-head { gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .presentations-library .deck-card { transition: none; }
+}

@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="content-updated" content="2026-09-04">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bustan Energy — Bustan Energy — משפטי, חוזים והסכמים</title>
+<title>Bustan Energy — משפטי, חוזים והסכמים</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--ocean:#0A3D5C;--gold:#E8A820;--reef:#1A7A5A;--coral:#E85D3A;--night:#0D2137;--white:#FFF}
+:root{--ocean:#24463E;--gold:#F2B84B;--reef:#008F8A;--coral:#FF6B4A;--night:#27342F;--white:#FFF}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);overflow:hidden;height:100vh}
 .slide-container{width:100vw;height:100vh;position:relative;overflow:hidden}
@@ -15,68 +15,67 @@ body{font-family:'Heebo',sans-serif;background:var(--night);color:var(--white);o
 .slide.active{opacity:1;transform:translateX(0);pointer-events:all}.slide.exit{opacity:0;transform:translateX(-100px)}
 .slide-cover{background:linear-gradient(135deg,var(--ocean),var(--night));justify-content:center;align-items:center;text-align:center}
 .slide-dark{background:var(--night)}.slide-ocean{background:linear-gradient(180deg,var(--ocean),var(--night))}
-.slide-reef{background:linear-gradient(135deg,#0D3B2E,var(--night))}.slide-gold{background:linear-gradient(135deg,#3D2E0A,var(--night))}
-.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(13,33,55,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(232,168,32,.2);z-index:100}
+.slide-reef{background:linear-gradient(135deg,#24463E,var(--night))}.slide-gold{background:linear-gradient(135deg,#4A4633,var(--night))}
+.nav-bar{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 30px;background:rgba(39,52,47,.95);backdrop-filter:blur(10px);border-top:1px solid rgba(242,184,75,.2);z-index:100}
 .nav-btn{background:none;border:2px solid var(--gold);color:var(--gold);padding:8px 24px;border-radius:6px;cursor:pointer;font-family:'Heebo';font-size:14px;font-weight:500;transition:all .3s}
 .nav-btn:hover{background:var(--gold);color:var(--night)}.nav-btn:disabled{opacity:.3;cursor:default}
-.slide-counter{font-family:'Space Grotesk';color:rgba(255,255,255,.5);font-size:14px}
+.slide-counter{font-family:'Space Grotesk';color:rgba(255,244,226,.5);font-size:14px}
 .progress-bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);transition:width .4s;z-index:101}
-.toc-btn{position:fixed;top:20px;left:20px;background:rgba(232,168,32,.15);border:1px solid rgba(232,168,32,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102}
+.toc-btn{position:fixed;top:20px;left:20px;background:rgba(242,184,75,.15);border:1px solid rgba(242,184,75,.3);color:var(--gold);width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;z-index:102}
 .toc-btn:hover{background:var(--gold);color:var(--night)}
-.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(13,33,55,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(232,168,32,.2);z-index:103;transition:left .4s;padding:60px 30px 30px;overflow-y:auto}
+.toc-panel{position:fixed;top:0;left:-350px;width:350px;height:100vh;background:rgba(39,52,47,.98);backdrop-filter:blur(20px);border-right:1px solid rgba(242,184,75,.2);z-index:103;transition:left .4s;padding:60px 30px 30px;overflow-y:auto}
 .toc-panel.open{left:0}
-.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
-.toc-item:hover{background:rgba(232,168,32,.1);color:var(--white)}.toc-item.active{background:rgba(232,168,32,.2);color:var(--gold)}
+.toc-item{padding:10px 16px;margin:4px 0;border-radius:8px;cursor:pointer;font-size:14px;color:rgba(255,244,226,.7);transition:all .2s;display:flex;align-items:center;gap:10px}
+.toc-item:hover{background:rgba(242,184,75,.1);color:var(--white)}.toc-item.active{background:rgba(242,184,75,.2);color:var(--gold)}
 .toc-num{font-family:'Space Grotesk';font-weight:700;font-size:12px;color:var(--gold);min-width:24px}
 h1{font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.1;margin-bottom:16px}
 h2{font-size:clamp(24px,3.5vw,40px);font-weight:700;line-height:1.2;margin-bottom:12px}
 h3{font-size:clamp(16px,2vw,22px);font-weight:700;margin-bottom:8px}
 .subtitle{font-size:clamp(16px,2vw,22px);font-weight:300;opacity:.8;margin-bottom:24px}
-.gold{color:var(--gold)}.reef-text{color:#2ED89A}.coral-text{color:var(--coral)}
+.gold{color:var(--gold)}.reef-text{color:#79CCB7}.coral-text{color:var(--coral)}
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:20px}
-.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;transition:all .3s}
+.card{background:rgba(255,244,226,.05);border:1px solid rgba(255,244,226,.1);border-radius:12px;padding:20px;transition:all .3s}
 .card:hover{border-color:var(--gold);transform:translateY(-2px)}
 .card-icon{font-size:28px;margin-bottom:10px}.card h3{font-size:16px;margin-bottom:6px}.card p{font-size:13px;opacity:.7;line-height:1.5}
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,255,255,.1)}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid rgba(255,244,226,.1)}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:rgba(232,168,32,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
-td{padding:10px 14px;border-top:1px solid rgba(255,255,255,.06)}
-tr:hover td{background:rgba(255,255,255,.03)}
+th{background:rgba(242,184,75,.15);padding:10px 14px;text-align:right;font-weight:600;white-space:nowrap}
+td{padding:10px 14px;border-top:1px solid rgba(255,244,226,.06)}
+tr:hover td{background:rgba(255,244,226,.03)}
 .alert{padding:16px 20px;border-radius:10px;margin:12px 0;font-size:14px;line-height:1.6}
-.alert-warn{background:rgba(232,93,58,.15);border-right:3px solid var(--coral)}
-.alert-info{background:rgba(232,168,32,.1);border-right:3px solid var(--gold)}
-.alert-success{background:rgba(46,216,154,.1);border-right:3px solid #2ED89A}
+.alert-warn{background:rgba(255,107,74,.15);border-right:3px solid var(--coral)}
+.alert-info{background:rgba(242,184,75,.1);border-right:3px solid var(--gold)}
+.alert-success{background:rgba(121,204,183,.1);border-right:3px solid #79CCB7}
 .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
 a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
 .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
 @media(max-width:768px){.two-col,.three-col{grid-template-columns:1fr}.slide{padding:24px 20px}}
-.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(232,168,32,.3);border-radius:2px}
+.slide::-webkit-scrollbar{width:4px}.slide::-webkit-scrollbar-thumb{background:rgba(242,184,75,.3);border-radius:2px}
 .section-num{font-family:'Space Grotesk';font-size:64px;font-weight:700;color:var(--gold);opacity:.15;position:absolute;top:20px;left:40px}
 .big-num{font-family:'Space Grotesk';font-size:clamp(36px,6vw,72px);font-weight:700;color:var(--gold)}
 .stat-label{font-size:14px;opacity:.6;margin-top:4px}
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;margin:20px 0;text-align:center}
 
-.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
-.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
-.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(242,184,75,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,244,226,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(242,184,75,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,244,226,.1)}
 
 
 
 
 /* Bustan Energy Branding */
-.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
-.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.bustan-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.bustan-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.bustan-logo-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 </style>
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 <script src="auth.js"></script>
-<div class="tm-logo-header">
-  <span class="brand-text">BUSTAN ENERGY</span>
-  <img src="assets/bustan-energy.svg" alt="Bustan Energy">
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 
 
 
@@ -105,20 +104,20 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
   <div class="two-col">
     <div>
       <h3>רגולציה נוכחית</h3>
-      <div class="card" style="margin:8px 0;border-color:rgba(46,216,154,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(121,204,183,.3)">
         <h3 class="reef-text">✅ אין צורך בהיתר בנייה (מ-19.11.2025, ≤20 ק"ג/מ"ר)</h3>
         <p>מערכות סולאריות על גגות פטורות מהיתר בנייה. שינוי דרמטי — חוסך 3-6 חודשים.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(46,216,154,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(121,204,183,.3)">
         <h3 class="reef-text">✅ אין רישיון מפעל (12/2024)</h3>
         <p>Factory License ≤ 1MW — בוטל. גם מערכות מסחריות גדולות — בלי רישיון.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(232,168,32,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(242,184,75,.3)">
         <h3 class="gold">⚡ Net Billing — מגורים בלבד</h3>
         <p>אין net metering בתאילנד. מגורים: PEA קונה עודפים ב-฿2.20/kWh (עד 5 kW, 10 שנים, ERC 6/2026). עסקים: ฿0 על ייצוא → zero-export.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(100,150,255,.3)">
-        <h3 style="color:#6496FF">📋 רק תיאום PEA נדרש</h3>
+      <div class="card" style="margin:8px 0;border-color:rgba(128,199,195,.3)">
+        <h3 style="color:#80C7C3">📋 רק תיאום PEA נדרש</h3>
         <p>הודעת פטור ל-ERC (<1,000 kVA) + בקשה ב-PEA PPIM: טפסים + SLD + מפרט טכני. בדיקה בשטח. אישור תוך 15-30 ימי עבודה.</p>
       </div>
     </div>
@@ -223,9 +222,9 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
         <h3>Year 15</h3>
         <p>67,600 (degradation) × ฿4.68 = <strong class="gold">฿316,370</strong></p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(46,216,154,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(121,204,183,.3)">
         <h3 class="reef-text">סה"כ 15 שנים</h3>
-        <p style="font-size:24px;font-weight:700;color:#2ED89A">฿4.4M הכנסות</p>
+        <p style="font-size:24px;font-weight:700;color:#79CCB7">฿4.4M הכנסות</p>
         <p>עלות מערכת (all-in): ฿800K<br><strong>Payback: 3.3 שנים</strong></p>
       </div>
       <div class="alert alert-info">
@@ -250,7 +249,7 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
         <h3>Standard — ฿3,000/חודש</h3>
         <p>כל מה ב-Basic + ניקוי פאנלים רבעוני, בדיקה חשמלית חצי שנתית, תגובה 24 שעות. <strong>מומלץ.</strong></p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(46,216,154,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(121,204,183,.3)">
         <h3>Premium — ฿5,000/חודש</h3>
         <p>כל מה ב-Standard + SLA 4 שעות, חלקי חילוף כלולים (אינוורטר loan), ביטוח ציוד, דו"ח שבועי.</p>
       </div>
@@ -323,19 +322,19 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
       <p><strong>חובה בכל אתר.</strong> מכסה: נזק לציוד, נזק לרכוש הלקוח, תאונות עבודה, אסונות טבע.</p>
       <p style="margin-top:8px">עלות: ~0.3% מערך הפרויקט<br>דוגמה: פרויקט ฿1M → ฿3,000</p>
     </div>
-    <div class="card" style="border-color:rgba(100,150,255,.3)">
+    <div class="card" style="border-color:rgba(128,199,195,.3)">
       <div class="card-icon">🤝</div>
       <h3>אחריות צד שלישי</h3>
       <p>מכסה: נזק לשכנים, עוברי אורח, רכוש צמוד. <strong>חובה חוקית.</strong></p>
       <p style="margin-top:8px">כיסוי: ฿2M/אירוע (PPA) · ฿1M/אירוע (EPC)<br>עלות: ~฿10-15K/שנה</p>
     </div>
-    <div class="card" style="border-color:rgba(46,216,154,.3)">
+    <div class="card" style="border-color:rgba(121,204,183,.3)">
       <div class="card-icon">⚡</div>
       <h3>ביטוח ציוד (PPA)</h3>
       <p>כשהמערכת שלנו על גג הלקוח — <strong>אנחנו מבטחים.</strong> ברקים, שריפה, גניבה, סערות.</p>
       <p style="margin-top:8px">כיסוי: שווי מלא<br>עלות: ~1% מערך/שנה</p>
     </div>
-    <div class="card" style="border-color:rgba(232,168,32,.3)">
+    <div class="card" style="border-color:rgba(242,184,75,.3)">
       <div class="card-icon">👷</div>
       <h3>Workmen's Compensation</h3>
       <p><strong>חובה חוקית</strong> — Social Security + ביטוח תאונות עבודה. כיסוי: רפואי + פיצוי נכות.</p>
@@ -379,11 +378,11 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
     </div>
     <div>
       <h3>הטבות מס על סולאר</h3>
-      <div class="card" style="margin:8px 0;border-color:rgba(46,216,154,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(121,204,183,.3)">
         <h3 class="reef-text">ניכוי מואץ 50%</h3>
         <p>עסקים שקונים סולאר → מנכים 50% מהעלות בשנה ראשונה + 50% נוסף על פני שנים. <strong>חיסכון מס עצום.</strong></p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:rgba(232,168,32,.3)">
+      <div class="card" style="margin:8px 0;border-color:rgba(242,184,75,.3)">
         <h3 class="gold">BOI — מה נשאר</h3>
         <p>סולארי לצריכה עצמית הוסר מהטבות BOI ב-1.7.2025 (הודעה 3/2568). נשאר רק ייצור חשמל למכירה (קטגוריה 7.1 — חוות). לגגות: ניכוי 150% לעסקים על ציוד 5 כוכבים + ฿200K ליחידים (צו 805/2569).</p>
       </div>
@@ -430,11 +429,11 @@ a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
   <div class="two-col">
     <div>
       <h3>מנגנון 3 שלבים</h3>
-      <div class="card" style="margin:10px 0;border-color:rgba(46,216,154,.3)">
+      <div class="card" style="margin:10px 0;border-color:rgba(121,204,183,.3)">
         <h3 class="reef-text">שלב 1: משא ומתן</h3>
         <p>30 יום לפתרון ישיר בין הצדדים. רוב הסכסוכים נפתרים כאן.</p>
       </div>
-      <div class="card" style="margin:10px 0;border-color:rgba(232,168,32,.3)">
+      <div class="card" style="margin:10px 0;border-color:rgba(242,184,75,.3)">
         <h3 class="gold">שלב 2: גישור (Mediation)</h3>
         <p>מגשר מוסכם. Thai Arbitration Institute (TAI). 60 יום. עלות: ~฿30K.</p>
       </div>
@@ -775,6 +774,6 @@ window.PAGE_TRANSLATIONS = {
   "▸ שפה:": {en: "▸ Language:", th: "▸ ภาษา:"},
 };
 </script>
-<script src="tm-lang.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>

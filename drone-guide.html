@@ -6,54 +6,56 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Bustan Energy — מדריך סריקת גגות ברחפן</title>
 <style>
-:root{--navy:#0D2137;--gold:#E8A820;--green:#1A7A5A;--coral:#E85D3A;--light:#F8FAFC}
+:root{--navy:#27342F;--gold:#F2B84B;--green:#008F8A;--coral:#FF6B4A;--light:#FFF4E2}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--navy);color:#E2E8F0;line-height:1.7}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--navy);color:#F4EAD8;line-height:1.7}
 .container{max-width:900px;margin:0 auto;padding:24px}
 header{text-align:center;padding:40px 20px 20px}
 header img{height:60px;margin-bottom:16px}
 header h1{font-size:28px;color:white;margin-bottom:8px}
 header p{opacity:.5;font-size:14px}
-.section{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:24px;margin:16px 0}
+.section{background:rgba(255,244,226,.04);border:1px solid rgba(255,244,226,.08);border-radius:14px;padding:24px;margin:16px 0}
 .section h2{color:var(--gold);font-size:20px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.section h3{color:#88BBFF;font-size:16px;margin:16px 0 8px}
-.important{background:rgba(232,168,32,.1);border:1px solid rgba(232,168,32,.3);border-radius:10px;padding:16px;margin:12px 0}
-.warning{background:rgba(232,93,58,.1);border:1px solid rgba(232,93,58,.3);border-radius:10px;padding:16px;margin:12px 0}
-.success{background:rgba(26,122,90,.1);border:1px solid rgba(26,122,90,.3);border-radius:10px;padding:16px;margin:12px 0}
+.section h3{color:#80C7C3;font-size:16px;margin:16px 0 8px}
+.important{background:rgba(242,184,75,.1);border:1px solid rgba(242,184,75,.3);border-radius:10px;padding:16px;margin:12px 0}
+.warning{background:rgba(255,107,74,.1);border:1px solid rgba(255,107,74,.3);border-radius:10px;padding:16px;margin:12px 0}
+.success{background:rgba(0,143,138,.1);border:1px solid rgba(0,143,138,.3);border-radius:10px;padding:16px;margin:12px 0}
 table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px}
-th{background:rgba(232,168,32,.15);color:var(--gold);padding:8px 12px;text-align:right}
-td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
-code{background:rgba(255,255,255,.08);padding:2px 6px;border-radius:4px;font-size:12px;direction:ltr;display:inline-block}
+th{background:rgba(242,184,75,.15);color:var(--gold);padding:8px 12px;text-align:right}
+td{padding:8px 12px;border-bottom:1px solid rgba(255,244,226,.06)}
+code{background:rgba(255,244,226,.08);padding:2px 6px;border-radius:4px;font-size:12px;direction:ltr;display:inline-block}
 ol,ul{padding-right:24px;margin:8px 0}
 li{margin:6px 0;font-size:14px}
 .step{display:flex;gap:16px;margin:12px 0;align-items:flex-start}
 .step-num{background:var(--gold);color:var(--navy);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
 .step-content{flex:1}
 .diagram{background:rgba(0,0,0,.2);border-radius:10px;padding:20px;margin:12px 0;text-align:center;font-size:13px;direction:ltr}
-.diagram pre{text-align:left;white-space:pre;color:#88BBFF;font-size:12px;line-height:1.6}
+.diagram pre{text-align:left;white-space:pre;color:#80C7C3;font-size:12px;line-height:1.6}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:600px){.grid{grid-template-columns:1fr}}
-.card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:16px}
+.card{background:rgba(255,244,226,.03);border:1px solid rgba(255,244,226,.06);border-radius:10px;padding:16px}
 .card h4{color:var(--gold);font-size:14px;margin-bottom:6px}
 .badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
-.badge-gold{background:rgba(232,168,32,.2);color:var(--gold)}
-.badge-green{background:rgba(26,122,90,.2);color:var(--green)}
-.upload-zone{border:2px dashed rgba(232,168,32,.4);border-radius:14px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;margin:16px 0}
-.upload-zone:hover{border-color:var(--gold);background:rgba(232,168,32,.05)}
-.upload-zone.active{border-color:var(--green);background:rgba(26,122,90,.05)}
+.badge-gold{background:rgba(242,184,75,.2);color:var(--gold)}
+.badge-green{background:rgba(0,143,138,.2);color:var(--green)}
+.upload-zone{border:2px dashed rgba(242,184,75,.4);border-radius:14px;padding:40px 20px;text-align:center;cursor:pointer;transition:all .2s;margin:16px 0}
+.upload-zone:hover{border-color:var(--gold);background:rgba(242,184,75,.05)}
+.upload-zone.active{border-color:var(--green);background:rgba(0,143,138,.05)}
 #fileList{margin:12px 0;font-size:12px;text-align:right}
-.file-item{padding:6px;background:rgba(255,255,255,.03);border-radius:6px;margin:4px 0;display:flex;justify-content:space-between}
+.file-item{padding:6px;background:rgba(255,244,226,.03);border-radius:6px;margin:4px 0;display:flex;justify-content:space-between}
 #uploadBtn{padding:12px 32px;background:var(--gold);color:var(--navy);border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;margin:8px 0}
 #uploadBtn:disabled{opacity:.4;cursor:not-allowed}
 #results{margin:16px 0}
 .result-img{max-width:100%;border-radius:8px;margin:8px 0}
 </style>
     <meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 <script src="auth.js"></script>
 <header>
-<img src="assets/bustan-energy.svg" alt="Bustan Energy">
+<img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy">
 <h1>מדריך סריקת גגות ברחפן</h1>
 <p>איך לצלם גגות עם רחפן כדי למדוד שטח, לתכנן פאנלים, וליצור הצעות מחיר מדויקות</p>
 </header>
@@ -570,7 +572,7 @@ window.PAGE_TRANSLATIONS = {
   "QGIS (חינם)": {en: "QGIS (free)", th: "QGIS (ฟรี)"},
 };
 </script>
-<script src="tm-translations.js"></script>
-<script src="tm-lang.js"></script>
+<script src="bustan-translations.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>

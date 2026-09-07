@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="content-updated" content="2026-09-04">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bustan Energy — Bustan Energy — רישוי מערכות סולאריות בתאילנד</title>
+<title>Bustan Energy — רישוי מערכות סולאריות בתאילנד</title>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ocean: #0A3D5C;
-  --gold: #E8A820;
+  --ocean: #24463E;
+  --gold: #F2B84B;
   --sand: #FDF6E3;
-  --reef: #1A7A5A;
-  --coral: #E85D3A;
+  --reef: #008F8A;
+  --coral: #FF6B4A;
   --sky: #E8F4F8;
-  --night: #0D2137;
-  --white: #FFFFFF;
+  --night: #27342F;
+  --white: #FFF4E2;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Heebo', sans-serif; background: var(--night); color: var(--white); overflow: hidden; height: 100vh; }
@@ -33,14 +33,14 @@ body { font-family: 'Heebo', sans-serif; background: var(--night); color: var(--
 .slide-cover { background: linear-gradient(135deg, var(--ocean) 0%, var(--night) 100%); justify-content: center; align-items: center; text-align: center; }
 .slide-dark { background: var(--night); }
 .slide-ocean { background: linear-gradient(180deg, var(--ocean) 0%, var(--night) 100%); }
-.slide-reef { background: linear-gradient(135deg, #0D3B2E 0%, var(--night) 100%); }
-.slide-gold { background: linear-gradient(135deg, #3D2E0A 0%, var(--night) 100%); }
+.slide-reef { background: linear-gradient(135deg, #24463E 0%, var(--night) 100%); }
+.slide-gold { background: linear-gradient(135deg, #4A4633 0%, var(--night) 100%); }
 
 .nav-bar {
   position: fixed; bottom: 0; left: 0; right: 0; display: flex;
   justify-content: space-between; align-items: center; padding: 12px 30px;
-  background: rgba(13, 33, 55, 0.95); backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(232, 168, 32, 0.2); z-index: 100;
+  background: rgba(39,52,47, 0.95); backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(242,184,75, 0.2); z-index: 100;
 }
 .nav-btn {
   background: none; border: 2px solid var(--gold); color: var(--gold);
@@ -50,30 +50,30 @@ body { font-family: 'Heebo', sans-serif; background: var(--night); color: var(--
 .nav-btn:hover { background: var(--gold); color: var(--night); }
 .nav-btn:disabled { opacity: 0.3; cursor: default; }
 .nav-btn:disabled:hover { background: none; color: var(--gold); }
-.slide-counter { font-family: 'Space Grotesk'; color: rgba(255,255,255,0.5); font-size: 14px; }
+.slide-counter { font-family: 'Space Grotesk'; color: rgba(255,244,226,0.5); font-size: 14px; }
 .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); transition: width 0.4s ease; z-index: 101; }
 
 .toc-btn {
-  position: fixed; top: 20px; left: 20px; background: rgba(232, 168, 32, 0.15);
-  border: 1px solid rgba(232, 168, 32, 0.3); color: var(--gold);
+  position: fixed; top: 20px; left: 20px; background: rgba(242,184,75, 0.15);
+  border: 1px solid rgba(242,184,75, 0.3); color: var(--gold);
   width: 40px; height: 40px; border-radius: 50%; display: flex;
   align-items: center; justify-content: center; cursor: pointer; font-size: 18px; z-index: 102; transition: all 0.3s;
 }
 .toc-btn:hover { background: var(--gold); color: var(--night); }
 .toc-panel {
   position: fixed; top: 0; left: -350px; width: 350px; height: 100vh;
-  background: rgba(13, 33, 55, 0.98); backdrop-filter: blur(20px);
-  border-right: 1px solid rgba(232, 168, 32, 0.2); z-index: 103;
+  background: rgba(39,52,47, 0.98); backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(242,184,75, 0.2); z-index: 103;
   transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1); padding: 60px 30px 30px; overflow-y: auto;
 }
 .toc-panel.open { left: 0; }
 .toc-item {
   padding: 10px 16px; margin: 4px 0; border-radius: 8px; cursor: pointer;
-  font-size: 14px; color: rgba(255,255,255,0.7); transition: all 0.2s;
+  font-size: 14px; color: rgba(255,244,226,0.7); transition: all 0.2s;
   display: flex; align-items: center; gap: 10px;
 }
-.toc-item:hover { background: rgba(232, 168, 32, 0.1); color: var(--white); }
-.toc-item.active { background: rgba(232, 168, 32, 0.2); color: var(--gold); }
+.toc-item:hover { background: rgba(242,184,75, 0.1); color: var(--white); }
+.toc-item.active { background: rgba(242,184,75, 0.2); color: var(--gold); }
 .toc-num { font-family: 'Space Grotesk'; font-weight: 700; font-size: 12px; color: var(--gold); min-width: 24px; }
 
 h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
@@ -81,12 +81,12 @@ h2 { font-size: clamp(24px, 3.5vw, 40px); font-weight: 700; line-height: 1.2; ma
 h3 { font-size: clamp(18px, 2vw, 24px); font-weight: 700; margin-bottom: 8px; }
 .subtitle { font-size: clamp(16px, 2vw, 22px); font-weight: 300; opacity: 0.8; margin-bottom: 24px; }
 .gold { color: var(--gold); }
-.reef-text { color: #2ED89A; }
+.reef-text { color: #79CCB7; }
 .coral-text { color: var(--coral); }
 
 .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
 .card {
-  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,244,226,0.05); border: 1px solid rgba(255,244,226,0.1);
   border-radius: 12px; padding: 20px; transition: all 0.3s;
 }
 .card:hover { border-color: var(--gold); transform: translateY(-2px); }
@@ -94,16 +94,16 @@ h3 { font-size: clamp(18px, 2vw, 24px); font-weight: 700; margin-bottom: 8px; }
 .card h3 { font-size: 16px; margin-bottom: 6px; }
 .card p { font-size: 13px; opacity: 0.7; line-height: 1.5; }
 
-.table-wrap { overflow-x: auto; margin: 16px 0; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+.table-wrap { overflow-x: auto; margin: 16px 0; border-radius: 12px; border: 1px solid rgba(255,244,226,0.1); }
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th { background: rgba(232, 168, 32, 0.15); padding: 10px 14px; text-align: right; font-weight: 600; white-space: nowrap; }
-td { padding: 10px 14px; border-top: 1px solid rgba(255,255,255,0.06); }
-tr:hover td { background: rgba(255,255,255,0.03); }
+th { background: rgba(242,184,75, 0.15); padding: 10px 14px; text-align: right; font-weight: 600; white-space: nowrap; }
+td { padding: 10px 14px; border-top: 1px solid rgba(255,244,226,0.06); }
+tr:hover td { background: rgba(255,244,226,0.03); }
 
 .timeline { margin: 20px 0; padding-right: 20px; }
 .timeline-item {
   position: relative; padding: 16px 24px 16px 0;
-  border-right: 2px solid rgba(232, 168, 32, 0.3); margin-right: 12px;
+  border-right: 2px solid rgba(242,184,75, 0.3); margin-right: 12px;
 }
 .timeline-item::before {
   content: ''; position: absolute; right: -7px; top: 20px;
@@ -115,13 +115,13 @@ tr:hover td { background: rgba(255,255,255,0.03); }
 
 .checklist { list-style: none; margin: 16px 0; }
 .checklist li {
-  padding: 8px 12px; margin: 4px 0; background: rgba(255,255,255,0.03);
+  padding: 8px 12px; margin: 4px 0; background: rgba(255,244,226,0.03);
   border-radius: 8px; font-size: 14px; display: flex; align-items: center;
   gap: 10px; cursor: pointer; transition: all 0.2s;
 }
-.checklist li:hover { background: rgba(255,255,255,0.06); }
+.checklist li:hover { background: rgba(255,244,226,0.06); }
 .checklist li .check {
-  width: 20px; height: 20px; border: 2px solid rgba(255,255,255,0.3);
+  width: 20px; height: 20px; border: 2px solid rgba(255,244,226,0.3);
   border-radius: 4px; display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; transition: all 0.2s;
 }
@@ -129,22 +129,22 @@ tr:hover td { background: rgba(255,255,255,0.03); }
 .checklist li.done .check::after { content: '✓'; color: white; font-size: 12px; }
 
 .alert { padding: 16px 20px; border-radius: 10px; margin: 12px 0; font-size: 14px; line-height: 1.6; }
-.alert-warn { background: rgba(232, 93, 58, 0.15); border-right: 3px solid var(--coral); }
-.alert-info { background: rgba(232, 168, 32, 0.1); border-right: 3px solid var(--gold); }
-.alert-success { background: rgba(46, 216, 154, 0.1); border-right: 3px solid #2ED89A; }
+.alert-warn { background: rgba(255,107,74, 0.15); border-right: 3px solid var(--coral); }
+.alert-info { background: rgba(242,184,75, 0.1); border-right: 3px solid var(--gold); }
+.alert-success { background: rgba(121,204,183, 0.1); border-right: 3px solid #79CCB7; }
 
 .tag { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-.tag-required { background: rgba(232, 93, 58, 0.2); color: var(--coral); }
-.tag-optional { background: rgba(232, 168, 32, 0.2); color: var(--gold); }
-.tag-free { background: rgba(46, 216, 154, 0.2); color: #2ED89A; }
-.tag-new { background: rgba(100, 150, 255, 0.2); color: #6496FF; }
+.tag-required { background: rgba(255,107,74, 0.2); color: var(--coral); }
+.tag-optional { background: rgba(242,184,75, 0.2); color: var(--gold); }
+.tag-free { background: rgba(121,204,183, 0.2); color: #79CCB7; }
+.tag-new { background: rgba(128,199,195, 0.2); color: #80C7C3; }
 
 a { color: var(--gold); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .link-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 12px 0; }
 .link-card {
   display: flex; align-items: center; gap: 10px; padding: 12px 16px;
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,244,226,0.04); border: 1px solid rgba(255,244,226,0.08);
   border-radius: 8px; font-size: 13px; transition: all 0.2s;
 }
 .link-card:hover { border-color: var(--gold); text-decoration: none; }
@@ -153,7 +153,7 @@ a:hover { text-decoration: underline; }
 @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .slide { padding: 24px 20px; } }
 
 .slide::-webkit-scrollbar { width: 4px; }
-.slide::-webkit-scrollbar-thumb { background: rgba(232, 168, 32, 0.3); border-radius: 2px; }
+.slide::-webkit-scrollbar-thumb { background: rgba(242,184,75, 0.3); border-radius: 2px; }
 
 .section-num {
   font-family: 'Space Grotesk'; font-size: 64px; font-weight: 700;
@@ -166,7 +166,7 @@ a:hover { text-decoration: underline; }
 
 .flow-step {
   display: flex; align-items: flex-start; gap: 16px; padding: 16px;
-  background: rgba(255,255,255,0.03); border-radius: 12px; margin: 8px 0;
+  background: rgba(255,244,226,0.03); border-radius: 12px; margin: 8px 0;
   border-right: 3px solid var(--gold);
 }
 .flow-num {
@@ -177,26 +177,25 @@ a:hover { text-decoration: underline; }
 .flow-content p { font-size: 13px; opacity: 0.7; line-height: 1.5; }
 .flow-content .detail { font-size: 12px; opacity: 0.5; margin-top: 4px; }
 
-.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(232,168,32,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
-.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,255,255,.1)}
-.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(232,168,32,.15)}
-.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,.1)}
+.slide-img{width:100%;max-height:280px;object-fit:cover;border-radius:12px;margin:12px 0;border:1px solid rgba(242,184,75,.2);box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.slide-img-sm{width:100%;max-height:180px;object-fit:cover;border-radius:10px;margin:8px 0;border:1px solid rgba(255,244,226,.1)}
+.img-float{float:left;width:45%;max-height:240px;object-fit:cover;border-radius:12px;margin:0 20px 12px 0;border:1px solid rgba(242,184,75,.15)}
+.img-row{display:flex;gap:12px;margin:12px 0}.img-row img{flex:1;max-height:200px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,244,226,.1)}
 
 
 
 
 /* Bustan Energy Branding */
-.tm-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
-.tm-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
-.tm-logo-header .brand-text{font-size:11px;color:rgba(255,255,255,.5);font-weight:600;letter-spacing:1px}
+.bustan-logo-header{position:fixed;top:16px;right:20px;z-index:200;display:flex;align-items:center;gap:10px}
+.bustan-logo-header img{height:36px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.5))}
+.bustan-logo-header .brand-text{font-size:11px;color:rgba(255,244,226,.5);font-weight:600;letter-spacing:1px}
 </style>
+<link rel="icon" type="image/png" href="assets/bustan-energy-logo.png">
+<link rel="stylesheet" href="assets/playbook-brand.css?v=bustan-20260907">
 </head>
-<body>
+<body class="bustan-playbook">
 <script src="auth.js"></script>
-<div class="tm-logo-header">
-  <span class="brand-text">BUSTAN ENERGY</span>
-  <img src="assets/bustan-energy.svg" alt="Bustan Energy">
-</div>
+<a class="bustan-logo-header" href="presentations/" aria-label="Bustan Energy — Presentations"><img class="bustan-playbook-logo" src="assets/bustan-energy-logo.png" alt="Bustan Energy"></a>
 
 
 
@@ -502,23 +501,23 @@ a:hover { text-decoration: underline; }
     <div>
       <h3 class="reef-text">הטבות מס — כלי מכירה!</h3>
       
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>ניכוי 50% על ציוד סולארי <span class="tag tag-new">2024-2025</span></h3>
         <p>לקוחות עסקיים: ניכוי 150% על ציוד חיסכון אנרגיה 5 כוכבים (צו 805/2569). מגורים: עד ฿200K ניכוי — ≤10 kWp, בעל המונה, e-Tax Invoice ממתקין רשום מע"מ, 3.3.2026-31.12.2028, לא ב-PPA.</p>
-        <p style="margin-top:6px;color:#2ED89A;font-weight:600;">= מכירה קלה יותר! "המדינה משלמת חצי."</p>
+        <p style="margin-top:6px;color:#79CCB7;font-weight:600;">= מכירה קלה יותר! "המדינה משלמת חצי."</p>
       </div>
 
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>פטור מכס על ייבוא</h3>
         <p>פאנלים סולאריים: 0% מכס תחת הסכמי ASEAN. אינוורטרים: תלוי מקור.</p>
       </div>
 
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>VAT על מכירת חשמל</h3>
         <p>הכנסה מ-net billing (฿2.20/kWh, מגורים) — יחיד לא רשום מע"מ: ללא מע"מ. מכירת חשמל ב-PPA ע"י חברה רשומה: 7% מע"מ.</p>
       </div>
 
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>הטבות ממשלתיות (אם זמין)</h3>
         <p>BOI: סולארי לצריכה עצמית הוסר מההטבות ב-1.7.2025. נשאר רק לחוות שמוכרות לרשת (קטגוריה 7.1). מכס: 0% עם Form E ממילא.</p>
       </div>
@@ -721,19 +720,19 @@ a:hover { text-decoration: underline; }
   <div class="two-col">
     <div>
       <h3>יתרונות</h3>
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>4.0 שעות שיא שמש ביום (≈1,450 kWh/kWp)</h3>
         <p>אזור טרופי = תפוקה גבוהה כל השנה. אפילו בעונת הגשמים 3.5+ שעות.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>תעריף חשמל גבוה</h3>
         <p>฿4.5-4.9/kWh שולי כולל מע"מ (ספט 2026); TOU שיא ฿6.4. Ft מוקפא פוליטית — לא להניח עליית תעריף מעל 1.5%/שנה.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>אפס תחרות רצינית</h3>
         <p>מתחרה אחד (Green Global Tech) — איכות נמוכה. אין נוכחות דיגיטלית.</p>
       </div>
-      <div class="card" style="margin:8px 0;border-color:#2ED89A;">
+      <div class="card" style="margin:8px 0;border-color:#79CCB7;">
         <h3>בעיות רשת = מוטיבציה</h3>
         <p>הפסקות חשמל תכופות. סולאר + סוללות = pitch מושלם.</p>
       </div>
@@ -1310,7 +1309,7 @@ window.PAGE_TRANSLATIONS = {
   "100% בעלות זרה אפשרית רק עם BOI — ו-EPC/גגות לא מקודמים מ-7/2025. בפועל: חברה תאילנדית 51/49 או רישיון FBA.": {en: "100% foreign ownership only with BOI — and EPC/rooftop is not promoted since Jul 2025. In practice: a 51/49 Thai company or an FBA licence.", th: "ถือหุ้นต่างชาติ 100% ได้เฉพาะเมื่อมี BOI — และ EPC/หลังคาไม่ได้รับการส่งเสริมตั้งแต่ ก.ค. 2568 ในทางปฏิบัติ: บริษัทไทย 51/49 หรือใบอนุญาต FBA"},
 };
 </script>
-<script src="tm-translations.js"></script>
-<script src="tm-lang.js"></script>
+<script src="bustan-translations.js"></script>
+<script src="bustan-lang.js"></script>
 </body>
 </html>
